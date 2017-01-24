@@ -1,0 +1,223 @@
+\documentclass[a4paper, 11 pt]{article}
+\usepackage{amsmath, amssymb, color, setspace, graphicx, dsfont, pdfpages, float, wrapfig, indentfirst, multicol}
+\usepackage[left=0.5in, right=0.5in]{geometry}
+\usepackage[font=small,labelfont=bf]{caption}
+
+\newcommand\bigZero{\scalebox{2}{$0$}}
+\newcommand\bigGamma{\scalebox{2}{$\Gamma$}}
+\newcommand\bigA{\scalebox{2}{$A$}}
+\begin{document}
+
+  \section{Integral Formulation}
+  \begin{equation}
+    \begin{split}
+      \dot{x} &= Ax + Bu \\
+      &= e^{-tA}x \\
+      \rightarrow \dot{\gamma} &= e^{-tA} \dot{x} -A e^{-tA}x \\
+      &= e^{-tA}(Ax + Bu) - Ae^{-tA}x \\
+      &= e^{-tA}Bu \\
+      \rightarrow \gamma(t) &= \gamma(0) + \int_{0}^{t} e^{-sA}Bu(s) ds \\
+      x(t) &= e^{tA} (x(0) + \int_{0}^{t} e^{-sA}Bu(s) ds \\
+      \text{If } AB=\bar{A}B &\text{ and } CA=C\bar{A} \\
+      \text{ then } y(t) &= \bar{y}(t)
+    \end{split}
+  \end{equation}
+
+  \section{Null Space Parameterization}
+  \begin{equation}
+    \begin{split}
+      AB=\bar{A}B \\
+      CA = C\bar{A} \text{ then } \\
+      (A-\bar{A})B=0 \text{ and } C(A-\bar{A}) = 0 \\
+      \rightarrow \text{Let } Z=\bar{A}-A \\
+      \text{Let } \{v_{i}\} \text{ span the right null space of } C \\
+      \rightarrow Cv_{i} = 0 \forall i \\
+      \{w_{j}\} \text{ span the left null space of } C \\
+      w_{j}B = 0 \forall j \\
+      \iff Z=\sum_{ij} e_{ij}v_{i}w_{j}^{T} \text{ for some } e_{ij} \in \mathbb{R} \\
+      (\text{Also } A^{k}B=\bar{A}^kB)
+    \end{split}
+  \end{equation}
+
+  \begin{equation}
+    \begin{split}
+      \bar{A} = PAP^{-1} \\
+      (A^{k} - PA^{k}P^{-1})B=0=(A^{k}-(I-G)A^{k}(I+G+G^{2}+ \hdots))B \\
+      =(-A^{k}(G + G^{2} + \hdots) + GA^{k}(I + G + G^{2} + \hdots))B \\
+      = (GA^{k}-(I-G)A^{k}(G+G^{2} + \hdots))B \\
+      P=I-G \\
+      P^{-1} = \sum_{n \geq 0} G^{n} = I + G + G^{2} + \hdots \\
+    \end{split}
+  \end{equation}
+
+  \section{Model Notes}
+  \begin{itemize}
+    \item $A_{ij} \rightarrow$
+      \begin{itemize}
+        \item parameterization $\rightarrow$
+          \begin{itemize}
+            \item $e$'s independently
+            \item $A_{ij}$'s independently
+            \item $A_{ij}$'s jointly
+          \end{itemize}
+        \item bias towards $0$? Speed?
+          \begin{itemize}
+            \item none
+            \item Ornstein-Uhlenbeck Process
+            \item stays at $0$
+          \end{itemize}
+      \end{itemize}
+    \item Dimension of $A$
+      \begin{itemize}
+        \item up $\rightarrow$ add rows/columns (either all $0$ or not?)
+        \item down $\rightarrow$ delete if all $0$, use Kalman decomposition algorithm, if ``unnecessary'', or other ideas.
+      \end{itemize}
+    \item Recombination
+    \item Fitness
+  \end{itemize}
+
+  \section{Parameterization}
+    \begin{equation}
+      \begin{split}
+        G(s) = C(sI-A)^{-1}B : A \in \mathbb{R}^{n \times n}, \ C \in \mathbb{R}^{k \times n}, \ B \in \mathbb{R}^{n \times l} \\
+        \text{If } A = \sum^{n}_{i=1} \lambda_{i}u_{i}v_{i}^{T} = U \Lambda V^{T}, \ \Lambda \text{ is diagonal and } V^{T}U=I \\
+        \text{Then } (sI-A)^{-1} = \sum_{i = 1}^{n} \big( \frac{ 1 }{ s-\lambda_{i} } \big) u_{i}v_{i}^{T} \\
+        =U(sI-\Lambda)^{-1}V^{T} \\
+        \text{So } G(s) = CU(sI-\Lambda)^{-1}V^{T}B \\
+        \text{If } k=l=1 \rightarrow c=CU, \ b=V^{T}B \\
+        \rightarrow G(s)=\sum_{i} \frac{ c_{i} b_{i} }{s-\lambda_{i}} = \frac{ \sum_{i} c_{i} b_{i} \prod_{j \neq i} (s-\lambda_{j}) }{ \prod_{i} (s-\lambda_{i}) }
+      \end{split}
+    \end{equation}
+
+   \textbf{Claim:} 
+   
+   Let $\{A, B, C \}$ be a system, and let $\Lambda=PAP^{-1}$ be a diagonalization of $A$.
+   
+   Let $PB=\tilde{B}$ and $PC=\tilde{C}$
+
+   If $B \in \mathbb{R}^{1 \times n}$ and $C \in \mathbb{R}^{n \times 1}$ then all equivalent systems are of the form, 
+
+   $\tilde{A} = Q \tilde{\Lambda} Q^{-1}$ where $\tilde{\Lambda}$ is diagonal. Also if $\tilde{B}_{i}$ and $\tilde{C}_{i}$ are both $\neq 0$ then $\tilde{\Lambda}_{ii}=\Lambda_{ii}$. 
+
+   And $QB=B$ and $CQ=C$.
+
+   \begin{itemize}
+     \item Is this true?
+     \item is this the minimal parameterization?
+     \item how to generalize this to $k, l > 1$?
+   \end{itemize}
+
+   \section{Proof}
+   Define $\mathcal{C}$ as the controllability matrix and $\mathcal{O}$ as the observability matrix. 
+
+   \begin{equation}
+     \mathcal{C} := \begin{bmatrix} \tilde{B} & \tilde{\Lambda} \tilde{B} & \hdots & \tilde{\Lambda}^{n-1} \tilde{B} \end{bmatrix}
+   \end{equation}
+
+   \begin{equation}
+     \mathcal{O} := \begin{bmatrix} \tilde{C} \\ \tilde{C} \tilde{\Lambda}  \\ \vdots \\ \tilde{C} \tilde{\Lambda}^{n-1} \end{bmatrix}
+   \end{equation}
+
+    If a system is both controllable and observable it is a minimal realization. A system is controllable and observable if and only if both rank($\mathcal{C}$) $=$ rank($\mathcal{O}$) $= n$. 
+
+    \begin{equation}
+      \mathcal{C} = \underbrace{\begin{bmatrix} \tilde{B}_{1} & & 0 \\ & \ddots & \\ 0 & & \tilde{B}_{n} \end{bmatrix}}_{\beta} \underbrace{\begin{bmatrix} 1 & \lambda_{1} & \hdots & \lambda_{1}^{n-1} \\ \vdots & \vdots & \vdots & \vdots \\ 1 & \lambda_{n} & \hdots & \lambda_{n}^{n-1} \end{bmatrix}}_{L}
+    \end{equation}
+
+    By the Sylvester Rank Inequality: $\text{rank}(\beta) + \text{rank}(L) - n \leq \text{rank}(\beta L) \leq \min\{\text{rank}(\beta) , \text{rank}(L)\}$. 
+    
+    Therefore rank$(\mathcal{C}) =$ rank$(\beta L) = \text{rank}(\beta)$, and rank$(\mathcal{O}) = \text{rank}(L^{T} K) = \text{rank}(K)$. 
+
+    The $\text{rank}(L) = n$ as long as all of the eigenvalues are unique. The $\text{rank}(\beta) = n$ and $\text{rank}(K) = n$ if and only if $\tilde{B}_{i} \neq 0 \ \forall i$ and $\tilde{C}_{i} \neq 0 \ \forall i$, respectively. 
+
+    \begin{equation}
+      \mathcal{O} = \underbrace{\begin{bmatrix} 1 & \hdots & 1 \\ \lambda_{1} & \hdots & \lambda_{n} \\ \vdots & \vdots & \vdots \\ \lambda_{1}^{n-1} & \hdots & \lambda_{n}^{n-1} \end{bmatrix}}_{L^{T}} \underbrace{\begin{bmatrix} \tilde{C}_{1} & & 0 \\ & \ddots & \\ 0 & & \tilde{C}_{n} \end{bmatrix}}_{K}
+    \end{equation}
+
+   \begin{equation}
+     G(s) = \sum_{i}^{n} \frac{\tilde{C}_{i} \tilde{B}_{i}}{(s-\lambda_{i})}
+   \end{equation}
+
+   \section{2-degree TF gene deletion}
+   \begin{equation}
+     G(s) = \frac{B_{1} C_{1}}{s-\lambda_{1}} + \frac{B_{2} C_{2}}{s-\lambda_{2}} = C \Big(sI - \mathcal{S}_{(\vec{r})} \begin{bmatrix} G & 0 \\ 0 & \Gamma \end{bmatrix}  \mathcal{S}^{-1}_{(\vec{r})} \Big)^{-1} B^{T}
+   \end{equation}
+   \begin{equation}
+     \mathcal{S}_{(\vec{r})} = \begin{bmatrix} 1 & 0 & 0 & \hdots & 0 \\ r_{1,1} & 1-r_{1,1} & r_{1,2} & \hdots & r_{1,n} \\ r_{2,1} & -r_{2,1} & r_{2,2} & \hdots & r_{2,n} \\ r_{3,1} & -r_{3,1} & r_{3,2} & \hdots & r_{3,n} \\ \vdots & \vdots & \vdots & \vdots & \vdots \\ r_{n,1} & -r_{n,1} & r_{n,2} & \hdots & r_{n,n} \end{bmatrix} 
+   \end{equation}
+       \begin{equation}
+      \begin{bmatrix} G & 0 \\ 0 & \Gamma \end{bmatrix} =  \begin{bmatrix} \lambda_{1} & \lambda_{2} - k & 0 & 0 & \hdots & 0 \\ 0 & \lambda_{2} & 0 & 0 & \hdots & 0 \\ 0 & 0 & \gamma_{1} & 0 & \hdots & 0 \\ \vdots & \vdots & 0 & \ddots & 0 & \vdots \\ 0 & 0 & \vdots & 0 & \ddots & 0 \\ 0 & 0 & 0 & 0 & \hdots & \gamma_{n-2} \end{bmatrix}
+   \end{equation}
+
+   For which set of $\vec{r}$ does $\vec{\epsilon}_{j} = \vec{0}$?
+
+   \begin{equation}
+     \begin{bmatrix} && \bigA && \vec{\epsilon_{1}} & \cdots & \vec{\epsilon_{n-2}} \\ &&&& \\ && \cdots && & \bigGamma && \end{bmatrix} 
+   \end{equation}
+
+  \section{Gene Deletion}
+             What is the probability that,
+             
+             \begin{equation*}
+                \Vert G(s) - G^{*}(s) \Vert \leq \delta
+              \end{equation*}
+              
+              Where $G^{*}(s)$ is the transfer function after removing a row and corresponding column.
+
+              For example we care about the $\bigstar$ region of the GRN matrix:
+
+              \begin{equation*}
+                Z = \begin{bmatrix} \bigstar &\vert \epsilon \\ \hdots & \hdots \end{bmatrix}
+              \end{equation*}
+
+              What is the probability that there exists a set of dimensions that, 
+              \begin{itemize}
+                \item we don't care about them (w.r.t. $C$). 
+                \item and they only affect the other genes a little bit.
+              \end{itemize}
+
+              If this increases dimensions fast enough then there will be an equilibrium level of network complexity. (Note: this is also related to robustness).
+
+              As GRNs increase in size, their mutational target size and therefore genetic load may also increase, pushing the size of GRNs downward. We could also look at organisms that closely approximate the optimal molecular dynamics. For example, if the optimal dynamics are represented by the transfer function ($G^{m}(s)$) of polynomial degree $m$, and a smaller degree TF (say $G^{m-1}(s)$) closely approximates the dynamics such that $\Vert G^{m}(s) - G^{m-1}(s) \Vert \leq \delta$, and the difference in fitness due to genetic load between a population using the $m$-degree TF vs. the $(m-1)$-degree polynomial is $\epsilon$. The smaller $\frac{\delta}{\epsilon}$, the more likely a population will risk using a smaller TF to approximate the optimal one. (This isn't always true though, because it is possible for a smaller degree polynomial to have a larger mutational target than the larger one, if the smaller one is using a very non-minimal representation of the GRN (the $A$ matrix).)
+
+              I think there are going to be a lot of oppositional forces acting on GRN size. I need to spend more time thinking about the additional ones. (Would an infinite dimensional GRN be completely immune to the fitness cost of mutation?).
+
+  \section{Brownian Motion}
+
+    If $Q_{t} = I + \sum_{j} B_{j}(t)w_{j}w{j}^{T}$ and
+
+    $\tilde{\Lambda}_{m,t} = W_{m}(t)$
+
+    Then $\sum_{ij, kl} = \frac{d}{dt} \text{cov} [\tilde{A}_{ij}(t), \tilde{A}_{kl}(t)] \vert_{t=0}$
+
+
+
+    If $\mathcal{B}$ is an $\eta$-dimensional (where $\eta$ consists of the free parameters in $P$ and eigenvalues $\lambda_{n+1}$ through $\lambda_{n+m}$) Brownian Motion with covariance matrix $\sigma^{2} I$ then $\mathbb{E}\left[ \Vert \mathcal{B} \Vert^{2} \right] = \eta \sigma^{2} t$, however, $A = F(\mathcal{B})$. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+

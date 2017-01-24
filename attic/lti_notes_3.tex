@@ -1,0 +1,129 @@
+\documentclass[a4paper, 11 pt]{article}
+\usepackage{amsmath, amssymb, color, setspace, graphicx, dsfont, pdfpages, float, wrapfig, indentfirst, epstopdf, inputenc, multicol}
+\usepackage[left=0.5in, right=0.5in]{geometry}
+\usepackage[font=small,labelfont=bf]{caption}
+\begin{document}
+
+\textbf{Zero State Definition:}
+
+If a system is in the zero-state then the zero-input will yield a null response. 
+
+\textbf{Zero-State Response Definition:}
+
+The zero-state response of a system to $\delta(t-\xi)$ is, 
+\begin{equation}
+  \begin{split}
+  \delta(t-\xi) = \int_{t_{0}}^{t} f(t, \xi^{'})\delta(\xi^{'}-\xi)d\xi^{'} \\
+   = f(t, \xi) \text{ for } t \geq \xi \geq t_{0} \\
+   = 0 \text{ for } \xi > t \geq t_{0}
+ \end{split}
+\end{equation}
+
+Therefore the zero-state response of a system to input $u$ is, 
+\begin{equation}
+  A(u) = \int_{t_{0}}^{t}f(t,\xi)u(\xi)d\xi \ \ t_{0} \leq \xi \leq t
+\end{equation}
+
+A system is zero-state time invariant if and only if its impulse response $f(t,\xi)$ is of the form $f(t-\xi)$. 
+
+\textbf{Proof:}
+
+    Let $f(t,\xi) = w(\tau, t)$
+
+    where $\tau \triangleq (t -\xi)$
+
+    The zero-state response of a system to $\delta(t-\xi)$ is $f(t,\xi)$
+
+    thus the zero-state response of the system to $\delta(t -(\xi + \lambda))$ where $\lambda$ is an arbitrary shift is $f(t, \xi + \lambda)$ or $w(\tau -\lambda,t)$
+
+    this implies $w(\tau - \lambda, t) = w(\tau - \lambda, t - \lambda) \ \forall t \forall \tau \forall \lambda$
+
+\textbf{Transfer Function Definition:}
+\begin{equation}
+  G(s) \triangleq \int_{-\infty}^{\infty} e^{-st}f(t)dt
+\end{equation}
+
+If $y$ is the zero-state response to $u$ then, 
+
+\begin{equation}
+  Y(s) = G(s)U(s)
+\end{equation}
+
+The Transfer Function gives incomplete information about the zero-input response and fully characterizes the zero-state response. 
+
+The Transfer Function can also be viewed as the steady state response of a system to input $e^{st}$ divided by $e^{st}$:
+$ G(s) \triangleq \frac{\text{steady state response of a system to }e^{st}}{e^{st}}$
+
+Zero-State Equivalent Linear Dynamical Systems.
+
+\begin{multicols}{2}
+\begin{equation}
+    \Sigma  
+    \left \{ 
+      \begin{array}{ll}
+        \dot{x} = Ax + Bu \\
+        y = Cx
+      \end{array}
+      \right.
+\end{equation}
+
+  \begin{equation}
+  \bar{\Sigma}
+    \left \{ 
+      \begin{array}{ll}
+        \dot{\bar{x}} = \bar{A}\bar{x} + \bar{B}u \\
+        y = \bar{C}\bar{x}
+      \end{array}
+      \right. 
+\end{equation}
+\end{multicols}
+
+\textbf{Definition:} two dynamical systems $\Sigma$ and $\bar{\Sigma}$ are algebraically equivalent if (where $\bar{x} = Px$),
+
+  (a) $\bar{A} = PAP^{-1}$
+
+  (b) $\bar{B} = PB$
+
+  (c) $\bar{C} = CP^{-1}$
+
+  Where $P$ is a nonsingular square matrix of rank $n$. If two systems are algebraically equivalent then they are also zero-state equivalent. Two systems that are zero-state equivalent are not necessarily algebraically equivalent and can be in different dimensions. 
+
+  Definition: two dynamical systems are zero-state equivalent if they have the same transfer function $G(s)$. 
+
+  The transfer function, $G(s) = C(sI-A)^{-1}B$, is the Laplace transform of the system's time domain dynamics.
+
+  $G(s) = \bar{G}(s) \iff$
+
+  $CA^{i}B = \bar{C}\bar{A}^{i}\bar{B}$ for all $i \geq 0$.
+
+  \textbf{Proof:}
+
+  $G(s) = C(sI-A)^{-1}B$ 
+
+  $=Cs^{-1}(I-s^{-1}A)^{-1}B$
+
+$=Cs^{-1} \left( \sum_{i=0}^{\infty}(s^{-1}A)^{i}\right)B$
+
+$=\sum_{i=0}^{\infty} CA^{i}Bs^{i+1}$
+
+
+$\sum_{i=0}^{\infty} CA^{i}Bs^{-(i+1)} = \sum_{i=0}^{\infty} \bar{C}\bar{A}^{i}\bar{B}s^{-(i+1)}$
+
+$\iff CA^{i}B = \bar{C}\bar{A}^{i}\bar{B} \ \forall i$
+
+
+Note: the controllability matrix $\mathcal{C}$ is defined as:
+\begin{equation}
+  \begin{bmatrix}
+      B \ AB \ ... \ A^{n-1}B
+  \end{bmatrix}
+\end{equation}
+And the observability matrix $\mathcal{O}$ is defined as:
+\begin{equation}
+    \begin{align}
+  \begin{bmatrix}
+      C \\ CA \\ \vdots \\ CA^{n-1}
+  \end{bmatrix}
+    \end{align}
+\end{equation}
+\end{document}

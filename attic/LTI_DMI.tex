@@ -1,0 +1,30 @@
+\documentclass[a4paper, 11 pt]{article}
+\usepackage{amsmath, amssymb, color, setspace, graphicx, dsfont, pdfpages, float, wrapfig, indentfirst}
+\usepackage[left=0.5in, right=0.5in]{geometry}
+\usepackage[font=small,labelfont=bf]{caption}
+\begin{document}
+
+
+\begin{equation}
+  \begin{split}
+    \dot{x} &= Ax + Bu \\
+    y &= Cx
+  \end{split}
+\end{equation}
+Let $\mathcal{A}$ be the set of matrices with eigenvalues $\l_{i} = \lambda_{i}$ and constants (determined by the transfer function) $k_{j} = c_{j}$. 
+Define $\epsilon_{i} = |\lambda_{i}^{*} - \lambda_{i}|$ and $\epislon_{j} = |k^{*}_{j} - k_{j}| : j > i$
+Let $\mathcal{L}$ be the set of matrices where $\sum_{i}^{n} \alpha_{i}\epsilon_{i} < \epsilon_{0}$
+\begin{equation}
+  P \in \mathcal{P} \text{ if } PB = B \text{ and } CP^{-1} = C \text{ and } PAP^{-1} \in \mathcal{A}
+\end{equation}
+
+For $C = [1 \ 0]$ and $B = [1 \ 1]^{T}$, $P_{p} = \left[\begin{matrix} 1 & 0 \\ p & 1-p \end{matrix}\right]$ 
+
+$\left[\begin{matrix}1 & 0 \\ 0 & 0 \end{matrix}\right] P_{p}AP^{-1}_{p} + \left[\begin{matrix}0 & 0 \\ 0 & 1 \end{matrix}\right] P_{q}AP^{-1}_{q} \ \notin \ \mathcal{L}$ 
+
+
+$\lambda_{1,2} = \frac{1}{2} \Bigg( \lambda_{1} + \lambda_{2} + x - \bar{x} \pm \Big( (\lambda_{1}-\lambda_{2})^{2} - (x-\bar{x}) \big( (x + 3\bar{x}) + 2(\lambda_{1} + \lambda_{2}) + \frac{4(\lambda_{1}-\bar{x})(\lambda_{2}-\bar{x})}{k + \bar{x}} \big) \Big)^{1/2} \Bigg)$
+
+$\gimel$
+
+\end{document}

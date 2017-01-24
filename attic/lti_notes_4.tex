@@ -1,0 +1,251 @@
+\documentclass{seminar}
+\usepackage{hyperref, amsmath, amssymb, color, setspace, graphicx, dsfont, pdfpages, float, wrapfig, indentfirst, epstopdf, inputenc, multicol}
+%\usepackage[left=0.5in, right=0.5in]{geometry}
+%\usepackage[font=small,labelfont=bf]{caption}
+\begin{document}
+\begin{slide}
+  \centering
+  \section*{A Mathematical Model of Gene Regulatory Network Evolution}
+  
+  \textbf{Josh Schiffman}
+  
+  December 16, 2016
+\end{slide}
+  \begin{slide}
+    \section*{Background}
+    \begin{itemize}
+      \item How do we mathematically model Developmental Systems Drift (DSD) and Gene Regulatory Network (GRN) evolution?
+        \begin{itemize}
+          \item First, we need a good analytic description of an organism -- something that includes and distinguishes among genotype, GRN, and phenotype. 
+          \item Second, these descriptions should be as precise as possible. 
+          \item Third, we need to describe the evolutionary and population dynamics of this model.
+        \end{itemize}
+      \item How do we apply this model?
+    \end{itemize}
+  \end{slide}
+
+  \begin{slide}
+    \section*{An organism is described by its molecular time-dynamics.}
+      Molecular (say protein or mRNA) concentrations are represented by $\vec{x}$, the gene regulatory interactions by $\alpha, \beta, \gamma,$ and $\delta,$ and the environmental/initial inputs by $B$.  
+      \begin{equation*}
+        \begin{bmatrix} \dot{x}_{1} \\ \dot{x}_{2} \end{bmatrix} = \begin{bmatrix} \alpha & \beta \\ \gamma & \delta \end{bmatrix} \begin{bmatrix} x_{1} \\ x_{2} \end{bmatrix} + \begin{bmatrix} B_{1} \\ B_{2} \end{bmatrix} u
+      \end{equation*}
+    Each row vector $\begin{bmatrix} \alpha & \beta \end{bmatrix}$ of the GRN matrix is the promoter region of a gene, such that, $\alpha$ describes the how much gene-1 self regulates and $\beta$ describes how much gene-2 regulates gene-1. 
+  \end{slide}
+
+  \begin{slide}
+    \section*{The phenotype is just a subset of an organism's proteins directly visible to selection}
+    \begin{equation*}
+      y = \begin{bmatrix} C_{1} & C_{2} \end{bmatrix} \begin{bmatrix} x_{1} \\ x_{2} \end{bmatrix}
+    \end{equation*}
+    For instance, if $C = \begin{bmatrix} 1 & 0 \end{bmatrix}$, the phenotype is only described by the dynamics of gene-1. This means that selection can only ``see'' what happens to the proteins produced by gene-1, whereas the dynamics of gene-2 are invisible to selection (and thus not formally defined as part of the phenotype).
+      
+      This does not mean, however, that gene-2 is unnecessary with respect to the phenotype!
+  \end{slide}
+
+  \begin{slide}
+    \section*{For example, consider a GRN with oscillating protein concentrations.}
+    In this 2 gene system, neither gene-1 nor gene-2 self regulate. Gene-2 up-regulates gene-1, and gene-2 is down-regulated by gene-1:
+      \begin{equation*}
+        \begin{bmatrix} \dot{x}_{1} \\ \dot{x}_{2} \end{bmatrix} = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} \begin{bmatrix} x_{1} \\ x_{2} \end{bmatrix} + \begin{bmatrix} 1 \\ 1 \end{bmatrix} u
+      \end{equation*}
+      Furthermore, only the dynamics of gene-1 are important:
+      \begin{equation*}
+        y = \begin{bmatrix} 1 & 0 \end{bmatrix} \begin{bmatrix} x_{1} \\ x_{2} \end{bmatrix}
+      \end{equation*}
+  \end{slide}
+
+  \begin{slide}
+    \begin{figure}{\bf{2-Gene GRN Oscillating Expression Dynamics}}
+      \centering
+      \caption{The dynamics of gene-1 are, $y = \cos(t) + \sin(t)$}
+      \includegraphics[width=\textwidth, height=0.7\textheight]{sin_cos_t}
+    \end{figure}
+    A single-gene system cannot oscillate. 
+  \end{slide}
+
+  \begin{slide}
+    \section*{Expression dynamic complexity is limited by the number of genes in a network.}
+    $f(t)$ describes protein concentrations at time $t$, $\lambda_{j}$ is the $j$th eigenvalue of the GRN and $\xi$ is a constant. 
+      \begin{equation*}
+        f(t) = \sum_{j=1}^{n} e^{\lambda_{j}t} \xi_{j}
+      \end{equation*}
+      The oscillating dynamics can be rewritten in this form too:
+      \begin{equation*}
+        f(t) = e^{it}\frac{(i-1)}{2i} + e^{-it}\frac{(i+1)}{2i} = \cos(t) + \sin(t)
+      \end{equation*}
+      Sometimes it's (visually) easier to study the Laplace transform of the system. 
+      \begin{equation*}
+        \mathcal{L}(f(t)) := G(s) = \sum_{j}^{n} \frac{c_{j} b_{j}}{(s- \lambda_{j})}
+      \end{equation*}
+
+  \end{slide}
+
+  \begin{slide}
+    \textbf{Is the GRN architecture for a given phenotype unique? If no, how many GRN topologies yield equivalent dynamics?}
+    
+    Let two systems $\Sigma$ and $\bar{\Sigma}$ be defined as,
+    \begin{multicols}{2}
+\begin{equation*}
+    \Sigma  
+    \left \{ 
+      \begin{array}{ll}
+        \dot{x} = Ax + Bu \\
+        y = Cx
+      \end{array}
+      \right.
+\end{equation*}
+
+  \begin{equation*}
+  \bar{\Sigma}
+    \left \{ 
+      \begin{array}{ll}
+        \dot{\bar{x}} = \bar{A}\bar{x} + \bar{B}u \\
+        y = \bar{C}\bar{x}
+      \end{array}
+      \right. 
+\end{equation*}
+\end{multicols}
+
+    Where $x \in \mathbb{R}^{n}, \ y \in \mathbb{R}^{l}, \ u \in \mathbb{R}, \ A, \bar{A} \in \mathbb{R}^{n \times n}, \ B, \bar{B} \in \mathbb{R}^{n \times l}, \ C, \bar{C} \in \mathbb{R}^{l \times n}$. 
+  \end{slide}
+
+  \begin{slide}
+    The systems $\Sigma$ and $\bar{\Sigma}$ are ``algebraically equivalent'' (and have identical dynamics) if,
+    \begin{equation}
+      \begin{split}
+        \bar{x} =& Px \\
+        \bar{A} =& PAP^{-1} \\
+        \bar{B} =& PB \\
+        \bar{C} =& CP
+      \end{split}
+    \end{equation}
+    Where $P$ is any invertible matrix. 
+
+    This is only true if both GRNs are composed of the exact same number of genes. 
+    
+    Can two systems have identical dynamics, yet differ in the number of genes?
+  \end{slide}
+
+  \begin{slide}
+    Two systems, even in different dimensions (!!), exhibit identical dynamics (and are ``zero-state equivalent'') if and only if their transfer functions are identical $G(s) = \bar{G}(s)$.
+
+    Remember, $G(s) = \mathcal{L}(f) = C(sI-A)^{-1}B$
+
+    \begin{equation*}
+      \begin{split}
+        G(s) &= \bar{G}(s) \iff \\
+        CA^{i}B &= \bar{C}\bar{A}^{i}\bar{B} \ \forall \ i \geq 0
+      \end{split}
+    \end{equation*}
+  \textbf{Proof:}
+    \begin{equation*}
+      \begin{split}
+        &G(s) = C(sI-A)^{-1}B \\ 
+        &= Cs^{-1}(I-s^{-1}A)^{-1}B \\
+        &=Cs^{-1} \left( \sum_{i=0}^{\infty}(s^{-1}A)^{i}\right)B \\
+        &= \sum_{i=0}^{\infty} CA^{i}Bs^{i+1} \\
+        \sum_{i=0}^{\infty} CA^{i}Bs^{-(i+1)} &= \sum_{i=0}^{\infty} \bar{C}\bar{A}^{i}\bar{B}s^{-(i+1)} \\
+        \iff CA^{i}B &= \bar{C}\bar{A}^{i}\bar{B} \ \forall i 
+      \end{split}
+    \end{equation*}
+  \end{slide}
+
+  \begin{slide}
+    \section*{Wait... how does any of this make biological sense?}
+    We only care about systems where $\bar{C} = C$ and $\bar{B} = B$.
+
+    Any two systems that are ``algebraically equivalent'' where $PB = B$ and $CP = C$ ($P$ is a stabilizer subgroup of the invertible matrices), have identical inputs and identical phenotypes, but have different \textit{mechanisms}, since it's possible that $A \neq PAP^{-1}$.
+
+    The \textbf{set of all 2-gene GRNs} with the dynamics $G(s) = \frac{(s-k)}{(s-\lambda_{1})(s-\lambda_{2})}$ is, 
+      \begin{equation*}
+        \begin{bmatrix} 1 & 0 \\ r & 1-r \end{bmatrix} \begin{bmatrix} \lambda_{1} & \lambda_{2} - k \\ 0 & \lambda_{2} \end{bmatrix} \begin{bmatrix} 1 & 0 \\ \frac{r}{r-1} & \frac{-1}{r-1} \end{bmatrix}
+      \end{equation*}
+      $\forall \ r \neq 1 \in \mathbb{R}$
+  \end{slide}
+
+
+  \begin{slide}
+    \section*{The set of all GRNs, in any dimension, with identical dynamics is...}
+    \begin{equation*}
+    P \left[
+      \begin{array}{cc}
+        A &  0  \\
+        0 & \Lambda 
+      \end{array}\right] P^{-1} : PB = B \text{ and } 
+    \end{equation*}
+    \begin{equation*}
+      CP = C,  \text{ and } \Lambda = \begin{bmatrix} 
+      \lambda_{n+1} &  & 0 \\
+      & \ddots & \\
+      0 &        & \lambda_{n+m} 
+    \end{bmatrix}
+    \end{equation*}
+    Where some elements in $P$ and all eigenvalues in $\Lambda$ are free to take any value.
+    ($B$ and $C$ can be augmented with $0$s).
+  \end{slide}
+
+  \begin{slide}
+    \section*{DMIs}
+      Define reproduction as 
+      \begin{equation*}
+        \begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix} A + \begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix} \bar{A}
+      \end{equation*}
+      Let phenotypic error be $\epsilon_0 := \big( \epsilon_{1} + \epsilon_{2} + \epsilon_{k} \big)$, where $\epsilon_{1,2} := \vert \lambda_{1,2} - \lambda^{H}_{1,2} \vert$ and $\epsilon_{k} := \vert k - k^{H} \vert$.
+      
+      $\lambda^{H}_{1,2} = \frac{1}{2} \Bigg( \lambda_{1} + \lambda_{2} + \zeta - \bar{\zeta} \pm \Big( (\lambda_{1} - \lambda_{2})^{2} - (\zeta - \bar{\zeta}) \big( ( \zeta + 3\bar{\zeta}) + 2 (\lambda_{1} + \lambda_{2}) + \frac{4(\lambda_{1} - \bar{\zeta})(\lambda_{2} - \bar{\zeta})}{k+\bar{\zeta}}\big) \Big)^{\frac{1}{2}} \Bigg)$
+
+      $k^{H} = \zeta - \bar{\zeta}$. 
+
+      Let GRNs that survive have $\epsilon_{0} < \delta$.
+  \end{slide}
+
+  \begin{slide}
+    \textbf{Hybrid expression dynamics deviate significantly}
+   \\\\ 
+    Both $\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$ and $\begin{bmatrix} -1 & 2 \\ -1 & 1 \end{bmatrix}$ have identical phenotypes, however their hybrids do not. 
+      \begin{figure}
+        \hspace*{-3.7cm}
+        \includegraphics[width=1.7\textwidth,height=0.6\textheight]{hybrid_osc_2n}
+      \end{figure}
+  \end{slide}
+
+  \begin{slide}
+    $\begin{bmatrix} 0 & -6 \\ 1 & -5 \end{bmatrix}$ and $\begin{bmatrix} -12 & 6 \\ -15 & 7 \end{bmatrix}$
+       \begin{figure}
+        %\hspace*{-3.7cm}
+        \includegraphics[width=0.8\textwidth,height=0.7\textheight]{hybrid_321_fixed}
+      \end{figure}
+
+  \end{slide}
+
+  \begin{slide}
+    \section*{Evolution as Brownian Motion}
+
+    If $\mathcal{B}$ is an $\eta$-dimensional (where $\eta$ consists of the free parameters in $P$ and eigenvalues $\lambda_{n+1}$ through $\lambda_{n+m}$) Brownian Motion with covariance matrix $\sigma^{2} I$ then $\mathbb{E}\left[ \Vert \mathcal{B} \Vert^{2} \right] = \eta \sigma^{2} t$, however, $A = F(\mathcal{B})$. 
+  \end{slide}
+
+  \begin{slide}
+    \textbf{How to model gene addition and deletion.}
+      \begin{itemize}
+        \item Gene addition: add row and column to the GRN matrix; augment $B$ and $C$ with zeros. 
+        \item Gene deletion: more complicated. What is the probability that, 
+          \begin{itemize}
+            \item a set of dimensions (genes) we don't care about. 
+            \item a set of dimensions only affects the other genes in the network ``a little'' bit (the GRN is mostly lower-triangular).
+              \begin{multicols}{2} \begin{equation*}
+                Z = \begin{bmatrix} \bigstar &\vert \epsilon \\ \hdots & \hdots \end{bmatrix}
+              \end{equation*}
+              \begin{equation*}
+                \Vert G(s) - \bar{G}(s) \Vert \leq \delta
+              \end{equation*}
+          \end{multicols}
+        \item if the phenotypic effect of these extra dimensions diminishes as gene networks evolve to be larger, pherhaps there will be an equillibrium level GRN complexity. (note: empirical network connectedness and robustness). 
+          \end{itemize}
+      \end{itemize}
+  \end{slide}
+  \begin{slide}
+    \section*{Thank you!}
+    \textbf{Peter Ralph \\ Sergey Nuzhdin \\ Erik Lundgren}
+  \end{slide}
+\end{document}

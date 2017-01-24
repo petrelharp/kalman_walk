@@ -1,0 +1,106 @@
+\documentclass[a4paper, 11 pt]{article}
+\usepackage{amsmath, amssymb, color, setspace, graphicx, dsfont, pdfpages, float, wrapfig, indentfirst}
+\usepackage[left=0.5in, right=0.5in]{geometry}
+\usepackage[font=small,labelfont=bf]{caption}
+\begin{document}
+
+
+\section{Transfer Functions}
+
+\section{GRN}
+
+Let $G^{*}(s) = \frac{(s-k)}{(s - \lambda_{1})(s - \lambda_{2})}$ be the optimal phenotype. This transfer function can be realized by a GRN composed of 2 or more genes. If $k$ is equal to $\lambda$ a one gene GRN can completely realize the dynamics. 
+
+The phenotype of an organism is,
+G(s) = \begin{bmatrix} 1 & 0 \end{bmatrix} \Big(\begin{bmatrix} s & 0 \\ 0 & s \end{bmatrix} \right] - \begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{bmatrix} \Big)^{-1} \left[ \begin{array}{c} 1 \\ 1 \end{array} \right]
+
+The dynamics of the optimal GRN in the time domain (via the inverse Laplace transform) is,
+
+$f^{*}(t) = \mathcal{L}^{-1}(G^{*}(s)) = \frac{e^{\lambda_{1}t}(\lambda_{1} - k) - e^{\lambda_{2}t}(\lambda_{2} - k)}{(\lambda_{1} - \lambda_{2})}$
+
+These dynamics can be realized by an infinite number of $\geq 2$ gene systems ($in \mathbb{R}$). The $2$ dimensional realizations will all have the form below where $x$ can be any real number. If the transfer function is of the form $G^{*}(s) = \frac{1}{(s - \lambda_{1})}$, then $\lambda_{2} = k$ can also be any real number. 
+
+\[
+\begin{bmatrix}
+  x  & \lambda_{1} + \lambda_{2} - k - x \\
+  \frac{-(x - \lambda_{1})(x - \lambda_{2})}{\lambda_{1} + \lambda_{2} - k - x} & \lambda_{1} + \lambda_{2} - x
+\end{bmatrix}
+\] 
+
+The fitness of an individual organism is computed as
+\begin{equation}
+  \phi(f(t)) = e^{-\sqrt{\int_{0}^{\infty} (f^{*}(t) - f(t))^{2}dt}}
+\end{equation}
+Where as individual realization is $f(t) = \frac{e^{\gamma_{1}t}(\gamma_{1} - h) - e^{\gamma_{2}t}(\gamma_{2} - h)}{(\gamma_{1} - \gamma_{2})}$
+If we look at the difference (instead of the squared difference) between optimal and actual, and assume that the real parts of the eigenvalues are $\leq 0$, we get, 
+\begin{equation}
+  \varphi(f(t)) = e^{-\int_{0}^{\infty} (f^{*}(t) - f(t))dt} = e^{-\left|\frac{k}{\lambda_{1}\lambda_{2}} - \frac{h}{\gamma_{1}\gamma_{2}}\right|}
+\end{equation}
+
+\begin{equation}
+  \frac{\partial(\text{det}(A))}{\partial A_{ij}} = \lambda_{1}\lambda_{2} \text{Tr}\left[A^{-1}\frac{\partial A}{\partial A_{ij}}\right]
+\end{equation}
+And, $\gamma_{1}\gamma_{2} \approx \lambda_{1}\lambda_{2} + \text{Tr}\left[\text{adj}(A)\frac{\partial A}{\partial A_{ij}}\right]$ = $\lambda_{1}\lambda_{2} + (\text{adj}(A))^{T}_{ij}$
+\begin{equation}
+  \nabla G = \left[ \begin{array}{c} (s - a_{22})(s + a_{12} - a_{22}) \\ (s - a_{22})(s + a_{21} - a_{11}) \\ a_{12}(s + a_{12} - a_{22}) \\ a_{12}(s + a_{21} - a_{11}) \end{array} \right] \times \big((s-\lambda_{1})(s-\lambda_{2})\big)^{-2}
+\end{equation}
+
+\begin{equation}
+  \nabla^{2}G = \\
+    \!\begin{aligned}
+&
+\left[\begin{matrix}
+    2(s - a_{22})^{2}(s + a_{12} - a_{22}) & (s - a_{22})(2a_{21}(s+ a_{12} - a_{22}) + (s-\lambda_{1})(s-\lambda_{2})) \\
+    \cdot & 2a_{21}(s - a_{22})(s+a_{21} - a_{11})^{2} \\
+    \cdot & \cdot \\
+    \cdot & \cdot \\
+  \end{matrix}\right.\\
+&\qquad\qquad
+\left.\begin{matrix}
+
+  {} 2a_{12}(s - a_{22})(s + a_{12} - a_{22}) & a_{12}(2a_{21}(s + a_{12} - a_{22}) + (s - \lambda_{1})(s - \lambda_{2})) \\
+  {} (s-a_{22})(2a_{12}(s + a_{21} - a_{11}) + (s-\lambda_{1})(s-\lambda_{2}))  & (s + a_{21} - a_{11})(2a_{12}a_{21} + (s-\lambda_{1})(s-\lambda_{2})) \\
+  {} 2(a_{12})^{2}(s + a_{12} - a_{22}) & a_{12}(2a_{12}(s + a_{21} - a_{11}) + (s-\lambda_{1})(s-\lambda_{2})) \\
+  {} \cdot & 2a_{12}(s - a_{11})(s + a_{21} - a_{11}) 
+\end{matrix}\right] \\ \\
+&\qquad\qquad
+  \times \big((s-\lambda_{1})(s-\lambda_{2})\big)^{-3}
+\end{aligned}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

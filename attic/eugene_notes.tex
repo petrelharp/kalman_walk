@@ -1,0 +1,53 @@
+\documentclass[a4paper, 11 pt]{article}
+\usepackage{amsmath, amssymb, color, setspace, graphicx, dsfont, pdfpages, float, wrapfig, indentfirst, multicol}
+\usepackage[left=0.5in, right=0.5in]{geometry}
+\usepackage[font=small,labelfont=bf]{caption}
+
+\newcommand\bigZero{\scalebox{2}{$0$}}
+\newcommand\bigLambda{\scalebox{2}{$\Lambda$}}
+\newcommand\bigI{\scalebox{2}{$I$}}
+\newcommand\bigPhi{\scalebox{2}{$\Phi$}}
+\newcommand\bigPsi{\scalebox{2}{$\Psi$}}
+
+\begin{document}
+  \title{A Framework for the Evolution of Genetic Networks}
+  \section{Introduction}
+
+    It is commonly taught that an organism's genome contains most of the heritable material that natural selection filters, and that an organism's phenotype directly determines its evolutionary fitness. Between genotype and phenotype is an often complicated and poorly understood molecular machinery -- and it is a major goal common to many disciplines within the life sciences to elucidate its form, function, and evolution. 
+
+
+    It is becoming increasingly evident that in order to understand evolutionary processes, we need to precisely understand how the molecular machinery that maps genotypes to phenotypes both functions and evolves. This complicated molecular machinery can be modelled as a dynamical system. Thus, an idealized study of evolution would benefit from knowledge of genomes, phenotypes, and importantly detailed descriptions of genotype-phenotype maps. Movement in this direction is ongoing, as researhers have begun to study the evolution of empirically inspired computational and mathematical models of gene regulatory networks (GRNs) and metabolic networks that incorporate empirical data such as sequences and expression patterns. If we allow the reasonable assumption that the genotype-phenotype map can be represented as a system of differential equations, we can immediately discuss its evolution in a much more mechanistic, yet general, manner. 
+
+  \section{Linear Genetic Networks}
+    \begin{equation}
+      \begin{split}
+        \dot{x} &= A x + B u \\
+        y &= C x
+      \end{split}
+    \end{equation}
+
+    \begin{equation}
+      \begin{split}
+        T(s) :&= C (sI - A)^{-1} B \\
+        T(s) &= \bar{T}(s) \iff \\ 
+        CA^{k}B &= \bar{C} \bar{A}^{k} \bar{B} \ \forall \ 0 \leq k \leq n-1
+      \end{split}
+    \end{equation}
+
+   \section{Parameterization}
+
+      \begin{equation}
+        \begin{bmatrix} \bigPhi & \bigPsi \\ \\ \bigZero & \begin{bmatrix} Z_{m} & 0 \\ 0 & 0_{\infty} \end{bmatrix} \end{bmatrix} \begin{bmatrix} \bigLambda_{n} & \bigZero \\ \\ \bigZero & \bigI_{\infty} \end{bmatrix} \begin{bmatrix} \bigPhi^{-1} & \bigZero \\ \\ \bigZero & \bigI_{\infty} \end{bmatrix}
+      \end{equation}
+
+  \section{Notes}
+
+
+    We are interested in a perfectly adapted, large population, evolving in a static environment for an infinite number of generations. Given these conditions, througout evolutionary time, the population will realize different, yet symmetric GRN (gene regulatory network) topologies. GRNs are symmetric if they are input/output equivlaent such that they produce identical phenotypes (with respect to selection) when active in indentical environments. 
+
+
+
+
+
+
+\end{document}
