@@ -1,5 +1,5 @@
 \documentclass[11 pt]{article}
-\usepackage{amsmath, amssymb, color}
+\usepackage{amsmath, amssymb, color, xcolor}
 \usepackage{graphicx}
 \usepackage{fullpage}
 \usepackage[hidelinks]{hyperref}
@@ -37,16 +37,65 @@
 %     * dimension: duplication, deletion, recruitment of new things
 % 
 % - (Compute things)
+%
+% - Generalize ideas to nonlinear systems
+%
+%   * compute isomorphic or dynamically equivallent nonlinear systems of the feed-forward motif or of the three-node adaptation motif. 
 % 
 % - (Allow non-fit stuff too.)
 
+% is y the phenotype or H(z) the phenotype? Do we need new jargon anyway? 
+
 \newcommand{\plr}[1]{{\color{blue}\it #1}}
+\newcommand{\jss}[1]{{\color{olive}\it #1}}
 % \newcommand{\ddt}{\frac{d}{dt}}
 \newcommand{\ddt}{\dot}
 
 \section{Background}
 
 \plr{Review of relevant other stuff.}
+
+\jss{Introduction}
+
+It is commonly taught that an organism's genome contains the heritable material 
+that natural selection filters and that an organism's phenotype directly determines its
+evolutionary fitness. Between genotype and phenotype is an often complicated and poorly
+undrstood molecular machinery -- and it is a major goal common to many different disciplines
+within the life sciences to elucidate its form, function, and evolution. These aims are
+delicately intertwined and a comphrehensive understanding of a system's evolution requires
+an understanding of its function and vice versa.
+
+The molecular machinery, interacting with the environment, and bridging genotype to phenotype
+can be mathematically described as a dynamical system (or a system of differential equations).
+Thus, an idealized study of evolution would benefit from knowledge of genomes, phenotypes,
+and importantly detailed descriptions of genotype-phenotype maps. Movement in this direction
+is ongoing, as researhers have begun to study the evolution of empirically inspired
+computational and mathematical models of gene regulatory networks (GRNs) and metabolic
+networks that incorporate empirical data such as sequences and expression patterns. If we
+allow the reasonable assumption that the genotype-phenotype map can be represented as a
+system of differential equations, we can immediately discuss its evolution and function
+in a much more mechanistic, yet general, manner. 
+
+In some fields that seek to fit parametric models to experimental data, such as control
+theory, chemical engineering, and statistics, it is well known that mathematical models can
+fundamentally be \emph{unidentifiable} and/or \emph{indistinguishable} -- meaning that there
+can be uncertaintity about an inferred model's parameters or even its claims about causal
+structure, even with access to complete and perfect data. Models with different parameter
+schemes, or even different mechanics can be equally accurate, but still not \emph{actually}
+agree with what is being modelled. Although this may frusturate the occasional engineer or
+scientist, viewed from another angle, the concepts of unidentifiability and
+indistinguishability can provide a starting point for thinking about externally equivalent
+systems -- systems that evolution can explore, so long as the parameters and structures can
+be realized biologically.
+
+The set of all systems -- that is all model structures and all parameter schemes -- that
+are externally, or phenomenologically, equivalent, biologically realizable, and mutationally accessible, 
+
+What are typically referred to as ``design principles'' or some sort of clear structure-function relationships are commonly saught 
+
+Seeking to attribute functionality, uninformed by evolution, can lead to spurious claims
+(i.e. see Graur).
+
 
 A linear time invariant (LTI) dynamical system is a system of linear
 differential equations that describes a physical process. 
@@ -157,7 +206,7 @@ However, it turns out that
 then for any $p \neq 1$, 
 if we replace the regulatory matrix $A$ with
 \begin{align*}
-    A(p) = P^{-1} A P,
+    A(p) = P A P^{-1},
 \end{align*}
 then the response of $x_1(t)$ to any particular input $u(t)$ is identical to the original system.
 (However, $x_2$ may well be different!)
@@ -215,10 +264,10 @@ as well as the input:
     \ddt x_i(t) = \sum_j A_{ij} x_j(t) + \sum_k B_{ik} u_k(t) .
 \end{align*}
 In matrix notation, this is written more concisely as
-\begin{align*}
+\begin{align} \label{eqn:lti_system}
     \ddt x(t) &= A x(t) + B u(t) \\
     y(t) &= C x(t) .
-\end{align*}
+\end{align}
 
 \plr{Everything we say I think is assuming $x(0)=0)$.  
 Figure this out. ``Zero-state equivalence.''}
@@ -230,9 +279,9 @@ as a convolution with an input-response kernel as in the example above
 An alternative way of describing the input-output relationship,
 more common in engineering,
 is instead to find the \emph{transfer function}
-\begin{align*}
+\begin{align} \label{eqn:transfer_fn}
     H(z) = C(z I - A)^{-1} B,
-\end{align*}
+\end{align}
 which is more mathematically readable \plr{if you know what it means}.
 This can be thought of as the system's response to input at ``frequency'' $z$.
 The fact that the transfer function uniquely determines the system's
@@ -255,19 +304,47 @@ system, whereas the transfer function is an external description.
 
 State explicitly that same transfer function iff same input-output relationship.
 
-One way to get equivalent things is change of basis (``algebraic equivlance'').
-If multiple realizations of a system are algebraically equivalent, then they
-must also have identical transfer functions $G(s) = \overline{G}(s)$. However,
-the opposite relation is not necessarily true. Multiple systems can have
-identical transfer functions and not have algebraic equivlaence. In fact, two
-systems with identical transfer functions can even have different dimensions. 
+\begin{definition}[Phenomenological equivalence of systems]
+    Let $(x(t),y(t))$ and $(\bar x(t),\bar y(t))$ be the solutions to \eqref{eqn:lti_system}
+    with coefficient matrices $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ respectively,
+    and both $x(0)$ and $\bar x(0)$ are zero. 
+    The systems defined by $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ are
+    \textbf{phenomenologically equivalent} if
+    \begin{align*}
+        y(t) = \bar y(t) \qquad \text{for all} t \ge 0.
+    \end{align*}
+    Equivalently, this occurs if and only if
+    \begin{align*}
+        H(z) = \bar H(z)  \qquad \text{for all} z \ge 0,
+    \end{align*}
+    where $H$ and $\bar H$ are the transfer functions of the two systems.
+\end{definition}
 
+One way to find other systems equvalent to a given one
+is by change of coordinates (``algebraic equivalance''):
+if $T$ is an invertible matrix, then the systems $(A,B,C)$ and $(TAT^{-1},TB,CT^{-1})$
+have the same dyanamics because their transfer functions are equal:
+\begin{align*}
+    CT^{-1}( zI - TAT^{-1})^{-1}TB
+    =
+    CT^{-1}T( zI - A)^{-1}T^{-1}TB
+    =
+    C( zI - A)^{-1}B .
+\end{align*}
+However, the converse is not necessarily true: 
+systems can have identical transfer functions without being changes of coordinates of each other.
+In fact, systems with identical transfer functions can involve interactions between different
+numbers of molecular species.
+
+The general problem of how to characterize the set of equivalent
 But, that's not all: Kalman decomposition.  
 Theorem that all equivalent systems are of this form; 
 and representation is unique.
 
 Talk about minimal dimension: point out that are degrees of freedom 
 even in minimal dimension with B and C fixed.
+
+B and C fixed.
 
 Give an example.
 
