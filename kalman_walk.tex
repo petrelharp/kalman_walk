@@ -4,7 +4,32 @@
 \usepackage{fullpage}
 \usepackage[hidelinks]{hyperref}
 
+
+\newcommand{\plr}[1]{{\color{blue}\it #1}}
+\newcommand{\jss}[1]{{\color{olive}\it #1}}
+% \newcommand{\ddt}{\frac{d}{dt}}
+\newcommand{\ddt}{\dot}
+\newcommand{\ro}{{ro}}
+\newcommand{\nro}{{\bar{r}o}}
+\newcommand{\rno}{{r\bar{o}}}
+\newcommand{\nrno}{{\bar{r}\bar{o}}}
+\newcommand{\reachable}{\mathcal{R}}
+\newcommand{\unobservable}{\bar{\mathcal{O}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathbb{P}}
+
+\DeclareMathOperator{\spn}{span}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+
 \begin{document}
+
+$\unobservable$
 
 % Outline:
 % 
@@ -32,6 +57,13 @@
 % 
 % - Evolution of free parameters in the Kalman decomposition
 %
+%     * Give or refer to earlier simple description of population dynamics which makes the system evolve.
+%     * What do we want to know from this model:
+%
+%       - How fast do the internal dynamics change?
+%       - Stationary distribution on network complexity/shape/properties
+%       - How fast does incompatibility accumulate?
+%
 %     * Brownian motion on free parameters
 %     * how mutations map into this space
 %     * dimension: duplication, deletion, recruitment of new things
@@ -45,11 +77,8 @@
 % - (Allow non-fit stuff too.)
 
 % is y the phenotype or H(z) the phenotype? Do we need new jargon anyway? 
-
-\newcommand{\plr}[1]{{\color{blue}\it #1}}
-\newcommand{\jss}[1]{{\color{olive}\it #1}}
-% \newcommand{\ddt}{\frac{d}{dt}}
-\newcommand{\ddt}{\dot}
+% 
+% Deleterious mutations: can we describe heterosis?
 
 \section{Background}
 
@@ -67,27 +96,32 @@ an understanding of its function and vice versa.
 
 The molecular machinery, interacting with the environment, and bridging genotype to phenotype
 can be mathematically described as a dynamical system (or a system of differential equations).
-Thus, an idealized study of evolution would benefit from knowledge of genomes, phenotypes,
-and importantly detailed descriptions of genotype-phenotype maps. Movement in this direction
-is ongoing, as researhers have begun to study the evolution of empirically inspired
-computational and mathematical models of gene regulatory networks (GRNs) and metabolic
-networks that incorporate empirical data such as sequences and expression patterns. If we
-allow the reasonable assumption that the genotype-phenotype map can be represented as a
-system of differential equations, we can immediately discuss its evolution and function
-in a much more mechanistic, yet general, manner. 
+Previously it has been argued that any idealized study of evolution is incomplete without
+a mathematically sufficient description of the genotype, phenotype, and transformation from
+one to the other. Movement in this direction is ongoing, as researhers have begun to study 
+the evolution of empirically inspired computational and mathematical models of gene regulatory networks (GRNs) and metabolic networks that incorporate empirical data such as sequences and expression patterns. If we allow the reasonable assumption that the genotype-phenotype map can be represented as a system of differential equations, we can immediately discuss its evolution and function in a much more mechanistic, yet general, manner. 
 
 In some fields that seek to fit parametric models to experimental data, such as control
-theory, chemical engineering, and statistics, it is well known that mathematical models can
-fundamentally be \emph{unidentifiable} and/or \emph{indistinguishable} -- meaning that there
-can be uncertaintity about an inferred model's parameters or even its claims about causal
-structure, even with access to complete and perfect data. Models with different parameter
-schemes, or even different mechanics can be equally accurate, but still not \emph{actually}
-agree with what is being modelled. Although this may frusturate the occasional engineer or
-scientist, viewed from another angle, the concepts of unidentifiability and
-indistinguishability can provide a starting point for thinking about externally equivalent
-systems -- systems that evolution can explore, so long as the parameters and structures can
-be realized biologically.
+theory, chemical engineering, and statistics, it is well known that mathematical models
+can fundamentally be \emph{unidentifiable} and/or \emph{indistinguishable} -- meaning that 
+there can be uncertaintity about an inferred model's parameters or even its claims about
+causal structure, even with access to complete and perfect data. Models with different 
+parameter schemes, or even different mechanics can be equally accurate, but still not
+\emph{actually} agree with what is being modelled. In control theory, where electrical 
+circuits and mechanical systems are often the focus, it is understood that there can be an 
+infinite number of ``realizations,'' or ways to reverse engineer the dynamics of a black box,
+even if all possible input and output experiments on the black box are performed. In chemical
+engineering, those who study chemical reaction networks sometimes refer to the fundamental
+unidentifiability of these networks as ``the fundamental dogma of chemical kinetics.''
+Although this may frusturate the occasional engineer or scientist, viewed from another angle,
+the concepts of unidentifiability and indistinguishability can provide a starting point for
+thinking about externally equivalent systems -- systems that evolution can explore, so long
+as the parameters and structures can be realized biologically. In fact, evolutionary
+biologists who study homology and analogy are very familiar with such functional symmetries; macroscopically identical phenotypes in closely related species can be divergent at the molecular level.  
 
+In this paper we propose a framework to study the evolution of biological systems. To begin, we focus on the evolution of an idealized population. We consider the evolution of a perfectly adapted, large population, evolving in a static environment for an infinite number of generations. Under these ideal circumstances, we expect to observe a ``conservation of phenotype,'' where the population explores the manifold of phenotypically-invariant (or symmetric) genetic and developmental architecutres. We would like to understand which parameters influence the distribution of a population along the manifold of phenotypically invariant genetic systems. Further, we can show how dispersion along this manifold contributes to speciation and evolvability. 
+
+\plr{phenomenologically or dynamically equivalent?}
 The set of all systems -- that is all model structures and all parameter schemes -- that
 are externally, or phenomenologically, equivalent, biologically realizable, and mutationally accessible, 
 
@@ -131,7 +165,7 @@ Provide neutral model; can address questions.
 Main point of paper.
 }
 
-\paragraph{Example: Oscillator.}
+\begin{example}[Example: Oscillator.]
 Motivate the system:
 \begin{align*}
     A &= \left[\begin{matrix} 
@@ -141,8 +175,10 @@ Motivate the system:
 \end{align*}
 as a special case of the below.
 
+\end{example}
 
-\paragraph{Example: two-component systems.}
+
+\begin{example}[Example: two-component systems.] \label{ex:2x2}
 As a more general example,
 suppose that a cell produces two molecular species, $S_1$ and $S_2$ 
 whose production are both stimulated by the presence of an external ``input'' substance.
@@ -182,7 +218,7 @@ If these are all transcription factors,
 and we suppose their binding motifs are fixed,
 then the $i^\text{th}$ row of $A$ is determined by the $i^\text{th}$ promoter sequence.
 
-\plr{Note that $B$ and $C$ are fixed here.}
+\end{example}
 
 Since the system is linear, the state of the system at any time
 is the superposition of its responses to all previous inputs.
@@ -287,7 +323,7 @@ This can be thought of as the system's response to input at ``frequency'' $z$.
 The fact that the transfer function uniquely determines the system's
 input-output relationship (i.e., the mapping $u \mapsto y$)
 follows from the fact that if $\tilde y(z) = \int_0^\infty e^{-zt} y(t) dt$
-is the Laplace transform of $x$,
+is the Laplace transform of $y$,
 and $\tilde u(z)$ is the Laplace transform of $u$,
 then
 \begin{align*}
@@ -295,6 +331,7 @@ then
 \end{align*}
 (This happens because the Laplace transform takes convolutions to products,
 and $H$ is the Laplace transform of the kernel $G$.)
+Concretely,
 
 \plr{Should we remind what dimensions everything is?}
 
@@ -302,20 +339,19 @@ The state space representation is considered an internal description of the
 system, whereas the transfer function is an external description. 
 ``Realizations'' are something.
 
-State explicitly that same transfer function iff same input-output relationship.
-
 \begin{definition}[Phenomenological equivalence of systems]
     Let $(x(t),y(t))$ and $(\bar x(t),\bar y(t))$ be the solutions to \eqref{eqn:lti_system}
     with coefficient matrices $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ respectively,
     and both $x(0)$ and $\bar x(0)$ are zero. 
     The systems defined by $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ are
-    \textbf{phenomenologically equivalent} if
+    \textbf{phenomenologically equivalent} 
+    if
     \begin{align*}
-        y(t) = \bar y(t) \qquad \text{for all} t \ge 0.
+        y(t) = \bar y(t) \qquad \text{for all} \; t \ge 0.
     \end{align*}
     Equivalently, this occurs if and only if
     \begin{align*}
-        H(z) = \bar H(z)  \qquad \text{for all} z \ge 0,
+        H(z) = \bar H(z)  \qquad \text{for all} \; z \ge 0,
     \end{align*}
     where $H$ and $\bar H$ are the transfer functions of the two systems.
 \end{definition}
@@ -336,17 +372,174 @@ systems can have identical transfer functions without being changes of coordinat
 In fact, systems with identical transfer functions can involve interactions between different
 numbers of molecular species.
 
-The general problem of how to characterize the set of equivalent
-But, that's not all: Kalman decomposition.  
-Theorem that all equivalent systems are of this form; 
-and representation is unique.
+The set of all systems phenomenologically equivalent to a given system $(A,B,C)$ 
+is elegantly described using the Kalman decomposition,
+which also clarifies the system dynamics? tells us a lot about how it works? \plr{or something}
+To motivate this, first note that the the input $u(t)$ only directly pushes the system
+in directions lying in the span of the columns of $B$.
+As a result, different combinations of input can 
+move the system in any direction that lies in the \emph{reachable subspace},
+which we denote by $\reachable$,
+and is defined to be the closure of $\spn(B)$ under applying $A$
+(or equivalently, the span of $B, AB, A^2B, \ldots A^{n-1}B$).
+Analogously to this, we define
+the \emph{observable subspace}, $\mathcal{O}$,
+to be the closure of $\spn(C^T)$ under applying $A$.
+(Or: $\unobservable$ is the largest $A$-invariant subspace
+contained in the null space of $C$;
+and $\reachable$ is the largest $A$-invariant subspace contained in the image of $B$.)
 
-Talk about minimal dimension: point out that are degrees of freedom 
-even in minimal dimension with B and C fixed.
+If we define
+\begin{enumerate}
+    \item The columns of $P_\rno$ are an orthonormal basis for $\reachable \cap \unobservable$.
+    \item The columns of $P_\ro$ are an orthonormal basis of
+        the complement of $\reachable \cap \unobservable$ in $\reachable$.
+    \item The columns of $P_\nro$ are an orthonormal basis of
+        the complement of $\reachable \cap \unobservable$ in $\unobservable$.
+    \item The columns of $P_\nrno$ are an orthonormal basis of
+        the the remainder of $\R^n$.
+\end{enumerate}
+If we then define
+\begin{align*}
+    P &= 
+    \left[ \begin{array}{c|c|c|c}
+        P_\rno & P_\ro & P_\nro & P_\nrno
+    \end{array} \right] ,
+\end{align*}
+then
+\begin{align*}
+    P^T P
+    &=
+    \left[ \begin{array}{c|c|c|c}
+        I & 0 & 0 & 0 \\
+        \hline
+        0 & I & U & 0 \\
+        \hline
+        0 & V & I & 0 \\
+        \hline
+        0 & 0 & 0 & I 
+    \end{array} \right] .
+\end{align*}
+\plr{Check this.  Can we get $U=V=0$?}
 
-B and C fixed.
+The following theorem can be found in SOME REFERENCE.
 
-Give an example.
+\begin{theorem}[Kalman decomposition] \label{thm:kalman}
+        For any system $(A,B,C)$ with corresponding Kalman basis matrix $P$,
+        the transformed system $(PAP^{-1},PB,CP^{-1})$  has the following form:
+        \begin{align*}
+            \widehat A = PAP^{-1}
+            &=
+            \left[ \begin{array}{cccc}
+                A_{\rno} & A_{\rno,\ro} & A_{\rno,\nrno} & A_{\rno,\nro} \\
+                0 & A_{\ro} & 0 & A_{\ro,\nro} \\
+                0 & 0 & A_{\nrno} & A_{\nrno,\nro} \\
+                0 & 0 & 0 & A_{\nro}
+            \end{array} \right] ,
+        \end{align*}
+        and
+        \begin{align*}
+            \widehat B = PB
+            &=
+            \left[ \begin{array}{cccc}
+                B_{\rno} \\
+                B_{\ro} \\
+                0 \\
+                0 
+            \end{array} \right] ,
+        \end{align*}
+        and
+        \begin{align*}
+            \widehat C = CP^{-1}
+            &=
+            \left[ \begin{array}{cccc}
+                0 & C_{\ro} & C_{\nrno} & 0 
+            \end{array} \right] .
+        \end{align*}
+        The transfer function of both systems is given by
+        \begin{align*}
+            H(z) = C_{\ro} ( zI - A_{\ro} )^{-1} B_{\ro} .
+        \end{align*}
+\end{theorem}
+
+In the latter case, we say that the system is \emph{minimal} 
+-- there is no equivalent system with a smaller number of species.
+Note that this says that any two equivalent minimal systems
+are changes of basis of each other.
+
+Since any system can be put into this form,
+and once in this form, its transfer function is determined only by 
+$C_{\ro}$, $A_{\ro}$, and $B_\ro$,
+therefore, the set of all equivalent systems are parameterized by
+the dimension $n$,
+the choice of basis ($P$),
+the remaining submatrices in $\widehat A$, $\widehat B$, and $\widehat C$
+(which are unconstrained),
+and a invertible transformation of $\spn(P_{\ro})$, which we call $T_\ro$.
+
+\begin{theorem}[Parameterization of equivalent systems]
+    Let $(A,B,C)$ be a minimal system.
+    \begin{itemize}
+        \item[(a)]
+            Every equivalent system is of the form given in Theorem \ref{thm:kalman},
+            i.e., can be specified by choosing a dimension, $n$;
+            submatrices in $\widehat A$, $\widehat B$, and $\widehat C$ 
+            except for $A_\ro=A$, $B_\ro=B$, and $C_\ro=C$;
+            and choosing an invertible matrix $P$.
+
+        \item[(b)]
+            \plr{conjecture:}
+            The parameterization is unique
+            if $P$ is futhermore chosen so that 
+            each $P_x$ other than $P_\ro$ is a projection matrix,
+            and that 
+            \begin{align*}
+                0
+                =
+                P_x^T P_y
+            \end{align*}
+            for all $(x,y)$ except $(\ro,\nrno)$.
+
+    \end{itemize} 
+\end{theorem}
+
+\plr{Another way of saying it: pick the $\reachable$ and $\unobservable$ subspaces,
+that must intersect in something of the minimal dimension;
+then let $P$ be the appropriate basis?}
+
+In some situations we may be interested in only ``network rewiring'',
+where $A$ changes while $B$ and $C$ do not.
+For instance, 
+if all non-regulatory functions of each molecule are strongly constrained,
+then $C$ cannot change.
+Likewise, if responses of each molecule to the external inputs are not changed by evolution,
+then $B$ does not change.
+
+\begin{lemma}
+    Let $(A,B,C)$ be a system.
+    Every matrix $\widehat A$ such that $(\widehat A,B,C)$ is equivalent to $(A,B,C)$
+    can be specified in the form given in Theorem \ref{thm:kalman},
+    with \plr{them having the same $\ro$ bit}
+    and satisfying
+    \begin{align*}
+        P^{-1} \widehat B &= B \\
+        \widehat C P &= C
+    \end{align*}
+\end{lemma}
+
+It is remarkable to note that even with the relationships 
+between environment, cryptotype, and phenotype constant,
+and in the minimal dimension,
+there are still almost always degrees of freedom.
+These correspond to distinct genetic networks
+that perform indistinguishable functions.
+For example, the equivalent systems of Example \ref{ex:2x2} above
+are minimal, and share common $B$ and $C$ matrices.
+
+\plr{Maybe say that stability to noise can be determined by $A_\nro$ (and others?),
+while complexity of the internal, unobserved dynamics
+are somehow given by the difference between the dimension of $y$ and the dimension of $A_\ro$.}
+
 
 
 
