@@ -78,7 +78,6 @@ $\unobservable$
 
 % is y the phenotype or H(z) the phenotype? Do we need new jargon anyway? 
 % 
-% Deleterious mutations: can we describe heterosis?
 
 \section{Background}
 
@@ -522,7 +521,7 @@ then $B$ does not change.
     with \plr{them having the same $\ro$ bit}
     and satisfying
     \begin{align*}
-        P^{-1} \widehat B &= B \\
+        \widehat B &= P B \\
         \widehat C P &= C
     \end{align*}
 \end{lemma}
@@ -540,7 +539,31 @@ are minimal, and share common $B$ and $C$ matrices.
 while complexity of the internal, unobserved dynamics
 are somehow given by the difference between the dimension of $y$ and the dimension of $A_\ro$.}
 
+\plr{General argument why Brownian motion on set of equivalent things is maybe ok.}
 
+\begin{example}
+    The system in Example \ref{ex:2x2} is minimal, so $A=A_\ro$,
+    and the only free parameter is $P$.
+    Suppose also that the effects of the input and output are strongly constrained,
+    so that as in that example,
+    $B$ and $C$ cannot change,
+    and neutral evolution moves through the set of of $P$ such that $PB=B$ and $CP=C$.
+    \plr{Clarify we mean with no gene duplication and only neutral drift.}
+    How will this system change over evolutionary time in the manner described \plr{above}?
+    An unbiased Brownian motion on this set 
+    can be written in terms of a one-dimensional Brownian motion $\beta_\tau$ 
+    with $\beta_0=0$ as
+    \begin{align*}
+        P(\tau) = \left[
+            \begin{array}{cc}
+                1 & 0 \\
+                e^{\beta_\tau}-1 & e^{\beta_\tau}
+            \end{array}
+            \right] .
+    \end{align*}
+    Therefore, the state of the system after (evolutionary) time $\tau$
+    is $(P(\tau)AP(\tau)^{-1},B,C)$.
+\end{example}
 
 
 \section{What biological question are we asking?}
@@ -645,6 +668,12 @@ I think this is about recovering a finite realization from infinite systems. May
 There are also the previous papers I sent on identifiability and distinguishability. In the original Bellman and Astrom paper where they introduce ``structural identifiability'' they show that a linear dynamical system is identifiabile if and only if it is also controllable and observable. 
 
 
+\section{Notes on what to do when allowing deleterious mutations}
+
+Epistasis, coming from mutations deleterious in some networks but not in others
+(come from incompatibilities).
+
+Describe heterosis.
 
 
 \end{document}
