@@ -180,6 +180,30 @@ Motivate the system:
        -1 & 0 
     \end{matrix}\right]
 \end{align*}
+
+\begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+  \node (A) at (0,0) {$x_{1}$};
+    \node[dashed] (B) at (3,0) {$x_{2}$};
+    \node[shape=rectangle, dashed] (U) at (1.5,-2) {$u(t)$};
+\end{scope}
+
+\begin{scope}[>={Stealth[black]},
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=black, thick}]
+    \path [->, >=Rectangle] (A) edge[bend left] node {\tiny $-1$} (B);
+    \path [->] (B) edge[bend left] node {\tiny $1$} (A); 
+    \path[->] (U) edge[dashed] node {\tiny $1$} (A);
+    \path[->] (U) edge[dashed] node {\tiny $1$} (B);
+\end{scope}
+\begin{scope}[>={Stealth[black]},
+              every edge/.style={draw=black, thick}]
+    %\path [->] (A) edge[loop left] node {\tiny $\lambda_{1}$} (A);
+    %\path [->] (B) edge[loop left] node {\tiny $\lambda_{2}$} (B);
+\end{scope}
+
+\end{tikzpicture}
+
 as a special case of the below.
 
 \end{example}
@@ -279,15 +303,23 @@ hybrids between them may not be:
       5 & -2
     \end{matrix}\right]
   \end{align*}
-  from Example \ref{ex:osc} ($B=[1 ,1]^{T}$ and $C=[1 0]$). 
-If hybrids are formed by exchanining genes (swapping rows), they hybrid,
+  from Example \ref{ex:osc} ($B=\begin{bmatrix} 1 \\ 1 \end{bmatrix}$ and $C=\begin{bmatrix} 1 & 0 \end{bmatrix}$). 
+If hybrids are formed by exchanging genes (swapping rows), the hybrid's gene network is,
   \begin{align*}
-    \mathcal{H}(A(0), A(2)) = \left[\begin{matrix}
+    \text{hybrid network } := \mathcal{H}(A(0), A(2)) = \left[\begin{matrix}
       2 & -1 \\
       -1 & 0
     \end{matrix}\right] ,
   \end{align*}
-  It's transfer function will be $H(z, \mathcal{H}) = \frac{z-2}{z^2 - 3z +1}$, which produces very different dynamics than its parents, $H(z, A(0)) = H(z, A(2)) = \frac{z+1}{z^2 + 1}$. The time dynamcs of molecular species $1$ in the hybrid is $y' =\mathrm{e}^{t}\, \cosh\!\left(\sqrt{2}\, t\right)$, with species $1$ quickly heading towards infinity. The dynamics of species $1$ in the parental networks is, $y = \sin(t) + \cos(t)$, where species $1$ continuously oscillates.
+  \jss{ Or should it be: \begin{align*}
+    \text{hybrid network } := \text{mean}(A(0), A(2)) = \left[\begin{matrix}
+      1 & 0 \\
+      2 & -1
+    \end{matrix}\right] ,
+  \end{align*} }
+  It's transfer function will be $H(z, \mathcal{H}) = \frac{z-2}{z^2 - 3z +1}$, which produces very different dynamics than its parents, $H(z, A(0)) = H(z, A(2)) = \frac{z+1}{z^2 + 1}$. The time dynamcs of molecular species $1$ in the hybrid is $y^{(\mathcal{H})} =e^{t} \cosh(\sqrt{2} t)$ \jss{ which is approx. $\approx e^{t}$}, with the concentration of species $1$ rapidly heading towards infinity. The dynamics of species $1$ in the parental networks is $y = \sin(t) + \cos(t)$, where it continuously oscillates.
+
+  \jss{The transfer function $H(z, \mathcal{H})$, by averaging networks, is $\frac{1}{z-1}$ and the time dynamics are: $y^{(\mathcal{H})} = e^{t}$.}
 \end{example}
 
 \begin{figure}
