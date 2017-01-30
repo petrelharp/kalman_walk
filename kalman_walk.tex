@@ -6,7 +6,7 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, shapes}
 \usepackage{caption, subcaption}
-%\usepackage{bibtex}
+\usepackage{natbib} % gives us \citet: Author (year) and \citep: (Author; year)
 
 \newcommand{\plr}[1]{{\color{blue}\it #1}}
 \newcommand{\jss}[1]{{\color{olive}\it #1}}
@@ -29,10 +29,43 @@
 \newtheorem{definition}{Definition}
 \newtheorem{example}{Example}
 
-
 \begin{document}
 
-%$\unobservable$
+\paragraph{To do, soon:}
+
+\begin{enumerate}
+    \item Add biology to introduction. (keep an eye out for concrete numbers we can use!)
+
+    \item Do some order-of-magnitude calculation to figure out how fast systems should drift.
+
+    \item Write out simple examples in biological words.
+
+    \item Rephrase hybrid inviability example in biological terms.  Discuss F1's (or heterozygotes) versus F2's.
+
+    \item Clarify our assumptions around $x(0)$. 
+
+    \item Note we don't include $D$ for simplicity but don't.
+
+    \item Figure out how to specify $P$ for Kalman decomposition.
+
+    \item Prove or find citation for uniqueness of minimal system up to basis change.
+
+    \item Work examples (minimal; not minimal; with/without B,C fixed) of Kalman decomposition and description of moving along the walk.
+
+    \item Write down and decide between options for parameterizing the random walk on the neutral manifold:
+        use Kalman decomposition, and parameterize Brownian motion so that it has constant speed;
+        OR consider Josh's parameteriziation like this;
+        OR just say we do Brownian motion on the manifold (more or less implicit characterization).
+
+    \item Consider options for fitness function: Euclidean? Sign of eigenvalues?  Time domain or frequency?
+        First try on simple concrete examples.
+
+    \item Describe model leading to constraints on regulation so we have a stationary distribution.
+        Ask questions of stationary distribution: robustness, connectivity, xxx?
+
+    \item Write something in discussion about nonlinear systems.  Do an example if there is a feasible one.
+
+\end{enumerate}
 
 % Outline:
 % 
@@ -79,8 +112,10 @@
 % 
 % - (Allow non-fit stuff too.)
 
+%%% Questions:
+
 % is y the phenotype or H(z) the phenotype? Do we need new jargon anyway? 
-% 
+
 \title{Mathematical Gene Network Evolution}
 \maketitle
 
@@ -182,30 +217,38 @@ Motivate the system:
     \end{matrix}\right]
 \end{align*}
 
-\begin{tikzpicture}
-\begin{scope}[every node/.style={circle,thick,draw}]
-  \node (A) at (0,0) {$x_{1}$};
-    \node[dashed] (B) at (3,0) {$x_{2}$};
-    \node[shape=rectangle, dashed] (U) at (1.5,-2) {$u(t)$};
-    \node[shape=star, star points = 10] (y) at (-2,0) {$y$};
-\end{scope}
+    \begin{figure}
+        \begin{center}
+            \begin{tikzpicture}
+            \begin{scope}[every node/.style={circle,thick,draw}]
+                \node (A) at (0,0) {$x_{1}$};
+                \node[dashed] (B) at (3,0) {$x_{2}$};
+                \node[shape=rectangle] (U) at (1.5,2) {$u$};
+                \node[shape=rectangle] (y) at (1.5,-2) {$y$};
+            \end{scope}
 
-\begin{scope}[>={Stealth[black]},
-              every node/.style={fill=white,circle},
-              every edge/.style={draw=black, thick}]
-    \path [->, >=Rectangle] (A) edge[bend left] node {\tiny $-1$} (B);
-    \path [->] (B) edge[bend left] node {\tiny $1$} (A); 
-    \path[->] (U) edge[dashed] node {\tiny $1$} (A);
-    \path[->] (U) edge[dashed] node {\tiny $1$} (B);
-    \path[->] (A) edge[double] node {\tiny $1$} (y);
-\end{scope}
-\begin{scope}[>={Stealth[black]},
-              every edge/.style={draw=black, thick}]
-    %\path [->] (A) edge[loop left] node {\tiny $\lambda_{1}$} (A);
-    %\path [->] (B) edge[loop left] node {\tiny $\lambda_{2}$} (B);
-\end{scope}
+            \begin{scope}[>={Stealth[black]},
+                          every node/.style={fill=white,circle},
+                          every edge/.style={draw=black, thick}]
+                \path [->, >=Rectangle] (A) edge[bend left] node {\tiny $-1$} (B);
+                \path [->] (B) edge[bend left] node {\tiny $1$} (A); 
+                \path[->] (U) edge[dashed] node {\tiny $1$} (A);
+                \path[->] (U) edge[dashed] node {\tiny $1$} (B);
+                \path[->] (A) edge[dashed,bend right] node {\tiny $1$} (y);
+            \end{scope}
+            \begin{scope}[>={Stealth[black]},
+                          every edge/.style={draw=black, thick}]
+                %\path [->] (A) edge[loop left] node {\tiny $\lambda_{1}$} (A);
+                %\path [->] (B) edge[loop left] node {\tiny $\lambda_{2}$} (B);
+            \end{scope}
 
-\end{tikzpicture}
+            \end{tikzpicture}
+        \end{center}
+        \caption{
+            Diagram of Example \ref{ex:osc} in the text.  
+            \plr{explain what arrows mean if nec}
+            \label{fig:oscillator_diagram}}
+    \end{figure}
 
 as a special case of the below.
 
@@ -798,13 +841,10 @@ Epistasis, coming from mutations deleterious in some networks but not in others
 
 Describe heterosis.
 
+Distribution of dominance coefficients.
 
-This should cite ``Lynch 2007'' $\rightarrow$ \cite{lynch07a}
-This should cite Kalman \cite{kalman63}
-This should cite Bellman \cite{bellman}
-
+\bibliographystyle{plainnat}
 \bibliography{krefs}
-	\bibliographystyle{vancouver}
 
 
 \end{document}
