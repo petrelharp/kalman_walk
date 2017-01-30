@@ -4,8 +4,9 @@
 \usepackage{fullpage}
 \usepackage[hidelinks]{hyperref}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta}
+\usetikzlibrary{arrows.meta, shapes}
 \usepackage{caption, subcaption}
+%\usepackage{bibtex}
 
 \newcommand{\plr}[1]{{\color{blue}\it #1}}
 \newcommand{\jss}[1]{{\color{olive}\it #1}}
@@ -186,6 +187,7 @@ Motivate the system:
   \node (A) at (0,0) {$x_{1}$};
     \node[dashed] (B) at (3,0) {$x_{2}$};
     \node[shape=rectangle, dashed] (U) at (1.5,-2) {$u(t)$};
+    \node[shape=star, star points = 10] (y) at (-2,0) {$y$};
 \end{scope}
 
 \begin{scope}[>={Stealth[black]},
@@ -195,6 +197,7 @@ Motivate the system:
     \path [->] (B) edge[bend left] node {\tiny $1$} (A); 
     \path[->] (U) edge[dashed] node {\tiny $1$} (A);
     \path[->] (U) edge[dashed] node {\tiny $1$} (B);
+    \path[->] (A) edge[double] node {\tiny $1$} (y);
 \end{scope}
 \begin{scope}[>={Stealth[black]},
               every edge/.style={draw=black, thick}]
@@ -794,6 +797,14 @@ Epistasis, coming from mutations deleterious in some networks but not in others
 (come from incompatibilities).
 
 Describe heterosis.
+
+
+This should cite ``Lynch 2007'' $\rightarrow$ \cite{lynch07a}
+This should cite Kalman \cite{kalman63}
+This should cite Bellman \cite{bellman}
+
+\bibliography{krefs}
+	\bibliographystyle{vancouver}
 
 
 \end{document}
