@@ -1,0 +1,6 @@
+*.bbl
+*.log
+*.aux
+.*.swp
+*.blg
+*.out
