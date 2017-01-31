@@ -125,7 +125,9 @@
 \maketitle
 
 \begin{abstract}
-Abstract.
+Bridging the gulf between an organism's genome and phenotype is a poorly understood and complex molecular machinery. Progress in a suite of biological subdisciplines is stalled by our general lack of understanding of this molecular machinery: with respect to both its function and evolution. There does exist a growing body of experiment and data on the evolutionary histories and molecular characterizations of particular gene regulatory networks, as well as thoughtfull verbal and conceptual models. However, as Hardy and Weinberg taught us over a century ago, verbal theories are often insufficient, if not downright misleading. This is especially pertinent given the staggering complexity and scope of contemporary research programmes. This outlook necessitates the advancement of conceptual frameworks of such precision, only mathematics will suffice. Here we outine an analytical theory to study the evolution of biological systems, borrowing insight and methods from control engineering, systems identificaiton, and dynamical systems theory. Presently, we focus on the neutral evolution of genetic regulatory networks. That is, we analytically describe the set of all linear gene networks (of any size) that produce identical phenotypes -- and the evolutionary paths connecting them. In the idealized case of a perfectly adapted population, constant selection, and a static environment, we observe evolution under the ``conservation of phenotype'' as a Brownian motion over phenotypically-invariant network-space. This analysis provides insight to the mechanisms and parameters important for understanding developmental systems drift, network rewiring, evolvability, epistasis, and speciation, as well as the tenuous connection between network architecture and function.
+
+
 \end{abstract}
 
 \section{Background}
@@ -372,6 +374,12 @@ If hybrids are formed by exchanging genes (swapping rows), the hybrid's gene net
 
   \jss{The transfer function $H(z, \mathcal{H})$, by averaging networks, is $\frac{1}{z-1}$ and the time dynamics are: $y^{(\mathcal{H})} = e^{t}$.}
 \end{example}
+
+\begin{definition}[Biological Species Concept]
+  Let $\mathcal{A}$ be the set of all phenotypically symmetric gene networks with transfer funtion $H(z)$. 
+  Choose $A$ and $\widetilde A$, both in $\mathcal{A}$. 
+  If $\mathcal{H}(A, \widetilde A) \notin \mathcal{A}$ then $A$ and $\widetilde A$ are distinct species. 
+\end{definition}
 
 \begin{figure}
   \centering
