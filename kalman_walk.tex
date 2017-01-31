@@ -7,7 +7,7 @@
 \usetikzlibrary{arrows.meta, shapes}
 \usepackage{caption, subcaption}
 \usepackage{natbib} % gives us \citet: Author (year) and \citep: (Author; year)
-
+\usepackage{authblk}
 \newcommand{\plr}[1]{{\color{blue}\it #1}}
 \newcommand{\jss}[1]{{\color{olive}\it #1}}
 % \newcommand{\ddt}{\frac{d}{dt}}
@@ -116,7 +116,12 @@
 
 % is y the phenotype or H(z) the phenotype? Do we need new jargon anyway? 
 
-\title{Mathematical Gene Network Evolution}
+\title{The Evolution of Phenotypically Invariant Genetic Networks}
+\author[1]{Joshua S. Schiffman}
+\author[1,2]{Peter L. Ralph}
+\affil[1]{University of Southern California, Los Angeles, California}
+\affil[2]{University of Oregon, Eugene, Oregon}
+\affil[ ]{\texttt{jsschiff@usc.edu} \qquad \texttt{plr@uoregon.edu}}
 \maketitle
 
 \begin{abstract}
@@ -223,8 +228,8 @@ Motivate the system:
             \begin{scope}[every node/.style={circle,thick,draw}]
                 \node (A) at (0,0) {$x_{1}$};
                 \node[dashed] (B) at (3,0) {$x_{2}$};
-                \node[shape=rectangle] (U) at (1.5,2) {$u$};
-                \node[shape=rectangle] (y) at (1.5,-2) {$y$};
+                \node[shape=rectangle] (U) at (1.5,2) {input};
+                \node[shape=rectangle] (y) at (1.5,-2) {output};
             \end{scope}
 
             \begin{scope}[>={Stealth[black]},
@@ -375,8 +380,9 @@ If hybrids are formed by exchanging genes (swapping rows), the hybrid's gene net
 \begin{tikzpicture}
 \begin{scope}[every node/.style={circle,thick,draw}]
   \node (A) at (0,0) {$x_{1}$};
-    \node[dashed] (B) at (0,-4) {$x_{2}$};
-    \node[shape=rectangle, dashed] (U) at (3,-2) {$u(t)$};
+    \node[dashed] (B) at (4,0) {$x_{2}$};
+    \node[shape=rectangle] (U) at (2,2) {input};
+    \node[shape=rectangle] (y) at (2,-2) {output};
 \end{scope}
 
 \begin{scope}[>={Stealth[black]},
@@ -386,11 +392,12 @@ If hybrids are formed by exchanging genes (swapping rows), the hybrid's gene net
     \path [->] (B) edge node {\tiny $\gamma$} (A); 
     \path[->] (U) edge[dashed] node {\tiny $1$} (A);
     \path[->] (U) edge[dashed] node {\tiny $1$} (B);
+    \path[->] (A) edge[dashed, bend right] node {\tiny $1$} (y);
 \end{scope}
 \begin{scope}[>={Stealth[black]},
               every edge/.style={draw=black, thick}]
     \path [->] (A) edge[loop left] node {\tiny $\lambda_{1}$} (A);
-    \path [->] (B) edge[loop left] node {\tiny $\lambda_{2}$} (B);
+    \path [->] (B) edge[loop right] node {\tiny $\lambda_{2}$} (B);
 \end{scope}
 
 \end{tikzpicture}
@@ -401,8 +408,9 @@ If hybrids are formed by exchanging genes (swapping rows), the hybrid's gene net
 \begin{tikzpicture}
 \begin{scope}[every node/.style={circle,thick,draw}]
   \node (A) at (0,0) {$x_{1}$};
-    \node[dashed] (B) at (0,-4) {$x_{2}$};
-    \node[shape=rectangle, dashed] (U) at (3,-2) {$u(t)$};
+    \node[dashed] (B) at (4,0) {$x_{2}$};
+    \node[shape=rectangle] (U) at (2,2) {input};
+    \node[shape=rectangle] (y) at (2,-2) {output};
 \end{scope}
 
 \begin{scope}[>={Stealth[black]},
@@ -412,11 +420,12 @@ If hybrids are formed by exchanging genes (swapping rows), the hybrid's gene net
     \path [->, sloped] (B) edge[bend left] node {\tiny $\frac{\gamma}{2}$} (A); 
     \path[->] (U) edge[dashed] node {\tiny $1$} (A);
     \path[->] (U) edge[dashed] node {\tiny $1$} (B);
+    \path[->] (A) edge[dashed, bend right] node {\tiny $1$} (y);
 \end{scope}
 \begin{scope}[>={Stealth[black]},
               every edge/.style={draw=black, thick}]
     \path [->] (A) edge[loop left] node {\tiny $(\lambda_{1} + \frac{\gamma}{2})$} (A);
-    \path [->] (B) edge[loop left] node {\tiny $(\lambda_{2}-\frac{\gamma}{2})$} (B);
+    \path [->] (B) edge[loop right] node {\tiny $(\lambda_{2}-\frac{\gamma}{2})$} (B);
 \end{scope}
 
 \end{tikzpicture}
