@@ -2,7 +2,7 @@
 \usepackage{amsmath, amssymb, color, xcolor}
 \usepackage{graphicx}
 \usepackage{fullpage}
-\usepackage[backref, hidelinks, colorlinks=true, citecolor=blue!60!black!100]{hyperref}
+\usepackage[backref=page, hidelinks, colorlinks=true, citecolor=blue!60!black!100]{hyperref}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, shapes}
 \usepackage{caption, subcaption}
@@ -36,7 +36,7 @@
 
 \begin{enumerate}
 
-    \item \emph{(josh)} Add biology to introduction. (keep an eye out for concrete numbers we can use!)
+  \item \emph{(josh)} Add biology to introduction. (keep an eye out for concrete numbers we can use!) \jss{added some relevant biology citations to introduction. Still needs a lot of refinement.}
 
     \item Do some order-of-magnitude calculation to figure out how fast systems should drift.
         \begin{itemize}
@@ -54,7 +54,7 @@
 
     \item \emph{(peter)} Figure out how to specify $P$ for Kalman decomposition.
 
-    \item \emph{(josh,peter)} Prove or find citation for uniqueness of minimal system up to basis change.
+    \item \emph{(josh \jss{\checkmark},peter)} Prove or find citation for uniqueness of minimal system up to basis change. \jss{See \citep[Chapter 10.6, Theorem 6.9: Fundamental Theorem of Linear Realization Theory.]{kalman1969topics}}
 
     \item Work examples (minimal; not minimal; with/without B,C fixed) of Kalman decomposition and description of moving along the walk.
         \begin{itemize}
