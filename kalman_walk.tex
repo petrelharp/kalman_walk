@@ -36,12 +36,13 @@
 
 \begin{enumerate}
 
-  \item \emph{(josh)} Add biology to introduction. (keep an eye out for concrete numbers we can use!) \jss{added some relevant biology citations to introduction. Still needs a lot of refinement.}
+  \item \emph{(josh)} Add biology to introduction. (keep an eye out for concrete numbers we can use!) \jss{added some relevant biology citations to introduction. Still needs a lot of refinement.} \ref{sec:intro}
 
     \item Do some order-of-magnitude calculation to figure out how fast systems should drift.
         \begin{itemize}
             \item \emph{(peter)} Work out the math for how to do this.
-            \item \emph{(josh)} Find real parameters to put into this.
+            \item \emph{(josh)} Find real parameters to put into this. 
+              \jss{added some notes for TFBS gain and loss calculations from Lynch} \ref{sec:param}
         \end{itemize}
 
     \item \emph{(josh)} Write out simple examples in biological words.
@@ -144,7 +145,7 @@ I will outline an analytical theory to study the evolution of biological systems
 \end{abstract}
 
 
-\section{Background}
+\section{Background} \label{sec:intro}
 
 \plr{Review of relevant other stuff.}
 
@@ -767,8 +768,39 @@ are somehow given by the difference between the dimension of $y$ and the dimensi
     is $(P(\tau)AP(\tau)^{-1},B,C)$.
 \end{example}
 
+\section{Estimates of network rewiring and developmenal systems drift.} \label{sec:param}
 
-\section{What biological question are we asking?}
+\jss{Parameter estimates for DSD $\downarrow$}
+
+What parameters (and other relevant factors) do we need from the literature and experiment? 
+  \begin{itemize}
+    \item mutation rate
+    \item Transcription factor binding site appearence and loss
+    \begin{itemize}
+      \item In \citep{lynch2007evolution} TF binding site gain ($u_{g}$) and loss ($u_{l}$) is estimated to be,
+        \begin{align*}
+          u_{g} &= \frac{(L-n+1)nu}{4^{n}} \\
+          u_{l} &= nu
+        \end{align*}
+      Where $L$ is the length of the promoter, $n$ is the number of nucleotides in a TFBS, and $u$ is the mutation rate per base pair per generation. 
+    \item \citet{lynch2007evolution} further states that in prokaryotes $L$ will usually be $\leq 100$ and in eukaryotes $L$ can range from $10^{3}$ to $10^{6}$. He also cites \citep{harbison2004transcriptional} that TFBSs range from $5-10$bps in length.
+    \item in \citep{lynch2014evolutionary}, they estimate
+        \begin{align*}
+          \tilde{P}(m) = C \left[ 3^{\ell - m}  \left( \begin{array}{c} \ell \\ m \end{array} \right) \right] e^{2N_{e}s(m)}  ,
+        \end{align*}
+        where $\tilde{P}(m)$ is the stationary distribution of a TFBS with match (and strength) $m$. $C$ is the normalizer constant, $m$ is the number of matches, $\ell$ is the length of the TFBS motif. The term on the right is the ratio of fixation probabilities. 
+        Or in their own words, there are two interpretations: 
+        \begin{quote} ``(i) For a single TFBS, it represents the long-term proportion of evolutionary time spent in the various matching states and (ii) for a set of different TFBSs under the same selective constraints, it represents the expected distribution of states at any point in time.'' \end{quote}
+      \item \citet{tuugrul2015dynamics, anderson2015intermolecular} also may be helpful.
+    \end{itemize}
+    \item rate of both \emph{trans-} and \emph{cis-} regulatory evolution. (see Sergey's papers).
+      i.e. \citep{nuzhdin2004common, fear2016buffering, graze2009regulatory, graze2012allelic, genissel2008cis}
+    \item The PWN-score landscape (does binding strength increase linearly, exponentially, have a threshold, etc.) with respect to SNPs.
+    \item Others? 
+  \end{itemize}
+
+
+\section{(Old Notes) What biological question are we asking?}
 
 How do gene regulatory networks (GRNs) change through evolutionary time?
 Specifically, under constant selection and environmental pressures, how does a
@@ -786,7 +818,7 @@ constrain or entail exaptation and evolvability? Are some network organizations
 construct novel phenotypes and meet the demands of changes in selection
 pressures?
 
-\section{How can we mathematically model this question?}
+\section{(Old Notes) How can we mathematically model this question?}
 
 In some respect an organism can be thought of as a black box that responds to
 some set of inputs (it's environment and other initial conditions) and outputs
@@ -839,7 +871,7 @@ and let $M'$ bean $(n+m \times n+m)$ matrix where $M'_{(i,j)} = M_{(i,j)} \
 $(n+m \times n+m)$ matrix with rank $n$. Then for any matrix $B$ such that $BP
 = PM'$, $B$ is a realization of $A$.     
 
-\section{List of papers with some notes.}
+\section{(Old Notes) List of papers with some notes.}
 
 R. E. Kalman, “Mathematical description of linear dynamical systems,” Journal of the Society for Industrial and Applied Mathematics, Series A: Control, vol. 1, no. 2, pp. 152–192, 1963.
 This is a good overview written by Kalman. Probably the most important paper on this list.
