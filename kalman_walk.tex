@@ -1,6 +1,6 @@
 \documentclass[11 pt]{article}
 \usepackage{amsmath, amssymb, color, xcolor}
-\usepackage{graphicx}
+\usepackage{graphicx, wrapfig, float, caption}
 \usepackage{fullpage}
 \usepackage[backref=page, hidelinks, colorlinks=true, citecolor=blue!60!black!100]{hyperref}
 \usepackage{tikz}
@@ -22,6 +22,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\E}{\mathbb{E}}
 \renewcommand{\P}{\mathbb{P}}
+\newcommand{\pda}{\frac{\partial}{\partial A_{ij}}}
 
 \DeclareMathOperator{\spn}{span}
 
@@ -900,6 +901,45 @@ Partial Realization of Descriptor Systems. P Benner and VI Sokolov. 2006.
 I think this is about recovering a finite realization from infinite systems. Maybe it would be interesting to think about the similarity between transfer functions though? If selection only cares about a specific interval of the transfer function, say $G(10)$, then maybe two partial transfer functions will be effecrively equivlaent? 
 
 There are also the previous papers I sent on identifiability and distinguishability. In the original Bellman and Astrom paper where they introduce ``structural identifiability'' they show that a linear dynamical system is identifiabile if and only if it is also controllable and observable. 
+
+\section{Including Deleterious Mutations and a Fitness Function}
+
+  \begin{minipage}{0.5\textwidth}
+  At the moment we focus strictly on the case where the minimal realization is in $2$ dimensions and both of its eigenvalues are real and negative (so a special case of the system from Example \ref{ex:2x2}). \jss{(Note: this is not to say the ideas below will not be generalizable).}
+
+    The system of interest has the form,
+  \begin{align*}
+    \Sigma := \left\{ A = \begin{bmatrix} A_{11} & A_{12} \\ A_{21} & A_{22} \end{bmatrix}, B = \begin{bmatrix} 1 \\ 1 \end{bmatrix}, C = \begin{bmatrix} 1 & 0 \end{bmatrix} \right\}
+  \end{align*}
+  \end{minipage}%
+  \begin{minipage}{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.95\textwidth]{figure_2x2mutation01}%
+      \captionof{figure}{The transfer function for $A = \left[ \protect\begin{array}{cc} -3 & 1 \\ 0 & -1 \protect\end{array} \right]$ and all eight $\mu(\Sigma, A_{ij})$ mutations, where $\upsilon = \pm 0.5$}\label{fig:mut}%
+  \end{minipage}
+
+
+Define the fitness function to be,
+
+\begin{align}\label{eq:fitness}
+  \Phi(\bar{\Sigma}) := \left\{ \begin{array}{ll}   e^{- | H(0) - \tilde{H}(0) | = - \left| \frac{k}{\lambda_{1} \lambda_{2}} - \frac{\tilde{k}}{\tilde{\lambda}_{1} \tilde{\lambda}_{2}} \right|}    &\text{if } \lambda_{1,2} < 0 \text{ and } \in \mathbb{R}, \ \det(A) \neq 0 \\
+  0   &\text{if } \lambda_{1,2} \geq 0 \ \text{ or } \ \notin \mathbb{R}, \ \det(A) = 0 \end{array} \right.
+\end{align}
+and let $\upsilon$ be the magnitude and direction (sign) of a mutation on regulatory interaction strength. The fitness function (\ref{eq:fitness}) may me appropriate if mutations only slightly alter the dynamics of the system, as in Figure \ref{fig:mut}.
+
+Further let $\mu(\Sigma, A_{ij})$ be resulting gene regulatory network following a mutation of matrix element $A_{ij}$ to system $\Sigma$ (which contains matrix $A$).
+
+  \begin{align*}
+    \Phi(\mu(\Sigma, A_{ij} \upsilon)) = \exp\left(- \left| \frac{A_{22}-A_{12}}{\lambda_{1} \lambda_{2}} - \frac{k + \upsilon \pda (A_{22}-A_{12})}{\lambda_{1} \lambda_{2} + \text{adj}(A)^{T}_{ij} \upsilon} \right|\right)   .
+  \end{align*}
+For instance, the fitness of an organism with a change of one of its entries $A_{ij}$ (by $\upsilon$) is listed,
+  \begin{align*}
+    \Phi(\mu(\Sigma, A_{11})) &= \exp \left(- \left| \frac{A_{22}-A_{12}}{\det(A)} - \frac{A_{22}-A_{12}}{\det(A) + \upsilon A_{22}} \right| \right) \\
+    \Phi(\mu(\Sigma, A_{12})) &= \exp \left(- \left| \frac{A_{22}-A_{12}}{\det(A)} - \frac{A_{22}-A_{12} - \upsilon}{\det(A) - \upsilon A_{21}} \right| \right) \\
+    \Phi(\mu(\Sigma, A_{21})) &= \exp \left(- \left| \frac{A_{22}-A_{12}}{\det(A)} - \frac{A_{22}-A_{12}}{\det(A) - \upsilon A_{12}} \right| \right) \\
+    \Phi(\mu(\Sigma, A_{22})) &= \exp \left(- \left| \frac{A_{22}-A_{12}}{\det(A)} - \frac{A_{22}-A_{12} + \upsilon}{\det(A) + \upsilon A_{11}} \right| \right)
+  \end{align*}
+
 
 
 \section{Notes on what to do when allowing deleterious mutations}
