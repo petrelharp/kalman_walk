@@ -1,6 +1,6 @@
 \documentclass[11 pt]{article}
 \usepackage{amsmath, amssymb, color, xcolor}
-\usepackage{graphicx, wrapfig, float, caption}
+\usepackage{graphicx, wrapfig, float, caption, dsfont}
 \usepackage{fullpage}
 \usepackage[backref=page, hidelinks, colorlinks=true, citecolor=blue!60!black!100]{hyperref}
 \usepackage{tikz}
@@ -23,6 +23,7 @@
 \newcommand{\E}{\mathbb{E}}
 \renewcommand{\P}{\mathbb{P}}
 \newcommand{\pda}{\frac{\partial}{\partial A_{ij}}}
+\newcommand{\ind}{\mathds{1}}
 
 \DeclareMathOperator{\spn}{span}
 
@@ -73,7 +74,7 @@
         Ask questions of stationary distribution: robustness, connectivity, xxx?
 
     \item Consider options for fitness function: Euclidean? Sign of eigenvalues?  Time domain or frequency?
-        First try on simple concrete examples.
+      First try on simple concrete examples. \jss{see \ref{sec:del}}
 
     \item Figure out coherent model for changing dimension: do coefficients stay stuck at zero? In what parameterization? 
         Do we need to allow deleterious variation to get deletion?
@@ -902,7 +903,7 @@ I think this is about recovering a finite realization from infinite systems. May
 
 There are also the previous papers I sent on identifiability and distinguishability. In the original Bellman and Astrom paper where they introduce ``structural identifiability'' they show that a linear dynamical system is identifiabile if and only if it is also controllable and observable. 
 
-\section{Including Deleterious Mutations and a Fitness Function}
+\section{Including Deleterious Mutations and a Fitness Function}\label{sec:del}
 
   \begin{minipage}{0.5\textwidth}
   At the moment we focus strictly on the case where the minimal realization is in $2$ dimensions and both of its eigenvalues are real and negative (so a special case of the system from Example \ref{ex:2x2}). \jss{(Note: this is not to say the ideas below will not be generalizable).}
@@ -922,12 +923,12 @@ There are also the previous papers I sent on identifiability and distinguishabil
 Define the fitness function to be,
 
 \begin{align}\label{eq:fitness}
-  \Phi(\bar{\Sigma}) := \left\{ \begin{array}{ll}   e^{- | H(0) - \tilde{H}(0) | = - \left| \frac{k}{\lambda_{1} \lambda_{2}} - \frac{\tilde{k}}{\tilde{\lambda}_{1} \tilde{\lambda}_{2}} \right|}    &\text{if } \lambda_{1,2} < 0 \text{ and } \in \mathbb{R}, \ \det(A) \neq 0 \\
+  \Phi(\bar{\Sigma}) := \left\{ \begin{array}{ll}   e^{- \left| H(0) - \tilde{H}(0) \right| = - \left| \frac{k}{\lambda_{1} \lambda_{2}} - \frac{\tilde{k}}{\tilde{\lambda}_{1} \tilde{\lambda}_{2}} \right|}    &\text{if } \lambda_{1,2} < 0 \text{ and } \in \mathbb{R}, \ \det(A) \neq 0 \\
   0   &\text{if } \lambda_{1,2} \geq 0 \ \text{ or } \ \notin \mathbb{R}, \ \det(A) = 0 \end{array} \right.
 \end{align}
 and let $\upsilon$ be the magnitude and direction (sign) of a mutation on regulatory interaction strength. The fitness function (\ref{eq:fitness}) may me appropriate if mutations only slightly alter the dynamics of the system, as in Figure \ref{fig:mut}.
 
-Further let $\mu(\Sigma, A_{ij})$ be resulting gene regulatory network following a mutation of matrix element $A_{ij}$ to system $\Sigma$ (which contains matrix $A$).
+Further let $\mu(\Sigma, A_{ij})$ be the resulting gene regulatory network following a mutation of matrix element $A_{ij}$ to system $\Sigma$ (which contains matrix $A$).
 
   \begin{align*}
     \Phi(\mu(\Sigma, A_{ij} \upsilon)) = \exp\left(- \left| \frac{A_{22}-A_{12}}{\lambda_{1} \lambda_{2}} - \frac{k + \upsilon \pda (A_{22}-A_{12})}{\lambda_{1} \lambda_{2} + \text{adj}(A)^{T}_{ij} \upsilon} \right|\right)   .
@@ -940,9 +941,22 @@ For instance, the fitness of an organism with a change of one of its entries $A_
     \Phi(\mu(\Sigma, A_{22})) &= \exp \left(- \left| \frac{A_{22}-A_{12}}{\det(A)} - \frac{A_{22}-A_{12} + \upsilon}{\det(A) + \upsilon A_{11}} \right| \right)
   \end{align*}
 
+ The transfer function at $z=0$ for any GRN with mutations is, 
+  \begin{align*}
+    H(0, \begin{bmatrix} A_{11} + \upsilon & A_{12} + \varepsilon \\ A_{21} + \delta & A_{22} + \omega \end{bmatrix}) = \frac{A_{22} - A_{12} + \omega - \varepsilon}{ \det(A) + \omega A_{11} - \delta A_{12} - \varepsilon A_{21} + \upsilon A_{22} + \omega \upsilon - \varepsilon \delta }
+  \end{align*}
 
+%  \begin{align*}
+%    \frac{\left(A_{22}-A_{12}\right) + \left( \displaystyle\sum_{\jmath = 1}^{\ind_{\omega}} \omega_{\jmath} - \displaystyle\sum_{\jmath = 1}^{\ind_{\varepsilon}} \varepsilon_{\jmath} \right)}{\displaystyle\det(A) + \displaystyle\sum_{\jmath=1}^{\ind_{\omega}} \omega_{\jmath} A_{11} - \sum_{\jmath=1}^{\ind_{\delta}} \delta_{\jmath} A_{12} -  \sum_{\jmath=1}^{\ind_{\varepsilon}} \varepsilon_{\jmath} A_{21} + \sum_{\jmath=1}^{\ind_{\upsilon}} \upsilon_{\jmath} A_{22} + \sum_{\jmath=1}^{\ind_{\omega}} \omega_{\jmath} \sum_{\jmath=1}^{\ind_{\upsilon}} \upsilon_{\jmath} - \sum_{\jmath=1}^{\ind_{\varepsilon}} \varepsilon_{\jmath} \sum_{\jmath=1}^{\ind_{\delta}} \delta_{\jmath} }
+%  \end{align*}
 
-\section{Notes on what to do when allowing deleterious mutations}
+  If we want to know how new mutations fix in the population, we can explicitly show all mutational paths that could compensate for fixed mutations at sites $A_{ij}$. In a population, not at a phenotypic optimum, we are interested in the combination of mutations with varying magnitudes and locations that are most likely to fix. 
+
+  \begin{align*}
+    \frac{\left(A_{22}-A_{12}\right) + \left( \displaystyle\sum_{\jmath = 1}^{\ind_{\omega}} \omega_{\jmath} - \displaystyle\sum_{\jmath = 1}^{\ind_{\varepsilon}} \varepsilon_{\jmath} \right)}{\det(A) + \displaystyle\sum_{\mu=\{\omega , \delta , \varepsilon , \upsilon \}}^{\ind_{\mu}} \mu_{\jmath} (-1)^{i+j} A_{ij} + \sum_{\jmath=1}^{\ind_{\omega}} \omega_{\jmath} \sum_{\jmath=1}^{\ind_{\upsilon}} \upsilon_{\jmath} - \sum_{\jmath=1}^{\ind_{\varepsilon}} \varepsilon_{\jmath} \sum_{\jmath=1}^{\ind_{\delta}} \delta_{\jmath} }
+  \end{align*}
+
+\section{Notes on what to do when allowing deleterious mutations} 
 
 \begin{enumerate}
 
