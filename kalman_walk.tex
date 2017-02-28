@@ -169,7 +169,7 @@ Bridging the gulf between an organism's genome and phenotype is a poorly underst
 The molecular machinery, interacting with the environment, and bridging genotype to phenotype
 can be mathematically described as a dynamical system -- or a system of differential equations\citep{jaeger2015comet}.
  Movement in this direction is ongoing, as researchers have begun to study 
-the evolution of both abstract \citep{wagner1994evolution, wagner1996does,  siegal2002waddington, bergman2003evolutionary} and empirically inspired computational and mathematical models of gene regulatory networks (GRNs) \citep{mjolsness1991connectionist, jaeger2004dynamic, maria1, vitaly1, vitaly2, crombach2016gap, wotton2015quantitative}. If we allow the reasonable assumption that the genotype-phenotype map can be represented as a system of differential equations, we can immediately discuss its evolution and function in a much more mechanistic, yet general, manner. 
+the evolution of both abstract \citep{wagner1994evolution, wagner1996does,  siegal2002waddington, bergman2003evolutionary} and empirically inspired computational and mathematical models of gene regulatory networks (GRNs) \citep{mjolsness1991connectionist, jaeger2004dynamic, maria1, vitaly1, vitaly2, crombach2016gap, wotton2015quantitative, chertkova2017insilico}. If we allow the reasonable assumption that the genotype-phenotype map can be represented as a system of differential equations, we can immediately discuss its evolution and function in a much more mechanistic, yet general, manner. 
 
 In some fields that seek to fit parametric models to experimental data, such as control
 theory, chemical engineering, and statistics, it is well known that mathematical models
@@ -956,6 +956,61 @@ and let $\upsilon$ be the magnitude and direction (sign) of a mutation on regula
     \frac{\left(A_{22}-A_{12}\right) + \left( \displaystyle\sum_{\jmath = 1}^{\ind_{\omega}} \omega_{\jmath} - \displaystyle\sum_{\jmath = 1}^{\ind_{\varepsilon}} \varepsilon_{\jmath} \right)}{\det(A) + \displaystyle\sum_{\mu=\{\omega , \delta , \varepsilon , \upsilon \}}^{\ind_{\mu}} \mu_{\jmath} (-1)^{i+j} A_{ij} + \sum_{\jmath=1}^{\ind_{\omega}} \omega_{\jmath} \sum_{\jmath=1}^{\ind_{\upsilon}} \upsilon_{\jmath} - \sum_{\jmath=1}^{\ind_{\varepsilon}} \varepsilon_{\jmath} \sum_{\jmath=1}^{\ind_{\delta}} \delta_{\jmath} }
   \end{align*}
 
+
+\section{Biological Examples}
+
+  \begin{example}
+    Negative feedback and Positive feedback systems:
+    \begin{align*}
+      T(z) = \frac{H(z)}{1 + G(z)H(z)} \\
+      T(z) = \frac{H(z)}{1 - G(z)H(z)} \\
+    \end{align*}
+  \end{example}
+
+  \begin{example}
+    Systems in serial ($u \rightarrow \Sigma_{1} \{A_{1},B_{1},C_{1} \} \rightarrow \Sigma_{2} \{A_{2},B_{2},C_{2} \} \rightarrow y$):
+    \begin{align*}
+      \begin{bmatrix} \dot{x}_{1} \\ \dot{x}_{2} \end{bmatrix} &= \left[ \begin{array}{c|c}
+        A_{1} & 0 \\
+          \hline
+          B_{2}C_{2} & A_{2} \\
+        \end{array} \right] \begin{bmatrix} \dot{x}_{1} \\ \dot{x}_{2} \end{bmatrix}  + \begin{bmatrix} B_{1} \\ 0 \end{bmatrix} u \\
+          y &= \begin{bmatrix} 0 & C_{2} \end{bmatrix} \begin{bmatrix} \dot{x}_{1} \\ \dot{x}_{2} \end{bmatrix} .
+    \end{align*}
+
+  Systems in serial could be applied to model a gene network $A_{1}$ and the subsequent degradation rates of its outputs at rate $A_{2}$.
+  \end{example}
+
+  \begin{example}
+  \begin{align*}
+    \dot{x} &= \begin{bmatrix} + & - \\ 0 & + \end{bmatrix} \vec{x} + \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \vec{u} \\
+      y(t) &= \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \vec{x} \\
+        E(t) &= \begin{bmatrix} -y_{1}(t) & 0 & 0 \\ y_{1}(t) & -y_{2}(t) & 0 \\ -\sigma_{1} y_{1}(t) & (1 - \sigma_{2})y_{2}(t) & 1 \end{bmatrix} \vec{\zeta} + \begin{bmatrix} u_{1} \\ u_{2} \\ \epsilon \end{bmatrix} .
+  \end{align*}
+    Where $u_{1}$ is input of \emph{lactose}, $u_{2}$ is the input of \emph{glucose}, $y_{1}$ is the enzyme \emph{lactase} and $y_{2}$ is enzyme \emph{``glucase''}. $E(t)$ is metabolism of the organism, converting sugars to energy as a function of enzyme concentrations. Lactase converts lactose to glucose, and the enzyme is produced at energy cost $\sigma_{1}$; glucase converts glucose to energy and is produced at cost $\sigma_{2}$. Fitness is a function of the total energy of the system, given inputs, possibly: $\int_{0}^{T}E(t)_{3} dt$ after some time $T$ has passed. Or perhaps, once the total metabolic energy produced passes some threshold, the organism undergoes fission. Thus, fitness selects for maximizing energy as quickly as possible. 
+  \end{example}
+
+  \begin{example} 
+    Gene Regulatory and Metabolic Network Cascade:
+
+    Gene Regulatory Network
+    \begin{align*}
+      \dot{x}(t) &= A x(t) + B_{1} u(t) \\
+      y(t) &= C_{1} x(t)
+    \end{align*}
+      Metabolism
+      \begin{align*}
+      \dot{\zeta}(t) &= M\big(y(t), \sigma \big) \zeta(t) + B_{2} \begin{bmatrix} u(t) \\ v(t) \end{bmatrix} \\
+        m(t) &= C_{2} \zeta(t) \\
+      b(t) &= C_{3} \zeta(t)
+      \end{align*}
+      Fitness
+      \begin{align*}
+      \Phi(m(t), p(t))
+    \end{align*}
+
+    The GRN produces time varying proteins involved in the metabolism. The metabilic network (MN), is a function of protein concentrations $y(t)$ and production costs $\sigma$. The metabolic network produces energy $m(t)$ and toxic byproducts $b(t)$. Fitness $\Phi$, or maybe something more concrete, like fission time and/or cell death, is a function of both energy $m(t)$ and toxins $b(t)$. 
+  \end{example}
 \section{Notes on what to do when allowing deleterious mutations} 
 
 \begin{enumerate}
