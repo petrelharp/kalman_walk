@@ -105,6 +105,12 @@
     $A(a,b)$ represent alternative network structures that produce identical outputs, with identical input and output transformations -- meaning the regulatory contributions of the sugars and the basasl machinery, as well as the promoter of the GAL regulon are held constant. These interactions may be realized in nature, if the regulatory differences predicted by $A(a,b)$ are biologically/mutationally realizable. Mutations influencing the interactions between GAL4 and GAL80 have been experimentally demonstrated \citep{li2010alterations}.
 
     Furthermore, our fitness function is restricting the network to realize the transfer function $H(z)$ exactly. We see this as justifiable, as experiment has shown the output of a metabolic regulatory network directly influences organismal growth rates. In \citet{dekel2005optimality} \emph{E. coli} that over or under express lactase, governed by the \emph{lac} operon, in a given sugar environment, their fitness (growth rate) suffers.
+
+    We are interested in network rewiring rates. This can be modelled as a Brownian motion of the free parameters,
+    \begin{align*}
+      A_{t} &= A(f(W_{t}), g(W_{t})) \\
+      \mathbb{E} [ | A_{\epsilon} - A_{0} | ] &= \epsilon + \mathcal{O}(\epsilon^{2})
+    \end{align*}
     \subsection{Notes}
     \begin{itemize}
       \item The interaction strength between GAL4 and GAL80 can be altered via mutation. Furthermore, a mutation in GAL4 that decreases affinity can be compensated by a mutation in GAL80 \citep{li2010alterations, salmeron1990gal4, adhikari2014perturbation}.
