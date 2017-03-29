@@ -801,6 +801,19 @@ What parameters (and other relevant factors) do we need from the literature and 
     \item Others? 
   \end{itemize}
 
+\section{Adaptation}
+
+Suppose a population is perfectly adapted to its environment -- it expresses a metabolic enzyme in response to environmental sugar availability at a rate that balances the energetic costs and benefits of the enzyme's synthesis and utility. Then, the population suddenly finds itself in a novel environment and exhibits suboptimal expression rates. How does the population adapt? Are some network mechanisms mutationally closer or farther from the desired new network connectivity? 
+
+Let $A_{\alpha}(p)$ be the $p$th system realization perfectly adapted to the first environment ($\alpha$), and let $A_{\beta}(q)$ be the $q$th system realization perfectly adapted to the second environment ($\beta$). 
+\begin{align*}
+  \{p,q : \min \sum_{i,j}^{n} | A_{\alpha}(p)_{i,j} - A_{\beta}(q)_{i,j} | \}
+\end{align*}
+In an asexual population, if there is variation in network topology, the $A_{\alpha}$ network closest to the organization of a $A_{\beta}$ network might be the fastest to adapt and outcompete all of its neighbors.
+
+\section{Mutational Robustness}
+
+Are any network realizations $A(p)$ more mutationally robust than others? If $s_{i,j}$ is the fitness cost of mutating element $A_{i,j}$ and $\mathbb{E}_{p}(s) = \frac{1}{n}\displaystyle\sum_{i,j}^{n} s_{i,j}$ is the mutationaly susceptibility of realization $p$, is there a $p$ such that $\mathbb{E}(s)$ is minimal? Will the population find this network orgnization?
 
 \section{(Old Notes) What biological question are we asking?}
 
@@ -1010,6 +1023,15 @@ and let $\upsilon$ be the magnitude and direction (sign) of a mutation on regula
     \end{align*}
 
     The GRN produces time varying proteins involved in the metabolism. The metabilic network (MN), is a function of protein concentrations $y(t)$ and production costs $\sigma$. The metabolic network produces energy $m(t)$ and toxic byproducts $b(t)$. Fitness $\Phi$, or maybe something more concrete, like fission time and/or cell death, is a function of both energy $m(t)$ and toxins $b(t)$. 
+  \end{example}
+
+  \begin{example}
+    Rough yeast colony morphology phenotype / Simplified Ras pathway. Rough colony morphology is a complex phenotypic trait influenced by many different genetic variants. Ultimately it appears that colony roughness is a function of RNA Polymerase II activity, downstream of Ras and Gpr1, and acting on FLO11. If RNA pol II activity breaks a threshold level, FLO11 is expressed and colony roughness is observed. 
+
+    \begin{align*}
+      \dot{x} &= \begin{bmatrix} 0 & 0 & 0 & 0 & 0 & 0 \\ + & 0 & \zeta & 0 & 0 & 0 \\ + & \eta & 0 & 0 & 0 & 0 \\ 0 & + & 0 & 0 & 0 & 0 \\ 0 & + & 0 & 0 & 0 & 0 \\ 0 & 0 & - & 0 & 0 & 0 \end{bmatrix} \begin{bmatrix} \text{Cyr1} \\ \text{Tpk1} \\ \text{Tpk3} \\ \text{Flo8} \\ \text{Mga1} \\ \text{Sfl1} \end{bmatrix} + \begin{bmatrix} + & +  & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & + \end{bmatrix} \begin{bmatrix} \text{Gpa2} & \text{Ras} & \text{Sfl1} \end{bmatrix} \\
+        y &= \text{cumulative impact on RNA Pol II activity } = \begin{bmatrix} 0 & 0 & 0 & + & + & - \end{bmatrix} \vec{x}
+    \end{align*}
   \end{example}
 \section{Notes on what to do when allowing deleterious mutations} 
 
