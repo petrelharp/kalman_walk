@@ -1,0 +1,77 @@
+\documentclass[11 pt]{article}
+\usepackage{amsmath, amssymb, color, xcolor}
+\usepackage{graphicx, wrapfig, float, caption, dsfont, bbm}
+\usepackage{fullpage}
+\usepackage[backref=page, hidelinks, colorlinks=true, citecolor=blue!60!black!100]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, shapes}
+\usepackage{caption, subcaption}
+\usepackage{natbib} % gives us \citet: Author (year) and \citep: (Author; year)
+\usepackage{authblk}
+
+\newcommand{\plr}[1]{{\color{blue}\it #1}}
+\newcommand{\jss}[1]{{\color{olive}\it #1}}
+% \newcommand{\ddt}{\frac{d}{dt}}
+\newcommand{\ddt}{\dot}
+\newcommand{\ro}{{ro}}
+\newcommand{\nro}{{\bar{r}o}}
+\newcommand{\rno}{{r\bar{o}}}
+\newcommand{\nrno}{{\bar{r}\bar{o}}}
+\newcommand{\reachable}{\mathcal{R}}
+\newcommand{\unobservable}{\bar{\mathcal{O}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\pda}{\frac{\partial}{\partial A_{ij}}}
+\newcommand{\ind}{\mathds{1}}
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\diag}{\text{diag}}
+\newcommand{\1}{\mathbbm{1}}
+
+\DeclareMathOperator{\spn}{span}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+\begin{document}
+
+  \section{Systems Drift as a Random Process}
+  \subsection{LE Systems}
+    An LE System: Linear Evolving (TI) System (in evolutionary state $\tau$), 
+    \begin{align*}
+      \Sigma(\tau) = \left\{ \begin{array}{cc} \dot{x} =& A(\tau)x + Bu \\
+      y =& Cx \end{array} \right.
+    \end{align*}
+    \begin{align*}
+      \mathcal{L}(\Sigma(\tau)) := H(z, \tau) = C \left(zI - A(\tau) \right)^{-1} B = \frac{(z-\gamma)}{(z-\lambda_{1})(z-\lambda_{2})} \quad \forall \tau \neq 1 \in \mathbb{R}
+    \end{align*}
+ $\Sigma(\tau)$ is a Linear Time Invariant dynamical system, with transfer function (the Laplace transform of it's time-domain dynamics) $H(z)$. We are interested in a random process over the manifold defined by the set of all systems in the minimal and same dimension that share identical transfer functions. 
+
+  \subsection{Simple random walk in one dimension.}
+  Let $A(\tau)$ describe the gene network interaction topology in evolutionary state $\tau$. Let $V(\tau)$ be a subset of the general linear group that preserves the input and output matrices in the system $\Sigma := \{ A, B, C \}$. That is, $V$ is invertible and $VB = B$ and $CV = C$ for all $V$.
+
+  \begin{align*}
+    A(0) :&= \begin{bmatrix} \lambda_{1} & \lambda_{2} - \gamma \\ 0 & \lambda_{2} \end{bmatrix} \qquad B^{T} = \begin{bmatrix} 1 & 1 \end{bmatrix} \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix} \\
+    V(\tau) :&= \begin{bmatrix} 1 & 0 \\ \tau & 1-\tau \end{bmatrix} \\
+    A(\tau) :&= V(\tau)A(0)V^{-1}(\tau)
+  \end{align*}
+
+
+  Let $\Delta_{\tau}^{\pm}$ be the rate at which the topology of the gene network $A$ changes, given it's evolutionary state $\tau$, and the direction $\pm \tau$ it is moving in. If evolution is a random walk, let the probability of $A(\tau) \rightarrow A(\tau + 1)$ be $p(\tau) \mu$ and the probability of $A(\tau) \rightarrow A(\tau - 1)$ be $q(\tau) \mu$, where $\mu$ is the rate of transcription factor binding site (TFBS) change. The probability that the evolutionary state does not change is $(1-\mu)$. 
+  \begin{align*}
+    \Delta^{\pm}_{\tau} :&= \left\lVert \frac{\partial}{\partial^{\pm} \tau} \text{vec}\left[A(\tau)\right] \right\rVert^{-1} \\
+    p(\tau) :&= \frac{\Delta^{+}_{\tau}}{\Delta^{+}_{\tau} + \Delta^{-}_{\tau}} \\
+    q(\tau) :&= \frac{\Delta^{-}_{\tau}}{\Delta^{+}_{\tau} + \Delta^{-}_{\tau}}
+  \end{align*}
+
+  \begin{align*}
+    A(\tau) = p(\tau) A(\tau - 1) \mu + q(\tau) A (\tau + 1) \mu + A(\tau) (1 - \mu)
+  \end{align*}
+
+\bibliographystyle{plainnat}
+\bibliography{krefs}
+
+\end{document}
