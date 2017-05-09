@@ -1,0 +1,102 @@
+---
+title: "Brownian motion on a 2D minimal system"
+author: "Peter Ralph and Josh Shiffman"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+```
+
+
+# Model
+
+Consider the dynamical system given by
+$$\begin{aligned}
+      \dot{x}(t) &= Ax(t) + Bu(t) \\
+          y(t) &= Cx(t) 
+\end{aligned}$$
+where
+$$\begin{aligned}
+    B^{T} = \begin{bmatrix} 1 & 1 \end{bmatrix} \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix} .
+\end{aligned}$$
+and $A=A(\tau)$ depends on a free parameter,
+$$\begin{aligned}
+    A_0 &= \begin{bmatrix} \lambda_{1} & \lambda_{2} - \gamma \\ 0 & \lambda_{2} \end{bmatrix} \\
+    V_\tau &= \begin{bmatrix} 1 & 0 \\ \tau & 1-\tau \end{bmatrix} \\
+    A_\tau &= V_\tau A_0 V^{-1}_\tau
+\end{aligned}$$
+These systems are input-output equivalent (although may have different noise properties).
+
+
+# Brownian motion
+
+Now suppose that $A$ is changing due to mutation, 
+and that it takes the value $A(t)$ after $t$ units of evolutionary time.
+We know that $A(t)$ must equal $A_\tau$ for some $\tau$, 
+and hence we can define $A(t) = A_{W(t)}$, 
+where $W(t)$ is a random process on the free parameter;
+but what are the appropriate dynamics for $W$?
+Suppose that genetic drift acts uniformly on the entries of $A$, 
+so that ...
+
+
+# Toy example
+
+As a toy example, suppose that we want to describe a process through $\R^2$
+on the set
+$$\begin{aligned}
+    x^2 + y^2 = 1,
+\end{aligned}$$
+i.e., the unit circle.
+This is parameterized by
+$$\begin{aligned}
+    x(\theta) &= \cos(\theta) \\
+    y(\theta) &= \sin(\theta) .
+\end{aligned}$$
+
+The dynamics we want are limits of the following discrete dynamics.
+Let $\epsilon$ denote the step size,
+and suppose that at rate $\eta$ steps of size $\epsilon$ 
+in a uniformly random direction $\phi$ are proposed;
+but the probability that such a step is accepted is Kimura's expression:
+$$\begin{aligned}
+    q(x',y';x,y) = \frac{1 - e^{-2 (f(x',y')-f(x,y))}}{1 - e^{-2 N_e (f(x',y')-f(x,y))}}
+\end{aligned}$$
+where $(x',y')$ is the new (proposed) location, and
+$$\begin{aligned}
+    f(x,y) = (\sqrt{x^2+y^2}-1)^2
+\end{aligned}$$
+is the fitness function.
+Note that $q(x,y;x,y) = 1$ 
+and that 
+$$\begin{aligned}
+    \partial_u q(u,v;x,y) 
+    &= 
+        ( \partial_u f(u,v) ) 
+        \left( \partial_z \frac{1 - e^{-2 (z-f(x,y))}}{1 - e^{-2 N_e (z-f(x,y))}} \vert_{z=f(x',y')} \right) \\
+    &= 
+        \left( \frac{2 x (\sqrt{x^2+y^2}-1)}{\sqrt{x^2+y^2}} \right) 
+        \left( \frac{ 2 e^{-2 (f(x',y')-f(x,y))} (1 - e^{-2 N_e (f(x',y')-f(x,y))}) - 2 N_e e^{-2 (f(x',y')-f(x,y))} }{(1 - e^{-2 N_e (f(x',y')-f(x,y))})^2} \right)
+\end{aligned}$$
+and so that
+$$\begin{aligned}
+    \partial_u q(u,v;x,y) \vert_{u=x, v=y}
+    &= 
+        \left( \frac{2 x (\sqrt{x^2+y^2}-1)}{\sqrt{x^2+y^2}} \right) 
+        \left( \frac{ - 2 N_e  }{(1 - e^{-2 N_e (f(x',y')-f(x,y))})^2} \right)
+\end{aligned}$$
+
+
+This has the result of multiplying jump rates by the acceptance probabilities;
+so equivalently, if the process is at $(x,y)$,
+then it jumps to 
+$$\begin{aligned}
+    (x',y') = (x+\epsilon \cos \phi, y + \epsilon \sin \phi)
+\end{aligned}$$
+at rate
+$$\begin{aligned}
+    \eta q(x',y';x,y) 
+    &\approx
+
+\end{aligned}$$
