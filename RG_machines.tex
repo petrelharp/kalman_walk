@@ -1,0 +1,85 @@
+\documentclass[11 pt]{article}
+\usepackage{amsmath, amssymb, color, xcolor}
+\usepackage{graphicx, wrapfig, float, caption, dsfont, bbm}
+\usepackage{fullpage}
+\usepackage[backref=page, hidelinks, colorlinks=true, citecolor=blue!60!black!100]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, shapes}
+\usepackage{caption, subcaption}
+\usepackage{natbib} % gives us \citet: Author (year) and \citep: (Author; year)
+\usepackage{authblk}
+
+\newcommand{\plr}[1]{{\color{blue}\it #1}}
+\newcommand{\jss}[1]{{\color{olive}\it #1}}
+% \newcommand{\ddt}{\frac{d}{dt}}
+\newcommand{\ddt}{\dot}
+\newcommand{\ro}{{ro}}
+\newcommand{\nro}{{\bar{r}o}}
+\newcommand{\rno}{{r\bar{o}}}
+\newcommand{\nrno}{{\bar{r}\bar{o}}}
+\newcommand{\reachable}{\mathcal{R}}
+\newcommand{\unobservable}{\bar{\mathcal{O}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\pda}{\frac{\partial}{\partial A_{ij}}}
+\newcommand{\ind}{\mathds{1}}
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\diag}{\text{diag}}
+\newcommand{\1}{\mathbbm{1}}
+
+\DeclareMathOperator{\spn}{span}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+\begin{document}
+
+  \begin{itemize}
+    \item Do gene networks drift into uneccesarily complex configurations? If the optimal dynamics of a system can be realized by $g$ genes and/or started in a state with only $g$ genes, during evolution, will the system be composed of $> g$ genes. How many more genes than necessary? 
+    \item Are there forces constraining gene network size other than a fitness cost associated with the expense of uncessary energy? For instance, will genes in a non-minimal gene network contribute less overall to the system's output, diminising the cost of their removal (on average)? 
+    \item as the population explores neutral network space, how often will the population be on or near a point on the manifold where a gene becomes unccessary? Does this probability go up significantly as unneccsary dimensionality goes up?
+    \item Does the unncessary complexity of some gene networks confer evolvability advantages? 
+  \end{itemize}
+Let, 
+  \begin{align*}
+    \mathcal{F}_{n} = \left\{ A : C_{n}(zI-A)^{-1} B_{n} = H(z) \right\} \subseteq \mathbb{R}^{n \times n}
+  \end{align*}
+  be an $n$ dimensional manifold, where $A$ is gene network (not necessarily minimal), and $H(z)$ is a description of the phenotype in the Laplace domain. In the non-minimal case, $C_{k}$ and $B_{k}$ are augmented with zeroes.
+  \begin{align*}
+    C_{n} &= \left[ \begin{array}{cc} C_{k}  \\ \hline 0 \end{array} \right], C_{i} \neq 0 \\
+      B_{n} &= \left[ \begin{array}{ccc} B_{k} & \vert & 0 \end{array} \right], B_{i} \neq 0
+  \end{align*}
+Let, 
+  \begin{align*}
+        P_{i} : \mathcal{F}_{n} \rightarrow \Omega_{n-1}
+  \end{align*}
+  be a projection from an $n \times n$ network to an $(n-1) \times (n-1)$ network. Biologically, this is a gene deletion or removal from the system.
+
+  Let $G_{n,i}$ be the set of networks with identical phenotypes following a deletion. 
+  \begin{align*}
+        G_{n,i} = \left\{ f \in \mathcal{F}_{n} : P_{i}f \in \mathcal{F}_{n-1} \right\} \\
+        G_{n} = \cup_{i} G_{n,i} \\
+        d(f) = \# \left\{ i : P_{i}f \in \mathcal{F}_{n-1} \right\} 
+  \end{align*}
+$d(f)$ is the number of different genes that can potentially be deleted to end up in a phenotypically identical space. 
+
+Gene duplication or recruitment is defined by, 
+  \begin{align*}
+        U_{i}(x) \mathcal{F}_{n-1} \rightarrow \mathcal{F}_{n} \\
+        \left\{ U_{i}(x) : x \in \mathbb{R}^{n} \right\} \subseteq G_{n,i} 
+  \end{align*}
+  where, $x$ is in the $i$th row and $0$ in the $i$th column, except along the diagonal. 
+
+  How much of a $d_{n}$-dimensional manifold is near one of $(n-k)(d_{n-1}+n)$-dimenional sub-manifolds? 
+  \begin{align*}
+    (n-k)\varepsilon^{d_{n}-d_{n-1} - n}
+  \end{align*}
+
+  Alternatively, what is the hitting time of $U(x)$?
+
+
+\end{document}
