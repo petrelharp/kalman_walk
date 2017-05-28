@@ -44,11 +44,14 @@
     \item as the population explores neutral network space, how often will the population be on or near a point on the manifold where a gene becomes unccessary? Does this probability go up significantly as unneccsary dimensionality goes up?
     \item Does the unncessary complexity of some gene networks confer evolvability advantages? 
   \end{itemize}
-Let, 
+
+Let $\Omega_n$ be the set of all allowable networks: this is some bounded subset of $\R^{n \times n}$,
+and let
   \begin{align*}
-    \mathcal{F}_{n} = \left\{ A : C_{n}(zI-A)^{-1} B_{n} = H(z) \right\} \subseteq \mathbb{R}^{n \times n}
+    \mathcal{F}_{n} = \left\{ A : C_{n}(zI-A)^{-1} B_{n} = H(z) \right\} \subseteq \Omega_n
   \end{align*}
-  be an $n$ dimensional manifold, where $A$ is gene network (not necessarily minimal), and $H(z)$ is a description of the phenotype in the Laplace domain. In the non-minimal case, $C_{k}$ and $B_{k}$ are augmented with zeroes.
+be the $d_n$-dimensional manifold of equivalent systems, 
+where $A$ is gene network (not necessarily minimal), and $H(z)$ is a description of the phenotype in the Laplace domain. In the non-minimal case, $C_{k}$ and $B_{k}$ are augmented with zeroes.
   \begin{align*}
     C_{n} &= \left[ \begin{array}{cc} C_{k}  \\ \hline 0 \end{array} \right], C_{i} \neq 0 \\
       B_{n} &= \left[ \begin{array}{ccc} B_{k} & \vert & 0 \end{array} \right], B_{i} \neq 0
@@ -57,7 +60,9 @@ Let,
   \begin{align*}
         P_{i} : \mathcal{F}_{n} \rightarrow \Omega_{n-1}
   \end{align*}
-  be a projection from an $n \times n$ network to an $(n-1) \times (n-1)$ network. Biologically, this is a gene deletion or removal from the system.
+be the projection from an $n \times n$ network to an $(n-1) \times (n-1)$ network
+obtained by removing the $i^\text{th}$ row and column. 
+Biologically, this is a gene deletion or removal from the system.
 
   Let $G_{n,i}$ be the set of networks with identical phenotypes following a deletion. 
   \begin{align*}
@@ -67,19 +72,35 @@ Let,
   \end{align*}
 $d(f)$ is the number of different genes that can potentially be deleted to end up in a phenotypically identical space. 
 
-Gene duplication or recruitment is defined by, 
+Our basic question is: for a given $\epsilon$,
+how much of $\mathcal{F}_n$ is within $\epsilon$ of $G_n$?
+The exact answer will depend on the details, but maybe we see how this changes with $n$.
+
+One way of getting at this is to look in the other direction.
+For instance, we know immediately a set of networks in which a gene can be deleted with no effect:
+it is those networks that just had a gene added.
+Given a network $A$ we can add a new gene without changing its phenotype
+by inserting an arbitrary row $x$ into the $i^\text{th}$ slot
+and a corresponding column of zeros.
+We denote this operation $U_i(x)$, and:
   \begin{align*}
         U_{i}(x) \mathcal{F}_{n-1} \rightarrow \mathcal{F}_{n} \\
-        \left\{ U_{i}(x) : x \in \mathbb{R}^{n} \right\} \subseteq G_{n,i} 
+        \left\{ U_{i}(x) f : x \in \mathbb{R}^{n} \; f \in \mathcal{F}_n \right\} \subseteq G_{n,i} 
   \end{align*}
-  where, $x$ is in the $i$th row and $0$ in the $i$th column, except along the diagonal. 
+(Note that gene duplication would do something more specific
+if we assume the new gene copy does the same thing as the old one.)
+This implies that $d_n \ge d_{n-1} + n$.
 
-  How much of a $d_{n}$-dimensional manifold is near one of $(n-k)(d_{n-1}+n)$-dimenional sub-manifolds? 
-  \begin{align*}
-    (n-k)\varepsilon^{d_{n}-d_{n-1} - n}
-  \end{align*}
 
-  Alternatively, what is the hitting time of $U(x)$?
+Now we want to answer one of two questions:
+
+How much of a $d_{n}$-dimensional manifold is within $\varepsilon$ of one of $(n-k)$ sub-manifolds, each of dimension $(d_{n-1}+n)$?
+This scales like
+\begin{align*}
+(n-k)\varepsilon^{d_{n}-d_{n-1} - n}
+\end{align*}
+
+Alternatively, what is the hitting time of $U(x)$?
 
 
 \end{document}
