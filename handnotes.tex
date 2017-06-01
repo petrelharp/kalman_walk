@@ -133,7 +133,7 @@ In this paper we propose a framework to study the evolution of biological system
 
   Define $V(\tau)$ as the change of coordinates matrix that preserves $B$ and $C$, with $\tau$ a vector of free parameters. The set of \emph{all} phenotypically invariant (minimal) gene networks is, 
   \begin{align}
-    A(\tau) = V(\tau) A(0) V^{-1}(\tau) ,
+    A(\tau) = V(\tau) A(\tau_{0}) V^{-1}(\tau) ,
   \end{align}
   and a Linear Evolutionary System is, 
   \begin{align}
@@ -145,9 +145,52 @@ In this paper we propose a framework to study the evolution of biological system
   \begin{align}
     A(\tau) \xrightarrow{T} A(\tau + \epsilon)
   \end{align}
+  After evolutionary time $T$, the population's gene network architecture evolves from $A(\tau)$ to $A(\tau + \epsilon)$ with a probability inversely proportional to the magnitude of $\epsilon$ and proportional to the magnitude of $T$. 
 
   \section*{Phenotypic Invariance}
-  
+    First we focus on a simple evolutionary scenario: a large population, perfectly adapted, and in a constant environment. In this circumstance we expect phenotype to be conserved throughout evolutionary time. As such we should only expect the phenotype to change as a consequence of genetic drift (small effective population size), adaptation to new selective and/or environemental pressures. These phenotypic variations should yield distinct signatures. Adaptative changes will change the optimal impulse response function $h(t) \xrightarrow{adaptation} h'(t)$. Genetic drift registers as an increase in the intrapopulation variation in $h(t)$. 
+    
+    Presently we ask two questions, (1) holding $f(t)$, $h(t)$, and $u(t)$ constant for evolutionary time $T$, how much do we expect gene network organization to drift, and (2) does this contribute to speciation, primarily via the fixation of reproductive incompatibilities?
+
+    \subsection*{Not all minimal gene networks can drift}
+      If a gene network is minimal and all the molecular species involved in the network are under selection, such that $C$ is the $n \times n$ identity matrix  ($C = I_{n}$), the only acceptable  change of coordinate matrix is the identify matrix.
+     
+     \begin{align}
+        C \lor B &= I \\
+        IV^{-1} &= I \\
+        \iff V &= I
+      \end{align}
+
+      \subsection*{All non-minimal gene networks can drift}
+      
+      Despite the existence of a unique genetic architecture in the minimal case, there still exists an infinite number of systems with larger networks that have identical external dynamics. 
+      \begin{align}
+        h(t) &= \widehat{h}(t) \iff \\ 
+        CA^{k}B &= \widehat{C} \widehat{A}^{k} \widehat{C} \qquad \text{for } k = 0, 1, \dots
+      \end{align}
+      Any two systems with equivalent impulse responses will have equivalent phenotypes.
+
+      \subsection*{Speciation via Reproductive Incompatibility}
+
+      Define reproduction in diploids as first, the recombination of unlinked genes to make gametes, and second, as the averaging of two individual parental gametes to produce an offspring. Assuming parental populations are both phenotypically identical and genetically homogenous within each population, first generation hybrids (F1s) can be computed by averaging the two parental gene networks. Second generation hybrids (F2s) can be computed by first swapping the genes between the two parental gene networks, and next averaging these hybrid gametes.
+      \begin{align*}
+        A_{(F1)}(\tau_{i}, \tau_{j}) &= \frac{1}{2}\left(A(\tau_{i}) + A(\tau_{j}) \right) \\
+        h_{(F1)}(t) &= C e^{\frac{t}{2}\left(A(\tau_{i}) + A(\tau_{j}) \right)} B
+      \end{align*}
+
+      \begin{align*}
+        G_{(F2)}(r) = Q(r)A(\tau_{i}) + \left( I-Q(r) \right)A(\tau_{j})
+      \end{align*}
+
+      \begin{align*}
+        h_{(F2,r, r')}(t) = C e^{\frac{t}{2} \left( G(r) + G(r') \right)} B
+      \end{align*}
+
+      \begin{align*}
+        \Phi(h'(t) ) = e^{- \int_{0}^{\infty} \left\lVert h(t) - h'(t) \right\rVert dt}
+      \end{align*}
+
+
   \section*{Examples}
     \subsection*{Cell Cycle Control or Circadian Rhytm}
 
