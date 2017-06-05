@@ -1,5 +1,5 @@
 \documentclass[9 pt]{article}
-\usepackage{amsmath, amssymb, color, xcolor}
+\usepackage{amsmath, amssymb, color, xcolor, amsthm}
 \usepackage{graphicx, wrapfig, float, caption, dsfont, bbm}
 \usepackage{fullpage}
 \usepackage[backref=page, hidelinks, colorlinks=true, citecolor=blue!60!black!100]{hyperref}
@@ -91,11 +91,11 @@ In this paper we propose a framework to study the evolution of biological system
 
 \section*{The Model I: Gene Networks as Linear Systems}
 
-  Organisms' phenotypes are constructred by complex gene by gene and gene by environment interactions. Although a very simplified description, here we define the phenotype to be the spatio-temporal molecular dynamics directly under natural selection. Basically the \emph{what}, \emph{when}, and \emph{where}, of an organism's molecules that are physiologically or otherwise important and relevant to survival. Thus we say that some function $f(t)$ is a phenotype where, 
+  Organisms' phenotypes are constructred by gene by gene by environment interactions. Here we simply define the phenotype to be the organismal temporal molecular dynamics directly under natural selection. The \emph{what}, \emph{when}, and \emph{where}, of an organism's molecules that are physiologically or otherwise relevant for survival. Thus we say that some function $f(t)$ is a phenotype where, 
   \begin{align}
     f(t) = \int_{0}^{\infty} h(t) u(t) dt  ,
   \end{align}
-  and $h(t)$ is the \emph{impulse response} or \emph{kernel} of the system and $u(t)$ is the \emph{input} function. The input can be interpreted as the environment, or as initial conditions, or otherwise, depending on the biological specifics under study. 
+  and $h(t)$ is the \emph{impulse response} of the system and $u(t)$ is the \emph{input} function, both functions of time $t$. The input can be interpreted as the environment, as initial conditions, or otherwise, depending on the biological specifics under study. 
 
   Essentially the phenotype $f(t)$ is a consequence of an organism's specific gene by gene interactions, given by $h(t)$, reacting further with the local environment, given by $u(t)$. 
 
@@ -107,11 +107,65 @@ In this paper we propose a framework to study the evolution of biological system
 
   Generally $A$ can be any real $n \times n$ matrix, $B$ any $n \times \ell$, and $C$ any $\ell \times n$ dimensional matrix. However, for simplicity in exposition (and without loss of generality) we set $\ell = 1$, so that $B$ and $C$ are simply vectors of length $n$.
 
-  Above, $t$ refers to time. Although $f(t)$ describes the phenotype given an input, $h(t)$ describes the phenotype subject only to an impulse -- an input present initially and absent immediately thereafter. Typically, a system $\Sigma$ is defines as,
+  Although $f(t)$ describes the phenotype given an input, $h(t)$ describes the phenotype subject only to an impulse -- an input present initially and absent immediately thereafter. Typically, a system $\Sigma$, is defined as,
   \begin{align}
     \Sigma = \left\{ \begin{array}{ll} \dot{x}(t) &= A x(t) + B u(t) \\ y(t) &= C x(t) \end{array} \right.
   \end{align}
-  Variables have the same identities as described above and $x(t)$ is a vector of molecule concentrations at time $t$. Therefore the molecular concentrations at a specific time are completely determined by the environmental input and gene by gene interactions. Lastly, a portion and/or combination of these molecules, $y(t)$, are ``observed'' by selection.
+  Variables have the same identities as described above and $x(t)$ is a vector of molecule concentrations at time $t$. Therefore the molecular concentrations at a specific time are completely determined by the input and gene by gene interactions. Lastly, a portion and/or combination of these molecules, $y(t)$, are ``observed'' by selection.
+
+  \begin{example}[Oscillating Gene Network: Circadian Rhythm]
+    \begin{align*}
+      A = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} , \qquad B = \begin{bmatrix} 1 \\ 1 \end{bmatrix}, \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix}
+    \end{align*}
+    \begin{align*}
+      \Sigma = \left \{ \begin{array}{ll} \dot{x}(t) &= \begin{bmatrix} 
+        0 & 1 \\ 
+       -1 & 0 
+        \end{bmatrix} x (t) + \begin{bmatrix} 1 \\ 1 \end{bmatrix} u(t) \\ 
+          y(t) &= \begin{bmatrix} 1 & 0 \end{bmatrix} x(t) \end{array} \right.
+     \end{align*}
+
+      \begin{align*}
+        h(t) = \sin(t) + \cos(t)
+      \end{align*}
+
+    \begin{figure}[H]
+        \begin{center}
+            \begin{tikzpicture}
+            \begin{scope}[every node/.style={circle,thick,draw}]
+                \node (A) at (0,0) {$x_{1}$};
+                \node[dashed] (B) at (3,0) {$x_{2}$};
+                \node[shape=rectangle] (U) at (1.5,2) {input};
+                \node[shape=rectangle] (y) at (1.5,-2) {output};
+            \end{scope}
+
+            \begin{scope}[>={Stealth[black]},
+                          every node/.style={fill=white,circle},
+                          every edge/.style={draw=black, thick}]
+                \path [->, >=Rectangle] (A) edge[bend left] node {\tiny $-1$} (B);
+                \path [->] (B) edge[bend left] node {\tiny $1$} (A); 
+                \path[->] (U) edge[dashed] node {\tiny $1$} (A);
+                \path[->] (U) edge[dashed] node {\tiny $1$} (B);
+                \path[->] (A) edge[dashed,bend right] node {\tiny $1$} (y);
+            \end{scope}
+            \begin{scope}[>={Stealth[black]},
+                          every edge/.style={draw=black, thick}]
+                %\path [->] (A) edge[loop left] node {\tiny $\lambda_{1}$} (A);
+                %\path [->] (B) edge[loop left] node {\tiny $\lambda_{2}$} (B);
+            \end{scope}
+
+            \end{tikzpicture}
+        \end{center}
+        \caption{
+            Diagram of Example \ref{ex:osc} in the text.
+            \plr{explain what arrows mean if nec}
+            \label{fig:oscillator_diagram}}
+    \end{figure}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{osc_impulse}
+    \end{figure}
+  \end{example}
 
   \section*{The Model II: Linear Evolutionary Systems}
 
@@ -124,22 +178,29 @@ In this paper we propose a framework to study the evolution of biological system
   \end{align}
   Two systems, $\Sigma = \{ A, B, C \}$, and $\bar{\Sigma} = \{\bar{A} = VAV^{-1}, \bar{B} = VB, \bar{C} = CV^{-1} \}$, have the same dynamics if they are related by a change of coordinates. 
 
-  Although systems may not be identifiable up to a change of coordinates, at present we are primarily interested in a subset of these systems. That is, systems that not only have equivalent external dynamics, but also equivlanet input relationships and under equivalent selective pressures. Formally, systems related by a change of coordinates that leave $B$ and $C$ invariant:
+  Although systems may not be identifiable beyond a change of coordinates, at present we are primarily interested in a subset of these systems. That is, systems that not only have equivalent external dynamics, but also equivalent input and output relationships. Formally, this means systems related by a change of coordinates (any invertible matrix $V$) that leaves $B$ and $C$ invariant:
   \begin{align}
     VB &= B \implies \bar{B} = B \\
     CV &= C \implies \bar{C} = C
   \end{align}
   In other words systems with varying genetic architectures yet identical selection pressures, environment, and phenotype. 
 
-  Define $V(\tau)$ as the change of coordinates matrix that preserves $B$ and $C$, with $\tau$ a vector of free parameters. The set of \emph{all} phenotypically invariant (minimal) gene networks is, 
+  Define $V(\tau)$ as the parameterized change of coordinates matrix that preserves $B$ and $C$, with $\tau$ a vector of free parameters. The set of \emph{all} phenotypically invariant (minimal) gene networks is, 
   \begin{align}
-    A(\tau) = V(\tau) A(\tau_{0}) V^{-1}(\tau) ,
+    A(\tau) = V(\tau) A(0) V^{-1}(\tau) ,
   \end{align}
-  and a Linear Evolutionary System is, 
+  and a \emph{Linear Evolutionary System} is, 
   \begin{align}
     \Sigma(\tau) = \left\{ \begin{array}{ll} \dot{x}(t) &= A(\tau) x(t) + B u(t) \\ y(t) &= C x(t) \end{array} \right .
   \end{align}
-  
+  \begin{example}[External Equivalence does not imply internal equivalence]
+    Gene 1 dynamics (blue) are equivalent for network architectures $A(0)$ and $A(2)$, however the internal dynamics containing gene 2 (orange) are very different.
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{osc_A0_A2_both_compare}
+    %\caption{Gene 1 dynamics (blue) are equivalent for network architectures $A(0)$ and $A(2)$, however the internal dynamics containing gene 2 (orange) are very different.}
+  \end{figure}
+  \end{example}
   Evolution thus proceeds as a random walk in phenotypically invariant network space. 
 
   \begin{align}
@@ -147,12 +208,46 @@ In this paper we propose a framework to study the evolution of biological system
   \end{align}
   After evolutionary time $T$, the population's gene network architecture evolves from $A(\tau)$ to $A(\tau + \epsilon)$ with a probability inversely proportional to the magnitude of $\epsilon$ and proportional to the magnitude of $T$. 
 
+  \begin{example}[All Phenotypically Equivalent Oscillators]
+    \begin{align*}
+      A(\tau) &= \begin{bmatrix} 1 & 0 \\ \tau & 1-\tau \end{bmatrix} \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ \frac{\tau}{\tau-1} & \frac{-1}{\tau-1} \end{bmatrix} \\
+        B &= \begin{bmatrix} 1 \\ 1 \end{bmatrix}, \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix} \\
+          h(t) &= \sin(t) + \cos(t) \qquad \forall \ \tau \neq 1
+    \end{align*}
+    \begin{figure}[H]
+    \centering
+\begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+  \node (A) at (0,0) {$x_{1}$};
+    \node[dashed] (B) at (4,0) {$x_{2}$};
+    \node[shape=rectangle] (U) at (2,2) {input};
+    \node[shape=rectangle] (y) at (2,-2) {output};
+\end{scope}
+
+\begin{scope}[>={Stealth[black]},
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=black, thick}]
+    \path [->, sloped] (A) edge[bend left] node {\tiny $2 \tau + (\tau-1)^{-1}$} (B);
+    \path [->, sloped] (B) edge[bend left] node {\tiny $-(\tau-1)^{-1}$} (A); 
+    \path[->] (U) edge[dashed] node {\tiny $1$} (A);
+    \path[->] (U) edge[dashed] node {\tiny $1$} (B);
+    \path[->] (A) edge[dashed, bend right] node {\tiny $1$} (y);
+\end{scope}
+\begin{scope}[>={Stealth[black]},
+              every edge/.style={draw=black, thick}]
+    \path [->] (A) edge[loop left] node[sloped, anchor=center, above] {\tiny $1 + (\tau-1)^{-1}$} (A);
+    \path [->] (B) edge[loop right] node[sloped, anchor=center, above] {\tiny $-1 - (\tau-1)^{-1}$} (B);
+\end{scope}
+
+\end{tikzpicture}
+    \end{figure}
+  \end{example}
   \section*{Phenotypic Invariance}
     First we focus on a simple evolutionary scenario: a large population, perfectly adapted, and in a constant environment. In this circumstance we expect phenotype to be conserved throughout evolutionary time. As such we should only expect the phenotype to change as a consequence of genetic drift (small effective population size), adaptation to new selective and/or environemental pressures. These phenotypic variations should yield distinct signatures. Adaptative changes will change the optimal impulse response function $h(t) \xrightarrow{adaptation} h'(t)$. Genetic drift registers as an increase in the intrapopulation variation in $h(t)$. 
     
     Presently we ask two questions, (1) holding $f(t)$, $h(t)$, and $u(t)$ constant for evolutionary time $T$, how much do we expect gene network organization to drift, and (2) does this contribute to speciation, primarily via the fixation of reproductive incompatibilities?
 
-    \subsection*{Not all minimal gene networks can drift}
+    \begin{example}[Not all minimal gene networks can drift]
       If a gene network is minimal and all the molecular species involved in the network are under selection, such that $C$ is the $n \times n$ identity matrix  ($C = I_{n}$), the only acceptable  change of coordinate matrix is the identify matrix.
      
      \begin{align}
@@ -160,8 +255,8 @@ In this paper we propose a framework to study the evolution of biological system
         IV^{-1} &= I \\
         \iff V &= I
       \end{align}
-
-      \subsection*{All non-minimal gene networks can drift}
+      \end{example}
+      \begin{example}[All Non-Minimal Gene Networks can Drift]
       
       Despite the existence of a unique genetic architecture in the minimal case, there still exists an infinite number of systems with larger networks that have identical external dynamics. 
       \begin{align}
@@ -169,38 +264,57 @@ In this paper we propose a framework to study the evolution of biological system
         CA^{k}B &= \widehat{C} \widehat{A}^{k} \widehat{C} \qquad \text{for } k = 0, 1, \dots
       \end{align}
       Any two systems with equivalent impulse responses will have equivalent phenotypes.
+      \end{example}
+
+      \plr{add Kalman decomposition stuff here}
 
       \subsection*{Speciation via Reproductive Incompatibility}
 
-      Define reproduction in diploids as first, the recombination of unlinked genes to make gametes, and second, as the averaging of two individual parental gametes to produce an offspring. Assuming parental populations are both phenotypically identical and genetically homogenous within each population, first generation hybrids (F1s) can be computed by averaging the two parental gene networks. Second generation hybrids (F2s) can be computed by first swapping the genes between the two parental gene networks, and next averaging these hybrid gametes.
-      \begin{align*}
-        A_{(F1)}(\tau_{i}, \tau_{j}) &= \frac{1}{2}\left(A(\tau_{i}) + A(\tau_{j}) \right) \\
-        h_{(F1)}(t) &= C e^{\frac{t}{2}\left(A(\tau_{i}) + A(\tau_{j}) \right)} B
-      \end{align*}
+      %Define reproduction in diploids as first, the recombination of unlinked genes to make gametes, and second, as the averaging of two individual parental gametes to produce an offspring. Assuming parental populations are both phenotypically identical and genetically homogenous within each population, first generation hybrids (F1s) can be computed by averaging the two parental gene networks. Second generation hybrids (F2s) can be computed by first swapping the genes between the two parental gene networks, and next averaging these hybrid gametes.
 
-      \begin{align*}
-        G_{(F2)}(r) = Q(r)A(\tau_{i}) + \left( I-Q(r) \right)A(\tau_{j})
-      \end{align*}
+      A diploid organism's gene network is simply the average of both of its gene network copies; one from each parent. Further, each haploid parental gene network copy is formed via meiosis -- by swapping independent genes randomly. Assuming two distinct but genetically homogeneous populations evolving in allopatry meet and form hybrids, the first generation hybrids (F1s) gene network dynamics will be determined by the average of the parental haplotypes. The second generation hybrids (F2s), however, will be the product of a meiosis between parental haplotypes followed by an averaging of gametes. 
 
-      \begin{align*}
-        h_{(F2,r, r')}(t) = C e^{\frac{t}{2} \left( G(r) + G(r') \right)} B
-      \end{align*}
+      Specifically, $F_{1}$ is the first generation hybrid gene network architecture formed by mating (averaging) $A(\tau)$ and $A(\hat{\tau})$, 
+      \begin{align}
+        F_{1}(\tau, \hat{\tau}) &= \frac{ A(\tau) + A(\hat{\tau}) }{2}  .
+     %   h(t, F_{1}) &= C e^{\left( F_{1}\left( \tau, \hat{\tau} \right) t \right)} B
+      \end{align}
 
-      \begin{align*}
-        \Phi(h'(t) ) = e^{- \int_{0}^{\infty} \left\lVert h(t) - h'(t) \right\rVert dt}
-      \end{align*}
+      %\begin{align*}
+       % G\left(r, \tau, \hat{\tau}\right) = Q(r) A( \tau ) + \left( I - Q(r) \right) A( \hat{\tau} )
+      %\end{align*}
+      and $F_{2}$ is the second generation hybrid gene network architecture formed by gametes $G(i, \tau, \hat{\tau} )$ and $G(j, \tau, \hat{\tau})$. Where each $G(\cdot)$ is formed by randomly swapping rows between $A(\tau)$ and $A(\hat{\tau})$, such that the $i$th  gene comes from $A(\tau)$ ($i$ and $j$ are orthogonal vectors, each element $0$ or $1$, and $i \neq j$).
+      \begin{align}
+        F_{2}(i, j) = \frac{G (i, \tau, \hat{\tau} ) + G( j, \tau, \hat{\tau} )}{2}
+      \end{align}
 
+      %\begin{align*}
+      %  h\left(t, F_{2}\left( r, r' \right)\right) = C e^{\left( F_{2}\left(r, r' \right) t \right)} B
+      %\end{align*}
 
-  \section*{Examples}
-    \subsection*{Cell Cycle Control or Circadian Rhytm}
+      The fitness of an organism can be computed by comparing its impulse response with the optimal response,
+      \begin{align}
+        \Phi\left( \widehat{h}(t) \right) = \exp \left\{- \int_{0}^{\infty} \left\lVert h(t) - \widehat{h}(t) \right\rVert dt \right\}  .
+      \end{align}
+      Therefore a hybrid's fitness can be computed by comparing its impulse response with that of its parents.
+      
+      \begin{example}[Reproductive Incompatibility in an Oscillating Gene Network]
+        DMI examples...
+      \end{example}
+
+      \begin{example}[Not all Networks can Host Incompatibilities]
+        convex sets cant have DMIs
+      \end{example}
+
+  \section*{Additionl Examples}
 
     \subsection*{Metabolic Network}
 
     \subsection*{Gap Gene Network}
 
     \section*{Discussion}
-
+      \plr{mention $B$ part of genetic architecture}
 \bibliographystyle{plainnat}
-%\bibliography{krefs}
+\bibliography{krefs}
 \end{multicols}
 \end{document}
