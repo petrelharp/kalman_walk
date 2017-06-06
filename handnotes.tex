@@ -342,6 +342,25 @@ In this paper we propose a framework to study the evolution of biological system
   \section*{Additionl Examples}
 
     \subsection*{Metabolic Network}
+  \begin{align*}
+      \dot{x}(t) &= \begin{bmatrix} 0 & 1 & 0 & -1 \\ 0 & 0 & -1 & -1 \\ -1 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix} \begin{bmatrix} \text{GAL3} \\ \text{GAL4} \\ \text{GAL80} \\ \text{MIG1} \end{bmatrix}(t) + \begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 1 & 1 \end{bmatrix} \begin{bmatrix} \text{galactose} \\ \text{glucose} \\ \text{BTM} \end{bmatrix}(t) \\
+        y(t) &= \begin{bmatrix} 0 & 1 & 0 & -1 \end{bmatrix} \vec{x}(t)
+    \end{align*}
+    \begin{align*}
+      H(z) = \begin{bmatrix} 1 \\ z^{2} + z + 1 \\ z + 1 \end{bmatrix} \frac{1}{z^{3} + z -1}
+    \end{align*}
+
+    \begin{align*}
+      CV &= C \\
+      VB &= B \\
+      V :&= \begin{bmatrix} 1 & 0 & a & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & b & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} , V^{-1} = \begin{bmatrix} 1 & 0 & \frac{-a}{b} & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & \frac{1}{b} & 0 \\ 0 & 0 & 0 & 1\end{bmatrix} \\
+        A(a,b) :&= VAV^{-1} = \begin{bmatrix} -a & a+1 & \frac{a^{2}}{b} & -1 \\ 0 & 0 & \frac{-1}{b} & -1 \\ -b & b & a & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix}
+    \end{align*}
+    The GAL regulatory network in \emph{S. cerevisiae} is modelled here. The activating transcription factor GAL4, which is regulated by the presence of galactose and two other TFs, binds to the promoter region of the GAL regulon -- a cluster of genes regulated by the same promoter encoding 3 enzymes (GAL1, GAL7, and GAL10), for the metabolism of the sugar galactose. The repressing transcription factor MIG1, which is activated by the presence of glucose and other proteins omitted here, also binds to the regulon, preventing the expression of the galactose metabolizing enzymes. This network is one of the most studied gene regulatory networks in yeast, and experiments have already demonstrated significant transcriptional variation among different species and genuses of yeast.
+
+    In the present model, the $A$ matrix encodes the interactions among GAL3, GAL4, GAL80, and MIG1. $B$ interprets the input: the quantity of glucose, galactose, and the basal transcription (BTM) rates impact of TF concentrations. $C$ represents the promoter region of the GAL regulon and is the sum of the influence of GAL4 (activating) and MIG1 (repressing).
+
+    $A(a,b)$ represent alternative network structures that produce identical outputs, with identical input and output transformations -- meaning the regulatory contributions of the sugars and the basasl machinery, as well as the promoter of the GAL regulon are held constant. These interactions may be realized in nature, if the regulatory differences predicted by $A(a,b)$ are biologically/mutationally realizable. Mutations influencing the interactions between GAL4 and GAL80 have been experimentally demonstrated \citep{li2010alterations}.
 
     \subsection*{Gap Gene Network}
 
