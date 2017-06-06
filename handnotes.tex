@@ -97,13 +97,13 @@ In this paper we propose a framework to study the evolution of biological system
 
 \section*{The Model I: Gene Networks as Linear Systems}
 
-  Organisms' phenotypes are constructred by gene by gene by environment interactions. Here we simply define the phenotype to be the organismal temporal molecular dynamics directly under natural selection. The \emph{what}, \emph{when}, and \emph{where}, of an organism's molecules that are physiologically or otherwise relevant for survival. Thus we say that some function $f(t)$ is a phenotype where, 
+  Organisms' phenotypes are constructred by gene by gene by environment interactions. Here we simply define the phenotype to be the organismal temporal molecular dynamics directly under natural selection. The \emph{what}, \emph{when}, and \emph{where}, of an organism's molecules that are physiologically or otherwise relevant for survival. Thus we say that some function $\phi(t)$ is a phenotype where, 
   \begin{align}
-    f(t) = \int_{0}^{\infty} h(t) u(t) dt  ,
+    \phi(t) = \int_{0}^{\infty} h(t) u(t) dt  ,
   \end{align}
   and $h(t)$ is the \emph{impulse response} of the system and $u(t)$ is the \emph{input} function, both functions of time $t$. The input can be interpreted as the environment, as initial conditions, or otherwise, depending on the biological specifics under study. 
 
-  Essentially the phenotype $f(t)$ is a consequence of an organism's specific gene by gene interactions, given by $h(t)$, reacting further with the local environment, given by $u(t)$. 
+  Essentially the phenotype $\phi(t)$ is a consequence of an organism's specific gene by gene interactions, given by $h(t)$, reacting further with the local environment, given by $u(t)$. 
 
   We describe the impulse response as, 
   \begin{align}
@@ -113,22 +113,22 @@ In this paper we propose a framework to study the evolution of biological system
 
   Generally $A$ can be any real $n \times n$ matrix, $B$ any $n \times \ell$, and $C$ any $\ell \times n$ dimensional matrix. However, for simplicity in exposition (and without loss of generality) we set $\ell = 1$, so that $B$ and $C$ are simply vectors of length $n$.
 
-  Although $f(t)$ describes the phenotype given an input, $h(t)$ describes the phenotype subject only to an impulse -- an input present initially and absent immediately thereafter. Typically, a system $\Sigma$, is defined as,
+  Although $\phi(t)$ describes the phenotype given an input, $h(t)$ describes the phenotype subject only to an impulse -- an input present initially and absent immediately thereafter. Typically, a system $\Sigma$, is defined as,
   \begin{align}
-    \Sigma = \left\{ \begin{array}{ll} \dot{x}(t) &= A x(t) + B u(t) \\ y(t) &= C x(t) \end{array} \right.
+    \Sigma = \left\{ \begin{array}{ll} \dot{\kappa}(t) &= A \kappa(t) + B u(t) \\ \phi(t) &= C \kappa(t) \end{array} \right.
   \end{align}
-  Variables have the same identities as described above and $x(t)$ is a vector of molecule concentrations at time $t$. Therefore the molecular concentrations at a specific time are completely determined by the input and gene by gene interactions. Lastly, a portion and/or combination of these molecules, $y(t)$, are ``observed'' by selection.
+  Variables have the same identities as described above and $\kappa(t)$ is a vector of molecule concentrations at time $t$. Therefore the molecular concentrations at a specific time are completely determined by the input and gene by gene interactions. Lastly, a portion and/or combination of these molecules, $\phi(t)$, are ``observed'' by selection (this is in constrast to $\kappa(t)$ -- the \emph{kryptotype} -- as it is ``hidden'' from direct selection).
 
   \begin{example}[Oscillating Gene Network: Circadian Rhythm]
     \begin{align*}
       A = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} , \qquad B = \begin{bmatrix} 1 \\ 1 \end{bmatrix}, \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix}
     \end{align*}
     \begin{align*}
-      \Sigma = \left \{ \begin{array}{ll} \dot{x}(t) &= \begin{bmatrix} 
+      \Sigma = \left \{ \begin{array}{ll} \dot{\kappa}(t) &= \begin{bmatrix} 
         0 & 1 \\ 
        -1 & 0 
-        \end{bmatrix} x (t) + \begin{bmatrix} 1 \\ 1 \end{bmatrix} u(t) \\ 
-          y(t) &= \begin{bmatrix} 1 & 0 \end{bmatrix} x(t) \end{array} \right.
+        \end{bmatrix} \kappa(t) + \begin{bmatrix} 1 \\ 1 \end{bmatrix} u(t) \\ 
+          \phi(t) &= \begin{bmatrix} 1 & 0 \end{bmatrix} \kappa(t) \end{array} \right.
      \end{align*}
 
       \begin{align*}
@@ -139,8 +139,8 @@ In this paper we propose a framework to study the evolution of biological system
         \begin{center}
             \begin{tikzpicture}
             \begin{scope}[every node/.style={circle,thick,draw}]
-                \node (A) at (0,0) {$x_{1}$};
-                \node[dashed] (B) at (3,0) {$x_{2}$};
+                \node (A) at (0,0) {$\kappa_{1}$};
+                \node[dashed] (B) at (3,0) {$\kappa_{2}$};
                 \node[shape=rectangle] (U) at (1.5,2) {input};
                 \node[shape=rectangle] (y) at (1.5,-2) {output};
             \end{scope}
@@ -197,7 +197,7 @@ In this paper we propose a framework to study the evolution of biological system
   \end{align}
   and a \emph{Linear Evolutionary System} is, 
   \begin{align}
-    \Sigma(\tau) = \left\{ \begin{array}{ll} \dot{x}(t) &= A(\tau) x(t) + B u(t) \\ y(t) &= C x(t) \end{array} \right .
+    \Sigma(\tau) = \left\{ \begin{array}{ll} \dot{\kappa}(t) &= A(\tau) \kappa(t) + B u(t) \\ \phi(t) &= C \kappa(t) \end{array} \right .
   \end{align}
   \begin{example}[External Equivalence does not imply internal equivalence]
     Gene 1 dynamics (blue) are equivalent for network architectures $A(0)$ and $A(2)$, however the internal dynamics containing gene 2 (orange) are very different.
@@ -213,7 +213,11 @@ In this paper we propose a framework to study the evolution of biological system
     A(\tau) \xrightarrow{T} A(\tau + \epsilon)
   \end{align}
   After evolutionary time $T$, the population's gene network architecture evolves from $A(\tau)$ to $A(\tau + \epsilon)$ with a probability inversely proportional to the magnitude of $\epsilon$ and proportional to the magnitude of $T$. 
-
+\jss{Change in $\tau$ is tracking movement of population mean, not ``macro'' evolutionary change, as interpreted previously.}
+  \begin{align}
+    \Delta_{\tau} &= \left\lVert \frac{d}{d \tau} \text{vec} \left[A\left(\tau\right)\right] \right\rVert^{-1} \\
+    A(\tau) &\xrightarrow{\mu} A(\tau \pm \mu \Delta_{\tau})
+  \end{align}
   \begin{example}[All Phenotypically Equivalent Oscillators]
     \begin{align*}
       A(\tau) &= \begin{bmatrix} 1 & 0 \\ \tau & 1-\tau \end{bmatrix} \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ \frac{\tau}{\tau-1} & \frac{-1}{\tau-1} \end{bmatrix} \\
@@ -224,8 +228,8 @@ In this paper we propose a framework to study the evolution of biological system
     \centering
 \begin{tikzpicture}
 \begin{scope}[every node/.style={circle,thick,draw}]
-  \node (A) at (0,0) {$x_{1}$};
-    \node[dashed] (B) at (4,0) {$x_{2}$};
+  \node (A) at (0,0) {$\kappa_{1}$};
+    \node[dashed] (B) at (4,0) {$\kappa_{2}$};
     \node[shape=rectangle] (U) at (2,2) {input};
     \node[shape=rectangle] (y) at (2,-2) {output};
 \end{scope}
@@ -251,7 +255,7 @@ In this paper we propose a framework to study the evolution of biological system
   \section*{Phenotypic Invariance}
     First we focus on a simple evolutionary scenario: a large population, perfectly adapted, and in a constant environment. In this circumstance we expect phenotype to be conserved throughout evolutionary time. As such we should only expect the phenotype to change as a consequence of genetic drift (small effective population size), adaptation to new selective and/or environemental pressures. These phenotypic variations should yield distinct signatures. Adaptative changes will change the optimal impulse response function $h(t) \xrightarrow{adaptation} h'(t)$. Genetic drift registers as an increase in the intrapopulation variation in $h(t)$. 
     
-    Presently we ask two questions, (1) holding $f(t)$, $h(t)$, and $u(t)$ constant for evolutionary time $T$, how much do we expect gene network organization to drift, and (2) does this contribute to speciation, primarily via the fixation of reproductive incompatibilities?
+    Presently we ask two questions, (1) holding $\phi(t)$, $h(t)$, and $u(t)$ constant for evolutionary time $T$, how much do we expect gene network organization to drift, and (2) does this contribute to speciation, primarily via the fixation of reproductive incompatibilities?
 
     \begin{example}[Not all minimal gene networks can drift]
       If a gene network is minimal and all the molecular species involved in the network are under selection, such that $C$ is the $n \times n$ identity matrix  ($C = I_{n}$), the only acceptable  change of coordinate matrix is the identify matrix.
@@ -267,7 +271,7 @@ In this paper we propose a framework to study the evolution of biological system
       Despite the existence of a unique genetic architecture in the minimal case, there still exists an infinite number of systems with larger networks that have identical external dynamics. 
       \begin{align}
         h(t) &= \widehat{h}(t) \iff \\ 
-        CA^{k}B &= \widehat{C} \widehat{A}^{k} \widehat{C} \qquad \text{for } k = 0, 1, \dots
+        CA^{\jmath}B &= \widehat{C} \widehat{A}^{\jmath} \widehat{C} \qquad \text{for } \jmath = 0, 1, \dots
       \end{align}
       Any two systems with equivalent impulse responses will have equivalent phenotypes.
       \end{example}
@@ -300,7 +304,7 @@ In this paper we propose a framework to study the evolution of biological system
 
       The fitness of an organism can be computed by comparing its impulse response with the optimal response,
       \begin{align}
-        \Phi\left( \widehat{h}(t) \right) = \exp \left\{- \int_{0}^{\infty} \left\lVert h(t) - \widehat{h}(t) \right\rVert dt \right\}  .
+        \mathcal{F}\left( \widehat{h}(t) \right) = \exp \left\{- \int_{0}^{\infty} \left\lVert h(t) - \widehat{h}(t) \right\rVert dt \right\}  .
       \end{align}
       Therefore a hybrid's fitness can be computed by comparing its impulse response with that of its parents.
       
