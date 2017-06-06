@@ -6,7 +6,7 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, shapes}
 \usepackage{caption, subcaption}
-\usepackage{natbib} % gives us \citet: Author (year) and \citep: (Author; year)
+\usepackage[super]{natbib} % gives us \citet: Author (year) and \citep: (Author; year)
 \usepackage{authblk}
 
 \usepackage{multicol}
@@ -40,18 +40,24 @@
 
 \begin{document}
 
-\section*{The Evolution of Phenotypically Invariant Genetic Networks}
-Joshua S. Schiffman and Peter L. Ralph
+\section*{The evolution of phenotypically invariant gene networks with implications for speciation, adaptation, and neutral variation}
+{\centering
+Joshua S. Schiffman$^{\dagger}$ \qquad Peter L. Ralph$^{\dagger \ddagger}$ \\
+$^{\dagger}$University of Southern California, Los Angeles, California \qquad $^{\ddagger}$University of Oregon, Eugene, Oregon \\
+\texttt{jsschiff@usc.edu} \qquad \texttt{plr@uoregon.edu}
+\\
+}
 
 \begin{multicols}{2}
 
 
 \section*{Abstract}
+  \textbf{
 I will outline an analytical theory to study the evolution of biological systems such as gene regulatory networks, borrowing insight and tools from control engineering, systems identification, and dynamical systems theory. I will describe a null model of regulatory network evolution by analytically describing the set of all linear gene networks (of any size) that produce identical phenotypes -- and the evolutionary paths connecting them. In the idealized case of a perfectly adapted population, constant selection, and a static environment, we observe neutral evolution as a random walk over the phenotypically- invariant network-space. Under neutral conditions, this model can provide descriptions of expected network size and connectivity under mutation-selection equilibrium, estimate the rate of regulatory rewiring, and the rates at which Dobzhansky-Muller incompatibilities arise in reproductively isolated populations. This analysis provides insight into the mechanisms and parameters important for understanding developmental systems drift, network rewiring, evolvability, epistasis, and speciation, as well as the tenuous connection between network architecture and function. 
-
+}
 \section*{Introduction}
 
-Bridging the gulf between an organism's genome and phenotype is a poorly understood and complex molecular machinery. Progress in a suite of biological subdisciplines is stalled by our general lack of understanding of this molecular machinery: with respect to both its function and evolution. There does exist a growing body of experiment and data on the evolutionary histories and molecular characterizations of particular gene regulatory networks \citep{jaeger2011gap, davidson2006gene, israel2016comparative}, as well as thoughtful verbal and conceptual models \citep{true2001developmental, gwagner1}. However, as Hardy and Weinberg taught us over a century ago, verbal theories are often insufficient, if not downright misleading \citep{hardy1908mendelian, weinberg1908vererbungsgesetze, servedio2014not}. This is especially pertinent given the staggering complexity and scope of contemporary research programs. This outlook necessitates the advancement of conceptual frameworks of such precision, only mathematics will suffice. Previously it has been suggested that any idealized study of evolution is incomplete without a mathematically sufficient description of the genotype, phenotype, and transformation from one to the other \citep{Lewontin1974genetic}.%Here we outline an analytical theory to study the evolution of biological systems, borrowing insight and methods from control engineering, systems identification, and dynamical systems theory. 
+Bridging the gulf between an organism's genome and phenotype is a poorly understood and complex molecular machinery. Progress in a suite of biological subdisciplines is stalled by our general lack of understanding of this molecular machinery: with respect to both its function and evolution. There does exist a growing body of experiment and data on the evolutionary histories and molecular characterizations of particular gene regulatory networks \citep{jaeger2011gap, davidson2006gene, israel2016comparative}, as well as thoughtful verbal and conceptual models \citep{true2001developmental, gwagner1, weiss2000phenogenetic, edelman2001degeneracy}. However, as Hardy and Weinberg taught us over a century ago, verbal theories are often insufficient, if not downright misleading \citep{hardy1908mendelian, weinberg1908vererbungsgesetze, servedio2014not}. This is especially pertinent given the staggering complexity and scope of contemporary research programs. This outlook necessitates the advancement of conceptual frameworks of such precision, only mathematics will suffice. Previously it has been suggested that any idealized study of evolution is incomplete without a mathematically sufficient description of the genotype, phenotype, and transformation from one to the other \citep{Lewontin1974genetic}.%Here we outline an analytical theory to study the evolution of biological systems, borrowing insight and methods from control engineering, systems identification, and dynamical systems theory. 
 
 %Presently, we focus on the neutral evolution of genetic regulatory networks. That is, we analytically describe the set of all linear gene networks (of any size) that produce identical phenotypes -- and the evolutionary paths connecting them. In the idealized case of a perfectly adapted population, constant selection, and a static environment, we observe evolution under the ``conservation of phenotype'' as a Brownian motion over phenotypically-invariant network-space. This analysis provides insight to the mechanisms and parameters important for understanding developmental systems drift, network rewiring, evolvability, epistasis, and speciation, as well as the tenuous connection between network architecture and function.
 
@@ -298,12 +304,35 @@ In this paper we propose a framework to study the evolution of biological system
       \end{align}
       Therefore a hybrid's fitness can be computed by comparing its impulse response with that of its parents.
       
-      \begin{example}[Reproductive Incompatibility in an Oscillating Gene Network]
+      \begin{example}[F1 Reproductive Incompatibility in an Oscillating Gene Network]
         DMI examples...
+        \begin{figure}[H]
+          \includegraphics[width=0.5\textwidth]{A2_A3_osci_F1_hyb}
+        \end{figure}
+      \end{example}
+
+      \begin{example}[F2 Reproductive Incompatibility in an Oscillating Gene Network]
+        F2 versus parental expression dynamics. 
+
+        \begin{figure}[H]
+          \begin{tabular}{cc}
+            \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_1}
+            & \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_2}
+           \\ \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_3}
+            & \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_4}
+            \\ \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_5}
+            & \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_6}
+          \end{tabular}
+        \end{figure}
       \end{example}
 
       \begin{example}[Not all Networks can Host Incompatibilities]
         convex sets cant have DMIs
+
+        \begin{align*}
+          h(t) = 2 e^{- \theta t}
+        \end{align*}
+        Any non-minimal system with rows summing to $\theta$ is PI. Further, these systems are closed under averaging (mating) and row swapping (meiosis), leaving all hybrids optimally fit. The set of gene matrices is affine and therefore convex.  
       \end{example}
 
   \section*{Additionl Examples}
@@ -314,7 +343,9 @@ In this paper we propose a framework to study the evolution of biological system
 
     \section*{Discussion}
       \plr{mention $B$ part of genetic architecture}
-\bibliographystyle{plainnat}
+
+      \tiny
+\bibliographystyle{unsrt}
 \bibliography{krefs}
 \end{multicols}
 \end{document}
