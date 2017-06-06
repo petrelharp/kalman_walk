@@ -307,6 +307,17 @@ In this paper we propose a framework to study the evolution of biological system
         \mathcal{F}\left( \widehat{h}(t) \right) = \exp \left\{- \int_{0}^{\infty} \left\lVert h(t) - \widehat{h}(t) \right\rVert dt \right\}  .
       \end{align}
       Therefore a hybrid's fitness can be computed by comparing its impulse response with that of its parents.
+
+      \begin{example}[Quantitative Biological Species Concept]
+        Two populations are said to be different species if they produce low fitness offspring.
+        
+        F1s created by crossing externally equivlaent oscillators $A(0)$ and $A(2)$ have an $h_{F_{1}}(t) = e^{t}$, in contrast to both parents with $h_{F_{0}}(t) = \sin(t) + \cos(t)$. The hybrid phenotype is significantly different (it does not oscillate and increases infinitely) despite the phenotypic equivalence of the parents.
+
+        \begin{align*}
+          \mathcal{F} \left(h_{F_{0}}\right) &= 1 \\
+          \mathcal{F}\left(h_{F_{1}}\right) &= 0
+        \end{align*}
+      \end{example}
       
       \begin{example}[F1 Reproductive Incompatibility in an Oscillating Gene Network]
         DMI examples...
