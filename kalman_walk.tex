@@ -801,6 +801,36 @@ What parameters (and other relevant factors) do we need from the literature and 
     \item Others? 
   \end{itemize}
 
+\section{Algorithm for Gene Network Growth}
+
+Let $A^(d)$ be a gene network with index $(d)$; $(d)$ is the difference between the specific realization's dimension and the dimension of a minimal realization of the requisite transfer function, such that $A^{(0)}$ is a minimal realization, $A^{(1)}$ has one superfluous dimension and $A^{(-1)}$ is one short.
+
+Algorithm for constructing $A^{(d+1)}$ from $A^{(d)}$, 
+
+\begin{align*}
+  A^{(d+1)} = \left[ 
+  \begin{array}{c|c}
+    A^{(d)} & 0 \\
+    r_{1} \dots r_{n+d} & r_{n+d+1}
+  \end{array}
+  \right].
+  \end{align*}
+
+
+  Two systems have equivalent external dynamics iff their transfer functions are identical. Two transfer functions are identical iff $CA^{k}B = \bar{C}\bar{A}^{k}\bar{B} \qquad k = 0, 1, \dots$.
+
+  If system $\bar{A} := A^{(1)}$ is an extension of the minimal system $A^{(0)}$ then it must be of the form, 
+
+  \begin{align*}
+    \left[ \begin{array}{c|c} C & 0 \end{array} \right]
+      \left[ \begin{array}{cc} V & \Psi \\ \Phi & \Gamma \end{array} \right]
+        \left[ \begin{array}{cc} \Lambda & 0 \\ 0 & I \end{array} \right]
+          \left[ \begin{array}{cc} V^{-1} & \Omega \\ \Theta & I \end{array} \right]
+            \left[ \begin{array}{cc} B \\ \hline 0 \end{array} \right] \\
+              \Phi \Theta = 0  \\
+              \bar{C} \bar{A}^{k} \bar{B} = (CV\Lambda^{k}V^{-1}B + C \Psi \Theta B).
+  \end{align*}
+
 \section{Adaptation}
 
 Suppose a population is perfectly adapted to its environment -- it expresses a metabolic enzyme in response to environmental sugar availability at a rate that balances the energetic costs and benefits of the enzyme's synthesis and utility. Then, the population suddenly finds itself in a novel environment and exhibits suboptimal expression rates. How does the population adapt? Are some network mechanisms mutationally closer or farther from the desired new network connectivity? 
@@ -893,36 +923,6 @@ and let $M'$ bean $(n+m \times n+m)$ matrix where $M'_{(i,j)} = M_{(i,j)} \
 \text{for } i,j \leq n, \ \text{and } 0 \ \text{otherwise}$. Let $P$ be any
 $(n+m \times n+m)$ matrix with rank $n$. Then for any matrix $B$ such that $BP
 = PM'$, $B$ is a realization of $A$.     
-
-\section{(Old Notes) List of papers with some notes.}
-
-R. E. Kalman, “Mathematical description of linear dynamical systems,” Journal of the Society for Industrial and Applied Mathematics, Series A: Control, vol. 1, no. 2, pp. 152–192, 1963.
-This is a good overview written by Kalman. Probably the most important paper on this list.
-
-Minimal state-space realization in linear system theory: an overview. B. De Schutter. 2000.
-Another, more recent, overview that I found helpful to understand controllability and observability. 
-
-The Inverse Problem of Stationary Covariance Generation. BDO Anderson. 1969.
-
-Equivalence of Linear Time- Invariant Dynamical Systems. BDO Anderson, BW Necomb, RE Kalman. 1966. 
-
-B. Ho and R. E. Kalman, “Effective construction of linear state-variable models from input/output functions,” Proceedings of the 3rd Annual Allerton Conference on Circuit and System Theory, vol. 1, no. 2, p. 449459, 1965.
-
-Dynamic Structure Functions for the Reverse Engineering of LTI Networks. J Goncalves. 2007.
-I have not read this paper yet, but apparently it outlines a method for recovering the state space equation from specific sets of measurements.
-
-New Developments in Systems Theory Relevant to Biology. RE Kalman. 1968.
-Not technical but kind of interesting. 
-
-Old and New Directions of Research in Systems Theory. RE Kalman. 2010?
-
-Minimality and Observability of Group Systems. HA Loeliger, GD Forney Jr., T Mittelholzer, MD Trott. 1994. 
-Another paper I just found. It looks like it might be useful.
-
-Partial Realization of Descriptor Systems. P Benner and VI Sokolov. 2006. 
-I think this is about recovering a finite realization from infinite systems. Maybe it would be interesting to think about the similarity between transfer functions though? If selection only cares about a specific interval of the transfer function, say $G(10)$, then maybe two partial transfer functions will be effecrively equivlaent? 
-
-There are also the previous papers I sent on identifiability and distinguishability. In the original Bellman and Astrom paper where they introduce ``structural identifiability'' they show that a linear dynamical system is identifiabile if and only if it is also controllable and observable. 
 
 \section{Including Deleterious Mutations and a Fitness Function}\label{sec:del}
 
