@@ -175,6 +175,8 @@ In this paper we propose a framework to study the evolution of biological system
 
   \section*{The Model II: Linear Evolutionary Systems}
 
+  The literature is filled with detailed observations of molecular systems and their diversity. There are examples of significant diversity in the networks underlying processes such as circadian rhythm \citep{sancar2008intelligent}, cell cycle control \citep{cross2011evolution, kearsey2003enigmatic}, pattern formation, and metabolism  \citep{lavoie2009rearrangements, martchenko2007transcriptional, dalal2016transcriptional, christensen2011unique, hartl2007induction, alam2013aspergillus}. Despite a symmetry in functionality or phenotype these systems often differ, sometimes substationaly, at the molecular level. How many different mechanisms have the same function? We urge the reader to consider the metaphorical black box.
+
   Systems with identical external dynamics do not necessarily have identical internal dynamics. Any linear and minimal system -- minimal, informally meaning that the system's external dynamics are achieved with the fewest possible number of internal components -- has identical external dynamics up to a change of coordinates. 
   \begin{align}
     h(t) &= C e^{A t} B \\
@@ -199,6 +201,7 @@ In this paper we propose a framework to study the evolution of biological system
   \begin{align}
     \Sigma(\tau) = \left\{ \begin{array}{ll} \dot{\kappa}(t) &= A(\tau) \kappa(t) + B u(t) \\ \phi(t) &= C \kappa(t) \end{array} \right .
   \end{align}
+  That is, all (linear and minimal) mechanisms capable of producing the same phenotype can be realized by a unique choice of $\tau$ in $\Sigma(\tau)$.
   \begin{example}[External Equivalence does not imply internal equivalence]
     Gene 1 dynamics (blue) are equivalent for network architectures $A(0)$ and $A(2)$, however the internal dynamics containing gene 2 (orange) are very different.
   \begin{figure}[H]
@@ -354,11 +357,11 @@ In this paper we propose a framework to study the evolution of biological system
 
     \subsection*{Metabolic Network}
   \begin{align*}
-      \dot{x}(t) &= \begin{bmatrix} 0 & 1 & 0 & -1 \\ 0 & 0 & -1 & -1 \\ -1 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix} \begin{bmatrix} \text{GAL3} \\ \text{GAL4} \\ \text{GAL80} \\ \text{MIG1} \end{bmatrix}(t) + \begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 1 & 1 \end{bmatrix} \begin{bmatrix} \text{galactose} \\ \text{glucose} \\ \text{BTM} \end{bmatrix}(t) \\
+    \dot{x}(t) &= \begin{bmatrix} 0 & 1 & 0 & -1 \\ 0 & 0 & -1 & -1 \\ -1 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix} \begin{bmatrix} \text{GAL3} \\ \text{GAL4} \\ \text{GAL80} \\ \text{MIG1} \end{bmatrix}(t) \\ &+ \begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 1 & 1 \end{bmatrix} \begin{bmatrix} \text{galactose} \\ \text{glucose} \\ \text{BTM} \end{bmatrix}(t) \\
         y(t) &= \begin{bmatrix} 0 & 1 & 0 & -1 \end{bmatrix} \vec{x}(t)
     \end{align*}
     \begin{align*}
-      H(z) = \begin{bmatrix} 1 \\ z^{2} + z + 1 \\ z + 1 \end{bmatrix} \frac{1}{z^{3} + z -1}
+      H(z) &= \begin{bmatrix} 1 \\ z^{2} + z + 1 \\ z + 1 \end{bmatrix} \frac{1}{z^{3} + z -1}
     \end{align*}
 
     \begin{align*}
