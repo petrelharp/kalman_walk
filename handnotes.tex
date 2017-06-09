@@ -205,12 +205,19 @@ In this paper we propose a framework to study the evolution of biological system
 
   More generally, \plr{introduce Kalman},
   we denote by $\calA_n(A_0)$ the set of all $n$-dimensional systems equivalent to $A_0$:
-  \begin{align}
-      \calA_n(A_0) = \left\{
-          A \in R^{n \times n} : C e^{At} B = C e^{A_0 t} B \quad \text{for all}\; t \ge 0 
+  \begin{equation} \label{eqn:equivalence}
+      \begin{aligned}
+      \calA_n(A_0) 
+          &= \left\{
+              A : C e^{At} B = C e^{A_0 t} B \; \text{for}\; t \ge 0 
+          \right\}  \\
+          &= \left\{
+              A : C A^k B = C A_0^k B \; \text{for}\; 1 \le k \le n-1 
           \right\} .
-  \end{align}
-  Usually, the reference system $A_0$ is implicit and we write only $\calA$.
+      \end{aligned}
+  \end{equation}
+  Equivalence of the two characterizations follows from the Cayley-Hamilton theorem.
+  Usually, the dimension $n$ and the reference system $A_0$ is implicit and we write only $\calA$.
 
   \begin{example}[External Equivalence does not imply internal equivalence]
     Gene 1 dynamics (blue) are equivalent for network architectures $A(0)$ and $A(2)$, however the internal dynamics containing gene 2 (orange) are very different.
@@ -222,51 +229,99 @@ In this paper we propose a framework to study the evolution of biological system
   \end{example}
 
   %%%%%%%%%%%%%%%%%%%%%%%%
-  \section*{Genetic drift}
+  \section*{Intraspecific variation and genetic drift}
 
-  In the absence of directional evolution by selective pressures,
-  demographic and mutational noise
-  will cause a population to move randomly on (or near) the space of phenotypically equivalent systems.
-  On short to intermediate time scales this is thought to proceed mostly through genetic drift
-  resampling available diversity.
+  At any given time, there will be a range of network coefficients present in the population
+  due to segregating genetic polymorphism.
+  Over many generations, even if selective pressures do not change,
+  this range of networks will shift 
+  as recombination, mutation, and demographic noise create new alleles and shift allele frequencies.
+  How much variation do we expect to find within a population?
+  Is this range limited by available variation or kept in check by selection?
+  How fast will a population explore the space of equivalent networks?
+
   The amount and structure of 
-  this standing variation is maintained on long time scales
-  by mutation-selection balance
+  this standing variation is established over long time scales
+  by many factors, including
+  mutation-selection balance, 
   shifts in the phenotypic optimum,
-  diversifying selection, and/or other factors \citep{mut_sel_balance}.
-  We will take a quantitative genetics framework to describe this process.
+  and/or spatial variation in the optimum \citep{sources_of_standing_var}.
+  Quantitative genetics models of mutation-selection balance 
+  predict precise levels and structure of standing variation \citep{kimura_mutsel,lande_mutsel},
+  but it is unclear how well these predictions match reality \citep{johnson_barton}
+  and how much they are expected to change over time \citep{arnold_changing_G}.
+  However, recent empirical work allows us to estimate at least the rough magnitude of variation.
+  XXX FILL IN DETAILS: 
+  Mutational scans find this distribution of binding site change per nucleotide change in promoters.
+  Intraspecific variation is often in the range of 0.1\%--1\%.
+  This suggests typical regulatory binding strengths within a population might vary by up to roughly X\%.
+  But, does it?
+  \citet{maria_and_sergey} (others?) found evidence that large-effect regulatory mutations are weakly selected against in Drosophila,
+  which suggests that (a) the observed range of variation is somewhat less than this,
+  and (b) the strength of selection on phenotype is sufficient to weakly constrain this variation.
 
-  If the system is a network of transcription factors,
-  each row of the matrix $A$ represents the regulatory region of a particular transcription factor gene.
-  Regulatory regions are typically kilobases in length,
-  and so are expected to be represented in a population by a moderate number of haplotypes,
-  within which both mutation and recombination generate new diversity at roughly equal rates.
-  Nonetheless, as a first approximation we will assume that within the population,
-  the distribution of additive genetic variation in each entry of $A$ is multivariate Gaussian
-  with covariance matrix $G$.
-  The state of the population is then determined by the population mean and covariance matrix.
-  We then further decompose the population mean system into a position in the set of equivalent, optimal systems 
-  (a projection onto the set $\calA$, which will usually be unique)
-  and the deviation of the mean from that set.
-  We would like to then consider these two components separately,
-  since deviations away from the optima $\calA$ occur within populations,
-  and so should be close to neutral,
-  while two populations whose means drift in different directions along $\calA$
-  may develop incompatibilities.
+  This suggests that within a population, transcription factor binding strengths 
+  -- the entries of $A$ --
+  vary by around X\%, at least for networks whose function is strongly constrained.
+  Subsequent generations for the most part resample from this diversity,
+  so in a population of effective size $N_e$,
+  simply by the variance of the mean of a random sample,
+  the population mean binding strengths
+  will move a few multiples of $X/\sqrt{N_e}\%$ per generation \citep{lande_drift}.
+  (This could be taken as a definition of $N_e$.)
+  Selection will tend to push this mean towards the optimal set of networks \citep{ou_process},
+  but mean movement parallel to the optimal set (that leaves the phenotype invariant) is unconstrained
+  unless recombination load is substantial \citep{recomb_load}.
+  The action of genetic drift is also strongly determined by covariance between 
+  standing genetic variation in different regulatory coefficients -- known as the $G$ matrix \citep{G_matrix},
+  covariance which may arise due to functional constraints and/or statistical linkage.
+  There may well be functional constraints -- but these are not sufficiently well-known to say anything general about.
+  Linkage will almost certainly lead to covariance
+  if the variation is due to \textit{cis}-regulatory variants,
+  in which case the genetic basis of each \emph{row} of $A$ likely lies within a few kilobases of tightly linked sequence,
+  across which a population may carry only a few common haplotypes.
+  However, covariance due to transiently assembled haplotypes is not expected to be stable over long periods of time --
+  a common \textit{cis}-regulatory haplotype of transcription factor $k$ with particularly strong binding to both $i$ and $j$
+  (leading to positive covariance between $A_{ik}$ and $A_{jk}$)
+  is no more likely to appear than one with strong binding to $i$ but particularly weak binding to $j$ (negative covariance).
+  (Such transient covariances may well increase the variance of the per-generation change in network mean, however \citep{barton_linkage}.)
+  In principle, there may be substantially less variation away from the set of optimal coefficients 
+  than there is along the set, due to the action of selection.
+  If so, this might require substantial epistatic load 
+  -- mortality or reduced fitness of a large proportion of new offspring due to recombination between somewhat incompatible alleles.
+  However, it is unclear if this is likely to occur and XXX we revisit this below.
 
-  Suppose that a large population with effective size $N_e$ has population mean $\bar A = A_0 + Z$,
-  where $A_0$ is the closest point in $\calA$ and $Z$ is the deviation from $\calA$,
-  and suppose the population varies about this point with covariance between $A_{ij}$ and $A_{k\ell}$
-  equal to $G_{ij,k\ell}$.
-
-  
-  Treating $A$ as a vector, the mean per-generation displacement of $\bar A$ is approximately $G (G+E)^{-1} S$
-  where $E$ is the covariance matrix of environmental noise affecting the phenotypes,
+  It therefore seems reasonable to coarsely model the time evolution of population variation in network coefficents as 
+  (a) a ``cloud'' of width X about the population mean, 
+  which (b) moves as an unbiased Brownian motion through the set of network coefficients that give the optimal phenotype.
+  In fact, the population mean will not produce exactly the optimal phenotype,
+  but it will be convenient to refer to this closest point on the optimal set as ``the population mean''.
 
 
-  It also seems reasonable to assume that population variation occurs on a smaller scale
-  than the effects of selection -- 
-  otherwise, a substantial portion of new offspring would die due to (recombination) genetic load each generation \citep{genetic_load}.
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \paragraph{Brownian motion} on the set of equivalent networks:
+  The set $\calA$ is characterized as the solutions to the equations \eqref{eqn:equivalence},
+  and is hence an algebraic variety. 
+  In fact, the Kalman decomposition \plr{XXX above} provides us with an explicit characterization of the set.
+  Above we argued that the population mean set of coefficients $A$ was subject to genetic drift, 
+  with each entry $A_{ij}$ changing with mean square displacement $\sigma^2/\sqrt{N_e}$ per generation.
+  Since selection constrains the population mean to stay near to the set of optimal networks $\calA$,
+  to a good approximation, the population mean moves as Brownian motion in the space of matrices $\R^{n \times n}$
+  but conditioned to stay on the optimal set.
+  This Brownian motion on $\calA$ is a stochastic process driven by the Laplace-Beltrami operator on $\calA$
+  where this makes sense, with special behavior at the singular points (if any \plr{XXX}).
+  Unlike Brownian motion in flat space, this stochastic process can have \emph{bias} --
+  for instance, it is pushed away from regions of negative intrinsic curvature
+  (because there is ``less space'' in such regions).
+
+  \plr{NOT TRUE?:}
+  However, the process always has the property that
+  changes in $A$ accumulate at constant (mean squared) rate:
+  if $\calA$ is locally isomorphic to $\R^m$ around $A_0$
+  (there are $m$ degrees of freedom in the solutions to \eqref{eqn:equivalence}) then
+  \begin{aligned}
+      \E\left[ \|A_t - A_0\|^2 \right] = m \sigma^2 t + O(t^2) .
+  \end{aligned}
 
 
   \begin{align}
@@ -363,6 +418,7 @@ In this paper we propose a framework to study the evolution of biological system
       %\end{align*}
 
       The fitness of an organism can be computed by comparing its impulse response with the optimal response,
+      \plr{this is either zero or infinite.  apply a weighting function (see appendix)?}
       \begin{align}
         \mathcal{F}\left( \widehat{h}(t) \right) = \exp \left\{- \int_{0}^{\infty} \left\lVert h(t) - \widehat{h}(t) \right\rVert dt \right\}  .
       \end{align}
@@ -471,4 +527,47 @@ In this paper we propose a framework to study the evolution of biological system
 \bibliographystyle{unsrt}
 \bibliography{krefs}
 \end{multicols}
+
+\normalsize
+\appendix
+
+\section{Differentiating the fitness function}
+
+\plr{In case this is useful...}
+
+Suppose that $\rho(t) \ge 0$ is a weighting function on $[0,\infty)$
+so that fitness is a function of $L^2(\rho)$ distance of the impulse response from optimal:
+\begin{equation}
+    \begin{aligned}
+        D(A) 
+        &:= 
+        \int_0^\infty \rho(t) \left| C e^{At} B - C e^{A_0 t} B \right|^2 dt \\
+        &= 
+        \int_0^\infty \rho(t) \left| C \left( e^{At} - e^{A_0 t} \right) B \right|^2 dt \\
+        &= 
+        \int_0^\infty \rho(t) C \left( e^{At} - e^{A_0 t} \right) B B^T \left( e^{At} - e^{A_0 t} \right)^T C^T dt
+    \end{aligned}
+\end{equation}
+How does this change with $A$?
+Since
+\begin{equation}
+  \begin{aligned}
+      \frac{d}{du} e^{(A+uZ)t} \vert_{u=0}
+      &=
+      \int_0^t e^{As} Z e^{A(t-s)} ds, 
+  \end{aligned}
+\end{equation}
+we have that
+\begin{equation}
+  \begin{aligned}
+      \frac{d}{du} D(A+uZ)\vert_{u=0}
+      &=
+        2 \int_0^\infty \rho(t) C \left( \int_0^t e^{As} Z e^{A(t-s)} ds \right) B B^T \left( e^{At} - e^{A_0 t} \right)^T C^T dt \\
+      &=
+        2 \int_0^\infty \int_0^t \rho(t) C e^{As} Z e^{A(t-s)} B B^T \left( e^{At} - e^{A_0 t} \right)^T C^T ds dt .
+  \end{aligned}
+\end{equation}
+
+
+
 \end{document}
