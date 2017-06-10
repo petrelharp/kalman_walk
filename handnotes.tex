@@ -536,10 +536,13 @@ In this paper we propose a framework to study the evolution of biological system
 \plr{In case this is useful...}
 
 Suppose that $\rho(t) \ge 0$ is a weighting function on $[0,\infty)$
-so that fitness is a function of $L^2(\rho)$ distance of the impulse response from optimal:
+so that fitness is a function of $L^2(\rho)$ distance of the impulse response from optimal.
+With $A_0$ a representative of the optimal set:
 \begin{equation}
     \begin{aligned}
         D(A) 
+        &:= 
+        \int_0^\infty \rho(t) \left| h_A(t) - h_{A_0}(t) \right|^2 dt \\
         &:= 
         \int_0^\infty \rho(t) \left| C e^{At} B - C e^{A_0 t} B \right|^2 dt \\
         &= 
@@ -564,10 +567,43 @@ we have that
       &=
         2 \int_0^\infty \rho(t) C \left( \int_0^t e^{As} Z e^{A(t-s)} ds \right) B B^T \left( e^{At} - e^{A_0 t} \right)^T C^T dt \\
       &=
-        2 \int_0^\infty \int_0^t \rho(t) C e^{As} Z e^{A(t-s)} B B^T \left( e^{At} - e^{A_0 t} \right)^T C^T ds dt .
+        2 \int_0^\infty \rho(t) C \left( \int_0^t e^{As} Z e^{A(t-s)} ds \right) B \left( h_A(t) - h_{A_0}(t) \right)^T dt 
   \end{aligned}
 \end{equation}
 
+We could use this to compute the gradient of $D$.
+To do so, it'd be nice to have a way to compute the inner integral above.
+Suppose that we can diagonalize $A = U \Lambda U^{-1}$.
+Then
+\begin{equation} \label{eqn:exp_deriv}
+  \begin{aligned}
+      \int_0^t e^{As} Z e^{A(t-s)} ds 
+      &=
+      \int_0^t U e^{\Lambda s} U^{-1} Z U e^{\Lambda (t-s)} U^{-1} ds 
+  \end{aligned}
+\end{equation}
+Now, notice that
+\begin{equation}
+  \begin{aligned}
+      \int_0^t e^{s \lambda_i} e^{(t-s) \lambda_j} ds
+      &=
+      \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } .
+  \end{aligned}
+\end{equation}
+Therefore, 
+defining
+\begin{equation}
+    X_{ij}(t) = \left( U^{-1} Z U \right)_{ij}
+      \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } 
+\end{equation}
+moving the $U$ and $U^{-1}$ outside the integral and integrating we get that
+\begin{equation}
+  \begin{aligned}
+      \int_0^t e^{As} Z e^{A(t-s)} ds 
+      &=
+      U X(t) U^{-1} .
+  \end{aligned}
+\end{equation}
 
 
 \end{document}
