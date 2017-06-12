@@ -1,0 +1,142 @@
+---
+title: "Brownian motion on an oscillating system"
+author: "Peter Ralph and Josh Shiffman"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(expm)
+library(knitr)
+fig.dim <- 5
+knitr::opts_chunk$set(fig.height=fig.dim,fig.width=2*fig.dim,fig.align='center')
+```
+
+
+# Model
+
+Consider the dynamical system given by
+$$\begin{aligned}
+      \dot{x}(t) &= Ax(t) + Bu(t) \\
+          y(t) &= Cx(t) 
+\end{aligned}$$
+where
+$$\begin{aligned}
+    B^{T} = \begin{bmatrix} 1 & 1 \end{bmatrix}, \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix} 
+\end{aligned}$$
+and
+$$\begin{aligned}
+    A = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} .
+\end{aligned}$$
+This system has transfer function
+$$\begin{aligned}
+    h(t) &= C e^{tA} B \\
+        &= sin(t) + cos(t) .
+\end{aligned}$$
+The set of equivalent $A$ are given by
+$\{A(\tau): \tau \neq 1 \in \R\}$, where
+$$\begin{aligned}
+    V(\tau) 
+    &= \begin{bmatrix} 1 & 0 \\ \tau & 1-\tau \end{bmatrix} \\
+    A(\tau) 
+    &= V(\tau) A V(\tau)^{-1} \\
+    % &= \begin{bmatrix} 0 & 1 \\ \tau-1 & \tau \end{bmatrix} 
+    %    \begin{bmatrix} 1 & 0 \\ -\tau/(1-\tau) & 1/(1-\tau) \end{bmatrix}  \\
+    &= \begin{bmatrix} -\tau/(1-\tau) & 1/(1-\tau) \\ -(\tau^2 + (1-\tau)^2)/(1-\tau) & \tau/(1-\tau) \end{bmatrix} 
+\end{aligned}$$
+These systems are input-output equivalent (although may have different noise properties).
+
+```{r system_setup}
+A0 <- matrix(c(0,-1,1,0), nrow=2)
+B <- matrix(c(1,1), ncol=1)
+C <- matrix(c(1,0), nrow=1)
+V <- function (tau) { matrix(c(1,tau,0,1-tau), nrow=2) }
+Vinv <- function (tau) { matrix(c(1,-tau/(1-tau),0,1/(1-tau)), nrow=2) }
+At <- function (tau) { V(tau) %*% A0 %*% Vinv(tau) }
+A <- function (tau) { 
+    matrix(c(-tau/(1-tau), -(tau^2+(1-tau)^2)/(1-tau), 
+             1/(1-tau), tau/(1-tau)), nrow=2) 
+}
+h <- function (t,tau=0) { C %*% expm(t*A(tau)) %*% B }
+```
+
+Here is the impulse response function:
+```{r impulse_response_plot}
+tt <- seq(0,2*pi, length.out=100)
+plot(tt, sapply(tt, h), type='l',
+     xlab='t', ylab=expression(h(t)), main='transfer function')
+lines(tt, sin(tt)+cos(tt), col='red', lty=2)
+```
+
+
+# Brownian motion
+
+Now suppose that $A$ is changing due to mutation, 
+and that it takes the value $A(t)$ after $t$ units of evolutionary time.
+We know that $A(t)$ must equal $A_\tau$ for some $\tau$, 
+and hence we can define $A(t) = A_{W(t)}$, 
+where $W(t)$ is a random process on the free parameter;
+but what are the appropriate dynamics for $W$?
+Suppose that genetic drift acts uniformly on the entries of $A$, 
+so that ...
+
+
+# Toy example
+
+As a toy example, suppose that we want to describe a process through $\R^2$
+on the set
+$$\begin{aligned}
+    x^2 + y^2 = 1,
+\end{aligned}$$
+i.e., the unit circle.
+This is parameterized by
+$$\begin{aligned}
+    x(\theta) &= \cos(\theta) \\
+    y(\theta) &= \sin(\theta) .
+\end{aligned}$$
+
+The dynamics we want are limits of the following discrete dynamics.
+Let $\epsilon$ denote the step size,
+and suppose that at rate $\eta$ steps of size $\epsilon$ 
+in a uniformly random direction $\phi$ are proposed;
+but the probability that such a step is accepted is Kimura's expression:
+$$\begin{aligned}
+    q(x',y';x,y) = \frac{1 - e^{-2 (f(x',y')-f(x,y))}}{1 - e^{-2 N_e (f(x',y')-f(x,y))}}
+\end{aligned}$$
+where $(x',y')$ is the new (proposed) location, and
+$$\begin{aligned}
+    f(x,y) = (\sqrt{x^2+y^2}-1)^2
+\end{aligned}$$
+is the fitness function.
+Note that $q(x,y;x,y) = 1$ 
+and that 
+$$\begin{aligned}
+    \partial_u q(u,v;x,y) 
+    &= 
+        ( \partial_u f(u,v) ) 
+        \left( \partial_z \frac{1 - e^{-2 (z-f(x,y))}}{1 - e^{-2 N_e (z-f(x,y))}} \vert_{z=f(x',y')} \right) \\
+    &= 
+        \left( \frac{2 x (\sqrt{x^2+y^2}-1)}{\sqrt{x^2+y^2}} \right) 
+        \left( \frac{ 2 e^{-2 (f(x',y')-f(x,y))} (1 - e^{-2 N_e (f(x',y')-f(x,y))}) - 2 N_e e^{-2 (f(x',y')-f(x,y))} }{(1 - e^{-2 N_e (f(x',y')-f(x,y))})^2} \right)
+\end{aligned}$$
+and so that
+$$\begin{aligned}
+    \partial_u q(u,v;x,y) \vert_{u=x, v=y}
+    &= 
+        \left( \frac{2 x (\sqrt{x^2+y^2}-1)}{\sqrt{x^2+y^2}} \right) 
+        \left( \frac{ - 2 N_e  }{(1 - e^{-2 N_e (f(x',y')-f(x,y))})^2} \right)
+\end{aligned}$$
+
+
+This has the result of multiplying jump rates by the acceptance probabilities;
+so equivalently, if the process is at $(x,y)$,
+then it jumps to 
+$$\begin{aligned}
+    (x',y') = (x+\epsilon \cos \phi, y + \epsilon \sin \phi)
+\end{aligned}$$
+at rate
+$$\begin{aligned}
+    \eta q(x',y';x,y) 
+    &\approx
+
+\end{aligned}$$
