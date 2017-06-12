@@ -1,0 +1,79 @@
+\documentclass[9 pt]{article}
+\usepackage{amsmath, amssymb, color, xcolor, amsthm}
+\usepackage{graphicx, wrapfig, float, caption, dsfont, bbm}
+\usepackage{fullpage}
+\usepackage[backref=page, hidelinks, colorlinks=true, citecolor=blue!60!black!100]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, shapes}
+\usepackage{caption, subcaption}
+\usepackage{natbib} % gives us \citet: Author (year) and \citep: (Author; year)
+\usepackage{authblk}
+
+\usepackage{multicol}
+
+\newcommand{\plr}[1]{{\color{blue}\it #1}}
+\newcommand{\jss}[1]{{\color{olive}\it #1}}
+% \newcommand{\ddt}{\frac{d}{dt}}
+\newcommand{\ddt}{\dot}
+\newcommand{\ro}{{ro}}
+\newcommand{\nro}{{\bar{r}o}}
+\newcommand{\rno}{{r\bar{o}}}
+\newcommand{\nrno}{{\bar{r}\bar{o}}}
+\newcommand{\reachable}{\mathcal{R}}
+\newcommand{\unobservable}{\bar{\mathcal{O}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\pda}{\frac{\partial}{\partial A_{ij}}}
+\newcommand{\ind}{\mathds{1}}
+
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\diag}{\text{diag}}
+\newcommand{\1}{\mathbbm{1}}
+
+\DeclareMathOperator{\spn}{span}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+\begin{document}
+
+  \section{Notes on Empirical \emph{Cis}-Regulatory Module Variation and Evolution}
+
+    \begin{itemize}
+      \item \citet{gertz2009analysis} study synthetic yeast promoters. The synthetic promoters contained a random combination of 3-4 TFBSs. Weak MIG1 TFBS has a 6.7-9.0 fold lower affinity than the strong TFBS. Weak sites in concert with a strong site act as a strong site too. 
+
+      \item \citet{frankel2011morphological} study the loss of thrichome phenotype in D. sechellia (vs. melanogaster). Identify 6 embryonic enhancers (5 kb) that are diverged. Examine in detail the E enhancer -- two subunits of it, each ~1 kb long, E3 and E6. Say that E3 is conserved, while the E6 region has evolved. Comparing the E6 sechellia sequence with five closely related species, all containing a high density of thrichomes (in contrast to sechellia), they identify 13 substitutions and 1 single nucleotide deletion. There was no polymorphism within D. sechellia within the E6 region (9 sequences). Estimates these substitutions occured at an accelerated rate -- 4.8 times the flanking regions. 
+
+        Introduced all sechellia substitutions into melanogaster (and the reverse!). Found that expression changed in the directions as expected in the transgenic lines -- but did not completely rescue phenotypes -- there are likely other regulatory elements involved. 
+
+        The temporal expression delay in sechellia could not be captured by a single mutation -- only a combination of the known differences. At least 5 substituitons are necessary. Each cluster of mutations (2-5) reduced trichome expression by 4.6-33.5\%. 
+
+        ``none of the D. melanogaster to D. sechellia mutations led to a significant increase in trichome number, and none of the reciprocal mutations led to a decrease in trichome number''
+
+      \item \citet{rebeiz2009stepwise} look at adaptive melaninism in D. melanogaster. 
+        Find a minimum of 5 mutations differentiate regulation of dark from light lines. These account for 8 to 40\% of the overal difference in ebony activity. 
+
+        Lots of standing variation preceding phenotype divergence: 3 of the identified causative substitutions in one region were found at high frequencies in both Ugandan light lines and in a Kenyan light population. Two of the substitutions were found in all 5 populations sampled. The third subst was found in 4 of the 5 populations. Dark specific substitutions were not observed in other lines; suggesting they were rare variants or evolved de novo. 
+
+        Estimate that standing variation in the enhancer happened first, then the fixation of the de novo mutations.
+
+        ``We have shown that the adaptive evolution of melanism in a Ugandan population ofD. melanogaster occurred through multiple, stepwise substitutions in one enhancer of the ebony locus. We suggest that this genetic path of enhancer evolution with multiple substitutions of varying effect sizes, which originate from both standing variation and new mutations and combine to create an allele of large effect, may be a general feature of enhancer evolution in populations. This view is consistent with studies that have demonstrated that substitutions at multi le sites within enhancers are responsible for evolutionary changes in gene expression''
+
+      \item \citet{verlaan2009targeted} study expression variation within humans. 
+        cis-regulatory variation is known to account for 2-6\% expression variation in human blood-derived primary cells. 
+
+      \item \citet{yan2002allelic} studied CEPH families (human). Fraction of individual variation in heterozygous individuals was 3 to 30\% (differentially expressed alleles). Expressed transcript ratio varied from 1.3 : 1.0 (FBN1) to 4.3 : 1.0 (p73). Many of these expression differences were Mendellian. 
+
+      \item \citep{lappalainen2013transcriptome} mapped cis-QTLs to transcriptome variation in human samples from CEPH, FIN, GBR, TSI and the 1000 genome project. Population differences explain 3\% of the variation. Identified 263-4,379 genes with differential expression (or transcript ratios) between population pairs. 
+
+        See figure 1b. 
+
+    \end{itemize}
+
+\bibliographystyle{plainnat}
+\bibliography{krefs}
+
+\end{document}
