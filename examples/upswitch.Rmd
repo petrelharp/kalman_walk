@@ -1,5 +1,5 @@
 ---
-title: "Brownian motion on an oscillating system"
+title: "Brownian motion on an upswitch"
 author: "Peter Ralph and Josh Shiffman"
 date: "`r Sys.Date()`"
 output: html_document
@@ -23,50 +23,45 @@ $$\begin{aligned}
 \end{aligned}$$
 where
 $$\begin{aligned}
-    B^{T} = \begin{bmatrix} 1 & 1 \end{bmatrix}, \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix} 
+    B^{T} = \begin{bmatrix} 1 & 0 \end{bmatrix}, \qquad C = \begin{bmatrix} 0 & 1 \end{bmatrix} 
 \end{aligned}$$
 and
 $$\begin{aligned}
-    A = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} .
+    A = \begin{bmatrix} -1 & 0 \\ 1 & 0 \end{bmatrix} .
 \end{aligned}$$
 This system has impulse response function
 $$\begin{aligned}
     h(t) &= C e^{tA} B \\
-        &= sin(t) + cos(t) .
+        &= 1 - e^{-t} .
 \end{aligned}$$
 The set of equivalent $A$ are given by
 $\{A(\tau): \tau \neq 1 \in \R\}$, where
 $$\begin{aligned}
     V(\tau) 
-    &= \begin{bmatrix} 1 & 0 \\ \tau & 1-\tau \end{bmatrix} \\
+    &= \begin{bmatrix} 1 & \tau \\ 0 & 1 \end{bmatrix} \\
     A(\tau) 
-    &= V(\tau) A V(\tau)^{-1} \\
-    % &= \begin{bmatrix} 0 & 1 \\ \tau-1 & \tau \end{bmatrix} 
-    %    \begin{bmatrix} 1 & 0 \\ -\tau/(1-\tau) & 1/(1-\tau) \end{bmatrix}  \\
-    &= \begin{bmatrix} -\tau/(1-\tau) & 1/(1-\tau) \\ -(\tau^2 + (1-\tau)^2)/(1-\tau) & \tau/(1-\tau) \end{bmatrix} 
+    &= V(\tau) A V(\tau)^{-1} 
 \end{aligned}$$
 These systems are input-output equivalent (although may have different noise properties).
 
 ```{r system_setup}
-A0 <- matrix(c(0,-1,1,0), nrow=2)
-B <- matrix(c(1,1), ncol=1)
-C <- matrix(c(1,0), nrow=1)
-V <- function (tau) { matrix(c(1,tau,0,1-tau), nrow=2) }
-Vinv <- function (tau) { matrix(c(1,-tau/(1-tau),0,1/(1-tau)), nrow=2) }
-At <- function (tau) { V(tau) %*% A0 %*% Vinv(tau) }
-A_fn <- function (tau) { 
-    matrix(c(-tau/(1-tau), -(tau^2+(1-tau)^2)/(1-tau), 
-             1/(1-tau), tau/(1-tau)), nrow=2) 
-}
+A0 <- matrix(c(-1,1,0,0), nrow=2)
+B <- matrix(c(1,0), ncol=1)
+C <- matrix(c(0,1), nrow=1)
+V <- function (tau) { matrix(c(1,0,tau,1), nrow=2) }
+Vinv <- function (tau) { matrix(c(1,0,-tau,1), nrow=2) }
+A_fn <- function (tau) { V(tau) %*% A0 %*% Vinv(tau) }
 h <- function (t,tau=0,A=A_fn(tau)) { sapply(t, function (tt) C %*% expm(tt*A) %*% B) }
+optimal_h <- function (t) { 1 - exp(-t) }
 ```
 
 Here is the impulse response function:
 ```{r impulse_response_plot}
 tt <- seq(0,2*pi, length.out=100)
-plot(tt, sapply(tt, h), type='l',
+plot(tt, h(tt), type='l',
      xlab='t', ylab=expression(h(t)), main='impulse response function')
-lines(tt, sin(tt)+cos(tt), col='red', lty=2)
+lines(tt, h(tt, tau=0.1), col='blue', lty=3)
+lines(tt, optimal_h(tt), col='red', lty=2)
 ```
 
 
@@ -96,20 +91,21 @@ This will be $\exp(-D^2/2\sigma^2)$, where $D$ is the distance to optimal:
 $$\begin{aligned}
   D(A) := \int_0^\infty e^{-t/4\pi} \| h(t,A) - h_0(t) \| dt ,
 \end{aligned}
-where $h_0(t)=\sin(t)+\cos(t)$ is the optimal impulse response function.
+where $h_0(t)$ is the optimal impulse response function.
 
 ```{r distance_fun}
-D <- function (A, upper=100, ...) {
-    f <- function (t) {
-        exp(-t/(4*pi)) * ( h(t,A=A) - cos(t) - sin(t) )^2
-    }
+Df <- function (A,t) {
+    exp(-t/(4*pi)) * ( h(t,A=A) - optimal_h(t) )^2
+}
+D <- function (A, upper=10, ...) {
+    f <- function (t) { Df(A,t) }
     integrate(f, lower=0, upper=upper, ...)$value
 }
 ```
 
 To check this works, the distance of $A(2)$ to optimal should be zero:
 ```{r check_D}
-D(A(2))
+D(A_fn(2))
 ```
 
 We also need to be able to produce F1s and F2s:
@@ -148,24 +144,24 @@ Here are the phenotypes for $\tau=2$, $\tau=2.01$, and the hybrids:
 dtau <- .01
 tt <- seq(0,6*2*pi, length.out=500)
 hh <- sapply( list(A_fn(2), A_fn(2+dtau), F1(2, 2+dtau)), function (A) { sapply(tt, h, A=A) } )
-matplot(tt, hh, type='l', main=sprintf("Parental phenotypes and F1s at dtau=%s", dtau), lty=c(1,1,2), col=1:3, xlab="time", ylab="phenotype")
+matplot(tt, hh, type='l', main=sprintf("Parental phenotypes and F1s at dtau=%s", dtau), lty=c(1,1,2), col=1:3, xlab="time", ylab="phenotype", log='y')
 legend("topright", lty=c(1,1,2), col=1:3,
         legend=c(expression(tau==2), expression(tau==2+dtau), "F1"))
 # now the F2s
 hh <- sapply( all_F2s(2, 2+dtau), function (A) { sapply(tt, h, A=A) } )
-matplot(tt, hh, type='l', main="F2s", xlab="time", ylab="phenotype")
+matplot(tt, hh, type='l', main="F2s", xlab="time", ylab="phenotype", log='y')
 ```
 And, the same thing for $\tau=2.1$:
 ```{r phenotypes2}
 dtau <- .1
 tt <- seq(0,6*2*pi, length.out=500)
 hh <- sapply( list(A_fn(2), A_fn(2+dtau), F1(2, 2+dtau)), function (A) { sapply(tt, h, A=A) } )
-matplot(tt, hh, type='l', main=sprintf("Parental phenotypes and F1s at dtau=%s", dtau), lty=c(1,1,2), col=1:3, xlab="time", ylab="phenotype")
+matplot(tt, hh, type='l', main=sprintf("Parental phenotypes and F1s at dtau=%s", dtau), lty=c(1,1,2), col=1:3, xlab="time", ylab="phenotype", log='y')
 legend("topright", lty=c(1,1,2), col=1:3,
         legend=c(expression(tau==2), expression(tau==2+dtau), "F1"))
 # now the F2s
 hh <- sapply( all_F2s(2, 2+dtau), function (A) { sapply(tt, h, A=A) } )
-matplot(tt, hh, type='l', main="F2s", xlab="time", ylab="phenotype")
+matplot(tt, hh, type='l', main="F2s", xlab="time", ylab="phenotype", log='y')
 ```
 
 These F2s have distances of $D=$:
