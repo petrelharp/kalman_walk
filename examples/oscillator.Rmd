@@ -1,0 +1,230 @@
+---
+title: "Brownian motion on an oscillating system"
+author: "Peter Ralph and Josh Shiffman"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(expm)
+library(knitr)
+library(parallel)
+fig.dim <- 5
+knitr::opts_chunk$set(fig.height=fig.dim,fig.width=2*fig.dim,fig.align='center')
+do.pdfs <- TRUE
+pdf_copy <- function ( width=6, height=width*knitr::opts_current$get("fig.height")/knitr::opts_current$get("fig.width"), plot.id=NULL,
+                filename) {
+    if (missing(filename)) {
+        file.id <- if (is.null(plot.id)) { "" } else { paste0("_",plot.id) }
+        filename <- knitr::fig_path(paste(file.id,".pdf",sep=""))
+    }
+    cat("pdf version at:",filename)
+    dev.print( file=filename, device=pdf, width=width, height=height, pointsize=10, family="sans")
+}
+```
+
+
+# Model
+
+Consider the dynamical system given by
+$$\begin{aligned}
+      \dot{x}(t) &= Ax(t) + Bu(t) \\
+          y(t) &= Cx(t) 
+\end{aligned}$$
+where
+$$\begin{aligned}
+    B^{T} = \begin{bmatrix} 1 & 1 \end{bmatrix}, \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix} 
+\end{aligned}$$
+and
+$$\begin{aligned}
+    A = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} .
+\end{aligned}$$
+This system has impulse response function
+$$\begin{aligned}
+    h(t) &= C e^{tA} B \\
+        &= sin(t) + cos(t) .
+\end{aligned}$$
+The set of equivalent $A$ are given by
+$\{A(\tau): \tau \neq 1 \in \R\}$, where
+$$\begin{aligned}
+    V(\tau) 
+    &= \begin{bmatrix} 1 & 0 \\ \tau & 1-\tau \end{bmatrix} \\
+    A(\tau) 
+    &= V(\tau) A V(\tau)^{-1} \\
+    % &= \begin{bmatrix} 0 & 1 \\ \tau-1 & \tau \end{bmatrix} 
+    %    \begin{bmatrix} 1 & 0 \\ -\tau/(1-\tau) & 1/(1-\tau) \end{bmatrix}  \\
+    &= \begin{bmatrix} -\tau/(1-\tau) & 1/(1-\tau) \\ -(\tau^2 + (1-\tau)^2)/(1-\tau) & \tau/(1-\tau) \end{bmatrix} 
+\end{aligned}$$
+These systems are input-output equivalent (although may have different noise properties).
+
+```{r system_setup}
+A0 <- matrix(c(0,-1,1,0), nrow=2)
+B <- matrix(c(1,1), ncol=1)
+C <- matrix(c(1,0), nrow=1)
+V <- function (tau) { matrix(c(1,tau,0,1-tau), nrow=2) }
+Vinv <- function (tau) { matrix(c(1,-tau/(1-tau),0,1/(1-tau)), nrow=2) }
+At <- function (tau) { V(tau) %*% A0 %*% Vinv(tau) }
+A_fn <- function (tau) { 
+    matrix(c(-tau/(1-tau), -(tau^2+(1-tau)^2)/(1-tau), 
+             1/(1-tau), tau/(1-tau)), nrow=2) 
+}
+h <- function (t,tau=0,A=A_fn(tau)) { sapply(t, function (tt) C %*% expm(tt*A) %*% B) }
+optimal_h <- function (t) { sin(t)+cos(t) }
+```
+
+Here is the impulse response function:
+```{r impulse_response_plot}
+tt <- seq(0,2*pi, length.out=100)
+plot(tt, h(tt), type='l',
+     xlab='t', ylab=expression(h(t)), main='impulse response function')
+lines(tt, h(tt, tau=0.1), col='blue', lty=3)
+lines(tt, optimal_h(tt), col='red', lty=2)
+
+if (do.pdfs) { pdf_copy() }
+```
+
+
+We can define the dynamics in two ways: extrinsically or intrinsically.
+Extrinsically,
+we look at the dynamics of a population mean in $\R^{2\times 2}$,
+thinking about $A$ as evolving.
+Intrinsically, we move about only on the set of equivalent $A$,
+letting $\tau$ evolve.
+As the population size goes to infinity,
+the extrinsic dynamics should approach the intrinsic dynamics.
+
+
+# Extrinsic dynamics
+
+Let $N$ denote the population size,
+and suppose that at any time the population is spread about from the mean $A$
+as a Gaussian with variance $\sigma^2$, independently in each entry of $A$.
+Then we expect that the population mean takes steps of size $\sigma/\sqrt{N}$
+with a restoring force towards the set of optimal $A$.
+
+
+# Fitness of hybrids
+
+First we need the fitness function.
+This will be $\exp(-D^2/2\sigma^2)$, where $D$ is the distance to optimal:
+$$\begin{aligned}
+  D(A) := \int_0^\infty e^{-t/4\pi} \| h(t,A) - h_0(t) \| dt ,
+\end{aligned}
+where $h_0(t)=\sin(t)+\cos(t)$ is the optimal impulse response function.
+
+```{r distance_fun}
+Df <- function (A,t) {
+    exp(-t/(4*pi)) * ( h(t,A=A) - optimal_h(t) )^2
+}
+D <- function (A, upper=10, ...) {
+    f <- function (t) { Df(A,t) }
+    integrate(f, lower=0, upper=upper, ...)$value
+}
+```
+
+To check this works, the distance of $A(2)$ to optimal should be zero:
+```{r check_D}
+D(A_fn(2))
+```
+
+We also need to be able to produce F1s and F2s:
+```{r offspring}
+F1 <- function (tau1,tau2) { (A_fn(tau1)+A_fn(tau2))/2 }
+
+gamete <- function (X,Y,rows) { 
+    out <- X
+    out[rows,] <- Y[rows,]
+    return(out)
+}
+
+F2 <- function (tau1, tau2, rows1, rows2) {
+    (gamete(A_fn(tau1), A_fn(tau2), rows1) + gamete(A_fn(tau1), A_fn(tau2), rows2))/2
+}
+
+random_F2 <- function (tau1, tau2) {
+    rows1 <- (rbinom(2,size=1,prob=1/2)>0)
+    rows2 <- (rbinom(2,size=1,prob=1/2)>0)
+
+    F2(tau1, tau2, rows1, rows2)
+}
+
+all_F2s <- function (tau1, tau2) {
+    all_rows <- as.matrix(do.call( expand.grid, list(c(TRUE,FALSE))[rep(1,4)] ))
+    lapply(1:nrow(all_rows), function (k) {
+                x <- all_rows[k,]
+                F2(tau1, tau2, x[1:2], x[3:4])
+            })
+}
+
+```
+
+Here are the phenotypes for $\tau=2$, $\tau=2.01$, and the hybrids:
+```{r phenotypes}
+dtau <- .01
+tt <- seq(0,6*2*pi, length.out=500)
+hh <- sapply( list(A_fn(2), A_fn(2+dtau), F1(2, 2+dtau)), function (A) { sapply(tt, h, A=A) } )
+matplot(tt, hh, type='l', main=sprintf("Parental phenotypes and F1s at dtau=%s", dtau), lty=c(1,1,2), col=1:3, xlab="time", ylab="phenotype")
+legend("topright", lty=c(1,1,2), col=1:3,
+        legend=c(expression(tau==2), expression(tau==2+dtau), "F1"))
+# now the F2s
+hh <- sapply( all_F2s(2, 2+dtau), function (A) { sapply(tt, h, A=A) } )
+matplot(tt, hh, type='l', main="F2s", xlab="time", ylab="phenotype")
+
+if (do.pdfs) { pdf_copy() }
+```
+And, the same thing for $\tau=2.1$:
+```{r phenotypes2}
+dtau <- .1
+tt <- seq(0,6*2*pi, length.out=500)
+hh <- sapply( list(A_fn(2), A_fn(2+dtau), F1(2, 2+dtau)), function (A) { sapply(tt, h, A=A) } )
+matplot(tt, hh, type='l', main=sprintf("Parental phenotypes and F1s at dtau=%s", dtau), lty=c(1,1,2), col=1:3, xlab="time", ylab="phenotype")
+legend("topright", lty=c(1,1,2), col=1:3,
+        legend=c(expression(tau==2), expression(tau==2+dtau), "F1"))
+# now the F2s
+hh <- sapply( all_F2s(2, 2+dtau), function (A) { sapply(tt, h, A=A) } )
+matplot(tt, hh, type='l', main="F2s", xlab="time", ylab="phenotype")
+
+if (do.pdfs) { pdf_copy() }
+```
+
+These F2s have distances of $D=$:
+```{r F2_dists}
+sort(round(sapply(all_F2s(2, 2+dtau), function (x) D(A=x, upper=100, subdivisions=500)),2))
+```
+
+Now let's look at $D$ as a function of $d\tau$:
+```{r d_fn}
+
+dvec <- seq(0, .02, length.out=20)
+D_F1 <- sapply(dvec, function (dtau) {
+            D(A=F1(tau1=2, tau2=2+dtau))
+        } )
+
+D_F2 <- do.call(cbind, mclapply(dvec, function (dtau) {
+            F2s <- all_F2s(2, 2+dtau)
+            sapply(F2s, D, upper=100)
+        }, mc.cores=detectCores() ) )
+```
+
+```{r plot_d_fn}
+layout(t(1:2))
+plot( dvec, D_F1, type='l', xlab="d tau", ylab="phenotype distance (D)", main="distance of F1s")
+plot( dvec, D_F1^(1/4), type='l', main="one-fourth power", xlab="d tau", ylab="D^(1/4)")
+
+plot( dvec, D_F1, type='l', ylim=range(D_F2, D_F1),
+        xlab="dtau", ylab='phenotype distance (D)',
+        main="all hybrids")
+lines(dvec, colMeans(D_F2), lty=2)
+matlines(dvec, t(D_F2), lty=3)
+legend("topleft", lty=c(1,2,3), legend=c("F1", "mean F2", "F2s"))
+
+plot( dvec, sqrt(D_F1), type='l', ylim=sqrt(range(D_F2, D_F1)),
+        xlab="dtau", ylab='phenotype distance (D)',
+        main="sqrt distance")
+lines(dvec, sqrt(colMeans(D_F2)), lty=2)
+matlines(dvec, sqrt(t(D_F2)), lty=3)
+
+if (do.pdfs) { pdf_copy() }
+```
+
+

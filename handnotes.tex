@@ -28,6 +28,7 @@
 \newcommand{\ind}{\mathds{1}}
 
 \newcommand{\calA}{\mathcal{A}}
+\newcommand{\calH}{\mathcal{H}}
 \newcommand{\diag}{\text{diag}}
 \newcommand{\1}{\mathbbm{1}}
 
@@ -533,15 +534,74 @@ In this paper we propose a framework to study the evolution of biological system
 \normalsize
 \appendix
 
+\section{Genetic drift with a multivariate trait}
+\label{ss:quant_gen}
+
+For completeness, we provide a brief argument of how the population mean
+moves under genetic drift
+with a quantitative genetics model.
+
+\paragraph{Completing the square}
+First note that 
+\begin{align*}
+    (x-y)^T A (x-y)
+    &=
+    x^T A \left( x - 2y) + y^T A y ,
+\end{align*}
+and so
+\begin{align*}
+    (x-y)^T A (x-y) + x^T B x
+    &=
+    x^T (A + B) \left( x - 2 (A + B)^{-1} A y \right) + y^T A y \\
+    &=
+    \left( x - (A + B)^{-1} A y \right)^T
+    (A + B)
+    \left( x - (A + B)^{-1} A y \right)
+    + \text{(terms that don't depend on $x$)} .
+\end{align*}
+Therefore, if $f(x;\Sigma,y)$ is the density of a Gaussian with mean $y$ and covariance matrix $\Sigma$
+then substituting $A=\Sigma^{-1}$ and $B=U^{-1}$ above,
+\begin{align*}
+    \frac{ f(x;\Sigma,y) f(x;U,0) }{\int_x f(z;\Sigma,y) f(z;U,0) dz}
+    &=
+    f(x; (\Sigma^{-1} + U^{-1})^{-1}, (\Sigma^{-1}+U^{-1})^{-1} \Sigma^{-1} y) .
+\end{align*}
+
+Now suppose that the population is distributed in genotype space
+as a Gaussian with covariance matrix $\Sigma$ and mean $y$.
+Selection has the effect of multiplying this density by the fitness function and renormalizing,
+so that if expected fitness of $x$ is proportional to $f(x;U,z)$
+then the above argument shows that the next generation will be sampled from a Gaussian distribution
+with covariance matrix $(\Sigma^{-1} + U^{-1})^{-1}$ 
+and mean $z + (\Sigma^{-1}+U^{-1})^{-1} \Sigma^{-1} (y-z)$
+Taking a sample of size $N$ to construct the next generation 
+will produce something close to this but with a slightly (stochastically) deviating mean.
+The next generation's mean is drawn from a Gaussian distribution with mean
+with covariance matrix $(\Sigma^{-1} + U^{-1})^{-1}/N$ 
+and mean $z + (\Sigma^{-1}+U^{-1})^{-1} \Sigma^{-1} (y-z)$.
+
+Roughly, what is this doing?
+Suppose that the population mean differs from the optimum by $\epsilon$,
+that $\Sigma = \sigma^2 I$ and $U = s I$.
+Then the population mean gets closer to the optimum on average, moving to
+$\epsilon/(1 + \sigma^2/s)$
+and adds noise of size $\sqrt{s} \sigma/\sqrt{N \sigma^2 + N s}$.
+At equilibrium, these two movements will be of the same order,
+so that $\epsilon$ is of order $(\sigma/\sqrt{N}) \sqrt{1+\sigma^2/s}$.
+
+
 \section{Differentiating the fitness function}
 
 \plr{In case this is useful...}
 
 Suppose that $\rho(t) \ge 0$ is a weighting function on $[0,\infty)$
-so that fitness is a function of $L^2(\rho)$ distance of the impulse response from optimal:
+so that fitness is a function of $L^2(\rho)$ distance of the impulse response from optimal.
+With $A_0$ a representative of the optimal set:
 \begin{equation}
     \begin{aligned}
         D(A) 
+        &:= 
+        \int_0^\infty \rho(t) \left| h_A(t) - h_{A_0}(t) \right|^2 dt \\
         &:= 
         \int_0^\infty \rho(t) \left| C e^{At} B - C e^{A_0 t} B \right|^2 dt \\
         &= 
@@ -566,10 +626,108 @@ we have that
       &=
         2 \int_0^\infty \rho(t) C \left( \int_0^t e^{As} Z e^{A(t-s)} ds \right) B B^T \left( e^{At} - e^{A_0 t} \right)^T C^T dt \\
       &=
-        2 \int_0^\infty \int_0^t \rho(t) C e^{As} Z e^{A(t-s)} B B^T \left( e^{At} - e^{A_0 t} \right)^T C^T ds dt .
+        2 \int_0^\infty \rho(t) C \left( \int_0^t e^{As} Z e^{A(t-s)} ds \right) B \left( h_A(t) - h_{A_0}(t) \right)^T dt 
+  \end{aligned}
+\end{equation}
+and, by differentiating this and supposing that $A$ is on the optimal set,
+i.e., $h_A(t)=h_{A_0}(t)$, (so wolog $A=A_0$):
+\begin{equation}
+  \begin{aligned}
+      \calH(Y,Z) &:= \frac{1}{2} \frac{d}{du} \frac{d}{dv} D(A_0+uY+vZ)\vert_{u=v=0} \\
+      &=
+        \int_0^\infty \rho(t) C 
+        \left( \int_0^t e^{A_0 s} Y e^{A_0 (t-s)} ds \right) 
+        B B^T 
+        \left( \int_0^t e^{A_0 s} Z e^{A_0 (t-s)} ds \right)^T
+        C^T dt  .
+  \end{aligned}
+\end{equation}
+Here $\calH$ is the quadratic form underlying the Hamiltonian.
+By defining $\Delta_{ij}$ to be the matrix with a 1 in the $(i,j)$th slot
+and 0 elsewhere,
+the coefficients of the quadratic form is
+\begin{equation}
+    \begin{aligned}
+        H_{ij, k\ell}(A)
+        &:=
+        \calH(\Delta_{ij}, \Delta_{k\ell}) .
+    \end{aligned}
+\end{equation}
+
+We could use this to compute the gradient of $D$,
+or to get the quadratic approximation to $D$ near the optimal set.
+To do so, it'd be nice to have a way to compute the inner integral above.
+Suppose that we can diagonalize $A = U \Lambda U^{-1}$.
+Then
+\begin{equation} \label{eqn:exp_deriv}
+  \begin{aligned}
+      \int_0^t e^{As} Z e^{A(t-s)} ds 
+      &=
+      \int_0^t U e^{\Lambda s} U^{-1} Z U e^{\Lambda (t-s)} U^{-1} ds 
+  \end{aligned}
+\end{equation}
+Now, notice that
+\begin{equation}
+  \begin{aligned}
+      \int_0^t e^{s \lambda_i} e^{(t-s) \lambda_j} ds
+      &=
+      \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } .
+  \end{aligned}
+\end{equation}
+Therefore, 
+defining
+\begin{equation}
+    X_{ij}(t,Z) = \left( U^{-1} Z U \right)_{ij}
+      \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } 
+\end{equation}
+moving the $U$ and $U^{-1}$ outside the integral and integrating we get that
+\begin{equation}
+  \begin{aligned}
+      \int_0^t e^{As} Z e^{A(t-s)} ds 
+      &=
+      U X(t,Z) U^{-1} .
   \end{aligned}
 \end{equation}
 
+Following on from above, we see that if $Z=\Delta_{k \ell}$, then
+\begin{equation}
+  \begin{aligned}
+      X_{ij}^{k\ell}(t) = 
+      \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } 
+      (U^{-1})_{\cdot k} U_{\ell \cdot},
+  \end{aligned}
+\end{equation}
+where $U_{k \cdot}$ is the $k$th row of $U$,
+and so
+\begin{equation}
+    \begin{aligned}
+        H_{ij, k\ell}(A)
+        &=
+        \int_0^\infty
+            \rho(t) C U X^{ij}(t) U^{-1} B B^T (U^{-1})^T X^{k\ell}(t)^T U^T C^T
+        dt .
+    \end{aligned}
+\end{equation}
+This implies that
+\begin{equation}
+    \begin{aligned}
+        D(A_0+\epsilon Z)
+        &\approx \epsilon^2\sum_{ijk\ell} H^{ij,k\ell} Z_{ij} Z_{k\ell} 
+    \end{aligned}
+\end{equation}
+and so
+\begin{equation}
+    \begin{aligned}
+        D(A_0+\epsilon Z)
+        &\approx \epsilon^2\sum_{ijk\ell} H^{ij,k\ell} Z_{ij} Z_{k\ell} 
+    \end{aligned}
+\end{equation}
 
+By section \ref{ss:quant_gen},
+if we set $\Sigma=\sigma^2 I$ and $U=H$,
+then a population at $A_0+Z$ experiences a restoring force of strength
+$(I + \sigma^2 H^{-1})^{-1} Z$ (treating $Z$ as a vector and $H$ as an operator on these).
+If $\sigma^2$ is small compared to $H^{-1}$
+then this is approximately $-\sigma^2 H^{-1} Z$.
 
 \end{document}
