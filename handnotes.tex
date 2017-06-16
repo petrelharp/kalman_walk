@@ -103,7 +103,8 @@ biologists who study convergent versus parallel evolution, homology, and analogy
 
 \section*{Gene Networks as Linear Dynamical Systems}
 
-  Organisms' phenotypes are constructred by gene by gene by environment interactions. Here we simply define the phenotype to be the organismal temporal molecular dynamics directly under natural selection. The \emph{what}, \emph{when}, and \emph{where}, of an organism's molecules that are physiologically or otherwise relevant for survival. Thus we say that some function $\phi(t)$ is a phenotype where, 
+  Organisms' phenotypes are constructred by gene by gene by environment interactions. Here we simply define the phenotype to be the organismal temporal molecular dynamics directly under natural selection. The \emph{what}, \emph{when}, and \emph{where}, of an organism's molecules that are physiologically or otherwise relevant for survival. 
+  \jss{  Thus we say that some function $\phi(t)$ is a phenotype where, 
   \begin{align}
     \phi(t) = \int_{0}^{\infty} h(t) u(t) dt  ,
   \end{align}
@@ -124,6 +125,36 @@ biologists who study convergent versus parallel evolution, homology, and analogy
     \Sigma = \left\{ \begin{array}{ll} \dot{\kappa}(t) &= A \kappa(t) + B u(t) \\ \phi(t) &= C \kappa(t) \end{array} \right.
   \end{align}
   Variables have the same identities as described above and $\kappa(t)$ is a vector of molecule concentrations at time $t$. Therefore the molecular concentrations at a specific time are completely determined by the input and gene by gene interactions. Lastly, a portion and/or combination of these molecules, $\phi(t)$, are ``observed'' by selection (this is in constrast to $\kappa(t)$ -- the \emph{kryptotype} -- as it is ``hidden'' from direct selection).
+}
+
+We will now lay out the model in more general terms.
+Suppose that the \emph{internal state} of the system
+is parameterized by the concentrations of a collection of $n$ molecular species,
+$S_1, \ldots, S_n$,
+and the vector of concentrations at time $t$ we denote $\kappa(t)=(\kappa_1(t),\ldots,\kappa_n(t))$.
+There are also $m$ ``input'' species, whose concentrations are determined
+exogenously to the system,
+and are denoted $u(t) = (u_1(t),\ldots,u_m(t))$,
+and $\ell$ ``output'' species, whose concentrations are denoted
+$\phi(t) = (\phi_1(t),\ldots,\phi_\ell(t))$.
+The output is merely a linear function of the internal state:
+\begin{align*}
+    \phi_i(t) = \sum_j C_{ij} \kappa_i(t).
+\end{align*}
+Since $\phi$ is what natural selection acts on, we refer to it as the \emph{phenotype},
+and sometimes in contrast refer to $\kappa$ as the \emph{kryptotype},
+as it is ``hidden'' from direct selection.
+The rate at which the $i^\text{th}$ species is produced
+is a weighted sum of the concentrations of the other species
+as well as the input:
+\begin{align*}
+    \ddt \kappa_i(t) = \sum_j A_{ij} \kappa_j(t) + \sum_r B_{ir} u_r(t) .
+\end{align*}
+In matrix notation, this is written more concisely as
+\begin{align} \label{eqn:lti_system}
+    \ddt \kappa(t) &= A \kappa(t) + B u(t) \\
+    \phi(t) &= C \kappa(t) .
+\end{align}
 
   \begin{example}[Oscillating Gene Network: Cell Cycle Control]\label{ex:oscillator}
 
