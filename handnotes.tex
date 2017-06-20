@@ -57,9 +57,18 @@ $^{\dagger}$University of Southern California, Los Angeles, California \qquad $^
 I will outline an analytical theory to study the evolution of biological systems such as gene regulatory networks, borrowing insight and tools from control engineering, systems identification, and dynamical systems theory. I will describe a null model of regulatory network evolution by analytically describing the set of all linear gene networks (of any size) that produce identical phenotypes -- and the evolutionary paths connecting them. In the idealized case of a perfectly adapted population, constant selection, and a static environment, we observe neutral evolution as a random walk over the phenotypically- invariant network-space. Under neutral conditions, this model can provide descriptions of expected network size and connectivity under mutation-selection equilibrium, estimate the rate of regulatory rewiring, and the rates at which Dobzhansky-Muller incompatibilities arise in reproductively isolated populations. This analysis provides insight into the mechanisms and parameters important for understanding developmental systems drift, network rewiring, evolvability, epistasis, and speciation, as well as the tenuous connection between network architecture and function. 
 %}
 \end{abstract}
-\section*{Introduction}
 
-  \jss{add stuff on Haldane's Rule and Hybrid Vigor; note: F1s diverge to the 4th power, and F2s quadratically}
+Additional ideas to consider adding:
+\begin{itemize}
+    \item Haldane's rule (easy point in discussion: makes F1s look like F2s)
+    \item add point about F1: quartic and F2: quadratic to results and maybe abstract/discussion
+    \item hybrid vigor (need to do calculation)
+    \item discuss linearity, linearization, and canalization in introduction
+    \item obtain estimates of variation in $A$ from thermodynamic occupancy model
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%
+\section*{Introduction}
 
 Bridging the gulf between an organism's genome and phenotype is a poorly understood and complex molecular machinery. Progress in a suite of biological subdisciplines is stalled by our general lack of understanding of this molecular machinery: with respect to both its function and evolution. There does exist a growing body of experiment and data on the evolutionary histories and molecular characterizations of particular gene regulatory networks \citep{jaeger2011gap, davidson2006gene, israel2016comparative}, as well as thoughtful verbal and conceptual models \citep{true2001developmental, gwagner1, weiss2000phenogenetic, edelman2001degeneracy}. However, as Hardy and Weinberg taught us over a century ago, verbal theories are often insufficient, if not downright misleading \citep{hardy1908mendelian, weinberg1908vererbungsgesetze, servedio2014not}. This is especially pertinent given the staggering complexity and scope of contemporary research programs. This outlook necessitates the advancement of conceptual frameworks of such precision, only mathematics will suffice, as models allow the development of concrete numerical predictions. Previously it has been suggested that any idealized study of evolution is incomplete without a mathematically sufficient description of the genotype, phenotype, and transformation from one to the other \citep{Lewontin1974genetic}.%Here we outline an analytical theory to study the evolution of biological systems, borrowing insight and methods from control engineering, systems identification, and dynamical systems theory. 
 
@@ -345,6 +354,8 @@ In matrix notation, this is written more concisely as
   %%%%%%%%%%%%%%%%%%%%%%%%
   \section*{Intraspecific variation and genetic drift}
 
+  \plr{rework this: we assume optimal phenotype is fixed and population is large but polymorphic and not strictly on the optimum}
+
 First we focus on a simple evolutionary scenario -- \emph{phenotypically invariant evolution}: a large population, perfectly adapted, and in a constant environment. In this circumstance we expect phenotype to be conserved throughout evolutionary time. As such we should only expect the phenotype to change as a consequence of genetic drift (small effective population size), adaptation to new selective and/or environemental pressures. These phenotypic variations should yield distinct signatures. Adaptative changes will change the optimal impulse response function $h(t) \xrightarrow{adaptation} h'(t)$. Genetic drift registers as an increase in the intrapopulation variation in $h(t)$. 
  \jss{added the phenotypic invariance stuff here (above) -- not sure if it should put elsewhere yet}
 
@@ -356,18 +367,40 @@ First we focus on a simple evolutionary scenario -- \emph{phenotypically invaria
   How much variation do we expect to find within a population?
   Is this range limited by available variation or kept in check by selection?
   How fast will a population explore the space of equivalent networks?
+  To answer these questions, we need to know two things:
+  the strength of stabilizing selection on the phenotype,
+  and the amount (and structure) of heritable variation in the genotype.
+  Both are hard to measure, somewhat ambiguous, and have values that may depend strongly on the context.
+  We aim to get order-of-magnitude estimates.
 
-  The amount and structure of 
-  this standing variation is established over long time scales
+  Specifically, we want to know how much the entries of $A$ vary within a population.
+  The coefficient $A_{ij}$ measures how much the rate of net production of $i$ changes
+  per change in concentration of $j$.
+  It is generally thought that regulatory sequence change contributes much more to inter- and intraspecific variation
+  than does coding sequence change affecting molecular structure \citep{schmidt2010vertebrate}.
+  In the context of transcription factor networks this may be affected 
+  not only by the binding strength of $j$ to the promoter region of $i$
+  but also the effects of other transcription factors (e.g., cooperativity)
+  and local chromatin accessibliity \citep{stefflova2013cooperativity}.
+  (Recall that although these are best modeled through nonlinear terms,
+  by linearizing we essentially consider first-order effects.)
+  Furthermore, the mutational target size for variation in $A$ may be much larger than the kilobase or so of a typical promoter sequence.
+  On the other hand, a diverse set of buffering mechanisms are thought to contribute to phenotypic stability
+  in the presence of substantial molecular noise \citep{canalization,buffering},
+  suggesting that substantial variation in the micro-scale dynamics we consider here
+  may be necessary to produce relevant phenotypic effects downstream.
+  \plr{replace "micro-scale" with sthg else or discuss earlier}
+
+  The amount and structure of this standing variation is established over long time scales
   by many factors, including
   mutation-selection balance, 
   shifts in the phenotypic optimum,
-  and/or spatial variation in the optimum \citep{sources_of_standing_var}.
+  and/or spatial variation in the optimum \citep{hansen1996translating}.
   Quantitative genetics models of mutation-selection balance 
-  predict precise levels and structure of standing variation \citep{kimura_mutsel,lande_mutsel},
+  predict precise levels and structure of standing variation \citep{kimura_mutsel,lande_mutsel,lande1981models},
   but it is unclear how well these predictions match reality \citep{johnson_barton}
   and how much they are expected to change over time \citep{arnold_changing_G}.
-  However, recent empirical work allows us to estimate at least the rough magnitude of variation.
+  However, empirical work allows us to estimate at least the rough magnitude of variation.
   XXX FILL IN DETAILS: 
   Mutational scans find this distribution of binding site change per nucleotide change in promoters.
   Intraspecific variation is often in the range of 0.1\%--1\%.
@@ -647,7 +680,7 @@ First we focus on a simple evolutionary scenario -- \emph{phenotypically invaria
   Khatari et al, Tulchinsky et al, and Porter et al, all study hybrid incompatibility from a transcription factor/binding site interaction perspective, not from an overal network architecture perspective. Palmer and Feldman only see hybrid incompatibility in constant environments if the parental populations are relatively poorly adapted initially. Otherwise hybrids between two allopatric populations have fairly high fitnesses.  
 
 \section*{Acknowledgements}
-We would like to thank Sergey Nuzhdin, Erik Lundgren, and Hossein Asgharian for valuable discussion.
+We would like to thank Sergey Nuzhdin, Stevan Arnold, Erik Lundgren, and Hossein Asgharian for valuable discussion.
 
 \bibliographystyle{plainnat}
 \bibliography{krefs}
@@ -661,7 +694,10 @@ We would like to thank Sergey Nuzhdin, Erik Lundgren, and Hossein Asgharian for 
 
 For completeness, we provide a brief argument of how the population mean
 moves under genetic drift
-with a quantitative genetics model.
+with a quantitative genetics model,
+as in \citet{lande1981models} or \citet{hansen1996translating}.
+These ignore details of the underlying genetic basis,
+but developing a more accurate model is beyond the scope of this paper.
 
 \paragraph{Completing the square}
 First note that 
@@ -713,8 +749,6 @@ so that $\epsilon$ is of order $(\sigma/\sqrt{N}) \sqrt{1+\sigma^2/s}$.
 
 
 \section{Differentiating the fitness function}
-
-\plr{In case this is useful...}
 
 Suppose that $\rho(t) \ge 0$ is a weighting function on $[0,\infty)$
 so that fitness is a function of $L^2(\rho)$ distance of the impulse response from optimal.
@@ -851,5 +885,7 @@ then a population at $A_0+Z$ experiences a restoring force of strength
 $(I + \sigma^2 H^{-1})^{-1} Z$ (treating $Z$ as a vector and $H$ as an operator on these).
 If $\sigma^2$ is small compared to $H^{-1}$
 then this is approximately $-\sigma^2 H^{-1} Z$.
+This suggests that the population mean follows an Ornstein-Uhlenbeck process,
+as described (in different terms) in \citet{hansen1996translating}.
 
 \end{document}

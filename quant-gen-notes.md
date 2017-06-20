@@ -46,3 +46,8 @@ is probably unreasonable.
 
 - jones2003stability (Jones, Arnold, and Burger) look at stability of the G matrix with simulations.
     - and similarly, and jones2014epistasis look at how the mutational architecture G matrix) of traits evolves, with simulation
+
+- lande1981models discusses the case of multivariate selection along a neutral direction; including stating that it converges to OU
+    and giving the explicit integrated form of the OU covariance matrix (see eqn 19)
+
+- hansen1996translating does the multivariate version of this (and much more)
