@@ -1,77 +1,144 @@
-\documentclass[9 pt]{article}
+\documentclass{article}
 \usepackage{amsmath, amssymb, color, xcolor, amsthm}
 \usepackage{graphicx, wrapfig, float, caption, dsfont, bbm}
 \usepackage{fullpage}
 \usepackage[backref=page, hidelinks, colorlinks=true, citecolor=blue!60!black!100]{hyperref}
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta, shapes}
 \usepackage{caption, subcaption}
 \usepackage{natbib} % gives us \citet: Author (year) and \citep: (Author; year)
-\usepackage{authblk}
-
-\usepackage{multicol}
-
-\newcommand{\plr}[1]{{\color{blue}\it #1}}
-\newcommand{\jss}[1]{{\color{olive}\it #1}}
-% \newcommand{\ddt}{\frac{d}{dt}}
-\newcommand{\ddt}{\dot}
-\newcommand{\ro}{{ro}}
-\newcommand{\nro}{{\bar{r}o}}
-\newcommand{\rno}{{r\bar{o}}}
-\newcommand{\nrno}{{\bar{r}\bar{o}}}
-\newcommand{\reachable}{\mathcal{R}}
-\newcommand{\unobservable}{\bar{\mathcal{O}}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\E}{\mathbb{E}}
-\renewcommand{\P}{\mathbb{P}}
-\newcommand{\pda}{\frac{\partial}{\partial A_{ij}}}
-\newcommand{\ind}{\mathds{1}}
-
-\newcommand{\calA}{\mathcal{A}}
-\newcommand{\diag}{\text{diag}}
-\newcommand{\1}{\mathbbm{1}}
-
-\DeclareMathOperator{\spn}{span}
-
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
-\newtheorem{definition}{Definition}
-\newtheorem{example}{Example}
 
 \begin{document}
 
-  \section{Notes on Empirical \emph{Cis}-Regulatory Module Variation and Evolution}
+\section{Nonlinearity in TF networks}
 
-    \begin{itemize}
-      \item \citet{gertz2009analysis} study synthetic yeast promoters. The synthetic promoters contained a random combination of 3-4 TFBSs. Weak MIG1 TFBS has a 6.7-9.0 fold lower affinity than the strong TFBS. Weak sites in concert with a strong site act as a strong site too. 
+A common model is to use the Hill equation:
+if $j$ upregulates $i$ then
+\begin{align}
+    \dot x_i(t) = \beta \frac{x_j(t)^n}{ K_A^n + x_j(t)^n}
+\end{align}
+or if it downregulates,
+\begin{align}
+    \dot x_i(t) = \beta (1-\frac{x_j(t)^n}{ K_A^n + x_j(t)^n} ).
+\end{align}
+Citation: Alon's book? gertz2008analysis?
 
-      \item \citet{frankel2011morphological} study the loss of thrichome phenotype in D. sechellia (vs. melanogaster). Identify 6 embryonic enhancers (5 kb) that are diverged. Examine in detail the E enhancer -- two subunits of it, each ~1 kb long, E3 and E6. Say that E3 is conserved, while the E6 region has evolved. Comparing the E6 sechellia sequence with five closely related species, all containing a high density of thrichomes (in contrast to sechellia), they identify 13 substitutions and 1 single nucleotide deletion. There was no polymorphism within D. sechellia within the E6 region (9 sequences). Estimates these substitutions occured at an accelerated rate -- 4.8 times the flanking regions. 
+\section{Notes on Empirical \emph{Cis}-Regulatory Module Variation and Evolution}
 
-        Introduced all sechellia substitutions into melanogaster (and the reverse!). Found that expression changed in the directions as expected in the transgenic lines -- but did not completely rescue phenotypes -- there are likely other regulatory elements involved. 
+Generally, there are three sorts of data on variation:
+\begin{enumerate}
+    \item how binding site occupancy varies in a population
+    \item how promoter SNPs affect expression (or phenotype) by swapping them out
+    \item how cis-eQTL affect expression by population scans, esp in heterozygotes
+\end{enumerate}
 
-        The temporal expression delay in sechellia could not be captured by a single mutation -- only a combination of the known differences. At least 5 substituitons are necessary. Each cluster of mutations (2-5) reduced trichome expression by 4.6-33.5\%. 
 
-        ``none of the D. melanogaster to D. sechellia mutations led to a significant increase in trichome number, and none of the reciprocal mutations led to a decrease in trichome number''
+\emph{Orphaned, unconvincing paragraph:}
+  In \textit{Drosophila}, \citet{frankel2011morphological} 
+  found that clusters of 2--5 mutations in enhancers
+  reduced expression \plr{of what?} by 4.6--33.5\%,
+  and \citet{rebeiz2009stepwise} found that around five cis-regulatory SNPs
+  cause differences of 8--40\% of \textit{ebony} expression differences
+  between light and dark lines;
+  while in human (ENCODE) data, \citet{shi2016evaluating} found that shifts in binding site motif score
+  of 5\%--10\% are responsible for differential occupancy.
+  These latter observations suggest that changes of several base pairs
+  can shift occupancy and/or expression by tens of percent;
+  if a typical promoter contains 100 bases relevant for binding of a particular transcription factor,
+  in which region 1\% of the population contains a SNP,
+  this suggests population expression variance due to such factors of around 0.1--1\%.
 
-      \item \citet{rebeiz2009stepwise} look at adaptive melaninism in D. melanogaster. 
-        Find a minimum of 5 mutations differentiate regulation of dark from light lines. These account for 8 to 40\% of the overal difference in ebony activity. 
+\begin{itemize}
 
-        Lots of standing variation preceding phenotype divergence: 3 of the identified causative substitutions in one region were found at high frequencies in both Ugandan light lines and in a Kenyan light population. Two of the substitutions were found in all 5 populations sampled. The third subst was found in 4 of the 5 populations. Dark specific substitutions were not observed in other lines; suggesting they were rare variants or evolved de novo. 
+    \item \citet{kasowski2010variation} use ChIP-seq to survey variation in binding sites between 10 human lymphoblastoid cell lines:
+        RNA PolII (not a TF like we are considering) and NFkB (p65, a regulator of immune responses, which does have binding motifs);
+        individuals differed at 25\% and 7.5\% of the sites respectively. 
+        Also found 32\% binding sites having significant difference in PolII occupancy between human/chimp
+        \begin{itemize}
+            \item Differences explained by SNPs, structural variants, and other things (like \citet{shi2016evaluating})
+            \item ``Significant differences in binding'' have SD of +/- 1 log2 difference 
+            \item Weak connection of binding differences to expression differences:
+                ``We examined the effect of binding variation on gene expression by generation of deep RNASeq
+                data from each cell line (9) and comparison with binding data (Fig. 3A, Fig. S9A). A
+                significant correlation was observed (Spearman correlation coefficients of 0.475 and 0.461 for
+                NFκB and PolII, respectively) (Fig. 3B, Fig. S9B, Table S9), suggesting an influence of binding
+                differences on mRNA abundance''
+            \item "Since humans and chimpanzees exhibit 5–10\% differences in gene expression (15)"
+        \end{itemize}
 
-        Estimate that standing variation in the enhancer happened first, then the fixation of the de novo mutations.
+    \item \citet{schmidt2010fivevertebrate} use ChIP-seq to compare TF occupancy (for CEBPA and HNF4A) between five vertebrates (human, mouse, dog, opossum, and chicken), 
+        and find (a) conservation of binding motif; (b) little sharing of actual binding sites; and (c) a fair amount of compensatory changes
+        \begin{itemize}
 
-        ``We have shown that the adaptive evolution of melanism in a Ugandan population ofD. melanogaster occurred through multiple, stepwise substitutions in one enhancer of the ebony locus. We suggest that this genetic path of enhancer evolution with multiple substitutions of varying effect sizes, which originate from both standing variation and new mutations and combine to create an allele of large effect, may be a general feature of enhancer evolution in populations. This view is consistent with studies that have demonstrated that substitutions at multi le sites within enhancers are responsible for evolutionary changes in gene expression''
+            \item "Among the binding events lost in one lineage, only half are recovered by another binding event within 10 kilobases"
 
-      \item \citet{verlaan2009targeted} study expression variation within humans. 
-        cis-regulatory variation is known to account for 2-6\% expression variation in human blood-derived primary cells. 
+            \item "CEBPA and HNF4A were selected as representative transcription factors within the liver-specific regulatory
+                network because both are conserved and constitutively expressed with well-characterized target genes (10, 11). In addition,
+                they represent distinct TF classes, and the DNA binding domains of each factor's orthologs are nearly identical among the study species "
 
-      \item \citet{yan2002allelic} studied CEPH families (human). Fraction of individual variation in heterozygous individuals was 3 to 30\% (differentially expressed alleles). Expressed transcript ratio varied from 1.3 : 1.0 (FBN1) to 4.3 : 1.0 (p73). Many of these expression differences were Mendellian. 
+            \item "About 250 direct functional HNF4A target genes have recently been identified"
 
-      \item \citep{lappalainen2013transcriptome} mapped cis-QTLs to transcriptome variation in human samples from CEPH, FIN, GBR, TSI and the 1000 genome project. Population differences explain 3\% of the variation. Identified 263-4,379 genes with differential expression (or transcript ratios) between population pairs. 
+            \item both have consensus motifs of about 5 of 10 bp
 
-        See figure 1b. 
+            \item "only between 6-8 \% of the genomic regions occupied by CEBPA in opossum liver align with CEBPA binding events also found in
+                mouse, dog, and/or human liver. This divergence was even greater in chicken, which shared only 2\% of CEBPA binding with human"
+        \end{itemize}
 
-    \end{itemize}
+    \item \citet{shi2016evaluating} looked at variation in TF binding in heterozygotes in ENCODE data
+        and found that differential binding is often explained by SNPs in the TF's motif (19.3\%) or potential partner TFs' motifs (9.4\%);
+        variation in chromatin accessibility; or histone modifications (NOT just SNPs).
+        \begin{itemize}
+            \item shifts of motif score of 0.05--0.1 were responsible for differential occupancy
+            \item "While altered canonical TFBSs for the ChIP'd TFs were frequently observed (19.3\%), most ASB SNVs did not overlap with the primary TF motif."
+        \end{itemize}
+
+    \item \citet{stefflova2013cooperativity} In five Mus (sub-)species, found that
+        ``Although individual mutations in bound sequence motifs can influence TF binding, most binding differences occur in the absence of nearby sequence variations.''
+        \begin{itemize}
+            \item "Clustered TF binding appears to result in large part
+                from indirect cooperativity to open chromatin regions, as opposed
+                to direct TF-TF protein interactions (Kaplan et al., 2011; Miller
+                and Widom, 2003; Mirny, 2010). For binding sites within a
+                nucleosome-length distance, each TF contributes partially to a
+                competitive displacement of specific nucleosomes by indirect
+                collaboration with other TFs, mutually aiding each others’ binding
+                to DNA. TFs within a cluster can have different regulatory roles
+                depending on their motif strength and ability to compete with
+                nucleosomes (Zinzen et al., 2009)." 
+        \end{itemize}
+
+    \item \citet{tugrul2015dynamics} do theory on the gain and loss of TFBS.  
+        Conclusion: more than 10bp unlikely; de novo very hard but made possible ad the scale of eukaryotic species divergence by pre-existing relics, cooperativity, etc.
+        Euk TFBS typically 6--12bp.
+
+  \item \citet{gertz2009analysis} study synthetic yeast promoters. The synthetic promoters contained a random combination of 3-4 TFBSs. Weak MIG1 TFBS has a 6.7-9.0 fold lower affinity than the strong TFBS. Weak sites in concert with a strong site act as a strong site too. 
+
+
+  \item \citet{frankel2011morphological} study the loss of thrichome phenotype in D. sechellia (vs. melanogaster). Identify 6 embryonic enhancers (5 kb) that are diverged. Examine in detail the E enhancer -- two subunits of it, each ~1 kb long, E3 and E6. Say that E3 is conserved, while the E6 region has evolved. Comparing the E6 sechellia sequence with five closely related species, all containing a high density of thrichomes (in contrast to sechellia), they identify 13 substitutions and 1 single nucleotide deletion. There was no polymorphism within D. sechellia within the E6 region (9 sequences). Estimates these substitutions occured at an accelerated rate -- 4.8 times the flanking regions. 
+
+    Introduced all sechellia substitutions into melanogaster (and the reverse!). Found that expression changed in the directions as expected in the transgenic lines -- but did not completely rescue phenotypes -- there are likely other regulatory elements involved. 
+
+    The temporal expression delay in sechellia could not be captured by a single mutation -- only a combination of the known differences. At least 5 substituitons are necessary. Each cluster of mutations (2-5) reduced trichome expression by 4.6-33.5\%. 
+
+    ``none of the D. melanogaster to D. sechellia mutations led to a significant increase in trichome number, and none of the reciprocal mutations led to a decrease in trichome number''
+
+  \item \citet{rebeiz2009stepwise} look at adaptive melaninism in D. melanogaster. 
+      Find a minimum of 5 mutations differentiate regulation of dark from light lines. These account for 8 to 40\% of the overal difference in ebony activity.  \emph{(But, this is adaptive -- different selection in different places.)}
+
+    Lots of standing variation preceding phenotype divergence: 3 of the identified causative substitutions in one region were found at high frequencies in both Ugandan light lines and in a Kenyan light population. Two of the substitutions were found in all 5 populations sampled. The third subst was found in 4 of the 5 populations. Dark specific substitutions were not observed in other lines; suggesting they were rare variants or evolved de novo. 
+
+    Estimate that standing variation in the enhancer happened first, then the fixation of the de novo mutations.
+
+    ``We have shown that the adaptive evolution of melanism in a Ugandan population ofD. melanogaster occurred through multiple, stepwise substitutions in one enhancer of the ebony locus. We suggest that this genetic path of enhancer evolution with multiple substitutions of varying effect sizes, which originate from both standing variation and new mutations and combine to create an allele of large effect, may be a general feature of enhancer evolution in populations. This view is consistent with studies that have demonstrated that substitutions at multi le sites within enhancers are responsible for evolutionary changes in gene expression''
+
+  \item \citet{verlaan2009targeted} study expression variation within humans. 
+    cis-regulatory variation is known to account for 2-6\% expression variation in human blood-derived primary cells. 
+
+  \item \citet{yan2002allelic} studied CEPH families (human). Fraction of individual variation in heterozygous individuals was 3 to 30\% (differentially expressed alleles). Expressed transcript ratio varied from 1.3 : 1.0 (FBN1) to 4.3 : 1.0 (p73). Many of these expression differences were Mendellian. 
+
+  \item \citep{lappalainen2013transcriptome} mapped cis-QTLs to transcriptome variation in human samples from CEPH, FIN, GBR, TSI and the 1000 genome project. Population differences explain 3\% of the variation. Identified 263-4,379 genes with differential expression (or transcript ratios) between population pairs. 
+
+    See figure 1b. 
+
+\end{itemize}
 
 \bibliographystyle{plainnat}
 \bibliography{krefs}
