@@ -566,7 +566,7 @@ First we focus on a simple evolutionary scenario -- \emph{phenotypically invaria
       The fitness of an organism can be computed by comparing its impulse response with the optimal response,
       \plr{this is either zero or infinite.  apply a weighting function (see appendix)?}
       \begin{align}
-        \mathcal{F}\left( \widehat{\phi}(t) \right) = \exp \left\{- \int_{0}^{\infty} \left\lVert \phi(t) - \widehat{\phi}(t) \right\rVert dt \right\}  .
+        \mathcal{F}\left( \widehat{\phi}(t) \right) = \exp \left\{- \frac{1}{\sigma} \int_{0}^{\infty} \left\lVert \phi(t) - \widehat{\phi}(t) \right\rVert^{2} dt  \right\}  .
       \end{align}
       Therefore a hybrid's fitness can be computed by comparing its impulse response with that of its parents.
 

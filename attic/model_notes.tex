@@ -257,14 +257,22 @@ In this scenario, once a large population reaches a phenotype of optimal fitness
       \end{array} \right.
     \end{align*}
 \newpage
+      \begin{align*}
+       \phi(t) = \widehat\phi(t) = \sin(t) + \cos(t)
+      \end{align*}
+      \begin{align*}
+        \dot{\kappa}(t) &= \begin{bmatrix} a_{1,1} & a_{1,2} \\ a_{2,1} & a_{2,2} \end{bmatrix} \kappa(t) + \begin{bmatrix} b_{1} \\ b_{2} \end{bmatrix} u(t) \\ \\
+          \phi(t) &= \begin{bmatrix} c_{1} & c_{2} \end{bmatrix} \kappa(t) 
+      \end{align*}
+
        \begin{align*}
          \Sigma &= \left\{ \begin{array}{ll}
            \dot{\kappa}(t) &= \left[ \begin{array}{cc} 0 & 1 \\ -1 & 0 \end{array} \right] \kappa(t) + \left[ \begin{array}{c} 1 \\ 1 \end{array}\right] u(t) \\
              \phi(t) &= \left[ \begin{array}{cc} 1 & 0 \end{array} \right] \kappa(t)
          \end{array} \right. \\ \\
          \widehat{\Sigma} &= \left\{ \begin{array}{ll}
-           \dot{\kappa}(t) &= \left[ \begin{array}{cc} 2 & -1 \\ 5 & -2 \end{array} \right] \kappa(t) + \left[ \begin{array}{c} 1 \\ 1 \end{array}\right] u(t) \\
-             \phi(t) &= \left[ \begin{array}{cc} 1 & 0 \end{array} \right] \kappa(t)
+           \dot{\widehat{\kappa}}(t) &= \left[ \begin{array}{cc} 2 & -1 \\ 5 & -2 \end{array} \right] \widehat{\kappa}(t) + \left[ \begin{array}{c} 1 \\ 1 \end{array}\right] u(t) \\
+             \widehat{\phi}(t) &= \left[ \begin{array}{cc} 1 & 0 \end{array} \right] \widehat{\kappa}(t)
          \end{array} \right. \\ \\
          \phi(t) &= \sin(t) + \cos(t)
         % \Sigma(2) :&= \left\{ \begin{array}{ll}
@@ -329,25 +337,26 @@ In this scenario, once a large population reaches a phenotype of optimal fitness
     \centering
 \begin{tikzpicture}
 \begin{scope}[every node/.style={circle,thick,draw}]
-  \node (A) at (0,0) {$x_{1}$};
-    \node[dashed] (B) at (4,0) {$x_{2}$};
-    \node[shape=rectangle] (U) at (2,2) {input};
-    \node[shape=rectangle] (y) at (2,-2) {output};
+  \node (A) at (0,0) {$\kappa_{1}$};
+    \node[dashed] (B) at (4,0) {$\kappa_{2}$};
+   % \node[shape=rectangle] (U) at (2,2) {input};
+   % \node[shape=rectangle] (y) at (2,-2) {output};
 \end{scope}
 
 \begin{scope}[>={Stealth[black]},
               every node/.style={fill=white,circle},
               every edge/.style={draw=black, thick}]
-    \path [->, sloped] (A) edge[bend left] node {\tiny $2 \tau + (\tau-1)^{-1}$} (B);
-    \path [->, sloped] (B) edge[bend left] node {\tiny $-(\tau-1)^{-1}$} (A); 
-    \path[->] (U) edge[dashed] node {\tiny $1$} (A);
-    \path[->] (U) edge[dashed] node {\tiny $1$} (B);
-    \path[->] (A) edge[dashed, bend right] node {$1$} (y);
+    \path [->, sloped] (A) edge[bend left] node {$a_{2,1}$} (B);
+    \path [->, sloped] (B) edge[bend left] node {$a_{1,2}$} (A); 
+   % \path[->] (U) edge[dashed] node {$b_{1}$} (A);
+   % \path[->] (U) edge[dashed] node {$b_{2}$} (B);
+   % \path[->] (A) edge[dashed, bend right] node {$c_{1}$} (y);
+   % \path[->] (B) edge[dashed, bend left] node {$c_{2}$} (y);
 \end{scope}
 \begin{scope}[>={Stealth[black]},
               every edge/.style={draw=black, thick}]
-    \path [->] (A) edge[loop left] node {\tiny $1 + (\tau-1)^{-1}$} (A);
-    \path [->] (B) edge[loop right] node {\tiny $-1 - (\tau-1)^{-1}$} (B);
+    \path [->] (A) edge[loop left] node {$a_{1,1}$} (A);
+    \path [->] (B) edge[loop right] node {$a_{2,2}$} (B);
 \end{scope}
 
 \end{tikzpicture}
