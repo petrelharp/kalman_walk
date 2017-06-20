@@ -249,13 +249,6 @@ In this scenario, once a large population reaches a phenotype of optimal fitness
      \subsection{Conclusions and Future work}
 
      \section{Notes for May presentation}
-       \begin{align*}
-         \Sigma(0) := \left\{ \begin{array}{ll}
-         \dot{x} &= \left[ \begin{array}{cc} 0 & 1 \\ -1 & 0 \end{array} \right] x + \left[ \begin{array}{c} 1 \\ 1 \end{array}\right] u \\
-           y &= \left[ \begin{array}{cc} 1 & 0 \end{array} \right] x
-         \end{array} \right.
-    \end{align*}
-
     \begin{align*}
       \Sigma(0) := \left\{ \begin{array}{ll}
       \dot{x}_{1} &= +x_{2} + u \\
@@ -263,17 +256,22 @@ In this scenario, once a large population reaches a phenotype of optimal fitness
       y &= x_{1}
       \end{array} \right.
     \end{align*}
-
+\newpage
        \begin{align*}
-         \Sigma(2) :&= \left\{ \begin{array}{ll}
-         \dot{x} &= \left[ \begin{array}{cc} 2 & -1 \\ 5 & -2 \end{array} \right] x + \left[ \begin{array}{c} 1 \\ 1 \end{array}\right] u \\
-           y &= \left[ \begin{array}{cc} 1 & 0 \end{array} \right] x
+         \Sigma &= \left\{ \begin{array}{ll}
+           \dot{\kappa}(t) &= \left[ \begin{array}{cc} 0 & 1 \\ -1 & 0 \end{array} \right] \kappa(t) + \left[ \begin{array}{c} 1 \\ 1 \end{array}\right] u(t) \\
+             \phi(t) &= \left[ \begin{array}{cc} 1 & 0 \end{array} \right] \kappa(t)
          \end{array} \right. \\ \\
-         \Sigma(2) :&= \left\{ \begin{array}{ll}
-        \dot{x}_{1} &= 2 x_{1} + - x_{2} + u \\
-        \dot{x}_{2} &= 5 x_{1} + -2 x_{2} + u \\
-      y &= x_{1}
-      \end{array} \right.
+         \widehat{\Sigma} &= \left\{ \begin{array}{ll}
+           \dot{\kappa}(t) &= \left[ \begin{array}{cc} 2 & -1 \\ 5 & -2 \end{array} \right] \kappa(t) + \left[ \begin{array}{c} 1 \\ 1 \end{array}\right] u(t) \\
+             \phi(t) &= \left[ \begin{array}{cc} 1 & 0 \end{array} \right] \kappa(t)
+         \end{array} \right. \\ \\
+         \phi(t) &= \sin(t) + \cos(t)
+        % \Sigma(2) :&= \left\{ \begin{array}{ll}
+       % \dot{x}_{1} &= 2 x_{1} + - x_{2} + u \\
+       % \dot{x}_{2} &= 5 x_{1} + -2 x_{2} + u \\
+     % y &= x_{1}
+     % \end{array} \right.
     \end{align*}
     \begin{align*}
       \mathcal{L}(\Sigma(\tau)) := H(z, \tau) = C \left(zI - A(\tau) \right)^{-1} B
