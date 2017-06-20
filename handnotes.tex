@@ -1,4 +1,4 @@
-\documentclass[9 pt]{article}
+\documentclass{article}
 \usepackage{amsmath, amssymb, color, xcolor}
 \usepackage{graphicx, wrapfig, float, caption, dsfont, bbm}
 \usepackage{fullpage}
@@ -367,13 +367,14 @@ First we focus on a simple evolutionary scenario -- \emph{phenotypically invaria
   How much variation do we expect to find within a population?
   Is this range limited by available variation or kept in check by selection?
   How fast will a population explore the space of equivalent networks?
-  To answer these questions, we need to know two things:
+  To answer these questions, we need to know two things known at best only roughly \citep{felsenstein1988phylogenies} --
   the strength of stabilizing selection on the phenotype,
   and the amount (and structure) of heritable variation in the genotype.
-  Both are hard to measure, somewhat ambiguous, and have values that may depend strongly on the context.
   We aim to get order-of-magnitude estimates.
 
-  Specifically, we want to know how much the entries of $A$ vary within a population.
+  \plr{amount of heritable variation}
+  We quantify (roughly) the amount of heritable variation
+  by $\sigma^2$, the genetic variance present in a population in a typical entry of $A$.
   The coefficient $A_{ij}$ measures how much the rate of net production of $i$ changes
   per change in concentration of $j$.
   It is generally thought that regulatory sequence change contributes much more to inter- and intraspecific variation
@@ -382,15 +383,34 @@ First we focus on a simple evolutionary scenario -- \emph{phenotypically invaria
   not only by the binding strength of $j$ to the promoter region of $i$
   but also the effects of other transcription factors (e.g., cooperativity)
   and local chromatin accessibliity \citep{stefflova2013cooperativity}.
+  For this reason, 
+  the mutational target size for variation in $A_{ij}$ may be much larger than the dozens of base pairs
+  typically implicated in the handful of binding sites for transcription factor $j$ of a typical promoter region.
   (Recall that although these are best modeled through nonlinear terms,
   by linearizing we essentially consider first-order effects.)
-  Furthermore, the mutational target size for variation in $A$ may be much larger than the kilobase or so of a typical promoter sequence.
   On the other hand, a diverse set of buffering mechanisms are thought to contribute to phenotypic stability
   in the presence of substantial molecular noise \citep{canalization,buffering},
   suggesting that substantial variation in the micro-scale dynamics we consider here
   may be necessary to produce relevant phenotypic effects downstream.
   \plr{replace "micro-scale" with sthg else or discuss earlier}
+  Differences in $A_{ij}$ due to a sequence change are hard to measure 
+  -- the closest available data we could find either related to variation in transcription factor binding site occupancy
+  or in expression levels (e.g., cis-eQTL).
+  The former may be an overestimate, 
+  since it does not capture buffering effects (if for instance only one site of many needs be occupied for transcription to begin)
+  and the latter probably measures changes in steady-state concentration (our $x_i$) rather than the rate of change.
+  \citet{kasowski2010variation} found differential occupancy in 7.5\%
+  of binding sites of a transcription factor (p65) between human individuals.
+  \citet{verlaan2009targeted} showed that cis-regulatory variation
+  accounts for around 2--6\% of expression variation in human blood-derived primary cells,
+  while \citep{lappalainen2013transcriptome} found that human population variation 
+  explained about 3\% of expression variation.
+  \plr{Get some data from at least one other species in here!}
+  Taken together, this suggests that variation in the entries of $A$
+  may be on the scale of 1\% between individuals of a population --
+  doubtless varying substantially between species and between genes.
 
+  \plr{merge this above}
   The amount and structure of this standing variation is established over long time scales
   by many factors, including
   mutation-selection balance, 
@@ -401,23 +421,35 @@ First we focus on a simple evolutionary scenario -- \emph{phenotypically invaria
   but it is unclear how well these predictions match reality \citep{johnson_barton}
   and how much they are expected to change over time \citep{arnold_changing_G}.
   However, empirical work allows us to estimate at least the rough magnitude of variation.
-  XXX FILL IN DETAILS: 
-  Mutational scans find this distribution of binding site change per nucleotide change in promoters.
-  Intraspecific variation is often in the range of 0.1\%--1\%.
-  This suggests typical regulatory binding strengths within a population might vary by up to roughly X\%.
-  But, does it?
-  \citet{maria_and_sergey} (others?) found evidence that large-effect regulatory mutations are weakly selected against in Drosophila,
-  which suggests that (a) the observed range of variation is somewhat less than this,
-  and (b) the strength of selection on phenotype is sufficient to weakly constrain this variation.
 
-  This suggests that within a population, transcription factor binding strengths 
-  -- the entries of $A$ --
-  vary by around X\%, at least for networks whose function is strongly constrained.
+  \plr{strength of selection}
+  It seems certain that selection is not so strong that intrapopulation variation
+  is strongly deleterious,
+  so that if $u$ is the typical scale on which selection acts
+  -- e.g., a phenotype that differs from the optimum by $x$ has fitness of $\exp(-x^2/2u^2)$ --
+  then $u > \sigma$.
+  However,
+  a range of studies \plr{find them} have found evidence for weak stabilizing selection
+  on regulatory SNPs and cis-eQTL.
+  For instance, 
+  \citet{maria_and_sergey} (others?) found evidence that large-effect regulatory mutations are weakly selected against in Drosophila.
+  This suggests that 
+  the strength of selection on phenotype is sufficient to weakly constrain regulatory variation,
+  so that perhaps $\sigma$ and $u$ are relatively close.
+  This is as would be expected if available variation is held in check by mutation--selection balance
+  rather than genetic drift.
+  A conservative estimate would be that $u = 5 \sigma$;
+  taking $\sigma=.01$ as above, this suggests that changes in phenotype of 5\% are sufficient
+  to effect a noticable drop in fitness.
+  \plr{BUT $\sigma$ IS VARIATION IN $A$ NOT PHENOTYPE}
+
+  We have guessed that within a population the entries of $A$
+  vary by a factor of $\sigma=0.01$, at least for networks whose function is strongly constrained.
   Subsequent generations for the most part resample from this diversity,
   so in a population of effective size $N_e$,
   simply by the variance of the mean of a random sample,
   the population mean binding strengths
-  will move a few multiples of $X/\sqrt{N_e}\%$ per generation \citep{lande_drift}.
+  will move a few multiples of $\sigma/\sqrt{N_e}\%$ per generation \citep{lande_drift}.
   (This could be taken as a definition of $N_e$.)
   Selection will tend to push this mean towards the optimal set of networks \citep{ou_process},
   but mean movement parallel to the optimal set (that leaves the phenotype invariant) is unconstrained
@@ -676,7 +708,7 @@ First we focus on a simple evolutionary scenario -- \emph{phenotypically invaria
 
   \jss{literature comparison:}
 
-  Over the last several years, several different computational approaches have been applied to study reproductive incompatibility and speciation. \citet{tulchinsky } simulated the evolution of a transcription factor and its binding site using a thermodynamic model. Their simulations suggest that the language by which a transcription factor recognizes its binding site can change, and potentially lead to hybird incomaptibility when allopatric populations employ divergent readout languages. This study, despite looking at gene regulation, does not analyze overall gene network architecture -- as we do here -- it only looks at the expression level of a single gene. Furthermore, they report reproducitve isolation primarily following direcitonal selection for a change in expression levels in each allopatric population; the evidecne for reproductive isolation following balancing selection is much weaker. Johnson and Porter 2000 did not observe any hybrid fitness declines under stabilizing selection -- only under directional selection. 
+  Over the last several years, several different computational approaches have been applied to study reproductive incompatibility and speciation. \citet{tulchinsky} simulated the evolution of a transcription factor and its binding site using a thermodynamic model. Their simulations suggest that the language by which a transcription factor recognizes its binding site can change, and potentially lead to hybird incomaptibility when allopatric populations employ divergent readout languages. This study, despite looking at gene regulation, does not analyze overall gene network architecture -- as we do here -- it only looks at the expression level of a single gene. Furthermore, they report reproducitve isolation primarily following direcitonal selection for a change in expression levels in each allopatric population; the evidecne for reproductive isolation following balancing selection is much weaker. Johnson and Porter 2000 did not observe any hybrid fitness declines under stabilizing selection -- only under directional selection. 
   Khatari et al, Tulchinsky et al, and Porter et al, all study hybrid incompatibility from a transcription factor/binding site interaction perspective, not from an overal network architecture perspective. Palmer and Feldman only see hybrid incompatibility in constant environments if the parental populations are relatively poorly adapted initially. Otherwise hybrids between two allopatric populations have fairly high fitnesses.  
 
 \section*{Acknowledgements}

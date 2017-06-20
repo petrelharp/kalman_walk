@@ -1,4 +1,4 @@
-\documentclass[9 pt]{article}
+\documentclass{article}
 \usepackage{amsmath, amssymb, color, xcolor, amsthm}
 \usepackage{graphicx, wrapfig, float, caption, dsfont, bbm}
 \usepackage{fullpage}
@@ -23,6 +23,29 @@ Citation: Alon's book? gertz2008analysis?
 
 \section{Notes on Empirical \emph{Cis}-Regulatory Module Variation and Evolution}
 
+Generally, there are three sorts of data on variation:
+\begin{enumerate}
+    \item how binding site occupancy varies in a population
+    \item how promoter SNPs affect expression (or phenotype) by swapping them out
+    \item how cis-eQTL affect expression by population scans, esp in heterozygotes
+\end{enumerate}
+
+
+\emph{Orphaned, unconvincing paragraph:}
+  In \textit{Drosophila}, \citet{frankel2011morphological} 
+  found that clusters of 2--5 mutations in enhancers
+  reduced expression \plr{of what?} by 4.6--33.5\%,
+  and \citet{rebeiz2009stepwise} found that around five cis-regulatory SNPs
+  cause differences of 8--40\% of \textit{ebony} expression differences
+  between light and dark lines;
+  while in human (ENCODE) data, \citet{shi2016evaluating} found that shifts in binding site motif score
+  of 5\%--10\% are responsible for differential occupancy.
+  These latter observations suggest that changes of several base pairs
+  can shift occupancy and/or expression by tens of percent;
+  if a typical promoter contains 100 bases relevant for binding of a particular transcription factor,
+  in which region 1\% of the population contains a SNP,
+  this suggests population expression variance due to such factors of around 0.1--1\%.
+
 \begin{itemize}
 
     \item \citet{kasowski2010variation} use ChIP-seq to survey variation in binding sites between 10 human lymphoblastoid cell lines:
@@ -41,7 +64,7 @@ Citation: Alon's book? gertz2008analysis?
             \item "Since humans and chimpanzees exhibit 5–10\% differences in gene expression (15)"
         \end{itemize}
 
-    \item \citet{schmidt2010vertebrate} use ChIP-seq to compare TF occupancy (for CEBPA and HNF4A) between five vertebrates (human, mouse, dog, opossum, and chicken), 
+    \item \citet{schmidt2010fivevertebrate} use ChIP-seq to compare TF occupancy (for CEBPA and HNF4A) between five vertebrates (human, mouse, dog, opossum, and chicken), 
         and find (a) conservation of binding motif; (b) little sharing of actual binding sites; and (c) a fair amount of compensatory changes
         \begin{itemize}
 
@@ -82,7 +105,7 @@ Citation: Alon's book? gertz2008analysis?
                 nucleosomes (Zinzen et al., 2009)." 
         \end{itemize}
 
-    \item \citet{tugrul2015dyanmics} do theory on the gain and loss of TFBS.  
+    \item \citet{tugrul2015dynamics} do theory on the gain and loss of TFBS.  
         Conclusion: more than 10bp unlikely; de novo very hard but made possible ad the scale of eukaryotic species divergence by pre-existing relics, cooperativity, etc.
         Euk TFBS typically 6--12bp.
 
@@ -98,7 +121,7 @@ Citation: Alon's book? gertz2008analysis?
     ``none of the D. melanogaster to D. sechellia mutations led to a significant increase in trichome number, and none of the reciprocal mutations led to a decrease in trichome number''
 
   \item \citet{rebeiz2009stepwise} look at adaptive melaninism in D. melanogaster. 
-    Find a minimum of 5 mutations differentiate regulation of dark from light lines. These account for 8 to 40\% of the overal difference in ebony activity. 
+      Find a minimum of 5 mutations differentiate regulation of dark from light lines. These account for 8 to 40\% of the overal difference in ebony activity.  \emph{(But, this is adaptive -- different selection in different places.)}
 
     Lots of standing variation preceding phenotype divergence: 3 of the identified causative substitutions in one region were found at high frequencies in both Ugandan light lines and in a Kenyan light population. Two of the substitutions were found in all 5 populations sampled. The third subst was found in 4 of the 5 populations. Dark specific substitutions were not observed in other lines; suggesting they were rare variants or evolved de novo. 
 

@@ -14,3 +14,5 @@ clean :
 %.bbl : %.tex
 	-$(PDFLATEX) $<
 	bibtex $*.aux
+
+handnotes.pdf : krefs.bib
