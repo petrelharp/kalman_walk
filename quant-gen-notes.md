@@ -1,5 +1,9 @@
 Papers can be found [here](https://www.bibsonomy.org/user/peter.ralph/quantitative_genetics).
 
+**To-do:**
+
+- read about quadratic selection in Walsh, ch.20 and in [Morrissey & Goodie 2016](http://www.biorxiv.org/content/early/2016/02/22/040618)
+
 Generally, short-term response to selection is fairly robust;
 the dependence of available genetic variation on mutation-selection balance (and associated G matrix) is less clear.
 
