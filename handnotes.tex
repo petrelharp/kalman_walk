@@ -862,11 +862,20 @@ Now, notice that
       \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } .
   \end{aligned}
 \end{equation}
-Therefore, 
-defining
+Therefore, since $e^{\Lambda s}$ is diagonal,
+if we define $X_{ij}(t,Z)$ to be the $(i,j)$th entry of \eqref{eqn:exp_deriv}
+multiplied by $U$ and $U^{-1}$,
 \begin{equation}
-    X_{ij}(t,Z) = \left( U^{-1} Z U \right)_{ij}
-      \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } 
+  \begin{aligned}
+    X_{ij}(t,Z) 
+    &:=
+      \left( \int_0^t e^{\Lambda s} U^{-1} Z U e^{\Lambda (t-s)} ds \right)_{ij} \\
+    &=
+      \int_0^t e^{\lambda_i s} \left( U^{-1} Z U \right)_{ij} e^{\lambda_j (t-s)} ds \\
+    &= 
+      \left( U^{-1} Z U \right)_{ij}
+      \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j }  
+  \end{aligned}
 \end{equation}
 moving the $U$ and $U^{-1}$ outside the integral and integrating we get that
 \begin{equation}
@@ -900,14 +909,14 @@ This implies that
 \begin{equation}
     \begin{aligned}
         D(A_0+\epsilon Z)
-        &\approx \epsilon^2\sum_{ijk\ell} H^{ij,k\ell} Z_{ij} Z_{k\ell} 
+        &\approx \epsilon^2\sum_{ijk\ell} H_{ij,k\ell} Z_{ij} Z_{k\ell} 
     \end{aligned}
 \end{equation}
 and so
 \begin{equation}
     \begin{aligned}
         D(A_0+\epsilon Z)
-        &\approx \epsilon^2\sum_{ijk\ell} H^{ij,k\ell} Z_{ij} Z_{k\ell} 
+        &\approx \epsilon^2\sum_{ijk\ell} H_{ij,k\ell} Z_{ij} Z_{k\ell} 
     \end{aligned}
 \end{equation}
 
