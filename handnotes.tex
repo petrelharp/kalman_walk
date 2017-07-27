@@ -41,7 +41,7 @@
 
 \begin{document}
 
-\section*{The evolution of phenotypically invariant gene networks with implications for speciation, adaptation, and neutral variation}
+\section*{Gene regulatory network drift and speciation occurs rapidly under neutrality}
 {\centering
 Joshua S. Schiffman$^{\dagger}$ \qquad Peter L. Ralph$^{\dagger \ddagger}$ \\
 $^{\dagger}$University of Southern California, Los Angeles, California \qquad $^{\ddagger}$University of Oregon, Eugene, Oregon \\
@@ -54,7 +54,7 @@ $^{\dagger}$University of Southern California, Los Angeles, California \qquad $^
 
 \begin{abstract}
  % \textbf{
-I will outline an analytical theory to study the evolution of biological systems such as gene regulatory networks, borrowing insight and tools from control engineering, systems identification, and dynamical systems theory. I will describe a null model of regulatory network evolution by analytically describing the set of all linear gene networks (of any size) that produce identical phenotypes – and the evolutionary paths connecting them. In the idealized case of a perfectly adapted population, constant selection, and a static environment, we observe neutral evolution as a random walk over the phenotypically invariant network-space. Under neutral conditions, this model can describe the rates at which Dobzhansky-Muller incompatibilities arise in reproductively isolated populations. This analysis provides insight into the mechanisms and parameters important for understanding developmental systems drift, network rewiring, and speciation.
+We introduce an analytical theory to study the evolution of biological systems such as gene regulatory networks, applying insight and tools from control engineering, systems identification, and dynamical systems theory. We describe a null model of regulatory network evolution by analytically describing the set of all linear gene networks (of any size) that produce identical phenotypes – and the evolutionary paths connecting them. Under constant selection and environmental stasis, neutral evolution proceeds as a random walk through phenotypically identical network-space. Under neutral conditions, this model can describe the rates at which Dobzhansky-Muller incompatibilities arise in reproductively isolated populations. This analysis provides insight into the mechanisms and parameters important for understanding developmental systems drift and speciation.
 %}
 \end{abstract}
 
@@ -106,64 +106,76 @@ thinking about externally equivalent systems -- systems that evolution can explo
 as the parameters and structures can be realized biologically. In fact, evolutionary
 biologists who study convergent versus parallel evolution, homology, and analogy are very familiar with such functional symmetries; macroscopically identical phenotypes in even very closely related species can in fact be divergent at the molecular and sequence level \citep{true2001developmental, tsong2006evolution, hare2008sepsid, vierstra2014mouse, stergachis2014conservation, taylor2016diverse, matsui2015regulatory}.
 
-  In this paper we propose a framework to study the evolution of biological systems. We expect wide applicability to this approach (\emph{i.e.} non-neutral evolution), however presently, we focus solely on neutral evolution. To begin, we focus on the evolution of an idealized population. We consider the neutral evolution of a large population, evolving in a static environment. Under these circumstances we expect the population explores the manifold of phenotypically invariant (or symmetric) gene regulatory networks.
-
-  Presently we ask two questions, (1) holding the phenotype and environment constant for evolutionary time, how much do we expect gene network organization to drift, and (2) does this contribute to speciation, primarily via the fixation of reproductive incompatibilities?
+  In this paper we outline a theoretical framework to study the evolution of biological systems. We expect wide applicability to this approach (\emph{i.e.} non-neutral evolution), however presently, we focus solely on neutral evolution, that is where phenotype is conserved over evolutionary time. 
+  
+  We derive an analytical description of the set of all linear biological systems with identical phenotypes -- that is we decribe the set of all gene network architectures that yield identical phenotypes, and show that all biological systems can, in principal, can undergo systems drift. In the neutral case, this set desribes a manifold that evolution explores leaving phenotype invariant with respect to mutation, and predicts that if two populations become reproductively isolated, hybrid incompatibility can occur, despite the absence of adaptation, directional selection, or environmental change. Speciation typically occurs on timesclaes approximately on the order of $N_{e}$ generations, where $N_{e}$ is the effective population size.
 
 \section*{Gene Networks as Linear Dynamical Systems}
 
-  \jss{Organisms' phenotypes are constructred by gene by gene by environment interactions. Here we simply define the phenotype to be the organismal temporal molecular dynamics directly under natural selection. The \emph{what}, \emph{when}, and \emph{where}, of an organism's molecules that are physiologically or otherwise relevant for survival. 
-   Thus we say that some function $\phi(t)$ is a phenotype where, 
+%  \jss{Organisms' phenotypes are constructred by gene by gene by environment interactions. Here we simply define the phenotype to be the organismal temporal molecular dynamics directly under natural selection. The \emph{what}, \emph{when}, and \emph{where}, of an organism's molecules that are physiologically or otherwise relevant for survival. 
+%   Thus we say that some function $\phi(t)$ is a phenotype where, 
+%  \begin{align}
+%    \phi(t) = \int_{0}^{\infty} h(t) u(t) dt  ,
+%  \end{align}
+%  and $h(t)$ is the \emph{impulse response} of the system and $u(t)$ is the \emph{input} function, both functions of time $t$. The input can be interpreted as the environment, as initial conditions, or otherwise, depending on the biological specifics under study. The phenotype is a convolution of both the impulse response and the input, as allowed by our assumption of linearity. 
+%
+%  Essentially the phenotype $\phi(t)$ is a consequence of an organism's specific gene by gene interactions, given by $h(t)$, reacting further with the local environment, given by $u(t)$. 
+%
+%  We describe the impulse response as, 
+%  \begin{align}
+%    h(t) = C e^{A t} B
+%  \end{align}
+%  where $A$ is a gene regulatory network (although this model can be generalized to other biological networks) -- a square matrix, and $B$ filters and translates the input to the system. The form of $B$ determines precisely how the state of the external environment influences the internal gene network. $C$ filters and translates the dynamics of the system and precesily determines the output, that is, what is visible to selection. 
+%
+%  Generally $A$ can be any real $n \times n$ matrix, $B$ any $n \times \ell$, and $C$ any $\ell \times n$ dimensional matrix. Each $i$th row of $A$ describes the \emph{cis}-regulatory module for gene $i$, and each $j$th entry, the specific regulatory influence of gene $j$ on gene $i$. 
+%
+%  Although $\phi(t)$ describes the phenotype given an input, $h(t)$ describes the phenotype subject only to an impulse -- an input present initially and absent immediately thereafter. Typically, a system $\Sigma$, is defined as,
+%  \begin{align}
+%    \Sigma = \left\{ \begin{array}{ll} \dot{\kappa}(t) &= A \kappa(t) + B u(t) \\ \phi(t) &= C \kappa(t) \end{array} \right.
+%  \end{align}
+%  Variables have the same identities as described above and $\kappa(t)$ is a vector of molecule concentrations at time $t$. Therefore the molecular concentrations at a specific time are completely determined by the input and gene by gene interactions. Lastly, a portion and/or combination of these molecules, $\phi(t)$, are ``observed'' by selection (this is in constrast to $\kappa(t)$ -- the \emph{kryptotype} -- as it is ``hidden'' from direct selection).
+%}
+Here we outline a method to model biological systems, such as gene regulatory networks, as linear dynamical systems. We define an organism's phenotype $\phi(t)$ to be the molecular time-dynamics directly relevant to survival. These dynamics are the result of the interconnections of a gene regulatory network (or some other biological system) $A$ (an $n \times n$ matrix) and an environmental input $u(t)$.
+Such a system $\mathcal{S}$, is composed of two equaitons,
   \begin{align}
-    \phi(t) = \int_{0}^{\infty} h(t) u(t) dt  ,
+    \mathcal{S} := \left\{ \begin{array}{ll} \dot{\kappa}(t) &= A \kappa(t) + B u(t) \\ \phi(t) &= C \kappa(t) \end{array} \right.
   \end{align}
-  and $h(t)$ is the \emph{impulse response} of the system and $u(t)$ is the \emph{input} function, both functions of time $t$. The input can be interpreted as the environment, as initial conditions, or otherwise, depending on the biological specifics under study. The phenotype is a convolution of both the impulse response and the input, as allowed by our assumption of linearity. 
-
-  Essentially the phenotype $\phi(t)$ is a consequence of an organism's specific gene by gene interactions, given by $h(t)$, reacting further with the local environment, given by $u(t)$. 
-
-  We describe the impulse response as, 
+ Where the \emph{kryptotype} $\kappa(t)$, is a list of a system's molecular concentrations at time $t$ -- or more generally the systems \emph{internal dynamics}. As some system dynamics may not be visible nor relevant to selection, we distinguish the \emph{kryptotype} (as it is hidden) from the \emph{phenotype} -- which is the systems \emph{external dynamics}.
+  The change in internal molecular concentrations as a function of time $\dot{\kappa}(t)$ is simply a function of the systems current state (or kryptotype), the system architecture $A$ -- such as a gene regulatory network, the environmental input $u(t)$, and $B$ (an $n \times l$ matrix) -- how the system processes its environment. $C$ (an $l \times n$ matrix) filters the dynamics relevant to survival.
+  Thus the phenotype is simply a convolution of the system organization and the environment, 
   \begin{align}
-    h(t) = C e^{A t} B
+    \phi(t) = \int_{0}^{t} C e^{A t} B u(t) dt ,
   \end{align}
-  where $A$ is a gene regulatory network (although this model can be generalized to other biological networks) -- a square matrix, and $B$ filters and translates the input to the system. The form of $B$ determines precisely how the state of the external environment influences the internal gene network. $C$ filters and translates the dynamics of the system and precesily determines the output, that is, what is visible to selection. 
+  where we sometimes refer to $h(t) := Ce^{A t}B$ as the \emph{impulse response} of the system. As $A$ specifies gene regulatory network architecture, the $i^\text{th}$ row of $A$ can be interpreted as the \emph{cis}-regultory element (or promoter) for gene $i$. 
 
-  Generally $A$ can be any real $n \times n$ matrix, $B$ any $n \times \ell$, and $C$ any $\ell \times n$ dimensional matrix. Each $i$th row of $A$ describes the \emph{cis}-regulatory module for gene $i$, and each $j$th entry, the specific regulatory influence of gene $j$ on gene $i$. 
-
-  Although $\phi(t)$ describes the phenotype given an input, $h(t)$ describes the phenotype subject only to an impulse -- an input present initially and absent immediately thereafter. Typically, a system $\Sigma$, is defined as,
-  \begin{align}
-    \Sigma = \left\{ \begin{array}{ll} \dot{\kappa}(t) &= A \kappa(t) + B u(t) \\ \phi(t) &= C \kappa(t) \end{array} \right.
-  \end{align}
-  Variables have the same identities as described above and $\kappa(t)$ is a vector of molecule concentrations at time $t$. Therefore the molecular concentrations at a specific time are completely determined by the input and gene by gene interactions. Lastly, a portion and/or combination of these molecules, $\phi(t)$, are ``observed'' by selection (this is in constrast to $\kappa(t)$ -- the \emph{kryptotype} -- as it is ``hidden'' from direct selection).
-}
-
-We will now lay out the model in more general terms.
-Suppose that the \emph{internal state} of the system
-is parameterized by the concentrations of a collection of $n$ molecular species,
-$S_1, \ldots, S_n$,
-and the vector of concentrations at time $t$ we denote $\kappa(t)=(\kappa_1(t),\ldots,\kappa_n(t))$.
-There are also $m$ ``input'' species, whose concentrations are determined
-exogenously to the system,
-and are denoted $u(t) = (u_1(t),\ldots,u_m(t))$,
-and $\ell$ ``output'' species, whose concentrations are denoted
-$\phi(t) = (\phi_1(t),\ldots,\phi_\ell(t))$.
-The output is merely a linear function of the internal state:
-\begin{align*}
-    \phi_i(t) = \sum_j C_{ij} \kappa_i(t).
-\end{align*}
-Since $\phi$ is what natural selection acts on, we refer to it as the \emph{phenotype},
-and sometimes in contrast refer to $\kappa$ as the \emph{kryptotype},
-as it is ``hidden'' from direct selection.
-The rate at which the $i^\text{th}$ species is produced
-is a weighted sum of the concentrations of the other species
-as well as the input:
-\begin{align*}
-    \ddt \kappa_i(t) = \sum_j A_{ij} \kappa_j(t) + \sum_r B_{ir} u_r(t) .
-\end{align*}
-In matrix notation, this is written more concisely as
-\begin{align} \label{eqn:lti_system}
-    \ddt \kappa(t) &= A \kappa(t) + B u(t) \\
-    \phi(t) &= C \kappa(t) .
-\end{align}
+%We will now lay out the model in more general terms.
+%Suppose that the \emph{internal state} of the system
+%is parameterized by the concentrations of a collection of $n$ molecular species,
+%$S_1, \ldots, S_n$,
+%and the vector of concentrations at time $t$ we denote $\kappa(t)=(\kappa_1(t),\ldots,\kappa_n(t))$.
+%There are also $m$ ``input'' species, whose concentrations are determined
+%exogenously to the system,
+%and are denoted $u(t) = (u_1(t),\ldots,u_m(t))$,
+%and $\ell$ ``output'' species, whose concentrations are denoted
+%$\phi(t) = (\phi_1(t),\ldots,\phi_\ell(t))$.
+%The output is merely a linear function of the internal state:
+%\begin{align*}
+%    \phi_i(t) = \sum_j C_{ij} \kappa_i(t).
+%\end{align*}
+%Since $\phi$ is what natural selection acts on, we refer to it as the \emph{phenotype},
+%and sometimes in contrast refer to $\kappa$ as the \emph{kryptotype},
+%as it is ``hidden'' from direct selection.
+%The rate at which the $i^\text{th}$ species is produced
+%is a weighted sum of the concentrations of the other species
+%as well as the input:
+%\begin{align*}
+%    \ddt \kappa_i(t) = \sum_j A_{ij} \kappa_j(t) + \sum_r B_{ir} u_r(t) .
+%\end{align*}
+%In matrix notation, this is written more concisely as
+%\begin{align} \label{eqn:lti_system}
+%    \ddt \kappa(t) &= A \kappa(t) + B u(t) \\
+%    \phi(t) &= C \kappa(t) .
+%\end{align}
 
   \begin{example}[Oscillating Gene Network: Cell Cycle Control]\label{ex:oscillator}
 
@@ -252,25 +264,25 @@ In matrix notation, this is written more concisely as
       We return to the evolution of such a system below.
   \end{example}
 
-  \section*{The Model II: Linear Evolutionary Systems}
+  \section*{Linear Evolutionary Systems}
 
   The literature is filled with detailed observations of molecular systems and their diversity. There are examples of significant diversity in the networks underlying processes such as circadian rhythm \citep{sancar2008intelligent}, cell cycle control \citep{cross2011evolution, kearsey2003enigmatic}, pattern formation, and metabolism  \citep{lavoie2009rearrangements, martchenko2007transcriptional, dalal2016transcriptional, christensen2011unique, hartl2007induction, alam2013aspergillus}. Despite a symmetry in functionality or phenotype these systems often differ, sometimes substationaly, at the molecular level. How many different mechanisms have the same function? We urge the reader to consider the metaphorical black box.
 
-  Systems with identical external dynamics do not necessarily have identical internal dynamics. Any linear and minimal system -- minimal, informally meaning that the system's external dynamics are achieved with the fewest possible number of internal components -- has identical external dynamics up to a change of coordinates. 
+  Gene regulatory networks with identical phenotypes (external dynamics) do not necessarily have identical kryptotypes (internal dynamics). Any linear and minimal system (a gene network) -- minimal, informally meaning that the system's phenotype is achieved with the fewest possible number of genes -- has an identical phenotype up to a change of coordinates. 
   \begin{align}
     h(t) &= C e^{A t} B \\
     &= C V^{-1} V e^{A t} V^{-1} V B \\
     &= C V^{-1} e^{V A V^{-1} t} V B \\
     &= \bar{C} e^{\bar{A} t} \bar{B}
   \end{align}
-  Two systems, $\Sigma = \{ A, B, C \}$, and $\bar{\Sigma} = \{\bar{A} = VAV^{-1}, \bar{B} = VB, \bar{C} = CV^{-1} \}$, have the same dynamics if they are related by a change of coordinates. 
+  Two biological systems, $\mathcal{S} = \{ A, B, C \}$, and $\bar{\mathcal{S}} = \{\bar{A} = VAV^{-1}, \bar{B} = VB, \bar{C} = CV^{-1} \}$, have the same phenotype if they are related by a change of coordinates. 
 
   Although systems may not be identifiable beyond a change of coordinates, at present we are primarily interested in a subset of these systems. That is, systems that not only have equivalent external dynamics, but also equivalent input and output relationships. Formally, this means systems related by a change of coordinates (any invertible matrix $V$) that leaves $B$ and $C$ invariant:
   \begin{align}
     VB &= B \implies \bar{B} = B \\
     CV &= C \implies \bar{C} = C
   \end{align}
-  In other words systems with varying genetic architectures yet identical selection pressures, environment, and phenotype. 
+  In other words systems with varying gene regulatory network architectures yet identical selection pressures, environment, and phenotype.
 
   Define $V(\tau)$ as the parameterized change of coordinates matrix that preserves $B$ and $C$, with $\tau$ a vector of free parameters. The set of \emph{all} phenotypically invariant (minimal) gene networks is, 
   \begin{align}
@@ -278,9 +290,9 @@ In matrix notation, this is written more concisely as
   \end{align}
   and a \emph{Linear Evolutionary System} is, 
   \begin{align}
-    \Sigma(\tau) = \left\{ \begin{array}{ll} \dot{\kappa}(t) &= A(\tau) \kappa(t) + B u(t) \\ \phi(t) &= C \kappa(t) \end{array} \right .
+    \mathcal{S}(\tau) := \left\{ \begin{array}{ll} \dot{\kappa}(t) &= A(\tau) \kappa(t) + B u(t) \\ \phi(t) &= C \kappa(t) \end{array} \right .
   \end{align}
-  That is, all (linear and minimal) mechanisms capable of producing the same phenotype can be realized by a unique choice of $\tau$ in $\Sigma(\tau)$.
+  That is, all (linear and minimal) mechanisms capable of producing the same phenotype can be realized by a unique choice of $\tau$ in $\mathcal{S}(\tau)$.
 
   More generally, \plr{introduce Kalman},
   we denote by $\calA_n(A_0)$ the set of all $n$-dimensional systems equivalent to $A_0$:
@@ -297,6 +309,8 @@ In matrix notation, this is written more concisely as
   \end{equation}
   Equivalence of the two characterizations follows from the Cayley-Hamilton theorem.
   Usually, the dimension $n$ and the reference system $A_0$ is implicit and we write only $\calA$.
+
+  Regardless of minimality, two systems, even in different dimensions, can have identical external dynamics if they are in $\mathcal{A}$. This set can be completely parameterized using the \emph{Kalman Decomposition}; the set of all linear gene regulatory networks with equivalent phenotypes can be precisely defined. Note that this implies that there is always more than one possible gene regulatory network architecture per phenotype, however we can analytically describe the complete set. 
 
   \begin{example}[All Phenotypically Equivalent Cell Cycle Control Networks]
 
@@ -354,10 +368,10 @@ In matrix notation, this is written more concisely as
   %%%%%%%%%%%%%%%%%%%%%%%%
   \section*{Intraspecific variation and genetic drift}
 
-  \plr{rework this: we assume optimal phenotype is fixed and population is large but polymorphic and not strictly on the optimum}
+%  \plr{rework this: we assume optimal phenotype is fixed and population is large but polymorphic and not strictly on the optimum}
 
-First we focus on a simple evolutionary scenario -- \emph{phenotypically invariant evolution}: a large population, perfectly adapted, and in a constant environment. In this circumstance we expect phenotype to be conserved throughout evolutionary time. As such we should only expect the phenotype to change as a consequence of genetic drift (small effective population size), adaptation to new selective and/or environemental pressures. These phenotypic variations should yield distinct signatures. Adaptative changes will change the optimal impulse response function $h(t) \xrightarrow{adaptation} h'(t)$. Genetic drift registers as an increase in the intrapopulation variation in $h(t)$. 
- \jss{added the phenotypic invariance stuff here (above) -- not sure if it should put elsewhere yet}
+%First we focus on a simple evolutionary scenario -- \emph{phenotypically invariant evolution}: a large population, perfectly adapted, and in a constant environment. In this circumstance we expect phenotype to be conserved throughout evolutionary time. As such we should only expect the phenotype to change as a consequence of genetic drift (small effective population size), adaptation to new selective and/or environemental pressures. These phenotypic variations should yield distinct signatures. Adaptative changes will change the optimal impulse response function $h(t) \xrightarrow{adaptation} h'(t)$. Genetic drift registers as an increase in the intrapopulation variation in $h(t)$. 
+% \jss{added the phenotypic invariance stuff here (above) -- not sure if it should put elsewhere yet}
 
   At any given time, there will be a range of network coefficients present in the population
   due to segregating genetic polymorphism.
@@ -502,40 +516,35 @@ First we focus on a simple evolutionary scenario -- \emph{phenotypically invaria
   if $\calA$ is locally isomorphic to $\R^m$ around $A_0$
   (there are $m$ degrees of freedom in the solutions to \eqref{eqn:equivalence}) then
   \begin{align}
-      \E\left[ \|A_t - A_0\|^2 \right] = m \sigma^2 t + O(t^2) .
+      \E\left[ \|A_t - A_0\|^2 \right] = m \sigma^2 T + O(T^2) .
   \end{align}
 
 
-  \begin{align}
-    A(\tau) \xrightarrow{T} A(\tau + \epsilon)
-  \end{align}
-  After evolutionary time $T$, the population's gene network architecture evolves from $A(\tau)$ to $A(\tau + \epsilon)$ with a probability inversely proportional to the magnitude of $\epsilon$ and proportional to the magnitude of $T$. 
-\jss{Change in $\tau$ is tracking movement of population mean, not ``macro'' evolutionary change, as interpreted previously.}
-  \begin{align}
-    \Delta_{\tau} &= \left\lVert \frac{d}{d \tau} \text{vec} \left[A\left(\tau\right)\right] \right\rVert^{-1} \\
-    A(\tau) &\xrightarrow{\mu} A(\tau \pm \mu \Delta_{\tau})
-  \end{align}
+  %\begin{align}
+  %  \Delta_{\tau} &= \left\lVert \frac{d}{d \tau} \text{vec} \left[A\left(\tau\right)\right] \right\rVert^{-1} \\
+  %  A(\tau) &\xrightarrow{\mu} A(\tau \pm \mu \Delta_{\tau})
+  %\end{align}
  % \section*{Phenotypic Invariance}
       
-  
-    \begin{example}[Not all minimal gene networks can drift]
-      If a gene network is minimal and all the molecular species involved in the network are under selection, such that $C$ is the $n \times n$ identity matrix  ($C = I_{n}$), the only acceptable  change of coordinate matrix is the identify matrix.
+ 
+%    \begin{example}[Not all minimal gene networks can drift]
+ %     If a gene network is minimal and all the molecular species involved in the network are under selection, such that $C$ is the $n \times n$ identity matrix  ($C = I_{n}$), the only acceptable  change of coordinate matrix is the identify matrix.
      
    %  \begin{align}
    %     C  = I \lor B = I \\
    %     IV^{-1} &= I \\
    %     \iff V &= I
    %   \end{align}
-      \end{example}
-      \begin{example}[All Non-Minimal Gene Networks can Drift]
-      
-      Despite the existence of a unique genetic architecture in the minimal case, there still exists an infinite number of systems with larger networks that have identical external dynamics. 
-      \begin{align}
-        h(t) &= \widehat{h}(t) \iff \\ 
-        CA^{\jmath}B &= \widehat{C} \widehat{A}^{\jmath} \widehat{C} \qquad \text{for } \jmath = 0, 1, \dots
-      \end{align}
-      Any two systems with equivalent impulse responses will have equivalent phenotypes.
-      \end{example}
+ %     \end{example}
+  %    \begin{example}[All Non-Minimal Gene Networks can Drift]
+  %    
+  %    Despite the existence of a unique genetic architecture in the minimal case, there still exists an infinite number of systems with larger networks that have identical external dynamics. 
+  %    \begin{align}
+  %      h(t) &= \widehat{h}(t) \iff \\ 
+  %      CA^{\jmath}B &= \widehat{C} \widehat{A}^{\jmath} \widehat{C} \qquad \text{for } \jmath = 0, 1, \dots
+  %    \end{align}
+  %    Any two systems with equivalent impulse responses will have equivalent phenotypes.
+  %    \end{example}
 
       \plr{add Kalman decomposition stuff here}
 
@@ -648,40 +657,74 @@ First we focus on a simple evolutionary scenario -- \emph{phenotypically invaria
           \caption{F1 (left) and F2 (right) hybrids crossing $A(2)$ with $A(2.01)$ (top), $A(2.1)$ (middle), and $A(2.5)$ (bottom).
           Note the difference in scale on the $y$-axis. F2 hybrids display more phenotypic divergence than F1s, on average. Further, some F2s completely fail to oscillate, as seen in an $A(2.5)$ F2 (light blue).}
         \end{figure}
+
+        \jss{$A(2)$ and $A(2.1)$ differ in regulatory interaction strengths by $5.09\%$. If intrapopulation regulatory variation is approximately $5\%$, then this level of divergence is expected after $\sqrt{\frac{t}{N_{e}} = 1}$ generations.}
     \end{example}
-      \begin{example}[Not all Networks can Host Incompatibilities]
-        convex sets cant have DMIs
+ %     \begin{example}[Not all Networks can Host Incompatibilities]
+ %       convex sets cant have DMIs
 
-        \begin{align*}
-          h(t) = 2 e^{- \theta t}
-        \end{align*}
-        Any non-minimal system with rows summing to $\theta$ is PI. Further, these systems are closed under averaging (mating) and row swapping (meiosis), leaving all hybrids optimally fit. The set of gene matrices is affine and therefore convex.  
-      \end{example}
+ %       \begin{align*}
+ %         h(t) = 2 e^{- \theta t}
+ %       \end{align*}
+ %       Any non-minimal system with rows summing to $\theta$ is PI. Further, these systems are closed under averaging (mating) and row swapping (meiosis), leaving all hybrids optimally fit. The set of gene matrices is affine and therefore convex.  
+ %     \end{example}
 
-  \section*{Additionl Examples}
-
-    \subsection*{Metabolic Network}
-  \begin{align*}
-    \dot{x}(t) &= \begin{bmatrix} 0 & 1 & 0 & -1 \\ 0 & 0 & -1 & -1 \\ -1 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix} \begin{bmatrix} \text{GAL3} \\ \text{GAL4} \\ \text{GAL80} \\ \text{MIG1} \end{bmatrix}(t) \\ &+ \begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 1 & 1 \end{bmatrix} \begin{bmatrix} \text{galactose} \\ \text{glucose} \\ \text{BTM} \end{bmatrix}(t) \\
-        y(t) &= \begin{bmatrix} 0 & 1 & 0 & -1 \end{bmatrix} \vec{x}(t)
+\section*{The rate of speciation under neutrality in allopatric populations}
+   In general terms, if fitness $\mathcal{F}$ is some function $g$ of phenotypic divergence from an optimal scaled by the strength of selection $\beta$,
+   \begin{align*}
+      \mathcal{F} = g \left( \frac{\phi - \phi_{0}}{\beta} \right)
     \end{align*}
+    And a population $P$ is normally distributed around a mean gene network architecture $A(\tau)$ and $\sigma^{2}$ is the intrapopulation regulatory variance,
     \begin{align*}
-      H(z) &= \begin{bmatrix} 1 \\ z^{2} + z + 1 \\ z + 1 \end{bmatrix} \frac{1}{z^{3} + z -1}
+      P_{T} \sim \mathcal{N} \left(A(\tau), T \frac{\sigma^{2}}{N_{e}}\right)
     \end{align*}
-
+    the population mean architecture will move at rate
     \begin{align*}
-      CV &= C \\
-      VB &= B \\
-      V :&= \begin{bmatrix} 1 & 0 & a & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & b & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} , V^{-1} = \begin{bmatrix} 1 & 0 & \frac{-a}{b} & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & \frac{1}{b} & 0 \\ 0 & 0 & 0 & 1\end{bmatrix} \\
-        A(a,b) :&= VAV^{-1} = \begin{bmatrix} -a & a+1 & \frac{a^{2}}{b} & -1 \\ 0 & 0 & \frac{-1}{b} & -1 \\ -b & b & a & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix}
+      \Delta \tau = \sigma \sqrt{\frac{T}{N_{e}}}
     \end{align*}
-    The GAL regulatory network in \emph{S. cerevisiae} is modelled here. The activating transcription factor GAL4, which is regulated by the presence of galactose and two other TFs, binds to the promoter region of the GAL regulon -- a cluster of genes regulated by the same promoter encoding 3 enzymes (GAL1, GAL7, and GAL10), for the metabolism of the sugar galactose. The repressing transcription factor MIG1, which is activated by the presence of glucose and other proteins omitted here, also binds to the regulon, preventing the expression of the galactose metabolizing enzymes. This network is one of the most studied gene regulatory networks in yeast, and experiments have already demonstrated significant transcriptional variation among different species and genuses of yeast.
+    where $T$ is time measured in generations. 
+    USING GENERAL MATH FROM MULTIVARIATE TAYLOR SERIES.... we know that the phenotype of a first generation $F_{1}$ hybrid diverges from that of its parents (assuming both parents are at an optimum and phenotypically equivalent) quartically as a function of $\Delta \tau$. 
+    Thus the squared difference of it's phenotype will be,
+    \begin{align*}
+      \Delta \Phi^{2}_{1} = c_{1}^{2} \sigma^{4} \left( \frac{T}{N_{e}} \right)^{2}
+    \end{align*}
+    and $F_{1}$ fitness will decline linearly with respect to $\frac{T}{N_{e}}$. ARGUMENT FOR WHY $\sigma^{2} c_{1} \sim \beta$ HERE.
+       \begin{align*}
+         \Delta \mathcal{F}_{1} = \left( \frac{\Delta \Phi_{1}}{\beta} = \frac{c_{1} \sigma^{2} \frac{T}{N_{e}}}{\beta} \approx \frac{T}{N_{e}} \right)
+    \end{align*}
+     It follows FROM THE SAME MATH ABOUT THE MULTIVAR TAYLOR that the phenotypes of second generation $F_{2}$ hybrid crosses diverges quadratically as a function of $\Delta \tau$, 
+    \begin{align*}
+      \Delta \Phi^{2}_{2} &= c_{2}^{2} \left( \sigma \sqrt{\frac{T}{N_{e}}} \right)^{2} = c_{2}^{2} \frac{T}{N_{e}} \\
+      \Delta \mathcal{F}_{2} &= \left( \frac{\Delta \Phi_{2}}{\beta} = \frac{c_{2} \sigma \sqrt{\frac{T}{N_{e}}}}{\beta} \approx \sqrt{\frac{T}{N_{e}}} \right)
+    \end{align*}
+    and that $F_{2}$ fitness drops rapidly -- at approximately rate $\sqrt{\frac{T}{N_{e}}}$. ARGUMENT FOR WHY $c_{2} \sigma \sim \beta$ HERE. 
 
-    In the present model, the $A$ matrix encodes the interactions among GAL3, GAL4, GAL80, and MIG1. $B$ interprets the input: the quantity of glucose, galactose, and the basal transcription (BTM) rates impact of TF concentrations. $C$ represents the promoter region of the GAL regulon and is the sum of the influence of GAL4 (activating) and MIG1 (repressing).
+    This suggests that reproductively isolated populations can speciate rapidly -- on timescales much less than $N_{e}$ generations, depending on the specifics of the fitness function. 
 
-    $A(a,b)$ represent alternative network structures that produce identical outputs, with identical input and output transformations -- meaning the regulatory contributions of the sugars and the basasl machinery, as well as the promoter of the GAL regulon are held constant. These interactions may be realized in nature, if the regulatory differences predicted by $A(a,b)$ are biologically/mutationally realizable. Mutations influencing the interactions between GAL4 and GAL80 have been experimentally demonstrated \citep{li2010alterations}.
+  \section*{Additional Examples}
 
-    \subsection*{Gap Gene Network}
+%    \subsection*{Metabolic Network}
+%  \begin{align*}
+%    \dot{x}(t) &= \begin{bmatrix} 0 & 1 & 0 & -1 \\ 0 & 0 & -1 & -1 \\ -1 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix} \begin{bmatrix} \text{GAL3} \\ \text{GAL4} \\ \text{GAL80} \\ \text{MIG1} \end{bmatrix}(t) \\ &+ \begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 1 & 1 \end{bmatrix} \begin{bmatrix} \text{galactose} \\ \text{glucose} \\ \text{BTM} \end{bmatrix}(t) \\
+%        y(t) &= \begin{bmatrix} 0 & 1 & 0 & -1 \end{bmatrix} \vec{x}(t)
+%    \end{align*}
+%    \begin{align*}
+%      H(z) &= \begin{bmatrix} 1 \\ z^{2} + z + 1 \\ z + 1 \end{bmatrix} \frac{1}{z^{3} + z -1}
+%    \end{align*}
+%
+%    \begin{align*}
+%      CV &= C \\
+%      VB &= B \\
+%      V :&= \begin{bmatrix} 1 & 0 & a & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & b & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} , V^{-1} = \begin{bmatrix} 1 & 0 & \frac{-a}{b} & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & \frac{1}{b} & 0 \\ 0 & 0 & 0 & 1\end{bmatrix} \\
+%        A(a,b) :&= VAV^{-1} = \begin{bmatrix} -a & a+1 & \frac{a^{2}}{b} & -1 \\ 0 & 0 & \frac{-1}{b} & -1 \\ -b & b & a & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix}
+%    \end{align*}
+%    The GAL regulatory network in \emph{S. cerevisiae} is modelled here. The activating transcription factor GAL4, which is regulated by the presence of galactose and two other TFs, binds to the promoter region of the GAL regulon -- a cluster of genes regulated by the same promoter encoding 3 enzymes (GAL1, GAL7, and GAL10), for the metabolism of the sugar galactose. The repressing transcription factor MIG1, which is activated by the presence of glucose and other proteins omitted here, also binds to the regulon, preventing the expression of the galactose metabolizing enzymes. This network is one of the most studied gene regulatory networks in yeast, and experiments have already demonstrated significant transcriptional variation among different species and genuses of yeast.
+%
+%    In the present model, the $A$ matrix encodes the interactions among GAL3, GAL4, GAL80, and MIG1. $B$ interprets the input: the quantity of glucose, galactose, and the basal transcription (BTM) rates impact of TF concentrations. $C$ represents the promoter region of the GAL regulon and is the sum of the influence of GAL4 (activating) and MIG1 (repressing).
+%
+%    $A(a,b)$ represent alternative network structures that produce identical outputs, with identical input and output transformations -- meaning the regulatory contributions of the sugars and the basasl machinery, as well as the promoter of the GAL regulon are held constant. These interactions may be realized in nature, if the regulatory differences predicted by $A(a,b)$ are biologically/mutationally realizable. Mutations influencing the interactions between GAL4 and GAL80 have been experimentally demonstrated \citep{li2010alterations}.
+%
+%    \subsection*{Gap Gene Network}
 
     \section*{Discussion}
       \plr{mention $B$ part of genetic architecture}
@@ -700,11 +743,15 @@ First we focus on a simple evolutionary scenario -- \emph{phenotypically invaria
   
   Theoretical models in evolution and population genetics often lack the molecular details of physiology or of the genotype-phenotype map. Here, we offer a tractable and simple model which includes these missing features. Further, we provide, in clear mathematical language, an analytical description of phenomena hitherto only discussed verbally and conceptualy (phenogenetic drift \citep{weiss2000phenogenetic}, developmental systems drift \citep{true2001developmental}, biological degeneracy \citep{edelman2001degeneracy}, \emph{etc.}). The tractability and relative simplicity of this exposition enables the interested biologist to work out by hand, if desired, the dynamics of a genetic system, as well as perturbations to the system -- an attribute not likely to be found in less tractable models and simulations.
 
-  We have suggested an interpretation of system identification: to see it as an evolutionarily neutral manifold, and not simply a computational nuissance. We have demonstrated a method to analytically determine the set of all phenotypically invarint gene networks; by a simple change of coordinates in the minimal configuration, or more generally by applying the Kalman decomposition in higher dimensions. Further, we emphasize that evolution proceeds through this high dimensional space as stochastic coordinate transformation, constrained by sexual reproduction and selection. This set is explored over evolutionary time when phenotype is conserved, and can lead to a diverse set of consequences, including the accumulation of Dobzhansky-Muller incompatibilities. We emphasize that these incompatibilities are a consequence of recombining different, yet functionally equivalent, mechanisms. We also suggest that gene networks may not always use their components parsimoniously as network size tends to ratchet up in the absence of strong selection against extra parts. Although unexplored presently, this phenomena may lead to insights on evolvability and developmental innovation. Lastly, we show that hybrid gene networks break down as function of genetic distance, and may, in part, explain broad patterns of reproductive isolation among diverse phyla \citep{roux2016shedding}.
+  We have suggested an interpretation of system identification: to see it as an evolutionarily neutral manifold, and not simply a computational nuissance. We have demonstrated a method to analytically determine the set of all phenotypically invarint gene networks; by a simple change of coordinates in the minimal configuration, or more generally by applying the Kalman decomposition in higher dimensions. Further, we emphasize that evolution proceeds through this high dimensional space as stochastic coordinate transformation, constrained by sexual reproduction and selection. This set is explored over evolutionary time when phenotype is conserved, and can lead to a diverse set of consequences, including the accumulation of Dobzhansky-Muller incompatibilities. We emphasize that these incompatibilities are a consequence of recombining different, yet functionally equivalent, mechanisms.
+
+  Furthermore, using a quantitative genetic approach, we estimated that a genetically variable population will drift in neutral system space at a rate determined by its intrapopulation variation and its effective population size. Because mechanistically distinct yet phenotypically equivalent biological systems can fail to produce viable hybrids, we predict allopatric populations to speciate at a rate on the order of $N_{e}$ under reasonable population genetic parameter estimates. Additionally we see second-generation hybrid fitness plummet much faster than that of first-generation hybrids. This insight is a consequence of combinding our mechanistic model with a quantitative genetic one: we observe that $F_{1}$ phenotypes diverge quartically, and $F_{2}$ phenotypess quadratically, with evolutionary time. This result is also consistent with Haldane's rule; that if only one hybrid sex is inviable or sterile it is likely the heterogametic sex. The consistency comes from gene networks localized to the sex chromosomes functioning as an $F_{2}$ hybrid cross within a diploid $F_{1}$ heterogamete as there is only one sex chromosome.
+  
+  We also suggest that gene networks may not always use their components parsimoniously as network size tends to ratchet up in the absence of strong selection against extra parts. Although unexplored presently, this phenomena may lead to insights on evolvability and developmental innovation. Lastly, we show that hybrid gene networks break down as function of genetic distance, and may, in part, explain broad patterns of reproductive isolation among diverse phyla \citep{roux2016shedding}.
 
   As Richard Levins opined, models in population biology face a tradeoff among precision, realism, and generality \citep{levins1966strategy}. As Levins expects, any tractable and general model, such as the present one under discussion, will have limitations. Most notable is linearity. It is often stated that life is not linear. This is often true, however, many of the ideas developed here should be generalizable to nonlinear cases (multilinear systems, say). Futher, we see this as a necessary first step in the direction of more life-like nonlinear evolutionary systems theory. Depending on an actual biological system's particularities, its (potential) nonlinearity, may buffer or exacerbate effects elucidated in this paper, such as the aquisition of Dobzansky-Muller incompatibilities.
 
-  This theoretical framework can easily be applied to other interesting questions in evolutionary biology not tackled presently: such as the evolution of linkage, the necessity of network complexity (does evolution tend towards Rube Goldberg or \jss{parsimonious} network organization?), evolvability, structure/function inference, and intrapopulation context dependency of mutational effects, as well as many others.
+  This theoretical framework can easily be applied to other interesting questions in evolutionary biology not tackled presently: such as the evolution of linkage, the necessity of network complexity (does evolution tend towards Rube Goldberg or parsimonious network organization?), evolvability, structure/function inference, and intrapopulation context dependency of mutational effects, as well as many others.
 
   \jss{literature comparison:}
 
@@ -720,6 +767,183 @@ We would like to thank Sergey Nuzhdin, Stevan Arnold, Erik Lundgren, and Hossein
 
 \normalsize
 \appendix
+
+\section{Kalman Decomposition}
+\begin{definition}[Phenotypic equivalence of systems]
+    Let $(\kappa(t),\phi(t))$ and $(\bar \kappa(t),\bar \phi(t))$ be the solutions to \eqref{eqn:lti_system}
+    with coefficient matrices $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ respectively,
+    and both $\kappa(0)$ and $\bar \kappa(0)$ are zero. 
+    The systems defined by $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ are
+    \textbf{phenotypically equivalent} 
+    if
+    \begin{align*}
+        \phi(t) = \bar \phi(t) \qquad \text{for all} \; t \ge 0.
+    \end{align*}
+    Equivalently, this occurs if and only if
+    \begin{align*}
+        h(t) = \bar h(t)  \qquad \text{for all} \; t \ge 0,
+    \end{align*}
+    where $h$ and $\bar h$ are the impulse responses of the two systems.
+\end{definition}
+
+One way to find other systems equvalent to a given one
+is by change of coordinates (``algebraic equivalance''):
+if $V$ is an invertible matrix, then the systems $(A,B,C)$ and $(VAV^{-1},VB,CV^{-1})$
+have the same dyanamics because their transfer functions are equal:
+\begin{align*}
+    CV^{-1}( zI - VAV^{-1})^{-1}VB
+    =
+    CV^{-1}V( zI - A)^{-1}V^{-1}VB
+    =
+    C( zI - A)^{-1}B .
+\end{align*}
+However, the converse is not necessarily true: 
+systems can have identical transfer functions without being changes of coordinates of each other.
+In fact, systems with identical transfer functions can involve interactions between different
+numbers of molecular species.
+
+The set of all systems phenotypically equivalent to a given system $(A,B,C)$ 
+is elegantly described using the Kalman decomposition,
+which also clarifies the system dynamics? tells us a lot about how it works? \plr{or something}
+To motivate this, first note that the the input $u(t)$ only directly pushes the system
+in directions lying in the span of the columns of $B$.
+As a result, different combinations of input can 
+move the system in any direction that lies in the \emph{reachable subspace},
+which we denote by $\reachable$,
+and is defined to be the closure of $\spn(B)$ under applying $A$
+(or equivalently, the span of $B, AB, A^2B, \ldots A^{n-1}B$).
+Analogously to this, we define
+the \emph{observable subspace}, $\mathcal{O}$,
+to be the closure of $\spn(C^T)$ under applying $A$.
+(Or: $\unobservable$ is the largest $A$-invariant subspace
+contained in the null space of $C$;
+and $\reachable$ is the largest $A$-invariant subspace contained in the image of $B$.)
+
+If we define
+\begin{enumerate}
+    \item The columns of $P_\rno$ are an orthonormal basis for $\reachable \cap \unobservable$.
+    \item The columns of $P_\ro$ are an orthonormal basis of
+        the complement of $\reachable \cap \unobservable$ in $\reachable$.
+    \item The columns of $P_\nro$ are an orthonormal basis of
+        the complement of $\reachable \cap \unobservable$ in $\unobservable$.
+    \item The columns of $P_\nrno$ are an orthonormal basis of
+        the the remainder of $\R^n$.
+\end{enumerate}
+If we then define
+\begin{align*}
+    P &= 
+    \left[ \begin{array}{c|c|c|c}
+        P_\rno & P_\ro & P_\nro & P_\nrno
+    \end{array} \right] ,
+\end{align*}
+then
+\begin{align*}
+    P^T P
+    &=
+    \left[ \begin{array}{c|c|c|c}
+        I & 0 & 0 & 0 \\
+        \hline
+        0 & I & U & 0 \\
+        \hline
+        0 & V & I & 0 \\
+        \hline
+        0 & 0 & 0 & I 
+    \end{array} \right] .
+\end{align*}
+\plr{Check this.  Can we get $U=V=0$?}
+
+The following theorem can be found in SOME REFERENCE.
+
+\begin{theorem}[Kalman decomposition] \label{thm:kalman}
+        For any system $(A,B,C)$ with corresponding Kalman basis matrix $P$,
+        the transformed system $(PAP^{-1},PB,CP^{-1})$  has the following form:
+        \begin{align*}
+            \widehat A = PAP^{-1}
+            &=
+            \left[ \begin{array}{cccc}
+                A_{\rno} & A_{\rno,\ro} & A_{\rno,\nrno} & A_{\rno,\nro} \\
+                0 & A_{\ro} & 0 & A_{\ro,\nro} \\
+                0 & 0 & A_{\nrno} & A_{\nrno,\nro} \\
+                0 & 0 & 0 & A_{\nro}
+            \end{array} \right] ,
+        \end{align*}
+        and
+        \begin{align*}
+            \widehat B = PB
+            &=
+            \left[ \begin{array}{cccc}
+                B_{\rno} \\
+                B_{\ro} \\
+                0 \\
+                0 
+            \end{array} \right] ,
+        \end{align*}
+        and
+        \begin{align*}
+            \widehat C = CP^{-1}
+            &=
+            \left[ \begin{array}{cccc}
+                0 & C_{\ro} & C_{\nrno} & 0 
+            \end{array} \right] .
+        \end{align*}
+        The transfer function of both systems is given by
+        \begin{align*}
+            H(z) = C_{\ro} ( zI - A_{\ro} )^{-1} B_{\ro} .
+        \end{align*}
+\end{theorem}
+
+In the latter case, we say that the system is \emph{minimal} 
+-- there is no equivalent system with a smaller number of species.
+Note that this says that any two equivalent minimal systems
+are changes of basis of each other.
+
+Since any system can be put into this form,
+and once in this form, its transfer function is determined only by 
+$C_{\ro}$, $A_{\ro}$, and $B_\ro$,
+therefore, the set of all equivalent systems are parameterized by
+the dimension $n$,
+the choice of basis ($P$),
+the remaining submatrices in $\widehat A$, $\widehat B$, and $\widehat C$
+(which are unconstrained),
+and a invertible transformation of $\spn(P_{\ro})$, which we call $T_\ro$.
+
+\begin{theorem}[Parameterization of equivalent systems]
+    Let $(A,B,C)$ be a minimal system.
+    \begin{itemize}
+        \item[(a)]
+            Every equivalent system is of the form given in Theorem \ref{thm:kalman},
+            i.e., can be specified by choosing a dimension, $n$;
+            submatrices in $\widehat A$, $\widehat B$, and $\widehat C$ 
+            except for $A_\ro=A$, $B_\ro=B$, and $C_\ro=C$;
+            and choosing an invertible matrix $P$.
+
+        \item[(b)]
+            \plr{conjecture:}
+            The parameterization is unique
+            if $P$ is futhermore chosen so that 
+            each $P_x$ other than $P_\ro$ is a projection matrix,
+            and that 
+            \begin{align*}
+                0
+                =
+                P_x^T P_y
+            \end{align*}
+            for all $(x,y)$ except $(\ro,\nrno)$.
+
+    \end{itemize} 
+\end{theorem}
+
+\plr{Another way of saying it: pick the $\reachable$ and $\unobservable$ subspaces,
+that must intersect in something of the minimal dimension;
+then let $P$ be the appropriate basis?}
+
+In some situations we may be interested in only ``network rewiring'',
+where $A$ changes while $B$ and $C$ do not.
+For instance, 
+if all non-regulatory functions of each molecule are strongly constrained,
+then $C$ cannot change.
+Likewise, if responses of each molecule to the external inputs are not changed by evolution,
+then $B$ does not change.
 
 \section{Genetic drift with a multivariate trait}
 \label{ss:quant_gen}
