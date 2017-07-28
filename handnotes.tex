@@ -703,6 +703,32 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
 
   \section*{Additional Examples}
 
+  \subsection*{Metabolic network}
+
+  Consider an organism that can metabolize two different sugars $s_{1}$ and $s_{2}$ (present at logarithmic concentrations $u_{1}$ and $u_{2}$ respectively), with enzymes $e_{1}$ and $e_{2}$ (with log concentration denoted as $\phi_{1}$ and $\phi_{2}$). Further suppose that one of the sugars $s_{2}$ is the preferred energy source (perhaps it contains significantly more energy than the other sugar or is otherwise more efficiently metabolized). The organism may have a gene regulatory network $\mathcal{S}$ that can depoly a situation specific metabolic strategy. That is depending on both $u{2}$ and $u_{1}$ the organism synthesize an appropriate $\phi_{1}$ and $\phi_{2}$. Furthermore, consider this system to contain at least two transcription factors, whose log concentrations are given by $\kappa_{1}$, $\kappa_{2}$, $\dots \kappa_{n}$. 
+
+  Minimally such a system may have the architecture,
+  \begin{align*}
+    \mathcal{S} = \left\{ \begin{array}{ll} \dot{\kappa}(t) &= \begin{bmatrix} 0 & -1 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} \kappa_{1} \\ \kappa_{2} \end{bmatrix} (t) + \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} u_{1} \\ u_{2} \end{bmatrix} (t) \\[11pt]
+      \phi(t) &= \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} \kappa_{1} \\ \kappa_{2} \end{bmatrix} (t) \end{array} \right.
+  \end{align*}
+  $\mathcal{S}$ is minimal as its reachability and observability matrices both have rank $=2$, $\text{rank}(\mathcal{R}) = \text{rank}(\mathcal{O}) = 2 = n \implies \min$.
+
+  The impulse response matrix of this system is, 
+  \begin{align*}
+    h(t) = \begin{bmatrix} 1 & - t \\ 0 & 1 \end{bmatrix}  .
+  \end{align*}
+
+  The phenotype is, 
+  \begin{align*}
+    \phi(t) = \exp \left\{ \kappa(0) + \int_{0}^{t} h(t) u(t) dt \right\} 
+  \end{align*}
+  ($\kappa(0)$ can be set to something like $\left[ -10, -10 \right]$, assuming the transient transcription factor and enzyme concentrations in the organism are typically quite low).
+
+  We can see that changing coordinates on this system will find new system architecutres, as shown before, however, we can also apply the Kalman decomposition to find systems in different dimensions -- that is systems that employ more than $2$ transcription factors, yet have the same external dynamics/phenotype. 
+
+  DO KALMAN EXAMPLE HERE.
+
 %    \subsection*{Metabolic Network}
 %  \begin{align*}
 %    \dot{x}(t) &= \begin{bmatrix} 0 & 1 & 0 & -1 \\ 0 & 0 & -1 & -1 \\ -1 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix} \begin{bmatrix} \text{GAL3} \\ \text{GAL4} \\ \text{GAL80} \\ \text{MIG1} \end{bmatrix}(t) \\ &+ \begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 1 & 1 \end{bmatrix} \begin{bmatrix} \text{galactose} \\ \text{glucose} \\ \text{BTM} \end{bmatrix}(t) \\
