@@ -701,9 +701,8 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
 
     This suggests that reproductively isolated populations can speciate rapidly -- on timescales much less than $N_{e}$ generations, depending on the specifics of the fitness function. 
 
-  \section*{Additional Examples}
 
-  \subsection*{Metabolic network}
+  \begin{example}[Metabolic network]
 
   Consider an organism that can metabolize two different sugars $s_{1}$ and $s_{2}$ (present at logarithmic concentrations $u_{1}$ and $u_{2}$ respectively), with enzymes $e_{1}$ and $e_{2}$ (with log concentration denoted as $\phi_{1}$ and $\phi_{2}$). Further suppose that one of the sugars $s_{2}$ is the preferred energy source (perhaps it contains significantly more energy than the other sugar or is otherwise more efficiently metabolized). The organism may have a gene regulatory network $\mathcal{S}$ that can depoly a situation specific metabolic strategy. That is depending on both $u_{2}$ and $u_{1}$ the organism will synthesize an appropriate $\phi_{1}$ and $\phi_{2}$. Furthermore, consider this system to contain at least two transcription factors, whose log concentrations are given by $\kappa_{1}$, $\kappa_{2}$, $\dots \kappa_{n}$. 
 
@@ -747,6 +746,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
      \end{align*}
 
      Despite the present example consisting of a minimal $2 \times 2$ and a non-minimal $4 \times 4$ system, any $n$-dimensional system can be constructed using this method -- applying a change of coordinates to the Kalman decomposition -- to construct a mechanistically different system with identical phenotypic dynamics. Depending on the specifics of a system being modeled, one may have to take care to restrict the free parameter values and network architecutres to be biologically appropriate. 
+  \end{example}
 %    \subsection*{Metabolic Network}
 %  \begin{align*}
 %    \dot{x}(t) &= \begin{bmatrix} 0 & 1 & 0 & -1 \\ 0 & 0 & -1 & -1 \\ -1 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix} \begin{bmatrix} \text{GAL3} \\ \text{GAL4} \\ \text{GAL80} \\ \text{MIG1} \end{bmatrix}(t) \\ &+ \begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 1 & 1 \end{bmatrix} \begin{bmatrix} \text{galactose} \\ \text{glucose} \\ \text{BTM} \end{bmatrix}(t) \\
