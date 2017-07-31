@@ -705,7 +705,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
 
   \subsection*{Metabolic network}
 
-  Consider an organism that can metabolize two different sugars $s_{1}$ and $s_{2}$ (present at logarithmic concentrations $u_{1}$ and $u_{2}$ respectively), with enzymes $e_{1}$ and $e_{2}$ (with log concentration denoted as $\phi_{1}$ and $\phi_{2}$). Further suppose that one of the sugars $s_{2}$ is the preferred energy source (perhaps it contains significantly more energy than the other sugar or is otherwise more efficiently metabolized). The organism may have a gene regulatory network $\mathcal{S}$ that can depoly a situation specific metabolic strategy. That is depending on both $u{2}$ and $u_{1}$ the organism synthesize an appropriate $\phi_{1}$ and $\phi_{2}$. Furthermore, consider this system to contain at least two transcription factors, whose log concentrations are given by $\kappa_{1}$, $\kappa_{2}$, $\dots \kappa_{n}$. 
+  Consider an organism that can metabolize two different sugars $s_{1}$ and $s_{2}$ (present at logarithmic concentrations $u_{1}$ and $u_{2}$ respectively), with enzymes $e_{1}$ and $e_{2}$ (with log concentration denoted as $\phi_{1}$ and $\phi_{2}$). Further suppose that one of the sugars $s_{2}$ is the preferred energy source (perhaps it contains significantly more energy than the other sugar or is otherwise more efficiently metabolized). The organism may have a gene regulatory network $\mathcal{S}$ that can depoly a situation specific metabolic strategy. That is depending on both $u_{2}$ and $u_{1}$ the organism will synthesize an appropriate $\phi_{1}$ and $\phi_{2}$. Furthermore, consider this system to contain at least two transcription factors, whose log concentrations are given by $\kappa_{1}$, $\kappa_{2}$, $\dots \kappa_{n}$. 
 
   Minimally such a system may have the architecture,
   \begin{align*}
@@ -725,10 +725,28 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
   \end{align*}
   ($\kappa(0)$ can be set to something like $\left[ -10, -10 \right]$, assuming the transient transcription factor and enzyme concentrations in the organism are typically quite low).
 
-  We can see that changing coordinates on this system will find new system architecutres, as shown before, however, we can also apply the Kalman decomposition to find systems in different dimensions -- that is systems that employ more than $2$ transcription factors, yet have the same external dynamics/phenotype. 
+  We can see that changing coordinates on this system (with any $V \in \mathbb{R}^{2 \times 2}$) will find new system architecutres, as shown before, however, we can also apply the Kalman decomposition to find systems in different dimensions -- that is systems that employ more than $2$ transcription factors, yet have the same external dynamics/phenotype. This may happen if a system is co-opted from another, or may be a consequence of gene duplication and deletion. 
 
-  DO KALMAN EXAMPLE HERE.
+  $\widehat{\mathcal{S}}$ is $4$-dimensional biological system,  \begin{align*}
+    \widehat{\mathcal{S}} = \left\{ \begin{array}{ll}
+      \widehat{A} = V \begin{bmatrix} X_{1} & X_{2} \\ 0 & A_{\min} \end{bmatrix} V^{-1}; \quad \widehat{B} = V \begin{bmatrix} X_{3} \\ B_{\min} \end{bmatrix}; \quad \widehat{C} = \begin{bmatrix} 0 & C_{\min} \end{bmatrix} V^{-1} \end{array} \right\}
+  \end{align*}
+     where $V$ is any invertible $4 \times 4$ matrix and $X_{j}$ is any $2 \times 2$ matrix.
 
+     So for example, some system can be wired as follows, and still be input-output equivalent to the minimal metabolic system $A_{\min}$:
+     \begin{align*}
+       A' &= \begin{bmatrix}
+         1.6923  &  1.5385 &  -2.6154 &  -2 \\
+         0.8462  &  0.7692 &  -1.3077 &  -1 \\
+         1.2692  &  1.1538 &  -1.9615 &  -1.5 \\
+         0.4231  &  0.3846 &  -0.6538 &  -0.5
+       \end{bmatrix} \\
+       B' &= \begin{bmatrix} 4 & 4 \\ 2 & 2 \\ 3 & 3 \\ 1 & 3 \end{bmatrix} \\
+         C' &= \begin{bmatrix}  0.2692  &  0.1538  &  0.0385 &  -0.5 \\
+         -0.4231 &  -0.3846 &   0.6538  &  0.5 \end{bmatrix}
+     \end{align*}
+
+     Despite the present example consisting of a minimal $2 \times 2$ and a non-minimal $4 \times 4$ system, any $n$-dimensional system can be constructed using this method -- applying a change of coordinates to the Kalman decomposition -- to construct a mechanistically different system with identical phenotypic dynamics. Depending on the specifics of a system being modeled, one may have to take care to restrict the free parameter values and network architecutres to be biologically appropriate. 
 %    \subsection*{Metabolic Network}
 %  \begin{align*}
 %    \dot{x}(t) &= \begin{bmatrix} 0 & 1 & 0 & -1 \\ 0 & 0 & -1 & -1 \\ -1 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix} \begin{bmatrix} \text{GAL3} \\ \text{GAL4} \\ \text{GAL80} \\ \text{MIG1} \end{bmatrix}(t) \\ &+ \begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 1 & 1 \end{bmatrix} \begin{bmatrix} \text{galactose} \\ \text{glucose} \\ \text{BTM} \end{bmatrix}(t) \\
