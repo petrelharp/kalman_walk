@@ -708,10 +708,10 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
 
   Minimally such a system may have the architecture,
   \begin{align*}
-    \mathcal{S} = \left\{ \begin{array}{ll} \dot{\kappa}(t) &= \begin{bmatrix} 0 & -1 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} \kappa_{1} \\ \kappa_{2} \end{bmatrix} (t) + \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} u_{1} \\ u_{2} \end{bmatrix} (t) \\[11pt]
+    \mathcal{S}_{\min} = \left\{ \begin{array}{ll} \dot{\kappa}(t) &= \begin{bmatrix} 0 & -1 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} \kappa_{1} \\ \kappa_{2} \end{bmatrix} (t) + \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} u_{1} \\ u_{2} \end{bmatrix} (t) \\[11pt]
       \phi(t) &= \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} \kappa_{1} \\ \kappa_{2} \end{bmatrix} (t) \end{array} \right.
   \end{align*}
-  $\mathcal{S}$ is minimal as its reachability and observability matrices both have rank $=2$, $\text{rank}(\mathcal{R}) = \text{rank}(\mathcal{O}) = 2 = n \implies \min$.
+    $\mathcal{S}_{\min}$ is minimal as its reachability and observability matrices both have rank $=2$, $\text{rank}(\mathcal{R}) = \text{rank}(\mathcal{O}) = 2 = n \implies \min$.
 
   The impulse response matrix of this system is, 
   \begin{align*}
@@ -724,7 +724,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
   \end{align*}
   ($\kappa(0)$ can be set to something like $\left[ -10, -10 \right]$, assuming the transient transcription factor and enzyme concentrations in the organism are typically quite low).
 
-  We can see that changing coordinates on this system (with any $V \in \mathbb{R}^{2 \times 2}$) will find new system architecutres, as shown before, however, we can also apply the Kalman decomposition to find systems in different dimensions -- that is systems that employ more than $2$ transcription factors, yet have the same external dynamics/phenotype. This may happen if a system is co-opted from another, or may be a consequence of gene duplication and deletion. 
+  We can see that changing coordinates on this system (with any invertible $V \in \mathbb{R}^{2 \times 2}$) will find new system architecutres, as shown before, however, we can also apply the Kalman decomposition to find systems in different dimensions -- that is systems that employ more than $2$ transcription factors, yet have the same external dynamics/phenotype. This may happen if a system is co-opted from another, or may be a consequence of gene duplication and deletion. 
 
   $\widehat{\mathcal{S}}$ is $4$-dimensional biological system,  \begin{align*}
     \widehat{\mathcal{S}} = \left\{ \begin{array}{ll}
@@ -732,7 +732,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
   \end{align*}
      where $V$ is any invertible $4 \times 4$ matrix and $X_{j}$ is any $2 \times 2$ matrix.
 
-     So for example, some system can be wired as follows, and still be input-output equivalent to the minimal metabolic system $A_{\min}$:
+     So for example, some system can be wired as follows, and still be input-output equivalent to the minimal metabolic system $\mathcal{S}_{\min}$:
      \begin{align*}
        A' &= \begin{bmatrix}
          1.6923  &  1.5385 &  -2.6154 &  -2 \\
