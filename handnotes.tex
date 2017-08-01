@@ -53,7 +53,7 @@ $^{\dagger}$University of Southern California, Los Angeles, California \qquad $^
 
 
 \begin{abstract}
-Here we introduce an analytical theory to study the evolution of biological systems, such as gene regulatory networks. The evolutionary conservation of phenotype under selective and environmental stasis does not necessitate conservation of the underlying mechanism, as distinct molecular pathways can realize identical phenotypes. Here we give an exact expression for the set of all linear mechanisms with identical phenotypes, and expect evolution under neutrality to explore this set. We employ a quantiative genetic approach to model evolution under neutrality as a random process over the set of all phenotype-invariant mechanisms: only mutational tweaks to the pathway that leave the phenotype invariant are optimally fit. We show that there is never a unique linear system architecture for any phenotype and that the evolutionary exploration of these distinct and mutationally connected mechanisms can lead to the rapid accumulation of hybrid incompatibilities between allopatric populations and thus lead to the rapid formation of new species -- in fewer generations than there are breeding individuals in a population.
+Here we introduce an analytical theory to study the evolution of biological systems, such as gene regulatory networks. The evolutionary conservation of phenotype under selective and environmental stasis does not necessitate conservation of the underlying mechanism, as distinct molecular pathways can realize identical phenotypes. Here we give an exact expression for the set of all linear mechanisms with identical phenotypes, and expect evolution under neutrality to explore this set. We employ a quantitative genetic approach to model evolution under neutrality as a random process over the set of all phenotype-invariant mechanisms: only mutational tweaks to the pathway that leave the phenotype invariant are optimally fit. We show that there is never a unique linear system architecture for any phenotype and that the evolutionary exploration of these distinct and mutationally connected mechanisms can lead to the rapid accumulation of hybrid incompatibilities between allopatric populations and thus lead to the rapid formation of new species -- in fewer generations than there are breeding individuals in a population.
 \end{abstract}
 
   \plr{Additional ideas to consider adding:
@@ -89,7 +89,7 @@ the evolution of both abstract \citep{wagner1994evolution, wagner1996does,  sieg
 In some fields that seek to fit parametric models to experimental data, such as control
 theory, chemical engineering, and statistics, it is well known that mathematical models
 can fundamentally be \emph{unidentifiable} and/or \emph{indistinguishable} -- meaning that 
-there can be uncertaintity about an inferred model's parameters or even its claims about
+there can be uncertainty about an inferred model's parameters or even its claims about
 causal structure, even with access to complete and perfect data \citep{bellman1970structural, grewal1976identifiability, walter1984structural}. Models with different 
 parameter schemes, or even different mechanics can be equally accurate, but still not
 \emph{actually} agree with what is being modelled. In control theory, where electrical 
@@ -98,7 +98,7 @@ infinite number of ``realizations'', or ways to reverse engineer the dynamics of
 even if all possible input and output experiments on the black box are performed \citep{kalman1963mathematical, anderson1966equivalence, zadeh1976linear}. In chemical
 engineering, those who study chemical reaction networks sometimes refer to the fundamental
 unidentifiability of these networks as ``the fundamental dogma of chemical kinetics'' \citep{craciun2008identifiability}. In computer science, this is framed as the relationship among processes that simulate one another \citep{van2004equivalence}.
-Although this may frusturate the occasional engineer or scientist, viewed from another angle,
+Although this may frustrate the occasional engineer or scientist, viewed from another angle,
 the concepts of unidentifiability and indistinguishability can provide a starting point for
 thinking about externally equivalent systems -- systems that evolution can explore, so long
 as the parameters and structures can be realized biologically. In fact, evolutionary
@@ -106,7 +106,7 @@ biologists who study convergent versus parallel evolution, homology, and analogy
 
   In this paper we outline a theoretical framework to study the evolution of biological systems. We expect wide applicability to this approach (\emph{i.e.} non-neutral evolution), however presently, we focus solely on neutral evolution, that is where phenotype is conserved over evolutionary time. 
   
-  We derive an analytical description of the set of all linear biological systems with identical phenotypes -- that is we decribe the set of all gene network architectures that yield identical phenotypes, and show that all biological systems can, in principal, can undergo systems drift. In the neutral case, this set desribes a manifold that evolution explores leaving phenotype invariant with respect to mutation, and predicts that if two populations become reproductively isolated, hybrid incompatibility can occur, despite the absence of adaptation, directional selection, or environmental change. Speciation typically occurs on timesclaes approximately on the order of $N_{e}$ generations, where $N_{e}$ is the effective population size.
+  We derive an analytical description of the set of all linear biological systems with identical phenotypes -- that is we describe the set of all gene network architectures that yield identical phenotypes, and show that all biological systems can, in principal, can undergo systems drift. In the neutral case, this set describes a manifold that evolution explores leaving phenotype invariant with respect to mutation, and predicts that if two populations become reproductively isolated, hybrid incompatibility can occur, despite the absence of adaptation, directional selection, or environmental change. Speciation typically occurs on timescales approximately on the order of $N_{e}$ generations, where $N_{e}$ is the effective population size.
 
 \section*{Gene Networks as Linear Dynamical Systems}
 
@@ -134,7 +134,7 @@ biologists who study convergent versus parallel evolution, homology, and analogy
 %  Variables have the same identities as described above and $\kappa(t)$ is a vector of molecule concentrations at time $t$. Therefore the molecular concentrations at a specific time are completely determined by the input and gene by gene interactions. Lastly, a portion and/or combination of these molecules, $\phi(t)$, are ``observed'' by selection (this is in constrast to $\kappa(t)$ -- the \emph{kryptotype} -- as it is ``hidden'' from direct selection).
 %}
 Here we outline a method to model biological systems, such as gene regulatory networks, as linear dynamical systems. We define an organism's phenotype $\phi(t)$ to be the molecular time-dynamics directly relevant to survival. These dynamics are the result of the interconnections of a gene regulatory network (or some other biological system) $A$ (an $n \times n$ matrix) and an environmental input $u(t)$.
-Such a system $\mathcal{S}$, is composed of two equaitons,
+Such a system $\mathcal{S}$, is composed of two equations,
   \begin{align}
     \mathcal{S} := \left\{ \begin{array}{ll} \dot{\kappa}(t) &= A \kappa(t) + B u(t) \\ \phi(t) &= C \kappa(t) \end{array} \right.
   \end{align}
@@ -144,7 +144,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
   \begin{align}
     \phi(t) = \int_{0}^{t} C e^{A t} B u(t) dt ,
   \end{align}
-  where we sometimes refer to $h(t) := Ce^{A t}B$ as the \emph{impulse response} of the system. As $A$ specifies gene regulatory network architecture, the $i^\text{th}$ row of $A$ can be interpreted as the \emph{cis}-regultory element (or promoter) for gene $i$. 
+  where we sometimes refer to $h(t) := Ce^{A t}B$ as the \emph{impulse response} of the system. As $A$ specifies gene regulatory network architecture, the $i^\text{th}$ row of $A$ can be interpreted as the \emph{cis}-regulatory element (or promoter) for gene $i$. 
 
 %We will now lay out the model in more general terms.
 %Suppose that the \emph{internal state} of the system
@@ -187,7 +187,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
       \dot{\kappa_{1}}(t) &= \kappa_{2}(t) + u(t) \\
       \dot{\kappa_{2}}(t) &= - \kappa_{1}(t) + u(t)
     \end{align*}
-    where $\dot{\kappa}$ denotes the time derivative. The initial conditions $\kappa_{1}(0)$ and $\kappa_{2}(0)$, and the input $u(t)$ then determiine the concentrations through time. If we record the regulatory coefficients in the matrix
+    where $\dot{\kappa}$ denotes the time derivative. The initial conditions $\kappa_{1}(0)$ and $\kappa_{2}(0)$, and the input $u(t)$ then determine the concentrations through time. If we record the regulatory coefficients in the matrix
     \begin{align*}
       A &= \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} ,
     \end{align*}
@@ -212,7 +212,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
  %         \phi(t) &= \begin{bmatrix} 1 & 0 \end{bmatrix} \kappa(t) \end{array} \right.
  %    \end{align*}
       
-      Since the input is simply an impulse, its phenotype is equivlanet to its impulse response
+      Since the input is simply an impulse, its phenotype is equivalent to its impulse response
 
       \begin{align*}
         \phi(t) = h(t) = \sin(t) + \cos(t)  .
@@ -264,7 +264,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
 
   \section*{Linear Evolutionary Systems}
 
-  The literature is filled with detailed observations of molecular systems and their diversity. There are examples of significant diversity in the networks underlying processes such as circadian rhythm \citep{sancar2008intelligent}, cell cycle control \citep{cross2011evolution, kearsey2003enigmatic}, pattern formation, and metabolism  \citep{lavoie2009rearrangements, martchenko2007transcriptional, dalal2016transcriptional, christensen2011unique, hartl2007induction, alam2013aspergillus}. Despite a symmetry in functionality or phenotype these systems often differ, sometimes substationaly, at the molecular level. How many different mechanisms have the same function? We urge the reader to consider the metaphorical black box.
+  The literature is filled with detailed observations of molecular systems and their diversity. There are examples of significant diversity in the networks underlying processes such as circadian rhythm \citep{sancar2008intelligent}, cell cycle control \citep{cross2011evolution, kearsey2003enigmatic}, pattern formation, and metabolism  \citep{lavoie2009rearrangements, martchenko2007transcriptional, dalal2016transcriptional, christensen2011unique, hartl2007induction, alam2013aspergillus}. Despite a symmetry in functionality or phenotype these systems often differ, sometimes substantially, at the molecular level. How many different mechanisms have the same function? We urge the reader to consider the metaphorical black box.
 
   Gene regulatory networks with identical phenotypes (external dynamics) do not necessarily have identical kryptotypes (internal dynamics). Any linear and minimal system (a gene network) -- minimal, informally meaning that the system's phenotype is achieved with the fewest possible number of genes -- has an identical phenotype up to a change of coordinates. 
   \begin{align}
@@ -349,7 +349,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
 \end{scope}
 
 \end{tikzpicture}
-    \caption{A graphical depiction of the set of all externally equivalent cell cycle control networks, $A(\tau)$. $\tau$ can take any valye}
+    \caption{A graphical depiction of the set of all externally equivalent cell cycle control networks, $A(\tau)$. $\tau$ can take any value}
     \end{figure}
  % \end{example}
 
@@ -394,7 +394,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
   In the context of transcription factor networks this may be affected 
   not only by the binding strength of $j$ to the promoter region of $i$
   but also the effects of other transcription factors (e.g., cooperativity)
-  and local chromatin accessibliity \citep{stefflova2013cooperativity}.
+  and local chromatin accessibility \citep{stefflova2013cooperativity}.
   For this reason, 
   the mutational target size for variation in $A_{ij}$ may be much larger than the dozens of base pairs
   typically implicated in the handful of binding sites for transcription factor $j$ of a typical promoter region.
@@ -435,7 +435,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
   However, empirical work allows us to estimate at least the rough magnitude of variation.
 
   \plr{strength of selection}
-  It seems certain that selection is not so strong that intrapopulation variation
+  It seems certain that selection is not so strong that intra-population variation
   is strongly deleterious,
   so that if $u$ is the typical scale on which selection acts
   -- e.g., a phenotype that differs from the optimum by $x$ has fitness of $\exp(-x^2/2u^2)$ --
@@ -452,7 +452,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
   rather than genetic drift.
   A conservative estimate would be that $u = 5 \sigma$;
   taking $\sigma=.01$ as above, this suggests that changes in phenotype of 5\% are sufficient
-  to effect a noticable drop in fitness.
+  to effect a noticeable drop in fitness.
   \plr{BUT $\sigma$ IS VARIATION IN $A$ NOT PHENOTYPE}
 
   We have guessed that within a population the entries of $A$
@@ -485,7 +485,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
   -- mortality or reduced fitness of a large proportion of new offspring due to recombination between somewhat incompatible alleles.
   However, it is unclear if this is likely to occur and XXX we revisit this below.
 
-  It therefore seems reasonable to coarsely model the time evolution of population variation in network coefficents as 
+  It therefore seems reasonable to coarsely model the time evolution of population variation in network coefficients as 
   (a) a ``cloud'' of width X about the population mean, 
   which (b) moves as an unbiased Brownian motion through the set of network coefficients that give the optimal phenotype.
   In fact, the population mean will not produce exactly the optimal phenotype,
@@ -594,7 +594,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
           \mathcal{I} &= 0
         \end{align*}
 
-        Thus if populations $1$ and $2$ are homogenous $A(0)$ and $A(2)$, respectively, we say that they are completely incompatible as $\mathcal{I} = 0$.
+        Thus if populations $1$ and $2$ are homogeneous $A(0)$ and $A(2)$, respectively, we say that they are completely incompatible as $\mathcal{I} = 0$.
       \end{definition}
       \begin{figure}[H]
         \centering
@@ -656,7 +656,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
           Note the difference in scale on the $y$-axis. F2 hybrids display more phenotypic divergence than F1s, on average. Further, some F2s completely fail to oscillate, as seen in an $A(2.5)$ F2 (light blue).}
         \end{figure}
 
-        \jss{$A(2)$ and $A(2.1)$ differ in regulatory interaction strengths by $5.09\%$. If intrapopulation regulatory variation is approximately $5\%$, then this level of divergence is expected after $\sqrt{\frac{t}{N_{e}} = 1}$ generations.}
+        \jss{$A(2)$ and $A(2.1)$ differ in regulatory interaction strengths by $5.09\%$. If intra-population regulatory variation is approximately $5\%$, then this level of divergence is expected after $\sqrt{\frac{t}{N_{e}} = 1}$ generations.}
     \end{example}
  %     \begin{example}[Not all Networks can Host Incompatibilities]
  %       convex sets cant have DMIs
@@ -672,7 +672,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
    \begin{align*}
       \mathcal{F} = g \left( \frac{\phi - \phi_{0}}{\beta} \right)
     \end{align*}
-    And a population $P$ is normally distributed around a mean gene network architecture $A(\tau)$ and $\sigma^{2}$ is the intrapopulation regulatory variance,
+    And a population $P$ is normally distributed around a mean gene network architecture $A(\tau)$ and $\sigma^{2}$ is the intra-population regulatory variance,
     \begin{align*}
       P_{T} \sim \mathcal{N} \left(A(\tau), T \frac{\sigma^{2}}{N_{e}}\right)
     \end{align*}
@@ -702,7 +702,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
 
   \begin{example}[Metabolic network]
 
-  Consider an organism that can metabolize two different sugars $s_{1}$ and $s_{2}$ (present at logarithmic concentrations $u_{1}$ and $u_{2}$ respectively), with enzymes $e_{1}$ and $e_{2}$ (with log concentration denoted as $\phi_{1}$ and $\phi_{2}$). Further suppose that one of the sugars $s_{2}$ is the preferred energy source (perhaps it contains significantly more energy than the other sugar or is otherwise more efficiently metabolized). The organism may have a gene regulatory network $\mathcal{S}$ that can depoly a situation specific metabolic strategy. That is depending on both $u_{2}$ and $u_{1}$ the organism will synthesize an appropriate $\phi_{1}$ and $\phi_{2}$. Furthermore, consider this system to contain at least two transcription factors, whose log concentrations are given by $\kappa_{1}$, $\kappa_{2}$, $\dots \kappa_{n}$. 
+  Consider an organism that can metabolize two different sugars $s_{1}$ and $s_{2}$ (present at logarithmic concentrations $u_{1}$ and $u_{2}$ respectively), with enzymes $e_{1}$ and $e_{2}$ (with log concentration denoted as $\phi_{1}$ and $\phi_{2}$). Further suppose that one of the sugars $s_{2}$ is the preferred energy source (perhaps it contains significantly more energy than the other sugar or is otherwise more efficiently metabolized). The organism may have a gene regulatory network $\mathcal{S}$ that can deploy a situation specific metabolic strategy. That is depending on both $u_{2}$ and $u_{1}$ the organism will synthesize an appropriate $\phi_{1}$ and $\phi_{2}$. Furthermore, consider this system to contain at least two transcription factors, whose log concentrations are given by $\kappa_{1}$, $\kappa_{2}$, $\dots \kappa_{n}$. 
 
   Minimally such a system may have the architecture,
   \begin{align*}
@@ -722,7 +722,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
   \end{align*}
   ($\kappa(0)$ can be set to something like $\left[ -10, -10 \right]$, assuming the transient transcription factor and enzyme concentrations in the organism are typically quite low).
 
-  We can see that changing coordinates on this system (with any invertible $V \in \mathbb{R}^{2 \times 2}$) will find new system architecutres, as shown before, however, we can also apply the Kalman decomposition to find systems in different dimensions -- that is systems that employ more than $2$ transcription factors, yet have the same external dynamics/phenotype. This may happen if a system is co-opted from another, or may be a consequence of gene duplication and deletion. 
+  We can see that changing coordinates on this system (with any invertible $V \in \mathbb{R}^{2 \times 2}$) will find new system architectures, as shown before, however, we can also apply the Kalman decomposition to find systems in different dimensions -- that is systems that employ more than $2$ transcription factors, yet have the same external dynamics/phenotype. This may happen if a system is co-opted from another, or may be a consequence of gene duplication and deletion. 
 
   $\widehat{\mathcal{S}}$ is $4$-dimensional biological system,  \begin{align*}
     \widehat{\mathcal{S}} = \left\{ \begin{array}{ll}
@@ -743,7 +743,7 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
          -0.4231 &  -0.3846 &   0.6538  &  0.5 \end{bmatrix}
      \end{align*}
 
-     Despite the present example consisting of a minimal $2 \times 2$ and a non-minimal $4 \times 4$ system, any $n$-dimensional system can be constructed using this method -- applying a change of coordinates to the Kalman decomposition -- to construct a mechanistically different system with identical phenotypic dynamics. Depending on the specifics of a system being modeled, one may have to take care to restrict the free parameter values and network architecutres to be biologically appropriate. 
+     Despite the present example consisting of a minimal $2 \times 2$ and a non-minimal $4 \times 4$ system, any $n$-dimensional system can be constructed using this method -- applying a change of coordinates to the Kalman decomposition -- to construct a mechanistically different system with identical phenotypic dynamics. Depending on the specifics of a system being modeled, one may have to take care to restrict the free parameter values and network architectures to be biologically appropriate. 
   \end{example}
 %    \subsection*{Metabolic Network}
 %  \begin{align*}
@@ -783,22 +783,22 @@ Such a system $\mathcal{S}$, is composed of two equaitons,
 
   The complexity of biological systems has limited our understanding of their function and evolution. Above we outline an approach, a first step, towards untangling this complexity in reference to function and evolution. This methodology borrows successfully applied tools from engineering and aims to synthesize these with the concepts and tools of molecular and evolutionary biology. 
   
-  Theoretical models in evolution and population genetics often lack the molecular details of physiology or of the genotype-phenotype map. Here, we offer a tractable and simple model which includes these missing features. Further, we provide, in clear mathematical language, an analytical description of phenomena hitherto only discussed verbally and conceptualy (phenogenetic drift \citep{weiss2000phenogenetic}, developmental systems drift \citep{true2001developmental}, biological degeneracy \citep{edelman2001degeneracy}, \emph{etc.}). The tractability and relative simplicity of this exposition enables the interested biologist to work out by hand, if desired, the dynamics of a genetic system, as well as perturbations to the system -- an attribute not likely to be found in less tractable models and simulations.
+  Theoretical models in evolution and population genetics often lack the molecular details of physiology or of the genotype-phenotype map. Here, we offer a tractable and simple model which includes these missing features. Further, we provide, in clear mathematical language, an analytical description of phenomena hitherto only discussed verbally and conceptually (phenogenetic drift \citep{weiss2000phenogenetic}, developmental systems drift \citep{true2001developmental}, biological degeneracy \citep{edelman2001degeneracy}, \emph{etc.}). The tractability and relative simplicity of this exposition enables the interested biologist to work out by hand, if desired, the dynamics of a genetic system, as well as perturbations to the system -- an attribute not likely to be found in less tractable models and simulations.
 
-  We have suggested an interpretation of system identification: to see it as an evolutionarily neutral manifold, and not simply a computational nuissance. We have demonstrated a method to analytically determine the set of all phenotypically invarint gene networks; by a simple change of coordinates in the minimal configuration, or more generally by applying the Kalman decomposition in higher dimensions. Further, we emphasize that evolution proceeds through this high dimensional space as stochastic coordinate transformation, constrained by sexual reproduction and selection. This set is explored over evolutionary time when phenotype is conserved, and can lead to a diverse set of consequences, including the accumulation of Dobzhansky-Muller incompatibilities. We emphasize that these incompatibilities are a consequence of recombining different, yet functionally equivalent, mechanisms.
+  We have suggested an interpretation of system identification: to see it as an evolutionarily neutral manifold, and not simply a computational nuisance. We have demonstrated a method to analytically determine the set of all phenotypically invariant gene networks; by a simple change of coordinates in the minimal configuration, or more generally by applying the Kalman decomposition in higher dimensions. Further, we emphasize that evolution proceeds through this high dimensional space as stochastic coordinate transformation, constrained by sexual reproduction and selection. This set is explored over evolutionary time when phenotype is conserved, and can lead to a diverse set of consequences, including the accumulation of Dobzhansky-Muller incompatibilities. We emphasize that these incompatibilities are a consequence of recombining different, yet functionally equivalent, mechanisms.
 
-  Furthermore, using a quantitative genetic approach, we estimated that a genetically variable population will drift in neutral system space at a rate determined by its intrapopulation variation and its effective population size. Because mechanistically distinct yet phenotypically equivalent biological systems can fail to produce viable hybrids, we predict allopatric populations to speciate at a rate on the order of $N_{e}$ under reasonable population genetic parameter estimates. Additionally we see second-generation hybrid fitness plummet much faster than that of first-generation hybrids. This insight is a consequence of combinding our mechanistic model with a quantitative genetic one: we observe that $F_{1}$ phenotypes diverge quartically, and $F_{2}$ phenotypess quadratically, with evolutionary time. This result is also consistent with Haldane's rule; that if only one hybrid sex is inviable or sterile it is likely the heterogametic sex. The consistency comes from gene networks localized to the sex chromosomes functioning as an $F_{2}$ hybrid cross within a diploid $F_{1}$ heterogamete as there is only one sex chromosome.
+  Furthermore, using a quantitative genetic approach, we estimated that a genetically variable population will drift in neutral system space at a rate determined by its intra-population variation and its effective population size. Because mechanistically distinct yet phenotypically equivalent biological systems can fail to produce viable hybrids, we predict allopatric populations to speciate at a rate on the order of $N_{e}$ under reasonable population genetic parameter estimates. Additionally we see second-generation hybrid fitness plummet much faster than that of first-generation hybrids. This insight is a consequence of combining our mechanistic model with a quantitative genetic one: we observe that $F_{1}$ phenotypes diverge quartically, and $F_{2}$ phenotypes quadratically, with evolutionary time. This result is also consistent with Haldane's rule; that if only one hybrid sex is inviable or sterile it is likely the heterogametic sex. The consistency comes from gene networks localized to the sex chromosomes functioning as an $F_{2}$ hybrid cross within a diploid $F_{1}$ heterogamete as there is only one sex chromosome.
   
   We also suggest that gene networks may not always use their components parsimoniously as network size tends to ratchet up in the absence of strong selection against extra parts. Although unexplored presently, this phenomena may lead to insights on evolvability and developmental innovation. Lastly, we show that hybrid gene networks break down as function of genetic distance, and may, in part, explain broad patterns of reproductive isolation among diverse phyla \citep{roux2016shedding}.
 
-  As Richard Levins opined, models in population biology face a tradeoff among precision, realism, and generality \citep{levins1966strategy}. As Levins expects, any tractable and general model, such as the present one under discussion, will have limitations. Most notable is linearity. It is often stated that life is not linear. This is often true, however, many of the ideas developed here should be generalizable to nonlinear cases (multilinear systems, say). Futher, we see this as a necessary first step in the direction of more life-like nonlinear evolutionary systems theory. Depending on an actual biological system's particularities, its (potential) nonlinearity, may buffer or exacerbate effects elucidated in this paper, such as the aquisition of Dobzansky-Muller incompatibilities.
+  As Richard Levins opined, models in population biology face a trade-off among precision, realism, and generality \citep{levins1966strategy}. As Levins expects, any tractable and general model, such as the present one under discussion, will have limitations. Most notable is linearity. It is often stated that life is not linear. This is often true, however, many of the ideas developed here should be generalizable to nonlinear cases (multi-linear systems, say). Further, we see this as a necessary first step in the direction of more life-like nonlinear evolutionary systems theory. Depending on an actual biological system's particularities, its (potential) non-linearity, may buffer or exacerbate effects elucidated in this paper, such as the acquisition of Dobzansky-Muller incompatibilities.
 
-  This theoretical framework can easily be applied to other interesting questions in evolutionary biology not tackled presently: such as the evolution of linkage, the necessity of network complexity (does evolution tend towards Rube Goldberg or parsimonious network organization?), evolvability, structure/function inference, and intrapopulation context dependency of mutational effects, as well as many others.
+  This theoretical framework can easily be applied to other interesting questions in evolutionary biology not tackled presently: such as the evolution of linkage, the necessity of network complexity (does evolution tend towards Rube Goldberg or parsimonious network organization?), evolvability, structure/function inference, and intra-population context dependency of mutational effects, as well as many others.
 
   \jss{literature comparison:}
 
-  Over the last several years, several different computational approaches have been applied to study reproductive incompatibility and speciation. \citet{tulchinsky} simulated the evolution of a transcription factor and its binding site using a thermodynamic model. Their simulations suggest that the language by which a transcription factor recognizes its binding site can change, and potentially lead to hybird incomaptibility when allopatric populations employ divergent readout languages. This study, despite looking at gene regulation, does not analyze overall gene network architecture -- as we do here -- it only looks at the expression level of a single gene. Furthermore, they report reproducitve isolation primarily following direcitonal selection for a change in expression levels in each allopatric population; the evidecne for reproductive isolation following balancing selection is much weaker. Johnson and Porter 2000 did not observe any hybrid fitness declines under stabilizing selection -- only under directional selection. 
-  Khatari et al, Tulchinsky et al, and Porter et al, all study hybrid incompatibility from a transcription factor/binding site interaction perspective, not from an overal network architecture perspective. Palmer and Feldman only see hybrid incompatibility in constant environments if the parental populations are relatively poorly adapted initially. Otherwise hybrids between two allopatric populations have fairly high fitnesses.  
+  Over the last several years, several different computational approaches have been applied to study reproductive incompatibility and speciation. \citet{tulchinsky} simulated the evolution of a transcription factor and its binding site using a thermodynamic model. Their simulations suggest that the language by which a transcription factor recognizes its binding site can change, and potentially lead to hybrid incompatibility when allopatric populations employ divergent readout languages. This study, despite looking at gene regulation, does not analyze overall gene network architecture -- as we do here -- it only looks at the expression level of a single gene. Furthermore, they report reproductive isolation primarily following directional selection for a change in expression levels in each allopatric population; the evidence for reproductive isolation following balancing selection is much weaker. Johnson and Porter 2000 did not observe any hybrid fitness declines under stabilizing selection -- only under directional selection. 
+  Khatari et al, Tulchinsky et al, and Porter et al, all study hybrid incompatibility from a transcription factor/binding site interaction perspective, not from an overall network architecture perspective. Palmer and Feldman only see hybrid incompatibility in constant environments if the parental populations are relatively poorly adapted initially. Otherwise hybrids between two allopatric populations have fairly high fitnesses.  
 
 \section*{Acknowledgements}
 We would like to thank Sergey Nuzhdin, Stevan Arnold, Erik Lundgren, and Hossein Asgharian for valuable discussion.
@@ -828,10 +828,10 @@ We would like to thank Sergey Nuzhdin, Stevan Arnold, Erik Lundgren, and Hossein
     where $h$ and $\bar h$ are the impulse responses of the two systems.
 \end{definition}
 
-One way to find other systems equvalent to a given one
-is by change of coordinates (``algebraic equivalance''):
+One way to find other systems equivalent to a given one
+is by change of coordinates (``algebraic equivalence''):
 if $V$ is an invertible matrix, then the systems $(A,B,C)$ and $(VAV^{-1},VB,CV^{-1})$
-have the same dyanamics because their transfer functions are equal:
+have the same dynamics because their transfer functions are equal:
 \begin{align*}
     CV^{-1}( zI - VAV^{-1})^{-1}VB
     =
@@ -847,7 +847,7 @@ numbers of molecular species.
 The set of all systems phenotypically equivalent to a given system $(A,B,C)$ 
 is elegantly described using the Kalman decomposition,
 which also clarifies the system dynamics? tells us a lot about how it works? \plr{or something}
-To motivate this, first note that the the input $u(t)$ only directly pushes the system
+To motivate this, first note that the input $u(t)$ only directly pushes the system
 in directions lying in the span of the columns of $B$.
 As a result, different combinations of input can 
 move the system in any direction that lies in the \emph{reachable subspace},
@@ -869,7 +869,7 @@ If we define
     \item The columns of $P_\nro$ are an orthonormal basis of
         the complement of $\reachable \cap \unobservable$ in $\unobservable$.
     \item The columns of $P_\nrno$ are an orthonormal basis of
-        the the remainder of $\R^n$.
+        the remainder of $\R^n$.
 \end{enumerate}
 If we then define
 \begin{align*}
@@ -962,7 +962,7 @@ and a invertible transformation of $\spn(P_{\ro})$, which we call $T_\ro$.
         \item[(b)]
             \plr{conjecture:}
             The parameterization is unique
-            if $P$ is futhermore chosen so that 
+            if $P$ is furthermore chosen so that 
             each $P_x$ other than $P_\ro$ is a projection matrix,
             and that 
             \begin{align*}
