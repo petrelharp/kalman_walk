@@ -11,7 +11,20 @@
 
 \usepackage{multicol}
 
-\newcommand{\plr}[1]{{\color{blue}\it #1}}
+% for comments in margins or not
+\newif\ifmargincomments
+\margincommentstrue
+% \margincommentstrue
+\ifmargincomments
+    \usepackage{todonotes}
+    \newcommand{\plr}[1]{\todo[color=blue!25]{#1}}
+    % inline comment version
+    \newcommand{\plri}[1]{{\color{blue}\it #1}}
+\else
+    \newcommand{\plr}[1]{{\color{blue}\it #1}}
+    \newcommand{\plri}[1]{\plr{#1}}
+\fi
+
 \newcommand{\jss}[1]{{\color{olive}\it #1}}
 % \newcommand{\ddt}{\frac{d}{dt}}
 \newcommand{\ddt}{\dot}
@@ -75,14 +88,14 @@ $^{\ddagger}$University of Oregon, Eugene, Oregon \\
 Here we introduce an analytical theory to study the evolution of biological systems, such as gene regulatory networks. The evolutionary conservation of phenotype under selective and environmental stasis does not necessitate conservation of the underlying mechanism, as distinct molecular pathways can realize identical phenotypes. Here we give an exact expression for the set of all linear mechanisms with identical phenotypes, and expect evolution under neutrality to explore this set. We employ a quantitative genetic approach to model evolution under neutrality as a random process over the set of all phenotype-invariant mechanisms: only mutational tweaks to the pathway that leave the phenotype invariant are optimally fit. We show that there is never a unique linear system architecture for any phenotype and that the evolutionary exploration of these distinct and mutationally connected mechanisms can lead to the rapid accumulation of hybrid incompatibilities between allopatric populations and thus lead to the rapid formation of new species -- in fewer generations than there are breeding individuals in a population.
 \end{abstract}
 
-  \plr{Additional ideas to consider adding:
+\plr{Additional ideas to consider adding:}
 \begin{itemize}
     %\item Haldane's rule (easy point in discussion: makes F1s look like F2s)
     %\item add point about F1: quartic and F2: quadratic to results and maybe abstract/discussion
     \item hybrid vigor (need to do calculation)
     \item discuss linearity, linearization, and canalization in introduction
     %\item obtain estimates of variation in $A$ from thermodynamic occupancy model
-\end{itemize}}
+\end{itemize}
 
 \plr{Note: in the \LaTeX source I'm putting in semantic linebreaks, so it's easy to edit and move around phrases and ideas.}
 
@@ -195,7 +208,7 @@ These dynamics are the result of the interconnections of
 a gene regulatory network (or some other biological system) $A$ (an $n \times n$ matrix) 
 and an environmental input $u(t)$.
 \plr{say what $u$ is (a vector)}
-\plr{say in words what $\kappa$ is before the equation.
+\plr{say in words what $\kappa$ is before the equation.}
 Such a system $\mathcal{S}$, is composed of two equations,
   \begin{align}
     \mathcal{S} := \left\{ \begin{array}{ll} \dot{\kappa}(t) &= A \kappa(t) + B u(t) \\ \phi(t) &= C \kappa(t) \end{array} \right.
@@ -452,7 +465,8 @@ Regardless of minimality, two systems, even in different dimensions, can have id
 \end{scope}
 
 \end{tikzpicture}
-    \caption{A graphical depiction of the set of all externally equivalent cell cycle control networks, $A(\tau)$. $\tau$ can take any value \plr{sentence fragment}}
+    \caption{A graphical depiction of the set of all externally equivalent cell cycle control networks, $A(\tau)$. 
+        $\tau$ can take any value \plri{sentence fragment}}
     \end{figure}
  % \end{example}
 
@@ -789,7 +803,7 @@ F1 gene regulatory networks are formed by averaging the two parental $A(\tau)$ m
   \caption{
     $F_1$ (left) and $F_2$ (right) hybrids crossing $A(2)$ with $A(2.01)$ (top), $A(2.1)$ (middle), and $A(2.5)$ (bottom).
     Note the difference in scale on the $y$-axis. F2 hybrids display more phenotypic divergence than F1s, on average. Further, some F2s completely fail to oscillate, as seen in an $A(2.5)$ F2 (light blue).
-    \plr{make axis labels bigger}
+    \plri{make axis labels bigger}
   }
 \end{figure}
 
