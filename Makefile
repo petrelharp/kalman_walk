@@ -3,7 +3,7 @@
 PDFLATEX=pdflatex -interaction nonstopmode
 
 clean : 
-	-rm *.{aux,log,bbl,blg,out}
+	-rm *.aux *.log *.bbl *.blg *.out *.brf
 
 %.html : %.Rmd
 	Rscript -e "templater::render_template(\"$<\", output=\"$@\", change.rootdir=TRUE)"
