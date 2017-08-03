@@ -17,6 +17,7 @@
 % \margincommentstrue
 \ifmargincomments
     \usepackage{todonotes}
+    \usepackage[left=1cm,right=6.5cm,top=3cm,bottom=3cm,nohead,nofoot,marginparwidth=6cm]{geometry}
     \newcommand{\plr}[1]{\todo[color=blue!25]{#1}}
     % inline comment version
     \newcommand{\plri}[1]{{\color{blue}\it #1}}
@@ -44,6 +45,17 @@
 \newcommand{\calH}{\mathcal{H}}
 \newcommand{\diag}{\text{diag}}
 \newcommand{\1}{\mathbbm{1}}
+
+% fitness as a fn of distance
+\newcommand{\fit}{\mathcal{F}}
+% fitness as a fn of A
+\newcommand{\fitx}{\mathcal{f}}
+% set of optimal coefficients
+\newcommand{\optx}{\mathcal{X}}
+% optimal phenotype
+\newcommand{\optph}{\Phi_0}
+% distance in phenotype space
+\newcommand{\dph}{d}
 
 \DeclareMathOperator{\spn}{span}
 
@@ -97,7 +109,9 @@ Here we introduce an analytical theory to study the evolution of biological syst
     %\item obtain estimates of variation in $A$ from thermodynamic occupancy model
 \end{itemize}
 
-\plr{Note: in the \LaTeX source I'm putting in semantic linebreaks, so it's easy to edit and move around phrases and ideas.}
+\plri{Note: in the \LaTeX source I'm putting in semantic linebreaks, so it's easy to edit and move around phrases and ideas.}
+
+\plri{Need to come up with a consistent term for ``the $A_{ij}$''s. -- ``regulatory coefficients''? ``genotype''?}
 
 %%%%%%%%%%%%%%%%%%%%%%
 \section*{Introduction}
@@ -478,202 +492,239 @@ Regardless of minimality, two systems, even in different dimensions, can have id
     \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{osc_A0_A2_both_compare}
     \caption{Gene-1 (blue) and gene-2 (orange) dynamics for $A(0)$ (top) and $A(2)$ (bottom). Both (top and bottom) gene-1 dynamics are given by $ \kappa_{1} = \sin(t) + \cos(t)$, and gene-2 by $\kappa_{2} = \cos(t) - \sin(t)$ (top) and $\kappa'_{2} = \cos(t) + 3 \sin(t)$ (bottom).}
   \end{figure}
-  \end{example}
+\end{example}
+
+\plri{Missing: a statement about when there are neutral directions, and how many.}
 
 \plr{I think we should first put the section about quantitative drift in, and then the following section that tries to get at real values of parameters.}
 
-  %%%%%%%%%%%%%%%%%%%%%%%%
-  \section*{Intraspecific variation and genetic drift}
-
-\plr{Below we need to separate variation in $A$ from variation in phenotype.}
-
-%  \plr{rework this: we assume optimal phenotype is fixed and population is large but polymorphic and not strictly on the optimum}
-
-%First we focus on a simple evolutionary scenario -- \emph{phenotypically invariant evolution}: a large population, perfectly adapted, and in a constant environment. In this circumstance we expect phenotype to be conserved throughout evolutionary time. As such we should only expect the phenotype to change as a consequence of genetic drift (small effective population size), adaptation to new selective and/or environemental pressures. These phenotypic variations should yield distinct signatures. Adaptative changes will change the optimal impulse response function $h(t) \xrightarrow{adaptation} h'(t)$. Genetic drift registers as an increase in the intrapopulation variation in $h(t)$. 
-% \jss{added the phenotypic invariance stuff here (above) -- not sure if it should put elsewhere yet}
-
-  At any given time, there will be a range of regulatory coefficients present in the population
-  due to segregating genetic variants.
-  Over many generations, even if selective pressures do not change,
-  this range of networks will shift 
-  as recombination, mutation, and demographic noise create new alleles and shift allele frequencies.
-  How much variation do we expect to find within a population?
-  Is this range limited by available variation or kept in check by selection?
-  How fast will a population explore the space of equivalent networks?
-  To answer these questions, we need to know 
-  the strength of stabilizing selection on the phenotype,
-  and the amount (and structure) of heritable variation in the genotype.
-  These are known at best only roughly \citep{felsenstein1988phylogenies},
-  so we aim for order-of-magnitude estimates.
-
-  %% amount of heritable variation
-  We quantify (roughly) the amount of heritable variation
-  by $\sigma^2$, the genetic variance present in a population in a typical entry of $A$.
-  The coefficient $A_{ij}$ measures how much the rate of net production of $i$ changes
-  per change in concentration of $j$.
-  It is generally thought that regulatory sequence change contributes much more to inter- and intraspecific variation
-  than does coding sequence change affecting molecular structure \citep{schmidt2010vertebrate}.
-  In the context of transcription factor networks this may be affected 
-  not only by the binding strength of molecule $j$ to the promoter region of gene $i$
-  but also the effects of other transcription factors (e.g., cooperativity)
-  and local chromatin accessibility \citep{stefflova2013cooperativity}.
-  For this reason, 
-  the mutational target size for variation in $A_{ij}$ may be much larger than the dozens of base pairs
-  typically implicated in the handful of binding sites for transcription factor $j$ of a typical promoter region,
-  and single variants may affect many entries of $A$ simultaneously.
-  % (Recall that although these are best modeled through nonlinear terms,
-  % by linearizing we essentially consider first-order effects.)
-  On the other hand, a diverse set of buffering mechanisms are thought to contribute to phenotypic stability
-  in the presence of substantial molecular noise \citep{canalization,buffering},
-  suggesting that substantial variation in the micro-scale dynamics we consider here
-  may be necessary to produce relevant phenotypic effects downstream.
-  \plr{replace "micro-scale" with sthg else or discuss earlier}
-
-  %% empirical data on sigma
-  The amount and structure of this standing variation is established over long time scales
-  by many factors, including
-  mutation-selection balance, 
-  shifts in the phenotypic optimum,
-  and/or spatial variation in the optimum \citep{hansen1996translating}.
-  Quantitative genetics models of mutation-selection balance 
-  predict precise levels and structure of standing variation \citep{kimura_mutsel,lande_mutsel,lande1981models},
-  but it is unclear how well these predictions match reality \citep{johnson_barton}
-  and how much they are expected to change over time \citep{arnold_changing_G}.
-  However, empirical work allows us to estimate at least the rough magnitude of variation.
-  Differences in $A_{ij}$ due to a sequence change are hard to measure,
-  but variation in both transcription factor binding site occupancy
-  and expression levels (e.g., cis-eQTL) have been measured in various systems.
-  However, variation in binding site occupancy may overestimate variation in $A$,
-  since it does not capture buffering effects (if for instance only one site of many needs be occupied for transcription to begin),
-  and variation in expression levels measures changes in steady-state concentration (our $\kappa_i$) rather than the \emph{rate} of change.
-  Nonetheless,
-  \citet{kasowski2010variation} found differential occupancy in 7.5\%
-  of binding sites of a transcription factor (p65) between human individuals.
-  \citet{verlaan2009targeted} showed that cis-regulatory variation
-  accounts for around 2--6\% of expression variation in human blood-derived primary cells,
-  while \citep{lappalainen2013transcriptome} found that human population variation 
-  explained about 3\% of expression variation.
-  \plr{Get some data from at least one other species in here!}
-  Taken together, this suggests that variation in the entries of $A$
-  may be on the order of 1\% between individuals of a population --
-  doubtless varying substantially between species and between genes.
-
-  %% argument for strength of selection
-  It seems certain that selection in most species is not so strong that intra-population variation
-  is strongly deleterious,
-  so that if $u$ is the typical scale on which selection acts,
-  then $u > \sigma$.  
-  \plr{do we call this $\beta$ or $u$?}
-  However,
-  a range of studies \plr{find them} have found evidence for weak stabilizing selection
-  on regulatory SNPs and cis-eQTL.
-  For instance, 
-  \citet{maria_and_sergey} \plr{(others?)} found evidence that large-effect regulatory mutations are weakly selected against in Drosophila.
-  This suggests that 
-  the strength of selection on phenotype is sufficient to weakly constrain regulatory variation,
-  so that perhaps $\sigma$ and $u$ are relatively close.
-  This is as would be expected if available variation is held in check by mutation--selection balance
-  rather than genetic drift.
-  A conservative estimate would be that $u = 5 \sigma$;
-  taking $\sigma=.01$ as above, this suggests that changes in phenotype of 5\% are sufficient
-  to effect a noticeable drop in fitness.
-  \plr{BUT $\sigma$ IS VARIATION IN $A$ NOT PHENOTYPE}
-
-  We have guessed that within a population, 
-  the entries of $A$ vary by around 1\%, 
-  at least for networks whose function is strongly constrained.
-  Subsequent generations for the most part resample from this diversity,
-  so in a population of effective size $N_e$, with variation in $A$ of order $\sigma$,
-  the population mean binding strengths
-  will move a distance of order $\sigma/\sqrt{N_e}$ per generation,
-  simply because this is the the variance of the mean of a random sample \citep{lande_drift}.
-  % (This could be taken as a definition of $N_e$.)
-  Selection will tend to push this mean towards the optimal set of networks \citep{ou_process},
-  but mean movement parallel to the optimal set (that leaves the phenotype invariant) is unconstrained
-  (although perhaps complicated by recombination load \citep{recomb_load}).
-    \plr{recombination load won't slow it down actually I don't think}
-  The action of genetic drift is also strongly determined by covariance between 
-  standing genetic variation in different regulatory coefficients -- known as the $G$ matrix \citep{G_matrix},
-  covariance which may arise due to functional constraints and/or statistical linkage.
-  There may well be functional constraints -- but these are not sufficiently well-known to say anything general about.
-  Linkage will almost certainly lead to covariance
-  if the variation is due to \textit{cis}-regulatory variants,
-  in which case the genetic basis of each \emph{row} of $A$ likely lies within a few kilobases of tightly linked sequence,
-  across which a population may carry only a few common haplotypes.
-  However, covariance due to transiently assembled haplotypes is not expected to be stable over long periods of time --
-  a common \textit{cis}-regulatory haplotype of transcription factor $k$ with particularly strong binding to both $i$ and $j$
-  (leading to positive covariance between $A_{ik}$ and $A_{jk}$)
-  is no more likely to appear than one with strong binding to $i$ but particularly weak binding to $j$ (negative covariance).
-  (Such transient covariances may well increase the variance of the per-generation change in network mean, however \citep{barton_linkage}.)
-  In principle, there may be substantially less variation away from the set of optimal coefficients 
-  than there is along the set, due to the action of selection.
-  If so, this might require substantial epistatic load 
-  -- mortality or reduced fitness of a large proportion of new offspring due to recombination between somewhat incompatible alleles.
-  However, it is unclear if this is likely to occur and XXX we revisit this below.
-
-  It therefore seems reasonable to coarsely model the time evolution of population variation in regulatory coefficients as 
-  (a) a ``cloud'' of width X about the population mean, 
-  which (b) moves as an unbiased Brownian motion through the set of network coefficients that give the optimal phenotype.
-  In fact, the population mean will not produce exactly the optimal phenotype,
-  but it will be convenient to refer to this closest point on the optimal set as ``the population mean''.
 
 
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \paragraph{Brownian motion} on the set of equivalent networks:
-    \plr{revisit.  should this describe motion \emph{on} the set, or motion \emph{near} it, as in writeup with todd?}
-  The set $\calA$ is characterized as the solutions to the equations \eqref{eqn:equivalence},
-  and is hence an algebraic variety. 
-  In fact, the Kalman decomposition \plr{XXX above} provides us with an explicit characterization of the set.
-  Above we argued that the population mean set of coefficients $A$ was subject to genetic drift, 
-  with each entry $A_{ij}$ changing with mean square displacement $\sigma^2/\sqrt{N_e}$ per generation.
-  Since selection constrains the population mean to stay near to the set of optimal networks $\calA$,
-  to a good approximation, the population mean moves as Brownian motion in the space of matrices $\R^{n \times n}$
-  but conditioned to stay on the optimal set.
-  This Brownian motion on $\calA$ is a stochastic process driven by the Laplace-Beltrami operator on $\calA$
-  where this makes sense, with special behavior at the singular points (if any \plr{XXX}).
-  Unlike Brownian motion in flat space, this stochastic process can have \emph{bias} --
-  for instance, it is pushed away from regions of negative intrinsic curvature
-  (because there is ``less space'' in such regions).
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Systems drift and the accumulation of incompatibilities}
 
-  \plr{NOT TRUE?:}
-  However, the process always has the property that
-  changes in $A$ accumulate at constant (mean squared) rate:
-  if $\calA$ is locally isomorphic to $\R^m$ around $A_0$
-  (there are $m$ degrees of freedom in the solutions to \eqref{eqn:equivalence}) then
-  \begin{align}
-      \E\left[ \|A_t - A_0\|^2 \right] = m \sigma^2 T + O(T^2) .
-  \end{align}
+At any given time, there will be a range of regulatory coefficients present in the population
+due to segregating genetic variants.
+Over many generations, even if selective pressures do not change,
+this range of networks will shift 
+as recombination, mutation, and demographic noise create new alleles and shift allele frequencies.
+How much variation do we expect to find within a population?
+Is this range limited by available variation or kept in check by selection?
+How fast will a population explore the space of equivalent networks?
+In this section we explore informally a general model for this situation,
+in which a population drifts stochastically near a set of equivalent, optimal systems.
+We work with a population of effective size $N_e$.
+
+Since the argument applies more generally, we abstract the model above.
+Suppose that a set $x$ of coefficients that determine a system (this is $A$ above),
+produce a phenotype $\Phi(x)$ (the time course of $\phi(t)$).
+There is an optimal phenotype $\optph$,
+and a set $\optx$ of ``optimal'' coefficients that produce this phenotype.
+Fitness depends on distance to the optimal phenotype --
+we will write the ``distance'' between phenotypes $\phi$ and $\psi$ as $\dph(\phi, \psi)$,
+so that the fitness of an organism with coefficents $x$ is $\fitx(x) = \fit(\dph(\Phi(x),\optph)/\beta)$,
+where $\beta$ controls the scale on which fitness drops.
+We will assume that the map $\Phi$ and the distance function $\dph()$ are smooth,
+and that the optimal set $\optx$ is locally isomorphic to $\R^m$.
+\plr{say that better}
+
+\paragraph{Offspring.}
+Individuals are diploid; we assume that each haploid genome determines a set of coefficients,
+and the individual's coefficients are the average of her two haploid values (no dominance).
+This implies that the diploid population variance, $\sigma^2$, is one-half the haploid variance.
+Each new gamete is produced from the parent's two haploid copies;
+for simplicity we assume that the gamete inherits a random choice of one of the two parental copies,
+and so $\sigma$ remains constant, up to a $1/N_e$ term.
+A more general model including segregation variance \citep{barton_infinitesimal}
+would result in the same conclusions.
+\plri{but put this in the appendix?}
+
+\paragraph{System drift}
+% plr how fast does it drift
+If the variation within a population of some coefficient
+has standard deviation $\sigma$,
+then since subsequent generations resample from this diversity,
+the population mean coefficient will move a random distance of size $\sigma/\sqrt{N_e}$ per generation,
+simply because this is the the standard deviation of the mean of a random sample \citep{lande_drift}.
+% (This could be taken as a definition of $N_e$.)
+Selection will tend to restrain this motion,
+but mean movement along the optimal set $\optx$ is unconstrained.
+% (although perhaps complicated by recombination load \citep{recomb_load})
+The value of $\sigma$ in particular directions in coefficient space 
+depends on constraints imposed by selection and 
+the covariance between genetic variation between different coefficients -- known as the $G$ matrix \citep{G_matrix}.
+% covariance which may arise due to functional constraints and/or statistical linkage.
+% There may well be functional constraints -- but these are not sufficiently well-known to say anything general about.
+For instance, linkage will lead to covariance
+if the variation is due to \textit{cis}-regulatory variants,
+in which case the genetic basis of each \emph{row} of $A$ likely lies within a few kilobases of tightly linked sequence,
+across which a population may carry only a few common haplotypes.
+However, covariance due to transiently assembled haplotypes is not expected to be stable over long periods of time --
+a common \textit{cis}-regulatory haplotype of transcription factor $k$ with particularly strong binding to both $i$ and $j$
+(leading to positive covariance between $A_{ik}$ and $A_{jk}$)
+is no more likely to appear than one with strong binding to $i$ but particularly weak binding to $j$ (negative covariance).
+(Such transient covariances may well increase the variance of the per-generation change in network mean, however \citep{barton_linkage}.)
+
+% It therefore seems reasonable to coarsely model the time evolution of population variation in regulatory coefficients as 
+% (a) a ``cloud'' of width X about the population mean, 
+% which (b) moves as an unbiased Brownian motion through the set of network coefficients that give the optimal phenotype.
+% In fact, the population mean will not produce exactly the optimal phenotype,
+% but it will be convenient to refer to this closest point on the optimal set as ``the population mean''.
+
+To obtain a general quantitative picture, we need to know 
+$\sigma_N$ and $\sigma_S$, the standard deviations of coefficient variation along and perpendicular to $\optx$ respectively;
+$\gamma$, how fast phenotype changes moving away from $\optx$;
+and $\beta$, how fast fitness drops with distance from the optimal phenotype.
+(Concretely, $\gamma$ is the derivative of $\dph(\Phi(x+u z), \Phi(x))$ with respect to $u$ for $x \in \optx$ and $z$ perpendicular to the tangent subspace at $x$.)
+With these parameters, a typical individual will have a fitness of around $\fit(\sigma_S \gamma / \beta)$.
+
+\paragraph{Hybridization}
+\plr{I put F1s and F2s here, but with less explanation than below. Merge somehow.}
+By the arguments above, 
+over $T$ generations the population mean will move a distance of order $\sqrt{\sigma_N/T}$ along $\optx$.
+A $F_1$ hybrid between the two populations
+has one haploid genome from each,
+so will be distributed as the mean of two randomly chosen haploids from the two populations,
+and so will have mean at the midpoint between their means,
+and variance equal to $\sigma$.
+A $F_2$ hybrid will be homozygous for one parental allele on averge at half of the loci in the genome,
+so the distribution of $F_2$s will have mean at the average of the two populations,
+as before,
+but variance equal to $\sigma^2 + z^2/2$, where $z$ is the distance between the parental populations.
+These are depicted in figure \ref{fig:conceptual_fig}.
+
+\begin{figure}
+\centering
+\includegraphics{figures/conceptual_fig}
+\caption{
+    \label{fig:conceptual_fig}
+    WRITE CAPTION
+    \plri{The figure is not quite right now -- should show all types of F2 in purple.  but then it will be messy.  ideas?}
+}
+\end{figure}
+
+\plri{improve figure by putting labels on from the following}
+\plr{I think we can set $\beta=1$ by defining $\fit$ appropriately?}
+Suppose that two populations have drifted independently to differ by $z$,
+and that $z$ is of the same order as $\sigma$ but is smaller than $\gamma$,
+so that for $x_0$ a point nearby on $\optx$,
+\begin{align*}
+    \Phi(x_0 + x) = \Phi(x_0) + D \Phi(x_0) \cdot x + O(\|\gamma x\|^2),
+\end{align*}
+and so $d(\Phi(x_0+x), \Phi(x_0)) \approx  \gamma x$.
+The mean $F_1$ is the average of the parental means,
+and since the first-order terms in the Taylor series vanish,
+has phenotype differing from the optimum by a distance of order $(\gamma z)^2$.
+\plri{(Proof: let the parental means be $x_1$ and $x_2$; then as $z=x_2-x_1$,
+    $d(\Phi((x_1+x_2)/2), \Phi(x_1)) = D \Phi(x_1) \cdot z/2 + O(\gamma z)^2$,
+    but expanding about $x_2$ instead we get
+    $d(\Phi((x_1+x_2)/2), \Phi(x_2)) = - D \Phi(x_2) \cdot z/2 + O(\gamma \|z\|)^2$.
+    Since $\Phi(x_1) = \Phi(x_2)$ and $D \Phi(x_1) - D \Phi(x_2) = O(\|z\|^2)$,
+    we see that $D \Phi(x_1) \cdot z = O(\gamma z)^2$.}
+The mean $F_2$ is the same,
+but is a distance away from the optimal set of order $z$.
+In summary, the typical fitness of an individual in the original population is
+$\fit_0 = \fit(\sigma_s \gamma / \beta)$;
+of an $F_1$ is
+$\fit_1 = \fit((\sigma_s \gamma + \gamma z^2) / \beta)$;
+and of an $F_2$ is
+$\fit_2 = \fit(\gamma z / \beta)$.
+
+If $\fit(x) = e^{-x^2} \approx 1 - x^2$,
+then ...
+\plri{reparameterize to define $\fit_1$ as the \emph{drop} in fitness?}
 
 
-  %\begin{align}
-  %  \Delta_{\tau} &= \left\lVert \frac{d}{d \tau} \text{vec} \left[A\left(\tau\right)\right] \right\rVert^{-1} \\
-  %  A(\tau) &\xrightarrow{\mu} A(\tau \pm \mu \Delta_{\tau})
-  %\end{align}
- % \section*{Phenotypic Invariance}
-      
- 
-%    \begin{example}[Not all minimal gene networks can drift]
- %     If a gene network is minimal and all the molecular species involved in the network are under selection, such that $C$ is the $n \times n$ identity matrix  ($C = I_{n}$), the only acceptable  change of coordinate matrix is the identify matrix.
-     
-   %  \begin{align}
-   %     C  = I \lor B = I \\
-   %     IV^{-1} &= I \\
-   %     \iff V &= I
-   %   \end{align}
- %     \end{example}
-  %    \begin{example}[All Non-Minimal Gene Networks can Drift]
-  %    
-  %    Despite the existence of a unique genetic architecture in the minimal case, there still exists an infinite number of systems with larger networks that have identical external dynamics. 
-  %    \begin{align}
-  %      h(t) &= \widehat{h}(t) \iff \\ 
-  %      CA^{\jmath}B &= \widehat{C} \widehat{A}^{\jmath} \widehat{C} \qquad \text{for } \jmath = 0, 1, \dots
-  %    \end{align}
-  %    Any two systems with equivalent impulse responses will have equivalent phenotypes.
-  %    \end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Parameter estimates for real systems}
 
-      \subsection*{Speciation via Reproductive Incompatibility}
+To translate these results into real predictions, we need to know
+the strength of stabilizing selection on the phenotype,
+and the amount (and structure) of heritable variation in the genotype.
+These are known at best only roughly \citep{felsenstein1988phylogenies},
+so we aim for order-of-magnitude estimates.
 
-      %Define reproduction in diploids as first, the recombination of unlinked genes to make gametes, and second, as the averaging of two individual parental gametes to produce an offspring. Assuming parental populations are both phenotypically identical and genetically homogenous within each population, first generation hybrids (F1s) can be computed by averaging the two parental gene networks. Second generation hybrids (F2s) can be computed by first swapping the genes between the two parental gene networks, and next averaging these hybrid gametes.
+%% amount of heritable variation
+We quantify (roughly) the amount of heritable variation
+by $\sigma^2$, the genetic variance present in a population in a typical entry of $A$.
+The coefficient $A_{ij}$ measures how much the rate of net production of $i$ changes
+per change in concentration of $j$.
+It is generally thought that regulatory sequence change contributes much more to inter- and intraspecific variation
+than does coding sequence change affecting molecular structure \citep{schmidt2010vertebrate}.
+In the context of transcription factor networks this may be affected 
+not only by the binding strength of molecule $j$ to the promoter region of gene $i$
+but also the effects of other transcription factors (e.g., cooperativity)
+and local chromatin accessibility \citep{stefflova2013cooperativity}.
+For this reason, 
+the mutational target size for variation in $A_{ij}$ may be much larger than the dozens of base pairs
+typically implicated in the handful of binding sites for transcription factor $j$ of a typical promoter region,
+and single variants may affect many entries of $A$ simultaneously.
+% (Recall that although these are best modeled through nonlinear terms,
+% by linearizing we essentially consider first-order effects.)
+On the other hand, a diverse set of buffering mechanisms are thought to contribute to phenotypic stability
+in the presence of substantial molecular noise \citep{canalization,buffering},
+suggesting that substantial variation in the micro-scale dynamics we consider here
+may be necessary to produce relevant phenotypic effects downstream.
+\plr{replace "micro-scale" with sthg else or discuss earlier}
+
+%% empirical data on sigma
+The amount and structure of this standing variation is established over long time scales
+by many factors, including
+mutation-selection balance, 
+shifts in the phenotypic optimum,
+and/or spatial variation in the optimum \citep{hansen1996translating}.
+Quantitative genetics models of mutation-selection balance 
+predict precise levels and structure of standing variation \citep{kimura_mutsel,lande_mutsel,lande1981models},
+but it is unclear how well these predictions match reality \citep{johnson_barton}
+and how much they are expected to change over time \citep{arnold_changing_G}.
+However, empirical work allows us to estimate at least the rough magnitude of variation.
+Differences in $A_{ij}$ due to a sequence change are hard to measure,
+but variation in both transcription factor binding site occupancy
+and expression levels (e.g., cis-eQTL) have been measured in various systems.
+However, variation in binding site occupancy may overestimate variation in $A$,
+since it does not capture buffering effects (if for instance only one site of many needs be occupied for transcription to begin),
+and variation in expression levels measures changes in steady-state concentration (our $\kappa_i$) rather than the \emph{rate} of change.
+Nonetheless,
+\citet{kasowski2010variation} found differential occupancy in 7.5\%
+of binding sites of a transcription factor (p65) between human individuals.
+\citet{verlaan2009targeted} showed that cis-regulatory variation
+accounts for around 2--6\% of expression variation in human blood-derived primary cells,
+while \citep{lappalainen2013transcriptome} found that human population variation 
+explained about 3\% of expression variation.
+\plr{Get some data from at least one other species in here!}
+Taken together, this suggests that variation in the entries of $A$
+may be on the order of 1\% between individuals of a population --
+doubtless varying substantially between species and between genes.
+
+%% argument for strength of selection
+It seems certain that selection in most species is not so strong that intra-population variation
+is strongly deleterious,
+so that if $u$ is the typical scale on which selection acts,
+then $u > \sigma$.  
+\plr{do we call this $\beta$ or $u$?}
+However,
+a range of studies \plr{find them} have found evidence for weak stabilizing selection
+on regulatory SNPs and cis-eQTL.
+For instance, 
+\citet{maria_and_sergey} \plr{(others?)} found evidence that large-effect regulatory mutations are weakly selected against in Drosophila.
+This suggests that 
+the strength of selection on phenotype is sufficient to weakly constrain regulatory variation,
+so that perhaps $\sigma$ and $u$ are relatively close.
+This is as would be expected if available variation is held in check by mutation--selection balance
+rather than genetic drift.
+A conservative estimate would be that $u = 5 \sigma$;
+taking $\sigma=.01$ as above, this suggests that changes in phenotype of 5\% are sufficient
+to effect a noticeable drop in fitness.
+\plr{BUT $\sigma$ IS VARIATION IN $A$ NOT PHENOTYPE}
+
+We have guessed that within a population, 
+the entries of $A$ vary by around 1\%, 
+at least for networks whose function is strongly constrained.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Speciation via Reproductive Incompatibility}
+
+%Define reproduction in diploids as first, the recombination of unlinked genes to make gametes, and second, as the averaging of two individual parental gametes to produce an offspring. Assuming parental populations are both phenotypically identical and genetically homogenous within each population, first generation hybrids (F1s) can be computed by averaging the two parental gene networks. Second generation hybrids (F2s) can be computed by first swapping the genes between the two parental gene networks, and next averaging these hybrid gametes.
 
 \plr{what does "equally present" mean?}
  An F1's genetic regulation is a consequence of both of its genomes, where genes and regulatory sequences from both parents are equally present. 
@@ -1256,12 +1307,12 @@ and mean $z + (\Sigma^{-1}+U^{-1})^{-1} \Sigma^{-1} (y-z)$.
 
 Roughly, what is this doing?
 Suppose that the population mean differs from the optimum by $\epsilon$,
-that $\Sigma = \sigma^2 I$ and $U = s I$.
+that $\Sigma = \sigma^2 I$ and $U = I/\beta^2$ (so, stablizing selection happening on a distance scale of $\beta$).
 Then the population mean gets closer to the optimum on average, moving to
-$\epsilon/(1 + \sigma^2/s)$
-and adds noise of size $\sqrt{s} \sigma/\sqrt{N \sigma^2 + N s}$.
+$\epsilon/(1 + \sigma^2 \beta^2)$
+and adds noise of size $(1/\beta) \sigma/\sqrt{N \sigma^2 + N 1/\beta^2}$.
 At equilibrium, these two movements will be of the same order,
-so that $\epsilon$ is of order $(\sigma/\sqrt{N}) \sqrt{1+\sigma^2/s}$.
+so that $\epsilon$ is of order $(\sigma/\sqrt{N}) \sqrt{1+\sigma^2 \beta^2}$.
 
 
 \section{Differentiating the fitness function}
