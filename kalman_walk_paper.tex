@@ -1281,6 +1281,16 @@ $$\begin{aligned}
     C
         &\to C + \epsilon C P^{-1} Q .
 \end{aligned}$$
+Since $P$ is invertible and $Q$ can be anything (if $\epsilon$ is small enough),
+this allows changes in the direction of an arbitrary $W$:
+$$\begin{aligned}
+    A 
+        &= A + \epsilon \left(A W - W A\right) , \\
+    B
+        &\to B - \epsilon W B \\
+    C
+        &\to C + \epsilon C W .
+\end{aligned}$$
 
 Then, $\hat A \to A + \epsilon X$  does
 $$\begin{aligned}
@@ -1294,8 +1304,11 @@ and $\hat C \to C + \epsilon Z$ does
 $$\begin{aligned}
     C \to C + \epsilon Z P .
 \end{aligned}$$
+These degrees of freedom depend on $P$, but both through the change of basis $P$
+and the form of allowable $X$, $Y$, and $Z$.
 
 This gives us an upper bound on the number of degrees of freedom.
+\plri{maybe? depending on if choice of $P$ affects anything.}
 However, some of these may be redundant.
 For instance, changing $P$ in the direction of 
 a $Q$ that satisfies both $A P^{-1} Q = P^{-1} Q A$ and $C P^{-1} Q = 0$
