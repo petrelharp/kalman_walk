@@ -1304,11 +1304,22 @@ and $\hat C \to C + \epsilon Z$ does
 $$\begin{aligned}
     C \to C + \epsilon Z P .
 \end{aligned}$$
-These degrees of freedom depend on $P$, but both through the change of basis $P$
-and the form of allowable $X$, $Y$, and $Z$.
+These degrees of freedom look like they depend on $P$, 
+which is not unique,
+but for any two choices of $P$ there are corresponding choices of $X$
+that give the same actual change in $A$ (and likewise for $Y$ and $Z$).
 
-This gives us an upper bound on the number of degrees of freedom.
-\plri{maybe? depending on if choice of $P$ affects anything.}
+
+Therefore, this gives us an upper bound on the number of degrees of freedom,
+in terms of the dimensions of the blocks in the Kalman decomposition ($n_\ro$ etc)
+and the dimensions of $B$ and $C$ ($n_B$ and $n_C$ respectively):
+namely, for $W$, $X$, $Y$, and $Z$ respectively:
+$$\begin{aligned}
+    n^2 
+    + (n_{\rno} + n_\ro n_\nro + n_\nrno(n_\nrno + n_\nro) + n_\nro^2)
+    + n_B n_\rno
+    + n_C n_\nrno .
+\end{aligned}$$
 However, some of these may be redundant.
 For instance, changing $P$ in the direction of 
 a $Q$ that satisfies both $A P^{-1} Q = P^{-1} Q A$ and $C P^{-1} Q = 0$
