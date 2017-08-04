@@ -1249,6 +1249,59 @@ then $C$ cannot change.
 Likewise, if responses of each molecule to the external inputs are not changed by evolution,
 then $B$ does not change.
 
+
+\subsection{Neutral directions from the Kalman decomposition}
+
+The Kalman decomposition above says that any system $(A,B,C)$ can be decomposed into
+$(P, \hat A, \hat B, \hat C)$ so that
+$$\begin{aligned}
+    A &= P^{-1} \hat A P  \\
+    B &= P^{-1} \hat B  \\
+    C &= \hat C P ,
+\end{aligned}$$
+and we know precisely how we can change these to preserve the transfer function:
+\begin{enumerate}
+    \item $P \to P + \epsilon Q$ as long as the result is still invertible,
+    \item $\hat A \to A + \epsilon X$ as long as $X$ is zero in the correct places,
+    \item $\hat B \to B + \epsilon Y$ as long as $Y$ is zero in the correct places,
+    \item $\hat C \to C + \epsilon Y$ as long as $Z$ is zero in the correct places.
+\end{enumerate}
+By taking $\epsilon \to 0$, these tell us the local directions we can move a system $(A,B,C)$ in.
+All statements below are up to first order in $\epsilon$,
+omitting terms of order $\epsilon^2$.
+
+First, since $(P + \epsilon Q)^{-1} = P^{-1} + \epsilon P^{-1} Q P^{-1}$,
+modifying $P \to P + \epsilon Q$ changes
+$$\begin{aligned}
+    A 
+        &\to A + \epsilon P^{-1} \hat A Q - \epsilon P^{-1} Q P^{-1} \hat A P \\
+        &= A + \epsilon \left(A P^{-1} Q - P^{-1} Q A\right) , \\
+    B
+        &\to B - \epsilon P^{-1} Q B \\
+    C
+        &\to C + \epsilon C P^{-1} Q .
+\end{aligned}$$
+
+Then, $\hat A \to A + \epsilon X$  does
+$$\begin{aligned}
+    A \to A + \epsilon P^{-1} X P 
+\end{aligned}$$
+and $\hat B \to B + \epsilon Y$ does
+$$\begin{aligned}
+    B \to B + \epsilon P^{-1} Y
+\end{aligned}$$
+and $\hat C \to C + \epsilon Z$ does
+$$\begin{aligned}
+    C \to C + \epsilon Z P .
+\end{aligned}$$
+
+This gives us an upper bound on the number of degrees of freedom.
+However, some of these may be redundant.
+For instance, changing $P$ in the direction of 
+a $Q$ that satisfies both $A P^{-1} Q = P^{-1} Q A$ and $C P^{-1} Q = 0$
+is equivalent to changing $B$ by $Y = QB$.
+
+
 \section{Genetic drift with a multivariate trait}
 \label{ss:quant_gen}
 
