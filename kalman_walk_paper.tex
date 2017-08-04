@@ -49,13 +49,15 @@
 % fitness as a fn of distance
 \newcommand{\fit}{\mathcal{F}}
 % fitness as a fn of A
-\newcommand{\fitx}{\mathcal{f}}
+\newcommand{\fitx}{\mathcal{F}}
 % set of optimal coefficients
 \newcommand{\optx}{\mathcal{X}}
 % optimal phenotype
 \newcommand{\optph}{\Phi_0}
 % distance in phenotype space
 \newcommand{\dph}{d}
+% incompatibility
+\newcommand{\Incompat}{\mathcal{I}}
 
 \DeclareMathOperator{\spn}{span}
 
@@ -515,16 +517,14 @@ In this section we explore informally a general model for this situation,
 in which a population drifts stochastically near a set of equivalent, optimal systems.
 We work with a population of effective size $N_e$.
 
-Since the argument applies more generally, we abstract the model above.
 Suppose that a set $x$ of coefficients that determine a system (this is $A$ above),
 produce a phenotype $\Phi(x)$ (the time course of $\phi(t)$).
 There is an optimal phenotype $\optph$,
 and a set $\optx$ of ``optimal'' coefficients that produce this phenotype.
 Fitness depends on distance to the optimal phenotype --
 we will write the ``distance'' between phenotypes $\phi$ and $\psi$ as $\dph(\phi, \psi)$,
-so that the fitness of an organism with coefficents $x$ is $\fitx(x) = \fit(\dph(\Phi(x),\optph)/\beta)$,
-where $\beta$ controls the scale on which fitness drops.
-We will assume that the map $\Phi$ and the distance function $\dph()$ are smooth,
+measured so that the fitness of an organism with coefficents $x$ is $\fitx(x) = \exp(-\dph(\Phi(x),\optph)^2)$.
+We will assume that the map $\Phi$ is smooth
 and that the optimal set $\optx$ is locally isomorphic to $\R^m$.
 \plr{say that better}
 
@@ -536,7 +536,7 @@ Each new gamete is produced from the parent's two haploid copies;
 for simplicity we assume that the gamete inherits a random choice of one of the two parental copies,
 and so $\sigma$ remains constant, up to a $1/N_e$ term.
 A more general model including segregation variance \citep{barton_infinitesimal}
-would result in the same conclusions.
+would result in the same qualitative conclusions.
 \plri{but put this in the appendix?}
 
 \paragraph{System drift}
@@ -550,14 +550,14 @@ simply because this is the the standard deviation of the mean of a random sample
 Selection will tend to restrain this motion,
 but mean movement along the optimal set $\optx$ is unconstrained.
 % (although perhaps complicated by recombination load \citep{recomb_load})
-The value of $\sigma$ in particular directions in coefficient space 
-depends on constraints imposed by selection and 
-the covariance between genetic variation between different coefficients -- known as the $G$ matrix \citep{G_matrix}.
+The amount of variance in particular directions in coefficient space 
+depend on constraints imposed by selection and 
+the covariance between genetic variation between different coefficients (the $G$ matrix \citep{G_matrix}).
 % covariance which may arise due to functional constraints and/or statistical linkage.
 % There may well be functional constraints -- but these are not sufficiently well-known to say anything general about.
-For instance, linkage will lead to covariance
+For instance,
 if the variation is due to \textit{cis}-regulatory variants,
-in which case the genetic basis of each \emph{row} of $A$ likely lies within a few kilobases of tightly linked sequence,
+the genetic basis of each \emph{row} of $A$ likely lies within a few kilobases of tightly linked sequence,
 across which a population may carry only a few common haplotypes.
 However, covariance due to transiently assembled haplotypes is not expected to be stable over long periods of time --
 a common \textit{cis}-regulatory haplotype of transcription factor $k$ with particularly strong binding to both $i$ and $j$
@@ -572,22 +572,21 @@ is no more likely to appear than one with strong binding to $i$ but particularly
 % but it will be convenient to refer to this closest point on the optimal set as ``the population mean''.
 
 To obtain a general quantitative picture, we need to know 
-$\sigma_N$ and $\sigma_S$, the standard deviations of coefficient variation along and perpendicular to $\optx$ respectively;
-$\gamma$, how fast phenotype changes moving away from $\optx$;
-and $\beta$, how fast fitness drops with distance from the optimal phenotype.
-(Concretely, $\gamma$ is the derivative of $\dph(\Phi(x+u z), \Phi(x))$ with respect to $u$ for $x \in \optx$ and $z$ perpendicular to the tangent subspace at $x$.)
-With these parameters, a typical individual will have a fitness of around $\fit(\sigma_S \gamma / \beta)$.
+$\sigma_N$ and $\sigma_S$, the standard deviations of coefficient variation along and perpendicular to $\optx$ respectively,
+and $\gamma$, the scale on which phenotype changes moving away from $\optx$.
+Concretely, $\gamma$ is the inverse of the derivative of $\dph(\Phi(x+u z), \Phi(x))$ 
+with respect to $u$ for $x \in \optx$ and $z$ perpendicular to the tangent space at $x$.
+With these parameters, a typical individual will have a fitness of around $\exp(-(\sigma_S/\gamma)^2)$.
 
 \paragraph{Hybridization}
-\plr{I put F1s and F2s here, but with less explanation than below. Merge somehow.}
-By the arguments above, 
-over $T$ generations the population mean will move a distance of order $\sqrt{\sigma_N/T}$ along $\optx$.
-A $F_1$ hybrid between the two populations
-has one haploid genome from each,
-so will be distributed as the mean of two randomly chosen haploids from the two populations,
-and so will have mean at the midpoint between their means,
+\plr{I put F1s and F2s here, and $\Incompat$, but with less explanation than below. Merge somehow.}
+By the arguments above, the means of two allopatric populations separated for $T$ generations
+will be a distance of order $2\sigma_N \sqrt{T/N_e}$ apart along $\optx$.
+A population of $F_1$ hybrids has one haploid genome from each,
+whose coefficients are averaged,
+and so will have mean system coefficients at the midpoint between their means,
 and variance equal to $\sigma$.
-A $F_2$ hybrid will be homozygous for one parental allele on averge at half of the loci in the genome,
+Each $F_2$ hybrid will be homozygous for one parental allele on averge at half of the loci in the genome,
 so the distribution of $F_2$s will have mean at the average of the two populations,
 as before,
 but variance equal to $\sigma^2 + z^2/2$, where $z$ is the distance between the parental populations.
@@ -598,41 +597,35 @@ These are depicted in figure \ref{fig:conceptual_fig}.
 \includegraphics{figures/conceptual_fig}
 \caption{
     \label{fig:conceptual_fig}
-    WRITE CAPTION
-    \plri{The figure is not quite right now -- should show all types of F2 in purple.  but then it will be messy.  ideas?}
+    A conceptual figure of the fitness consequences of hybridization:
+    axes represent system coefficients (i.e., entries of $A$);
+    the line of optimal system coefficients is down in black;
+    dotted lines give phenotypic distances to the optimum.
+    Two pairs of parental populations are shown in black, along the optimum;
+    a hypothetical population of $F_1$s are shown for each in red,
+    and the distribution of one type of $F_2$ is shown in purple
+    (other types of $F_2$ are not shown).
+    Solid lines depict the distance of the $F_2$ to optimum.
+    \plri{Should show all types of F2? would be messy.}
 }
 \end{figure}
 
 \plri{improve figure by putting labels on from the following}
-\plr{I think we can set $\beta=1$ by defining $\fit$ appropriately?}
 Suppose that two populations have drifted independently to differ by $z$,
-and that $z$ is of the same order as $\sigma$ but is smaller than $\gamma$,
-so that for $x_0$ a point nearby on $\optx$,
-\begin{align*}
-    \Phi(x_0 + x) = \Phi(x_0) + D \Phi(x_0) \cdot x + O(\|\gamma x\|^2),
-\end{align*}
-and so $d(\Phi(x_0+x), \Phi(x_0)) \approx  \gamma x$.
+and that $z$ is of the same order as $\sigma$ but is smaller than $\gamma$.
 The mean $F_1$ is the average of the parental means,
 and since the first-order terms in the Taylor series vanish,
-has phenotype differing from the optimum by a distance of order $(\gamma z)^2$.
-\plri{(Proof: let the parental means be $x_1$ and $x_2$; then as $z=x_2-x_1$,
-    $d(\Phi((x_1+x_2)/2), \Phi(x_1)) = D \Phi(x_1) \cdot z/2 + O(\gamma z)^2$,
-    but expanding about $x_2$ instead we get
-    $d(\Phi((x_1+x_2)/2), \Phi(x_2)) = - D \Phi(x_2) \cdot z/2 + O(\gamma \|z\|)^2$.
-    Since $\Phi(x_1) = \Phi(x_2)$ and $D \Phi(x_1) - D \Phi(x_2) = O(\|z\|^2)$,
-    we see that $D \Phi(x_1) \cdot z = O(\gamma z)^2$.}
+has phenotype differing from the optimum by a distance of order $\|z\|^2$ 
+(see appendix \ref{apx:away_from_opt}).
 The mean $F_2$ is the same,
-but is a distance away from the optimal set of order $z$.
-In summary, the typical fitness of an individual in the original population is
-$\fit_0 = \fit(\sigma_s \gamma / \beta)$;
+but the standard deviation is of order $z$,
+so that up to lower order terms, 
+while the typical fitness of an individual in the original population is
+$\fit_0 = \exp(-(\sigma_s/\gamma)^2)$;
 of an $F_1$ is
-$\fit_1 = \fit((\sigma_s \gamma + \gamma z^2) / \beta)$;
+$\fit_1/\fit_0 = \exp(-(c_1 \sigma_N^2 T/N_e)^2)$;
 and of an $F_2$ is
-$\fit_2 = \fit(\gamma z / \beta)$.
-
-If $\fit(x) = e^{-x^2} \approx 1 - x^2$,
-then ...
-\plri{reparameterize to define $\fit_1$ as the \emph{drop} in fitness?}
+$\fit_2/\fit_0 = \exp(- T/(N_e\gamma^2))$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -761,7 +754,7 @@ Where each $G$ is formed by randomly swapping rows between $A(\tau)$ and $A(\hat
 The fitness of an organism can be computed by comparing its impulse response with the optimal response,
 \plr{this is either zero or infinite.  apply a weighting function (see appendix)?}
 \begin{align}
-    \mathcal{F}\left( \widehat{\phi}(t) \right) = \exp \left\{- \frac{1}{\sigma} \int_{0}^{\infty} \left\lVert \phi(t) - \widehat{\phi}(t) \right\rVert^{2} dt  \right\}  .
+    \fit\left( \widehat{\phi}(t) \right) = \exp \left\{- \frac{1}{\sigma} \int_{0}^{\infty} \left\lVert \phi(t) - \widehat{\phi}(t) \right\rVert^{2} dt  \right\}  .
 \end{align}
 Therefore a hybrid's fitness can be computed by comparing its impulse response with that of its parents.
 
@@ -771,7 +764,7 @@ Therefore a hybrid's fitness can be computed by comparing its impulse response w
 
 We quantitatively describe the degree of incompatibility between two populations $P_{1}$ and $P_{2}$ as
 \begin{align*}
-      \mathcal{I} = \frac{2 \left\langle \mathcal{F} \left(\phi_{F_{1}}\right) \right\rangle}{\left\langle \mathcal{F} \left(\phi_{P_{1}}\right) \right\rangle +  \left\langle \mathcal{F} \left(\phi_{P_{2}}\right) \right\rangle} ,
+      \Incompat = \frac{2 \left\langle \fit \left(\phi_{F_{1}}\right) \right\rangle}{\left\langle \fit \left(\phi_{P_{1}}\right) \right\rangle +  \left\langle \fit \left(\phi_{P_{2}}\right) \right\rangle} ,
 \end{align*}
 where angled brackets imply averaging.  \plr{averaging over what? And, this is as others define - cite.}
 
@@ -781,8 +774,8 @@ in contrast to both parents, who have $\phi_{P_{1}}(t) = \phi_{P_{2}}(t) = \sin(
 The hybrid phenotype is significantly different (it does not oscillate and increases infinitely) despite the phenotypic equivalence of the parents.
 \plr{don't need these to be big equations.}
 \begin{align*}
-  \mathcal{F} \left(\phi_{P_{1}}\right) = \mathcal{F} \left( \phi_{P_{2}} \right) &= 1 \\
-  \mathcal{F}\left(\phi_{F_{1}}\right) &= 0 \\
+  \fit \left(\phi_{P_{1}}\right) = \fit \left( \phi_{P_{2}} \right) &= 1 \\
+  \fit\left(\phi_{F_{1}}\right) &= 0 \\
   \mathcal{I} &= 0
 \end{align*}
 
@@ -875,9 +868,9 @@ F1 gene regulatory networks are formed by averaging the two parental $A(\tau)$ m
 
 \plr{separate out here (or above) the difference in genotype of hybrids from the optimum set, the difference in phenotype, and the difference in fitness.}
 
-In general terms, if fitness $\mathcal{F}$ is some function $g$ of phenotypic divergence from an optimal scaled by the strength of selection $\beta$,
+In general terms, if fitness $\fit$ is some function $g$ of phenotypic divergence from an optimal scaled by the strength of selection $\beta$,
 \begin{align*}
-  \mathcal{F} = g \left( \frac{\phi - \phi_{0}}{\beta} \right)
+  \fit = g \left( \frac{\phi - \phi_{0}}{\beta} \right)
 \end{align*}
 \plr{sentences don't begin with "And"}
 And a population $P$ is normally distributed around a mean gene network architecture $A(\tau)$ and $\sigma^{2}$ is the intra-population regulatory variance,
@@ -898,12 +891,12 @@ Thus the squared difference of it's phenotype will be,
 \end{align*}
 and $F_{1}$ fitness will decline linearly with respect to $\frac{T}{N_{e}}$. ARGUMENT FOR WHY $\sigma^{2} c_{1} \sim \beta$ HERE.
    \begin{align*}
-     \Delta \mathcal{F}_{1} = \left( \frac{\Delta \Phi_{1}}{\beta} = \frac{c_{1} \sigma^{2} \frac{T}{N_{e}}}{\beta} \approx \frac{T}{N_{e}} \right)
+     \Delta \fit_{1} = \left( \frac{\Delta \Phi_{1}}{\beta} = \frac{c_{1} \sigma^{2} \frac{T}{N_{e}}}{\beta} \approx \frac{T}{N_{e}} \right)
 \end{align*}
  It follows FROM THE SAME MATH ABOUT THE MULTIVAR TAYLOR that the phenotypes of second generation $F_{2}$ hybrid crosses diverges quadratically as a function of $\Delta \tau$, 
 \begin{align*}
   \Delta \Phi^{2}_{2} &= c_{2}^{2} \left( \sigma \sqrt{\frac{T}{N_{e}}} \right)^{2} = c_{2}^{2} \frac{T}{N_{e}} \\
-  \Delta \mathcal{F}_{2} &= \left( \frac{\Delta \Phi_{2}}{\beta} = \frac{c_{2} \sigma \sqrt{\frac{T}{N_{e}}}}{\beta} \approx \sqrt{\frac{T}{N_{e}}} \right)
+  \Delta \fit_{2} &= \left( \frac{\Delta \Phi_{2}}{\beta} = \frac{c_{2} \sigma \sqrt{\frac{T}{N_{e}}}}{\beta} \approx \sqrt{\frac{T}{N_{e}}} \right)
 \end{align*}
 and that $F_{2}$ fitness drops rapidly -- at approximately rate $\sqrt{\frac{T}{N_{e}}}$. ARGUMENT FOR WHY $c_{2} \sigma \sim \beta$ HERE. 
 
@@ -1315,7 +1308,32 @@ At equilibrium, these two movements will be of the same order,
 so that $\epsilon$ is of order $(\sigma/\sqrt{N}) \sqrt{1+\sigma^2 \beta^2}$.
 
 
+\section{Away from the optimum}
+\label{apx:away_from_opt}
+
+Let two points  on $\optx$ be $x_1$ and $x_2$, let $\bar x = (x_1+x_2)/2$, and let $z=(x_2 - x_1)/2$.
+Then with $D \Phi$ and $D^2 \Phi$ the first and second derivatives of $\Phi$, respectively,
+then Taylor expanding about $x_1$ and $x_2$ finds that
+\begin{align*}
+    \Phi(\bar x) 
+    &= \Phi(x_1) + D\Phi(x_1) \cdot z + \frac{1}{2} z^T D^2 \Phi(x_1) z + O(\|z\|^3) \\
+    &= \Phi(x_2) - D\Phi(x_2) \cdot z + \frac{1}{2} z^T D^2 \Phi(x_2) z + O(\|z\|^3) .
+\end{align*}
+Now, since $\Phi(x_1) = \Phi(x_2) = \optph$ and
+\begin{align*}
+    D\Phi(x_2) = D\Phi(x_1) + 2 z^T D^2 \Phi(x_1) + O(\|z\|^2), \quad \text{and} \\
+    D^2\Phi(x_2) = D^2\Phi(x_1) + O(\|z\|), \quad \text{and} \\
+\end{align*}
+adding together the two equations above and dividing by two gets that
+\begin{align*}
+    \Phi(\bar x) 
+    &= \optph - \frac{3}{2} z^T D^2 \Phi(x_1) z + O(\|z\|^3) .
+\end{align*}
+
+
+
 \section{Differentiating the fitness function}
+\label{apx:H_calc}
 
 Suppose that $\rho(t) \ge 0$ is a weighting function on $[0,\infty)$
 so that fitness is a function of $L^2(\rho)$ distance of the impulse response from optimal.
