@@ -1543,16 +1543,20 @@ as described (in different terms) in \citet{hansen1996translating}.
 
 \section{Hybrid Vigor}
 
-If a fitness optimum is at the origin $(0,0) \in \R^{2}$, and two populations have drifted away from the optimum by an distance of $r$, then the expected value of their $F_1$ hybrids is,
-
+If a fitness optimum is at the origin $(0,0) \in \R^{2}$,
+%and two populations have drifted away from the optimum by an distance of $r$, then the expected value of their $F_1$ hybrids is,
+%\begin{align*}
+%  \mathbb{E}\left[ \left\lVert \frac{1}{2} ((x_1,y_1) + (x_2,y_2))  \right\rVert \right] = \\
+%  \frac{\sqrt{2}}{8}\left(\sqrt{3\, r^2 - {\sin^{-1}\!\left(r\right)}^2 + r^4 - 2\, r\, \sin^{-1}\!\left(r\right)\, \sqrt{1 - r^2}} + \sqrt{{\sin^{-1}\!\left(r\right)}^2 + 5\, r^2 - r^4 + 2\, r\, \sin^{-1}\!\left(r\right)\, \sqrt{1 - r^2}}\right)
+%\end{align*} 
+%If $r < \sim 5.5$ then we will observe hybrid vigor, however if $r$ is sufficiently large, the hybrids will have lower fitness, on average. 
+and two populations have drifted away from the optimum by a distance of $r=1$,
+then $F_1$s will have an average fitness of,
 \begin{align*}
-  \mathbb{E}\left[ \left\lVert \frac{1}{2} ((x_1,y_1) + (x_2,y_2))  \right\rVert \right] = \\
-  \frac{\sqrt{2}}{8}\left(\sqrt{3\, r^2 - {\sin^{-1}\!\left(r\right)}^2 + r^4 - 2\, r\, \sin^{-1}\!\left(r\right)\, \sqrt{1 - r^2}} + \sqrt{{\sin^{-1}\!\left(r\right)}^2 + 5\, r^2 - r^4 + 2\, r\, \sin^{-1}\!\left(r\right)\, \sqrt{1 - r^2}}\right)
-\end{align*} 
-
-If $r < \sim 5.5$ then we will observe hybrid vigor, however if $r$ is sufficiently large, the hybrids will have lower fitness, on average. 
-
-Some $F_2$s will have perfect fitness, and some will be worse off than both parents. \jss{I still need to do the calculations.} For instance if $r=1$ so that parental populations reside on the unit circle circumference, two randomly drifted populations will create $F_1$s a distance of, on average, $0.6684$. Some $F_2$s from this population wil be back at the origin (a quarter of the time), others as far away as $\sqrt{2}$ (a quarter of the time), and some will stay a distance of $1$ away (half the time).
+  \mathbb{E} \left[ d(F_1)] \right] &= \int_{0}^{2\pi} \int_{0}^{2\pi} \left\lVert \frac{1}{8 \pi^{2}} \left( \left( \cos(\theta_1), \sin(\theta_1) \right) + \left( \cos(\theta_2), \sin(\theta_2) \right) \right) \right\rVert d\theta_1 d\theta_2 \\
+  &= \cos(\frac{\pi}{2}) = \frac{\sqrt{2}}{2}
+\end{align*}
+Haploid $F_2$s will, on average, be a distance of $1$ half of the time, a distance of $0$ a quarter of the time, and a distance of $\sqrt{2}$ a quarter of the time. 
 
 
 \end{document}
