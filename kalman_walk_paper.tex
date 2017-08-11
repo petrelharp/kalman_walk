@@ -1317,11 +1317,6 @@ For instance, changing $P$ in the direction of
 a $Q$ that satisfies both $A P^{-1} Q = P^{-1} Q A$ and $C P^{-1} Q = 0$
 is equivalent to changing $B$ by $Y = QB$.
 
-\section{Linear Evolution-Variant Systems}
-  Let $V(\tau) = \prod_{\ell = 0}^{\tau} (I + Q_\ell)$ (where $Q_\ell$ is a random matrix with norm $< \sigma$), and let $A$ be minimal. Then the system architecture after evolutionary time $\tau$ is given by,
-    \begin{align}
-      \mathcal{S}(\tau) := \left\{ \begin{array}{ll} V(\tau)\dot{\kappa}(t) &= V(\tau)A V(\tau)^{-1} \kappa(t) + V(\tau)B u(t) \\ \phi(t) &= C V(\tau)^{-1} \kappa(t) \end{array} \right .
-  \end{align}
 \section{Genetic drift with a multivariate trait}
 \label{ss:quant_gen}
 
@@ -1545,5 +1540,19 @@ If $\sigma^2$ is small compared to $H^{-1}$
 then this is approximately $-\sigma^2 H^{-1} Z$.
 This suggests that the population mean follows an Ornstein-Uhlenbeck process,
 as described (in different terms) in \citet{hansen1996translating}.
+
+\section{Hybrid Vigor}
+
+If a fitness optimum is at the origin $(0,0) \in \R^{2}$, and two populations have drifted away from the optimum by an distance of $r$, then the expected value of their $F_1$ hybrids is,
+
+\begin{align*}
+  \mathbb{E}\left[ \left\lVert \frac{1}{2} ((x_1,y_1) + (x_2,y_2))  \right\rVert \right] = \\
+  \frac{\sqrt{2}}{8}\left(\sqrt{3\, r^2 - {\sin^{-1}\!\left(r\right)}^2 + r^4 - 2\, r\, \sin^{-1}\!\left(r\right)\, \sqrt{1 - r^2}} + \sqrt{{\sin^{-1}\!\left(r\right)}^2 + 5\, r^2 - r^4 + 2\, r\, \sin^{-1}\!\left(r\right)\, \sqrt{1 - r^2}}\right)
+\end{align*} 
+
+If $r < \sim 5.5$ then we will observe hybrid vigor, however if $r$ is sufficiently large, the hybrids will have lower fitness, on average. 
+
+Some $F_2$s will have perfect fitness, and some will be worse off than both parents. \jss{I still need to do the calculations.} For instance if $r=1$ so that parental populations reside on the unit circle, two randomly drifted populations will create $F_1$s a distance of, on average, $0.6684$. Some $F_2$s from this population wil be back at the origin (a quarter of the time), others as far away as $\sqrt{2}$ (a quarter of the time), and some will stay a distance of $1$ away (half the time).
+
 
 \end{document}
