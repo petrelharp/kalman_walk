@@ -1552,11 +1552,15 @@ If a fitness optimum is at the origin $(0,0) \in \R^{2}$,
 %If $r < \sim 5.5$ then we will observe hybrid vigor, however if $r$ is sufficiently large, the hybrids will have lower fitness, on average. 
 and two populations have drifted away from the optimum by a distance of $r=1$,
 then $F_1$s will have an average fitness of,
+  %\begin{align*}
+  %  \mathbb{E} \left[ d(F_1)] \right] &= \int_{0}^{2\pi} \int_{0}^{2\pi} \frac{1}{8 \pi^{2}}\left\lVert  \left( \left( \cos(\theta_1), \sin(\theta_1) \right) , \left( \cos(\theta_2), \sin(\theta_2) \right) \right) \right\rVert d\theta_1 d\theta_2 \\
+  %  &= \cos\left(\frac{\pi}{2}\right) = \frac{\sqrt{2}}{2}
+  %\end{align*}
   \begin{align*}
-    \mathbb{E} \left[ d(F_1)] \right] &= \int_{0}^{2\pi} \int_{0}^{2\pi} \frac{1}{8 \pi^{2}}\left\lVert  \left( \left( \cos(\theta_1), \sin(\theta_1) \right) , \left( \cos(\theta_2), \sin(\theta_2) \right) \right) \right\rVert d\theta_1 d\theta_2 \\
-    &= \cos\left(\frac{\pi}{2}\right) = \frac{\sqrt{2}}{2}
+    \mathbb{E} \left[ d(F_1)] \right] &\approx \sqrt{\int_{0}^{2\pi} \frac{1}{4 \pi}\left\lVert  \left( \cos(\pi), \sin(\pi) \right) , \left( \cos(\theta), \sin(\theta) \right) \right\rVert^2 d\theta} \\
+    &= \sqrt{\frac{1}{2}}
   \end{align*}
-Haploid $F_2$s will, on average, be a distance of $1$ half of the time, a distance of $0$ a quarter of the time, and a distance of $\sqrt{2}$ a quarter of the time. 
+%Haploid $F_2$s will, on average, be a distance of $1$ half of the time, a distance of $0$ a quarter of the time, and a distance of $\sqrt{2}$ a quarter of the time. 
 
   \begin{align*}
     \mathbb{E} \left[ d(F_2) \right] &= \int_{0}^{2 \pi} \int_{0}^{2 \pi} \frac{1}{4 \pi^{2}} \sum_{i}^{2} \sum_{j}^{2} \sum_{k}^{2} \sum_{l}^{2} \frac{1}{32} \left\lVert \left( \cos(\theta_i) + \cos(\theta_k), \sin(\theta_j) + \sin(\theta_l) \right) \right\rVert d\theta_1 d\theta_2 \\ &= 0.6705
