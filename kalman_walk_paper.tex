@@ -42,7 +42,7 @@
 \newcommand{\pda}{\frac{\partial}{\partial A_{ij}}}
 \newcommand{\ind}{\mathds{1}}
 
-\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calA}{\mathcal{S}}
 \newcommand{\calH}{\mathcal{H}}
 \newcommand{\diag}{\text{diag}}
 \newcommand{\1}{\mathbbm{1}}
@@ -81,25 +81,27 @@ $^{\ddagger}$University of Oregon, Eugene, Oregon \\
 
 % Other title ideas:
 %
+% More than one way to grow a cat: speciation despite conservation of phenotype
+%
 % More than one way to grow a cat: regulatory network drift and speciation
-% 
+%
 % Rapid speciation despite conservation of phenotype
 %
 % More than one way to grow a cat: regulatory network redundancy and speciation
-% 
+%
 % Neutral network drift leads to incompatibilities on the same time scale as genetic drift
-% 
+%
 % More than one way to grow a cat: can network drift lead to speciation?
-% 
+%
 % How fast does network drift create incompatibilities?
-% 
+%
 % Beyond the snowball: a quantitative model of incompatibility accumulation
-% 
+%
 % Systems drift and speciation: more than one way to grow a cat
-% 
+%
 % An explicit model of neutral regulatory network evolution, with applications
 % to the rate of accumulation of hybrid incompatibility
-% 
+%
 % Evolutionary conservation of phenotype does not entail conservation of the underlying
 % molecular mechanism leading to rapid speciation
 %
@@ -202,11 +204,11 @@ and predicts that if two populations become reproductively isolated, hybrid inco
 Speciation typically occurs on timescales approximately on the order of $N_{e}$ generations, where $N_{e}$ is the effective population size.
 
 \section*{Gene Networks as Linear Dynamical Systems}
-
+%
 \plr{Below we mix general language with language specific to GRNs, like switching between "internal state" and "transcription factor concentration.  
 Rather than keep making comments like "(or some other system)",
 we could say up top that this applies to other situations, but to make it concrete we'll talk about regulatory networks.}
-
+%
 %  \jss{Organisms' phenotypes are constructred by gene by gene by environment interactions. Here we simply define the phenotype to be the organismal temporal molecular dynamics directly under natural selection. The \emph{what}, \emph{when}, and \emph{where}, of an organism's molecules that are physiologically or otherwise relevant for survival. 
 %   Thus we say that some function $\phi(t)$ is a phenotype where, 
 %  \begin{align}
@@ -230,22 +232,38 @@ we could say up top that this applies to other situations, but to make it concre
 %  \end{align}
 %  Variables have the same identities as described above and $\kappa(t)$ is a vector of molecule concentrations at time $t$. Therefore the molecular concentrations at a specific time are completely determined by the input and gene by gene interactions. Lastly, a portion and/or combination of these molecules, $\phi(t)$, are ``observed'' by selection (this is in constrast to $\kappa(t)$ -- the \emph{kryptotype} -- as it is ``hidden'' from direct selection).
 %}
-\js{Will rewrite this section again.} Here we outline a method to model biological systems, such as gene regulatory networks, as linear dynamical systems. 
-We define an organism's ``phenotype'' to be the temporal dynamics of molecular concentrations directly relevant to survival, 
-and denote by $\phi_k(t)$ the concentration of the $k^\text{th}$ element of the phenotype at time $t$, given an input; for instance $\phi_k(t)$ could describe the concentrations of a particular enzyme.
-These dynamics are the result of the interconnections of 
-a gene regulatory network (or some other biological system) $A$ (an $n \times n$ matrix) 
-and an environmental input vector $u(t)$, and the \emph{kryptotype} $\kappa(t)$, is a list of a system's molecular concentrations at time $t$ -- or more generally the systems \emph{internal dynamics}. 
-Such a system $\mathcal{S}$, is composed of two equations,
+Organisms' phenotypes are constructred by gene by gene by environment interactions. Here we simply define the \emph{phenotype} to be the temporal molecular dynamics directly under natural selection. The \emph{what}, \emph{when}, and \emph{how much}, of an organism's molecules that are physiologically or otherwise relevant to survival.
+
+Thus an organism's phenotype $\phi(t)$ -- a vector of molecular concentrations at time $t$ -- is determined both by the structure and organization of a biological system (\emph{e.g.} a gene regualtory network), given by the triple $(A,B,C)$,
+and by its environment $u(t)$.
+
+Such a biological system $\mathcal{S}$ is given by,
   \begin{align}
     \mathcal{S} := \left\{ \begin{array}{ll} \dot{\kappa}(t) &= A \kappa(t) + B u(t) \\ \phi(t) &= C \kappa(t) \end{array} \right.
   \end{align}
-As some system dynamics may not be visible nor relevant to selection, we distinguish the \emph{kryptotype} (as it is hidden) from the \emph{phenotype} -- which is the system's \emph{external dynamics}.
-The change in internal molecular concentrations as a function of time $\dot{\kappa}(t)$ is simply a function of the system's current state (the kryptotype), the system architecture $(A,B,C)$ -- such as the wiring of a gene regulatory network, and the environmental input $u(t)$ to the system. The architecture of $A$ determines exactly how the internal molecular concentrations regulate one another's expression as $A_{ij}$ is the magnitude at which transcription factor $\kappa_j(t)$ regulates transcription factor $\kappa_i(t)$. If $A_{ij} > 0$, we say that $\kappa_j$ upregulate $\kappa_i$, and if $A_{ij} < 0$, we say that $\kappa_j$ down-regulates $\kappa_i$. Furthermore, we interpret the $i^\text{th}$ row of $A$ to be the \emph{cis}-regulatory element (or promoter) for gene $i$.  
-The architecture of $B$ determines how the system processes the environmental intput, and the structure of $C$ converts the internal dynamics to external dynamics. That is if $\mathcal{S}$ is a metabolic system, $C_{ij}$ is the amount at which the $j$th input metabolite $u_j$ affects the production of the $i$th enzyme concentration.  
 
+Generally $A$ is any real $n \times n$ matrix, $B$ any $n \times \ell$, and $C$ any $\ell \times n$ dimensional matrix. Although many different biological systems can be modeled with this approach, for clarity, we focus on gene regulatory networks.
+%
+Each $i$th row of $A$ describes the \emph{cis}-regulatory module for gene $i$, and each $j$th entry, the specific regulatory influence of gene $j$ on gene $i$. 
+%The $i^\text{th}$ row of $A$ contains the regulatory logic pertaining to gene $i$.
+%
+As such, $A_{ij}$ is the magnitude at which transcription factor $\kappa_j(t)$ regulates transcription factor $\kappa_i(t)$, and if $A_{ij} > 0$, we say that $\kappa_j$ upregulates $\kappa_i$. If $A_{ij} < 0$, we say that $\kappa_j$ down-regulates $\kappa_i$. 
+
+The form of $B$ determines precisely how the environment influences the organism -- that is $B$ filters and translates the input to the system. $C$ filters and translates the dynamics of the system and precesily determines the output, that is, what is visible to selection.
+\emph{E.g.} for a metabolic system, $C_{ij}$ is the amount the $j$th metabolite $u_j$ affects the production of the $i$th enzyme.
+%
+
+  %where $A$ is a gene regulatory network (although this model can be generalized to other biological networks) -- a square matrix, 
+  %and $B$ filters and translates the input to the system. The form of $B$ determines precisely how the state of the environment influences the internal gene network. $C$ filters and translates the dynamics of the system and precesily determines the output, that is, what is visible to selection. 
+%
+%
+Furthermore, whereas the phenotype is a subset of molecules \emph{visible} to selection, the \emph{kryptotype} includes the molecular dynamics \emph{hidden} from selection. That is $\kappa(t)$ is a vector of the system's molecular concentrations at time $t$, directly, indrectly, and irrelevant to survival.
+%
+%The structure of $B$ and $C$ determines how systems process their environment and convert krypto- to phenotypes, respectively. 
+%
 \plr{This "Thus" needs expanding, e.g., "the solution to this equation is unique and given by" with a reference.}
-Thus the phenotype is simply a convolution of the system organization and the environment, 
+
+Finally, we can write the phenotype as a convolution of the system organization and the environment,
   \begin{align}
     \phi(t) = C e^{A t} \kappa(0) + \int_{0}^{t} C e^{A (t-s)} B u(s) ds ,
   \end{align}
@@ -278,9 +296,92 @@ where we refer to $h(t) := Ce^{A t}B$ as the system's \emph{impulse response}.
 %    \ddt \kappa(t) &= A \kappa(t) + B u(t) \\
 %    \phi(t) &= C \kappa(t) .
 %\end{align}
+ \begin{example}[Oscillating Gene Network: Cell Cycle Control]\label{ex:oscillator}
+    Cellular division is governed by many different processes, however it is thought that its rhythm is partially controlled by oscillating gene transcription \citep{orlando2008global}. Here we consider a simplified model of oscillating gene transcription.
+
+    Suppose gene-2 up-regulates the transcription of gene-1 and that gene-1 down-regulates gene-2 with equal magnitudes, whose concentrations are given by $\kappa_1(t)$ and $\kappa_2(t)$. Furthermore, suppose that only the dynamics of gene-1 are consequential to the cell cycle (perhaps the amount of gene-1 activates another downstream gene network). Lastly suppose that the production of both genes is stimulated by an impulse of a molecule present immediately after division.
+
+    If the rate each of these genes is expressed is a linear function of their concentrations, the dynamics of the system are given by
+    \begin{align*}
+      \dot{\kappa_{1}}(t) &= \kappa_{2}(t) + u(t) \\
+      \dot{\kappa_{2}}(t) &= - \kappa_{1}(t) + u(t)
+    \end{align*}
+    where $\dot{\kappa}$ denotes the time derivative. The initial conditions $\kappa_{1}(0)$ and $\kappa_{2}(0)$, and the input $u(t)$ then determine the concentrations through time. If we record the regulatory coefficients in the matrix
+    \begin{align*}
+      A &= \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} ,
+    \end{align*}
+    and define the column vector $B = \begin{bmatrix} 1 & 1 \end{bmatrix}^{T}$, then in matrix notation the dynamics are
+      \begin{align*}
+      \dot{\kappa} &= A \kappa(t) + B u(t) .
+      \end{align*}
+      Since only the dynamics of gene-1 are directly relevant to biological function, the dynamics of interest are given by
+      \begin{align*}
+      \phi(t) &= C \kappa (t)
+      \end{align*}
+      where the row vector $C$ is defined as $C = \begin{bmatrix} 1 & 0 \end{bmatrix}$. 
+  %  \begin{align*}
+  %    A = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} , \qquad B = \begin{bmatrix} 1 \\ 1 \end{bmatrix}, \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix}
+  %  \end{align*}
+ %       The oscillatory system $\Sigma$ is thus given as
+ %   \begin{align*}
+ %     \Sigma = \left \{ \begin{array}{ll} \dot{\kappa}(t) &= \begin{bmatrix} 
+ %       0 & 1 \\ 
+ %      -1 & 0 
+ %       \end{bmatrix} \kappa(t) + \begin{bmatrix} 1 \\ 1 \end{bmatrix} u(t) \\ 
+ %         \phi(t) &= \begin{bmatrix} 1 & 0 \end{bmatrix} \kappa(t) \end{array} \right.
+ %    \end{align*}
+      
+      Since the input is simply an impulse, its phenotype is equivalent to its impulse response
+      \begin{align*}
+        \phi(t) = h(t) = \sin(t) + \cos(t)  .
+      \end{align*}
+
+    \begin{figure}[H]
+       % \begin{center} 
+      \centering
+         \begin{tabular}{cc}
+            \begin{tikzpicture}
+            \begin{scope}[every node/.style={circle,thick,draw}]
+                \node (A) at (0,0) {$\kappa_{1}$};
+                \node[dashed] (B) at (3,0) {$\kappa_{2}$};
+                \node[shape=rectangle] (U) at (1.5,2) {input};
+                \node[shape=rectangle] (y) at (1.5,-2) {output};
+            \end{scope}
+
+            \begin{scope}[>={Stealth[black]},
+                          every node/.style={fill=white,circle},
+                          every edge/.style={draw=black, thick}]
+                \path [->, >=Rectangle] (A) edge[bend left] node {\tiny $-1$} (B);
+                \path [->] (B) edge[bend left] node {\tiny $1$} (A); 
+                \path[->] (U) edge[dashed] node {\tiny $1$} (A);
+                \path[->] (U) edge[dashed] node {\tiny $1$} (B);
+                \path[->] (A) edge[dashed,bend right] node {\tiny $1$} (y);
+            \end{scope}
+            \begin{scope}[>={Stealth[black]},
+                          every edge/.style={draw=black, thick}]
+                %\path [->] (A) edge[loop left] node {\tiny $\lambda_{1}$} (A);
+                %\path [->] (B) edge[loop left] node {\tiny $\lambda_{2}$} (B);
+            \end{scope}
+
+            \end{tikzpicture} &
+       % \end{center}
+      %  \caption{
+      %      Diagram of Example \ref{ex:osc} in the text.
+      %      \plr{explain what arrows mean if nec}
+      %      \label{fig:oscillator_diagram}}
+   % \end{figure}
+   % \begin{figure}[H]
+    %  \centering
+      \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{osc_impulse}
+   \end{tabular}
+  %  \end{center}
+      \caption{(Left) Graphical representation of the cell cycle control gene network, and (right) plot of the phenotype $\phi(t)$ against time $t$.}
+    \end{figure}
+      We return to the evolution of such a system below.
+  \end{example}
 
 
-  \section*{Gene Network Drift}
+  \section*{Phenotype-equivalent gene networks}
 
 %\plr{This paragraph feels like the introduction.}
 %The literature is filled with detailed observations of molecular systems and their diversity. 
@@ -295,7 +396,7 @@ How many different mechanisms have the same function?
 
 Gene regulatory networks with identical phenotypes do not necessarily have identical kryptotypes.
 Any linear and minimal system (a gene network) 
--- minimal, informally meaning that the system's phenotype is achieved with the fewest possible number of genes 
+-- minimal, informally meaning that the system's phenotype is achieved with the fewest possible genes 
 -- has an identical impulse response and therefore an identical phenotype given an identical input $u(t)$, up to a change of coordinates. 
 \plr{"has an identical phenotype" is not what you mean to say here}
 \js{edited -- does that work?}
@@ -307,8 +408,8 @@ Any linear and minimal system (a gene network)
       = \bar{C} e^{\bar{A} t} \bar{B}
     \end{aligned}
   \end{equation}
-\plr{what are we calling these -- not "biological system" -- that's too broad}\js{how about ``molecular systems''?}
-Two molecular systems, $\mathcal{S} = \{ A, B, C \}$, and $\bar{\mathcal{S}} = \{\bar{A} = VAV^{-1}, \bar{B} = VB, \bar{C} = CV^{-1} \}$, 
+\plr{what are we calling these -- not "biological system" -- that's too broad}\js{I see your point, but I don't want to bog down the paper by constantly qualifying statements -- it seemsnatural to refer to biological systems, since these are, afterall dynamical systems.}
+Two biological systems, $\mathcal{S} = \{ A, B, C \}$, and $\bar{\mathcal{S}} = \{\bar{A} = VAV^{-1}, \bar{B} = VB, \bar{C} = CV^{-1} \}$, 
 have the same phenotype, for all possible inputs, if they are related by a change of coordinates. 
 \plr{is this the place to say "and only if, in the minimal dimension"?}
 
@@ -331,20 +432,22 @@ have the same phenotype, for all possible inputs, if they are related by a chang
 %and a \emph{Linear Evolutionary System} is, 
 %\plr{why is this "evolutionary"? It is the thing that we're thinking about evolution of, but that doesn't make it evolutionary.}
 Therefore, if a system is minimal, the set of all phenotypically identical systems $\mathcal{S}(V)$ can be parameterized as,
-    \begin{align}
+    \begin{align} \label{eq:min_param}
       \mathcal{S}(V) := \left\{ \begin{array}{ll} V\dot{\kappa}(t) &= VA V^{-1} \kappa(t) + VB u(t) \\ \phi(t) &= C V^{-1} \kappa(t) \end{array} \right.
   \end{align}
   where $V$ is any invertible matrix and it's elements are free parameters. 
+
+Therefore varying $V$ can tweak the relationships between genes within a regulatory network, yet preserve the phenotype. Some gene networks, however, can grown or shrink, perhaps following gene duplications and deletions, and also still preserve their phenotypes. These changes cannot be described by \ref{eq:min_param}, but they are ecanpuslated by \ref{eqn:equivalence}, below. 
 More generally,
-we denote by $\calA_n(A_0)$ the set of all $n$-dimensional systems equivalent to $A_0$:
+we denote by $\calA_n(\mathcal{S}_0)$ the set of all $n$-dimensional systems equivalent to $\mathcal{S}_0$:
 \begin{equation} \label{eqn:equivalence}
   \begin{aligned}
-  \calA_n(A_0) 
+    \calA_n(\mathcal{S}_0) 
       &= \left\{
-          A : C e^{At} B = C e^{A_0 t} B \; \text{for}\; t \ge 0 
+        (A,B,C) : C e^{At} B = C_0 e^{A_0 t} B_0 \; \text{for}\; t \ge 0 
       \right\}  \\
       &= \left\{
-          A : C A^k B = C A_0^k B \; \text{for}\; 1 \le k \le n-1 
+        (A,B,C) : C A^r B = C_0 A_0^r B_0 \; \text{for}\; 1 \le r \le n-1 
       \right\} .
   \end{aligned}
 \end{equation}
@@ -352,9 +455,7 @@ Equivalence of the two characterizations follows from the Cayley-Hamilton theore
 \plr{To make sense of this we need to say how $C$ and $B$ change with $n$.}
 Usually, the dimension $n$ and the reference system $A_0$ is implicit and we write only $\calA$.
 
-\plr{should say more about this decomposition here.}
-Regardless of minimality, two systems, even in different dimensions, can have identical external dynamics if they are in $\mathcal{A}$. This set can be completely parameterized using the \emph{Kalman decomposition} \ref{apx:kalman}; the set of all linear gene regulatory networks with equivalent phenotypes can be precisely defined. Note that this implies that there is always more than one possible gene regulatory network architecture per phenotype, however we can analytically describe the complete set. 
-
+Two systems, even if in different dimensions, can have identical phenotypes if they are in $\calA_n$. Further, there is no unique triple $(A,B,C)$ for the mapping $u \mapsto \phi$. This implies that the gene regulatory network architecture per phenotype/environment pair is never unique -- that is \emph{all} gene regulatory networks can drift/rewire. This set can be precisley defined and completely parameterized using the \emph{Kalman decomposition} \ref{apx:kalman}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection*{Speciation}
@@ -435,6 +536,122 @@ Regardless of minimality, two systems, even in different dimensions, can have id
 %\plr{I think we should first put the section about quantitative drift in, and then the following section that tries to get at real values of parameters.}
 %
 %
+ \begin{example}[All Phenotypically Equivalent Cell Cycle Control Networks] \label{ex:all_osc}
+
+%\plr{this is same as above, so reference instead of writing out again?}
+%    Let
+%    \begin{align*}
+%      A(0) = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}, \qquad B = \begin{bmatrix} 1 & 1 \end{bmatrix}^{T}, \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix},
+%    \end{align*}
+%    with $V(\tau)$ preserving both $B$ and $C$, then
+    The set of all two-gene regulatory networks phenotypically equivalent to the cell cycle control network in \ref{ex:oscillator}, where only $A$ can vary, is given by
+    \begin{align*}
+      A(\tau) &= \begin{bmatrix} 1 & 0 \\ \tau & 1-\tau \end{bmatrix} \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ \frac{\tau}{\tau-1} & \frac{-1}{\tau-1} \end{bmatrix}  \qquad \forall \ \tau \neq 1 %\\
+     %   B &= \begin{bmatrix} 1 \\ 1 \end{bmatrix}, \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix} \\
+       %   h(t) &= \sin(t) + \cos(t) \qquad \forall \ \tau \neq 1
+    \end{align*}
+    \begin{figure}[H]
+    \centering
+% Nice tikz!!!
+\begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+  \node (A) at (0,0) {$\kappa_{1}$};
+    \node[dashed] (B) at (4,0) {$\kappa_{2}$};
+    \node[shape=rectangle] (U) at (2,2) {input};
+    \node[shape=rectangle] (y) at (2,-2) {output};
+\end{scope}
+
+\begin{scope}[>={Stealth[black]},
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=black, thick}]
+    \path [->, sloped] (A) edge[bend left] node {\tiny $2 \tau + (\tau-1)^{-1}$} (B);
+    \path [->, sloped] (B) edge[bend left] node {\tiny $-(\tau-1)^{-1}$} (A); 
+    \path[->] (U) edge[dashed] node {\tiny $1$} (A);
+    \path[->] (U) edge[dashed] node {\tiny $1$} (B);
+    \path[->] (A) edge[dashed, bend right] node {\tiny $1$} (y);
+\end{scope}
+\begin{scope}[>={Stealth[black]},
+              every edge/.style={draw=black, thick}]
+    \path [->] (A) edge[loop left] node[sloped, anchor=center, above] {\tiny $1 + (\tau-1)^{-1}$} (A);
+    \path [->] (B) edge[loop right] node[sloped, anchor=center, above] {\tiny $-1 - (\tau-1)^{-1}$} (B);
+\end{scope}
+
+\end{tikzpicture}
+    \caption{The set of all phenotype-equivalent cell cycle control networks, $A(\tau)$.
+      $A(\tau) = \left\{ \calA_2 : B = B_0,\ C = C_0\right\}$.}
+    \end{figure}
+ % \end{example}
+
+ % \begin{example}[External Equivalence does not imply internal equivalence]
+   Despite the phenotypic equivalence of all instantiations of $A(\tau)$, the kryptotypes, vary as a function of $\tau$. 
+    Gene-1 dynamics (blue) are equivalent for network architectures $A(0)$ and $A(2)$, however the dynamics of gene-2 (orange) differ with $\tau$.
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{osc_A0_A2_both_compare}
+    \caption{Gene-1 (blue) and gene-2 (orange) dynamics for $A(0)$ (top) and $A(2)$ (bottom). Both (top and bottom) gene-1 dynamics are given by $ \kappa_{1} = \sin(t) + \cos(t)$, and gene-2 by $\kappa_{2} = \cos(t) - \sin(t)$ (top) and $\kappa'_{2} = \cos(t) + 3 \sin(t)$ (bottom).}
+  \end{figure}
+\end{example}
+
+\paragraph{Sexual reproduction and speciation}
+A diploid organism contains two gene network copies: one from each parent. As such, a diploid's system dynamics is computed by averaging the coefficients of both systems. To reproduce, each organism passes on a recombined haploid gene network to its offspring. Haploid gene networks swap system matrix rows randomly between its own two networks. 
+Therefore the phenotypic dynamics typical of a first generation ($F_{1}$) cross between two allopatric populations will be determined simply by averaging it's two parental genomes. However, in second generation hybrid ($F_2$) crosses, first new haploid systems will be formed by recombination -- in the process shuffling and combining regulatory coefficients from allopatric populations -- and then brought together to form a diploid.
+
+
+  \begin{example}[Hybrid Incompatibility in an Oscillating Gene Network] \label{ex:hybrid_osc}
+
+Here we compare the phenotypes for F2 hybrids formed by crossing oscillators $A(2)$ with $A(2.01)$, $A(2.1)$, and $A(2.5)$ ($B$ and $C$ are the same as above). 
+Each $A$ is phenotypically identical ($\phi(t) = \sin(t) + \cos(t)$), however some of the hybrids exhibit markedly different dynamics. 
+
+%        \begin{align*}
+%         A(2) = \begin{bmatrix} 2 & -1 \\ 5 & -2 \end{bmatrix} &\qquad A(2.01) = \begin{bmatrix} 1.9901 & -0.9901 \\ 5.0101 & -1.9901 \end{bmatrix} \\
+%          A(2.1) = \begin{bmatrix} 1.9091 & -0.9091 \\ 5.1091 & -1.9091 \end{bmatrix} &\qquad A(2.5) = \begin{bmatrix} 1.6667 & -0.6667 \\ 5.6667 & -1.6667 \end{bmatrix}
+%     \end{align*} 
+
+\begin{alignat*}{2}
+      A(2) &= \left[\begin{array}{cc} 2 & -1 \\[6pt] 5 & -2 \end{array}\right] &&\qquad A(2.01) = \left[\begin{array}{cc} 2 -\frac{1}{101} & -1 + \frac{1}{101} \\[6pt] 5 + \frac{1}{99} & -2 + \frac{1}{101} \end{array}\right] \\
+        A(2.1) &= \left[\begin{array}{cc} 2 - \frac{1}{11} & -1 + \frac{1}{11} \\[6pt] 5 + \frac{6}{55} & -2 + \frac{1}{11} \end{array}\right] &&\qquad A(2.5) = \left[\begin{array}{cc} 2 - \frac{1}{3} & -1 + \frac{1}{3} \\[6pt] 5 + \frac{2}{3} & -2 + \frac{1}{3} \end{array}\right]
+\end{alignat*}
+
+%      \begin{figure}[H]
+%        \begin{tabular}{cc}
+%          \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_1}
+%          & \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_2}
+%         \\ \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_3}
+%          & \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_4}
+%          \\ \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_5}
+%          & \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_6}
+%        \end{tabular}
+%      \end{figure}
+
+%    \begin{figure}[H]
+%      \centering
+%      \includegraphics[width=0.5\textwidth]{A2_A2-1_F2s}
+%      \caption{F2s from $A(2)$ and $A(2.1)$.}
+%    \end{figure}
+%      \begin{figure}[H]
+%        \begin{tabular}{cc}
+%        \includegraphics[width=0.5\textwidth]{F2s-small} \\
+%        \includegraphics[width=0.5\textwidth]{F2s} \\
+%        \includegraphics[width=0.5\textwidth]{F2s-large}
+%        \end{tabular}
+%        \caption{F2s from $A(2)$ and $A(2.1)$.}
+%      \end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{cc}
+    \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{F1_comparison} & 
+    \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{F2s_comparison2}
+  \end{tabular}
+  \caption{
+    $F_1$ (left) and $F_2$ (right) hybrids crossing $A(2)$ with $A(2.01)$ (top), $A(2.1)$ (middle), and $A(2.5)$ (bottom).
+    Note the difference in scale on the $y$-axis. F2 hybrids display more phenotypic divergence than F1s, on average. Further, some F2s completely fail to oscillate, as seen in an $A(2.5)$ F2 (light blue).
+    \plri{make axis labels bigger}
+  }
+\end{figure}
+
+    \jss{$A(2)$ and $A(2.1)$ differ in regulatory interaction strengths by $5.09\%$. If intra-population regulatory variation is approximately $5\%$, then this level of divergence is expected after $\sqrt{\frac{t}{N_{e}} = 1}$ generations.}
+\end{example}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Systems drift and the accumulation of incompatibilities}
@@ -457,7 +674,7 @@ There is an optimal phenotype $\optph$,
 and a set $\optx$ of ``optimal'' coefficients that produce this phenotype.
 Fitness depends on distance to the optimal phenotype --
 we will write the ``distance'' between phenotypes $\phi$ and $\psi$ as $\dph(\phi, \psi)$,
-measured so that the fitness of an organism with coefficents $x$ is $\fitx(x) = \exp(-\dph(\Phi(x),\optph)^2)$.
+measured so that the fitness of an organism with coefficents $x$ is $\fitx(x) = \exp(-\dph(\Phi(x),\optph)^2)$. \js{need to add $\gamma^{2}$ here?}
 We will assume that the map $\Phi$ is smooth
 and that the optimal set $\optx$ is locally isomorphic to $\R^m$.
 \plr{say that better}
@@ -478,7 +695,7 @@ would result in the same qualitative conclusions.
 If the variation within a population of some coefficient
 has standard deviation $\sigma$,
 then since subsequent generations resample from this diversity,
-the population mean coefficient will move a random distance of size $\sigma/\sqrt{N_e}$ per generation,
+the population mean coefficient will move a random distance of size $\sigma/\sqrt{N_e}$ per generation, \js{since it moves at rate $\sigma \sqrt{T/N_e}$ isn't saying  $\sigma/\sqrt{N_e}$ \emph{per generation} not that clear?}
 simply because this is the the standard deviation of the mean of a random sample \citep{lande_drift}.
 % (This could be taken as a definition of $N_e$.)
 Selection will tend to restrain this motion,
@@ -512,12 +729,6 @@ Concretely, $\gamma$ is the inverse of the derivative of $\dph(\Phi(x+u z), \Phi
 with respect to $u$ for $x \in \optx$ and $z$ perpendicular to the tangent space at $x$.
 With these parameters, a typical individual will have a fitness of around $\exp(-(\sigma_S/\gamma)^2)$.
 
-\paragraph{Sexual reproduction}
-A diploid first generation hybird's ($F_1$) genetic regulation is a consequence of its two genomes, as a copy of genes and regulatory sequences from each parent is present.
-\plr{should have a stronger justification for the assertion that $F_1$ is the arithmetic average of the parents than "Thus we say"}
-A diploid organism contains two gene network copies: one from each parent. As such, a diploid's system dynamics is computed by averaging the coefficients of both systems. To reproduce, each organism passes on a recombined haploid gene network to its offspring. Haploid gene networks swap system matrix rows randomly between its own two networks. 
-Therefore the phenotypic dynamics typical of an $F_{1}$ cross between two allopatric populations will be determined simply by averaging it's two parental genomes. However, in second generation hybrid crosses $F_2$ between allopatric populations, first new haploid systems will be formed by recombination -- in the process shuffling and combining regulatory coefficients from allopatric populations -- and then brought together to form a diploid.
-
 \paragraph{Hybridization}
 \plr{I put F1s and F2s here, and $\Incompat$, but with less explanation than below. Merge somehow.} \js{In progress, see paragraph above.}
 By the arguments above, the means of two allopatric populations separated for $T$ generations
@@ -525,11 +736,11 @@ will be a distance of order $2\sigma_N \sqrt{T/N_e}$ apart along $\optx$.
 A population of $F_1$ hybrids has one haploid genome from each,
 whose coefficients are averaged,
 and so will have mean system coefficients at the midpoint between their means,
-and variance equal to $\sigma$.
+and variance equal to $\sigma$. \js{I think you mean $\sigma^{2}$?}
 Each $F_2$ hybrid will be homozygous for one parental allele on averge at half of the loci in the genome,
 so the distribution of $F_2$s will have mean at the average of the two populations,
 as before,
-but variance equal to $\sigma^2 + z^2/2$, where $z$ is the distance between the parental populations.
+but variance equal to $\sigma^2 + z^2/2$, where $z$ is the distance between the parental populations. \js{Can you clarify why $z^{2}/2$? Is this because it's averaging two distributions?}
 These are depicted in figure \ref{fig:conceptual_fig}.
 
 \begin{figure}
@@ -568,6 +779,8 @@ and of an $F_2$ is
 $\fit_2/\fit_0 = \exp(- T/(N_e\gamma^2))$.
 
 
+  \jss{ Assume that selection acts directly against organisms whose regulatory coefficients are not on the optimum manifold. Further assume that selection constrains this diversity to be, on average, a distance of $m$ from optimum. We would expect $\sigma_S = m$. Furtheremore, two individuals within a population may both be on the optimum manifold, but at different points, on average of $\sigma_N$. Since individuals a distance of $\sigma_N$ apart will produce $F_2$s off of the manifold of $\mu = \frac{\sigma_N}{2}\sin2\theta$, recombination load may constrain $\sigma_N$ such that $\mu \leq m = \sigma_S$ (where $\theta$ is the slope of the manifold -- as $\theta$ approaches $0$ or $1$, $\sigma_N \rightarrow \infty$.). We can estimate $\sigma_N = \frac{2\sigma_S}{\sin2\theta}$.  
+  }
 %%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Parameter estimates for real systems}
 
@@ -632,9 +845,9 @@ doubtless varying substantially between species and between genes.
 %% argument for strength of selection
 It seems certain that selection in most species is not so strong that intra-population variation
 is strongly deleterious,
-so that if $u$ is the typical scale on which selection acts,
-then $u > \sigma$.  
-\plr{do we call this $\beta$ or $u$?}
+so that if $\beta$ is the typical scale on which selection acts,
+then $\beta > \sigma$.  
+\plr{do we call this $\beta$ or $u$?} \js{$\beta$, $u$ is input.}
 However,
 a range of studies \plr{find them} have found evidence for weak stabilizing selection
 on regulatory SNPs and cis-eQTL.
@@ -642,10 +855,10 @@ For instance,
 \citet{maria_and_sergey} \plr{(others?)} found evidence that large-effect regulatory mutations are weakly selected against in Drosophila.
 This suggests that 
 the strength of selection on phenotype is sufficient to weakly constrain regulatory variation,
-so that perhaps $\sigma$ and $u$ are relatively close.
+so that perhaps $\sigma$ and $\beta$ are relatively close.
 This is as would be expected if available variation is held in check by mutation--selection balance
 rather than genetic drift.
-A conservative estimate would be that $u = 5 \sigma$;
+A conservative estimate would be that $\beta = 5 \sigma$;
 taking $\sigma=.01$ as above, this suggests that changes in phenotype of 5\% are sufficient
 to effect a noticeable drop in fitness.
 \plr{BUT $\sigma$ IS VARIATION IN $A$ NOT PHENOTYPE}
@@ -655,7 +868,7 @@ the entries of $A$ vary by around 1\%,
 at least for networks whose function is strongly constrained.
 
 
-\section*{The rate of speciation under neutrality in allopatric populations}
+\subsection*{The rate of speciation under neutrality in allopatric populations}
 
 \plr{separate out here (or above) the difference in genotype of hybrids from the optimum set, the difference in phenotype, and the difference in fitness.}
 
@@ -691,8 +904,18 @@ at least for networks whose function is strongly constrained.
 %\end{align*}
 %and that $F_{2}$ fitness drops rapidly -- at approximately rate $\sqrt{\frac{T}{N_{e}}}$. ARGUMENT FOR WHY $c_{2} \sigma \sim \beta$ HERE. 
 
-This suggests that reproductively isolated populations can speciate rapidly -- on timescales much less than $N_{e}$ generations, depending on the specifics of the fitness function. 
+$F_2$s between allopatric populations will have an average fitness relative to their parents of,
+  \begin{align}
+    \exp\left(-\left( \frac{2\sigma_{N}}{\beta}\sqrt{\frac{T}{N_e}} \right)^{2} \right)
+  \end{align}
+where $\beta$ is the strength of selection against phenotypic divergence. 
 
+If the strength of selection is only a few multiples $\xi_1$ of the standing phenotypic diversity within a population $\sigma_S$, such that $\beta = \xi_1 \sigma_S$, and recombination load constrains the standing kryptotype diversity $\sigma_N$ to be only a few multiples $\xi_2$ of $\sigma_S$, then $F_2$ fitness will be,
+  \begin{align}
+    \exp\left(-\left( \xi \sqrt{\frac{T}{N_e}} \right)^{2} \right)
+  \end{align}
+  where $\xi := 2\xi_2/\xi_1$.
+  This suggests that if a population contains as much phenotypic diversity as allowed by selection and if $\sigma_N$ is on the order of $\sigma_S$, reproductively isolated populations can speciate rapidly -- on timescales shorter than $N_{e}$ generations.
 
 %%%%%%%%%%%%%%%
 
@@ -796,206 +1019,8 @@ We would like to thank Sergey Nuzhdin, Stevan Arnold, Erik Lundgren, and Hossein
 \normalsize
 
 \section*{Examples}
-  \begin{example}[Oscillating Gene Network: Cell Cycle Control]\label{ex:oscillator}
-
-
-    Cellular division is a complicated phenomena, governed by many different processes, however it is agreed that its rhythm is partially controlled by periodic (oscillating) gene transcription \citep{orlando2008global}. Consider a simplified model of oscillating gene transcription. In the present framework periodic expression requires at minimum two interacting genes. 
-
-    Suppose gene-2 up-regulates the transcription of gene-1 and that gene-1 down-regulates the transcription of gene-2 with equal magnitude (of $1$) and relative to each of their concentrations, denoted by $\kappa_{1}$ and $\kappa_{2}$. Furthermore, suppose that only the dynamics of gene-1 are consequential to the cell cycle (perhaps the amount of gene-1 activates another downstream gene network). Lastly suppose that the production of both genes is stimulated by an impulse of a molecule present immediately after division.
-
-\plr{you haven't explained $u(t)$ above. and, isn't it more natural in this set-up to have $B = [1,0]$ than $[1,1]$?}
-    If the rate each of these genes is expressed is a linear function of their concentrations, the dynamics of the system are given by
-    \begin{align*}
-      \dot{\kappa_{1}}(t) &= \kappa_{2}(t) + u(t) \\
-      \dot{\kappa_{2}}(t) &= - \kappa_{1}(t) + u(t)
-    \end{align*}
-    where $\dot{\kappa}$ denotes the time derivative. The initial conditions $\kappa_{1}(0)$ and $\kappa_{2}(0)$, and the input $u(t)$ then determine the concentrations through time. If we record the regulatory coefficients in the matrix
-    \begin{align*}
-      A &= \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} ,
-    \end{align*}
-    and define the column vector $B = \begin{bmatrix} 1 & 1 \end{bmatrix}^{T}$, then in matrix notation the dynamics are
-      \begin{align*}
-      \dot{\kappa} &= A \kappa(t) + B u(t) .
-      \end{align*}
-      Since only the dynamics of gene-1 are directly relevant to biological function, the dynamics of interest are given by
-      \begin{align*}
-      \phi(t) &= C \kappa (t)
-      \end{align*}
-      where the row vector $C$ is defined as $C = \begin{bmatrix} 1 & 0 \end{bmatrix}$. 
-      (If the dynamics of both genes were physiologically relevant to the cell cycle, we would set $C$ to be the identity matrix).
-  %  \begin{align*}
-  %    A = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} , \qquad B = \begin{bmatrix} 1 \\ 1 \end{bmatrix}, \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix}
-  %  \end{align*}
- %       The oscillatory system $\Sigma$ is thus given as
- %   \begin{align*}
- %     \Sigma = \left \{ \begin{array}{ll} \dot{\kappa}(t) &= \begin{bmatrix} 
- %       0 & 1 \\ 
- %      -1 & 0 
- %       \end{bmatrix} \kappa(t) + \begin{bmatrix} 1 \\ 1 \end{bmatrix} u(t) \\ 
- %         \phi(t) &= \begin{bmatrix} 1 & 0 \end{bmatrix} \kappa(t) \end{array} \right.
- %    \end{align*}
-      
-      Since the input is simply an impulse, its phenotype is equivalent to its impulse response
-      \begin{align*}
-        \phi(t) = h(t) = \sin(t) + \cos(t)  .
-      \end{align*}
-
-    \begin{figure}[H]
-       % \begin{center} 
-      \centering
-         \begin{tabular}{cc}
-            \begin{tikzpicture}
-            \begin{scope}[every node/.style={circle,thick,draw}]
-                \node (A) at (0,0) {$\kappa_{1}$};
-                \node[dashed] (B) at (3,0) {$\kappa_{2}$};
-                \node[shape=rectangle] (U) at (1.5,2) {input};
-                \node[shape=rectangle] (y) at (1.5,-2) {output};
-            \end{scope}
-
-            \begin{scope}[>={Stealth[black]},
-                          every node/.style={fill=white,circle},
-                          every edge/.style={draw=black, thick}]
-                \path [->, >=Rectangle] (A) edge[bend left] node {\tiny $-1$} (B);
-                \path [->] (B) edge[bend left] node {\tiny $1$} (A); 
-                \path[->] (U) edge[dashed] node {\tiny $1$} (A);
-                \path[->] (U) edge[dashed] node {\tiny $1$} (B);
-                \path[->] (A) edge[dashed,bend right] node {\tiny $1$} (y);
-            \end{scope}
-            \begin{scope}[>={Stealth[black]},
-                          every edge/.style={draw=black, thick}]
-                %\path [->] (A) edge[loop left] node {\tiny $\lambda_{1}$} (A);
-                %\path [->] (B) edge[loop left] node {\tiny $\lambda_{2}$} (B);
-            \end{scope}
-
-            \end{tikzpicture} &
-       % \end{center}
-      %  \caption{
-      %      Diagram of Example \ref{ex:osc} in the text.
-      %      \plr{explain what arrows mean if nec}
-      %      \label{fig:oscillator_diagram}}
-   % \end{figure}
-   % \begin{figure}[H]
-    %  \centering
-      \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{osc_impulse}
-   \end{tabular}
-  %  \end{center}
-      \caption{(Left) Graphical representation of the cell cycle control gene network, and (right) plot of the phenotype $\phi(t)$ against time $t$.}
-    \end{figure}
-      We return to the evolution of such a system below.
-  \end{example}
-
-  \begin{example}[All Phenotypically Equivalent Cell Cycle Control Networks] \label{ex:all_osc}
-
-%\plr{this is same as above, so reference instead of writing out again?}
-%    Let
-%    \begin{align*}
-%      A(0) = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}, \qquad B = \begin{bmatrix} 1 & 1 \end{bmatrix}^{T}, \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix},
-%    \end{align*}
-%    with $V(\tau)$ preserving both $B$ and $C$, then
-    The set of all two-gene regulatory networks phenotypically equivalent to the cell cycle control network in \ref{ex:oscillator} is given by
-    \begin{align*}
-      A(\tau) &= \begin{bmatrix} 1 & 0 \\ \tau & 1-\tau \end{bmatrix} \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ \frac{\tau}{\tau-1} & \frac{-1}{\tau-1} \end{bmatrix}  \qquad \forall \ \tau \neq 1 %\\
-     %   B &= \begin{bmatrix} 1 \\ 1 \end{bmatrix}, \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix} \\
-       %   h(t) &= \sin(t) + \cos(t) \qquad \forall \ \tau \neq 1
-    \end{align*}
-    \begin{figure}[H]
-    \centering
-% Nice tikz!!!
-\begin{tikzpicture}
-\begin{scope}[every node/.style={circle,thick,draw}]
-  \node (A) at (0,0) {$\kappa_{1}$};
-    \node[dashed] (B) at (4,0) {$\kappa_{2}$};
-    \node[shape=rectangle] (U) at (2,2) {input};
-    \node[shape=rectangle] (y) at (2,-2) {output};
-\end{scope}
-
-\begin{scope}[>={Stealth[black]},
-              every node/.style={fill=white,circle},
-              every edge/.style={draw=black, thick}]
-    \path [->, sloped] (A) edge[bend left] node {\tiny $2 \tau + (\tau-1)^{-1}$} (B);
-    \path [->, sloped] (B) edge[bend left] node {\tiny $-(\tau-1)^{-1}$} (A); 
-    \path[->] (U) edge[dashed] node {\tiny $1$} (A);
-    \path[->] (U) edge[dashed] node {\tiny $1$} (B);
-    \path[->] (A) edge[dashed, bend right] node {\tiny $1$} (y);
-\end{scope}
-\begin{scope}[>={Stealth[black]},
-              every edge/.style={draw=black, thick}]
-    \path [->] (A) edge[loop left] node[sloped, anchor=center, above] {\tiny $1 + (\tau-1)^{-1}$} (A);
-    \path [->] (B) edge[loop right] node[sloped, anchor=center, above] {\tiny $-1 - (\tau-1)^{-1}$} (B);
-\end{scope}
-
-\end{tikzpicture}
-    \caption{A graphical depiction of the set of all externally equivalent cell cycle control networks, $A(\tau)$. 
-        $\tau$ can take any value \plri{sentence fragment}}
-    \end{figure}
- % \end{example}
-
- % \begin{example}[External Equivalence does not imply internal equivalence]
-   Despite the phenotypic equivalence of all instantiations of $A(\tau)$, the internal dynamics, or kryptotypes, vary as a function of $\tau$. 
-    Gene-1 dynamics (blue) are equivalent for network architectures $A(0)$ and $A(2)$, however the dynamics of gene-2 (orange) differ with $\tau$.
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{osc_A0_A2_both_compare}
-    \caption{Gene-1 (blue) and gene-2 (orange) dynamics for $A(0)$ (top) and $A(2)$ (bottom). Both (top and bottom) gene-1 dynamics are given by $ \kappa_{1} = \sin(t) + \cos(t)$, and gene-2 by $\kappa_{2} = \cos(t) - \sin(t)$ (top) and $\kappa'_{2} = \cos(t) + 3 \sin(t)$ (bottom).}
-  \end{figure}
-\end{example}
-
-  \begin{example}[Hybrid Incompatibility in an Oscillating Gene Network] \label{ex:hybrid_osc}
-
-Here we compare the phenotypes for F2 hybrids formed by crossing oscillators $A(2)$ with $A(2.01)$, $A(2.1)$, and $A(2.5)$ ($B$ and $C$ are the same as above). 
-Each $A$ is phenotypically identical ($\phi(t) = \sin(t) + \cos(t)$), however some of the hybrids exhibit markedly different dynamics. 
-
-%        \begin{align*}
-%         A(2) = \begin{bmatrix} 2 & -1 \\ 5 & -2 \end{bmatrix} &\qquad A(2.01) = \begin{bmatrix} 1.9901 & -0.9901 \\ 5.0101 & -1.9901 \end{bmatrix} \\
-%          A(2.1) = \begin{bmatrix} 1.9091 & -0.9091 \\ 5.1091 & -1.9091 \end{bmatrix} &\qquad A(2.5) = \begin{bmatrix} 1.6667 & -0.6667 \\ 5.6667 & -1.6667 \end{bmatrix}
-%     \end{align*} 
-
-\begin{alignat*}{2}
-      A(2) &= \left[\begin{array}{cc} 2 & -1 \\[6pt] 5 & -2 \end{array}\right] &&\qquad A(2.01) = \left[\begin{array}{cc} 2 -\frac{1}{101} & -1 + \frac{1}{101} \\[6pt] 5 + \frac{1}{99} & -2 + \frac{1}{101} \end{array}\right] \\
-        A(2.1) &= \left[\begin{array}{cc} 2 - \frac{1}{11} & -1 + \frac{1}{11} \\[6pt] 5 + \frac{6}{55} & -2 + \frac{1}{11} \end{array}\right] &&\qquad A(2.5) = \left[\begin{array}{cc} 2 - \frac{1}{3} & -1 + \frac{1}{3} \\[6pt] 5 + \frac{2}{3} & -2 + \frac{1}{3} \end{array}\right]
-\end{alignat*}
-
-%      \begin{figure}[H]
-%        \begin{tabular}{cc}
-%          \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_1}
-%          & \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_2}
-%         \\ \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_3}
-%          & \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_4}
-%          \\ \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_5}
-%          & \includegraphics[width=0.2\textwidth]{A2_A3_osci_F2_hyb_6}
-%        \end{tabular}
-%      \end{figure}
-
-%    \begin{figure}[H]
-%      \centering
-%      \includegraphics[width=0.5\textwidth]{A2_A2-1_F2s}
-%      \caption{F2s from $A(2)$ and $A(2.1)$.}
-%    \end{figure}
-%      \begin{figure}[H]
-%        \begin{tabular}{cc}
-%        \includegraphics[width=0.5\textwidth]{F2s-small} \\
-%        \includegraphics[width=0.5\textwidth]{F2s} \\
-%        \includegraphics[width=0.5\textwidth]{F2s-large}
-%        \end{tabular}
-%        \caption{F2s from $A(2)$ and $A(2.1)$.}
-%      \end{figure}
-
-\begin{figure}[H]
-  \centering
-  \begin{tabular}{cc}
-    \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{F1_comparison} & 
-    \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{F2s_comparison2}
-  \end{tabular}
-  \caption{
-    $F_1$ (left) and $F_2$ (right) hybrids crossing $A(2)$ with $A(2.01)$ (top), $A(2.1)$ (middle), and $A(2.5)$ (bottom).
-    Note the difference in scale on the $y$-axis. F2 hybrids display more phenotypic divergence than F1s, on average. Further, some F2s completely fail to oscillate, as seen in an $A(2.5)$ F2 (light blue).
-    \plri{make axis labels bigger}
-  }
-\end{figure}
-
-    \jss{$A(2)$ and $A(2.1)$ differ in regulatory interaction strengths by $5.09\%$. If intra-population regulatory variation is approximately $5\%$, then this level of divergence is expected after $\sqrt{\frac{t}{N_{e}} = 1}$ generations.}
-\end{example}
-
+ 
+ 
 \begin{example}[Metabolic network] \label{ex:metabolic}
 
 \plr{Concentrations are "logarithmic", you mean that $u_1(t) = \log(\text{concentration of molcule 1 at time t})$.}
@@ -1541,7 +1566,7 @@ then this is approximately $-\sigma^2 H^{-1} Z$.
 This suggests that the population mean follows an Ornstein-Uhlenbeck process,
 as described (in different terms) in \citet{hansen1996translating}.
 
-\section{Hybrid Vigor}
+\section{Hybrid Vigor: Unit Circle approach}
 
 If a fitness optimum is at the origin $(0,0) \in \R^{2}$,
 %and two populations have drifted away from the optimum by an distance of $r$, then the expected value of their $F_1$ hybrids is,
@@ -1578,4 +1603,23 @@ then $F_1$s will have an average fitness of,
 %  There are $16$ diploid $F_2$s, two have $F_0$ genotypes, two have $F_1$ genotpyes, eight contrain one $F_0$ and one $F_2$ haploid genotype (referred to as $H$; $\fit(H) = \sqrt{\frac{3}{8}}$), two are homozygous for an $F_2$ genotype (referred to as $W$; $\fit(W) = \frac{\sqrt{2}}{2}$), and finally two are heterozygous $F_2$s (referred to as $L$; $\fit(L) = \frac{1}{2}$.)
   %The expected average distance of diploid $F_2$s is $0.6705$. 
 
+  \section{Hybrid Vigor: Probability}
+
+  \begin{align*}
+    X &\sim \mathcal{N} (x, \sigma^{2}) \\
+    Y &\sim \mathcal{N} (y, \sigma^{2}) \\
+    x &\sim \mathcal{N} (0, \eta^{2}) \\
+    y &\sim \mathcal{N}(0, \eta^{2}) \\
+    Z &= \frac{X+Y}{2} \rightarrow \mathbb{E} \left[ \lvert z \rvert^{2} \right] \\
+    Z &= \frac{x+y+U+V}{2} \\
+    \mathbb{E} \left[ \lvert X \rvert^{2} \right] &= \mathbb{E} \left[ \lvert x + U \rvert^{2} \right] = \mathbb{E} \left[ (x+U)^{T} (x+U) \right] \\
+    &= \mathbb{E} \left[ x^{T}x + U^{T}x + x^{T}U + U^{T}T \right] \\
+    &= \mathbb{E} \left[x^{T}x\right] + \mathbb{E} \left[U^{T}U\right] \\
+    &= d\eta^{2} + d\sigma^{2} \qquad d=\text{dimension} \\
+    X &\sim \mathcal{N}(0, \sigma^{2} + \eta^{2}) \\
+    Z &\sim \mathcal{N}\left(0, \frac{1}{4}(2 \eta^{2} + 2\sigma^{2})\right) \\
+    &\rightarrow \mathbb{E}\left[\lvert Z \rvert^{2} \right] \\
+    &= \frac{d}{2} \left(\eta^{2} + \sigma^{2} \right) \\
+    &= \frac{1}{2} \mathbb{E} \left[ \lvert X \rvert^{2} \right]
+  \end{align*}
 \end{document}
