@@ -203,7 +203,7 @@ In the neutral case, this set describes a manifold that evolution explores leavi
 and predicts that if two populations become reproductively isolated, hybrid incompatibility can occur, despite the absence of adaptation, directional selection, or environmental change. 
 Speciation typically occurs on timescales approximately on the order of $N_{e}$ generations, where $N_{e}$ is the effective population size.
 
-\section*{Gene Networks as Linear Dynamical Systems}
+\section*{Gene networks as linear dynamical systems}
 %
 \plr{Below we mix general language with language specific to GRNs, like switching between "internal state" and "transcription factor concentration.  
 Rather than keep making comments like "(or some other system)",
@@ -232,6 +232,7 @@ we could say up top that this applies to other situations, but to make it concre
 %  \end{align}
 %  Variables have the same identities as described above and $\kappa(t)$ is a vector of molecule concentrations at time $t$. Therefore the molecular concentrations at a specific time are completely determined by the input and gene by gene interactions. Lastly, a portion and/or combination of these molecules, $\phi(t)$, are ``observed'' by selection (this is in constrast to $\kappa(t)$ -- the \emph{kryptotype} -- as it is ``hidden'' from direct selection).
 %}
+\paragraph{Systems theory}
 Organisms' phenotypes are constructred by gene by gene by environment interactions. Here we simply define the \emph{phenotype} to be the temporal molecular dynamics directly under natural selection. The \emph{what}, \emph{when}, and \emph{how much}, of an organism's molecules that are physiologically or otherwise relevant to survival.
 
 Thus an organism's phenotype $\phi(t)$ -- a vector of molecular concentrations at time $t$ -- is determined both by the structure and organization of a biological system (\emph{e.g.} a gene regualtory network), given by the triple $(A,B,C)$,
@@ -296,7 +297,7 @@ where we refer to $h(t) := Ce^{A t}B$ as the system's \emph{impulse response}.
 %    \ddt \kappa(t) &= A \kappa(t) + B u(t) \\
 %    \phi(t) &= C \kappa(t) .
 %\end{align}
- \begin{example}[Oscillating Gene Network: Cell Cycle Control]\label{ex:oscillator}
+ \begin{example}[Oscillating gene network: cell cycle control]\label{ex:oscillator}
     Cellular division is governed by many different processes, however it is thought that its rhythm is partially controlled by oscillating gene transcription \citep{orlando2008global}. Here we consider a simplified model of oscillating gene transcription.
 
     Suppose gene-2 up-regulates the transcription of gene-1 and that gene-1 down-regulates gene-2 with equal magnitudes, whose concentrations are given by $\kappa_1(t)$ and $\kappa_2(t)$. Furthermore, suppose that only the dynamics of gene-1 are consequential to the cell cycle (perhaps the amount of gene-1 activates another downstream gene network). Lastly suppose that the production of both genes is stimulated by an impulse of a molecule present immediately after division.
@@ -381,7 +382,7 @@ where we refer to $h(t) := Ce^{A t}B$ as the system's \emph{impulse response}.
   \end{example}
 
 
-  \section*{Phenotype-equivalent gene networks}
+  \paragraph{Phenotypically equivalent gene networks}
 
 %\plr{This paragraph feels like the introduction.}
 %The literature is filled with detailed observations of molecular systems and their diversity. 
@@ -395,9 +396,9 @@ Despite a symmetry in functionality or phenotype systems can often differ, somet
 How many different mechanisms have the same function? 
 
 Gene regulatory networks with identical phenotypes do not necessarily have identical kryptotypes.
-Any linear and minimal system (a gene network) 
--- minimal, informally meaning that the system's phenotype is achieved with the fewest possible genes 
--- has an identical impulse response and therefore an identical phenotype given an identical input $u(t)$, up to a change of coordinates. 
+Any linear and minimal gene network 
+-- minimal, informally meaning that the system's phenotype is achieved with the fewest possible genes $(n=m)$
+-- has an identical impulse response and thus phenotype given identical inputs $u(t)$, up to a change of coordinates. 
 \plr{"has an identical phenotype" is not what you mean to say here}
 \js{edited -- does that work?}
   \begin{equation}
@@ -431,13 +432,14 @@ have the same phenotype, for all possible inputs, if they are related by a chang
  % \end{align}
 %and a \emph{Linear Evolutionary System} is, 
 %\plr{why is this "evolutionary"? It is the thing that we're thinking about evolution of, but that doesn't make it evolutionary.}
-Therefore, if a system is minimal, the set of all phenotypically identical systems $\mathcal{S}(V)$ can be parameterized as,
-    \begin{align} \label{eq:min_param}
-      \mathcal{S}(V) := \left\{ \begin{array}{ll} V\dot{\kappa}(t) &= VA V^{-1} \kappa(t) + VB u(t) \\ \phi(t) &= C V^{-1} \kappa(t) \end{array} \right.
-  \end{align}
+Therefore the set of all phenotypically identical (and minimal) systems can be parameterized as, $\mathcal{S}_{m}(V) := \{VA_0V^{-1}, VB_0, C_0V \}$,
+  %  \begin{align} \label{eq:min_param}
+  %    \mathcal{S}(V) := \left\{ \begin{array}{ll} V\dot{\kappa}(t) &= VA V^{-1} \kappa(t) + VB u(t) \\ \phi(t) &= C V^{-1} \kappa(t) \end{array} \right.
+  %\end{align}
   where $V$ is any invertible matrix and it's elements are free parameters. 
 
-Therefore varying $V$ can tweak the relationships between genes within a regulatory network, yet preserve the phenotype. Some gene networks, however, can grown or shrink, perhaps following gene duplications and deletions, and also still preserve their phenotypes. These changes cannot be described by \ref{eq:min_param}, but they are ecanpuslated by \ref{eqn:equivalence}, below. 
+Therefore varying $V$ can tweak the relationships between genes within a regulatory network, yet preserve the phenotype. Some gene networks, however, can grown or shrink, perhaps following gene duplications and deletions, and also still preserve their phenotypes. These changes cannot be described by $S(V)$, but are ecanpuslated by \ref{eqn:equivalence}, below.
+
 More generally,
 we denote by $\calA_n(\mathcal{S}_0)$ the set of all $n$-dimensional systems equivalent to $\mathcal{S}_0$:
 \begin{equation} \label{eqn:equivalence}
@@ -593,7 +595,7 @@ Two systems, even if in different dimensions, can have identical phenotypes if t
 \end{example}
 
 \paragraph{Sexual reproduction and speciation}
-A diploid organism contains two gene network copies: one from each parent. As such, a diploid's system dynamics is computed by averaging the coefficients of both systems. To reproduce, each organism passes on a recombined haploid gene network to its offspring. Haploid gene networks swap system matrix rows randomly between its own two networks. 
+A diploid organism contains two gene network copies: one from each parent. As such, a diploid's system dynamics is computed by averaging the coefficients of both systems. To reproduce, each organism passes on a recombined haploid gene network to its offspring. Haploid gene networks swap system matrix rows randomly between its own two networks.
 Therefore the phenotypic dynamics typical of a first generation ($F_{1}$) cross between two allopatric populations will be determined simply by averaging it's two parental genomes. However, in second generation hybrid ($F_2$) crosses, first new haploid systems will be formed by recombination -- in the process shuffling and combining regulatory coefficients from allopatric populations -- and then brought together to form a diploid.
 
 
@@ -671,7 +673,7 @@ We work with a population of effective size $N_e$.
 Suppose that a set $x$ of coefficients that determine a system (this is $A$ above),
 produce a phenotype $\Phi(x)$ (the time course of $\phi(t)$).
 There is an optimal phenotype $\optph$,
-and a set $\optx$ of ``optimal'' coefficients that produce this phenotype.
+and a set $\optx$ of ``optimal'' coefficients that produce this phenotype ($\calA_n$ above).
 Fitness depends on distance to the optimal phenotype --
 we will write the ``distance'' between phenotypes $\phi$ and $\psi$ as $\dph(\phi, \psi)$,
 measured so that the fitness of an organism with coefficents $x$ is $\fitx(x) = \exp(-\dph(\Phi(x),\optph)^2)$. \js{need to add $\gamma^{2}$ here?}
@@ -868,7 +870,7 @@ the entries of $A$ vary by around 1\%,
 at least for networks whose function is strongly constrained.
 
 
-\subsection*{The rate of speciation under neutrality in allopatric populations}
+\paragraph{The rate of speciation under neutrality in allopatric populations}
 
 \plr{separate out here (or above) the difference in genotype of hybrids from the optimum set, the difference in phenotype, and the difference in fitness.}
 
@@ -904,18 +906,17 @@ at least for networks whose function is strongly constrained.
 %\end{align*}
 %and that $F_{2}$ fitness drops rapidly -- at approximately rate $\sqrt{\frac{T}{N_{e}}}$. ARGUMENT FOR WHY $c_{2} \sigma \sim \beta$ HERE. 
 
-$F_2$s between allopatric populations will have an average fitness relative to their parents of,
+$F_2$s between allopatric populations will suffer an average fitness drop relative to their parents of,
   \begin{align}
-    \exp\left(-\left( \frac{2\sigma_{N}}{\beta}\sqrt{\frac{T}{N_e}} \right)^{2} \right)
+    \exp\left(-\left( \frac{2\sigma_{N}}{\beta}\sqrt{\frac{T}{N_e}} \right)^{2} \right) .
   \end{align}
-where $\beta$ is the strength of selection against phenotypic divergence. 
 
-If the strength of selection is only a few multiples $\xi_1$ of the standing phenotypic diversity within a population $\sigma_S$, such that $\beta = \xi_1 \sigma_S$, and recombination load constrains the standing kryptotype diversity $\sigma_N$ to be only a few multiples $\xi_2$ of $\sigma_S$, then $F_2$ fitness will be,
+If the strength of selection is only a few multiples $\xi_1$ of the standing phenotypic diversity within a population $\sigma_S$, such that $\beta = \xi_1 \sigma_S$, and recombination load constrains the standing phenotype-neutral diversity $\sigma_N$ to be only a few multiples $\xi_2$ of $\sigma_S$, then $F_2$ fitness drop will be,
   \begin{align}
-    \exp\left(-\left( \xi \sqrt{\frac{T}{N_e}} \right)^{2} \right)
+    \exp\left(- \xi^{2} \frac{T}{N_e} \right)
   \end{align}
   where $\xi := 2\xi_2/\xi_1$.
-  This suggests that if a population contains as much phenotypic diversity as allowed by selection and if $\sigma_N$ is on the order of $\sigma_S$, reproductively isolated populations can speciate rapidly -- on timescales shorter than $N_{e}$ generations.
+  This suggests that if a population contains as much phenotypic diversity as allowed by selection and if $\sigma_N$ is on the order of $\sigma_S$, reproductively isolated populations can speciate rapidly -- possibly on timescales shorter than $N_{e}$ generations.
 
 %%%%%%%%%%%%%%%
 
