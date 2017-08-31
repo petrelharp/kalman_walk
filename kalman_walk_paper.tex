@@ -258,7 +258,7 @@ The form of $B$ determines precisely how the environment influences the organism
   %and $B$ filters and translates the input to the system. The form of $B$ determines precisely how the state of the environment influences the internal gene network. $C$ filters and translates the dynamics of the system and precesily determines the output, that is, what is visible to selection. 
 %
 %
-Furthermore, whereas the phenotype is a subset of molecules \emph{visible} to selection, the \emph{kryptotype} includes the molecular dynamics \emph{hidden} from selection. That is $\kappa(t)$ is a vector of the system's molecular concentrations at time $t$, directly, indrectly, and irrelevant to survival.
+Furthermore, whereas the phenotype is a subset of molecules \emph{visible} to selection, the \emph{kryptotype} includes the molecular dynamics \emph{hidden} from selection. That is $\kappa(t)$ is a vector of the system's molecular concentrations at time $t$.
 %
 %The structure of $B$ and $C$ determines how systems process their environment and convert krypto- to phenotypes, respectively. 
 %
@@ -397,7 +397,7 @@ How many different mechanisms have the same function?
 
 Gene regulatory networks with identical phenotypes do not necessarily have identical kryptotypes.
 Any linear and minimal gene network 
--- minimal, informally meaning that the system's phenotype is achieved with the fewest possible genes $(n=m)$
+-- minimal, informally meaning that the system's phenotype is achieved with the fewest possible genes $(n=\min)$
 -- has an identical impulse response and thus phenotype given identical inputs $u(t)$, up to a change of coordinates. 
 \plr{"has an identical phenotype" is not what you mean to say here}
 \js{edited -- does that work?}
@@ -431,7 +431,7 @@ have the same phenotype, for all possible inputs, if they are related by a chang
  % \end{align}
 %and a \emph{Linear Evolutionary System} is, 
 %\plr{why is this "evolutionary"? It is the thing that we're thinking about evolution of, but that doesn't make it evolutionary.}
-Therefore the set of all phenotypically identical (and minimal) systems can be parameterized as, $\mathcal{S}_{m}(V) := \{VA_0V^{-1}, VB_0, C_0V \}$,
+Therefore the set of all phenotypically identical (and minimal) systems can be parameterized as, $\mathcal{S}_{\min}(V) := \{VA_0V^{-1}, VB_0, C_0V \}$,
   %  \begin{align} \label{eq:min_param}
   %    \mathcal{S}(V) := \left\{ \begin{array}{ll} V\dot{\kappa}(t) &= VA V^{-1} \kappa(t) + VB u(t) \\ \phi(t) &= C V^{-1} \kappa(t) \end{array} \right.
   %\end{align}
@@ -452,11 +452,16 @@ we denote by $\calA_n(\mathcal{S}_0)$ the set of all $n$-dimensional systems equ
       \right\} .
   \end{aligned}
 \end{equation}
+  \begin{align}
+    \mathcal{K} := \bigcup_{n=\min}^{\infty} \calA_n(\calA_0)
+  \end{align}
 Equivalence of the two characterizations follows from the Cayley-Hamilton theorem.
 \plr{To make sense of this we need to say how $C$ and $B$ change with $n$.}
 Usually, the dimension $n$ and the reference system $A_0$ is implicit and we write only $\calA$.
 
-Two systems, even if in different dimensions, can have identical phenotypes if they are in $\calA_n$. Further, there is no unique triple $(A,B,C)$ for the mapping $u \mapsto \phi$. This implies that the gene regulatory network architecture per phenotype/environment pair is never unique -- that is \emph{all} gene regulatory networks can drift/rewire. This set can be precisley defined and completely parameterized using the \emph{Kalman decomposition} \ref{apx:kalman}.
+Two systems, even if in different dimensions, will have identical phenotypes if they are in $\mathcal{K}$. Further, there is no unique triple $(A,B,C)$ for the mapping $u \mapsto \phi$. This implies that the gene regulatory network architecture per phenotype/environment pair is never unique -- that is \emph{all} gene regulatory networks can drift/rewire. This set can be precisley defined and completely parameterized using the \emph{Kalman decomposition} \ref{apx:kalman}.
+
+A large, adapted population will move around in $\mathcal{K}$ given environmental and selective stasis. Even if there is a conservation of phenotype through evolutionary time, the molecular mechanism underpinning the phenotype is not constrained and likely will not be conserved.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection*{Speciation}
@@ -592,6 +597,15 @@ Two systems, even if in different dimensions, can have identical phenotypes if t
     \caption{Gene-1 (blue) and gene-2 (orange) dynamics for $A(0)$ (top) and $A(2)$ (bottom). Both (top and bottom) gene-1 dynamics are given by $ \kappa_{1} = \sin(t) + \cos(t)$, and gene-2 by $\kappa_{2} = \cos(t) - \sin(t)$ (top) and $\kappa'_{2} = \cos(t) + 3 \sin(t)$ (bottom).}
   \end{figure}
 \end{example}
+
+\paragraph{Kryptotypic variation and hybrid incompatibility}
+Phenotypically identical yet kryptotypically variant gene networks, when brought together and/or recombined during sexual reproduction, can lead to phenotypic inviability. 
+
+For instance, the phenotypic dynamics of a diploid organism are a function of its two haploid genomes $x$ and $y$: $P(x,y) = \left(x + y\right)/2$. Additionally, during meiosis, a diploid recombines its two genomes to form a new one: $\left(x \times y \right) \rightarrow z$; by randomly swapping matrix rows between two systems $\mathcal{S}$ and $\mathcal{S}'$.
+
+Even if two genomes $x$ and $y$ are both in $\mathcal{K}$, their diploid systems $P(x,y)$, and their recombinant systems $P(z,z)$, may not be in $\mathcal{K}$. This is because $\mathcal{K}$ is not mathematically required to be closed under averaging and recombination.
+
+If sexual recombination among systems drawn from $\mathcal{K}$ yields systems with divergent phenotypes, populations containing significant diversity in $\mathcal{K}$ will carry a large genetic load, and isolated populations may fail to produce hybrids with viable phenotypes. 
 
 \paragraph{Sexual reproduction and speciation}
 A diploid organism contains two gene network copies: one from each parent. As such, a diploid's system dynamics is computed by averaging the coefficients of both systems. To reproduce, each organism passes on a recombined haploid gene network to its offspring. Haploid gene networks swap system matrix rows randomly between its own two networks.
