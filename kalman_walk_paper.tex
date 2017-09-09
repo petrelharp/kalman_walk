@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage{amsmath, amssymb, color, xcolor}
+\usepackage{amsmath, amssymb, color, xcolor, amsthm}
 \usepackage{graphicx, wrapfig, float, caption, dsfont, bbm}
 \usepackage{fullpage}
 \usepackage[backref=page, hidelinks, colorlinks=true, citecolor=blue!60!black!100]{hyperref}
@@ -42,10 +42,12 @@
 \newcommand{\pda}{\frac{\partial}{\partial A_{ij}}}
 \newcommand{\ind}{\mathds{1}}
 
-\newcommand{\calA}{\mathcal{S}}
+\newcommand{\calA}{\mathcal{A}}
 \newcommand{\calH}{\mathcal{H}}
 \newcommand{\diag}{\text{diag}}
 \newcommand{\1}{\mathbbm{1}}
+
+\newcommand{\Sys}{\mathcal{S}}
 
 % fitness as a fn of distance
 \newcommand{\fit}{\mathcal{F}}
@@ -134,7 +136,6 @@ We introduce an analytical theory to study the evolution of biological systems, 
 %%%%%%%%%%%%%%%%%%%%%%
 %\begin{multicols}{2}
 \section*{Introduction}
-
 Bridging the gulf between an organism's genome and phenotype is a poorly understood and complex molecular machinery. 
 Progress in a suite of biological subdisciplines is stalled by our general lack of understanding of this molecular machinery: with respect to both its function and evolution. 
   \plr{Saying "stalled" reflects negatively on other fields - rephrase?} \js{I don't think it reflects negatively. Even if it did, as long as it's a true statement it should be fine.}.
@@ -148,10 +149,10 @@ only mathematics will suffice, as models allow the development of concrete numer
 %without a mathematically sufficient description of the genotype, phenotype, and transformation from one to the other \citep{Lewontin1974genetic}.
 \plr{probably some more recent Wagner papers in this line as well?}
 %Here we outline an analytical theory to study the evolution of biological systems, borrowing insight and methods from control engineering, systems identification, and dynamical systems theory. 
-
+%
 %Presently, we focus on the neutral evolution of genetic regulatory networks. That is, we analytically describe the set of all linear gene networks (of any size) that produce identical phenotypes -- and the evolutionary paths connecting them. In the idealized case of a perfectly adapted population, constant selection, and a static environment, we observe evolution under the ``conservation of phenotype'' as a Brownian motion over phenotypically-invariant network-space. This analysis provides insight to the mechanisms and parameters important for understanding developmental systems drift, network rewiring, evolvability, epistasis, and speciation, as well as the tenuous connection between network architecture and function.
-
-
+%
+%
 %It is commonly taught that an organism's genome contains the heritable material 
 %that natural selection filters and that an organism's phenotype directly determines its
 %evolutionary fitness. Between genotype and phenotype is an often complicated and poorly
@@ -202,7 +203,7 @@ We present an analytical description of the set of all linear biological systems
 In the neutral case, this set describes a manifold that evolution explores leaving phenotype invariant with respect to mutation, 
 and predicts that if two populations become reproductively isolated, hybrid incompatibility can occur, despite the absence of adaptation, directional selection, or environmental change. 
 Speciation typically occurs on timescales approximately on the order of $N_{e}$ generations, where $N_{e}$ is the effective population size.
-
+%
 \section*{Gene networks as linear dynamical systems}
 %
 \plr{Below we mix general language with language specific to GRNs, like switching between "internal state" and "transcription factor concentration.  
@@ -437,13 +438,13 @@ Therefore the set of all phenotypically identical (and minimal) systems can be p
   %\end{align}
   where $V$ is any invertible matrix and it's elements are free parameters. 
 
-Therefore varying $V$ can tweak the relationships between genes within a regulatory network, yet preserve the phenotype. Some gene networks, however, can grown or shrink, perhaps following gene duplications and deletions, and also still preserve their phenotypes. These changes cannot be described by $S(V)$, but are ecanpuslated by \ref{eqn:equivalence}, below.
+Therefore varying $V$ can tweak the relationships between genes within a regulatory network, yet preserve the phenotype. Some gene networks, however, can grown or shrink, perhaps following gene duplications and deletions, and also still preserve their phenotypes. These changes cannot be described by $\mathcal{S}(V)$, but are ecanpuslated by \ref{eqn:equivalence}, below.
 
 More generally,
-we denote by $\calA_n(\mathcal{S}_0)$ the set of all $n$-dimensional systems equivalent to $\mathcal{S}_0$:
+we denote by $\calA_n(\Sys_0)$ the set of all $n$-dimensional systems equivalent to $\Sys_0$:
 \begin{equation} \label{eqn:equivalence}
   \begin{aligned}
-    \calA_n(\mathcal{S}_0) 
+    \calA_n(\Sys_0) 
       &= \left\{
         (A,B,C) : C e^{At} B = C_0 e^{A_0 t} B_0 \; \text{for}\; t \ge 0 
       \right\}  \\
@@ -453,7 +454,7 @@ we denote by $\calA_n(\mathcal{S}_0)$ the set of all $n$-dimensional systems equ
   \end{aligned}
 \end{equation}
   \begin{align}
-    \mathcal{K} := \bigcup_{n=\min}^{\infty} \calA_n(\calA_0)
+    \mathcal{K} := \bigcup_{n=\min}^{\infty} \calA_n(\Sys_0)
   \end{align}
 Equivalence of the two characterizations follows from the Cayley-Hamilton theorem.
 \plr{To make sense of this we need to say how $C$ and $B$ change with $n$.}
@@ -601,17 +602,17 @@ A large, adapted population will move around in $\mathcal{K}$ given environmenta
 \paragraph{Kryptotypic variation and hybrid incompatibility}
 Phenotypically identical yet kryptotypically variant gene networks, when brought together and/or recombined during sexual reproduction, can lead to phenotypic inviability. 
 
-For instance, the phenotypic dynamics of a diploid organism are a function of its two haploid genomes $x$ and $y$: $P(x,y) = \left(x + y\right)/2$. Additionally, during meiosis, a diploid recombines its two genomes to form a new one: $\left(x \times y \right) \rightarrow z$; by randomly swapping matrix rows between two systems $\mathcal{S}$ and $\mathcal{S}'$.
+For instance, diploid system coefficients are the average of two haploid genomes $\Sys$ and $\Sys'$: $\Sys_{\text{diploid}} = \left(\Sys + \Sys'\right)/2$. Additionally, during meiosis, a diploid recombines its two genomes to form a new one: $\left(\Sys \times \Sys' \right) \rightarrow \Sys''$; by randomly swapping matrix rows between two systems $\mathcal{S}$ and $\mathcal{S}'$.
 
-Even if two genomes $x$ and $y$ are both in $\mathcal{K}$, their diploid systems $P(x,y)$, and their recombinant systems $P(z,z)$, may not be in $\mathcal{K}$. This is because $\mathcal{K}$ is not mathematically required to be closed under averaging and recombination.
+Even if two genomes $\Sys$ and $\Sys'$ are both in $\mathcal{K}$, their diploid and recombinant systems may not be in $\mathcal{K}$. This is because $\mathcal{K}$ is not required to be closed under averaging or recombination.
 
 If sexual recombination among systems drawn from $\mathcal{K}$ yields systems with divergent phenotypes, populations containing significant diversity in $\mathcal{K}$ will carry a large genetic load, and isolated populations may fail to produce hybrids with viable phenotypes. 
-
-\paragraph{Sexual reproduction and speciation}
-A diploid organism contains two gene network copies: one from each parent. As such, a diploid's system dynamics is computed by averaging the coefficients of both systems. To reproduce, each organism passes on a recombined haploid gene network to its offspring. Haploid gene networks swap system matrix rows randomly between its own two networks.
-Therefore the phenotypic dynamics typical of a first generation ($F_{1}$) cross between two allopatric populations will be determined simply by averaging it's two parental genomes. However, in second generation hybrid ($F_2$) crosses, first new haploid systems will be formed by recombination -- in the process shuffling and combining regulatory coefficients from allopatric populations -- and then brought together to form a diploid.
-
-
+%
+%\paragraph{Sexual reproduction and speciation}
+%A diploid organism contains two gene network copies: one from each parent. As such, a diploid's system dynamics is computed by averaging the coefficients of both systems. To reproduce, each organism passes on a recombined haploid gene network to its offspring. Haploid gene networks swap system matrix rows randomly between its own two networks.
+%Therefore the phenotypic dynamics typical of a first generation ($F_{1}$) cross between two allopatric populations will be determined simply by averaging it's two parental genomes. However, in second generation hybrid ($F_2$) crosses, first new haploid systems will be formed by recombination -- in the process shuffling and combining regulatory coefficients from allopatric populations -- and then brought together to form a diploid.
+%
+%
   \begin{example}[Hybrid Incompatibility in an Oscillating Gene Network] \label{ex:hybrid_osc}
 
 Here we compare the phenotypes for F2 hybrids formed by crossing oscillators $A(2)$ with $A(2.01)$, $A(2.1)$, and $A(2.5)$ ($B$ and $C$ are the same as above). 
@@ -622,10 +623,10 @@ Each $A$ is phenotypically identical ($\phi(t) = \sin(t) + \cos(t)$), however so
 %          A(2.1) = \begin{bmatrix} 1.9091 & -0.9091 \\ 5.1091 & -1.9091 \end{bmatrix} &\qquad A(2.5) = \begin{bmatrix} 1.6667 & -0.6667 \\ 5.6667 & -1.6667 \end{bmatrix}
 %     \end{align*} 
 
-\begin{alignat*}{2}
-      A(2) &= \left[\begin{array}{cc} 2 & -1 \\[6pt] 5 & -2 \end{array}\right] &&\qquad A(2.01) = \left[\begin{array}{cc} 2 -\frac{1}{101} & -1 + \frac{1}{101} \\[6pt] 5 + \frac{1}{99} & -2 + \frac{1}{101} \end{array}\right] \\
-        A(2.1) &= \left[\begin{array}{cc} 2 - \frac{1}{11} & -1 + \frac{1}{11} \\[6pt] 5 + \frac{6}{55} & -2 + \frac{1}{11} \end{array}\right] &&\qquad A(2.5) = \left[\begin{array}{cc} 2 - \frac{1}{3} & -1 + \frac{1}{3} \\[6pt] 5 + \frac{2}{3} & -2 + \frac{1}{3} \end{array}\right]
-\end{alignat*}
+%\begin{alignat*}{2}
+%      A(2) &= \left[\begin{array}{cc} 2 & -1 \\[6pt] 5 & -2 \end{array}\right] &&\qquad A(2.01) = \left[\begin{array}{cc} 2 -\frac{1}{101} & -1 + \frac{1}{101} \\[6pt] 5 + \frac{1}{99} & -2 + \frac{1}{101} \end{array}\right] \\
+%        A(2.1) &= \left[\begin{array}{cc} 2 - \frac{1}{11} & -1 + \frac{1}{11} \\[6pt] 5 + \frac{6}{55} & -2 + \frac{1}{11} \end{array}\right] &&\qquad A(2.5) = \left[\begin{array}{cc} 2 - \frac{1}{3} & -1 + \frac{1}{3} \\[6pt] 5 + \frac{2}{3} & -2 + \frac{1}{3} \end{array}\right]
+%\end{alignat*}
 
 %      \begin{figure}[H]
 %        \begin{tabular}{cc}
@@ -654,9 +655,10 @@ Each $A$ is phenotypically identical ($\phi(t) = \sin(t) + \cos(t)$), however so
 
 \begin{figure}[H]
   \centering
-  \begin{tabular}{cc}
-    \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{F1_comparison} & 
-    \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{F2s_comparison2}
+  \begin{tabular}{ccc}
+    \includegraphics[width=0.25\textwidth, height=0.125\paperheight]{F1_comparison} & 
+    \includegraphics[width=0.25\textwidth, height=0.125\paperheight]{F2s_comparison2} &
+    \includegraphics[width=0.25\textwidth, height=0.125\paperheight]{figures/quartic_quadratic2}
   \end{tabular}
   \caption{
     $F_1$ (left) and $F_2$ (right) hybrids crossing $A(2)$ with $A(2.01)$ (top), $A(2.1)$ (middle), and $A(2.5)$ (bottom).
@@ -664,29 +666,34 @@ Each $A$ is phenotypically identical ($\phi(t) = \sin(t) + \cos(t)$), however so
     \plri{make axis labels bigger}
   }
 \end{figure}
-
-    \jss{$A(2)$ and $A(2.1)$ differ in regulatory interaction strengths by $5.09\%$. If intra-population regulatory variation is approximately $5\%$, then this level of divergence is expected after $\sqrt{\frac{t}{N_{e}} = 1}$ generations.}
 \end{example}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Systems drift and the accumulation of incompatibilities}
+Thus far we have shown that many distinct molecular mechanisms can realize identical phenotypes
+and that these mechanisms may fail to produce viable hybrids.
+Here we discuss the rate at which evolution shifts molecular mechanisms
+and ask whether this process is fast enough to be a significant driver of speciation.
+To do so, we explore a general quantitative genetic model in which a population drifts stochastically
+near a set of equivalent and optimal systems. We work with a population of effective size $N_e$. 
 
 At any given time, there will be a range of regulatory coefficients present in the population
 due to segregating genetic variants.
 Over many generations, even if selective pressures do not change,
 this range of networks will shift 
 as recombination, mutation, and demographic noise create new alleles and shift allele frequencies.
-How much variation do we expect to find within a population?
-Is this range limited by available variation or kept in check by selection?
-How fast will a population explore the space of equivalent networks?
-In this section we explore informally a general model for this situation,
-in which a population drifts stochastically near a set of equivalent, optimal systems.
-We work with a population of effective size $N_e$.
+%How much variation do we expect to find within a population?
+%Is this range limited by available variation or kept in check by selection?
+%How fast will a population explore the space of equivalent networks?
+%In this section we explore informally a general model for this situation,
+%in which a population drifts stochastically near a set of equivalent, optimal systems.
+%We work with a population of effective size $N_e$.
+\js{commented out questions here b/c we don't answer them directly -- what do you think?}
 
-Suppose that a set $x$ of coefficients that determine a system (this is $A$ above),
+Suppose that a set $x$ of coefficients that determine a system (this is $\Sys$ above),
 produce a phenotype $\Phi(x)$ (the time course of $\phi(t)$).
 There is an optimal phenotype $\optph$,
-and a set $\optx$ of ``optimal'' coefficients that produce this phenotype ($\calA_n$ above).
+and a set $\optx$ of ``optimal'' coefficients that produce this phenotype.
 Fitness depends on distance to the optimal phenotype --
 we will write the ``distance'' between phenotypes $\phi$ and $\psi$ as $\dph(\phi, \psi)$,
 measured so that the fitness of an organism with coefficents $x$ is $\fitx(x) = \exp(-\dph(\Phi(x),\optph)^2)$. \js{need to add $\gamma^{2}$ here?}
@@ -695,6 +702,7 @@ and that the optimal set $\optx$ is locally isomorphic to $\R^m$.
 \plr{say that better}
 
 \paragraph{Offspring.}
+\js{Not sure if this section is redundant, since reproduction is described above for the LTI model.}
 Individuals are diploid; we assume that each haploid genome determines a set of coefficients,
 and the individual's coefficients are the average of her two haploid values (no dominance).
 This implies that the diploid population variance, $\sigma^2$, is one-half the haploid variance.
@@ -710,7 +718,8 @@ would result in the same qualitative conclusions.
 If the variation within a population of some coefficient
 has standard deviation $\sigma$,
 then since subsequent generations resample from this diversity,
-the population mean coefficient will move a random distance of size $\sigma/\sqrt{N_e}$ per generation, \js{since it moves at rate $\sigma \sqrt{T/N_e}$ isn't saying  $\sigma/\sqrt{N_e}$ \emph{per generation} not that clear?}
+the population mean coefficient will move a random distance of size $\sigma/\sqrt{N_e}$ per generation, 
+\js{since it moves at rate $\sigma \sqrt{T/N_e}$ isn't saying  $\sigma/\sqrt{N_e}$ \emph{per generation} not that clear?}
 simply because this is the the standard deviation of the mean of a random sample \citep{lande_drift}.
 % (This could be taken as a definition of $N_e$.)
 Selection will tend to restrain this motion,
@@ -745,17 +754,19 @@ with respect to $u$ for $x \in \optx$ and $z$ perpendicular to the tangent space
 With these parameters, a typical individual will have a fitness of around $\exp(-(\sigma_S/\gamma)^2)$.
 
 \paragraph{Hybridization}
-\plr{I put F1s and F2s here, and $\Incompat$, but with less explanation than below. Merge somehow.} \js{In progress, see paragraph above.}
+\plr{I put F1s and F2s here, and $\Incompat$, but with less explanation than below. Merge somehow.} 
 By the arguments above, the means of two allopatric populations separated for $T$ generations
 will be a distance of order $2\sigma_N \sqrt{T/N_e}$ apart along $\optx$.
 A population of $F_1$ hybrids has one haploid genome from each,
 whose coefficients are averaged,
 and so will have mean system coefficients at the midpoint between their means,
-and variance equal to $\sigma$. \js{I think you mean $\sigma^{2}$?}
+and variance equal to $\sigma$. 
+\js{I think you mean $\sigma^{2}$?}
 Each $F_2$ hybrid will be homozygous for one parental allele on averge at half of the loci in the genome,
 so the distribution of $F_2$s will have mean at the average of the two populations,
 as before,
-but variance equal to $\sigma^2 + z^2/2$, where $z$ is the distance between the parental populations. \js{Can you clarify why $z^{2}/2$? Is this because it's averaging two distributions?}
+but variance equal to $\sigma^2 + z^2/2$, where $z$ is the distance between the parental populations. 
+\js{Can you clarify why $z^{2}/2$? Is this because it's averaging two distributions?}
 These are depicted in figure \ref{fig:conceptual_fig}.
 
 \begin{figure}
@@ -793,12 +804,73 @@ $\fit_1/\fit_0 = \exp(-(c_1 \sigma_N^2 T/N_e)^2)$;
 and of an $F_2$ is
 $\fit_2/\fit_0 = \exp(- T/(N_e\gamma^2))$.
 
+\paragraph{Speciation rates under neutrality}
+%
+\plr{separate out here (or above) the difference in genotype of hybrids from the optimum set, the difference in phenotype, and the difference in fitness.}
+%In general terms, if fitness $\fit$ is some function $g$ of phenotypic divergence from an optimal scaled by the strength of selection $\beta$,
+%\begin{align*}
+%  \fit = g \left( \frac{\phi - \phi_{0}}{\beta} \right)
+%\end{align*}
+%\plr{sentences don't begin with "And"}
+%And a population $P$ is normally distributed around a mean gene network architecture $A(\tau)$ and $\sigma^{2}$ is the intra-population regulatory variance,
+%\plr{what is $T$?}
+%\begin{align*}
+%  P_{T} \sim \mathcal{N} \left(A(\tau), T \frac{\sigma^{2}}{N_{e}}\right)
+%\end{align*}
+%the population mean architecture will move at rate
+%\plr{what is $\Delta \tau$? Also, if we reframe in terms of $V$ not $\tau$ above will need to reframe this.}
+%\begin{align*}
+%  \Delta \tau = \sigma \sqrt{\frac{T}{N_{e}}}
+%\end{align*}
+%where $T$ is time measured in generations. 
+%USING GENERAL MATH FROM MULTIVARIATE TAYLOR SERIES.... we know that the phenotype of a first generation $F_{1}$ hybrid diverges from that of its parents (assuming both parents are at an optimum and phenotypically equivalent) quartically as a function of $\Delta \tau$. 
+%Thus the squared difference of it's phenotype will be,
+%\begin{align*}
+%  \Delta \Phi^{2}_{1} = c_{1}^{2} \sigma^{4} \left( \frac{T}{N_{e}} \right)^{2}
+%\end{align*}
+%and $F_{1}$ fitness will decline linearly with respect to $\frac{T}{N_{e}}$. ARGUMENT FOR WHY $\sigma^{2} c_{1} \sim \beta$ HERE.
+%   \begin{align*}
+%     \Delta \fit_{1} = \left( \frac{\Delta \Phi_{1}}{\beta} = \frac{c_{1} \sigma^{2} \frac{T}{N_{e}}}{\beta} \approx \frac{T}{N_{e}} \right)
+%\end{align*}
+% It follows FROM THE SAME MATH ABOUT THE MULTIVAR TAYLOR that the phenotypes of second generation $F_{2}$ hybrid crosses diverges quadratically as a function of $\Delta \tau$, 
+%\begin{align*}
+%  \Delta \Phi^{2}_{2} &= c_{2}^{2} \left( \sigma \sqrt{\frac{T}{N_{e}}} \right)^{2} = c_{2}^{2} \frac{T}{N_{e}} \\
+%  \Delta \fit_{2} &= \left( \frac{\Delta \Phi_{2}}{\beta} = \frac{c_{2} \sigma \sqrt{\frac{T}{N_{e}}}}{\beta} \approx \sqrt{\frac{T}{N_{e}}} \right)
+%\end{align*}
+%and that $F_{2}$ fitness drops rapidly -- at approximately rate $\sqrt{\frac{T}{N_{e}}}$. ARGUMENT FOR WHY $c_{2} \sigma \sim \beta$ HERE. 
+%
+For cases where system structures and $\gamma$ can be inferred,
+specific speciation rates can be estimated.
+For other situations we offer a back of the envelope calculation.
 
-  \jss{ Assume that selection acts directly against organisms whose regulatory coefficients are not on the optimum manifold. Further assume that selection constrains this diversity to be, on average, a distance of $m$ from optimum. We would expect $\sigma_S = m$. Furtheremore, two individuals within a population may both be on the optimum manifold, but at different points, on average of $\sigma_N$. Since individuals a distance of $\sigma_N$ apart will produce $F_2$s off of the manifold of $\mu = \frac{\sigma_N}{2}\sin2\theta$, recombination load may constrain $\sigma_N$ such that $\mu \leq m = \sigma_S$ (where $\theta$ is the slope of the manifold -- as $\theta$ approaches $0$ or $1$, $\sigma_N \rightarrow \infty$.). We can estimate $\sigma_N = \frac{2\sigma_S}{\sin2\theta}$.  
-  }
+Consider a population that is distributed on $\mathcal{X}$ such that the magnitude of phenotypically
+divergent $\sigma_S$ and neutral $\sigma_N$ diversity are constrained by selection;
+$\sigma_S$ directly and $\sigma_N$ indirectly via recombination load.
+Two reproductively isolated populations will, on average, be a distance of $2 \sigma_N \sqrt{T/N_e}$.
+If we assume that $\sigma_N$ is constrained by a function of $\sigma_S$,
+neutral movement along $\mathcal{X}$ pushes hybrids off of the manifold by $\sigma_S$ per $\sigma_N$,
+Lastly, if fitness is Gaussian: $\fit_2 = \exp\left(- d(x, x')^2/\beta^2\right)$,
+and we assume that the strength of selection is only several multiples of the segregating divergent diversity,
+such that $\sigma_S = c \beta$, we can simplify the expression estimating $F_2$ hybrid fitness drops
+to be,
+  \begin{align}
+    \exp\left(-c^2 \frac{T}{N_e} \right)
+  \end{align}
+%
+%$F_2$s between allopatric populations will suffer an average fitness drop relative to their parents of,
+%  \begin{align}
+%    \exp\left(-\left( \frac{2\sigma_{N}}{\beta}\sqrt{\frac{T}{N_e}} \right)^{2} \right) .
+%  \end{align}
+
+%If the strength of selection is only a few multiples $\xi_1$ of the standing phenotypic diversity within a population $\sigma_S$, such that $\beta = \xi_1 \sigma_S$, and recombination load constrains the standing phenotype-neutral diversity $\sigma_N$ to be only a few multiples $\xi_2$ of $\sigma_S$, then $F_2$ fitness drop will be,
+%  \begin{align}
+%    \exp\left(- \xi^{2} \frac{T}{N_e} \right)
+%  \end{align}
+%  where $\xi := 2\xi_2/\xi_1$.
+  This suggests that, as an upper bound, if a population contains as much phenotypic diversity as allowed by selection, reproductively isolated populations can speciate rapidly -- possibly on timescales shorter than $N_{e}$ generations.
 %%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Parameter estimates for real systems}
-
+\js{I think we should move this section?}
 To translate these results into real predictions, we need to know
 the strength of stabilizing selection on the phenotype,
 and the amount (and structure) of heritable variation in the genotype.
@@ -883,54 +955,6 @@ the entries of $A$ vary by around 1\%,
 at least for networks whose function is strongly constrained.
 
 
-\paragraph{The rate of speciation under neutrality in allopatric populations}
-
-\plr{separate out here (or above) the difference in genotype of hybrids from the optimum set, the difference in phenotype, and the difference in fitness.}
-
-%In general terms, if fitness $\fit$ is some function $g$ of phenotypic divergence from an optimal scaled by the strength of selection $\beta$,
-%\begin{align*}
-%  \fit = g \left( \frac{\phi - \phi_{0}}{\beta} \right)
-%\end{align*}
-%\plr{sentences don't begin with "And"}
-%And a population $P$ is normally distributed around a mean gene network architecture $A(\tau)$ and $\sigma^{2}$ is the intra-population regulatory variance,
-%\plr{what is $T$?}
-%\begin{align*}
-%  P_{T} \sim \mathcal{N} \left(A(\tau), T \frac{\sigma^{2}}{N_{e}}\right)
-%\end{align*}
-%the population mean architecture will move at rate
-%\plr{what is $\Delta \tau$? Also, if we reframe in terms of $V$ not $\tau$ above will need to reframe this.}
-%\begin{align*}
-%  \Delta \tau = \sigma \sqrt{\frac{T}{N_{e}}}
-%\end{align*}
-%where $T$ is time measured in generations. 
-%USING GENERAL MATH FROM MULTIVARIATE TAYLOR SERIES.... we know that the phenotype of a first generation $F_{1}$ hybrid diverges from that of its parents (assuming both parents are at an optimum and phenotypically equivalent) quartically as a function of $\Delta \tau$. 
-%Thus the squared difference of it's phenotype will be,
-%\begin{align*}
-%  \Delta \Phi^{2}_{1} = c_{1}^{2} \sigma^{4} \left( \frac{T}{N_{e}} \right)^{2}
-%\end{align*}
-%and $F_{1}$ fitness will decline linearly with respect to $\frac{T}{N_{e}}$. ARGUMENT FOR WHY $\sigma^{2} c_{1} \sim \beta$ HERE.
-%   \begin{align*}
-%     \Delta \fit_{1} = \left( \frac{\Delta \Phi_{1}}{\beta} = \frac{c_{1} \sigma^{2} \frac{T}{N_{e}}}{\beta} \approx \frac{T}{N_{e}} \right)
-%\end{align*}
-% It follows FROM THE SAME MATH ABOUT THE MULTIVAR TAYLOR that the phenotypes of second generation $F_{2}$ hybrid crosses diverges quadratically as a function of $\Delta \tau$, 
-%\begin{align*}
-%  \Delta \Phi^{2}_{2} &= c_{2}^{2} \left( \sigma \sqrt{\frac{T}{N_{e}}} \right)^{2} = c_{2}^{2} \frac{T}{N_{e}} \\
-%  \Delta \fit_{2} &= \left( \frac{\Delta \Phi_{2}}{\beta} = \frac{c_{2} \sigma \sqrt{\frac{T}{N_{e}}}}{\beta} \approx \sqrt{\frac{T}{N_{e}}} \right)
-%\end{align*}
-%and that $F_{2}$ fitness drops rapidly -- at approximately rate $\sqrt{\frac{T}{N_{e}}}$. ARGUMENT FOR WHY $c_{2} \sigma \sim \beta$ HERE. 
-
-$F_2$s between allopatric populations will suffer an average fitness drop relative to their parents of,
-  \begin{align}
-    \exp\left(-\left( \frac{2\sigma_{N}}{\beta}\sqrt{\frac{T}{N_e}} \right)^{2} \right) .
-  \end{align}
-
-If the strength of selection is only a few multiples $\xi_1$ of the standing phenotypic diversity within a population $\sigma_S$, such that $\beta = \xi_1 \sigma_S$, and recombination load constrains the standing phenotype-neutral diversity $\sigma_N$ to be only a few multiples $\xi_2$ of $\sigma_S$, then $F_2$ fitness drop will be,
-  \begin{align}
-    \exp\left(- \xi^{2} \frac{T}{N_e} \right)
-  \end{align}
-  where $\xi := 2\xi_2/\xi_1$.
-  This suggests that if a population contains as much phenotypic diversity as allowed by selection and if $\sigma_N$ is on the order of $\sigma_S$, reproductively isolated populations can speciate rapidly -- possibly on timescales shorter than $N_{e}$ generations.
-
 %%%%%%%%%%%%%%%
 
 
@@ -960,7 +984,6 @@ If the strength of selection is only a few multiples $\xi_1$ of the standing phe
 
 %%%%%%%%%%%%%%%%%%%%%
 \section*{Discussion}
-
 %
 %\jss{Discussion guidelines:
 %\begin{itemize}
@@ -972,7 +995,6 @@ If the strength of selection is only a few multiples $\xi_1$ of the standing phe
 %    \item Conclusion and overall impact. 
 %\end{itemize}}
 %
-
 The complexity of biological systems has limited our understanding of their function and evolution. Above we outline an approach, a first step, towards untangling this complexity in reference to function and evolution. This methodology borrows successfully applied tools from engineering and aims to synthesize these with the concepts and tools of molecular and evolutionary biology. 
 
 Theoretical models in evolution and population genetics often lack the molecular details of physiology or of the genotype-phenotype map. 
@@ -988,7 +1010,7 @@ the dynamics of a genetic system, as well as perturbations to the system -- an a
 We have suggested an interpretation of system identification: to see it as an evolutionarily neutral manifold, and not simply a computational nuisance. 
 We have demonstrated a method to analytically determine the set of all phenotypically invariant gene networks; 
 by a simple change of coordinates in the minimal configuration, or more generally by applying the Kalman decomposition in higher dimensions. 
-Further, we emphasize that evolution proceeds through this high dimensional space as stochastic coordinate transformation, constrained by sexual reproduction and selection. 
+%Further, we emphasize that evolution proceeds through this high dimensional space as stochastic coordinate transformation, constrained by sexual reproduction and selection. 
 This set is explored over evolutionary time when phenotype is conserved, and can lead to a diverse set of consequences, 
 including the accumulation of Dobzhansky-Muller incompatibilities. 
 \plr{check original Bateson/DM papers to see if this accords with those defns}\js{I read through Orr's review of those papers, which included excerpts. It seems like the DMI definition is very general and this accords.}
@@ -997,25 +1019,25 @@ We emphasize that these incompatibilities are a consequence of recombining diffe
 Furthermore, using a quantitative genetic approach, we estimated that a genetically variable population will drift in neutral system space 
 at a rate determined by its intra-population variation and its effective population size. 
 Because mechanistically distinct yet phenotypically equivalent biological systems can fail to produce viable hybrids, we predict allopatric populations to accumulate genetic incompatibilities 
-at a rate on the order of $N_{e}$ under reasonable population genetic parameter estimates. 
+at a rate on the order of $N_{e}$ if intrapopulation regulatory variation is constrained by selection.
 Additionally we see second-generation hybrid fitness plummet much faster than that of first-generation hybrids. 
 \plr{refer to Turelli here}
-This is a consequence of combining our mechanistic model with a quantitative genetic one: 
-we observe that $F_{1}$ phenotypes diverge quartically, and $F_{2}$ phenotypes quadratically, with evolutionary time. 
-\plr{awkward phrasing}
+%This is a consequence of combining our mechanistic model with a quantitative genetic one: 
+%we observe that $F_{1}$ phenotypes diverge quartically, and $F_{2}$ phenotypes quadratically, with evolutionary time. 
+%\plr{awkward phrasing}
 This result is also consistent with Haldane's rule; that if only one hybrid sex is inviable or sterile it is likely the heterogametic sex. 
 The consistency comes from gene networks localized to the sex chromosomes functioning as an $F_{2}$ hybrid cross within a diploid $F_{1}$ heterogamete as there is only one sex chromosome.
   
-We also suggest that gene networks may not always use their components parsimoniously 
-as network size tends to ratchet up in the absence of strong selection against extra parts. 
-\plr{probably shouldn't claim this is "unexplored"} \js{I meant unexplored within this paper.Changed wording. Does that work?}
-Although we leave this question unexplored, this phenomena may lead to insights on evolvability and developmental innovation. 
+%We also suggest that gene networks may not always use their components parsimoniously 
+%as network size tends to ratchet up in the absence of strong selection against extra parts. 
+%\plr{probably shouldn't claim this is "unexplored"} \js{I meant unexplored within this paper.Changed wording. Does that work?}
+%Although we leave this question unexplored, this phenomena may lead to insights on evolvability and developmental innovation. 
 Lastly, we show that hybrid gene networks break down as function of genetic distance, and may, in part, explain broad patterns of reproductive isolation among diverse phyla \citep{roux2016shedding}.
 
-\plr{this paragraph isn't very clear} \js{Should I delete it? I guess it's sort of just a vague ``yeah we know this method has shortcomings''.}
-As Richard Levins opined, models in population biology face a trade-off among precision, realism, and generality \citep{levins1966strategy}. As Levins expects, any tractable and general model, such as the present one under discussion, will have limitations. Most notable is linearity. It is often stated that life is not linear. This is often true, however, many of the ideas developed here should be generalizable to nonlinear cases (multi-linear systems, say). Further, we see this as a necessary first step in the direction of more life-like nonlinear evolutionary systems theory. Depending on an actual biological system's particularities, its (potential) non-linearity, may buffer or exacerbate effects elucidated in this paper, such as the acquisition of Dobzansky-Muller incompatibilities.
+%\plr{this paragraph isn't very clear} \js{Should I delete it? I guess it's sort of just a vague ``yeah we know this method has shortcomings''.}
+%As Richard Levins opined, models in population biology face a trade-off among precision, realism, and generality \citep{levins1966strategy}. As Levins expects, any tractable and general model, such as the present one under discussion, will have limitations. Most notable is linearity. It is often stated that life is not linear. This is often true, however, many of the ideas developed here should be generalizable to nonlinear cases (multi-linear systems, say). Further, we see this as a necessary first step in the direction of more life-like nonlinear evolutionary systems theory. Depending on an actual biological system's particularities, its (potential) non-linearity, may buffer or exacerbate effects elucidated in this paper, such as the acquisition of Dobzansky-Muller incompatibilities.
 
-This theoretical framework can easily be applied to other interesting questions in evolutionary biology not tackled presently: such as the evolution of linkage, the necessity of network complexity (does evolution tend towards Rube Goldberg or parsimonious network organization?), evolvability, structure/function inference, and intra-population context dependency of mutational effects, as well as many others.
+%This theoretical framework can easily be applied to other interesting questions in evolutionary biology not tackled presently: such as the evolution of linkage, the necessity of network complexity (does evolution tend towards Rube Goldberg or parsimonious network organization?), evolvability, structure/function inference, and intra-population context dependency of mutational effects, as well as many others.
 
 %\jss{literature comparison -- I think we should delete}
 %
