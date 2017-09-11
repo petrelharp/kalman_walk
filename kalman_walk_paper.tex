@@ -164,7 +164,7 @@ only mathematics will suffice, as models allow the development of concrete numer
 The molecular machinery, interacting with the environment, and bridging genotype to phenotype
 can be mathematically described as a dynamical system -- or a system of differential equations \citep{jaeger2015comet}.
  Movement in this direction is ongoing, as researchers have begun to study 
-the evolution of both abstract \citep{wagner1994evolution, wagner1996does,  siegal2002waddington, bergman2003evolutionary, draghi2015robustness} and empirically inspired computational and mathematical models of gene regulatory networks (GRNs) \citep{mjolsness1991connectionist, jaeger2004dynamic, maria1, vitaly1, vitaly2, crombach2016gap, wotton2015quantitative, chertkova2017insilico}. If we allow the reasonable assumption that the genotype-phenotype map can be represented as a system of differential equations, we can immediately discuss its evolution and function in a much more mechanistic, yet general, manner. 
+the evolution of both abstract \citep{wagner1994evolution, wagner1996does,  siegal2002waddington, bergman2003evolutionary, draghi2015robustness} and empirically inspired computational and mathematical models of gene regulatory networks \citep{mjolsness1991connectionist, jaeger2004dynamic, maria1, vitaly1, vitaly2, crombach2016gap, wotton2015quantitative, chertkova2017insilico}. If we allow the reasonable assumption that the genotype-phenotype map can be represented as a system of differential equations, we can immediately discuss its evolution and function in a much more mechanistic, yet general, manner. 
 
 In some fields that seek to fit parametric models to experimental data, such as control
 theory, chemical engineering, and statistics, it is well known that mathematical models
@@ -234,7 +234,7 @@ we could say up top that this applies to other situations, but to make it concre
 %  Variables have the same identities as described above and $\kappa(t)$ is a vector of molecule concentrations at time $t$. Therefore the molecular concentrations at a specific time are completely determined by the input and gene by gene interactions. Lastly, a portion and/or combination of these molecules, $\phi(t)$, are ``observed'' by selection (this is in constrast to $\kappa(t)$ -- the \emph{kryptotype} -- as it is ``hidden'' from direct selection).
 %}
 \paragraph{Systems theory}
-Organisms' phenotypes are constructred by gene by gene by environment interactions. Here we simply define the \emph{phenotype} to be the temporal molecular dynamics directly under natural selection. The \emph{what}, \emph{when}, and \emph{how much}, of an organism's molecules that are physiologically or otherwise relevant to survival.
+Organisms' phenotypes are constructred by gene by gene and gene by environment interactions. Here we simply define the \emph{phenotype} to be the temporal molecular dynamics directly under natural selection. The \emph{what}, \emph{when}, and \emph{how much}, of an organism's molecules that are physiologically or otherwise relevant to survival.
 
 Thus an organism's phenotype $\phi(t)$ -- a vector of molecular concentrations at time $t$ -- is determined both by the structure and organization of a biological system (\emph{e.g.} a gene regualtory network), given by the triple $(A,B,C)$,
 and by its environment $u(t)$.
@@ -301,26 +301,18 @@ where we refer to $h(t) := Ce^{A t}B$ as the system's \emph{impulse response}.
  \begin{example}[Oscillating gene network: cell cycle control]\label{ex:oscillator}
     Cellular division is governed by many different processes, however it is thought that its rhythm is partially controlled by oscillating gene transcription \citep{orlando2008global}. Here we consider a simplified model of oscillating gene transcription.
 
-    Suppose gene-2 up-regulates the transcription of gene-1 and that gene-1 down-regulates gene-2 with equal magnitudes, whose concentrations are given by $\kappa_1(t)$ and $\kappa_2(t)$. Furthermore, suppose that only the dynamics of gene-1 are consequential to the cell cycle (perhaps the amount of gene-1 activates another downstream gene network). Lastly suppose that the production of both genes is stimulated by an impulse of a molecule present immediately after division.
+    Suppose gene-2 up-regulates the transcription of gene-1 and that gene-1 down-regulates gene-2 with equal magnitudes, whose concentrations are given by $\kappa_1(t)$ and $\kappa_2(t)$. Furthermore, suppose that only the dynamics of gene-1 are consequential to the cell cycle (perhaps the amount of gene-1 activates another downstream gene network). Lastly suppose that the production of both genes is equally stimulated by an impulse of a molecule present immediately after division.
 
-    If the rate each of these genes is expressed is a linear function of their concentrations, the dynamics of the system are given by
-    \begin{align*}
-      \dot{\kappa_{1}}(t) &= \kappa_{2}(t) + u(t) \\
-      \dot{\kappa_{2}}(t) &= - \kappa_{1}(t) + u(t)
-    \end{align*}
-    where $\dot{\kappa}$ denotes the time derivative. The initial conditions $\kappa_{1}(0)$ and $\kappa_{2}(0)$, and the input $u(t)$ then determine the concentrations through time. If we record the regulatory coefficients in the matrix
-    \begin{align*}
-      A &= \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} ,
-    \end{align*}
-    and define the column vector $B = \begin{bmatrix} 1 & 1 \end{bmatrix}^{T}$, then in matrix notation the dynamics are
-      \begin{align*}
-      \dot{\kappa} &= A \kappa(t) + B u(t) .
-      \end{align*}
-      Since only the dynamics of gene-1 are directly relevant to biological function, the dynamics of interest are given by
-      \begin{align*}
-      \phi(t) &= C \kappa (t)
-      \end{align*}
-      where the row vector $C$ is defined as $C = \begin{bmatrix} 1 & 0 \end{bmatrix}$. 
+    If the rate each of these genes is expressed is a linear function of their concentrations, the dynamics of the system is given by
+    \begin{alignat*}{2}
+      %\left\{ \begin{array}{ll} 
+      \dot{\kappa_{1}}(t) &= &&\kappa_{2}(t) + u(t) \\
+        \dot{\kappa_{2}}(t) &= - &&\kappa_{1}(t) + u(t) \\
+        \phi(t) &= &&\kappa_{1}(t)   .
+      %\end{array} \right.
+    \end{alignat*}
+Equivalently, in matrix form the system regulatory coefficients are given as,
+    $A \!=\! \left[\begin{smallmatrix} 0 & 1 \\ -1 & 0 \end{smallmatrix}\right] ,\ B \! =\! \left[\begin{smallmatrix} 1 \\ 1 \end{smallmatrix}\right] , \ C \! =\! \left[\begin{smallmatrix} 1 & 0 \end{smallmatrix}\right]$
   %  \begin{align*}
   %    A = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} , \qquad B = \begin{bmatrix} 1 \\ 1 \end{bmatrix}, \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix}
   %  \end{align*}
@@ -333,7 +325,7 @@ where we refer to $h(t) := Ce^{A t}B$ as the system's \emph{impulse response}.
  %         \phi(t) &= \begin{bmatrix} 1 & 0 \end{bmatrix} \kappa(t) \end{array} \right.
  %    \end{align*}
       
-      Since the input is simply an impulse, its phenotype is equivalent to its impulse response
+      Since the input is simply an impulse, its phenotype is equivalent to its impulse response,
       \begin{align*}
         \phi(t) = h(t) = \sin(t) + \cos(t)  .
       \end{align*}
@@ -346,8 +338,8 @@ where we refer to $h(t) := Ce^{A t}B$ as the system's \emph{impulse response}.
             \begin{scope}[every node/.style={circle,thick,draw}]
                 \node (A) at (0,0) {$\kappa_{1}$};
                 \node[dashed] (B) at (3,0) {$\kappa_{2}$};
-                \node[shape=rectangle] (U) at (1.5,2) {input};
-                \node[shape=rectangle] (y) at (1.5,-2) {output};
+                \node[shape=rectangle] (U) at (1.5,1.5) {input};
+                \node[shape=rectangle] (y) at (1.5,-1.5) {output};
             \end{scope}
 
             \begin{scope}[>={Stealth[black]},
@@ -366,15 +358,7 @@ where we refer to $h(t) := Ce^{A t}B$ as the system's \emph{impulse response}.
             \end{scope}
 
             \end{tikzpicture} &
-       % \end{center}
-      %  \caption{
-      %      Diagram of Example \ref{ex:osc} in the text.
-      %      \plr{explain what arrows mean if nec}
-      %      \label{fig:oscillator_diagram}}
-   % \end{figure}
-   % \begin{figure}[H]
-    %  \centering
-      \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{osc_impulse}
+      \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{osc_impulse}
    \end{tabular}
   %  \end{center}
       \caption{(Left) Graphical representation of the cell cycle control gene network, and (right) plot of the phenotype $\phi(t)$ against time $t$.}
@@ -544,18 +528,12 @@ A large, adapted population will move around in $\mathcal{K}$ given environmenta
 %
 %
  \begin{example}[All Phenotypically Equivalent Cell Cycle Control Networks] \label{ex:all_osc}
-
-%\plr{this is same as above, so reference instead of writing out again?}
-%    Let
-%    \begin{align*}
-%      A(0) = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}, \qquad B = \begin{bmatrix} 1 & 1 \end{bmatrix}^{T}, \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix},
-%    \end{align*}
-%    with $V(\tau)$ preserving both $B$ and $C$, then
     The set of all two-gene regulatory networks phenotypically equivalent to the cell cycle control network in \ref{ex:oscillator}, where only $A$ can vary, is given by
+    %\begin{align*}
+    %  A(\tau) &= \begin{bmatrix} 1 & 0 \\ \tau & 1-\tau \end{bmatrix} \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ \frac{\tau}{\tau-1} & \frac{-1}{\tau-1} \end{bmatrix}  \qquad \forall \ \tau \neq 1 %\\
+    %\end{align*}
     \begin{align*}
-      A(\tau) &= \begin{bmatrix} 1 & 0 \\ \tau & 1-\tau \end{bmatrix} \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ \frac{\tau}{\tau-1} & \frac{-1}{\tau-1} \end{bmatrix}  \qquad \forall \ \tau \neq 1 %\\
-     %   B &= \begin{bmatrix} 1 \\ 1 \end{bmatrix}, \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix} \\
-       %   h(t) &= \sin(t) + \cos(t) \qquad \forall \ \tau \neq 1
+      A(\tau) &= \frac{1}{\tau-1} \begin{bmatrix} \tau & -1 \\ 2 \tau(\tau - 1) + 1 &  -\tau \end{bmatrix} \ \forall \ \tau \neq 1
     \end{align*}
     \begin{figure}[H]
     \centering
@@ -594,8 +572,10 @@ A large, adapted population will move around in $\mathcal{K}$ given environmenta
     Gene-1 dynamics (blue) are equivalent for network architectures $A(0)$ and $A(2)$, however the dynamics of gene-2 (orange) differ with $\tau$.
   \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{osc_A0_A2_both_compare}
-    \caption{Gene-1 (blue) and gene-2 (orange) dynamics for $A(0)$ (top) and $A(2)$ (bottom). Both (top and bottom) gene-1 dynamics are given by $ \kappa_{1} = \sin(t) + \cos(t)$, and gene-2 by $\kappa_{2} = \cos(t) - \sin(t)$ (top) and $\kappa'_{2} = \cos(t) + 3 \sin(t)$ (bottom).}
+   % \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{osc_A0_A2_both_compare}
+    %\caption{Gene-1 (blue) and gene-2 (orange) dynamics for $A(0)$ (top) and $A(2)$ (bottom). Both (top and bottom) gene-1 dynamics are given by $ \kappa_{1} = \sin(t) + \cos(t)$, and gene-2 by $\kappa_{2} = \cos(t) - \sin(t)$ (top) and $\kappa'_{2} = \cos(t) + 3 \sin(t)$ (bottom).}
+    \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{figures/osc_kryp_compare}
+    \caption{(Gene-1 dynamics (blue) for both systems $A(0)$ and $A(2)$ are identical, however, $A(0)$ gene-2 dynamics (orange) differ from $A(2)$ (green). Both gene-1 dynamics are given by $\kappa_{1} = \sin(t) + \cos(t)$, and gene-2 by $\kappa_{2} = \cos(t) - \sin(t)$ ($A(0)$) and $\kappa'_{2} = \cos(t) + 3 \sin(t)$ ($A(2)$).}
   \end{figure}
 \end{example}
 
