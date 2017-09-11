@@ -587,6 +587,15 @@ For instance, diploid system coefficients are the average of two haploid genomes
 Even if two genomes $\Sys$ and $\Sys'$ are both in $\mathcal{K}$, their diploid and recombinant systems may not be in $\mathcal{K}$. This is because $\mathcal{K}$ is not required to be closed under averaging or recombination.
 
 If sexual recombination among systems drawn from $\mathcal{K}$ yields systems with divergent phenotypes, populations containing significant diversity in $\mathcal{K}$ will carry a large genetic load, and isolated populations may fail to produce hybrids with viable phenotypes. 
+
+\paragraph*{Hybrid incompatibility}
+For example if the two phenotypically equivalent systems from Example \ref{ex:all_osc} hybridize, the offspring's phenotype will fail to oscillate completely. 
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{expF1}
+    \caption{$F_1$ hybrid (orange) and parental (blue) phenotypic oscillator dynamics for an $A(0)$ by $A(2)$ cross. The hybrid fails to oscillate and exhibits qualitatively different dynamics ($\phi(t)_{F_0}\! = \! \sin(t) \! + \! \cos(t)$, however $\phi(t)_{F_1} \! = \! e^t$).
+    }
+  \end{figure}
 %
 %\paragraph{Sexual reproduction and speciation}
 %A diploid organism contains two gene network copies: one from each parent. As such, a diploid's system dynamics is computed by averaging the coefficients of both systems. To reproduce, each organism passes on a recombined haploid gene network to its offspring. Haploid gene networks swap system matrix rows randomly between its own two networks.
