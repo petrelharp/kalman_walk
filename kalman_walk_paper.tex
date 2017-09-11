@@ -48,6 +48,7 @@
 \newcommand{\1}{\mathbbm{1}}
 
 \newcommand{\Sys}{\mathcal{S}}
+\newcommand{\allS}{\mathcal{K}(h)}
 
 % fitness as a fn of distance
 \newcommand{\fit}{\mathcal{F}}
@@ -327,7 +328,7 @@ Equivalently, in matrix form the system regulatory coefficients are given as,
       
       Since the input is simply an impulse, its phenotype is equivalent to its impulse response,
       \begin{align*}
-        \phi(t) = h(t) = \sin(t) + \cos(t)  .
+        \phi(t) = h(t) = \sin t + \cos t  .
       \end{align*}
 
     \begin{figure}[H]
@@ -437,16 +438,16 @@ we denote by $\calA_n(\Sys_0)$ the set of all $n$-dimensional systems equivalent
       \right\} .
   \end{aligned}
 \end{equation}
-  \begin{align}
-    \mathcal{K} := \bigcup_{n=\min}^{\infty} \calA_n(\Sys_0)
-  \end{align}
 Equivalence of the two characterizations follows from the Cayley-Hamilton theorem.
 \plr{To make sense of this we need to say how $C$ and $B$ change with $n$.}
 Usually, the dimension $n$ and the reference system $A_0$ is implicit and we write only $\calA$.
+Further, we refer to the set of all linear systems with impulse response $h(t)$, regardless of dimension, to be $\allS$,
+  \begin{align}
+    \allS := \bigcup_{n=\min}^{\infty} \calA_n(\Sys_0)
+  \end{align}
+Two systems, even if in different dimensions, will have identical phenotypes if they are in $\allS$. Further, there is no unique triple $(A,B,C)$ for the mapping $h: u \mapsto \phi$. This implies that the gene regulatory network architecture per phenotype/environment pair is never unique -- that is under these assumptions, \emph{all} gene regulatory networks can drift/rewire. This set can be precisley defined and completely parameterized using the \emph{Kalman decomposition}\ref{apx:kalman}.
 
-Two systems, even if in different dimensions, will have identical phenotypes if they are in $\mathcal{K}$. Further, there is no unique triple $(A,B,C)$ for the mapping $u \mapsto \phi$. This implies that the gene regulatory network architecture per phenotype/environment pair is never unique -- that is \emph{all} gene regulatory networks can drift/rewire. This set can be precisley defined and completely parameterized using the \emph{Kalman decomposition} \ref{apx:kalman}.
-
-A large, adapted population will move around in $\mathcal{K}$ given environmental and selective stasis. Even if there is a conservation of phenotype through evolutionary time, the molecular mechanism underpinning the phenotype is not constrained and likely will not be conserved.
+A large, adapted population will move around in $\allS$ under environmental and selective stasis. In the minimal dimension neutral evolution proceeds as a stochastic coordinate transformation on the elements in $\Sys_{\min}$. Even if there is a conservation of phenotype through evolutionary time, the molecular mechanism underpinning the phenotype is not constrained and likely will not be conserved.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection*{Speciation}
@@ -533,7 +534,7 @@ A large, adapted population will move around in $\mathcal{K}$ given environmenta
     %  A(\tau) &= \begin{bmatrix} 1 & 0 \\ \tau & 1-\tau \end{bmatrix} \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ \frac{\tau}{\tau-1} & \frac{-1}{\tau-1} \end{bmatrix}  \qquad \forall \ \tau \neq 1 %\\
     %\end{align*}
     \begin{align*}
-      A(\tau) &= \frac{1}{\tau-1} \begin{bmatrix} \tau & -1 \\ 2 \tau(\tau - 1) + 1 &  -\tau \end{bmatrix} \ \forall \ \tau \neq 1
+      A(\tau) &= \frac{1}{\tau-1} \begin{bmatrix} \tau & -1 \\ 2 \tau(\tau - 1) + 1 &  -\tau \end{bmatrix} \ \text{for} \ \tau \neq 1
     \end{align*}
     \begin{figure}[H]
     \centering
@@ -575,25 +576,25 @@ A large, adapted population will move around in $\mathcal{K}$ given environmenta
    % \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{osc_A0_A2_both_compare}
     %\caption{Gene-1 (blue) and gene-2 (orange) dynamics for $A(0)$ (top) and $A(2)$ (bottom). Both (top and bottom) gene-1 dynamics are given by $ \kappa_{1} = \sin(t) + \cos(t)$, and gene-2 by $\kappa_{2} = \cos(t) - \sin(t)$ (top) and $\kappa'_{2} = \cos(t) + 3 \sin(t)$ (bottom).}
     \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{figures/osc_kryp_compare}
-    \caption{(Gene-1 dynamics (blue) for both systems $A(0)$ and $A(2)$ are identical, however, $A(0)$ gene-2 dynamics (orange) differ from $A(2)$ (green). Both gene-1 dynamics are given by $\kappa_{1} = \sin(t) + \cos(t)$, and gene-2 by $\kappa_{2} = \cos(t) - \sin(t)$ ($A(0)$) and $\kappa'_{2} = \cos(t) + 3 \sin(t)$ ($A(2)$).}
+    \caption{(Gene-1 dynamics (blue) for both systems $A(0)$ and $A(2)$ are identical, however, $A(0)$ gene-2 dynamics (orange) differ from $A(2)$ (green). Both gene-1 dynamics are given by $\kappa_{1} = \sin t + \cos t$, and gene-2 by $\kappa_{2} = \cos t - \sin t$ ($A(0)$) and $\kappa'_{2} = \cos t + 3 \sin t$ ($A(2)$).}
   \end{figure}
 \end{example}
 
 \paragraph{Kryptotypic variation and hybrid incompatibility}
 Phenotypically identical yet kryptotypically variant gene networks, when brought together and/or recombined during sexual reproduction, can lead to phenotypic inviability. 
 
-For instance, diploid system coefficients are the average of two haploid genomes $\Sys$ and $\Sys'$: $\Sys_{\text{diploid}} = \left(\Sys + \Sys'\right)/2$. Additionally, during meiosis, a diploid recombines its two genomes to form a new one: $\left(\Sys \times \Sys' \right) \rightarrow \Sys''$; by randomly swapping matrix rows between two systems $\mathcal{S}$ and $\mathcal{S}'$.
+For instance, diploid system coefficients are derived by taking the average of two haploid genomes $\Sys$ and $\Sys'$: $\Sys_{\text{diploid}} \! = \! \left(\Sys \! + \! \Sys'\right)\!/2$. During meiosis a diploid recombines its two genomes to form a new one (a gamete): $\left(\Sys \! \times \! \Sys' \right) \rightarrow \Sys''$; by randomly swapping matrix rows between two systems $\mathcal{S}$ and $\mathcal{S}'$.
 
-Even if two genomes $\Sys$ and $\Sys'$ are both in $\mathcal{K}$, their diploid and recombinant systems may not be in $\mathcal{K}$. This is because $\mathcal{K}$ is not required to be closed under averaging or recombination.
+Even if two genomes ($\Sys$ and $\Sys'$) have the same phenotype, their diploid and recombinant systems may not. This is because $\allS$ is not required to be closed under averaging or recombination. 
 
-If sexual recombination among systems drawn from $\mathcal{K}$ yields systems with divergent phenotypes, populations containing significant diversity in $\mathcal{K}$ will carry a large genetic load, and isolated populations may fail to produce hybrids with viable phenotypes. 
+If sexual recombination among systems drawn from $\allS$ yields systems with divergent phenotypes, populations containing significant diversity in $\allS$ can carry genetic load, and isolated populations may fail to produce hybrids with viable phenotypes. 
 
-\paragraph*{Hybrid incompatibility}
-For example if the two phenotypically equivalent systems from Example \ref{ex:all_osc} hybridize, the offspring's phenotype will fail to oscillate completely. 
+\paragraph*{Hybrid phenotypic breakdown between oscillators}
+For example, if the two phenotypically equivalent systems $A(0)$ and $A(2)$ from Example \ref{ex:all_osc} hybridize, their offspring's phenotype will fail to oscillate completely. 
   \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{expF1}
-    \caption{$F_1$ hybrid (orange) and parental (blue) phenotypic oscillator dynamics for an $A(0)$ by $A(2)$ cross. The hybrid fails to oscillate and exhibits qualitatively different dynamics ($\phi(t)_{F_0}\! = \! \sin(t) \! + \! \cos(t)$, however $\phi(t)_{F_1} \! = \! e^t$).
+    \caption{$F_1$ hybrid (orange) and parental (blue) phenotypic oscillator dynamics for an $A(0)$ by $A(2)$ cross. The hybrid $\left(A_{F_1}\!\!=\!\!\tfrac{A\!(\!0\!) \! + \! A\!(\!2\!)}{2}\right)$ fails to oscillate and exhibits qualitatively different dynamics ($\phi_{F_0}\! = \! \sin t \! + \! \cos t$, however $\phi_{F_1} \! = \! \exp t$).
     }
   \end{figure}
 %
@@ -605,7 +606,7 @@ For example if the two phenotypically equivalent systems from Example \ref{ex:al
   \begin{example}[Hybrid Incompatibility in an Oscillating Gene Network] \label{ex:hybrid_osc}
 
 Here we compare the phenotypes for F2 hybrids formed by crossing oscillators $A(2)$ with $A(2.01)$, $A(2.1)$, and $A(2.5)$ ($B$ and $C$ are the same as above). 
-Each $A$ is phenotypically identical ($\phi(t) = \sin(t) + \cos(t)$), however some of the hybrids exhibit markedly different dynamics. 
+Each $A$ is phenotypically identical ($\phi(t) = \sin t + \cos t$), however some of the hybrids exhibit markedly different dynamics. 
 
 %        \begin{align*}
 %         A(2) = \begin{bmatrix} 2 & -1 \\ 5 & -2 \end{bmatrix} &\qquad A(2.01) = \begin{bmatrix} 1.9901 & -0.9901 \\ 5.0101 & -1.9901 \end{bmatrix} \\
@@ -1366,6 +1367,14 @@ However, some of these may be redundant.
 For instance, changing $P$ in the direction of 
 a $Q$ that satisfies both $A P^{-1} Q = P^{-1} Q A$ and $C P^{-1} Q = 0$
 is equivalent to changing $B$ by $Y = QB$.
+
+\section{Sexual reproduction in linear systems}\label{apx:reproduction}
+
+  Recombination: gamete element $A''$ is formed by recombining (randomly swapping rows) between two parental, possibly distinct, system elements $A$ and $A'$ as follows,
+  \begin{align*}
+    A'' = MA + (I-M)A'
+  \end{align*}
+  where $M$ is a diagonal matrix with only $0$s and $1$s on the diagonal.
 
 \section{Genetic drift with a multivariate trait}
 \label{ss:quant_gen}
