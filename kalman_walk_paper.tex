@@ -418,7 +418,7 @@ have the same phenotype, for all possible inputs, if they are related by a chang
  % \end{align}
 %and a \emph{Linear Evolutionary System} is, 
 %\plr{why is this "evolutionary"? It is the thing that we're thinking about evolution of, but that doesn't make it evolutionary.}
-Therefore the set of all phenotypically identical (and minimal) systems can be parameterized as, $\mathcal{S}_{\min}(V) = (VA_0V^{-1}, VB_0, C_0V )$,
+Therefore the set of all phenotypically identical (and minimal) systems can be parameterized as, $\mathcal{S}_{\min}(V) = (VAV^{-1}, VB, CV )$,
   %  \begin{align} \label{eq:min_param}
   %    \mathcal{S}(V) := \left\{ \begin{array}{ll} V\dot{\kappa}(t) &= VA V^{-1} \kappa(t) + VB u(t) \\ \phi(t) &= C V^{-1} \kappa(t) \end{array} \right.
   %\end{align}
@@ -441,7 +441,7 @@ we denote by $\calA_n(\Sys_0)$ the set of all $n$-dimensional systems equivalent
 \end{equation}
 Equivalence of the two characterizations follows from the Cayley-Hamilton theorem.
 \plr{To make sense of this we need to say how $C$ and $B$ change with $n$.}
-Usually, the dimension $n$ and the reference system $A_0$ is implicit and we write only $\calA$.
+Usually, the dimension $n$ and the reference system $\Sys_0$ is implicit and we write only $\calA$.
 Further, we refer to the set of all linear systems with impulse response $h(t)$, regardless of dimension, to be $\allS$,
   \begin{align}
     \allS := \bigcup_{n=\min}^{\infty} \calA_n(\Sys_0)
@@ -453,7 +453,7 @@ The Kalman decomposition decomposes a system into \emph{reachable} and \emph{obs
 Whether or not evolution constrains biological systems to be minimal or nearly minimal is an open question. 
 \js{should the sentence of evolution of nearly minimal be in the paper? Or should we save this for our next paper?}
 
-A large, adapted population will move around in $\allS$ under environmental and selective stasis. In the minimal dimension neutral evolution proceeds as a stochastic coordinate transformation on the elements in $\Sys_{\min}$. Even if there is a conservation of phenotype through evolutionary time, the molecular mechanism underpinning the phenotype is not constrained and likely will not be conserved.
+A large, adapted population will move around in $\allS$ under environmental and selective stasis. In the minimal dimension neutral evolution proceeds as a stochastic coordinate transformation on the elements in $\Sys_{\min}$. Even if there is conservation of phenotype through evolutionary time, the molecular mechanism underpinning the phenotype is not constrained and likely will not be conserved.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection*{Speciation}
@@ -535,7 +535,7 @@ A large, adapted population will move around in $\allS$ under environmental and 
 %
 %
  \begin{example}[All Phenotypically Equivalent Cell Cycle Control Networks] \label{ex:all_osc}
-    The set of all two-gene regulatory networks phenotypically equivalent to the cell cycle control network in \ref{ex:oscillator}, where only $A$ can vary, is given by
+   The set of all two-gene regulatory networks phenotypically equivalent to the cell cycle control network in \ref{ex:oscillator}, where only $A$ can vary, is given by $\Sys (\tau) = (A(\tau), B, C)$, such that, 
     %\begin{align*}
     %  A(\tau) &= \begin{bmatrix} 1 & 0 \\ \tau & 1-\tau \end{bmatrix} \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ \frac{\tau}{\tau-1} & \frac{-1}{\tau-1} \end{bmatrix}  \qquad \forall \ \tau \neq 1 %\\
     %\end{align*}
@@ -569,20 +569,19 @@ A large, adapted population will move around in $\allS$ under environmental and 
 \end{scope}
 
 \end{tikzpicture}
-    \caption{The set of all phenotype-equivalent cell cycle control networks, $A(\tau)$.
-      $A(\tau) = \left\{ \calA_2 : B = B_0,\ C = C_0\right\}$.}
+      \caption{$\Sys(\tau)$, the set of all phenotype-equivalent cell cycle control networks $\Sys (\tau) = \left\{ \calA_2 : B = [1\ 1]^{T} ,\ C = [1\ 0] \right\}$.}
     \end{figure}
  % \end{example}
 
  % \begin{example}[External Equivalence does not imply internal equivalence]
-   Despite the phenotypic equivalence of all instantiations of $A(\tau)$, the kryptotypes, vary as a function of $\tau$. 
+   Despite the phenotypic equivalence of all instantiations of $\Sys(\tau)$, the kryptotypes, vary as a function of $\tau$. 
     %Gene-1 dynamics (blue) are equivalent for network architectures $A(0)$ and $A(2)$, however the dynamics of gene-2 (orange) differ with $\tau$.
   \begin{figure}[H]
     \centering
    % \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{osc_A0_A2_both_compare}
     %\caption{Gene-1 (blue) and gene-2 (orange) dynamics for $A(0)$ (top) and $A(2)$ (bottom). Both (top and bottom) gene-1 dynamics are given by $ \kappa_{1} = \sin(t) + \cos(t)$, and gene-2 by $\kappa_{2} = \cos(t) - \sin(t)$ (top) and $\kappa'_{2} = \cos(t) + 3 \sin(t)$ (bottom).}
     \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{figures/osc_kryp_compare}
-    \caption{Gene-1 dynamics (blue) for both systems $A(0)$ and $A(2)$ are identical, however, $A(0)$ gene-2 dynamics (orange) differ from $A(2)$ (green). Both gene-1 dynamics are given by $\kappa_{1} = \sin t + \cos t$, and gene-2 by $\kappa_{2} = \cos t - \sin t$ ($A(0)$) and $\kappa'_{2} = \cos t + 3 \sin t$ ($A(2)$).}
+    \caption{Gene-1 dynamics (blue) for both systems $\Sys(0)$ and $\Sys(2)$ are identical, however, $\Sys(0)$ gene-2 dynamics (orange) differ from $\Sys(2)$ (green). Both gene-1 dynamics are given by $\kappa_{1} = \sin t + \cos t$, and gene-2 by $\kappa_{2} = \cos t - \sin t$ ($\Sys(0)$) and $\kappa'_{2} = \cos t + 3 \sin t$ ($\Sys(2)$).}
   \end{figure}
 \end{example}
 \begin{example}[Metabolic network] \label{ex:metabolic}
@@ -647,10 +646,10 @@ If sexual recombination among systems drawn from $\allS$ yields systems with div
   \begin{figure}[H] 
     \centering
     \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{expF1}
-    \caption{\textbf{Hybrid phenotypic breakdown} $F_1$ hybrid (orange) and parental (blue) phenotypic oscillator dynamics for an $A(0)$ by $A(2)$ cross from Example \ref{ex:all_osc}. The $F_1$ hybrid
+    \caption{\textbf{Hybrid phenotypic breakdown} $F_1$ hybrid (orange) and parental (blue) phenotypic cell-cycle control (oscillator) dynamics for an $\Sys(0)$ by $\Sys(2)$ cross from Example \ref{ex:all_osc}. The $F_1$ hybrid
 %$\left(A_{F_1}\!\!=\!\!\tfrac{A\!(\!0\!) \! + \! A\!(\!2\!)}{2}\right)$
-gene expression fails to oscillate and instead grows exponentialy,
-exhibiting qualitatively different dynamics ($\phi_{F_0}\! = \! \sin t \! + \! \cos t$, however $\phi_{F_1} \! = \! \exp t$).
+gene expression fails to oscillate and instead grows exponentialy
+($\phi_{F_0}\! = \! \sin t \! + \! \cos t$, however $\phi_{F_1} \! = \! e^t$).
     }
     \label{fig:expF1}
   \end{figure}
@@ -661,9 +660,8 @@ exhibiting qualitatively different dynamics ($\phi_{F_0}\! = \! \sin t \! + \! \
 %
 %
   \begin{example}[Hybrid Incompatibility in an Oscillating Gene Network] \label{ex:hybrid_osc}
-
-Here we compare the phenotypes for F2 hybrids formed by crossing oscillators $A(2)$ with $A(2.01)$, $A(2.1)$, and $A(2.5)$ ($B$ and $C$ are the same as above). 
-Each $A$ is phenotypically identical ($\phi(t) = \sin t + \cos t$), however some of the hybrids exhibit markedly different dynamics. 
+    Here we compare the phenotypes for $F_2$ hybrids formed by crossing oscillators with different values for $\tau$ from \ref{ex:all_osc}, $\Sys(2)$ with $\Sys(2.01)$, $\Sys(2.1)$, and $\Sys(2.5)$.
+    Systems have identical phenotypes, however some of the hybrids exhibit markedly different dynamics. 
 
 %        \begin{align*}
 %         A(2) = \begin{bmatrix} 2 & -1 \\ 5 & -2 \end{bmatrix} &\qquad A(2.01) = \begin{bmatrix} 1.9901 & -0.9901 \\ 5.0101 & -1.9901 \end{bmatrix} \\
@@ -708,8 +706,8 @@ Each $A$ is phenotypically identical ($\phi(t) = \sin t + \cos t$), however some
     \includegraphics[width=0.25\textwidth, height=0.125\paperheight]{figures/quartic_quadratic2}
   \end{tabular}
   \caption{
-    $F_1$ (left) and $F_2$ (right) hybrids crossing $A(2)$ with $A(2.01)$ (top), $A(2.1)$ (middle), and $A(2.5)$ (bottom).
-    Note the difference in scale on the $y$-axis. F2 hybrids display more phenotypic divergence than F1s, on average. Further, some F2s completely fail to oscillate, as seen in an $A(2.5)$ F2 (light blue).
+    $F_1$ (left) and $F_2$ (right) hybrids crossing $\Sys(2)$ with $\Sys(2.01)$ (top), $\Sys(2.1)$ (middle), and $\Sys(2.5)$ (bottom).
+    $F_2$ hybrids display more phenotypic divergence than $F_1$s, on average. Further, some $F_2$s completely fail to oscillate, as seen in an $\Sys(2.5)$ $F_2$ (light blue).
     \plri{make axis labels bigger}
   }
 \end{figure}
