@@ -48,7 +48,7 @@
 \newcommand{\1}{\mathbbm{1}}
 
 \newcommand{\Sys}{\mathcal{S}}
-\newcommand{\allS}{\mathcal{K}}
+\newcommand{\allS}{\mathcal{A}}
 %\newcommand{\allS}{\mathcal{A}}
 
 % fitness as a fn of distance
@@ -126,23 +126,21 @@ We introduce an analytical theory to study the evolution of biological systems, 
 \begin{itemize}
     %\item Haldane's rule (easy point in discussion: makes F1s look like F2s)
     %\item add point about F1: quartic and F2: quadratic to results and maybe abstract/discussion
-    \item hybrid vigor (need to do calculation)
+    %\item hybrid vigor (need to do calculation)
     \item discuss linearity, linearization, and canalization in introduction
     %\item obtain estimates of variation in $A$ from thermodynamic occupancy model
 \end{itemize}
 
-\plri{Note: in the \LaTeX source I'm putting in semantic linebreaks, so it's easy to edit and move around phrases and ideas.}
+%\plri{Note: in the \LaTeX source I'm putting in semantic linebreaks, so it's easy to edit and move around phrases and ideas.}
 
-\plri{Need to come up with a consistent term for ``the $A_{ij}$''s. -- ``regulatory coefficients''? ``genotype''?}
+%\plri{Need to come up with a consistent term for ``the $A_{ij}$''s. -- ``regulatory coefficients''? ``genotype''?}
 
 %%%%%%%%%%%%%%%%%%%%%%
 %\begin{multicols}{2}
 \section*{Introduction}
 Bridging the gulf between an organism's genome and phenotype is a poorly understood and complex molecular machinery. 
 Progress in a suite of biological subdisciplines is stalled by our general lack of understanding of this molecular machinery: with respect to both its function and evolution. 
-  \plr{Saying "stalled" reflects negatively on other fields - rephrase?} \js{I don't think it reflects negatively. Even if it did, as long as it's a true statement it should be fine.}.
 There does exist a growing body of data on the evolutionary histories and molecular characterizations of particular gene regulatory networks \citep{jaeger2011gap, davidson2006gene, israel2016comparative}, as well as thoughtful verbal and conceptual models \citep{true2001developmental, gwagner1, weiss2000phenogenetic, edelman2001degeneracy}. 
-  \plr{I don't think the HW example will speak to our audience.  Also, better to say why math is good rather than why not-math is bad.} \js{deleted HW. I don't think we need to write an anodyne -- the current sentence is true enough.}
 However, verbal theories are often insufficient, if not downright misleading \citep{servedio2014not}. 
 This is especially pertinent given the staggering complexity and scope of contemporary research programs. 
 This outlook necessitates the advancement of conceptual frameworks of such precision, 
@@ -183,35 +181,26 @@ even if all possible input and output experiments on the black box are performed
 In chemical engineering, those who study chemical reaction networks sometimes refer to the fundamental
 unidentifiability of these networks as ``the fundamental dogma of chemical kinetics'' \citep{craciun2008identifiability}. 
 In computer science, this is framed as the relationship among processes that simulate one another \citep{van2004equivalence}.  
-\plr{here you are jumping to evolution -- haven't said yet why evolution "can explore" these -- needs to say explicitly what we mean by neutral here}
 Although this may frustrate the occasional engineer or scientist, viewed from another angle,
 the concepts of unidentifiability and indistinguishability can provide a starting point for
-thinking about externally equivalent systems -- systems that evolution can explore, so long
-as the parameters and structures can be realized biologically. In fact, evolutionary
-biologists who study convergent versus parallel evolution, homology, and analogy are very familiar with such functional symmetries; 
+thinking about externally equivalent systems
+-- systems that evolution can explore, so long as the parameters and structures can be realized biologically.
+In fact, evolutionary
+biologists who study convergent versus parallel evolution, and developmental homology and analogy, are very familiar with such functional symmetries; 
 macroscopically identical phenotypes in even very closely related species can in fact be divergent at the molecular and sequence level 
 \citep{true2001developmental, tsong2006evolution, hare2008sepsid, vierstra2014mouse, stergachis2014conservation, taylor2016diverse, matsui2015regulatory}.
 
-In this paper we outline a theoretical framework to study the evolution of biological systems. 
-  \plr{rather than "we expect" maybe say that the framework could be applied to non-neutral evolution}\js{fixed}
-Presently, we focus solely on a neutral scenario, 
+In this paper we outline a theoretical framework to study the evolution of biological systems, such as gene regulatory networks. 
+We focus primarily on the neutral scenario: 
 that is where phenotype is conserved over evolutionary time. 
-however, this framework could be applied to a wider set of evolutionary scenarios. 
-\plr{here's the definition of neutral, but it's not quite right?} \js{how's that?}
-  
+%however, this framework could be applied to a wider set of evolutionary scenarios. 
 We present an analytical description of the set of all linear biological systems with identical phenotypes 
-\plr{We need something here saying what we mean by "gene network architecture".  Also, I don't think we claim anything for "all biological systems".} \js{added the word ``linear.''}
--- that is we describe the set of all gene network architectures that yield identical phenotypes, and show that all linear biological systems can, in principal, can undergo systems drift. 
-In the neutral case, this set describes a manifold that evolution explores leaving phenotype invariant with respect to mutation, 
-and predicts that if two populations become reproductively isolated, hybrid incompatibility can occur, despite the absence of adaptation, directional selection, or environmental change. 
-Speciation typically occurs on timescales approximately on the order of $N_{e}$ generations, where $N_{e}$ is the effective population size.
+-- that is we describe the set of all gene network architectures that yield identical phenotypes in equivalent environments, and show that all linear biological systems can, in principal, can undergo systems drift and rewire. 
+Under neutrality, a population will drift through the set of all possible phenotypically equivalent linear gene networks.
+Consequentially, two phenotypically equivlanet yet allopatrically isolated populations, will likely produce incompatibile hybrids, despite the absence of adaptation, directional selection, or environmental change.
+Under these conditions, speciation typically occurs on timescales approximately on the order of $N_{e}$ generations, where $N_{e}$ is the effective population size.
 %
 \section*{Gene networks as linear dynamical systems}
-%
-\plr{Below we mix general language with language specific to GRNs, like switching between "internal state" and "transcription factor concentration.  
-Rather than keep making comments like "(or some other system)",
-we could say up top that this applies to other situations, but to make it concrete we'll talk about regulatory networks.}
-%
 %  \jss{Organisms' phenotypes are constructred by gene by gene by environment interactions. Here we simply define the phenotype to be the organismal temporal molecular dynamics directly under natural selection. The \emph{what}, \emph{when}, and \emph{where}, of an organism's molecules that are physiologically or otherwise relevant for survival. 
 %   Thus we say that some function $\phi(t)$ is a phenotype where, 
 %  \begin{align}
@@ -242,7 +231,7 @@ Thus an organism's phenotype $\phi(t)$ -- a vector of molecular concentrations a
 and by its environment $u(t)$.
 
 Such a biological system $\mathcal{S}$ is given by,
-  \begin{align}
+  \begin{align}\label{eqn:system}
     \mathcal{S} := \left\{ \begin{array}{ll} \dot{\kappa}(t) &= A \kappa(t) + B u(t) \\ \phi(t) &= C \kappa(t) \end{array} \right.
   \end{align}
 
@@ -381,25 +370,22 @@ Equivalently, in matrix form the system regulatory coefficients are given as,
 %and metabolism \citep{lavoie2009rearrangements, martchenko2007transcriptional, dalal2016transcriptional, christensen2011unique, hartl2007induction, alam2013aspergillus}. 
 Despite a symmetry in functionality or phenotype systems can often differ, sometimes substantially, at the molecular level. 
 How many different mechanisms have the same function? 
-
 Gene regulatory networks with identical phenotypes do not necessarily have identical kryptotypes.
-Any linear and minimal gene network 
--- minimal, informally meaning that the system's phenotype is achieved with the fewest possible genes ($n=\min$, see \ref{apx:kalman})
--- has an identical impulse response and thus phenotype given identical inputs $u(t)$, up to a change of coordinates. 
-\plr{"has an identical phenotype" is not what you mean to say here}
-\js{edited -- does that work?}
-  \begin{equation}
-    \begin{aligned}
-      h(t) &= C e^{A t} B 
-      = C V^{-1} V e^{A t} V^{-1} V B \\
-      &= C V^{-1} e^{V A V^{-1} t} V B 
-      = \bar{C} e^{\bar{A} t} \bar{B}
-    \end{aligned}
-  \end{equation}
-Two gene networks, $\mathcal{S} = ( A, B, C )$, and $\bar{\mathcal{S}} = (\bar{A} = VAV^{-1}, \bar{B} = VB, \bar{C} = CV^{-1} )$, 
-have the same phenotype, for all possible inputs, if they are related by a change of coordinates. 
-\plr{is this the place to say "and only if, in the minimal dimension"?}
-
+%
+%Any linear and minimal gene network 
+%-- minimal, informally meaning that the system's phenotype is achieved with the fewest possible genes ($n=\min$, see \ref{apx:kalman})
+%-- has an identical impulse response and thus phenotype given identical inputs $u(t)$, up to a change of coordinates. 
+%  \begin{equation}
+%    \begin{aligned}
+%      h(t) &= C e^{A t} B 
+%      = C V^{-1} V e^{A t} V^{-1} V B \\
+%      &= C V^{-1} e^{V A V^{-1} t} V B 
+%      = \bar{C} e^{\bar{A} t} \bar{B}
+%    \end{aligned}
+%  \end{equation}
+%Two gene networks, $\mathcal{S} = ( A, B, C )$, and $\bar{\mathcal{S}} = (\bar{A} = VAV^{-1}, \bar{B} = VB, \bar{C} = CV^{-1} )$, 
+%have the same phenotype, for all possible inputs, if and only if they are related by a change of coordinates. 
+%
 %Although systems may not be identifiable beyond a change of coordinates, at present we are primarily interested in a subset of these systems. 
 %That is, systems that not only have equivalent external dynamics, but also equivalent input and output relationships. 
 %\plr{clarify that you mean actually having the same $B$ and $C$. (at first I read "input and output relationship" as the mapping $u \to \phi$),
@@ -411,26 +397,69 @@ have the same phenotype, for all possible inputs, if they are related by a chang
 %  \end{align}
 %\plr{this sentence lacks an object (or some sentence part?)}
 %In other words systems with varying gene regulatory network architectures yet identical selection pressures, environment, and phenotype.
-
+%
 %Define $V(\tau)$ as the parameterized change of coordinates matrix that preserves $B$ and $C$, with $\tau$ a vector of free parameters. The set of \emph{all} phenotypically invariant (minimal) gene networks is, 
  % \begin{align}
  %   A(\tau) = V(\tau) A(0) V^{-1}(\tau) ,
  % \end{align}
 %and a \emph{Linear Evolutionary System} is, 
 %\plr{why is this "evolutionary"? It is the thing that we're thinking about evolution of, but that doesn't make it evolutionary.}
-Therefore the set of all phenotypically identical (and minimal) systems can be parameterized as, $\mathcal{S}_{\min}(V) = (VAV^{-1}, VB, CV )$,
+%
+%Therefore the set of all phenotypically identical (and minimal) systems can be parameterized as, $\mathcal{S}_{\min}(V) = (VAV^{-1}, VB, CV )$,
   %  \begin{align} \label{eq:min_param}
   %    \mathcal{S}(V) := \left\{ \begin{array}{ll} V\dot{\kappa}(t) &= VA V^{-1} \kappa(t) + VB u(t) \\ \phi(t) &= C V^{-1} \kappa(t) \end{array} \right.
   %\end{align}
-  where $V$ is any invertible matrix and it's elements are free parameters. 
+ % where $V$ is any invertible matrix and it's elements are free parameters. 
+%
+%Therefore varying $V$ can tweak the relationships between genes within a regulatory network, yet preserve the phenotype. Some gene networks, however, can grown or shrink, perhaps following gene duplications and deletions, and also still preserve their phenotypes. These changes cannot be described by $\mathcal{S}(V)$, but are ecanpuslated by \ref{eqn:equivalence}, below.
+%The Kalman decomposition decomposes a system into \emph{reachable} and \emph{observable} components -- that is coefficients that respond to an input and coefficients that produce an observable output. A minimal system's components are both reachable and observable. In this form, it is possible to add components that respond to an input, but do not influence the output, or components that, in principle, influence the output, but do not respond to any inputs. Any system with such components is, by definition, non-minimal, and any system can be modified to include any finite number of extra unreachable and/or unobservable components, without modifying its impulse response. Decomposing the system allows for the easy manipulation of ``superfluous''(but not necessarily expendable) components. After unreachable/unobservable coefficients are added, changing coordinates ``stirs'' the system coefficients such that the previously superfluous coefficients can become essential to system funciton. 
+%Whether or not evolution constrains biological systems to be minimal or nearly minimal is an open question. 
 
-Therefore varying $V$ can tweak the relationships between genes within a regulatory network, yet preserve the phenotype. Some gene networks, however, can grown or shrink, perhaps following gene duplications and deletions, and also still preserve their phenotypes. These changes cannot be described by $\mathcal{S}(V)$, but are ecanpuslated by \ref{eqn:equivalence}, below.
+\begin{definition}[Phenotypic equivalence of systems]
+    Let $(\kappa(t),\phi(t))$ and $(\bar \kappa(t),\bar \phi(t))$ be the solutions to \eqref{eqn:system}
+    with coefficient matrices $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ respectively,
+    and both $\kappa(0)$ and $\bar \kappa(0)$ are zero. 
+    The systems defined by $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ are
+    \textbf{phenotypically equivalent} 
+    if
+    \begin{align*}
+        \phi(t) = \bar \phi(t) \qquad \text{for all} \; t \ge 0.
+    \end{align*}
+    Equivalently, this occurs if and only if
+    \begin{align*}
+        h(t) = \bar h(t)  \qquad \text{for all} \; t \ge 0,
+    \end{align*}
+    where $h$ and $\bar h$ are the impulse responses of the two systems.
+\end{definition}
 
-More generally,
-we denote by $\calA_n(\Sys_0)$ the set of all $n$-dimensional systems equivalent to $\Sys_0$:
+One way to find other systems equivalent to a given one
+is by change of coordinates:
+if $V$ is an invertible matrix, then the systems $(A,B,C)$ and $(VAV^{-1},VB,CV^{-1})$
+have the same dynamics because their impulse responses are equal:
+  \begin{equation}
+    \begin{aligned}
+      h(t) &= C e^{A t} B 
+      = C V^{-1} V e^{A t} V^{-1} V B \\
+      &= C V^{-1} e^{V A V^{-1} t} V B 
+      = \bar{C} e^{\bar{A} t} \bar{B}
+    \end{aligned}
+  \end{equation}
+%\begin{align*}
+%    CV^{-1}( zI - VAV^{-1})^{-1}VB
+%    =
+%    CV^{-1}V( zI - A)^{-1}V^{-1}VB
+%    =
+%    C( zI - A)^{-1}B .
+%\end{align*}
+However, the converse is not necessarily true: 
+systems can have identical impulse responses without being changes of coordinates of each other.
+In fact, systems with identical impulse responses can involve interactions between different
+numbers of molecular species, and thus be in different dimensions.
+
+We refer to $\calA(\Sys_0)$ as the set of all systems equivalent to $\Sys_0$, regardless of dimension:
 \begin{equation} \label{eqn:equivalence}
   \begin{aligned}
-    \calA_n(\Sys_0) 
+    \calA(\Sys_0) 
       &= \left\{
         (A,B,C) : C e^{At} B = C_0 e^{A_0 t} B_0 \; \text{for}\; t \ge 0 
       \right\}  \\
@@ -440,20 +469,149 @@ we denote by $\calA_n(\Sys_0)$ the set of all $n$-dimensional systems equivalent
   \end{aligned}
 \end{equation}
 Equivalence of the two characterizations follows from the Cayley-Hamilton theorem.
-\plr{To make sense of this we need to say how $C$ and $B$ change with $n$.}
-Usually, the dimension $n$ and the reference system $\Sys_0$ is implicit and we write only $\calA$.
-Further, we refer to the set of all linear systems with impulse response $h(t)$, regardless of dimension, to be $\allS$,
-  \begin{align}
-    \allS := \bigcup_{n=\min}^{\infty} \calA_n(\Sys_0)
-  \end{align}
-  \js{what do you like better for $\allS$? $\mathcal{A}$, $\mathcal{A}_{\infty}$, or $\mathcal{K}_{h(t)}$, or something else -- maybe a modification of $\Sys$? Using a script of ``A'' was more intuitive when we were leavng $B$ and $C$ invariant.}
-Two systems, even if in different dimensions, will have identical phenotypes if they are in $\allS$. Further, there is no unique triple $(A,B,C)$ for the mapping $h: u \mapsto \phi$. This implies that the gene regulatory network architecture per phenotype/environment pair is never unique -- that is under these assumptions, \emph{all} gene regulatory networks can drift/rewire, and still conserve the phenotype. This set can be precisley defined and completely parameterized using the \emph{Kalman decomposition} (Appendix \ref{apx:kalman}).
 
-The Kalman decomposition decomposes a system into \emph{reachable} and \emph{observable} components -- that is coefficients that respond to an input and coefficients that produce an observable output. A minimal system's components are both reachable and observable. In this form, it is possible to add components that respond to an input, but do not influence the output, or components that, in principle, influence the output, but do not respond to any inputs. Any system with such components is, by definition, non-minimal, and any system can be modified to include any finite number of extra unreachable and/or unobservable components, without modifying its impulse response. Decomposing the system allows for the easy manipulation of ``superfluous''(but not necessarily expendable) components. After unreachable/unobservable coefficients are added, changing coordinates ``stirs'' the system coefficients such that the previously superfluous coefficients can become essential to system funciton. 
-Whether or not evolution constrains biological systems to be minimal or nearly minimal is an open question. 
-\js{should the sentence of evolution of nearly minimal be in the paper? Or should we save this for our next paper?}
+The set of all systems phenotypically equivalent to a given system $(A,B,C)$ 
+is elegantly described using the Kalman decomposition,
+which also clarifies the system dynamics.
+To motivate this, first note that the input $u(t)$ only directly pushes the system
+in directions lying in the span of the columns of $B$.
+As a result, different combinations of input can 
+move the system in any direction that lies in the \emph{reachable subspace},
+which we denote by $\reachable$,
+and is defined to be the closure of $\spn(B)$ under applying $A$
+(or equivalently, the span of $B, AB, A^2B, \ldots A^{n-1}B$).
+Analogously to this, we define
+the \emph{observable subspace}, $\mathcal{O}$,
+to be the closure of $\spn(C^T)$ under applying $A$.
+(Or: $\unobservable$ is the largest $A$-invariant subspace
+contained in the null space of $C$;
+and $\reachable$ is the largest $A$-invariant subspace contained in the image of $B$.)
 
-A large, adapted population will move around in $\allS$ under environmental and selective stasis. In the minimal dimension neutral evolution proceeds as a stochastic coordinate transformation on the elements in $\Sys_{\min}$. Even if there is conservation of phenotype through evolutionary time, the molecular mechanism underpinning the phenotype is not constrained and likely will not be conserved.
+If we define
+\begin{enumerate}
+    \item The columns of $P_\rno$ are an orthonormal basis for $\reachable \cap \unobservable$.
+    \item The columns of $P_\ro$ are an orthonormal basis of
+        the complement of $\reachable \cap \unobservable$ in $\reachable$.
+    \item The columns of $P_\nro$ are an orthonormal basis of
+        the complement of $\reachable \cap \unobservable$ in $\unobservable$.
+    \item The columns of $P_\nrno$ are an orthonormal basis of
+        the remainder of $\R^n$.
+\end{enumerate}
+If we then define
+\begin{align*}
+    P &= 
+    \left[ \begin{array}{c|c|c|c}
+        P_\rno & P_\ro & P_\nro & P_\nrno
+    \end{array} \right] ,
+\end{align*}
+then
+\begin{align*}
+    P^T P
+    &=
+    \left[ \begin{array}{c|c|c|c}
+        I & 0 & 0 & 0 \\
+        \hline
+        0 & I & U & 0 \\
+        \hline
+        0 & V & I & 0 \\
+        \hline
+        0 & 0 & 0 & I 
+    \end{array} \right] .
+\end{align*}
+\plr{Check this.  Can we get $U=V=0$?}
+
+The following theorem can be found in SOME REFERENCE.
+
+\begin{theorem}[Kalman decomposition] \label{thm:kalman}
+        For any system $(A,B,C)$ with corresponding Kalman basis matrix $P$,
+        the transformed system $(PAP^{-1},PB,CP^{-1})$  has the following form:
+        \begin{align*}
+            \widehat A = PAP^{-1}
+            &=
+            \left[ \begin{array}{cccc}
+                A_{\rno} & A_{\rno,\ro} & A_{\rno,\nrno} & A_{\rno,\nro} \\
+                0 & A_{\ro} & 0 & A_{\ro,\nro} \\
+                0 & 0 & A_{\nrno} & A_{\nrno,\nro} \\
+                0 & 0 & 0 & A_{\nro}
+            \end{array} \right] ,
+        \end{align*}
+        and
+        \begin{align*}
+            \widehat B = PB
+            &=
+            \left[ \begin{array}{cccc}
+                B_{\rno} \\
+                B_{\ro} \\
+                0 \\
+                0 
+            \end{array} \right] ,
+        \end{align*}
+        and
+        \begin{align*}
+            \widehat C = CP^{-1}
+            &=
+            \left[ \begin{array}{cccc}
+                0 & C_{\ro} & C_{\nrno} & 0 
+            \end{array} \right] .
+        \end{align*}
+        The impulse response of both systems is given by
+        \begin{align*}
+          h(t) = C_{\ro} e^{A_{\ro} t} B_{\ro} .
+        \end{align*}
+\end{theorem}
+
+In the latter case, we say that the system is \emph{minimal} 
+-- there is no equivalent system with a smaller number of molecular species.
+Note that this says that any two equivalent minimal systems
+are changes of coordinates of each other.
+
+Since any system can be put into this form,
+and once in this form, its impulse response is determined only by 
+$C_{\ro}$, $A_{\ro}$, and $B_\ro$,
+therefore, the set of all equivalent systems are parameterized by
+the dimension $n$,
+the choice of basis ($P$),
+the remaining submatrices in $\widehat A$, $\widehat B$, and $\widehat C$
+(which are unconstrained),
+and a invertible transformation of $\spn(P_{\ro})$, which we call $T_\ro$.
+
+\begin{theorem}[Parameterization of equivalent systems]
+    Let $(A,B,C)$ be a minimal system.
+    \begin{itemize}
+        \item[(a)]
+            Every equivalent system is of the form given in Theorem \ref{thm:kalman},
+            i.e., can be specified by choosing a dimension, $n$;
+            submatrices in $\widehat A$, $\widehat B$, and $\widehat C$ 
+            except for $A_\ro=A$, $B_\ro=B$, and $C_\ro=C$;
+            and choosing an invertible matrix $P$.
+
+        \item[(b)]
+            \plr{conjecture:}
+            The parameterization is unique
+            if $P$ is furthermore chosen so that 
+            each $P_x$ other than $P_\ro$ is a projection matrix,
+            and that 
+            \begin{align*}
+                0
+                =
+                P_x^T P_y
+            \end{align*}
+            for all $(x,y)$ except $(\ro,\nrno)$.
+
+    \end{itemize} 
+\end{theorem}
+
+%Usually, the dimension $n$ and the reference system $\Sys_0$ is implicit and we write only $\calA$.
+%Further, we refer to the set of all linear systems with impulse response $h(t)$, regardless of dimension, to be $\allS$,
+%  \begin{align}
+%    \allS := \bigcup_{n=\min}^{\infty} \calA_n(\Sys_0)
+%  \end{align}
+It is remarkable to note that even with the relationships between environment, kryptotype, and phenotype constant, and in the minimal dimension, there are still almost always degrees of freedom. These correspond to distinct genetic networks that perform indistinguishable functions. For example, the equivalent systems in Example \ref{ex:all_osc} are minimal, and share common B and C matrices.
+
+It is also remarkable to note that there is no unique triple $(A,B,C)$ for the mapping $h: u \mapsto \phi$. This implies that the gene regulatory network architecture per phenotype/environment pair is never unique -- that is under these assumptions, there is always more than one possible gene regulatory network architecture per phenotype. 
+%This set can be precisley defined and completely parameterized using the \emph{Kalman decomposition} (Appendix \ref{apx:kalman}).
+
+For the remainder of the paper, we interpret $\allS$ as the phenotypially neutral landscape, wherein a large population will drift under environmental and selective stasis. Even if the phenotype is constrained and remains constant through evolutionary time, the molecular mechanism underpinning it is not constrained and likely will not be conserved.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection*{Speciation}
@@ -614,7 +772,7 @@ $, both of which are in $\allS$
 %    \Sys(X_{1-3},V) = \left( \begin{array}{ll}
 %     V \left[\begin{smallmatrix} X_{1} & X_{2} \\ 0 & A_{\min} \end{smallmatrix}\right] V^{-1}, V \left[\begin{smallmatrix} X_{3} \\ B_{\min} \end{smallmatrix}\right], \left[\begin{smallmatrix} 0 & C_{\min} \end{smallmatrix}\right] V^{-1} \end{array} \right)
 %    \end{align*}
-  ($V$ can be any $4$-dimensional and invertible matrix, $D_{1-3} \in \R^{2 \time 2}$, and $(A,B,C) \in \Sys_{\min}$).
+  ($V$ can be any $4$-dimensional and invertible matrix, $D_{1-3} \in \R^{2 \times 2}$, and $(A,B,C) \in \Sys_{\min}$).
 %So for example, some system can be wired as follows, and still be input-output equivalent to the minimal metabolic system $\mathcal{S}_{\min}$:
 % \begin{align*}
 %   A' &= \begin{bmatrix}
@@ -639,7 +797,17 @@ $, both of which are in $\allS$
 \paragraph{Sexual recombination and hybrid incompatibility}
 Phenotypically identical yet kryptotypically variant gene networks, when brought together and/or recombined during sexual reproduction, can lead to phenotypic inviability. 
 
-    For instance, the diploid $\{\Sys, \Sys' \}$ has system architecture $\Sys_{\text{diploid}} \! = \! \left(\Sys \! + \! \Sys'\right)\!/2$, the average of its two haploid systems. During meiosis a diploid recombines its two genomes to form a new one (a gamete): $\left(\Sys \! \times \! \Sys' \right) \rightarrow \Sys''$; by randomly swapping matrix rows between two systems (Appendix \ref{apx:recombination}). Then two gametes join to form an offspring (\emph{e.g.} $\{\Sys'',\Sys\} $).
+    For instance, the diploid $\{\Sys, \Sys' \}$ has system architecture $\Sys_{\text{diploid}} \! = \! \left(\Sys \! + \! \Sys'\right)\!/2$, the average of its two haploid systems.
+    %During meiosis a diploid recombines its two genomes to form a new one (a gamete): $\left(\Sys \! \times \! \Sys' \right) \rightarrow \Sys''$; by randomly swapping matrix rows between two systems (Appendix \ref{apx:recombination}). Then two gametes join to form an offspring (\emph{e.g.} $\{\Sys'',\Sys\} $).
+
+     During meiosis, a diploid recombines its two genomes to form a gamete by randomly swapping rows or columns between its two systems.
+  \emph{E.g.} gamete systems $(A'', B'', C'')$, produced by the diploid $\{\Sys, \Sys'\}$, are formed by recombining two systems $\Sys = (A,B,C)$ and $\Sys' = (A', B', C')$  to form $\Sys''$ such that,
+  %\begin{align*}
+   $A'' = MA + (I-M)A'$, 
+   $B'' = MB + (I-M)B'$, and
+   $C'' = CM + C'(I-M)$.
+ % \end{align*}
+  $M$ is a diagonal matrix where each diagonal element is a Bernoulli random variable ($M_{ii} = 0$ or $1$ with equal probability, and $M_{ij}=0$ if $i \neq j$). If systems are different dimensions the smaller system elements can be augmented with $0$s (\emph{e.g.} $\left[ \begin{smallmatrix} A & 0 \\ 0 & 0 \end{smallmatrix} \right], \left[ \begin{smallmatrix} B \\ 0 \end{smallmatrix} \right], \left[ \begin{smallmatrix} C & 0 \end{smallmatrix}\right]$).
 
 Even if two systems yield the same phenotype, their diploid and recombinant systems may not. This is because $\allS$ is not required to be closed under averaging or recombination.
 
@@ -702,13 +870,11 @@ gene expression fails to oscillate and instead grows exponentialy
 %        \caption{F2s from $A(2)$ and $A(2.1)$.}
 %      \end{figure}
 
-\begin{figure}[H]
+    \begin{figure}[H] \label{fig:hybs}
   \centering
   \begin{tabular}{ccc}
-    \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{F1_comparison} & 
-    \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{F2s_comparison2} \\
-    \includegraphics[width=0.25\textwidth, height=0.125\paperheight]{figures/f1_quartic2} &
-    \includegraphics[width=0.25\textwidth, height=0.125\paperheight]{figures/f2_quad2} 
+    \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{F1_comparison} &
+    \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{F2s_comparison2}
   \end{tabular}
   \caption{
     $F_1$ (left) and $F_2$ (right) hybrids crossing $\Sys(2)$ with $\Sys(2.01)$ (top), $\Sys(2.1)$ (middle), and $\Sys(2.5)$ (bottom).
@@ -716,6 +882,15 @@ gene expression fails to oscillate and instead grows exponentialy
     \plri{make axis labels bigger}
   }
 \end{figure}
+
+  \begin{figure}[H]
+    \centering
+    \begin{tabular}{cc}
+    \includegraphics[width=0.25\textwidth, height=0.125\paperheight]{figures/f1_quartic2} &
+    \includegraphics[width=0.25\textwidth, height=0.125\paperheight]{figures/f2_quad2}
+    \end{tabular}
+    \caption{(Left) Squared $F_1$ hybrid phenotypes from Figure \ref{fig:hybs} diverge quartically, and (right) $F_2$ hybrid phenotypes diverge quadratically as a function of time in allopatry.}
+  \end{figure}
 \end{example}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -738,7 +913,6 @@ as recombination, mutation, and demographic noise create new alleles and shift a
 %In this section we explore informally a general model for this situation,
 %in which a population drifts stochastically near a set of equivalent, optimal systems.
 %We work with a population of effective size $N_e$.
-\js{commented out questions here b/c we don't answer them directly -- what do you think?}
 
 Suppose that a set $x$ of coefficients that determine a system (this is $\Sys$ above),
 produce a phenotype $\Phi(x)$ (the time course of $\phi(t)$).
@@ -746,7 +920,7 @@ There is an optimal phenotype $\optph$,
 and a set $\optx$ of ``optimal'' coefficients that produce this phenotype.
 Fitness depends on distance to the optimal phenotype --
 we will write the ``distance'' between phenotypes $\phi$ and $\psi$ as $\dph(\phi, \psi)$,
-measured so that the fitness of an organism with coefficents $x$ is $\fitx(x) = \exp(-\dph(\Phi(x),\optph)^2)$. \js{need to add $\gamma^{2}$ here?}
+measured so that the fitness of an organism with coefficents $x$ is $\fitx(x) = \exp(-\dph(\Phi(x),\optph)^2)$. 
 We will assume that the map $\Phi$ is smooth
 and that the optimal set $\optx$ is locally isomorphic to $\R^m$.
 \plr{say that better}
@@ -769,7 +943,6 @@ If the regulatory coefficient population variation
 has standard deviation $\sigma$,
 since subsequent generations resample from this diversity,
 the population mean coefficient will move a random distance of size $\sigma/\sqrt{N_e}$ per generation,
-\js{since it moves at rate $\sigma \sqrt{T/N_e}$ isn't saying  $\sigma/\sqrt{N_e}$ \emph{per generation} not that clear?}
 simply because this is the the standard deviation of the mean of a random sample \citep{lande_drift}.
 % (This could be taken as a definition of $N_e$.)
 Selection will tend to restrain this motion,
@@ -805,19 +978,16 @@ with respect to $u$ for $x \in \optx$ and $z$ perpendicular to the tangent space
 With these parameters, a typical individual will have a fitness of around $\exp(-(\sigma_S/\gamma)^2)$.
 
 \paragraph{Hybridization}
-\plr{I put F1s and F2s here, and $\Incompat$, but with less explanation than below. Merge somehow.} 
 The means of two allopatric populations separated for $T$ generations
 will be a distance of order $2\sigma_N \sqrt{T/N_e}$ apart along $\optx$.
 A population of $F_1$ hybrids has one haploid genome from each,
 whose coefficients are averaged,
 and so will have mean system coefficients at the midpoint between their means,
 and variance equal to $\sigma^2$. 
-\js{I think you mean $\sigma^{2}$? I changed it.}
 Each $F_2$ hybrid will be homozygous for one parental allele on averge at half of the loci in the genome,
 so the distribution of $F_2$s will have mean at the average of the two populations,
 as before,
 but variance equal to $\sigma^2 + z^2/2$, where $z$ is the distance between the parental populations. 
-\js{Can you clarify why $z^{2}/2$? Is this because it's averaging two distributions?}
 These are depicted in figure \ref{fig:conceptual_fig}.
 
 \begin{figure}
@@ -855,8 +1025,7 @@ $\fit_1/\fit_0 = \exp(-(c_1 \sigma_N^2 T/N_e)^2)$;
 and of an $F_2$ is
 $\fit_2/\fit_0 = \exp(- T/(N_e\gamma^2))$.
 
-If we prefer not to make any assumptions about the shape of the fitness function, we can more conservatively state that hybrid phenotypes diverge from their optimal parents at rates $d(\Phi_{F_1}, \Phi_0) = \alpha_1 \sigma_N^2 T/N_e$ and $d(\Phi_{F_2}, \Phi_0) = \alpha_2 \sigma_N \sqrt{T/N_e}$, where $\alpha_1$ and $\alpha_2$ are constants. Whether or not hybrid phenotypic divergence is associated with a high fitness cost, $F_2$ phenotypes should diverge much faster than $F_1$s, with a rate proportional to the square root of $T/N_e$, versus linearly.
-\js{I think $\alpha_1$ is your $c_1$ and $\alpha_2$ is a function of $\gamma^{-1}$?}
+If we prefer not to make any assumptions about the shape of the fitness function, we can more conservatively state that hybrid phenotypes diverge from their optimal parents at rates $d(\Phi_{F_1}, \Phi_0) = c_1 \sigma_N^2 T/N_e$ and $d(\Phi_{F_2}, \Phi_0) = \gamma^{-1} \sigma_N \sqrt{T/N_e}$. Whether or not hybrid phenotypic divergence is associated with a high fitness cost, $F_2$ phenotypes should diverge much faster than $F_1$s, with a rate proportional to the square root of $T/N_e$, versus linearly.
 
 %\subsection*{Parameter estimates for real systems}
 %\js{I think we should move this section?}
@@ -1022,12 +1191,10 @@ The complexity of biological systems has limited our understanding of their func
 
 Theoretical models in evolution and population genetics often lack the molecular details of physiology or of the genotype-phenotype map. 
 Here, we offer a tractable and simple model which includes these missing features. 
-\plr{this is a claim we are the first to do something.  best not to make these claims (and we aren't the first to make math models of these)}\js{removed the word ``only''}
 Further, we provide, in clear mathematical language, an analytical description of phenomena hitherto discussed verbally and conceptually 
 (phenogenetic drift \citep{weiss2000phenogenetic}, developmental systems drift \citep{true2001developmental}, biological degeneracy \citep{edelman2001degeneracy}, \emph{etc.}). 
 The tractability and relative simplicity of this exposition enables the interested biologist to work out by hand, 
 if desired, 
-\plr{probably not desired}\js{:p}
 the dynamics of a genetic system, as well as perturbations to the system -- an attribute not likely to be found in less tractable models and simulations.
 
 We have suggested an interpretation of system identification: to see it as an evolutionarily neutral manifold, and not simply a computational nuisance. 
