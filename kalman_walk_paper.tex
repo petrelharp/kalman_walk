@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage{amsmath, amssymb, color, xcolor, amsthm}
-\usepackage{graphicx, wrapfig, float, caption, dsfont, bbm}
+\usepackage{graphicx, wrapfig, float, caption, dsfont, bbm, xfrac}
 \usepackage{fullpage}
 \usepackage[backref=page, hidelinks, colorlinks=true, citecolor=blue!60!black!100]{hyperref}
 \usepackage{tikz}
@@ -990,7 +990,7 @@ as before,
 but variance equal to $\sigma^2 + z^2/2$, where $z$ is the distance between the parental populations. 
 These are depicted in figure \ref{fig:conceptual_fig}.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics{figures/conceptual_fig}
 \caption{
@@ -1025,7 +1025,7 @@ $\fit_1/\fit_0 = \exp(-(c_1 \sigma_N^2 T/N_e)^2)$;
 and of an $F_2$ is
 $\fit_2/\fit_0 = \exp(- T/(N_e\gamma^2))$.
 
-If we prefer not to make any assumptions about the shape of the fitness function, we can more conservatively state that hybrid phenotypes diverge from their optimal parents at rates $d(\Phi_{F_1}, \Phi_0) = c_1 \sigma_N^2 T/N_e$ and $d(\Phi_{F_2}, \Phi_0) = \gamma^{-1} \sigma_N \sqrt{T/N_e}$. Whether or not hybrid phenotypic divergence is associated with a high fitness cost, $F_2$ phenotypes should diverge much faster than $F_1$s, with a rate proportional to the square root of $T/N_e$, versus linearly.
+Note that this follows directly from the fact that $F_1$ and $F_2$ hybrid phenotypes diverge from $F_0$ phenotypes, linearly and inverse-quadratically, with respect to time (more precisely $T/N_e$). As such, removing assumptions about the form of the fitness function, this model still predicts hybrid $F_2$ phenotypes to diverge much faster than $F_1$s, initially.
 
 %\subsection*{Parameter estimates for real systems}
 %\js{I think we should move this section?}
@@ -1117,23 +1117,21 @@ If we prefer not to make any assumptions about the shape of the fitness function
 %
 %
 \paragraph{Speciation rates under neutrality}
-For cases where system structures and $\gamma$ can be inferred,
-specific speciation rates can be estimated.
-For other situations we offer a back of the envelope calculation.
-
-Consider a population that is distributed on $\mathcal{X}$ such that the magnitude of phenotypically
-divergent $\sigma_S$ and neutral $\sigma_N$ diversity are constrained by selection;
-$\sigma_S$ directly and $\sigma_N$ indirectly via recombination load.
-Two reproductively isolated populations will, on average, be a distance of $2 \sigma_N \sqrt{T/N_e}$.
-If we assume that $\sigma_N$ is constrained by a function of $\sigma_S$,
-neutral movement along $\mathcal{X}$ pushes hybrids off of the manifold by $\sigma_S$ per $\sigma_N$,
-Lastly, if fitness is Gaussian: $\fit_2 = \exp\left(- d(x, x')^2/\beta^2\right)$,
-and we assume that the strength of selection is only several multiples of the segregating divergent diversity,
-such that $\sigma_S = c \beta$, we can simplify the expression estimating $F_2$ hybrid fitness drops
-to be,
-  \begin{align}
-    \exp\left(-c^2 \frac{T}{N_e} \right)
-  \end{align}
+%For cases where system structures and $\gamma$ can be inferred,
+%specific speciation rates can be estimated.
+%For other situations we offer a back of the envelope calculation.
+%
+%Consider a population that is distributed on $\mathcal{X}$ such that the magnitude of phenotypically
+%divergent $\sigma_S$ and neutral $\sigma_N$ diversity are constrained by selection;
+%$\sigma_S$ directly, such that $\sigma_S = \gamma$, and $\sigma_N$ indirectly via recombination load.
+%Two reproductively isolated populations will, on average, be a distance of $2 \sigma_N \sqrt{T/N_e}$.
+%If we assume that $\sigma_N$ is constrained by a function of $\sigma_S$,
+%neutral movement along $\mathcal{X}$ pushes hybrids off of the manifold by $\sigma_S$ per $\sigma_N$,
+%Lastly, if fitness is Gaussian: $\fit_2 = \exp\left(- d(x, x')^2/\beta^2\right)$,
+%and we assume that the strength of selection is only several multiples of the segregating divergent diversity,
+%such that $\sigma_S = c \beta$, we can simplify the expression estimating $F_2$ hybrid fitness drops
+%to be,
+%
 %
 %$F_2$s between allopatric populations will suffer an average fitness drop relative to their parents of,
 %  \begin{align}
@@ -1145,35 +1143,13 @@ to be,
 %    \exp\left(- \xi^{2} \frac{T}{N_e} \right)
 %  \end{align}
 %  where $\xi := 2\xi_2/\xi_1$.
-  This suggests that, as an upper bound, if a population contains as much phenotypic diversity as allowed by selection, reproductively isolated populations can speciate rapidly -- possibly on timescales shorter than $N_{e}$ generations (It is likely that, on average, $c \leq 2/3$).
+  If we assume that perpendicular variation segregating within a population is constrained by selection such that $\sigma_S/\gamma = \xi$, and that neutral variation is on the order of perpendicular variation, such that $\sigma_N = \sigma_S$, then the typical distance between two individuals drawn from separate allopatric populations will be $z = 2 \sigma_N \sqrt{T/N_e}$. We will expect a drop in hybrid fitness to be,
+  \begin{align}
+  \fit_2/\fit_0 = \exp \left(- 4\xi^2 \frac{T}{N_e} \right) .
+  \end{align}
+  Hybrid fitness depression will be significant when $z > \gamma$. 
+  If $\xi$ is in $[\sfrac{1}{5},1]$, speciation will occur on the order of $N_e$ generations, and possibly much faster. Note, however, that if intrapopulation variation is very small such that $\sigma_S \ll \gamma$, speciation rates will be slower.
 %%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%
-
-
-%    \subsection*{Metabolic Network}
-%  \begin{align*}
-%    \dot{x}(t) &= \begin{bmatrix} 0 & 1 & 0 & -1 \\ 0 & 0 & -1 & -1 \\ -1 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix} \begin{bmatrix} \text{GAL3} \\ \text{GAL4} \\ \text{GAL80} \\ \text{MIG1} \end{bmatrix}(t) \\ &+ \begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 1 & 1 \end{bmatrix} \begin{bmatrix} \text{galactose} \\ \text{glucose} \\ \text{BTM} \end{bmatrix}(t) \\
-%        y(t) &= \begin{bmatrix} 0 & 1 & 0 & -1 \end{bmatrix} \vec{x}(t)
-%    \end{align*}
-%    \begin{align*}
-%      H(z) &= \begin{bmatrix} 1 \\ z^{2} + z + 1 \\ z + 1 \end{bmatrix} \frac{1}{z^{3} + z -1}
-%    \end{align*}
-%
-%    \begin{align*}
-%      CV &= C \\
-%      VB &= B \\
-%      V :&= \begin{bmatrix} 1 & 0 & a & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & b & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} , V^{-1} = \begin{bmatrix} 1 & 0 & \frac{-a}{b} & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & \frac{1}{b} & 0 \\ 0 & 0 & 0 & 1\end{bmatrix} \\
-%        A(a,b) :&= VAV^{-1} = \begin{bmatrix} -a & a+1 & \frac{a^{2}}{b} & -1 \\ 0 & 0 & \frac{-1}{b} & -1 \\ -b & b & a & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix}
-%    \end{align*}
-%    The GAL regulatory network in \emph{S. cerevisiae} is modelled here. The activating transcription factor GAL4, which is regulated by the presence of galactose and two other TFs, binds to the promoter region of the GAL regulon -- a cluster of genes regulated by the same promoter encoding 3 enzymes (GAL1, GAL7, and GAL10), for the metabolism of the sugar galactose. The repressing transcription factor MIG1, which is activated by the presence of glucose and other proteins omitted here, also binds to the regulon, preventing the expression of the galactose metabolizing enzymes. This network is one of the most studied gene regulatory networks in yeast, and experiments have already demonstrated significant transcriptional variation among different species and genuses of yeast.
-%
-%    In the present model, the $A$ matrix encodes the interactions among GAL3, GAL4, GAL80, and MIG1. $B$ interprets the input: the quantity of glucose, galactose, and the basal transcription (BTM) rates impact of TF concentrations. $C$ represents the promoter region of the GAL regulon and is the sum of the influence of GAL4 (activating) and MIG1 (repressing).
-%
-%    $A(a,b)$ represent alternative network structures that produce identical outputs, with identical input and output transformations -- meaning the regulatory contributions of the sugars and the basasl machinery, as well as the promoter of the GAL regulon are held constant. These interactions may be realized in nature, if the regulatory differences predicted by $A(a,b)$ are biologically/mutationally realizable. Mutations influencing the interactions between GAL4 and GAL80 have been experimentally demonstrated \citep{li2010alterations}.
-%
-%    \subsection*{Gap Gene Network}
-
-
 %%%%%%%%%%%%%%%%%%%%%
 \section*{Discussion}
 %
@@ -1222,7 +1198,7 @@ The consistency comes from gene networks localized to the sex chromosomes functi
 %as network size tends to ratchet up in the absence of strong selection against extra parts. 
 %\plr{probably shouldn't claim this is "unexplored"} \js{I meant unexplored within this paper.Changed wording. Does that work?}
 %Although we leave this question unexplored, this phenomena may lead to insights on evolvability and developmental innovation. 
-Lastly, we show that hybrid gene networks break down as function of genetic distance, and may, in part, explain broad patterns of reproductive isolation among diverse phyla \citep{roux2016shedding}.
+Lastly, we show that hybrid gene networks, under neutral processes, break down as function of genetic distance, and may, in part, explain broad patterns of reproductive isolation among diverse phyla \citep{roux2016shedding}.
 
 %\plr{this paragraph isn't very clear} \js{Should I delete it? I guess it's sort of just a vague ``yeah we know this method has shortcomings''.}
 %As Richard Levins opined, models in population biology face a trade-off among precision, realism, and generality \citep{levins1966strategy}. As Levins expects, any tractable and general model, such as the present one under discussion, will have limitations. Most notable is linearity. It is often stated that life is not linear. This is often true, however, many of the ideas developed here should be generalizable to nonlinear cases (multi-linear systems, say). Further, we see this as a necessary first step in the direction of more life-like nonlinear evolutionary systems theory. Depending on an actual biological system's particularities, its (potential) non-linearity, may buffer or exacerbate effects elucidated in this paper, such as the acquisition of Dobzansky-Muller incompatibilities.
