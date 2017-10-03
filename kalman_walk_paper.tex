@@ -372,19 +372,19 @@ Despite a symmetry in functionality or phenotype systems can often differ, somet
 How many different mechanisms have the same function? 
 Gene regulatory networks with identical phenotypes do not necessarily have identical kryptotypes.
 %
-Any linear and minimal gene network 
--- minimal, informally meaning that the system's phenotype is achieved with the fewest possible genes ($n=\min$, see \ref{apx:kalman})
--- has an identical impulse response and thus phenotype given identical inputs $u(t)$, up to a change of coordinates. 
-  \begin{equation}
-    \begin{aligned}
-      h(t) &= C e^{A t} B 
-      = C V^{-1} V e^{A t} V^{-1} V B \\
-      &= C V^{-1} e^{V A V^{-1} t} V B 
-      = \bar{C} e^{\bar{A} t} \bar{B}
-    \end{aligned}
-  \end{equation}
-Two gene networks, $\mathcal{S} = ( A, B, C )$, and $\bar{\mathcal{S}} = (\bar{A} = VAV^{-1}, \bar{B} = VB, \bar{C} = CV^{-1} )$, 
-have the same phenotype, for all possible inputs, if and only if they are related by a change of coordinates. 
+%Any linear and minimal gene network 
+%-- minimal, informally meaning that the system's phenotype is achieved with the fewest possible genes ($n=\min$, see \ref{apx:kalman})
+%-- has an identical impulse response and thus phenotype given identical inputs $u(t)$, up to a change of coordinates. 
+%  \begin{equation}
+%    \begin{aligned}
+%      h(t) &= C e^{A t} B 
+%      = C V^{-1} V e^{A t} V^{-1} V B \\
+%      &= C V^{-1} e^{V A V^{-1} t} V B 
+%      = \bar{C} e^{\bar{A} t} \bar{B}
+%    \end{aligned}
+%  \end{equation}
+%Two gene networks, $\mathcal{S} = ( A, B, C )$, and $\bar{\mathcal{S}} = (\bar{A} = VAV^{-1}, \bar{B} = VB, \bar{C} = CV^{-1} )$, 
+%have the same phenotype, for all possible inputs, if and only if they are related by a change of coordinates. 
 %
 %Although systems may not be identifiable beyond a change of coordinates, at present we are primarily interested in a subset of these systems. 
 %That is, systems that not only have equivalent external dynamics, but also equivalent input and output relationships. 
@@ -411,39 +411,39 @@ have the same phenotype, for all possible inputs, if and only if they are relate
   %\end{align}
  % where $V$ is any invertible matrix and it's elements are free parameters. 
 %
-Therefore varying $V$ can tweak the relationships between genes within a regulatory network, yet preserve the phenotype. Some gene networks, however, can grown or shrink, perhaps following gene duplications and deletions, and also still preserve their phenotypes. These changes cannot be described by $\mathcal{S}(V)$.
+%Therefore varying $V$ can tweak the relationships between genes within a regulatory network, yet preserve the phenotype. Some gene networks, however, can grown or shrink, perhaps following gene duplications and deletions, and also still preserve their phenotypes. These changes cannot be described by $\mathcal{S}(V)$, but are ecanpuslated by \ref{eqn:equivalence}, below.
 %The Kalman decomposition decomposes a system into \emph{reachable} and \emph{observable} components -- that is coefficients that respond to an input and coefficients that produce an observable output. A minimal system's components are both reachable and observable. In this form, it is possible to add components that respond to an input, but do not influence the output, or components that, in principle, influence the output, but do not respond to any inputs. Any system with such components is, by definition, non-minimal, and any system can be modified to include any finite number of extra unreachable and/or unobservable components, without modifying its impulse response. Decomposing the system allows for the easy manipulation of ``superfluous''(but not necessarily expendable) components. After unreachable/unobservable coefficients are added, changing coordinates ``stirs'' the system coefficients such that the previously superfluous coefficients can become essential to system funciton. 
 %Whether or not evolution constrains biological systems to be minimal or nearly minimal is an open question. 
 
-%\begin{definition}[Phenotypic equivalence of systems]
- %   Let $(\kappa(t),\phi(t))$ and $(\bar \kappa(t),\bar \phi(t))$ be the solutions to \eqref{eqn:system}
-  %  with coefficient matrices $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ respectively,
-   % and both $\kappa(0)$ and $\bar \kappa(0)$ are zero. 
-   % The systems defined by $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ are
-   % \textbf{phenotypically equivalent} 
-   % if
-   % \begin{align*}
-   %     \phi(t) = \bar \phi(t) \qquad \text{for all} \; t \ge 0.
-   % \end{align*}
-   % Equivalently, this occurs if and only if
-   % \begin{align*}
-   %     h(t) = \bar h(t)  \qquad \text{for all} \; t \ge 0,
-   % \end{align*}
-   % where $h$ and $\bar h$ are the impulse responses of the two systems.
-%\end{definition}
+\begin{definition}[Phenotypic equivalence of systems]
+    Let $(\kappa(t),\phi(t))$ and $(\bar \kappa(t),\bar \phi(t))$ be the solutions to \eqref{eqn:system}
+    with coefficient matrices $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ respectively,
+    and both $\kappa(0)$ and $\bar \kappa(0)$ are zero. 
+    The systems defined by $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ are
+    \textbf{phenotypically equivalent} 
+    if
+    \begin{align*}
+        \phi(t) = \bar \phi(t) \qquad \text{for all} \; t \ge 0.
+    \end{align*}
+    Equivalently, this occurs if and only if
+    \begin{align*}
+        h(t) = \bar h(t)  \qquad \text{for all} \; t \ge 0,
+    \end{align*}
+    where $h$ and $\bar h$ are the impulse responses of the two systems.
+\end{definition}
 
-%One way to find other systems equivalent to a given one
-%is by change of coordinates:
-%if $V$ is an invertible matrix, then the systems $(A,B,C)$ and $(VAV^{-1},VB,CV^{-1})$
-%have the same dynamics because their impulse responses are equal:
-%  \begin{equation}
-%    \begin{aligned}
-%      h(t) &= C e^{A t} B 
-%      = C V^{-1} V e^{A t} V^{-1} V B \\
-%      &= C V^{-1} e^{V A V^{-1} t} V B 
-%      = \bar{C} e^{\bar{A} t} \bar{B}
-%    \end{aligned}
-%  \end{equation}
+One way to find other systems equivalent to a given one
+is by change of coordinates:
+if $V$ is an invertible matrix, then the systems $(A,B,C)$ and $(VAV^{-1},VB,CV^{-1})$
+have the same dynamics because their impulse responses are equal:
+  \begin{equation}
+    \begin{aligned}
+      h(t) &= C e^{A t} B 
+      = C V^{-1} V e^{A t} V^{-1} V B \\
+      &= C V^{-1} e^{V A V^{-1} t} V B 
+      = \bar{C} e^{\bar{A} t} \bar{B}
+    \end{aligned}
+  \end{equation}
 %\begin{align*}
 %    CV^{-1}( zI - VAV^{-1})^{-1}VB
 %    =
@@ -451,10 +451,10 @@ Therefore varying $V$ can tweak the relationships between genes within a regulat
 %    =
 %    C( zI - A)^{-1}B .
 %\end{align*}
-%However, the converse is not necessarily true: 
-%systems can have identical impulse responses without being changes of coordinates of each other.
-%In fact, systems with identical impulse responses can involve interactions between different
-%numbers of molecular species, and thus be in different dimensions.
+However, the converse is not necessarily true: 
+systems can have identical impulse responses without being changes of coordinates of each other.
+In fact, systems with identical impulse responses can involve interactions between different
+numbers of molecular species, and thus be in different dimensions.
 
 We refer to $\calA(\Sys_0)$ as the set of all systems equivalent to $\Sys_0$, regardless of dimension:
 \begin{equation} \label{eqn:equivalence}
