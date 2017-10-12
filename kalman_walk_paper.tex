@@ -13,7 +13,7 @@
 
 % for comments in margins or not
 \newif\ifmargincomments
-\margincommentstrue
+\margincommentsfalse
 % \margincommentstrue
 \ifmargincomments
     \usepackage{todonotes}
@@ -24,6 +24,7 @@
     \newcommand{\plri}[1]{{\color{blue}\it #1}}
 \else
     \newcommand{\plr}[1]{{\color{blue}\it #1}}
+    \newcommand{\js}[1]{{\color{green}\it #1}}
     \newcommand{\plri}[1]{\plr{#1}}
 \fi
 
@@ -119,11 +120,28 @@ $^{\ddagger}$University of Oregon, Eugene, Oregon \\
 % Evolutionary systems theory and speciation 
 
 \begin{abstract}
-We introduce an analytical theory to study the evolution of biological systems, such as gene regulatory networks. The evolutionary conservation of phenotype under selective and environmental stasis does not necessitate conservation of the underlying mechanism, as distinct molecular pathways can realize identical phenotypes. Here we give an exact expression for the set of all linear mechanisms with identical phenotypes, and expect evolution under neutrality to explore this set. We employ a quantitative genetic approach to model evolution under neutrality as a random process over the set of all phenotype-invariant mechanisms: only mutational tweaks to the pathway that leave the phenotype invariant are optimally fit. We show that there is never a unique linear system architecture for any phenotype and that the evolutionary exploration of these distinct and mutationally connected mechanisms can lead to the rapid accumulation of hybrid incompatibilities between allopatric populations and thus lead to the rapid formation of new species -- in fewer generations than there are breeding individuals in a population.
+It is known that even if a species' phenotype has remained unchanged over evolutionary time,
+the underlying mechanism may have changed,
+since distinct molecular pathways can realize identical phenotypes.
+In this paper, we use quantitative genetics and linear systems theory to study
+how a gene network underlying a conserved phenotype
+evolves as genetic drift of small mutational tweaks to the molecular pathways
+cause a population to explore the set of mechanisms with identical phenotypes.
+In this setting we treat organisms as ``black boxes'' for which the environment provides input
+and the phenotype is the output,
+and there exists an exact characterization of the set of all mechanisms that give the same input--output relationship. 
+We show that in this situation, there is never a unique architecture for any phenotype
+and that the evolutionary exploration of these distinct and mutationally connected mechanisms
+can lead to the rapid accumulation of hybrid incompatibilities between allopatric populations.
+We estimate that in reasonably numerous species,
+this process could thus the formation of new species
+over a number of generations proportional to the effective population size.
 \end{abstract}
+
 
 \plr{Additional ideas to consider adding:}
 \begin{itemize}
+    \item speciation literature
     %\item Haldane's rule (easy point in discussion: makes F1s look like F2s)
     %\item add point about F1: quartic and F2: quadratic to results and maybe abstract/discussion
     %\item hybrid vigor (need to do calculation)
@@ -138,172 +156,173 @@ We introduce an analytical theory to study the evolution of biological systems, 
 %%%%%%%%%%%%%%%%%%%%%%
 %\begin{multicols}{2}
 \section*{Introduction}
-Bridging the gulf between an organism's genome and phenotype is a poorly understood and complex molecular machinery. 
-Progress in a suite of biological subdisciplines is stalled by our general lack of understanding of this molecular machinery: with respect to both its function and evolution. 
-There does exist a growing body of data on the evolutionary histories and molecular characterizations of particular gene regulatory networks \citep{jaeger2011gap, davidson2006gene, israel2016comparative}, as well as thoughtful verbal and conceptual models \citep{true2001developmental, gwagner1, weiss2000phenogenetic, edelman2001degeneracy}. 
-However, verbal theories are often insufficient, if not downright misleading \citep{servedio2014not}. 
-This is especially pertinent given the staggering complexity and scope of contemporary research programs. 
-This outlook necessitates the advancement of conceptual frameworks of such precision, 
-only mathematics will suffice, as models allow the development of concrete numerical predictions. 
-%Previously it has been suggested that any idealized study of evolution is incomplete 
-%without a mathematically sufficient description of the genotype, phenotype, and transformation from one to the other \citep{Lewontin1974genetic}.
-\plr{probably some more recent Wagner papers in this line as well?}
-%Here we outline an analytical theory to study the evolution of biological systems, borrowing insight and methods from control engineering, systems identification, and dynamical systems theory. 
-%
-%Presently, we focus on the neutral evolution of genetic regulatory networks. That is, we analytically describe the set of all linear gene networks (of any size) that produce identical phenotypes -- and the evolutionary paths connecting them. In the idealized case of a perfectly adapted population, constant selection, and a static environment, we observe evolution under the ``conservation of phenotype'' as a Brownian motion over phenotypically-invariant network-space. This analysis provides insight to the mechanisms and parameters important for understanding developmental systems drift, network rewiring, evolvability, epistasis, and speciation, as well as the tenuous connection between network architecture and function.
-%
-%
-%It is commonly taught that an organism's genome contains the heritable material 
-%that natural selection filters and that an organism's phenotype directly determines its
-%evolutionary fitness. Between genotype and phenotype is an often complicated and poorly
-%undrstood molecular machinery -- and it is a major goal common to many different disciplines
-%within the life sciences to elucidate its form, function, and evolution. These aims are
-%delicately intertwined and a comphrehensive understanding of a system's evolution requires
-%an understanding of its function and vice versa.
 
-The molecular machinery, interacting with the environment, and bridging genotype to phenotype
-can be mathematically described as a dynamical system -- or a system of differential equations \citep{jaeger2015comet}.
- Movement in this direction is ongoing, as researchers have begun to study 
-the evolution of both abstract \citep{wagner1994evolution, wagner1996does,  siegal2002waddington, bergman2003evolutionary, draghi2015robustness} and empirically inspired computational and mathematical models of gene regulatory networks \citep{mjolsness1991connectionist, jaeger2004dynamic, maria1, vitaly1, vitaly2, crombach2016gap, wotton2015quantitative, chertkova2017insilico}. If we allow the reasonable assumption that the genotype-phenotype map can be represented as a system of differential equations, we can immediately discuss its evolution and function in a much more mechanistic, yet general, manner. 
+A complex molecular machinery translates an organism's genome into the characteristics on which natural selection acts,
+her phenotype.
+% Bridging the gulf between an organism's genome and phenotype is a poorly understood and complex molecular machinery. 
+Attaining a general understanding of the functioning and evolution of this molecular machinery
+is an overarching goal of many subdisciplines of biology.
+For example, 
+there is a growing body of data on evolutionary histories and molecular characterizations of particular gene regulatory networks
+\citep{jaeger2011gap, davidson2006gene, israel2016comparative}, 
+as well as thoughtful verbal and conceptual models \citep{true2001developmental, gwagner1, weiss2000phenogenetic, edelman2001degeneracy}. 
+Mathematical models of both particular regulatory networks
+and the evolution of such systems in general
+can provide guidance where intuition fails,
+and thus has the potential to discover general principles in the organization of biological systems 
+and provide concrete numerical predictions \citep{servedio2014not}.
 
-In some fields that seek to fit parametric models to experimental data, such as control
-theory, chemical engineering, and statistics, it is well known that mathematical models
-can fundamentally be \emph{unidentifiable} and/or \emph{indistinguishable} -- meaning that 
+The dynamics of the molecular machinery and its interactions with the environment
+can be mathematically described in various ways as a dynamical system \citep{jaeger2015comet}.
+Movement in this direction is ongoing, as researchers have begun to study 
+the evolution of both abstract \citep{wagner1994evolution, wagner1996does, siegal2002waddington, bergman2003evolutionary, draghi2015robustness} 
+and empirically inspired computational and mathematical models of gene regulatory networks,
+\citep[e.g.][]{mjolsness1991connectionist, jaeger2004dynamic, maria1, vitaly1, vitaly2, crombach2016gap, wotton2015quantitative, chertkova2017insilico}.
+% If we allow the reasonable assumption that the genotype-phenotype map 
+% can be represented as a system of differential equations \citep{jaeger2015comet}, 
+% we can immediately discuss its evolution and function in a much more mechanistic, yet general, manner. 
+It is well known that in many contexts mathematical models
+can fundamentally be \emph{nonidentifiable} and/or \emph{indistinguishable} -- meaning that 
 there can be uncertainty about an inferred model's parameters or even its claims about
 causal structure, even with access to complete and perfect data \citep{bellman1970structural, grewal1976identifiability, walter1984structural}. 
-%\plr{not clear what you mean by "actually"}\js{I think we discussed it's clear enough for an intro?}
-Models with different parameter schemes, or even different mechanics can be equally accurate, 
-but still not \emph{actually} agree with what is being modelled. 
+Models with different parameter schemes, or even different mechanics 
+can equally accurately predict the observed behavior of a given physical system, 
+but still not actually reflect the internal dynamics of the system.
 In control theory, where electrical circuits and mechanical systems are often the focus, 
 it is understood that there can be an infinite number of ``realizations'', 
-or ways to reverse engineer the dynamics of a black box,
-even if all possible input and output experiments on the black box are performed \citep{kalman1963mathematical, anderson1966equivalence, zadeh1976linear}. 
-In chemical engineering, those who study chemical reaction networks sometimes refer to the fundamental
-unidentifiability of these networks as ``the fundamental dogma of chemical kinetics'' \citep{craciun2008identifiability}. 
-In computer science, this is framed as the relationship among processes that simulate one another \citep{van2004equivalence}.  
-Although this may frustrate the occasional engineer or scientist, viewed from another angle,
-the concepts of unidentifiability and indistinguishability can provide a starting point for
-thinking about externally equivalent systems
+or ways to reverse engineer the dynamics of a ``black box'',
+even if all possible input and output experiments on the ``black box'' are performed 
+\citep{kalman1963mathematical, anderson1966equivalence, zadeh1976linear}. 
+The fundamental nonidentifiability of chemical reaction networks is sometimes referred to as ``the fundamental dogma of chemical kinetics'' \citep{craciun2008identifiability}. 
+In computer science, this is framed as the relationship among processes that simulate one another \citep{van2004equivalence}.
+Finally,
+the field of \emph{inverse problems} studies those cases where,
+even if a one-to-one mapping between model and behavior is possible in theory,
+even tiny amounts of noise can make inference problems nonidentifiable in practice.
+
+Although nonidentifiability may frustrate the occasional engineer or scientist, viewed from another angle,
+these concepts can provide a starting point for thinking about externally equivalent systems
 -- systems that evolution can explore, so long as the parameters and structures can be realized biologically.
-In fact, evolutionary
-biologists who study convergent versus parallel evolution, and developmental homology and analogy, are very familiar with such functional symmetries; 
+These functional symmetries manifest in convergent and parallel evolution, 
+as well as \emph{developmental systems drift}: the observation that
 macroscopically identical phenotypes in even very closely related species can in fact be divergent at the molecular and sequence level 
-\citep{true2001developmental, tsong2006evolution, hare2008sepsid, vierstra2014mouse, stergachis2014conservation, taylor2016diverse, matsui2015regulatory}.
+\citep{true2001developmental, tsong2006evolution, hare2008sepsid, vierstra2014mouse, stergachis2014conservation}.
+% are these good here? {taylor2016diverse, matsui2015regulatory}.
 
-In this paper we outline a theoretical framework to study the evolution of biological systems, such as gene regulatory networks. 
-We focus primarily on the neutral scenario: 
-that is where phenotype is conserved over evolutionary time. 
-%however, this framework could be applied to a wider set of evolutionary scenarios. 
-We present an analytical description of the set of all linear biological systems with identical phenotypes 
--- that is we describe the set of all gene network architectures that yield identical phenotypes in equivalent environments, and show that all linear biological systems can, in principal, can undergo systems drift and rewire. 
-Under neutrality, a population will drift through the set of all possible phenotypically equivalent linear gene networks.
-Consequentially, two phenotypically equivlanet yet allopatrically isolated populations, will likely produce incompatibile hybrids, despite the absence of adaptation, directional selection, or environmental change.
-Under these conditions, speciation typically occurs on timescales approximately on the order of $N_{e}$ generations, where $N_{e}$ is the effective population size.
-%
-\section*{Gene networks as linear dynamical systems}
-%  \jss{Organisms' phenotypes are constructred by gene by gene by environment interactions. Here we simply define the phenotype to be the organismal temporal molecular dynamics directly under natural selection. The \emph{what}, \emph{when}, and \emph{where}, of an organism's molecules that are physiologically or otherwise relevant for survival. 
-%   Thus we say that some function $\phi(t)$ is a phenotype where, 
-%  \begin{align}
-%    \phi(t) = \int_{0}^{\infty} h(t) u(t) dt  ,
-%  \end{align}
-%  and $h(t)$ is the \emph{impulse response} of the system and $u(t)$ is the \emph{input} function, both functions of time $t$. The input can be interpreted as the environment, as initial conditions, or otherwise, depending on the biological specifics under study. The phenotype is a convolution of both the impulse response and the input, as allowed by our assumption of linearity. 
-%
-%  Essentially the phenotype $\phi(t)$ is a consequence of an organism's specific gene by gene interactions, given by $h(t)$, reacting further with the local environment, given by $u(t)$. 
-%
-%  We describe the impulse response as, 
-%  \begin{align}
-%    h(t) = C e^{A t} B
-%  \end{align}
-%  where $A$ is a gene regulatory network (although this model can be generalized to other biological networks) -- a square matrix, and $B$ filters and translates the input to the system. The form of $B$ determines precisely how the state of the external environment influences the internal gene network. $C$ filters and translates the dynamics of the system and precesily determines the output, that is, what is visible to selection. 
-%
-%  Generally $A$ can be any real $n \times n$ matrix, $B$ any $n \times \ell$, and $C$ any $\ell \times n$ dimensional matrix. Each $i$th row of $A$ describes the \emph{cis}-regulatory module for gene $i$, and each $j$th entry, the specific regulatory influence of gene $j$ on gene $i$. 
-%
-%  Although $\phi(t)$ describes the phenotype given an input, $h(t)$ describes the phenotype subject only to an impulse -- an input present initially and absent immediately thereafter. Typically, a system $\Sigma$, is defined as,
-%  \begin{align}
-%    \Sigma = \left\{ \begin{array}{ll} \dot{\kappa}(t) &= A \kappa(t) + B u(t) \\ \phi(t) &= C \kappa(t) \end{array} \right.
-%  \end{align}
-%  Variables have the same identities as described above and $\kappa(t)$ is a vector of molecule concentrations at time $t$. Therefore the molecular concentrations at a specific time are completely determined by the input and gene by gene interactions. Lastly, a portion and/or combination of these molecules, $\phi(t)$, are ``observed'' by selection (this is in constrast to $\kappa(t)$ -- the \emph{kryptotype} -- as it is ``hidden'' from direct selection).
-%}
-\paragraph{Systems theory}
-Organisms' phenotypes are constructred by gene by gene and gene by environment interactions. Here we simply define the \emph{phenotype} to be the temporal molecular dynamics directly under natural selection. The \emph{what}, \emph{when}, and \emph{how much}, of an organism's molecules that are physiologically or otherwise relevant to survival.
+EDIT IN THESE REFS?
+The literature is filled with detailed observations of molecular systems and their diversity. 
+\plr{Diversity doesn't imply systems drift -- only if the diverse systems are homologous.}
+There are examples of significant diversity in the networks underlying processes such as 
+circadian rhythm \citep{sancar2008intelligent}, 
+cell cycle control \citep{cross2011evolution, kearsey2003enigmatic}, 
+pattern formation \plr{cite?}, 
+and metabolism \citep{lavoie2009rearrangements, martchenko2007transcriptional, dalal2016transcriptional, christensen2011unique, hartl2007induction, alam2013aspergillus}.
 
-Thus an organism's phenotype $\phi(t)$ -- a vector of molecular concentrations at time $t$ -- is determined both by the structure and organization of a biological system (\emph{e.g.} a gene regualtory network), given by the triple $(A,B,C)$,
-and by its environment $u(t)$.
+In this paper we outline a theoretical framework to study the evolution of biological systems
+that can be described by systems of differential equations, such as gene regulatory networks.
+We study the scenario
+where the optimal phenotype remains constant over evolutionary time,
+so that despite strong stabilizing selection for phenotype,
+neutral drift in the underlying genotype is possible.
+Results from systems theory provide
+an analytical description of the set of 
+all linear gene network architectures that yield identical phenotypes,
+which gives concrete expectations for how any such
+system can, in principal, undergo systems drift and rewire. 
+Even with stabilization selection, a population will explore the set of all possible phenotypically equivalent gene networks.
+Consequentially, two populations isolated for a sufficiently long period of time, 
+will likely produce inviable hybrids, despite the absence of adaptation, directional selection, or environmental change.
+% Under these conditions, speciation typically occurs on timescales approximately on the order of $N_{e}$ generations, where $N_{e}$ is the effective population size.
 
-Such a biological system $\mathcal{S}$ is given by,
-  \begin{align}\label{eqn:system}
-    \mathcal{S} := \left\{ \begin{array}{ll} \dot{\kappa}(t) &= A \kappa(t) + B u(t) \\ \phi(t) &= C \kappa(t) \end{array} \right.
-  \end{align}
+\section*{Methods}
 
-Generally $A$ is any real $n \times n$ matrix, $B$ any $n \times \ell$, and $C$ any $\ell \times n$ dimensional matrix. Although many different biological systems can be modeled with this approach, for clarity, we focus on gene regulatory networks.
-%
-Each $i$th row of $A$ describes the \emph{cis}-regulatory module for gene $i$, and each $j$th entry, the specific regulatory influence of gene $j$ on gene $i$. 
-%The $i^\text{th}$ row of $A$ contains the regulatory logic pertaining to gene $i$.
-%
-As such, $A_{ij}$ is the magnitude at which transcription factor $\kappa_j(t)$ regulates transcription factor $\kappa_i(t)$, and if $A_{ij} > 0$, we say that $\kappa_j$ upregulates $\kappa_i$. If $A_{ij} < 0$, we say that $\kappa_j$ down-regulates $\kappa_i$. 
-
-The form of $B$ determines precisely how the environment influences the organism -- that is $B$ filters and translates the input to the system. $C$ filters and translates the dynamics of the system and precesily determines the output, that is, what is visible to selection.
-\emph{E.g.} for a metabolic system, $C_{ij}$ is the amount the $j$th metabolite $u_j$ affects the production of the $i$th enzyme.
-%
-
-  %where $A$ is a gene regulatory network (although this model can be generalized to other biological networks) -- a square matrix, 
-  %and $B$ filters and translates the input to the system. The form of $B$ determines precisely how the state of the environment influences the internal gene network. $C$ filters and translates the dynamics of the system and precesily determines the output, that is, what is visible to selection. 
-%
-%
-Furthermore, whereas the phenotype is a subset of molecules \emph{visible} to selection, the \emph{kryptotype} includes the molecular dynamics \emph{hidden} from selection. That is $\kappa(t)$ is a vector of the system's molecular concentrations at time $t$.
-%
-%The structure of $B$ and $C$ determines how systems process their environment and convert krypto- to phenotypes, respectively. 
-%
-\plr{This "Thus" needs expanding, e.g., "the solution to this equation is unique and given by" with a reference.}
-
-Finally, we can write the phenotype as a convolution of the system organization and the environment,
+We study an abstract model of temporal dynamics of the concentrations of a collection of $n$ coregulating molecules
+within an organism, that may also be affected by temporally varying signals from the environment.
+% Organisms' phenotypes are constructed by gene by gene and gene by environment interactions. 
+%Here we simply define the \emph{phenotype} to be those aspects of the dynamics directly under natural selection
+%-- the \emph{what}, \emph{when}, and \emph{how much}, of an organism's molecules that are physiologically or otherwise relevant to survival.
+We write $\kappa(t)$ for the vector of $n$ molecular concentrations at time $t$.
+There are also $m$ ``inputs'' determined exogenously to the system, denoted $u(t)$,
+and $\ell$ ``outputs'', denoted $\phi(t)$.
+The output is merely a linear function of the internal state:
+$\phi_i(t) = \sum_j C_{ij} \kappa_i(t)$
+for some matrix $C$.
+Since $\phi$ is what natural selection acts on, we refer to it as the \emph{phenotype}
+(meaning the ``visible'' aspects of the organism),
+and in contrast refer to $\kappa$ as the \emph{kryptotype},
+as it is ``hidden'' from direct selection.
+Although $\phi$ may depend on all entries of $\kappa$,
+it is usually of lower dimension than $\kappa$,
+and we tend to think of it as the subset of molecules relevant for survival.
+The dynamics are determined by
+the matrix of regulatory coefficients, $A$;
+a time-varying vector of inputs $u(t)$,
+and a matrix $B$ that encodes the effect of each entry of $u$ on the elements of the kryptotype.
+%Thus an organism's phenotype $\phi(t)$ -- a vector of molecular concentrations at time $t$ -- is determined both by the structure and organization of a biological system (\emph{e.g.} a gene regulatory network), given by the triple $(A,B,C)$,
+%and by its environment $u(t)$.
+The rate at which the $i^\text{th}$ concentration changes
+is a weighted sum of the concentrations of the other concentrations
+as well as the input:
+\begin{equation}\label{eqn:system}
+   \begin{aligned}
+    \dot{\kappa}(t) &= A \kappa(t) + B u(t) \\
+    \phi(t) &= C \kappa(t) .
+  \end{aligned} 
+\end{equation}
+Furthermore, we always assume that $\kappa(0) = 0$,
+so that the kryptotype measures deviations from initial concentrations. 
+Here $A$ can be any $n \times n$ matrix, $B$ a $n \times m$, and $C$ any $\ell \times n$ dimensional matrix,
+with usually $\ell$ and $m$ less than $n$.
+We think of the system as the triple $\mathcal{S} = (A,B,C)$,
+which translates (time-varying) $m$-dimensional input $u(t)$ into the $\ell$-dimensional output $\phi(t)$.
+Under quite general assumptions,
+we can write the phenotype as
   \begin{align}
     \phi(t) = C e^{A t} \kappa(0) + \int_{0}^{t} C e^{A (t-s)} B u(s) ds ,
   \end{align}
-where we refer to $h(t) := Ce^{A t}B$ as the system's \emph{impulse response}. 
-%We will now lay out the model in more general terms.
-%Suppose that the \emph{internal state} of the system
-%is parameterized by the concentrations of a collection of $n$ molecular species,
-%$S_1, \ldots, S_n$,
-%and the vector of concentrations at time $t$ we denote $\kappa(t)=(\kappa_1(t),\ldots,\kappa_n(t))$.
-%There are also $m$ ``input'' species, whose concentrations are determined
-%exogenously to the system,
-%and are denoted $u(t) = (u_1(t),\ldots,u_m(t))$,
-%and $\ell$ ``output'' species, whose concentrations are denoted
-%$\phi(t) = (\phi_1(t),\ldots,\phi_\ell(t))$.
-%The output is merely a linear function of the internal state:
-%\begin{align*}
-%    \phi_i(t) = \sum_j C_{ij} \kappa_i(t).
-%\end{align*}
-%Since $\phi$ is what natural selection acts on, we refer to it as the \emph{phenotype},
-%and sometimes in contrast refer to $\kappa$ as the \emph{kryptotype},
-%as it is ``hidden'' from direct selection.
-%The rate at which the $i^\text{th}$ species is produced
-%is a weighted sum of the concentrations of the other species
-%as well as the input:
-%\begin{align*}
-%    \ddt \kappa_i(t) = \sum_j A_{ij} \kappa_j(t) + \sum_r B_{ir} u_r(t) .
-%\end{align*}
-%In matrix notation, this is written more concisely as
-%\begin{align} \label{eqn:lti_system}
-%    \ddt \kappa(t) &= A \kappa(t) + B u(t) \\
-%    \phi(t) &= C \kappa(t) .
-%\end{align}
- \begin{example}[Oscillating gene network: cell cycle control]\label{ex:oscillator}
-    Cellular division is governed by many different processes, however it is thought that its rhythm is partially controlled by oscillating gene transcription \citep{orlando2008global}. Here we consider a simplified model of oscillating gene transcription.
+which is a convolution of the input $u(t)$ with the system's \emph{impulse response},
+which we denote as $h(t) := Ce^{A t}B$.
 
-    Suppose gene-2 up-regulates the transcription of gene-1 and that gene-1 down-regulates gene-2 with equal magnitudes, whose concentrations are given by $\kappa_1(t)$ and $\kappa_2(t)$. Furthermore, suppose that only the dynamics of gene-1 are consequential to the cell cycle (perhaps the amount of gene-1 activates another downstream gene network). Lastly suppose that the production of both genes is equally stimulated by an impulse of a molecule present immediately after division.
+Although many different biological systems can be modeled with this approach, for clarity, we focus on gene regulatory networks.
+In this interpretation, $A_{ij}$ determines how the $j^\text{th}$ transcription factor regulates the $i^\text{th}$ transcription factor.
+If $A_{ij} > 0$, then $\kappa_j$ upregulates $\kappa_i$, while if $A_{ij} < 0$, then $\kappa_j$ downregulates $\kappa_i$.
+The $i$th row of $A$ is therefore determined by genetic features such as
+the strength of $j$-binding sites in the promoter of gene $i$,
+factors affecting chromatin accessibility near gene $i$,
+or basal transcription machinery activity.
+The form of $B$ determines how the environment influences transcription factor expression levels,
+and $C$ might be the rate of production of a downstream enzyme
+(although other arrangements could be made).
+% \emph{E.g.} for a metabolic system, $C_{ij}$ is the amount the $j$th metabolite $u_j$ affects the production of the $i$th enzyme.
 
-    If the rate each of these genes is expressed is a linear function of their concentrations, the dynamics of the system is given by
-    \begin{alignat*}{2}
-      %\left\{ \begin{array}{ll} 
-      \dot{\kappa_{1}}(t) &= &&\kappa_{2}(t) + u(t) \\
-        \dot{\kappa_{2}}(t) &= - &&\kappa_{1}(t) + u(t) \\
-        \phi(t) &= &&\kappa_{1}(t)   .
-      %\end{array} \right.
-    \end{alignat*}
-Equivalently, in matrix form the system regulatory coefficients are given as,
-    $A \!=\! \left[\begin{smallmatrix} 0 & 1 \\ -1 & 0 \end{smallmatrix}\right] ,\ B \! =\! \left[\begin{smallmatrix} 1 \\ 1 \end{smallmatrix}\right] , \ C \! =\! \left[\begin{smallmatrix} 1 & 0 \end{smallmatrix}\right]$
+{Linearity} also ``zero-state equivalence''
+Here we have assumed that the system is linear,
+and begins from the ``zero'' state ($\kappa(0)=0$).
+Of course, neither of these are necessarily true for real systems,
+but the dynamics of most nonlinear systems can be approximated locally by a linear systems near most points. 
+Furthermore, the ease of analyzing linear systems makes this an attractive place to start.  
+
+
+\begin{example}[An oscillator]\label{ex:oscillator}
+For illustration, we consider an extremely simplified model of oscillating gene transcription,
+as for instance is found in cell cycle control or the circadian rhythm.
+% Cellular division is governed by many different processes, however it is thought that its rhythm is partially controlled by oscillating gene transcription \citep{orlando2008global}.
+Suppose there are two genes, 
+whose transcript concentrations are given by $\kappa_1(t)$ and $\kappa_2(t)$, 
+and that gene-2 upregulates gene-1 and that gene-1 downregulates gene-2 with equal strength.
+Furthermore, suppose that only the dynamics of gene-1 are consequential to the oscillator 
+(perhaps the amount of gene-1 activates another downstream gene network). 
+Lastly suppose that the production of both genes is equally upregulated by an exogenous signal.
+The dynamics of the system are described by
+    \begin{align*}
+      \dot{\kappa_{1}}(t) &= \kappa_{2}(t) + u(t) \\
+        \dot{\kappa_{2}}(t) &= - \kappa_{1}(t) + u(t) \\
+        \phi(t) &= \kappa_{1}(t)   .
+    \end{align*}
+In matrix form the system regulatory coefficients are given as,
+$A \!=\! \left[\begin{smallmatrix} 0 & 1 \\ -1 & 0 \end{smallmatrix}\right]$, 
+$B \! =\! \left[\begin{smallmatrix} 1 \\ 1 \end{smallmatrix}\right]$,
+and $C \!=\! \left[\begin{smallmatrix} 1 & 0 \end{smallmatrix}\right]$.
   %  \begin{align*}
   %    A = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} , \qquad B = \begin{bmatrix} 1 \\ 1 \end{bmatrix}, \qquad C = \begin{bmatrix} 1 & 0 \end{bmatrix}
   %  \end{align*}
@@ -316,11 +335,11 @@ Equivalently, in matrix form the system regulatory coefficients are given as,
  %         \phi(t) &= \begin{bmatrix} 1 & 0 \end{bmatrix} \kappa(t) \end{array} \right.
  %    \end{align*}
       
-      Since the input is simply an impulse, its phenotype is equivalent to its impulse response,
+      Suppose the input is an impulse at time zero (a delta function), and so its phenotype is equal to its impulse response,
       \begin{align*}
         \phi(t) = h(t) = \sin t + \cos t  .
       \end{align*}
-
+      The system and its dynamics are referred to in Figure \ref{fig:oscillator}. We return to the evolution of such a system below.   
     \begin{figure}[H]
        % \begin{center} 
       \centering
@@ -352,109 +371,71 @@ Equivalently, in matrix form the system regulatory coefficients are given as,
       \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{osc_impulse}
    \end{tabular}
   %  \end{center}
-      \caption{(Left) Graphical representation of the cell cycle control gene network, and (right) plot of the phenotype $\phi(t)$ against time $t$.}
+      \caption{(Left) Graphical representation of the cell cycle control gene network, and (right) plot of the phenotype $\phi(t)$ against time $t$.} \label{fig:oscillator}
     \end{figure}
-      We return to the evolution of such a system below.
   \end{example}
 
 
-  \paragraph{Phenotypically equivalent gene networks}
+\subsection*{Equivalent gene networks}
 
-%\plr{This paragraph feels like the introduction.}
-%The literature is filled with detailed observations of molecular systems and their diversity. 
-%\plr{Diversity doesn't imply systems drift -- only if the diverse systems are homologous.}
-%There are examples of significant diversity in the networks underlying processes such as 
-%circadian rhythm \citep{sancar2008intelligent}, 
-%cell cycle control \citep{cross2011evolution, kearsey2003enigmatic}, 
-%pattern formation \plr{cite?}, 
-%and metabolism \citep{lavoie2009rearrangements, martchenko2007transcriptional, dalal2016transcriptional, christensen2011unique, hartl2007induction, alam2013aspergillus}. 
-Despite a symmetry in functionality or phenotype systems can often differ, sometimes substantially, at the molecular level. 
-How many different mechanisms have the same function? 
-Gene regulatory networks with identical phenotypes do not necessarily have identical kryptotypes.
-%
-%Any linear and minimal gene network 
-%-- minimal, informally meaning that the system's phenotype is achieved with the fewest possible genes ($n=\min$, see \ref{apx:kalman})
-%-- has an identical impulse response and thus phenotype given identical inputs $u(t)$, up to a change of coordinates. 
-%  \begin{equation}
-%    \begin{aligned}
-%      h(t) &= C e^{A t} B 
-%      = C V^{-1} V e^{A t} V^{-1} V B \\
-%      &= C V^{-1} e^{V A V^{-1} t} V B 
-%      = \bar{C} e^{\bar{A} t} \bar{B}
-%    \end{aligned}
-%  \end{equation}
-%Two gene networks, $\mathcal{S} = ( A, B, C )$, and $\bar{\mathcal{S}} = (\bar{A} = VAV^{-1}, \bar{B} = VB, \bar{C} = CV^{-1} )$, 
-%have the same phenotype, for all possible inputs, if and only if they are related by a change of coordinates. 
-%
-%Although systems may not be identifiable beyond a change of coordinates, at present we are primarily interested in a subset of these systems. 
-%That is, systems that not only have equivalent external dynamics, but also equivalent input and output relationships. 
-%\plr{clarify that you mean actually having the same $B$ and $C$. (at first I read "input and output relationship" as the mapping $u \to \phi$),
-%    i.e. behaviour across many possible inputs.}
-%Formally, this means systems related by a change of coordinates (any invertible matrix $V$) that leaves $B$ and $C$ invariant:
-%  \begin{align}
-%    VB &= B \implies \bar{B} = B \\
-%    CV &= C \implies \bar{C} = C
-%  \end{align}
-%\plr{this sentence lacks an object (or some sentence part?)}
-%In other words systems with varying gene regulatory network architectures yet identical selection pressures, environment, and phenotype.
-%
-%Define $V(\tau)$ as the parameterized change of coordinates matrix that preserves $B$ and $C$, with $\tau$ a vector of free parameters. The set of \emph{all} phenotypically invariant (minimal) gene networks is, 
- % \begin{align}
- %   A(\tau) = V(\tau) A(0) V^{-1}(\tau) ,
- % \end{align}
-%and a \emph{Linear Evolutionary System} is, 
-%\plr{why is this "evolutionary"? It is the thing that we're thinking about evolution of, but that doesn't make it evolutionary.}
-%
-%Therefore the set of all phenotypically identical (and minimal) systems can be parameterized as, $\mathcal{S}_{\min}(V) = (VAV^{-1}, VB, CV )$,
-  %  \begin{align} \label{eq:min_param}
-  %    \mathcal{S}(V) := \left\{ \begin{array}{ll} V\dot{\kappa}(t) &= VA V^{-1} \kappa(t) + VB u(t) \\ \phi(t) &= C V^{-1} \kappa(t) \end{array} \right.
-  %\end{align}
- % where $V$ is any invertible matrix and it's elements are free parameters. 
-%
+As reviewed above,
+some systems with identical phenotypes are known to differ, sometimes substantially, at the molecular level; 
+systems with identical phenotypes do not necessarily have identical kryptotypes.
+How many different mechanisms perform the same function? 
+
 %Therefore varying $V$ can tweak the relationships between genes within a regulatory network, yet preserve the phenotype. Some gene networks, however, can grown or shrink, perhaps following gene duplications and deletions, and also still preserve their phenotypes. These changes cannot be described by $\mathcal{S}(V)$, but are ecanpuslated by \ref{eqn:equivalence}, below.
 %The Kalman decomposition decomposes a system into \emph{reachable} and \emph{observable} components -- that is coefficients that respond to an input and coefficients that produce an observable output. A minimal system's components are both reachable and observable. In this form, it is possible to add components that respond to an input, but do not influence the output, or components that, in principle, influence the output, but do not respond to any inputs. Any system with such components is, by definition, non-minimal, and any system can be modified to include any finite number of extra unreachable and/or unobservable components, without modifying its impulse response. Decomposing the system allows for the easy manipulation of ``superfluous''(but not necessarily expendable) components. After unreachable/unobservable coefficients are added, changing coordinates ``stirs'' the system coefficients such that the previously superfluous coefficients can become essential to system funciton. 
 %Whether or not evolution constrains biological systems to be minimal or nearly minimal is an open question. 
 
-\begin{definition}[Phenotypic equivalence of systems]
-    Let $(\kappa(t),\phi(t))$ and $(\bar \kappa(t),\bar \phi(t))$ be the solutions to \eqref{eqn:system}
-    with coefficient matrices $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ respectively,
-    and both $\kappa(0)$ and $\bar \kappa(0)$ are zero. 
-    The systems defined by $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ are
-    \textbf{phenotypically equivalent} 
-    if
-    \begin{align*}
-        \phi(t) = \bar \phi(t) \qquad \text{for all} \; t \ge 0.
-    \end{align*}
-    Equivalently, this occurs if and only if
-    \begin{align*}
-        h(t) = \bar h(t)  \qquad \text{for all} \; t \ge 0,
-    \end{align*}
-    where $h$ and $\bar h$ are the impulse responses of the two systems.
-\end{definition}
+Two systems are equivalent if they produce the same phenotype given the same input,
+i.e., have the same input--output relationship.
+For any input $u(t)$,
+suppose that $(\kappa(t),\phi(t))$ and $(\bar \kappa(t),\bar \phi(t))$ are the solutions to equation \eqref{eqn:system}
+with coefficient matrices $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ respectively.
+% (recall that $\kappa(0) = \bar \kappa(0) = 0$). 
+We say that
+the systems defined by $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ are
+\textbf{phenotypically equivalent} 
+if
+\begin{align*}
+      \phi(t) = \bar \phi(t) \qquad \text{for all} \; t \ge 0.
+\end{align*}
+This occurs if and only if their impulse response functions are the same:
+if $h(t) = \bar h(t)$ for all $t \ge 0$.
 
-One way to find other systems equivalent to a given one
+One way to find other systems phenotypically equivalent to a given one
 is by change of coordinates:
 if $V$ is an invertible matrix, then the systems $(A,B,C)$ and $(VAV^{-1},VB,CV^{-1})$
-have the same dynamics because their impulse responses are equal:
+are phenotypically equivalent because their impulse response functions are equal:
   \begin{equation}
     \begin{aligned}
       h(t) &= C e^{A t} B 
       = C V^{-1} V e^{A t} V^{-1} V B \\
       &= C V^{-1} e^{V A V^{-1} t} V B 
-      = \bar{C} e^{\bar{A} t} \bar{B}
+      = \bar{C} e^{\bar{A} t} \bar{B} .
     \end{aligned}
   \end{equation}
-%\begin{align*}
-%    CV^{-1}( zI - VAV^{-1})^{-1}VB
-%    =
-%    CV^{-1}V( zI - A)^{-1}V^{-1}VB
-%    =
-%    C( zI - A)^{-1}B .
-%\end{align*}
-However, the converse is not necessarily true: 
-systems can have identical impulse responses without being changes of coordinates of each other.
+However, not all phenotypically equivalent systems are of this form:
+systems can have identical impulse responses without being coordinate changes of each other.
 In fact, systems with identical impulse responses can involve interactions between different
-numbers of molecular species, and thus be in different dimensions.
+numbers of molecules, and thus 
+have kryptotypes in
+different dimensions altogether.
+
+This implies that most systems have at least $n^2$ degrees of freedom,
+where recall $n$ is the number of components of the kryptotype vector.
+This is because for an arbitrary $n \times n$ matrix $Z$,
+taking $V$ to be the identity matrix plus a small perturbation in the direction of $Z$
+above implies that
+moving $A$ in the direction of $ZA - AZ$
+% (e.g., $\bar A = A + \epsilon(ZA-AZ)$)
+while also moving $B$ in the direction of $ZB$ 
+and $C$ in the direction of $-CZ$
+will leave the phenotype unchanged.
+If $A$ is invertible, for instance,
+then any such $Z$ will result in a different system.
+
+TALK ABOUT MINIMALITY
 
 We refer to $\calA(\Sys_0)$ as the set of all systems equivalent to $\Sys_0$, regardless of dimension:
 \begin{equation} \label{eqn:equivalence}
@@ -1199,6 +1180,10 @@ The consistency comes from gene networks localized to the sex chromosomes functi
 %\plr{probably shouldn't claim this is "unexplored"} \js{I meant unexplored within this paper.Changed wording. Does that work?}
 %Although we leave this question unexplored, this phenomena may lead to insights on evolvability and developmental innovation. 
 Lastly, we show that hybrid gene networks, under neutral processes, break down as function of genetic distance, and may, in part, explain broad patterns of reproductive isolation among diverse phyla \citep{roux2016shedding}.
+
+What about nonlinearity?
+
+Note that the drift above could actually be caused by the optimal phenotype shifting.
 
 %\plr{this paragraph isn't very clear} \js{Should I delete it? I guess it's sort of just a vague ``yeah we know this method has shortcomings''.}
 %As Richard Levins opined, models in population biology face a trade-off among precision, realism, and generality \citep{levins1966strategy}. As Levins expects, any tractable and general model, such as the present one under discussion, will have limitations. Most notable is linearity. It is often stated that life is not linear. This is often true, however, many of the ideas developed here should be generalizable to nonlinear cases (multi-linear systems, say). Further, we see this as a necessary first step in the direction of more life-like nonlinear evolutionary systems theory. Depending on an actual biological system's particularities, its (potential) non-linearity, may buffer or exacerbate effects elucidated in this paper, such as the acquisition of Dobzansky-Muller incompatibilities.

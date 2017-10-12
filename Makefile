@@ -1,3 +1,5 @@
+all: kalman_walk_paper.pdf
+
 .PHONY : clean
 
 PDFLATEX=pdflatex -interaction nonstopmode
