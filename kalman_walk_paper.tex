@@ -435,7 +435,14 @@ will leave the phenotype unchanged.
 If $A$ is invertible, for instance,
 then any such $Z$ will result in a different system.
 
-TALK ABOUT MINIMALITY
+It turns out that in general, there are more degrees of freedom,
+except if the system is \emph{minimal} -- meaning, informally, that it uses the smallest possible number of components
+to achieve the desired dynamics.
+Results in system theory show that any system can be realized in a particular minimal dimension
+(the dimension of the kryptotype, $n_\text{min}$),
+and that any two phenotypically equivalent systems of dimension $n_\text{min}$ are related by a change of coordinates.
+
+If the system is not minimal, then the Kalman decomposition tells us XXX
 
 We refer to $\calA(\Sys_0)$ as the set of all systems equivalent to $\Sys_0$, regardless of dimension:
 \begin{equation} \label{eqn:equivalence}
@@ -443,13 +450,9 @@ We refer to $\calA(\Sys_0)$ as the set of all systems equivalent to $\Sys_0$, re
     \calA(\Sys_0) 
       &= \left\{
         (A,B,C) : C e^{At} B = C_0 e^{A_0 t} B_0 \; \text{for}\; t \ge 0 
-      \right\}  \\
-      &= \left\{
-        (A,B,C) : C A^r B = C_0 A_0^r B_0 \; \text{for}\; 1 \le r \le n-1 
-      \right\} .
+      \right\}  .
   \end{aligned}
 \end{equation}
-Equivalence of the two characterizations follows from the Cayley-Hamilton theorem.
 
 The set of all systems phenotypically equivalent to a given system $(A,B,C)$ 
 is elegantly described using the Kalman decomposition,
