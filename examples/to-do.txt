@@ -1,0 +1,20 @@
+Look at the $n$-dimensional oscillator,
+using only the controllable-but-not-observable degrees of freedom
+in the Kalman decomposition.
+And still keeping $B$ and $C$ fixed.
+
+Goal is to to create a plot like Fig 6
+of hybrid incompatibility against distance.
+
+Do this for $n=3$ and $n=10$.
+
+1. Start with one particular system, A0 (maybe the one you get by just adding zeros
+to the two-dimensional one).
+2. Pick a random epsilon between 0 and 0.1 (say), that will be the size of the noise.
+3. Pick indept random Normals to put in all the free parameter spots, and multiply these all by epsilon, get a new matrix A.
+4. Measure mean-sq-distance from A to A0.
+5. Measure F1 and F2 incompatibility (for a bunch of random F2s).
+6. Repeat.
+
+Think about whether the right comparison of Fig 6 between systems in different dimensions
+has x-axis |A-A0| or mean difference per entry of A.
