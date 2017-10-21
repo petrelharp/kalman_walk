@@ -1453,29 +1453,29 @@ After selection, we have reproduction:
 suppose this occurs as in the infinitesimal model \citep{infinitesimal},
 so that each offspring of parents with traits $x$ and $y$
 is drawn independently from a Gaussian distribution 
-with mean $(x+y)/2$ and covariance matrix $N$.
-Here, $N$ is the contribution of ``segregation variance''.
+with mean $(x+y)/2$ and covariance matrix $R$.
+Here, $R$ is the contribution of ``segregation variance''.
 If $\widetilde \Sigma = (\Sigma^{-1} + U^{-1})^{-1}$ 
 is the covariance matrix of the parents post-selection,
 then the distribution of offspring will again be Gaussian,
 with mean equal to that of the parents
-and covariance matrix $\widetilde \Sigma/2 + N$.
+and covariance matrix $\widetilde \Sigma/2 + R$.
 
 In summary, a generation under this model modifies the mean ($\mu$)
 and covariance matrix ($\Sigma$) of a population as follows:
 \begin{align*}
     \mu &\mapsto \mu' = (\Sigma^{-1}+U^{-1})^{-1} \Sigma^{-1} \mu \\
-    \Sigma &\mapsto \Sigma' = \frac{1}{2} (\Sigma^{-1} + U^{-1})^{-1} + N .
+    \Sigma &\mapsto \Sigma' = \frac{1}{2} (\Sigma^{-1} + U^{-1})^{-1} + R .
 \end{align*}
 What measures are stable under this transformation?
 The condition $\mu = \mu'$ reduces to $\Sigma U^{-1} \mu = 0$;
-if we assume $N$ and therefore $\Sigma$ are of full rank,
+if we assume $R$ and therefore $\Sigma$ are of full rank,
 then this happens if and only if $\mu$ is not in the span of the columns of $U$,
 i.e., if $\mu$ lies in a neutral direction.
 The condition $\Sigma' = \Sigma$ can also be solved,
 at least numerically.
 After rearrangement, it reduces to
-$\Sigma U^{-1} \Sigma + (I/2 - N U^{-1}) \Sigma = N$.
+$\Sigma U^{-1} \Sigma + (I/2 - R U^{-1}) \Sigma = R$.
 We can find a more explicit description
 if we assume that $x^T U x = \sum_{i=1}^k x_i^2$,
 i.e., that selection only cares about the first $k$ coordinates,
@@ -1484,32 +1484,32 @@ If so, the condition $\Sigma' = \Sigma$
 can be written in block form as
 \begin{align*}
     \begin{bmatrix}
-        \Sigma_{11}^2 + (I/2 - N_{11}) \Sigma_{11}
-        & \Sigma_{11} \Sigma_{12} + (I/2 - N_{11})\Sigma_{12} \\
-        \Sigma_{12}^T \Sigma_{11} + \Sigma_{12}^T/2 - N_{12}^T \Sigma_{11}
-        & \Sigma_{22} - N_{12}^T \Sigma_{12} 
+        \Sigma_{11}^2 + (I/2 - R_{11}) \Sigma_{11}
+        & \Sigma_{11} \Sigma_{12} + (I/2 - R_{11})\Sigma_{12} \\
+        \Sigma_{12}^T \Sigma_{11} + \Sigma_{12}^T/2 - R_{12}^T \Sigma_{11}
+        & \Sigma_{22} - R_{12}^T \Sigma_{12} 
     \end{bmatrix}
     &=
     \begin{bmatrix}
-        N_{11} & N_{12} \\
-        N_{12}^T & N_{22}
+        R_{11} & R_{12} \\
+        R_{12}^T & R_{22}
     \end{bmatrix} .
 \end{align*}
-The first equation, $\Sigma_{11}^2 + (I/2 - N_{11}) \Sigma_{11} = N_{11}$,
+The first equation, $\Sigma_{11}^2 + (I/2 - R_{11}) \Sigma_{11} = R_{11}$,
 can be solved with the quadratic formula: 
-$$\Sigma_{11} = (N_{11} - I/2 + Q)/2$$
-for any $Q$ that commutes with $N_{11}$
-and is a solution to $Q^2 = (N_{11} - I/2)^2 + 4 N_{11}$.
+$$\Sigma_{11} = (R_{11} - I/2 + Q)/2$$
+for any $Q$ that commutes with $R_{11}$
+and is a solution to $Q^2 = (R_{11} - I/2)^2 + 4 R_{11}$.
 Since we need $\Sigma$ to be positive definite,
 we take the solution with positive eigenvalues.
 Given $\Sigma_{11}$, the remaining components are
 \begin{align*}
     \Sigma_{12} 
     &= 
-    \left( \Sigma_{11} + I/2 - N_{11} \right)^{-1} N_{12} \\
+    \left( \Sigma_{11} + I/2 - R_{11} \right)^{-1} R_{12} \\
     \Sigma_{22}
     &=
-    N_{12}^T \Sigma_{12} + N_{22} .
+    R_{12}^T \Sigma_{12} + R_{22} .
 \end{align*}
 Importantly, the mean $\mu$ does not affect 
 either how the covariance matrix moves,
@@ -1521,7 +1521,7 @@ Suppose that a population of $N$ individuals
 behaves approximately as described above.
 By the above,
 we may expect that the covariance matrix stays close to a constant value $\Sigma$,
-computed from $N$ and $U$ as above,
+computed from $R$ and $U$ as above,
 so that we need only consider motion of the mean, $\mu$.
 Since we take a sample of size $N$ to construct the next generation,
 the next generation's mean is drawn from a Gaussian distribution with mean $\mu'$
@@ -1587,7 +1587,93 @@ by substituting $A=\Sigma^{-1}$ and $B=U^{-1}$,
     f(x; (\Sigma^{-1} + U^{-1})^{-1}, (\Sigma^{-1}+U^{-1})^{-1} \Sigma^{-1} y) .
 \end{align*}
 
+%%%%%%%%%%%
+\subsection*{Evolution of segregation covariance}
 
+The description above does not completely describe how two diverging populations interact,
+since the amount of \emph{segregation variance}, quantified by $R$,
+will not stay constant.
+To get an idea of how this might change,
+suppose that a multivariate trait is determined by $L$ unlinked, biallelic loci,
+and that the $i^\mathrm{th}$ locus has two alleles with additive effects $\pm x_i$,
+so that begin homozygous for the $+$ allele contributes $+2x_i$ to the trait.
+For simplicity, we will neglect the effects of selection.
+\plri{fixup the below to be actually multivariate}
+If the $+$ allele at locus $i$ is at frequency $p_i$ in a population,
+then the mean and genetic variance of the trait in a diploid population with random mating is
+\begin{align*}
+    m &= 2 \sum_i p_i x_i \\
+    s^2 &= 2 \sum_i p_i (1-p_i) x_i^2 .
+\end{align*}
+
+
+Segregation variance between two parents depends on the loci at which either are heterozygous,
+and each locus contributes independently
+since alleles are additive.
+If the alleles are at Hardy-Weinberg proportions,
+then since segregation is a fair coin flip, a heterozygous locus contributes $x_i^2/4$ to the variance,
+and so the \emph{mean} segregation variance, averaging across parents, is
+% two parents, prob 2p(1-p) for prob the locus is heterozygous, variance 0.5(1-0.5)x^2.
+\begin{align*}
+    R_0(p) = \frac{1}{2} \sum_i p_i (1-p_i) x_i^2 .
+\end{align*}
+
+On the other hand,
+if the second parent came from a distinct population
+with frequencies $q_i$
+(an $F_1$ hybrid),
+this would be
+\begin{align*}
+    R_1(p,q) &= \frac{1}{4} \sum_i p_i^2 (1-p_i)^2 x_i^2 
+                + \frac{1}{4} \sum_i q_i^2 (1-q_i)^2 x_i^2 \\
+                &= (R_0(p) + R_0(q))/2 .
+\end{align*}
+If we assume that the populations are at equilibrium, $R_0(p) \approx R_0(q)$,
+and so $R_1(p,q) \approx R_0(p)$.
+
+Now consider an $F_2$ hybrid, where both parents are $F_1$
+and so each heterozygous at locus $i$ with probability $p_i (1-q_i) + (1-p_i) q_i$.
+Then
+\begin{align*}
+    R_2(p,q) &= \frac{1}{4} \sum_i \left(p_i (1-q_i) + (1-p_i) q_i \right) x_i^2  .
+\end{align*}
+Suppose that the two populations are slightly drifted from each other,
+with frequency difference $p_i-q_i = 2\epsilon_i$.
+Then,
+$$
+    p (1-q) + p (1-q)
+    &=
+    (u+\epsilon) (1-u+\epsilon) + (u-\epsilon) (1-u-\epsilon) \\
+    &=
+    2 u (1-u)
+    % + \epsilon (u + (1-u) - u - (1-u))
+    + 2 \epsilon^2 .
+$$
+If the frequencies have evolved neutrally in unconnected, Wright-Fisher populations 
+of effective size $N$ for $t$ generations from a common ancestor with allele frequency $u$,
+then $\epsilon$ has mean zero and variance roughly $u (1-u) t/N$.
+Still assuming the populations are at stationarity,
+so that $R_0$ is constant between the two,
+and taking the frequencies $p_i$ as a proxy for the ancestral frequencies $u_i$,
+this implies that we expect
+\begin{align*}
+    R_2 
+    &\approx 
+    R_0 + \frac{1}{2} \sum_i p_i (1-p_i) x_i^2 t/N \\
+    &=
+    \left( 1 + \frac{t}{N} \right) R_0 .
+\end{align*}
+On the other hand, the expected squared difference in trait \emph{means} here is
+\begin{align} \label{eqn:var_dx}
+    4 \sum_i p_i (1-p_i) x_i^2 t / N = 8 R_0 t /N .
+\end{align}
+This implies that under this model,
+segregation variance in $F_2$s between two populations
+is roughly increased by a factor of $1/8$ of the difference between their means.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Away from the optimum}
 \label{apx:away_from_opt}
 
