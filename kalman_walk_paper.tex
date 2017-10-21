@@ -335,7 +335,7 @@ and $C \!=\! \left[\begin{smallmatrix} 1 & 0 \end{smallmatrix}\right]$.
  %       \end{bmatrix} \kappa(t) + \begin{bmatrix} 1 \\ 1 \end{bmatrix} u(t) \\ 
  %         \phi(t) &= \begin{bmatrix} 1 & 0 \end{bmatrix} \kappa(t) \end{array} \right.
  %    \end{align*}
-      
+
       Suppose the input is an impulse at time zero (a delta function), and so its phenotype is equal to its impulse response,
       \begin{align*}
         \phi(t) = h(t) = \sin t + \cos t  .
@@ -1421,15 +1421,144 @@ is equivalent to changing $B$ by $Y = QB$.
   \end{align*}
   where $M$ is a diagonal matrix where each diagonal element is a Bernoulli random variable ($M_{ii} = 0$ or $1$ with equal probability, and $M_{ij}=0$ if $i \neq j$). If systems are different dimensions the smaller system elements can be augmented with $0$s (\emph{e.g.} $\left[ \begin{smallmatrix} A & 0 \\ 0 & 0 \end{smallmatrix} \right], \left[ \begin{smallmatrix} B \\ 0 \end{smallmatrix} \right], \left[ \begin{smallmatrix} C & 0 \end{smallmatrix}\right]$).
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Genetic drift with a multivariate trait}
 \label{ss:quant_gen}
 
-For completeness, we provide a brief argument of how the population mean
-moves under genetic drift
+For completeness, we provide a brief exposition of how a population 
+evolves due to genetic drift
 with a quantitative genetics model,
 as in \citet{lande1981models} or \citet{hansen1996translating}.
 These ignore details of the underlying genetic basis,
 but developing a more accurate model is beyond the scope of this paper.
+
+Suppose that the population is distributed in trait space
+as a Gaussian with covariance matrix $\Sigma$ and mean $\mu$,
+whose density we write as $f(\cdot;\Sigma,\mu)$.
+Selection has the effect of multiplying this density by the fitness function and renormalizing,
+so that if expected fitness of $x$ is proportional to $f(x;U,0)$,
+then the distribution post-selection
+has density at $x$ proportional to $f(x;\Sigma,\mu) f(x;U,0)$.
+By the computation below (``Completing the square''),
+the result is a Gaussian distribution
+with covariance matrix $(\Sigma^{-1} + U^{-1})^{-1}$ 
+and mean $(\Sigma^{-1}+U^{-1})^{-1} \Sigma^{-1} \mu$.
+Importantly, if $U$ is not invertible, then by $U^{-1}$ 
+we mean $(U^T U)^{-1} U^T$, Moore-Penrose pseudoinverse of $U$,
+so that $U U^{-1}$ is equal to the projection matrix
+onto the span of the columns of $U$.
+
+After selection, we have reproduction:
+suppose this occurs as in the infinitesimal model \citep{infinitesimal},
+so that each offspring of parents with traits $x$ and $y$
+is drawn independently from a Gaussian distribution 
+with mean $(x+y)/2$ and covariance matrix $N$.
+Here, $N$ is the contribution of ``segregation variance''.
+If $\widetilde \Sigma = (\Sigma^{-1} + U^{-1})^{-1}$ 
+is the covariance matrix of the parents post-selection,
+then the distribution of offspring will again be Gaussian,
+with mean equal to that of the parents
+and covariance matrix $\widetilde \Sigma/2 + N$.
+
+In summary, a generation under this model modifies the mean ($\mu$)
+and covariance matrix ($\Sigma$) of a population as follows:
+\begin{align*}
+    \mu &\mapsto \mu' = (\Sigma^{-1}+U^{-1})^{-1} \Sigma^{-1} \mu \\
+    \Sigma &\mapsto \Sigma' = \frac{1}{2} (\Sigma^{-1} + U^{-1})^{-1} + N .
+\end{align*}
+What measures are stable under this transformation?
+The condition $\mu = \mu'$ reduces to $\Sigma U^{-1} \mu = 0$;
+if we assume $N$ and therefore $\Sigma$ are of full rank,
+then this happens if and only if $\mu$ is not in the span of the columns of $U$,
+i.e., if $\mu$ lies in a neutral direction.
+The condition $\Sigma' = \Sigma$ can also be solved,
+at least numerically.
+After rearrangement, it reduces to
+$\Sigma U^{-1} \Sigma + (I/2 - N U^{-1}) \Sigma = N$.
+We can find a more explicit description
+if we assume that $x^T U x = \sum_{i=1}^k x_i^2$,
+i.e., that selection only cares about the first $k$ coordinates,
+and then with no interactions between traits.
+If so, the condition $\Sigma' = \Sigma$
+can be written in block form as
+\begin{align*}
+    \begin{bmatrix}
+        \Sigma_{11}^2 + (I/2 - N_{11}) \Sigma_{11}
+        & \Sigma_{11} \Sigma_{12} + (I/2 - N_{11})\Sigma_{12} \\
+        \Sigma_{12}^T \Sigma_{11} + \Sigma_{12}^T/2 - N_{12}^T \Sigma_{11}
+        & \Sigma_{22} - N_{12}^T \Sigma_{12} 
+    \end{bmatrix}
+    &=
+    \begin{bmatrix}
+        N_{11} & N_{12} \\
+        N_{12}^T & N_{22}
+    \end{bmatrix} .
+\end{align*}
+The first equation, $\Sigma_{11}^2 + (I/2 - N_{11}) \Sigma_{11} = N_{11}$,
+can be solved with the quadratic formula: 
+$$\Sigma_{11} = (N_{11} - I/2 + Q)/2$$
+for any $Q$ that commutes with $N_{11}$
+and is a solution to $Q^2 = (N_{11} - I/2)^2 + 4 N_{11}$.
+Since we need $\Sigma$ to be positive definite,
+we take the solution with positive eigenvalues.
+Given $\Sigma_{11}$, the remaining components are
+\begin{align*}
+    \Sigma_{12} 
+    &= 
+    \left( \Sigma_{11} + I/2 - N_{11} \right)^{-1} N_{12} \\
+    \Sigma_{22}
+    &=
+    N_{12}^T \Sigma_{12} + N_{22} .
+\end{align*}
+Importantly, the mean $\mu$ does not affect 
+either how the covariance matrix moves,
+or its stable shape.
+
+Above we have described the \emph{expected} motion of the mean and covariance..
+However, random resampling will introduce noise.
+Suppose that a population of $N$ individuals
+behaves approximately as described above.
+By the above,
+we may expect that the covariance matrix stays close to a constant value $\Sigma$,
+computed from $N$ and $U$ as above,
+so that we need only consider motion of the mean, $\mu$.
+Since we take a sample of size $N$ to construct the next generation,
+the next generation's mean is drawn from a Gaussian distribution with mean $\mu'$
+and covariance matrix $\Sigma/N$.
+Defining $\Gamma = (I - (I + \Sigma U^{-1})^{-1})$,
+this can be written as
+\begin{align*}
+    \mu' - \mu = \Gamma \mu + \epsilon/\sqrt{N} ,
+\end{align*}
+where $\epsilon$ is a multivariate Gaussian with mean zero and covariance matrix $\Sigma$.
+Let $\mu(k)$ denote the mean in the $k^\text{th}$ generation,
+and suppose that $\mu$ differs from optimal by something of order $1/N$:
+if $\nu(t) = N \mu(tN)$,
+then the previous equation implies that as $N \to \infty$, 
+in the limit $\nu$ solves the It\^{o} equation
+\begin{align*}
+    d \nu(t) = \Gamma \nu(t) dt + \Sigma^{1/2} dW(t) ,
+\end{align*}
+where now $W(t)$ is a multivariate white noise.
+This has an explicit solution as a multivariate Ornstein-Uhlenbeck process:
+\begin{align*}
+    \nu(t) = e^{-t \Gamma} \nu_0 + \int_0^t e^{-(t-s) \Gamma} \Sigma^{1/2} dW(s).
+\end{align*}
+% Note that after some algebra, $\Gamma = \Sigma U^{-1} (I - \Sigma U^{-1})^{-1}$.
+The asymptotic variance of this process in the direction $z$ is
+\begin{align} \label{eqn:limiting_cov}
+    \lim_{t \to \infty} \var[\nu(t) \cdot z]
+    &=
+    \int_0^\infty z^T e^{-s \Gamma} \Sigma e^{-s \Gamma} z ds ,
+\end{align}
+which is infinite iff $\Gamma z = 0$,
+which occurs iff $Uz=0$.
+In other words, population mean trait values lie away from the optimal set
+by a Gaussian displacement of order $1/N$
+with a covariance matrix given by equation \eqref{eqn:limiting_cov}.
+
+\plri{Now write what this means intuitively.}
 
 \paragraph{Completing the square}
 First note that 
@@ -1446,38 +1575,17 @@ and so
     &=
     \left( x - (A + B)^{-1} A y \right)^T
     (A + B)
-    \left( x - (A + B)^{-1} A y \right)
+    \left( x - (A + B)^{-1} A y \right) \\
+    &\qquad{}
     + \text{(terms that don't depend on $x$)} .
 \end{align*}
-Therefore, if $f(x;\Sigma,y)$ is the density of a Gaussian with mean $y$ and covariance matrix $\Sigma$
-then substituting $A=\Sigma^{-1}$ and $B=U^{-1}$ above,
+Therefore, 
+by substituting $A=\Sigma^{-1}$ and $B=U^{-1}$,
 \begin{align*}
-    \frac{ f(x;\Sigma,y) f(x;U,0) }{\int_x f(z;\Sigma,y) f(z;U,0) dz}
+    \frac{ f(x;\Sigma,y) f(x;U,0) }{\int f(z;\Sigma,y) f(z;U,0) dz}
     &=
     f(x; (\Sigma^{-1} + U^{-1})^{-1}, (\Sigma^{-1}+U^{-1})^{-1} \Sigma^{-1} y) .
 \end{align*}
-
-Now suppose that the population is distributed in genotype space
-as a Gaussian with covariance matrix $\Sigma$ and mean $y$.
-Selection has the effect of multiplying this density by the fitness function and renormalizing,
-so that if expected fitness of $x$ is proportional to $f(x;U,z)$
-then the above argument shows that the next generation will be sampled from a Gaussian distribution
-with covariance matrix $(\Sigma^{-1} + U^{-1})^{-1}$ 
-and mean $z + (\Sigma^{-1}+U^{-1})^{-1} \Sigma^{-1} (y-z)$
-Taking a sample of size $N$ to construct the next generation 
-will produce something close to this but with a slightly (stochastically) deviating mean.
-The next generation's mean is drawn from a Gaussian distribution with mean
-with covariance matrix $(\Sigma^{-1} + U^{-1})^{-1}/N$ 
-and mean $z + (\Sigma^{-1}+U^{-1})^{-1} \Sigma^{-1} (y-z)$.
-
-Roughly, what is this doing?
-Suppose that the population mean differs from the optimum by $\epsilon$,
-that $\Sigma = \sigma^2 I$ and $U = I/\beta^2$ (so, stablizing selection happening on a distance scale of $\beta$).
-Then the population mean gets closer to the optimum on average, moving to
-$\epsilon/(1 + \sigma^2 \beta^2)$
-and adds noise of size $(1/\beta) \sigma/\sqrt{N \sigma^2 + N 1/\beta^2}$.
-At equilibrium, these two movements will be of the same order,
-so that $\epsilon$ is of order $(\sigma/\sqrt{N}) \sqrt{1+\sigma^2 \beta^2}$.
 
 
 \section{Away from the optimum}
