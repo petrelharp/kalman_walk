@@ -40,6 +40,8 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\E}{\mathbb{E}}
 \renewcommand{\P}{\mathbb{P}}
+\newcommand{\var}{\mathop{\mbox{Var}}}
+\newcommand{\cov}{\mathop{\mbox{Cov}}}
 \newcommand{\pda}{\frac{\partial}{\partial A_{ij}}}
 \newcommand{\ind}{\mathds{1}}
 
@@ -1641,7 +1643,7 @@ Then
 Suppose that the two populations are slightly drifted from each other,
 with frequency difference $p_i-q_i = 2\epsilon_i$.
 Then,
-$$
+\begin{align*}
     p (1-q) + p (1-q)
     &=
     (u+\epsilon) (1-u+\epsilon) + (u-\epsilon) (1-u-\epsilon) \\
@@ -1649,7 +1651,7 @@ $$
     2 u (1-u)
     % + \epsilon (u + (1-u) - u - (1-u))
     + 2 \epsilon^2 .
-$$
+\end{align*}
 If the frequencies have evolved neutrally in unconnected, Wright-Fisher populations 
 of effective size $N$ for $t$ generations from a common ancestor with allele frequency $u$,
 then $\epsilon$ has mean zero and variance roughly $u (1-u) t/N$.
