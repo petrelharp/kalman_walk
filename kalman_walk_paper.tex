@@ -44,6 +44,7 @@
 \newcommand{\cov}{\mathop{\mbox{Cov}}}
 \newcommand{\pda}{\frac{\partial}{\partial A_{ij}}}
 \newcommand{\ind}{\mathds{1}}
+\newcommand{\grad}{\nabla}
 
 \newcommand{\calH}{\mathcal{H}}
 \newcommand{\diag}{\text{diag}}
@@ -506,8 +507,8 @@ and
    \left[ \begin{array}{cccc}
        0 \\
        C_{\ro}^T \\
-       C_{\nrno}^T \\
-       0 
+       0 \\
+       C_{\nro}^T
    \end{array} \right] .
 \end{align*}
 % and
@@ -687,6 +688,7 @@ suppose that $h_0(t)$ is the \emph{optimal} impulse response function
 and define the ``distance to optimum'' of another impulse response function
 to be
 \begin{align}
+\label{eqn:distance}
 	D(h) = \left( \int_0^\infty \rho(t) \|h(t) - h_0(t)\|^2 dt \right)^{1/2} .
 \end{align}
 Consider reproduction between a parent with system $(A, B, C)$ 
@@ -784,65 +786,56 @@ consistent with the idea that natural selection will allow such intrapopulation 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Systems drift and the accumulation of incompatibilities}
+\section*{System drift and the accumulation of incompatibilities}
 
 Thus far we have shown that many distinct molecular mechanisms can realize identical phenotypes
 and that these mechanisms may fail to produce viable hybrids.
-Here we discuss the rate at which evolution shifts molecular mechanisms
-and ask whether this process is fast enough to be a significant driver of speciation.
-To do so, we explore a general quantitative genetic model in which a population drifts stochastically
-near a set of equivalent and optimal systems. We work with a population of effective size $N_e$. 
-\plri{note that this is more general than LTI model}
+This begs the question: does evolution shift molecular mechanisms
+fast enough to be a significant driver of speciation?
+To approach this question,
+we explore a general quantitative genetic model in which a population drifts stochastically
+near a set of equivalent and optimal systems
+due to the action of recombination, mutation, and demographic noise.
+Although this is motivated by the results on linear systems above,
+the quantitative genetics calculations are more general,
+and only depend on the presence of genetic variation and a continuous set of phenotypically equivalent systems.
 
-At any given time, there will be a range of regulatory coefficients present in the population
-due to segregating genetic variants.
-Over many generations, even if selective pressures do not change,
-this range of networks will shift 
-as recombination, mutation, and demographic noise create new alleles and shift allele frequencies.
-%How much variation do we expect to find within a population?
-%Is this range limited by available variation or kept in check by selection?
-%How fast will a population explore the space of equivalent networks?
-%In this section we explore informally a general model for this situation,
-%in which a population drifts stochastically near a set of equivalent, optimal systems.
-%We work with a population of effective size $N_e$.
-
-Suppose that a set $x$ of coefficients that determine a system (this is $\Sys$ above),
-produce a phenotype $\Phi(x)$ (the time course of $\phi(t)$).
-There is an optimal phenotype $\optph$,
-and a set $\optx$ of ``optimal'' coefficients that produce this phenotype.
-Fitness depends on distance to the optimal phenotype --
-we will write the ``distance'' between phenotypes $\phi$ and $\psi$ as $\dph(\phi, \psi)$,
-measured so that the fitness of an organism with coefficents $x$ is $\fitx(x) = \exp(-\dph(\Phi(x),\optph)^2)$. 
-We will assume that the map $\Phi$ is smooth
-and that the optimal set $\optx$ is locally isomorphic to $\R^m$.
-\plr{say that better}
-
-%\paragraph{Offspring.}
-%\js{Not sure if this section is redundant, since reproduction is described above for the LTI model.}
-%Individuals are diploid; we assume that each haploid genome determines a set of coefficients,
-%and the individual's coefficients are the average of her two haploid values (no dominance).
-%This implies that the diploid population variance, $\sigma^2$, is one-half the haploid variance.
-%Each new gamete is produced from the parent's two haploid copies;
-%for simplicity we assume that the gamete inherits a random choice of one of the two parental copies,
-%and so $\sigma$ remains constant, up to a $1/N_e$ term.
-%A more general model including segregation variance \citep{barton_infinitesimal}
-%would result in the same qualitative conclusions.
-%\plri{but put this in the appendix?}
+We will suppose that each organism's phenotype is determined by her vector of coefficients, denoted by $x=(x_1, x_2, \ldots, x_L)$,
+and that the corresponding fitness is determined by the distance of her phenotype to optimum.
+The optimum phenotype is unique, but is realized by many distinct $x$ -- those falling in the ``optimal set'' $\allS$.
+The phenotypic distance to optimum of an organism with coefficients $x$ is denoted $D(x)$.
+In the results above, $x = (A,B,C)$ and $D(x)$ is given by equation \eqref{eqn:distance}.
+determines a system (this is a system $(A,B,C)$ above) 
+with fitness determined by its phenotypic distance $D(x)$ from an optimum (this is analogous to $\allS$ above). 
+Concretely, we define the fitness at $x$ to be $\exp(-D(x)^2)$.
+% this assumption does not entail a loss of generality since $D$ is arbitrary.
+We will assume that in the region of interest, the map $D$ is smooth
+and that we can locally approximate the optimal set $\allS$ as a quadratic surface.
+As above, an individual's coefficients are given by averaging her parentally inherited coefficients and adding random noise due to segregation. 
+Concretely, we use the \emph{infinitesimal model} for reproduction \citep{barton_infinitesimal} --
+the offspring of parents at $x$ and $x'$ will have coefficients $(x+x')/2 + \varepsilon$,
+where $\varepsilon$ is a Gaussian displacement due to random assortment of parental alleles.
 
 \paragraph{System drift}
 % plr how fast does it drift
+We work with a randomly mating population of effective size $N_e$. 
 If the regulatory coefficient population variation
-has standard deviation $\sigma$,
+has standard deviation $\sigma$ in a particular direction,
 since subsequent generations resample from this diversity,
 the population mean coefficient will move a random distance of size $\sigma/\sqrt{N_e}$ per generation,
 simply because this is the the standard deviation of the mean of a random sample \citep{lande_drift}.
 % (This could be taken as a definition of $N_e$.)
 Selection will tend to restrain this motion,
-but mean movement along the optimal set $\optx$ is unconstrained.
+but movement along the optimal set $\allS$ is unconstrained,
+and so we expect the population mean to drift along the optimal set like a particle diffusing.
 % (although perhaps complicated by recombination load \citep{recomb_load})
 The amount of variance in particular directions in coefficient space 
-depend on constraints imposed by selection and 
-the covariance between genetic variation between different coefficients (the $G$ matrix \citep{G_matrix}).
+depends on constraints imposed by selection and 
+correlations between the genetic variation underlying different coefficients (the $G$ matrix \citep{G_matrix}).
+It therefore seems reasonable to coarsely model the time evolution of population variation in regulatory coefficients as 
+a ``cloud'' of width $\sigma$ about the population mean, 
+which moves as an unbiased Brownian motion through the set of network coefficients that give the optimal phenotype.
+
 % covariance which may arise due to functional constraints and/or statistical linkage.
 % There may well be functional constraints -- but these are not sufficiently well-known to say anything general about.
 %For instance,
@@ -855,33 +848,80 @@ the covariance between genetic variation between different coefficients (the $G$
 %is no more likely to appear than one with strong binding to $i$ but particularly weak binding to $j$ (negative covariance).
 %(Such transient covariances may well increase the variance of the per-generation change in network mean, however \citep{barton_linkage}.)
 
-% It therefore seems reasonable to coarsely model the time evolution of population variation in regulatory coefficients as 
-% (a) a ``cloud'' of width X about the population mean, 
-% which (b) moves as an unbiased Brownian motion through the set of network coefficients that give the optimal phenotype.
-% In fact, the population mean will not produce exactly the optimal phenotype,
-% but it will be convenient to refer to this closest point on the optimal set as ``the population mean''.
-
-%To obtain a general quantitative picture, we need to know 
-We denote
-$\sigma_N$ and $\sigma_S$, the standard deviations of coefficient variation along and perpendicular to $\optx$ respectively,
-and $\gamma$, the scale on which phenotype changes moving away from $\optx$.
-Concretely, $\gamma$ is the inverse of the derivative of $\dph(\Phi(x+u z), \Phi(x))$ 
-with respect to $u$ for $x \in \optx$ and $z$ perpendicular to the tangent space at $x$.
+There will in general be different amounts of variation in different directions;
+to keep the discussion intuitive, we only discuss $\sigma_N$, the amount of variation in ``neutral'' directions
+(i.e., directions along $\allS$),
+and $\sigma_S$, the amount of variation in ``selected'' directions (perpendicular to $\allS$).
+The other relevant scale we denote by $\gamma$,
+which the scale on which distance to phenotypic optimum changes as $x$ moves away from the optimal set, $\allS$.
+Concretely, $\gamma$ is
+%the inverse of the derivative of 
+$1/(\frac{d}{du}D(x+uz))$ 
+with respect to $u$ where $x$ is optimal and $z$ is a ``selected'' direction perpendicular to $\allS$.
 With these parameters, a typical individual will have a fitness of around $\exp(-(\sigma_S/\gamma)^2)$.
+Of course, there are in general many possible neutral and selected directions;
+we take these values to be representative of the possible directions.
 
 \paragraph{Hybridization}
-The means of two allopatric populations separated for $T$ generations
-will be a distance of order $2\sigma_N \sqrt{T/N_e}$ apart along $\optx$.
+The means of two allopatric populations each of effective size $N_e$ separated for $T$ generations
+will be a distance roughly of order $2\sigma_N \sqrt{T/N_e}$ apart along $\optx$.
+(Consult figure \ref{fig:conceptual_fig} for a conceptual diagram.)
 A population of $F_1$ hybrids has one haploid genome from each,
 whose coefficients are averaged,
-and so will have mean system coefficients at the midpoint between their means,
-and variance equal to $\sigma^2$. 
-Each $F_2$ hybrid will be homozygous for one parental allele on averge at half of the loci in the genome,
+and so will have mean system coefficients at the midpoint between their means.
+Each $F_2$ hybrid will be homozygous for one parental allele on average at half of the loci in the genome,
 so the distribution of $F_2$s will have mean at the average of the two populations,
-as before,
-but variance equal to $\sigma^2 + z^2/2$, where $z$ is the distance between the parental populations. 
-These are depicted in figure \ref{fig:conceptual_fig}.
+but will have higher variance.
+Concretely, we expect the population of $F_1$s to have variance $\sigma^2_S$ in the selected direction
+(the same as within each parental population),
+but the population of $F_2$s will have variance of order $\sigma^2_S + \sigma^2_H T/N_e$,
+where $\sigma^2_H$ is a factor that depends on the genetic basis of the coefficients.
+\plr{say something about $\sigma_H$?}
 
+What are the fitness consequences?
+If a population has a Gaussian distribution of trait values with variance $\sigma^2$
+and fitness decays as $\exp(-x^2/2\gamma)$ away from the population mean,
+then the population mean fitness is 
+\begin{align*}
+   \int \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{x^2}{2\sigma^2}} e^{-\frac{x^2}{2\gamma^2}} dx
+   &=
+   \sqrt{\frac{1}{1 + (\sigma/\gamma)^2}}  \le \frac{1}{\sigma/\gamma} .
+\end{align*}
+If $\sigma$ is much smaller than $\gamma$, the fitness consequences of variation
+(i.e., genetic load) are small,
+but if $\sigma$ is of order $\gamma$, then mean fitness is inversely proportional to trait variance
+(i.e., $\gamma/\sigma$).
+This implies that we expect $\sigma_S < \gamma$
+but that once $T$ is of order $N_e (\gamma / \sigma_H)^2$, there will be loss of fitness
+in $F_2$ hybrids.
+Said another way,
+if we write $\mathcal{F}(T)$ as the mean fitness of an $F_2$ hybrid between two populations separated by $T$ generations,
+then fitness drops with the square root of $T$, measured in units of $N_e$ generations:
+\begin{align*}
+   \mathcal{F}(T) \le \frac{1}{\sigma_H/\gamma}\sqrt{\frac{N_e}{T}} .
+\end{align*}
+
+The fitness consequences of system drift above were due to increased \emph{variance} in $F_2$ hybrids.
+If the optimal set $\allS$ is curved (which it will be in general),
+then the mean $F_1$ offspring will fall away from the optimum slightly,
+leading to an additional fitness cost in hybrids.
+However,
+as shown in appendix \ref{apx:away_from_opt} and depicted in figure \ref{fig:osc_incompat},
+the deviation of the mean from the optimum grows proportionally to $T/N_e$.
+
+\begin{align*}
+\int_{-\infty}^\infty \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} e^{-\frac{x^2}{2\gamma^2}} dx
+&=
+\sqrt{\frac{1}{1 + \sigma^2/\gamma^2}} \exp\left\{-\frac{\mu^2}{\gamma^2}\left(\frac{1}{1 + \sigma^2/\gamma^2}\right)\right\} \\
+% &\approx
+% \frac{1}{\sigma/\gamma}\left(1 - \frac{\mu^2}{\gamma^2}\right) .
+\end{align*}
+With $\sigma = c_\sigma \gamma \sqrt{T/N_e}$
+and $\mu = c_\mu \gamma (T/N_e)^2$,
+this is
+$$
+\sqrt{\frac{1}{1 + c_\sigma^2 T/N_e}} \exp\left\{-c_\mu^2 \frac{T^2}{N_e^2} \left(\frac{1}{1 + c_\sigma^2 T/N_e}\right)\right\} \\
+$$
 
 \plri{improve figure by putting labels on from the following}
 Suppose that two populations have drifted independently to differ by $z$,
@@ -900,7 +940,6 @@ $\fit_1/\fit_0 = \exp(-(c_1 \sigma_N^2 T/N_e)^2)$;
 and of an $F_2$ is
 $\fit_2/\fit_0 = \exp(- T/(N_e\gamma^2))$.
 
-Note that this follows directly from the fact that $F_1$ and $F_2$ hybrid phenotypes diverge from $F_0$ phenotypes, linearly and inverse-quadratically, with respect to time (more precisely $T/N_e$). As such, removing assumptions about the form of the fitness function, this model still predicts hybrid $F_2$ phenotypes to diverge much faster than $F_1$s, initially.
 
 %\subsection*{Parameter estimates for real systems}
 %\js{I think we should move this section?}
@@ -1026,6 +1065,10 @@ Note that this follows directly from the fact that $F_1$ and $F_2$ hybrid phenot
   If $\xi$ is in $[\sfrac{1}{5},1]$, speciation will occur on the order of $N_e$ generations, and possibly much faster. Note, however, that if intrapopulation variation is very small such that $\sigma_S \ll \gamma$, speciation rates will be slower.
 
 
+%%%%%%%%%%%%
+\plri{insert commented-out discussion of what the actual genetic basis is}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%
 \section*{Discussion}
@@ -1077,6 +1120,9 @@ The consistency comes from gene networks localized to the sex chromosomes functi
 %\plr{probably shouldn't claim this is "unexplored"} \js{I meant unexplored within this paper.Changed wording. Does that work?}
 %Although we leave this question unexplored, this phenomena may lead to insights on evolvability and developmental innovation. 
 Lastly, we show that hybrid gene networks, under neutral processes, break down as function of genetic distance, and may, in part, explain broad patterns of reproductive isolation among diverse phyla \citep{roux2016shedding}.
+
+Note that this follows directly from the fact that $F_1$ and $F_2$ hybrid phenotypes diverge from $F_0$ phenotypes, linearly and inverse-quadratically, with respect to time (more precisely $T/N_e$). As such, removing assumptions about the form of the fitness function, this model still predicts hybrid $F_2$ phenotypes to diverge much faster than $F_1$s, initially.
+So even if fitness isn't as above maybe you can see this in phenotypes.
 
 What about nonlinearity?
 
@@ -1432,7 +1478,7 @@ For completeness, we provide a brief exposition of how a population
 evolves due to genetic drift
 with a quantitative genetics model,
 as in \citet{lande1981models} or \citet{hansen1996translating}.
-These ignore details of the underlying genetic basis,
+These do not directly model underlying genetic basis,
 but developing a more accurate model is beyond the scope of this paper.
 
 Suppose that the population is distributed in trait space
@@ -1563,13 +1609,13 @@ with a covariance matrix given by equation \eqref{eqn:limiting_cov}.
 \plri{Now write what this means intuitively.}
 
 \paragraph{Completing the square}
-First note that 
+First note that if $A$ is symmetric,
 \begin{align*}
     (x-y)^T A (x-y)
     &=
     x^T A \left( x - 2y \right) + y^T A y ,
 \end{align*}
-and so
+and so if $B$ is also symmetric and $A+B$ is invertible,
 \begin{align*}
     (x-y)^T A (x-y) + x^T B x
     &=
@@ -1579,9 +1625,9 @@ and so
     (A + B)
     \left( x - (A + B)^{-1} A y \right) \\
     &\qquad{}
-    + \text{(terms that don't depend on $x$)} .
+    + y^T A y - y^T A^T (A+B)^{-1} A y .
 \end{align*}
-Therefore, 
+Since the second line doesn't depend on $x$,
 by substituting $A=\Sigma^{-1}$ and $B=U^{-1}$,
 \begin{align*}
     \frac{ f(x;\Sigma,y) f(x;U,0) }{\int f(z;\Sigma,y) f(z;U,0) dz}
@@ -1680,31 +1726,60 @@ is roughly increased by a factor of $1/8$ of the difference between their means.
 \section{Away from the optimum}
 \label{apx:away_from_opt}
 
-Let two points  on $\optx$ be $x_1$ and $x_2$, let $\bar x = (x_1+x_2)/2$, and let $z=(x_2 - x_1)/2$.
-Then with $D \Phi$ and $D^2 \Phi$ the first and second derivatives of $\Phi$, respectively,
-then Taylor expanding about $x_1$ and $x_2$ finds that
+Let two points on $\allS$ be $x_1$ and $x_2$, let $\bar x = (x_1+x_2)/2$, and let $z=(x_2 - x_1)/2$.
+Then with $\grad D$ and $\grad^2 D$ the first and second derivatives of $D$, respectively,
+Taylor expanding about $x_1$ and $x_2$ finds that
 \begin{align*}
-    \Phi(\bar x) 
-    &= \Phi(x_1) + D\Phi(x_1) \cdot z + \frac{1}{2} z^T D^2 \Phi(x_1) z + O(\|z\|^3) \\
-    &= \Phi(x_2) - D\Phi(x_2) \cdot z + \frac{1}{2} z^T D^2 \Phi(x_2) z + O(\|z\|^3) .
+    D(\bar x) 
+    &= D(x_1) + \grad D(x_1) \cdot z + \frac{1}{2} z^T \grad^2  D(x_1) z + O(\|z\|^3) \\
+    &=  D(x_2) - \grad D(x_2) \cdot z + \frac{1}{2} z^T \grad^2  D(x_2) z + O(\|z\|^3) .
 \end{align*}
-Now, since $\Phi(x_1) = \Phi(x_2) = \optph$ and
+Now, since $ D(x_1) =  D(x_2) = \grad D(x_1) = \grad D(x_2) = 0$ and
 \begin{align*}
-    D\Phi(x_2) = D\Phi(x_1) + 2 z^T D^2 \Phi(x_1) + O(\|z\|^2), \quad \text{and} \\
-    D^2\Phi(x_2) = D^2\Phi(x_1) + O(\|z\|), \quad \text{and} \\
+    \grad D(x_2) = \grad D(x_1) + 2 z^T \grad^2  D(x_1) + O(\|z\|^2), \quad \text{and} \\
+    \grad^2 D(x_2) = \grad^2 D(x_1) + O(\|z\|), 
 \end{align*}
 adding together the two equations above and dividing by two gets that
 \begin{align*}
-    \Phi(\bar x) 
-    &= \optph - \frac{3}{2} z^T D^2 \Phi(x_1) z + O(\|z\|^3) .
+     D(\bar x) 
+    &= \optph - \frac{3}{2} z^T \grad^2  D(x_1) z + O(\|z\|^3) .
+\end{align*}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Gaussian load}
+
+Suppose that a population has a Gaussian distribution in trait space
+with mean $\mu$ and covariance matrix $\Sigma$,
+and that fitness of an individual at $x$ is $\exp(-\|Lx\|^2/2)$.
+Then, completing the square as above with $A=\Sigma^{-1}$, $y=\mu$, and $B=L^T L$,
+and defining $Q = (\Sigma^{-1} + L^T L)^{-1}$,
+\begin{align*}
+    &
+    \frac{1}{\sqrt{2 \pi}^n \det(\Sigma)^{1/2}} 
+        \int e^{-\frac{1}{2} x^T \Sigma^{-1} x} e^{-\frac{1}{2} x^T L^T L x} dx \\
+    &\qquad =
+    \frac{1}{\sqrt{2 \pi}^n \det(\Sigma)^{1/2}} 
+        \int e^{-\frac{1}{2}(x-Q \Sigma^{-1} \mu)^T Q^{-1} (x-Q \Sigma^{-1} \mu)} dx 
+        \\ &\qquad \qquad {}
+        \times e^{\mu^T \left( I - \Sigma^{-1} Q \right) \Sigma^{-1} \mu} \\
+    &\qquad =
+    \sqrt{\frac{\det(Q)}{\det(\Sigma)}}
+        \exp\left\{\mu^T \left( I - \Sigma^{-1} Q \right) \Sigma^{-1} \mu\right\} \\
+    &\qquad =
+    \sqrt{\frac{1}{\det(\Sigma)\det(\Sigma^{-1}+L^TL)}}
+        \exp\left\{\mu^T \left( I - (I + L^T L \Sigma)^{-1} \right) \Sigma^{-1} \mu\right\} \\
 \end{align*}
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Differentiating the fitness function}
 \label{apx:H_calc}
 
 \plr{Fix this calculation to include derivatives wrt to $B$ and $C$ also.}
+
+\plr{Add refs to sensitivity analysis.}
 
 Suppose that $\rho(t) \ge 0$ is a weighting function on $[0,\infty)$
 so that fitness is a function of $L^2(\rho)$ distance of the impulse response from optimal.
@@ -1900,4 +1975,5 @@ as described (in different terms) in \citet{hansen1996translating}.
 %    &= \frac{d}{2} \left(\eta^{2} + \sigma^{2} \right) \\
 %    &= \frac{1}{2} \mathbb{E} \left[ \lvert X \rvert^{2} \right]
 %  \end{align*}
+
 \end{document}
