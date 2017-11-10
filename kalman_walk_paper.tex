@@ -90,19 +90,19 @@ $^{\ddagger}$University of Oregon, Eugene, Oregon \\
 
 % Other title ideas:
 %
+% Rapid speciation despite conservation of phenotype
+%
+% How fast does network drift create incompatibilities?
+%
 % More than one way to grow a cat: speciation despite conservation of phenotype
 %
 % More than one way to grow a cat: regulatory network drift and speciation
-%
-% Rapid speciation despite conservation of phenotype
 %
 % More than one way to grow a cat: regulatory network redundancy and speciation
 %
 % Neutral network drift leads to incompatibilities on the same time scale as genetic drift
 %
 % More than one way to grow a cat: can network drift lead to speciation?
-%
-% How fast does network drift create incompatibilities?
 %
 % Beyond the snowball: a quantitative model of incompatibility accumulation
 %
@@ -222,6 +222,12 @@ circadian rhythm \citep{sancar2008intelligent},
 cell cycle control \citep{cross2011evolution, kearsey2003enigmatic}, 
 pattern formation \plr{cite?}, 
 and metabolism \citep{lavoie2009rearrangements, martchenko2007transcriptional, dalal2016transcriptional, christensen2011unique, hartl2007induction, alam2013aspergillus}.
+
+AND THESE?
+Over the last several years, several different computational approaches have been applied to study reproductive incompatibility and speciation. \citet{tulchinsky} simulated the evolution of a transcription factor and its binding site using a thermodynamic model. Their simulations suggest that the language by which a transcription factor recognizes its binding site can change, and potentially lead to hybrid incompatibility when allopatric populations employ divergent readout languages. This study, despite looking at gene regulation, does not analyze overall gene network architecture -- as we do here -- it only looks at the expression level of a single gene. Furthermore, they report reproductive isolation primarily following directional selection for a change in expression levels in each allopatric population; the evidence for reproductive isolation following balancing selection is much weaker. Johnson and Porter 2000 did not observe any hybrid fitness declines under stabilizing selection -- only under directional selection. 
+Khatari et al, Tulchinsky et al, and Porter et al, all study hybrid incompatibility from a transcription factor/binding site interaction perspective, not from an overall network architecture perspective. Palmer and Feldman only see hybrid incompatibility in constant environments if the parental populations are relatively poorly adapted initially. Otherwise hybrids between two allopatric populations have fairly high fitnesses.  
+MAKE SURE TO REF DMI LIT SOMEWHERE and Barton's paper.
+
 
 In this paper we outline a theoretical framework to study the evolution of biological systems
 that can be described by systems of differential equations, such as gene regulatory networks.
@@ -873,13 +879,31 @@ and so will have mean system coefficients at the midpoint between their means.
 Each $F_2$ hybrid will be homozygous for one parental allele on average at half of the loci in the genome,
 so the distribution of $F_2$s will have mean at the average of the two populations,
 but will have higher variance.
+The variance of $F_2$s can be shown to increase linearly with the square of the distance between
+parental population means
+under models of both simple and polygenic traits.
+This is suggested by figure \ref{fig:conceptual_fig} and shown in Appendix \ref{apx:seg_cov}.
 Concretely, we expect the population of $F_1$s to have variance $\sigma^2_S$ in the selected direction
 (the same as within each parental population),
-but the population of $F_2$s will have variance of order $\sigma^2_S + \sigma^2_H T/N_e$,
-where $\sigma^2_H$ is a factor that depends on the genetic basis of the coefficients.
-\plr{say something about $\sigma_H$?}
+but the population of $F_2$s will have variance of order $\sigma^2_S + 4 \omega \sigma^2_N T/N_e$,
+where $\omega$ is a factor that depends on the genetic basis of the coefficients.
+In a model of $p$ traits in which the optimal set $\allS$ has dimension $q$,
+% if each trait is controlled by a single locus, $\omega = XXX$,
+using the polygenic model of appendix \ref{apx:seg_cov}, $\omega = (p-q)/8$.
+If each trait is controlled by a single locus, as in figure \ref{fig:conceptual_fig},
+the value is similar.
 
 What are the fitness consequences?
+A population of $F_2$s will begin to be substantially less fit than the parentals
+once they differ from the optimum by a distance of order $\gamma$,
+i.e., once $\sqrt{4 \omega T/N_e} \approx \gamma / \sigma_N$.
+This implies that hybrid incompatibility among $F_2$s should appear on a time scale of 
+$N_e \gamma / \sigma_N$ generations.
+The $F_1$s will not suffer fitness consequences until the hybrid mean is further than $\gamma$ from the optimum;
+as shown in appendix \ref{apx:away_from_opt} (and suggested by figure \ref{fig:conceptual_fig},
+this deviation of the mean from optimum grows with the square of the distance between the parental populations,
+and so we expect fitness costs in $F_1$s to appear on a time scale of $N_e^2$ generations.
+
 If a population has a Gaussian distribution of trait values with variance $\sigma^2$
 and fitness decays as $\exp(-x^2/2\gamma)$ away from the population mean,
 then the population mean fitness is 
@@ -917,29 +941,13 @@ the deviation of the mean from the optimum grows proportionally to $T/N_e$.
 % &\approx
 % \frac{1}{\sigma/\gamma}\left(1 - \frac{\mu^2}{\gamma^2}\right) .
 \end{align*}
-With $\sigma = c_\sigma \gamma \sqrt{T/N_e}$
-and $\mu = c_\mu \gamma (T/N_e)^2$,
-this is
+With $\sigma/\gamma = c_\sigma \sqrt{T/N_e}$
+and $\mu/\gamma = c_\mu T/N_e$,
+this is (check!!)
 $$
 \sqrt{\frac{1}{1 + c_\sigma^2 T/N_e}} \exp\left\{-c_\mu^2 \frac{T^2}{N_e^2} \left(\frac{1}{1 + c_\sigma^2 T/N_e}\right)\right\} \\
 $$
 
-\plri{improve figure by putting labels on from the following}
-Suppose that two populations have drifted independently to differ by $z$,
-and that $z$ is of the same order as $\sigma$ but is smaller than $\gamma$.
-The mean $F_1$ is the average of the parental means,
-and since the first-order terms in the Taylor series vanish,
-has phenotype differing from the optimum by a distance of order $\|z\|^2$ 
-(see appendix \ref{apx:away_from_opt}).
-The mean $F_2$ is the same,
-but the standard deviation is of order $z$,
-so that up to lower order terms, 
-while the typical fitness of an individual in the original population is
-$\fit_0 = \exp(-(\sigma_s/\gamma)^2)$;
-of an $F_1$ is
-$\fit_1/\fit_0 = \exp(-(c_1 \sigma_N^2 T/N_e)^2)$;
-and of an $F_2$ is
-$\fit_2/\fit_0 = \exp(- T/(N_e\gamma^2))$.
 
 
 %\subsection*{Parameter estimates for real systems}
@@ -1065,6 +1073,8 @@ $\fit_2/\fit_0 = \exp(- T/(N_e\gamma^2))$.
   Hybrid fitness depression will be significant when $z > \gamma$. 
   If $\xi$ is in $[\sfrac{1}{5},1]$, speciation will occur on the order of $N_e$ generations, and possibly much faster. Note, however, that if intrapopulation variation is very small such that $\sigma_S \ll \gamma$, speciation rates will be slower.
 
+If $\sigma_N \approx \sigma_S \approx \gamma$ and variance in $F_2$s increases linearly with distance betw parents,
+then fitness starts to drop at $T/4N_e$.
 
 %%%%%%%%%%%%
 \plri{insert commented-out discussion of what the actual genetic basis is}
@@ -1073,19 +1083,21 @@ $\fit_2/\fit_0 = \exp(- T/(N_e\gamma^2))$.
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%
 \section*{Discussion}
-%
-%\jss{Discussion guidelines:
-%\begin{itemize}
-%    \item Why is this important/useful?
-%    \item What are the assumptions and shortcomings of the research?
-%    \item Compare to other studies in the literature. 
-%    \item Future directions. 
-%    \item Wild speculations?
-%    \item Conclusion and overall impact. 
-%\end{itemize}}
-%
+
+%%% OUTLINE
+% - Summarize methods and main result on rate of speciation.
+% - What empirical evidence is there that this is actually happening? 
+%   * incompats due to misregulation (Noor, Witkopp...)
+%   * numerous species that are visually indistinguishable (skinks, ferns)
+%   * maybe also ref phylogenetic lit
+% - What other evidence could be collected?  Note could be just phenotype not fitness. (cite Matute)
+% - Is linearity an important assumption?
+% - We know that divergent selection and genetic conflict can easily lead to speciation; we've shown neutral drift can maybe surprisingly easily do so also; but it remains unclear the relative contributions of these. Note that although drift may be weaker in any one network there are lots of networks. Could motivate this with Orr's statement.  Perhaps tie in spandrels.
+
+% we do cool stuff
 The complexity of biological systems has limited our understanding of their function and evolution. Above we outline an approach, a first step, towards untangling this complexity in reference to function and evolution. This methodology borrows successfully applied tools from engineering and aims to synthesize these with the concepts and tools of molecular and evolutionary biology. 
 
+% no, really, it's cool
 Theoretical models in evolution and population genetics often lack the molecular details of physiology or of the genotype-phenotype map. 
 Here, we offer a tractable and simple model which includes these missing features. 
 Further, we provide, in clear mathematical language, an analytical description of phenomena hitherto discussed verbally and conceptually 
@@ -1094,6 +1106,7 @@ The tractability and relative simplicity of this exposition enables the interest
 if desired, 
 the dynamics of a genetic system, as well as perturbations to the system -- an attribute not likely to be found in less tractable models and simulations.
 
+% it says something about speciation and DMIs
 We have suggested an interpretation of system identification: to see it as an evolutionarily neutral manifold, and not simply a computational nuisance. 
 We have demonstrated a method to analytically determine the set of all phenotypically invariant gene networks; 
 by a simple change of coordinates in the minimal configuration, or more generally by applying the Kalman decomposition in higher dimensions. 
@@ -1104,6 +1117,7 @@ including the accumulation of Dobzhansky-Muller incompatibilities.
 We emphasize that these incompatibilities are a consequence of recombining different, yet functionally equivalent, mechanisms.
 \plr{See refs in Barton 2010 paper.}
 
+% summary and consequences of main result on speed of speciation
 Furthermore, using a quantitative genetic approach, we estimated that a genetically variable population will drift in neutral system space 
 at a rate determined by its intra-population variation and its effective population size. 
 Because mechanistically distinct yet phenotypically equivalent biological systems can fail to produce viable hybrids, we predict allopatric populations to accumulate genetic incompatibilities 
@@ -1115,30 +1129,35 @@ Additionally we see second-generation hybrid fitness plummet much faster than th
 %\plr{awkward phrasing}
 This result is also consistent with Haldane's rule; that if only one hybrid sex is inviable or sterile it is likely the heterogametic sex. 
 The consistency comes from gene networks localized to the sex chromosomes functioning as an $F_{2}$ hybrid cross within a diploid $F_{1}$ heterogamete as there is only one sex chromosome.
-  
 %We also suggest that gene networks may not always use their components parsimoniously 
 %as network size tends to ratchet up in the absence of strong selection against extra parts. 
 %\plr{probably shouldn't claim this is "unexplored"} \js{I meant unexplored within this paper.Changed wording. Does that work?}
 %Although we leave this question unexplored, this phenomena may lead to insights on evolvability and developmental innovation. 
 Lastly, we show that hybrid gene networks, under neutral processes, break down as function of genetic distance, and may, in part, explain broad patterns of reproductive isolation among diverse phyla \citep{roux2016shedding}.
 
+Do we see evidence of this?  Well, maybe: misregulation in hybrids in Witkopp, Noor, Barbash, etc,
+even with expression levels in parents being the same.
+
+% consequence: prediction for phenotype (not just fitness)
 Note that this follows directly from the fact that $F_1$ and $F_2$ hybrid phenotypes diverge from $F_0$ phenotypes, linearly and inverse-quadratically, with respect to time (more precisely $T/N_e$). As such, removing assumptions about the form of the fitness function, this model still predicts hybrid $F_2$ phenotypes to diverge much faster than $F_1$s, initially.
 So even if fitness isn't as above maybe you can see this in phenotypes.
 
+% nonlinearity
 What about nonlinearity?
+As Richard Levins opined, models in population biology face a trade-off among precision, realism, and generality \citep{levins1966strategy}. As Levins expects, any tractable and general model, such as the present one under discussion, will have limitations. Most notable is linearity. It is often stated that life is not linear. This is often true, however, many of the ideas developed here should be generalizable to nonlinear cases (multi-linear systems, say). Further, we see this as a necessary first step in the direction of more life-like nonlinear evolutionary systems theory. Depending on an actual biological system's particularities, its (potential) non-linearity, may buffer or exacerbate effects elucidated in this paper, such as the acquisition of Dobzansky-Muller incompatibilities.
 
+% selection moving around optimal set
 Note that the drift above could actually be caused by the optimal phenotype shifting.
 
-%\plr{this paragraph isn't very clear} \js{Should I delete it? I guess it's sort of just a vague ``yeah we know this method has shortcomings''.}
-%As Richard Levins opined, models in population biology face a trade-off among precision, realism, and generality \citep{levins1966strategy}. As Levins expects, any tractable and general model, such as the present one under discussion, will have limitations. Most notable is linearity. It is often stated that life is not linear. This is often true, however, many of the ideas developed here should be generalizable to nonlinear cases (multi-linear systems, say). Further, we see this as a necessary first step in the direction of more life-like nonlinear evolutionary systems theory. Depending on an actual biological system's particularities, its (potential) non-linearity, may buffer or exacerbate effects elucidated in this paper, such as the acquisition of Dobzansky-Muller incompatibilities.
 
 %This theoretical framework can easily be applied to other interesting questions in evolutionary biology not tackled presently: such as the evolution of linkage, the necessity of network complexity (does evolution tend towards Rube Goldberg or parsimonious network organization?), evolvability, structure/function inference, and intra-population context dependency of mutational effects, as well as many others.
 
-%\jss{literature comparison -- I think we should delete}
-%
-%Over the last several years, several different computational approaches have been applied to study reproductive incompatibility and speciation. \citet{tulchinsky} simulated the evolution of a transcription factor and its binding site using a thermodynamic model. Their simulations suggest that the language by which a transcription factor recognizes its binding site can change, and potentially lead to hybrid incompatibility when allopatric populations employ divergent readout languages. This study, despite looking at gene regulation, does not analyze overall gene network architecture -- as we do here -- it only looks at the expression level of a single gene. Furthermore, they report reproductive isolation primarily following directional selection for a change in expression levels in each allopatric population; the evidence for reproductive isolation following balancing selection is much weaker. Johnson and Porter 2000 did not observe any hybrid fitness declines under stabilizing selection -- only under directional selection. 
-%\plr{citations:}
-%Khatari et al, Tulchinsky et al, and Porter et al, all study hybrid incompatibility from a transcription factor/binding site interaction perspective, not from an overall network architecture perspective. Palmer and Feldman only see hybrid incompatibility in constant environments if the parental populations are relatively poorly adapted initially. Otherwise hybrids between two allopatric populations have fairly high fitnesses.  
+
+% J and P didn't get speciation in a neutral  model
+Discuss differences to Johnson and Porter.
+
+What is Ne?  In a metapopulation depends on migr rate: classic Turelli paper.
+
 
 \section*{Acknowledgements}
 We would like to thank Sergey Nuzhdin, Stevan Arnold, Erik Lundgren, and Hossein Asgharian for valuable discussion.
@@ -1638,6 +1657,7 @@ by substituting $A=\Sigma^{-1}$ and $B=L^T L$,
 
 %%%%%%%%%%%
 \subsection*{Evolution of segregation covariance}
+\label{apx:seg_cov}
 
 The description above does not completely describe how two diverging populations interact,
 since the amount of \emph{segregation variance}, quantified by $R$,
