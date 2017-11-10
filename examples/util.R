@@ -32,7 +32,7 @@ get_zmat <- function (z0, z1) {
     return(ZZ)
 }
 
-system_diff_slow <- function (A0, B0, C0, A1, B1, C1, g = 1/(4*pi), upper=10) {
+system_diff_slow <- function (A0, B0, C0, A1, B1, C1, g = 1/(4*pi), upper=100) {
 
     h <- function (t,A,B,C) { sapply(t, function (tt) C %*% expm(tt*A) %*% B) }
 
