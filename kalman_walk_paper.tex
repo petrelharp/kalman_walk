@@ -8,7 +8,7 @@
 \usepackage{caption, subcaption}
 \usepackage{natbib} % gives us \citet: Author (year) and \citep: (Author; year)
 \usepackage{authblk}
-
+\usepackage{lineno}
 \usepackage{multicol}
 
 % for comments in margins or not
@@ -77,6 +77,7 @@
 \newtheorem{example}{Example}
 
 \begin{document}
+\linenumbers
 
 \section*{Rapid speciation despite conservation of phenotype}
 {\centering
@@ -898,59 +899,89 @@ A population of $F_2$s will begin to be substantially less fit than the parental
 once they differ from the optimum by a distance of order $\gamma$,
 i.e., once $\sqrt{4 \omega T/N_e} \approx \gamma / \sigma_N$.
 This implies that hybrid incompatibility among $F_2$s should appear on a time scale of 
-$N_e \gamma / \sigma_N$ generations.
+$N_e (\gamma / \sigma_N)^2 / (4 \omega)$ generations.
 The $F_1$s will not suffer fitness consequences until the hybrid mean is further than $\gamma$ from the optimum;
-as shown in appendix \ref{apx:away_from_opt} (and suggested by figure \ref{fig:conceptual_fig},
+as shown in appendix \ref{apx:away_from_opt} (and suggested by figure \ref{fig:conceptual_fig}),
 this deviation of the mean from optimum grows with the square of the distance between the parental populations,
 and so we expect fitness costs in $F_1$s to appear on a time scale of $N_e^2$ generations.
 
-If a population has a Gaussian distribution of trait values with variance $\sigma^2$
-and fitness decays as $\exp(-x^2/2\gamma)$ away from the population mean,
-then the population mean fitness is 
-\begin{align*}
-   \int \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{x^2}{2\sigma^2}} e^{-\frac{x^2}{2\gamma^2}} dx
-   &=
-   \sqrt{\frac{1}{1 + (\sigma/\gamma)^2}}  \le \frac{1}{\sigma/\gamma} .
-\end{align*}
-If $\sigma$ is much smaller than $\gamma$, the fitness consequences of variation
-(i.e., genetic load) are small,
-but if $\sigma$ is of order $\gamma$, then mean fitness is inversely proportional to trait variance
-(i.e., $\gamma/\sigma$).
-This implies that we expect $\sigma_S < \gamma$
-but that once $T$ is of order $N_e (\gamma / \sigma_H)^2$, there will be loss of fitness
-in $F_2$ hybrids.
-Said another way,
-if we write $\mathcal{F}(T)$ as the mean fitness of an $F_2$ hybrid between two populations separated by $T$ generations,
-then fitness drops with the square root of $T$, measured in units of $N_e$ generations:
-\begin{align*}
-   \mathcal{F}(T) \le \frac{1}{\sigma_H/\gamma}\sqrt{\frac{N_e}{T}} .
-\end{align*}
+% If a population has a Gaussian distribution of trait values with variance $\sigma^2$
+% and fitness decays as $\exp(-x^2/2\gamma)$ away from the population mean,
+% then the population mean fitness is 
+% \begin{align*}
+%    \int \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{x^2}{2\sigma^2}} e^{-\frac{x^2}{2\gamma^2}} dx
+%    &=
+%    \sqrt{\frac{1}{1 + (\sigma/\gamma)^2}}  \le \frac{1}{\sigma/\gamma} .
+% \end{align*}
+% If $\sigma$ is much smaller than $\gamma$, the fitness consequences of variation
+% (i.e., genetic load) are small,
+% but if $\sigma$ is of order $\gamma$, then mean fitness is inversely proportional to trait variance
+% (i.e., $\gamma/\sigma$).
+% This implies that we expect $\sigma_S < \gamma$
+% but that once $T$ is of order $N_e (\gamma / \sigma_H)^2$, there will be loss of fitness
+% in $F_2$ hybrids.
+% Said another way,
+% if we write $\mathcal{F}(T)$ as the mean fitness of an $F_2$ hybrid between two populations separated by $T$ generations,
+% then fitness drops with the square root of $T$, measured in units of $N_e$ generations:
+% \begin{align*}
+%    \mathcal{F}(T) \le \frac{1}{\sigma_H/\gamma}\sqrt{\frac{N_e}{T}} .
+% \end{align*}
 
-The fitness consequences of system drift above were due to increased \emph{variance} in $F_2$ hybrids.
-If the optimal set $\allS$ is curved (which it will be in general),
-then the mean $F_1$ offspring will fall away from the optimum slightly,
-leading to an additional fitness cost in hybrids.
-However,
-as shown in appendix \ref{apx:away_from_opt} and depicted in figure \ref{fig:osc_incompat},
-the deviation of the mean from the optimum grows proportionally to $T/N_e$.
-
-\begin{align*}
+For a more concrete prediction, suppose that the distribution among hybrids is Gaussian.
+A population whose trait distribution is Gaussian with mean $\mu$ and variance $\sigma$,
+has mean fitness 
+\begin{align} \label{eqn:gauss_fit}
 \int_{-\infty}^\infty \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} e^{-\frac{x^2}{2\gamma^2}} dx
 &=
-\sqrt{\frac{1}{1 + \sigma^2/\gamma^2}} \exp\left\{-\frac{\mu^2}{\gamma^2}\left(\frac{1}{1 + \sigma^2/\gamma^2}\right)\right\} \\
+\sqrt{\frac{1}{1 + \sigma^2/\gamma^2}} \exp\left\{-\frac{\mu^2}{\gamma^2}\left(\frac{1}{1 + \sigma^2/\gamma^2}\right)\right\} .
 % &\approx
 % \frac{1}{\sigma/\gamma}\left(1 - \frac{\mu^2}{\gamma^2}\right) .
-\end{align*}
-With $\sigma/\gamma = c_\sigma \sqrt{T/N_e}$
-and $\mu/\gamma = c_\mu T/N_e$,
-this is (check!!)
-$$
-\sqrt{\frac{1}{1 + c_\sigma^2 T/N_e}} \exp\left\{-c_\mu^2 \frac{T^2}{N_e^2} \left(\frac{1}{1 + c_\sigma^2 T/N_e}\right)\right\} \\
-$$
+\end{align}
+This assumes a single trait, for simplicity; the multivariate case is done in appendix \ref{apx:gauss_load}.
+A population of $F_2$s will have, as above, variance $\sigma^2 = \sigma^2_S + 4 \omega \sigma^2_N T/N_e$.
+The mean diverges with the square of the distance between the parentals
+with a speed depending on the local geometry of the optimal set
+(calculated in appendix \ref{apx:H_calc}), so we set $\mu = c_\mu \gamma T/N_e$.
+The mean fitness in parental populations is as in equation \ref{eqn:gauss_fit} with $\mu=0$ and $\sigma = \sigma_S$.
+This implies that if we define $\fit_2(T)$ to be the mean relative fitness among $F_2$ hybrids
+between two populations separated by $T$ generations, 
+(i.e., the mean fitness divided by the mean fitness of the parents)
+then
+\begin{align} \label{eqn:fit2}
+\fit_2(T) = 
+  \left(1 + \frac{4 \omega (\sigma_N/\gamma)^2}{1 + (\sigma_S/\gamma)^2} \frac{T}{N_e} \right)^{-1/2} 
+     \exp\left\{-\left(c_\mu \frac{T}{N_e}\right)^2 \left(\frac{1}{1 + (\sigma_S/\gamma)^2 + 4 \omega (\sigma_N/\gamma)^2 T/N_e}\right)\right\} .
+\end{align}
+We discuss the implications of this expression in the next section.
 
+\plr{note: should be a plot of the components of this against $T/N_e$ later}
 
+%%%%%%%%%%
+\paragraph{Speciation rates under neutrality}
+\plr{continue editing here}
+(say something about here we interpret the big math expression in words)
+From equation \eqref{eqn:fit2} we can observe that
+time is always scaled in units of $N_e$ generations,
+the population standard deviations are always scaled by $\gamma$,
+and the most important term is the rate of accumulation of segregation variance,
+$4 \omega (\sigma_N/\gamma)^2$.
+All else being equal, this process will lead to speciation more quickly in smaller populations
+and in populations with more neutral genetic variation (larger $\sigma_N$).
+These parameters are related -- larger populations generally have more genetic variation --
+but since these details depend on the situation, we leave these separate.
 
-%\subsection*{Parameter estimates for real systems}
+argue sometimes $\sigma_N \approx \sigma_S \approx \gamma$, especially if $N_e$ is big
+(``large species'')
+
+and that sometimes $\sigma_N \approx \sigma_S \ll \gamma$, but only if $N_e$ is small
+(``isolated population'')
+
+and that sometimes maaybe $\sigma_N \gg \sigma_S \approx \gamma$, if $N_e$ is big and there's a lot of recombination load
+(``species complex'')
+
+but not likely to be other combinations; make plot of \eqref{eqn:fit2} against $T/N_e$ (or even $T$?) in these three situations.
+
+\subsection*{Parameter estimates for real systems}
 %\js{I think we should move this section?}
 %To translate these results into real predictions, we need to know
 %the strength of stabilizing selection on the phenotype,
@@ -1038,43 +1069,6 @@ $$
 %the entries of $\Sys$ vary by around 1\%, 
 %at least for networks whose function is strongly constrained.
 
-
-\paragraph{Speciation rates under neutrality}
-%For cases where system structures and $\gamma$ can be inferred,
-%specific speciation rates can be estimated.
-%For other situations we offer a back of the envelope calculation.
-%
-%Consider a population that is distributed on $\mathcal{X}$ such that the magnitude of phenotypically
-%divergent $\sigma_S$ and neutral $\sigma_N$ diversity are constrained by selection;
-%$\sigma_S$ directly, such that $\sigma_S = \gamma$, and $\sigma_N$ indirectly via recombination load.
-%Two reproductively isolated populations will, on average, be a distance of $2 \sigma_N \sqrt{T/N_e}$.
-%If we assume that $\sigma_N$ is constrained by a function of $\sigma_S$,
-%neutral movement along $\mathcal{X}$ pushes hybrids off of the manifold by $\sigma_S$ per $\sigma_N$,
-%Lastly, if fitness is Gaussian: $\fit_2 = \exp\left(- d(x, x')^2/\beta^2\right)$,
-%and we assume that the strength of selection is only several multiples of the segregating divergent diversity,
-%such that $\sigma_S = c \beta$, we can simplify the expression estimating $F_2$ hybrid fitness drops
-%to be,
-%
-%
-%$F_2$s between allopatric populations will suffer an average fitness drop relative to their parents of,
-%  \begin{align}
-%    \exp\left(-\left( \frac{2\sigma_{N}}{\beta}\sqrt{\frac{T}{N_e}} \right)^{2} \right) .
-%  \end{align}
-
-%If the strength of selection is only a few multiples $\xi_1$ of the standing phenotypic diversity within a population $\sigma_S$, such that $\beta = \xi_1 \sigma_S$, and recombination load constrains the standing phenotype-neutral diversity $\sigma_N$ to be only a few multiples $\xi_2$ of $\sigma_S$, then $F_2$ fitness drop will be,
-%  \begin{align}
-%    \exp\left(- \xi^{2} \frac{T}{N_e} \right)
-%  \end{align}
-%  where $\xi := 2\xi_2/\xi_1$.
-  Assume that perpendicular variation segregating within a population is constrained by selection such that $\sigma_S/\gamma = \xi$, and that neutral variation is on the order of perpendicular variation, such that $\sigma_N = \sigma_S$. Since the typical distance between two individuals drawn from separate allopatric populations will be $z = 2 \sigma_N \sqrt{T/N_e}$, we expect a drop in hybrid fitness of
-  \begin{align}
-  \fit_2/\fit_0 = \exp \left(- 4\xi^2 \frac{T}{N_e} \right) .
-  \end{align}
-  Hybrid fitness depression will be significant when $z > \gamma$. 
-  If $\xi$ is in $[\sfrac{1}{5},1]$, speciation will occur on the order of $N_e$ generations, and possibly much faster. Note, however, that if intrapopulation variation is very small such that $\sigma_S \ll \gamma$, speciation rates will be slower.
-
-If $\sigma_N \approx \sigma_S \approx \gamma$ and variance in $F_2$s increases linearly with distance betw parents,
-then fitness starts to drop at $T/4N_e$.
 
 %%%%%%%%%%%%
 \plri{insert commented-out discussion of what the actual genetic basis is}
@@ -1769,6 +1763,7 @@ adding together the two equations above and dividing by two gets that
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Gaussian load}
+\label{apx:gauss_load}
 
 Suppose that a population has a Gaussian distribution in trait space
 with mean $\mu$ and covariance matrix $\Sigma$,
