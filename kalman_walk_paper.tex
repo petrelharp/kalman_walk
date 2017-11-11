@@ -947,9 +947,10 @@ This implies that if we define $\fit_2(T)$ to be the mean relative fitness among
 between two populations separated by $T$ generations, 
 (i.e., the mean fitness divided by the mean fitness of the parents)
 then
+\plr{figure out how dimensions come in here}
 \begin{align} \label{eqn:fit2}
 \fit_2(T) = 
-  \left(1 + \frac{4 \omega (\sigma_N/\gamma)^2}{1 + (\sigma_S/\gamma)^2} \frac{T}{N_e} \right)^{-1/2} 
+  \left(1 + \frac{4 \omega (\sigma_N/\gamma)^2}{(1 + (\sigma_S/\gamma)^2)} \frac{T}{N_e} \right)^{-1/2} 
      \exp\left\{-\left(c_\mu \frac{T}{N_e}\right)^2 \left(\frac{1}{1 + (\sigma_S/\gamma)^2 + 4 \omega (\sigma_N/\gamma)^2 T/N_e}\right)\right\} .
 \end{align}
 We discuss the implications of this expression in the next section.
@@ -958,28 +959,71 @@ We discuss the implications of this expression in the next section.
 
 %%%%%%%%%%
 \paragraph{Speciation rates under neutrality}
-\plr{continue editing here}
-(say something about here we interpret the big math expression in words)
+Above, equation \eqref{eqn:fit2} shows how fast hybrids become inviable 
+as the time that the parental populations are isolated increases;
+what does this tell us about speciation rates under neutrality?
 From equation \eqref{eqn:fit2} we can observe that
 time is always scaled in units of $N_e$ generations,
 the population standard deviations are always scaled by $\gamma$,
 and the most important term is the rate of accumulation of segregation variance,
 $4 \omega (\sigma_N/\gamma)^2$.
+In particular, $\omega$, the rate that hybrid variance increases with separation between parentals,
+is proportional to $p-q$, the number of ways mutation can move the system without changing the phenotype,
+i.e., the dimensionality of the optimal set.
+This implies that less constrained systems should drift faster,
+and so lead to speciation more quickly, given the same strength of selection ($\gamma$).
+\plr{revisit}
 All else being equal, this process will lead to speciation more quickly in smaller populations
 and in populations with more neutral genetic variation (larger $\sigma_N$).
 These parameters are related -- larger populations generally have more genetic variation --
 but since these details depend on the situation, we leave these separate.
 
-argue sometimes $\sigma_N \approx \sigma_S \approx \gamma$, especially if $N_e$ is big
-(``large species'')
+% simgaN = sigmaS = gamma, large population
+Suppose in a large, genetically diverse population,
+the amount of heritable variation in the neutral and selected directions are roughly equal 
+($\sigma_N \approx \sigma_S$)
+but the overall amount of variation is (weakly) constrained by selection
+($\sigma_N \approx \gamma$).
+If so, then the first term of equation \eqref{eqn:fit2} is
+$1/\sqrt{1 + 2 \omega T/N_e} \approx 1 - \omega T/N_e$.
+If also $\omega=1$, then, for instance, after $0.1 N_e$ generations
+the average $F_2$ fitness has dropped by 10\% relative to the parentals.
 
-and that sometimes $\sigma_N \approx \sigma_S \ll \gamma$, but only if $N_e$ is small
-(``isolated population'')
+%  $\sigma_N \approx \sigma_S \ll \gamma$, ``isolated population''
+Consider instead a much smaller, isolated population
+whose genetic variation is primarily constrained by genetic drift,
+so that $\sigma_N \approx \sigma_S \ll \gamma$.
+Setting $a = (\sigma_N/\gamma)^2$ to be small,
+the fitness of $F_2$s is $\fit_2 \le 1/\sqrt{1 + 4 \omega a^2 T/N_e} \approx 1 - 2 \omega a T/N_e$.
+Since in small populations at mutation-drift equilibrium
+the amount of genetic variance ($\sigma_N$) is proportional to $N_e$,
+so this predicts the rate of decrease of hybrid fitness to be \emph{independent} of population size
+for small populations.
+\plr{look up what $\sigma_N^2$ is at mut-drift equilib}
 
-and that sometimes maaybe $\sigma_N \gg \sigma_S \approx \gamma$, if $N_e$ is big and there's a lot of recombination load
-(``species complex'')
+% $\sigma_N \gg \sigma_S \approx \gamma$, if $N_e$ is big and there's a lot of recombination load (``species complex'')
+In the other direction, consider large metapopulations (or isolated ``species complexes'')
+among which heritable variation is strongly constrained by selection
+(i.e., there is substantial recombination load),
+so that $\sigma_S \approx \gamma$ but $\sigma_N/\gamma$ is large.
+Then the fitness of $F_2$s is $\fit_2 \le 1/\sqrt{1 + 2 \omega a^2 T/N_e} \approx 1 - \omega a T/N_e$,
+and could be extremely rapid if $a$ is large.
+
 
 but not likely to be other combinations; make plot of \eqref{eqn:fit2} against $T/N_e$ (or even $T$?) in these three situations.
+
+\begin{figure}
+\begin{center}
+\includegraphics{speciation_rates}
+\caption{
+Mean drop if $F_2$ fitness relative to parental species,
+with $\omega=1$ and 
+\textbf{(A)} $\sigma_N = \sigma_S = \gamma$
+\textbf{(B)} $\sigma_N = \sigma_S = 0.1 \gamma$
+\textbf{(C)} $0.1 \sigma_N = \sigma_S = \gamma$.
+\label{fig:speciation_rates}}
+\end{center}
+\end{figure}
 
 \subsection*{Parameter estimates for real systems}
 %\js{I think we should move this section?}
@@ -1152,7 +1196,7 @@ Discuss differences to Johnson and Porter.
 
 What is Ne?  In a metapopulation depends on migr rate: classic Turelli paper.
 
-
+\jss{talk about speciation rate in small population results as compared to Katari and Goldstein (I think). they look at the influence of $N_e$ on speciation rate.}
 \section*{Acknowledgements}
 We would like to thank Sergey Nuzhdin, Stevan Arnold, Erik Lundgren, and Hossein Asgharian for valuable discussion.
 
