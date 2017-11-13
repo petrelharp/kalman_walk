@@ -32,7 +32,7 @@ plotf(a=.1, b=.1, main="small population")
 plotf(a=10, b=1, main="metapopulation")
 
 legend("topright", lty=c(1,3,3), col=c('black', 'red', 'green'),
-        legend=c("total fitness", "mean", "variance"))
+        legend=c("total fitness", "shift of mean", "increase of variance"))
 
 dev.off()
 
@@ -51,7 +51,7 @@ plotf(a=10, b=1, main="metapopulation")
 plotf(a=10, b=1, main="metapopulation, Ne=1e7", Ne=1e7, tmax=1e4)
 
 legend("topright", lty=c(1,3,3), col=c('black', 'red', 'green'),
-        legend=c("total fitness", "mean", "variance"))
+        legend=c("total fitness", "shift of mean", "increase of variance"))
 
 dev.off()
 
