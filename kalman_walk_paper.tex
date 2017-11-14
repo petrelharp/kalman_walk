@@ -895,6 +895,16 @@ using the polygenic model of appendix \ref{apx:seg_cov}, $\omega = (p-q)/8$.
 If each trait is controlled by a single locus, as in figure \ref{fig:conceptual_fig},
 the value is similar.
 
+%%% CITE SOME OF THESE
+%% empirical data on sigma
+% The amount and structure of this standing variation is established over long time scales
+% by many factors, including mutation-selection balance, 
+% shifts in the phenotypic optimum, and/or spatial variation in the optimum \citep{hansen1996translating}.
+% Quantitative genetics models of mutation-selection balance 
+% predict precise levels and structure of standing variation \citep{kimura_mutsel,lande_mutsel,lande1981models},
+% but it is unclear how well these predictions match reality \citep{johnson_barton}
+% and how much they are expected to change over time \citep{arnold_changing_G}.
+
 What are the fitness consequences?
 A population of $F_2$s will begin to be substantially less fit than the parentals
 once they differ from the optimum by a distance of order $\gamma$,
@@ -1046,12 +1056,9 @@ is small relative to that of increased variance.
 
 \subsection*{Genetic variation in empirical regulatory systems}
 
-Above we show how system variation and drift can contribute to gene network incompatibility.
 What is known about the key quantity above, the amount of heritable variation in real regulatory networks?
 %These are known at best only roughly \citep{felsenstein1988phylogenies},
 %so we aim for order-of-magnitude estimates.
-
-%% What is A and what determines its genetic variance.
 The coefficient $A_{ij}$ from the system \eqref{eqn:system} measures how much the rate of net production of $i$ changes
 per change in concentration of $j$.
 It is generally thought that regulatory sequence change contributes much more to inter- and intraspecific variation
@@ -1066,28 +1073,12 @@ typically implicated in the handful of binding sites for transcription factor $j
 and single variants may affect many entries of $\Sys$ simultaneously.
 % (Recall that although these are best modeled through nonlinear terms,
 % by linearizing we essentially consider first-order effects.)
-On the other hand, a diverse set of buffering mechanisms are thought to contribute to phenotypic stability
-in the presence of substantial molecular noise \citep{canalization,buffering},
-suggesting that substantial variation in the micro-scale dynamics we consider here
-may be necessary to produce relevant phenotypic effects downstream.
-\plr{replace "micro-scale" with sthg else or discuss earlier}
+% On the other hand, a diverse set of buffering mechanisms are thought to contribute to phenotypic stability
+% in the presence of substantial molecular noise \citep{canalization,buffering},
+% suggesting that substantial variation in the micro-scale dynamics we consider here
+% may be necessary to produce relevant phenotypic effects downstream.
 
-%% empirical data on sigma
-The amount and structure of this standing variation is established over long time scales
-by many factors, including
-mutation-selection balance, 
-shifts in the phenotypic optimum,
-and/or spatial variation in the optimum \citep{hansen1996translating}.
-Quantitative genetics models of mutation-selection balance 
-predict precise levels and structure of standing variation \citep{kimura_mutsel,lande_mutsel,lande1981models},
-but it is unclear how well these predictions match reality \citep{johnson_barton}
-and how much they are expected to change over time \citep{arnold_changing_G}.
-However, empirical work allows us to estimate at least the rough magnitude of variation.
-
-Differences in $A_{ij}$ due to a sequence change are hard to measure,
-but variation in both transcription factor binding site occupancy
-and expression levels (e.g., cis-eQTL) have been measured in various systems.
-However, variation in binding site occupancy may overestimate variation in $\Sys$,
+Variation in binding site occupancy may overestimate variation in $A$,
 since it does not capture buffering effects (if for instance only one site of many needs be occupied for transcription to begin),
 and variation in expression levels measures changes in steady-state concentration (our $\kappa_i$) rather than the \emph{rate} of change.
 Nonetheless,
@@ -1099,10 +1090,12 @@ while \citep{lappalainen2013transcriptome} found that human population variation
 explained about 3\% of expression variation.
 %%\plr{Get some data from at least one other species in here!}
 Taken together, this suggests that variation in the entries of $\Sys$
-may be on the order of 1\% between individuals of a population --
+may be on the order of at least a few percent between individuals of a population --
 doubtless varying substantially between species and between genes.
 
-What matters is $\sigma$ relative to $\gamma$ but this is harder to know.
+The impact of regulatory variation ($\sigma$) above
+depends only on its magnitude relative to selection ($\gamma$),
+but it seems reasonable that these two quantities are of the same magnitude.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -1169,7 +1162,7 @@ So even if fitness isn't as above maybe you can see this in phenotypes.
 
 % nonlinearity
 What about nonlinearity?
-As Richard Levins opined, models in population biology face a trade-off among precision, realism, and generality \citep{levins1966strategy}. As Levins expects, any tractable and general model, such as the present one under discussion, will have limitations. Most notable is linearity. It is often stated that life is not linear. This is often true, however, many of the ideas developed here should be generalizable to nonlinear cases (multi-linear systems, say). Further, we see this as a necessary first step in the direction of more life-like nonlinear evolutionary systems theory. Depending on an actual biological system's particularities, its (potential) non-linearity, may buffer or exacerbate effects elucidated in this paper, such as the acquisition of Dobzansky-Muller incompatibilities.
+As Richard Levins opined, models in population biology face a trade-off among precision, realism, and generality \citep{levins1966strategy}. As Levins expects, any tractable and general model, such as the present one under discussion, will have limitations. Most notable is linearity. It is often stated that life is not linear. This is often true, however, many of the ideas developed here should be generalizable to nonlinear cases (multi-linear systems, say). Further, we see this as a necessary first step in the direction of more life-like nonlinear evolutionary systems theory. Depending on an actual biological system's particularities, its (potential) non-linearity, may buffer or exacerbate effects elucidated in this paper, such as the acquisition of Dobzhansky-Muller incompatibilities.
 
 % selection moving around optimal set
 Note that the drift above could actually be caused by the optimal phenotype shifting.
