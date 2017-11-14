@@ -964,6 +964,9 @@ then
   \left(1 + \frac{4 \omega (\sigma_N/\gamma)^2}{(1 + (\sigma_S/\gamma)^2)} \frac{T}{N_e} \right)^{-1/2} 
      \exp\left\{-\left(c_\mu \frac{T}{N_e}\right)^2 \left(\frac{1}{1 + (\sigma_S/\gamma)^2 + 4 \omega (\sigma_N/\gamma)^2 T/N_e}\right)\right\} .
 \end{align}
+If each of the $q$ selected directions acts independently,
+the drop in fitness will be $\fit_2(T)^q$
+(the expression for the correlated cases is given in Appendix \ref{apx:gauss_load}).
 We discuss the implications of this expression in the next section.
 
 
@@ -977,16 +980,22 @@ time is always scaled in units of $N_e$ generations,
 the population standard deviations are always scaled by $\gamma$,
 and the most important term is the rate of accumulation of segregation variance,
 $4 \omega (\sigma_N/\gamma)^2$.
-In particular, $\omega$, the rate that hybrid variance increases with separation between parentals,
-is proportional to $p-q$, the number of ways mutation can move the system without changing the phenotype,
-i.e., the dimensionality of the optimal set.
-This implies that less constrained systems should drift faster,
-and so lead to speciation more quickly, given the same strength of selection ($\gamma$).
-\plr{revisit}
 All else being equal, this process will lead to speciation more quickly in smaller populations
 and in populations with more neutral genetic variation (larger $\sigma_N$).
 These parameters are related -- larger populations generally have more genetic variation --
 but since these details depend on the situation, we leave these separate.
+
+How does this prediction depend on the system size and constraint?
+If there are $p$ trait dimensions, constrained in $q$ dimensions,
+and if $\omega$ is proportional to $p-q$,
+% the rate that hybrid variance increases with separation between parentals, $\omega$,
+% is in some cases proportional to $p-q$, 
+then the rate that $F_2$ fitness drops is, roughly,
+$(1 + 4 (p-q) C T/n_e)^{-q/2} \propto q (p-q)$, where $C$ is a constant.
+This suggests that both degree of constraint and number of available neutral directions
+affect the speed of accumulation of incompatibilities.
+However, note that in real systems, it is likely that $\gamma$ also depends on $p$ and $q$.
+\plr{revisit with sims}
 
 % simgaN = sigmaS = gamma, large population
 Suppose in a large, genetically diverse population,
@@ -1797,7 +1806,7 @@ adding together the two equations above and dividing by two gets that
 \section{Gaussian load}
 \label{apx:gauss_load}
 
-Suppose that a population has a Gaussian distribution in trait space
+Suppose that a population has a Gaussian distribution in $d$-dimensional trait space
 with mean $\mu$ and covariance matrix $\Sigma$,
 and that fitness of an individual at $x$ is $\exp(-\|Lx\|^2/2)$.
 Then, completing the square as above with $A=\Sigma^{-1}$, $y=\mu$, and $B=L^T L$,
@@ -1817,6 +1826,24 @@ and defining $Q = (\Sigma^{-1} + L^T L)^{-1}$,
     &\qquad =
     \sqrt{\frac{1}{\det(\Sigma)\det(\Sigma^{-1}+L^TL)}}
         \exp\left\{\mu^T \left( I - (I + L^T L \Sigma)^{-1} \right) \Sigma^{-1} \mu\right\} \\
+\end{align*}
+
+Now suppose that $\Sigma = \sigma^2 I$ and $L = I/\gamma$.
+Then,
+\begin{align*}
+    \sqrt{\frac{1}{\det(\Sigma)\det(\Sigma^{-1}+L^TL)}}
+    &=
+    \sqrt{\frac{1}{\sigma^{2d} (1/\sigma^2 + 1/\gamma^2)^d}} \\
+    &=
+    \frac{1}{(1+ \left(\sigma/\gamma\right)^2)^{d/2}} .
+\end{align*}
+Also, 
+\begin{align*}
+        \left( I - (I + L^T L \Sigma)^{-1} \right) \Sigma^{-1} 
+        &=
+        \frac{1}{\sigma^2}\left( 1 - (1 + (\sigma/\gamma)^2)^{-1} \right) I \\
+        &=
+        \frac{1}{\gamma^2}\frac{1}{(1 + (\sigma/\gamma)^2)} I \\
 \end{align*}
 
 
