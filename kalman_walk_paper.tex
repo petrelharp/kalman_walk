@@ -884,6 +884,7 @@ The variance of $F_2$s can be shown to increase linearly with the square of the 
 parental population means
 under models of both simple and polygenic traits.
 This is suggested by figure \ref{fig:conceptual_fig} and shown in Appendix \ref{apx:seg_cov}.
+\plr{connect to Barton etc polygenic adaptation lit}
 Concretely, we expect the population of $F_1$s to have variance $\sigma^2_S$ in the selected direction
 (the same as within each parental population),
 but the population of $F_2$s will have variance of order $\sigma^2_S + 4 \omega \sigma^2_N T/N_e$,
@@ -955,7 +956,6 @@ then
 \end{align}
 We discuss the implications of this expression in the next section.
 
-\plr{note: should be a plot of the components of this against $T/N_e$ later}
 
 %%%%%%%%%%
 \paragraph{Speciation rates under neutrality}
@@ -994,128 +994,115 @@ Consider instead a much smaller, isolated population
 whose genetic variation is primarily constrained by genetic drift,
 so that $\sigma_N \approx \sigma_S \ll \gamma$.
 Setting $a = (\sigma_N/\gamma)^2$ to be small,
-the fitness of $F_2$s is $\fit_2 \le 1/\sqrt{1 + 4 \omega a^2 T/N_e} \approx 1 - 2 \omega a T/N_e$.
-Since in small populations at mutation-drift equilibrium
-the amount of genetic variance ($\sigma_N$) is proportional to $N_e$,
-so this predicts the rate of decrease of hybrid fitness to be \emph{independent} of population size
+the fitness of $F_2$s is $\fit_2 \le 1/\sqrt{1 + 4 \omega a T/N_e} \approx 1 - 2 \omega a T/N_e$.
+Hybrid fitness seems to drop more slowly in this case in figure \ref{fig:speciation_rates},
+but since time is scaled by $N_e$, so speciation may occur \emph{faster} than in a large population.
+However, at least in some models \citep{bartonXXX}, in small populations at mutation-drift equilibrium
+the amount of genetic variance ($\sigma_N^2$) is proportional to $N_e$,
+which would compensate for this difference, 
+perhaps even predicting the rate of decrease of hybrid fitness to be \emph{independent} of population size
 for small populations.
-\plr{look up what $\sigma_N^2$ is at mut-drift equilib}
 
 % $\sigma_N \gg \sigma_S \approx \gamma$, if $N_e$ is big and there's a lot of recombination load (``species complex'')
 In the other direction, consider large metapopulations (or isolated ``species complexes'')
 among which heritable variation is strongly constrained by selection
 (i.e., there is substantial recombination load),
 so that $\sigma_S \approx \gamma$ but $\sigma_N/\gamma$ is large.
-Then the fitness of $F_2$s is $\fit_2 \le 1/\sqrt{1 + 2 \omega a^2 T/N_e} \approx 1 - \omega a T/N_e$,
+Then the fitness of $F_2$s is $\fit_2 \le 1/\sqrt{1 + 2 \omega a T/N_e} \approx 1 - \omega a T/N_e$,
 and could be extremely rapid if $a$ is large.
 
+For instance, in a population of one million organisms that has 10 generations per year (a drosophilid species, perhaps)
+under the ``large population'' scenario of Figure \ref{fig:speciation_rates}A,
+system drift would lead to a substantial fitness drop of around 10\% in $F_2$ hybrids in only 10,000 years.
+This drop may be enough to induce evolutionary reinforcement of reproductive isolation.
+If one thousand of these organisms is isolated (perhaps on an island, as in Figure~\ref{fig:speciation_rates}B),
+then a similar drop could occur in around 120 years.
+On the other hand, if the population is one of several of similar size
+that have recently come into secondary contact after population re-expansion,
+the situation may be similar to that of Figure~\ref{fig:speciation_rates}C with $N_e = 10^6$,
+the same drop could occur after 1,100 years.
+However, hyperdiverse populations of this type may not be stable on these time scales.
 
-but not likely to be other combinations; make plot of \eqref{eqn:fit2} against $T/N_e$ (or even $T$?) in these three situations.
 
-\begin{figure}
+\begin{figure}[H]
+\label{fig:speciation_rates}
 \begin{center}
 \includegraphics{speciation_rates}
 \caption{
 Mean drop if $F_2$ fitness relative to parental species,
 with $\omega=1$ and 
-\textbf{(A)} $\sigma_N = \sigma_S = \gamma$
-\textbf{(B)} $\sigma_N = \sigma_S = 0.1 \gamma$
-\textbf{(C)} $0.1 \sigma_N = \sigma_S = \gamma$.
+\textbf{(A)} $\sigma_N^2 = \sigma_S^2 = \gamma^2$
+\textbf{(B)} $\sigma_N^2 = \sigma_S^2 = 0.1 \gamma^2$
+\textbf{(C)} $0.1 \sigma_N^2 = \sigma_S^2 = \gamma^2$.
+The total fitness is from equation \eqref{eqn:fit2},
+and is the product of the ``shift of mean'' and ``increase of variance'' terms
+(the exponential and the square root, respectively).
+Note that, as we assume, the contribution of the shift in mean
+is small relative to that of increased variance.
 \label{fig:speciation_rates}}
 \end{center}
 \end{figure}
 
-\subsection*{Parameter estimates for real systems}
-%\js{I think we should move this section?}
-%To translate these results into real predictions, we need to know
-%the strength of stabilizing selection on the phenotype,
-%and the amount (and structure) of heritable variation in the genotype.
+
+\subsection*{Genetic variation in empirical regulatory systems}
+
+Above we show how system variation and drift can contribute to gene network incompatibility.
+What is known about the key quantity above, the amount of heritable variation in real regulatory networks?
 %These are known at best only roughly \citep{felsenstein1988phylogenies},
 %so we aim for order-of-magnitude estimates.
 
-%% amount of heritable variation
-%We quantify (roughly) the amount of heritable variation
-%by $\sigma^2$, the genetic variance present in a population in a typical entry of $\Sys$.
-%The coefficient $A_{ij}$ measures how much the rate of net production of $i$ changes
-%per change in concentration of $j$.
-%It is generally thought that regulatory sequence change contributes much more to inter- and intraspecific variation
-%than does coding sequence change affecting molecular structure \citep{schmidt2010vertebrate}.
-%In the context of transcription factor networks this may be affected 
-%not only by the binding strength of molecule $j$ to the promoter region of gene $i$
-%but also the effects of other transcription factors (e.g., cooperativity)
-%and local chromatin accessibility \citep{stefflova2013cooperativity}.
-%For this reason, 
-%the mutational target size for variation in $A_{ij}$ may be much larger than the dozens of base pairs
-%typically implicated in the handful of binding sites for transcription factor $j$ of a typical promoter region,
-%and single variants may affect many entries of $\Sys$ simultaneously.
-%% (Recall that although these are best modeled through nonlinear terms,
-%% by linearizing we essentially consider first-order effects.)
-%On the other hand, a diverse set of buffering mechanisms are thought to contribute to phenotypic stability
-%in the presence of substantial molecular noise \citep{canalization,buffering},
-%suggesting that substantial variation in the micro-scale dynamics we consider here
-%may be necessary to produce relevant phenotypic effects downstream.
-%\plr{replace "micro-scale" with sthg else or discuss earlier}
+%% What is A and what determines its genetic variance.
+The coefficient $A_{ij}$ from the system \eqref{eqn:system} measures how much the rate of net production of $i$ changes
+per change in concentration of $j$.
+It is generally thought that regulatory sequence change contributes much more to inter- and intraspecific variation
+than does coding sequence change affecting molecular structure \citep{schmidt2010vertebrate}.
+In the context of transcription factor networks this may be affected 
+not only by the binding strength of molecule $j$ to the promoter region of gene $i$
+but also the effects of other transcription factors (e.g., cooperativity)
+and local chromatin accessibility \citep{stefflova2013cooperativity}.
+For this reason, 
+the mutational target size for variation in $A_{ij}$ may be much larger than the dozens of base pairs
+typically implicated in the handful of binding sites for transcription factor $j$ of a typical promoter region,
+and single variants may affect many entries of $\Sys$ simultaneously.
+% (Recall that although these are best modeled through nonlinear terms,
+% by linearizing we essentially consider first-order effects.)
+On the other hand, a diverse set of buffering mechanisms are thought to contribute to phenotypic stability
+in the presence of substantial molecular noise \citep{canalization,buffering},
+suggesting that substantial variation in the micro-scale dynamics we consider here
+may be necessary to produce relevant phenotypic effects downstream.
+\plr{replace "micro-scale" with sthg else or discuss earlier}
 
 %% empirical data on sigma
-%The amount and structure of this standing variation is established over long time scales
-%by many factors, including
-%mutation-selection balance, 
-%shifts in the phenotypic optimum,
-%and/or spatial variation in the optimum \citep{hansen1996translating}.
-%Quantitative genetics models of mutation-selection balance 
-%predict precise levels and structure of standing variation \citep{kimura_mutsel,lande_mutsel,lande1981models},
-%but it is unclear how well these predictions match reality \citep{johnson_barton}
-%and how much they are expected to change over time \citep{arnold_changing_G}.
-%However, empirical work allows us to estimate at least the rough magnitude of variation.
-%Differences in $A_{ij}$ due to a sequence change are hard to measure,
-%but variation in both transcription factor binding site occupancy
-%and expression levels (e.g., cis-eQTL) have been measured in various systems.
-%However, variation in binding site occupancy may overestimate variation in $\Sys$,
-%since it does not capture buffering effects (if for instance only one site of many needs be occupied for transcription to begin),
-%and variation in expression levels measures changes in steady-state concentration (our $\kappa_i$) rather than the \emph{rate} of change.
-%%Nonetheless,
-%%\citet{kasowski2010variation} found differential occupancy in 7.5\%
-%%of binding sites of a transcription factor (p65) between human individuals.
-%%\citet{verlaan2009targeted} showed that cis-regulatory variation
-%%accounts for around 2--6\% of expression variation in human blood-derived primary cells,
-%%while \citep{lappalainen2013transcriptome} found that human population variation 
-%%explained about 3\% of expression variation.
+The amount and structure of this standing variation is established over long time scales
+by many factors, including
+mutation-selection balance, 
+shifts in the phenotypic optimum,
+and/or spatial variation in the optimum \citep{hansen1996translating}.
+Quantitative genetics models of mutation-selection balance 
+predict precise levels and structure of standing variation \citep{kimura_mutsel,lande_mutsel,lande1981models},
+but it is unclear how well these predictions match reality \citep{johnson_barton}
+and how much they are expected to change over time \citep{arnold_changing_G}.
+However, empirical work allows us to estimate at least the rough magnitude of variation.
+
+Differences in $A_{ij}$ due to a sequence change are hard to measure,
+but variation in both transcription factor binding site occupancy
+and expression levels (e.g., cis-eQTL) have been measured in various systems.
+However, variation in binding site occupancy may overestimate variation in $\Sys$,
+since it does not capture buffering effects (if for instance only one site of many needs be occupied for transcription to begin),
+and variation in expression levels measures changes in steady-state concentration (our $\kappa_i$) rather than the \emph{rate} of change.
+Nonetheless,
+\citet{kasowski2010variation} found differential occupancy in 7.5\%
+of binding sites of a transcription factor (p65) between human individuals.
+\citet{verlaan2009targeted} showed that cis-regulatory variation
+accounts for around 2--6\% of expression variation in human blood-derived primary cells,
+while \citep{lappalainen2013transcriptome} found that human population variation 
+explained about 3\% of expression variation.
 %%\plr{Get some data from at least one other species in here!}
-%%Taken together, this suggests that variation in the entries of $\Sys$
-%%may be on the order of 1\% between individuals of a population --
-%%doubtless varying substantially between species and between genes.
-%%
-%Given the empirical data on transcription factor binding and gene expression
-%intrapopulation variation \citet{kasowski2010variation, verlaan2009targetedm lappalainen2013transcriptome}, we conservatively estimate that variation in the regulatory coefficients in $\Sys$ may be on the order of 1\% between individuals of a population -- 
-%doubtless varying substantially between species and between genes.
-%
-%%% argument for strength of selection
-%%It seems certain that selection in most species is not so strong that intra-population variation
-%%is strongly deleterious,
-%%so that if $\beta$ is the typical scale on which selection acts,
-%%then $\beta > \sigma$.  
-%%However,
-%%a range of studies \plr{find them} have found evidence for weak stabilizing selection
-%%on regulatory SNPs and cis-eQTL.
-%For instance, 
-%\citet{maria_and_sergey} \plr{(others?)} found evidence that large-effect regulatory mutations are weakly selected against in Drosophila.
-%This suggests that 
-%the strength of selection on phenotype is sufficient to weakly constrain regulatory variation,
-%so that perhaps $\sigma$ and $\beta$ are relatively close.
-%This is as would be expected if available variation is held in check by mutation--selection balance
-%rather than genetic drift.
-%A conservative estimate would be that $\beta = 5 \sigma$;
-%taking $\sigma=.01$ as above, this suggests that changes in phenotype of 5\% are sufficient
-%to effect a noticeable drop in fitness.
-%\plr{BUT $\sigma$ IS VARIATION IN $A$ NOT PHENOTYPE}
-%
-%We have guessed that within a population, 
-%the entries of $\Sys$ vary by around 1\%, 
-%at least for networks whose function is strongly constrained.
+Taken together, this suggests that variation in the entries of $\Sys$
+may be on the order of 1\% between individuals of a population --
+doubtless varying substantially between species and between genes.
 
-
-%%%%%%%%%%%%
-\plri{insert commented-out discussion of what the actual genetic basis is}
+What matters is $\sigma$ relative to $\gamma$ but this is harder to know.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -1187,9 +1174,11 @@ As Richard Levins opined, models in population biology face a trade-off among pr
 % selection moving around optimal set
 Note that the drift above could actually be caused by the optimal phenotype shifting.
 
+Do we talk about the $G$ matrix and mutational correlation somewhere?
 
 %This theoretical framework can easily be applied to other interesting questions in evolutionary biology not tackled presently: such as the evolution of linkage, the necessity of network complexity (does evolution tend towards Rube Goldberg or parsimonious network organization?), evolvability, structure/function inference, and intra-population context dependency of mutational effects, as well as many others.
 
+Note that islands or bottlenecks leave large $\sigma_N$ but small $N_e$ so may go fast.
 
 % J and P didn't get speciation in a neutral  model
 Discuss differences to Johnson and Porter.
@@ -1197,6 +1186,12 @@ Discuss differences to Johnson and Porter.
 What is Ne?  In a metapopulation depends on migr rate: classic Turelli paper.
 
 \jss{talk about speciation rate in small population results as compared to Katari and Goldstein (I think). they look at the influence of $N_e$ on speciation rate.}
+
+This has implications for genetic load also!!
+
+hominids; neanderthal load.
+
+
 \section*{Acknowledgements}
 We would like to thank Sergey Nuzhdin, Stevan Arnold, Erik Lundgren, and Hossein Asgharian for valuable discussion.
 

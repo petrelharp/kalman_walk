@@ -1,6 +1,7 @@
 source("perturb_Kalman.r")
 
 set.seed(23)
+num_errors <- 0
 
 check_system <- function (sys) {
     obs_D <- abs(D(sys$A, sys$B, sys$C))
@@ -11,14 +12,17 @@ check_system <- function (sys) {
     return(0)
 }
 
-# check that D(optimal) = 0
+cat("check that D(optimal) = 0\n")
 optimal_system <- list(
   A = matrix(c(0,-1,1,0), nrow=2),
   B = matrix(c(1,1), ncol=1),
   C = matrix(c(1,0), nrow=1) )
-check_system(optimal_system)
+num_errors <- num_errors + check_system(optimal_system)
 
-num_errors <- 0
+cat("check perturbation functions\n")
+stopifnot(all(make_P(rep(0,25), perturb=TRUE)==0))
+
+
 for (sigma in c(0.001, 0.1, 1.0)) {
     for (eps in c(0.001, 0.1, 1.0)) {
         cat(sprintf("Testing with sigma=%f and eps=%f\n", sigma, eps))

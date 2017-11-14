@@ -2,7 +2,6 @@ library(MASS)
 library(Matrix)
 library(expm)
 
-sigma <- 1
 #####################################
 h <- function (t, M, BK, CK) { sapply(t, function (tt) CK %*% expm(tt*M) %*% BK) }
 optimal_h <- function (t) { sin(t)+cos(t) }
@@ -25,15 +24,17 @@ recombine<- function (X,Y)
   return(G)
 }
 
-make_P <- function (p) {
+make_P <- function (p, perturb=FALSE) {
   # Make the matrix P from a vector of entries
   stopifnot(length(p)==25)
-  P <- matrix(c(1,1-p[1],1-p[2],p[3],p[4],p[5],
-                0,p[1],p[2],-p[3],-p[4],-p[5],
-                0,0,p[7],p[8],p[9],p[10],
-                0,0,p[12],p[13],p[14],p[15],
-                0,0,p[17],p[18],p[19],p[20],
-                0,0,p[22],p[23],p[24],p[25]), nrow=6);
+  x <- if(perturb){0} else {1}
+  P <- matrix(c(x,x,x,0,0,0,
+                0,x+p[1],p[2],p[3],p[4],p[5],
+                0,0,x+p[7],p[8],p[9],p[10],
+                0,0,p[12],x+p[13],p[14],p[15],
+                0,0,p[17],p[18],x+p[19],p[20],
+                0,0,p[22],p[23],p[24],x+p[25]), nrow=6);
+  P[2:6,1] <- P[2:6,1] - P[2:6,2]
   return(P)
 }
 
@@ -90,11 +91,11 @@ perturb_oscillator <- function(AL, eps) {
     mAnrno <- matrix(c(rnorm(4, mean=0, sd=eps)),nrow=2,ncol=2)
     mp <- rnorm(25,mean=0,sd=eps)
     
-    new_A12 <- AL$A12 + AL$A12*mA12
-    new_Arno <- AL$Arno + AL$Arno*mArno
-    new_A13 <- AL$A13 + AL$A13*mA13
-    new_Anrno <- AL$Anrno + AL$Anrno*mAnrno
-    mP <- AL$P + make_P(mp)
+    new_A12 <- AL$A12 * (1 + mA12)
+    new_Arno <- AL$Arno * (1 + mArno)
+    new_A13 <- AL$A13 * (1 + mA13)
+    new_Anrno <- AL$Anrno * (1 + mAnrno)
+    mP <- AL$P + make_P(mp, perturb=TRUE)
     return(list(A=AL$A, A12=new_A12, Arno=new_Arno, Anrno=new_Anrno, 
                 A13=new_A13, B=AL$B, C=AL$C, P=mP))
 }
@@ -115,7 +116,7 @@ sys_gen2 <- function (s=sigma, eps=0.1, nreps=100)
     dist <- norm(KalA$A-new_KalA$A,"F")
     
     avg_div <- 0
-    for(j in 1:200) 
+    for (j in 1:200) 
     { 
       Z1 <- recombine(KalA$A, new_KalA$A)
       Z2 <- recombine(KalA$A, new_KalA$A)
@@ -126,5 +127,5 @@ sys_gen2 <- function (s=sigma, eps=0.1, nreps=100)
     }
     output[i,] <- c(dist,avg_div)
   }
-  output <- output
+  return(output)
 }
