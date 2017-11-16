@@ -108,7 +108,7 @@ $^{\ddagger}$University of Oregon, Eugene, Oregon \\
 %
 % Beyond the snowball: a quantitative model of incompatibility accumulation
 %
-% Systems drift and speciation: more than one way to grow a cat
+% System drift and speciation: more than one way to grow a cat
 %
 % An explicit model of neutral regulatory network evolution, with applications
 % to the rate of accumulation of hybrid incompatibility
@@ -121,7 +121,7 @@ $^{\ddagger}$University of Oregon, Eugene, Oregon \\
 % Evolutionary network rewiring can rapidly lead to hybrid incompatibility despite
 % phenotypic conservation
 %
-% Hybrid incompatibilities can evolve rapidly due to developmental systems drift
+% Hybrid incompatibilities can evolve rapidly due to developmental system drift
 %
 % Evolutionary systems theory and speciation 
 
@@ -211,14 +211,14 @@ Although nonidentifiability may frustrate the occasional engineer or scientist, 
 these concepts can provide a starting point for thinking about externally equivalent systems
 -- systems that evolution can explore, so long as the parameters and structures can be realized biologically.
 These functional symmetries manifest in convergent and parallel evolution, 
-as well as \emph{developmental systems drift}: the observation that
+as well as \emph{developmental system drift}: the observation that
 macroscopically identical phenotypes in even very closely related species can in fact be divergent at the molecular and sequence level 
 \citep{true2001developmental, tanay2005conservation, tsong2006evolution, hare2008sepsid, vierstra2014mouse,  dalal2016transcriptional, dalal2017transcription}.
 % are these good here? {taylor2016diverse, matsui2015regulatory, stergachis2014conservation}.
 
 EDIT IN THESE REFS?
 The literature is filled with detailed observations of molecular systems and their diversity. 
-\plr{Diversity doesn't imply systems drift -- only if the diverse systems are homologous.}
+\plr{Diversity doesn't imply system drift -- only if the diverse systems are homologous.}
 There are examples of significant diversity in the networks underlying processes such as 
 circadian rhythm \citep{sancar2008intelligent}, 
 cell cycle control \citep{cross2011evolution, kearsey2003enigmatic}, 
@@ -241,7 +241,7 @@ Results from systems theory provide
 an analytical description of the set of 
 all linear gene network architectures that yield identical phenotypes,
 which gives concrete expectations for how any such
-system can, in principal, undergo systems drift and rewire. 
+system can, in principal, undergo system drift and rewire. 
 Even with stabilization selection, a population will explore the set of all possible phenotypically equivalent gene networks.
 Consequentially, two populations isolated for a sufficiently long period of time, 
 will likely produce inviable hybrids, despite the absence of adaptation, directional selection, or environmental change.
@@ -1146,6 +1146,13 @@ including an increase in hybrid inviability.
 We emphasize that here, hybrid inviability is a consequence of recombining different, yet functionally equivalent, mechanisms.
 \plr{See refs in Barton 2010 paper.}
 
+% nonlinearity
+%What about nonlinearity?
+As Richard Levins opined, models in population biology face a trade-off among precision, realism, and generality \citep{levins1966strategy}. As Levins expects, any tractable and general model, such as the present one under discussion, will have limitations. Most notable is linearity. It is often stated that life is not linear. 
+This is often true, 
+%however, many of the ideas developed here should be generalizable to nonlinear cases (multi-linear systems, say). 
+however, we see this as a necessary first step in the direction of a more life-like (nonlinear, perhaps) evolutionary systems theory. Depending on an actual biological system's particularities, its non-linearity, may buffer or exacerbate effects elucidated in this paper.
+
 % summary and consequences of main result on speed of speciation
 After demonstrating that it is, in principle, possible for phenotypically indistinguishable populations to speciate, we next probed whether system drift is possible under neutrality and whether the processs is fast enough to be a significant driver of speciation. This analysis was carried out by applying methods from quantitative genetics. In this framework a population is composed of many organisms, some with slightly differing gene regulatory network architectures. Some of this intrapopulation architectural variation is neutral and some is mildly deleterious and contributes to genetic load. Since there are always numerous neighboring system architecures with equivalent phenotypes and populations are not genetically homogenous, the typical system architecture within a population will drift. The speed at which a population will drift per generation, and thus the rate at which hybrid inviability appears, is a function of a population's size and of how much intrapopulation variation is present. Above, with the input of a few population parameters, we predict the rate at which isolated populations' hybrids become inviable. Our model suggests, that for a biologically reasonable range of parameter values, system drift can be a significant, if not rapid, driver of speciation, under neutrality.
 
@@ -1153,13 +1160,14 @@ Additionally we see $F_2$ hybrid fitnesses plummet much faster than that of $F_1
 %\plr{refer to Turelli here}
 This is due to recombination shuffling system architectures leaving the hybrid system homozygous for one parent at one particular locus and homozygous for the other parent at another incompatible locus. If part of a gene regulatory network resides on the X chromosome, then $F_1$ males (XY) will effectivley look like $F_2$s at those locations. This observation is consistent with Haldane's rule; that if only one hybrid sex is inviable or sterile it is likely to be the heterogametic sex.
 
+Lastly, we show that hybrid gene networks, under neutral processes, break down as a function of genetic distance, and may, in part, explain broad patterns of reproductive isolation among diverse phyla \citep{roux2016shedding, hedges2015tree}.
+
 While sumarizing speciation research \citet{orr2004speciation} remarked that ``speciation results from positive Darwinian selection within species'' thus maintaining one of the ``central tenets of the modern synthesis''. While it is known that divergent selection and genetic conflict, as well as other mechanisms, can precipitate speciation, we have shown here that, surprisingly, neutral drfit may also significantly drive species formation.
 %, although it is at present still unclear the relative contribution of each process. 
-System drift induced hybrid breakdown occurs rapidly even in the absence of postive Darwinian selection, suggesting that species originate not necessarily by means of natural selection \citep{darwin1859origin}. While the incompatibility of any one given network within an organism may be small, we note that organsisms are made up of many different networks, and the cumulative impact of system drift across all of these may be substantial. Further, even in populations experiencing directional selection, networks underlying conserved parts of the phenotype can still experience neutral drift and harbor incompatibilities. 
+System drift induced hybrid breakdown occurs rapidly even in the absence of postive Darwinian selection, suggesting that species originate not necessarily by means of natural selection \citep{darwin1859origin}. While the incompatibility of any one given network within an organism may be small, we note that organsisms are made up of many different networks, and that the cumulative impact of system drift across all of these may be substantial. Further, even in populations experiencing directional selection, networks underlying conserved parts of the phenotype can still experience neutral drift and harbor incompatibilities. 
 
-Despite the results of this inquiry, in practice it remains unclear whether system drift or other speciation mechanisms predominate, as hybrid incompatibilities due to both selection and conflict have been uncovered and hint at general processes \citep{orr2004speciation}. It also seems reasonable that systems drift could be common as there is evidence (1) that the set of molecular mechanisms underlying a trait is degenerate (illustrated in this paper), (2) that there is significant regulatory variation segregating within populations, (3) that functionally equivalent systems, even in closesly related species, can be mechanistically divergent \citep{dalal2017transcription}, (4) transcription in hybrids between closely related species with conserved transcriptional patterns can be divergent \citep{haerty2006gene, maheshwari2012cis, coolon2014tempo, michalak2004association}, and that (5) gene misregulation can cause dysfunction (by definition).
+Despite the results of this inquiry, in practice it remains unclear whether system drift or other speciation mechanisms predominate, as hybrid incompatibilities due to both selection and conflict have been uncovered and hint at general processes \citep{orr2004speciation}. It also seems reasonable that system drift could be common as there is evidence (1) that the set of molecular mechanisms underlying a trait is degenerate (illustrated in this paper), (2) that there is significant regulatory variation segregating within populations, (3) that functionally equivalent systems, even in closesly related species, can be mechanistically divergent \citep{dalal2017transcription}, (4) transcription in hybrids between closely related species with conserved transcriptional patterns can be divergent \citep{haerty2006gene, maheshwari2012cis, coolon2014tempo, michalak2004association}, that (5) gene misregulation can cause dysfunction (by definition), and (6) that numerous cryptic species complexes exist (e.g. sun skinks \citep{barley2013challenge}).
 
-Lastly, we show that hybrid gene networks, under neutral processes, break down as a function of genetic distance, and may, in part, explain broad patterns of reproductive isolation among diverse phyla \citep{roux2016shedding, hedges2015tree}.
 
 Additionally, if we ignore the fitness function used in this paper, our model still predicts that $F_1$ and $F_2$ phenotypes diverge linearly and at the square root of time with parentals, respectivey. This has implications for experimentation, as one could plot the change in phenotype (or gene expression) as a function of divergence, to test the predictions of this model. 
 
@@ -1170,12 +1178,6 @@ Additionally, if we ignore the fitness function used in this paper, our model st
 %Note that this follows directly from the fact that $F_1$ and $F_2$ hybrid phenotypes diverge from $F_0$ phenotypes, linearly and inverse-quadratically, with respect to time (more precisely $T/N_e$). As such, removing assumptions about the form of the fitness function, this model still predicts hybrid $F_2$ phenotypes to diverge much faster than $F_1$s, initially.
 %So even if fitness isn't as above maybe you can see this in phenotypes.
 
-% nonlinearity
-What about nonlinearity?
-As Richard Levins opined, models in population biology face a trade-off among precision, realism, and generality \citep{levins1966strategy}. As Levins expects, any tractable and general model, such as the present one under discussion, will have limitations. Most notable is linearity. It is often stated that life is not linear. 
-This is often true, 
-%however, many of the ideas developed here should be generalizable to nonlinear cases (multi-linear systems, say). 
-however, we see this as a necessary first step in the direction of a more life-like (nonlinear, perhaps) evolutionary systems theory. Depending on an actual biological system's particularities, its non-linearity, may buffer or exacerbate effects elucidated in this paper.
 
 % selection moving around optimal set
 %Note that the drift above could actually be caused by the optimal phenotype shifting.
