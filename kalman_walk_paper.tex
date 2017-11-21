@@ -795,19 +795,19 @@ consistent with the idea that natural selection will allow such intrapopulation 
 \end{example}
 
 \paragraph{Haldane's rule}
+\jss{Maybe something like dosage compensation drift could also lead to Haldane's rule. That is, if the dosage compensation can either be: upregulate the X by $2$ in male flies, versus in another species: downregulate the X in females by $1/2$, and all possible combinations inbetween?}
 This model naturally predicts
 Haldane's rule, the observation that if only one hybrid sex is sterile or inviable 
 it is likely the heterogametic sex (e.g., the male in XY sex determination systems) \citep{haldane1922sex}.
 For example, consider an XY species with a two-gene network where the first gene resides on an autosome and the second gene on the X chromosome.
 A male whose pair of haplotypes are 
 $\left( \left[ \begin{smallmatrix} A_1 & A_2 \\ \cdot & \cdot \end{smallmatrix} \right], \left[ \begin{smallmatrix} A_1 & A_2 \\ X_1 & X_2 \end{smallmatrix} \right] \right)$
-has phenotype determined by $A = \left[ \begin{smallmatrix} A_1 & A_2 \\ X_1/2 & X_2/2 \end{smallmatrix} \right]$,
+  has phenotype determined by $A = \left[ \begin{smallmatrix} A_1 & A_2 \\ X_1 & X_2 \end{smallmatrix} \right]$, thanks to \emph{Drosophila}-like dosage compensation mechanism (the X is twice upregulated in heterogametes relative to homogametes),
 while a female homozygous for the haplotype
-$\left[\begin{smallmatrix} \bar A_1 & \bar A_2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$,
-thanks to X-inactivation, has phenotype determined by
-$A = \left[\begin{smallmatrix} \bar A_1 & \bar A_2 \\ \bar X_1/2 & \bar X_2/2 \end{smallmatrix}\right]$.
+$\left[\begin{smallmatrix} \bar A_1 & \bar A_2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$, has phenotype determined by
+$A = \left[\begin{smallmatrix} \bar A_1 & \bar A_2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$.
 An $F_1$ male offspring of these two will have phenotype determined by
-$\frac{1}{2} \left[\begin{smallmatrix} A_1 + \bar A_1 & A_2 + \bar A_2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$.
+$\left[\begin{smallmatrix} (A_1 + \bar A_1)/2 & (A_2 + \bar A_2)/2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$.
 If both genes resided on the autosomes this system would only be possible in an $F_2$ cross.
 More generally, 
 if the regulatory coefficients for a system are shared between the sex and one or more autosomal chromosomes, 
@@ -817,7 +817,6 @@ This mechanism is apparently distinct from the currently favored ``dominance'', 
 and makes several different predictions than the dominance theory as formulated by \citet{turelli1995dominance}.
 \plr{what are they?}
 \citet{turelli1995dominance} employ a population genetic model which strictly requires alleles causing hybrid incompatibility on the X chromosome not to exhibit additive effects, that is the \emph{dominance coefficient} (typically $h$ in classic population genetics) must not be equal to $\frac{1}{2}$. In their model, if alleles are strictly additive, that is neither dominant nor recessive, then male and female $F_1$ hybrids will drop in fitness at the exact same rates, and therefore defy Haldane's rule. 
-Furthermore, the dominance theory struggles with dosage compensation and X-inactivation \citep{watson2012haldane}; the present model, however, complies with Haldane's rule with X-inactivation explicitly included.
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \section*{System drift and the accumulation of incompatibilities}
