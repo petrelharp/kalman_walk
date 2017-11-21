@@ -1139,6 +1139,7 @@ but it seems reasonable that these two quantities are of the same magnitude.
 
 %%% OUTLINE
 % - Summarize methods and main result on rate of speciation.
+% - Consistent with F1/F2 divergence and Haldane's rule
 % - What empirical evidence is there that this is actually happening? 
 %   * incompats due to misregulation (Noor, Witkopp...)
 %   * numerous species that are visually indistinguishable (skinks, ferns)
@@ -1147,35 +1148,45 @@ but it seems reasonable that these two quantities are of the same magnitude.
 % - Is linearity an important assumption?
 % - We know that divergent selection and genetic conflict can easily lead to speciation; we've shown neutral drift can maybe surprisingly easily do so also; but it remains unclear the relative contributions of these. Note that although drift may be weaker in any one network there are lots of networks. Could motivate this with Orr's statement.  Perhaps tie in spandrels.
 
-The complexity of biological systems has limited our understanding of their function and evolution. Above we outline an approach, a first step, towards untangling this complexity in reference to function and evolution. This methodology borrows successfully applied tools from engineering and aims to synthesize these with the concepts and tools of molecular and evolutionary biology.
-Theoretical models in evolution and population genetics often lack the molecular details of physiology or of the genotype-phenotype map. 
-Here, we offer a tractable and simple model which includes these missing features.
+Above we synthesize models from molecular and evolutionary biology with tools from control theory
+to study the evolution of a molecularly mechanistic model of the genotype-phenotype map under stabilizing selection.
+This model allows us to describe analytically the processes described verbally as
+phenogenetic drift \citep{weiss2000phenogenetic} or developmental system drift \citep{true2001developmental}.
+In this context, the Kalman decomposition \citep{kalman1963mathematical} implies that nearly all systems are nonidentifiable,
+and gives an analytical description of all phenotypically equivalent gene networks.
+System nonidentifiability, rather than being a computational nuisance,
+implies the existence of axes of genetic variation that are not constrained by selection.
+The independent movement of separated populations along these axes
+can lead to reduction in hybrid viability, and hence speciation,
+at a speed that depends on effective population size and amount of genetic variation. 
+In this model, at biologically reasonable parameter values,
+system drift is be a significant -- and often rapid -- driver of speciation.
+This may at first be surprising because
+hybrid inviability appears as a consequence of recombining different, yet functionally equivalent, mechanisms. 
 
-Further, we provide, in clear mathematical language, an analytical description of phenomena hitherto discussed verbally and conceptually 
-(phenogenetic drift \citep{weiss2000phenogenetic}, developmental system drift \citep{true2001developmental}, biological degeneracy \citep{edelman2001degeneracy}). 
-The tractability and relative simplicity of this exposition enables the interested biologist to work out by hand, 
-if desired, 
-the dynamics of a genetic system, as well as perturbations to the system -- an attribute not likely to be found in less tractable models and simulations.
+Consistent with empirical observation \js{cite}, we see that the fitnesses of $F_2$ hybrids drop at a much faster rate than those of $F_1$s,
+since $F_1$ and $F_2$ phenotypes diverge linearly and at the square root of time relative to parentals, respectively.
+\plr{refer to Turelli here}
+% In this model, this is due to recombination shuffling system architectures, leaving the $F_2$ system homozygous for one parent at one particular locus and homozygous for the other parent at another possibly incompatible locus.
+Another natural consequence of the model is Haldane's rule,
+that if only one hybrid sex is inviable or sterile it is likely to be the heterogametic sex.
+This occurs because if the genes underlying a regulatory network are distributed among both autosomes and the sex chromosome, 
+then heterogametic $F_1$s show variation similar to that seen in $F_2$s.
 
-% it says something about speciation and DMIs
-We have suggested an interpretation of system nonidentifiability: to see it as an evolutionarily neutral manifold, and not simply a computational nuisance. 
-We have demonstrated a method to analytically determine the set of all phenotypically equivalent gene networks; 
-by a simple change of coordinates in the minimal configuration, or more generally by applying the Kalman decomposition.
-%Further, we emphasize that evolution proceeds through this high dimensional space as stochastic coordinate transformation, constrained by sexual reproduction and selection. 
-%% summary and consequences of main result on speed of speciation
-%After demonstrating that it is, in principle, possible for phenotypically indistinguishable populations to speciate, we next probed whether system drift is possible under neutrality and whether the processs is fast enough to be a significant driver of speciation. This analysis was carried out by applying methods from quantitative genetics. In this framework a population is composed of many organisms, some with slightly differing gene regulatory network architectures. Some of this intrapopulation architectural variation is neutral and some is mildly deleterious and contributes to genetic load. Since there are always numerous neighboring system architecures with equivalent phenotypes and populations are not genetically homogenous, the typical system architecture within a population will drift. 
-This set is explored by a population over evolutionary time while phenotype is conserved, and can lead to speciation via an increase in hybrid inviability.
-The speed at which a population will drift through this set, and thus accrue hybrid incompatibilities, is a function of effective population size and genetic variation. 
-With the input of a range of biologically reasonable parameter values, our model predicts that system drift will be a significant -- and likely a rapid -- driver of speciation.
-We emphasize that here, hybrid inviability is a consequence of recombining different, yet functionally equivalent, mechanisms. 
-\plr{See refs in Barton 2010 paper.}
-
-Consistent with empirical observation, we see that the fitnesses of $F_2$ hybrids drop at a much faster rate than those of $F_1$s (as $F_1$ and $F_2$ phenotypes diverge linearly and at the square root of time relative to parentals, respectivey).
-%\plr{refer to Turelli here}
-In this model, this is due to recombination shuffling system architectures, leaving the $F_2$ system homozygous for one parent at one particular locus and homozygous for the other parent at another possibly incompatible locus.
-Interestingly, if part of a gene regulatory network resides on the sex chromosomes (X), then heterogametic $F_1$s (typically males) will effectivley look like $F_2$s. This observation is consistent with, and may in fact explain, Haldane's rule: that if only one hybrid sex is inviable or sterile it is likely to be the heterogametic sex.
-
-System drift may be a significant driver of speciation as there is evidence that the set of molecular mechanisms underlying a trait is degenerate, that there is significant regulatory variation segregating within populations, that functionally equivalent systems, even in closesly related species, can be mechanistically divergent \citep{dalal2017transcription}, transcription in hybrids between closely related species with conserved transcriptional patterns can be divergent \citep{haerty2006gene, maheshwari2012cis, coolon2014tempo, michalak2004association}, that gene misregulation can cause dysfunction (by definition), and that numerous cryptic species complexes exist (e.g. sun skinks \citep{barley2013challenge}).
+Is there evidence that this is actually occurring?
+System drift has been inferred across the tree of life \citep{johnson2017rewiring},
+and there is often significant regulatory variation segregating within populations \citep{XXX}.
+\js{cite sergey?}
+Transcription in hybrids between closely related species with conserved transcriptional patterns can also be divergent 
+\citep{haerty2006gene, maheshwari2012cis, coolon2014tempo, michalak2004association}.
+Furthermore, in cryptic species complexes (e.g., sun skinks \citep{barley2013challenge}),
+strongly reproductively incompatible species may be nearly morphologically indistinguishable.
+\plr{check the skinks have RI!!}
+Of course, selective pressures have likely not been constant over evolutionary time
+in any of these examples,
+but the process we describe here will still occur.
+This model therefore may provide a neutral ``null'' model of gene network evolution \citep{koonin2016splendor}.
+\plr{revisit}
 
 % nonlinearity
 %What about nonlinearity?
@@ -2193,3 +2204,5 @@ and finally in $A$ and $C$:
 %  \end{align*}
 
 \end{document}
+
+
