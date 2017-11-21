@@ -1151,7 +1151,7 @@ but it seems reasonable that these two quantities are of the same magnitude.
 Above we synthesize models from molecular and evolutionary biology with tools from control theory
 to study the evolution of a molecularly mechanistic model of the genotype-phenotype map under stabilizing selection.
 This model allows us to describe analytically the processes described verbally as
-phenogenetic drift \citep{weiss2000phenogenetic} or developmental system drift \citep{true2001developmental}.
+phenogenetic drift \citep{weiss2000phenogenetic} and developmental system drift \citep{true2001developmental}.
 In this context, the Kalman decomposition \citep{kalman1963mathematical} implies that nearly all systems are nonidentifiable,
 and gives an analytical description of all phenotypically equivalent gene networks.
 System nonidentifiability, rather than being a computational nuisance,
@@ -1160,7 +1160,7 @@ The independent movement of separated populations along these axes
 can lead to reduction in hybrid viability, and hence speciation,
 at a speed that depends on effective population size and amount of genetic variation. 
 In this model, at biologically reasonable parameter values,
-system drift is be a significant -- and often rapid -- driver of speciation.
+system drift is a significant -- and often rapid -- driver of speciation.
 This may at first be surprising because
 hybrid inviability appears as a consequence of recombining different, yet functionally equivalent, mechanisms. 
 
@@ -1169,7 +1169,7 @@ since $F_1$ and $F_2$ phenotypes diverge linearly and at the square root of time
 \plr{refer to Turelli here}
 % In this model, this is due to recombination shuffling system architectures, leaving the $F_2$ system homozygous for one parent at one particular locus and homozygous for the other parent at another possibly incompatible locus.
 Another natural consequence of the model is Haldane's rule,
-that if only one hybrid sex is inviable or sterile it is likely to be the heterogametic sex.
+that if only one $F_1$ hybrid sex is inviable or sterile it is likely to be the heterogametic sex.
 This occurs because if the genes underlying a regulatory network are distributed among both autosomes and the sex chromosome, 
 then heterogametic $F_1$s show variation similar to that seen in $F_2$s.
 
@@ -1185,7 +1185,7 @@ strongly reproductively incompatible species may be nearly morphologically indis
 Of course, selective pressures have likely not been constant over evolutionary time
 in any of these examples,
 but the process we describe here will still occur.
-This model therefore may provide a neutral ``null'' model of gene network evolution \citep{koonin2016splendor}.
+This model therefore may provide a neutral ``null'' model of gene network evolution, a strategy advocated for by \citet{koonin2016splendor}.
 \plr{revisit}
 
 % nonlinearity
@@ -1195,7 +1195,11 @@ This is often true,
 %however, many of the ideas developed here should be generalizable to nonlinear cases (multi-linear systems, say). 
 however, we see this as a necessary first step in the direction of a more life-like (nonlinear, perhaps) evolutionary systems theory. Depending on an actual biological system's particularities, its non-linearity, may buffer or exacerbate effects elucidated in this paper.
 
-Although, as classically formulated, the Dobzhansky-Muller model of hybrid incompatibility is agnostic to the relative importance of neutral versus selective genetic substitutions \citep{coyne1998evolutionary}, \citet{orr2004speciation} remarks that hybrid incompatibility data suggests that ``speciation results from positive Darwinian selection within species'' thus maintaining one of the ``central tenets of the modern synthesis''. 
+Although, as classically formulated, the Dobzhansky-Muller model of hybrid incompatibility is agnostic to the relative importance of neutral versus selective genetic substitutions \citep{coyne1998evolutionary} (as the neutral theory did not yet exist), \citet{orr2004speciation} remarks that hybrid incompatibility data suggests that ``speciation results from positive Darwinian selection within species'' thus maintaining one of the ``central tenets of the modern synthesis''. 
+Reviewing both theoretical \citep{nei1983models} and empirical results on speciation, \citet{seehausen2014genomics} suggest that genetic drift is too slow to drive speciation and instead interpret genomic conflict to be a more significant driver.
+
+\emph{Ecological speciation} as espoused by Schluter (and sometimes referred to as \emph{parallel speciation} \citep{schluter1995parallel}) suggests that reproductive incompatibility is a byproduct of adaptation -- and stands in stark contrast to the model presented here -- as it specifically predicts that two independent and initially identical populations evolving under stabilizing selection will \emph{not} harbor incompatibilities \citep{schluter2009evidence}. This is not to say that our model does not predict that ecological divergence can drive speciaiton -- if adaptation manifests as a significant difference in optimal (and thus evolved) phenotypes ($\phi \neq \bar \phi$) between initially identical populations, hybrids between the two will surely be less fit in both parental environments, however, this type of incompatibility will be function/network specific and not necessarily entail general steriliy or developmental inviability (so long as the particular networks underlying these processes did not adapt to novel ecologies) in the absense of system drift. \jss{should I write out an example including the oscillator? Such as, if natural selection shifts the frequencies between adapting populations, hybrids will exhibit neither optimal frequncy of oscillation, however under the ecological speciation model, we would not expect to find incompatibilities in any other of the organism's gene networks.}
+
 %In practice it remains unclear whether system drift or other speciation mechanisms predominate, 
 %as hybrid incompatibilities due to both selection and conflict have been uncovered and hint at general processes \citep{orr2004speciation}. 
 While it is known that divergent selection and genetic conflict, as well as other mechanisms, can precipitate speciation, we have shown here that, surprisingly, neutral drfit may also significantly drive species formation.
@@ -1204,7 +1208,7 @@ If system drift induced hybrid incompatibility occurs as rapidly as our model su
 %even in the absence of postive Darwinian selection, 
 this would imply that species originate not necessarily by means of natural selection \citep{darwin1859origin}. While the incompatibility of any one given network within an organism may be small, we note that organsisms are made up of many different networks, and that the cumulative impact of system drift across all of these may be substantial. Further, even in populations experiencing directional selection, networks underlying conserved parts of the phenotype can still experience neutral drift and harbor incompatibilities. 
 Our results show that hybrids, under neutral processes, break down as a function of genetic distance, and despite the present model's myriad simplifications and assumptions, 
-it may, in part, explain the observed broad patterns of reproductive isolation among diverse phyla \citep{roux2016shedding, hedges2015tree}. \js{maybe also cite the phylogentics lit here? Like the speciation clock stuff.}
+it may, in part, explain the observed broad patterns of reproductive isolation, such as the observed consistent relationship between molecular divergence and genetic isolation across diverse taxa and ecologies by \citet{roux2016shedding}, and the suggestivley nonadaptive, clocklike speciation patterns observed by \citet{hedges2015tree} (as diversification is not observed to be accelerated following mass extinctions).
 
 %Do we see evidence of this?  Well, maybe: misregulation in hybrids in Witkopp, Noor, Barbash, etc,
 %even with expression levels in parents being the same.
