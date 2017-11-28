@@ -101,7 +101,7 @@ perturb_oscillator <- function(AL, eps) {
 }
 
 #####################################
-sys_gen2 <- function (s=sigma, eps=0.1, nreps=100) 
+sys_gen2 <- function (s=sigma, eps=0.05, nreps=100) 
 {
   KalA_list <- random_oscillator(s=s)
   KalA <- assemble_oscillator(KalA_list)
@@ -116,16 +116,39 @@ sys_gen2 <- function (s=sigma, eps=0.1, nreps=100)
     dist <- norm(KalA$A-new_KalA$A,"F")
     
     avg_div <- 0
-    for (j in 1:200) 
+    jj <- 0
+    for (j in 1:100) 
     { 
       Z1 <- recombine(KalA$A, new_KalA$A)
       Z2 <- recombine(KalA$A, new_KalA$A)
       Z3 <- (Z1 + Z2)/2
-      DZ <- D(Z3, BK=KalA$B, CK=KalA$C)
-      
-      avg_div <- avg_div + DZ/200
+      DZ <- tryCatch(D(Z3, BK=KalA$B, CK=KalA$C), error=function(e) NULL)
+      if (is.null(DZ)==1)
+      {
+        j = j-1
+        jj = jj+1
+        if(jj==10)
+        {
+          break
+        }
+      }
+      if (is.null(DZ)==0) 
+        {
+          avg_div <- avg_div + DZ/100
+        }
     }
     output[i,] <- c(dist,avg_div)
   }
   return(output)
+}
+
+#########################
+
+pert_sim <- function(rgens){
+  pheno_divergence <- sys_gen2(s=0.1, eps=0.05, nreps=100)
+  for(i in 2:rgens)
+  {
+    ph0 <- sys_gen2(s=0.01,eps=0.05,nreps=100)
+    pheno_divergence <- rbind(pheno_divergence, ph0)
+  }
 }

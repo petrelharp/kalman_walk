@@ -167,22 +167,22 @@ that appears mechanistically distinct from other proposed mechanisms.
 \section*{Introduction}
 
 A complex molecular machinery translates an organism's genome into the characteristics on which natural selection acts,
-her phenotype.
+the phenotype.
 % Bridging the gulf between an organism's genome and phenotype is a poorly understood and complex molecular machinery. 
-Attaining a general understanding of the functioning and evolution of this molecular machinery
-is an overarching goal of many subdisciplines of biology.
+%Attaining a general understanding of the functioning and evolution of this molecular machinery
+It is an overarching goal of many biological subdisciplines to attain a general understanding of the function and evolution of this molecular machinery. 
 For example, 
-there is a growing body of data on evolutionary histories and molecular characterizations of particular gene regulatory networks
+there is a growing body of data on the evolutionary histories and molecular characterizations of particular gene regulatory networks
 \citep{jaeger2011gap, davidson2006gene, israel2016comparative}, 
 as well as thoughtful verbal and conceptual models \citep{true2001developmental, gwagner1, weiss2000phenogenetic, edelman2001degeneracy}. 
 Mathematical models of both particular regulatory networks
 and the evolution of such systems in general
 can provide guidance where intuition fails,
 and thus has the potential to discover general principles in the organization of biological systems 
-and provide concrete numerical predictions \citep{servedio2014not}.
+as well as provide concrete numerical predictions \citep{servedio2014not}.
 
 The dynamics of the molecular machinery and its interactions with the environment
-can be mathematically described in various ways as a dynamical system \citep{jaeger2015comet}.
+can be mathematically described as a dynamical system \citep{jaeger2015comet}.
 Movement in this direction is ongoing, as researchers have begun to study 
 the evolution of both abstract \citep{wagner1994evolution, wagner1996does, siegal2002waddington, bergman2003evolutionary, draghi2015robustness} 
 and empirically inspired computational and mathematical models of gene regulatory networks,
@@ -193,10 +193,10 @@ and empirically inspired computational and mathematical models of gene regulator
 It is well known that in many contexts mathematical models
 can fundamentally be \emph{nonidentifiable} and/or \emph{indistinguishable} -- meaning that 
 there can be uncertainty about an inferred model's parameters or even its claims about
-causal structure, even with access to complete and perfect data \citep{bellman1970structural, grewal1976identifiability, walter1984structural}. 
+causal structure, despite access to complete and perfect data \citep{bellman1970structural, grewal1976identifiability, walter1984structural}. 
 Models with different parameter schemes, or even different mechanics 
-can equally accurately predict the observed behavior of a given physical system, 
-but still not actually reflect the internal dynamics of the system.
+can make equally accurate predictions,
+but still not actually reflect the internal dynamics of the system being modelled.
 In control theory, where electrical circuits and mechanical systems are often the focus, 
 it is understood that there can be an infinite number of ``realizations'', 
 or ways to reverse engineer the dynamics of a ``black box'',
@@ -207,7 +207,7 @@ In computer science, this is framed as the relationship among processes that sim
 Finally,
 the field of \emph{inverse problems} studies those cases where,
 even if a one-to-one mapping between model and behavior is possible in theory,
-even tiny amounts of noise can make inference problems nonidentifiable in practice.
+  even tiny amounts of noise can make inference problems nonidentifiable in practice \jss{cite?}.
 
 Although nonidentifiability may frustrate the occasional engineer or scientist, viewed from another angle,
 these concepts can provide a starting point for thinking about externally equivalent systems
@@ -215,50 +215,47 @@ these concepts can provide a starting point for thinking about externally equiva
 These functional symmetries manifest in convergent and parallel evolution, 
 as well as \emph{developmental system drift}: the observation that
 macroscopically identical phenotypes in even very closely related species can in fact be divergent at the molecular and sequence level 
-\citep{true2001developmental, tanay2005conservation, tsong2006evolution, hare2008sepsid, vierstra2014mouse,  dalal2016transcriptional, dalal2017transcription}.
-% are these good here? {taylor2016diverse, matsui2015regulatory, stergachis2014conservation}.
+\citep{true2001developmental, tanay2005conservation, tsong2006evolution, hare2008sepsid, vierstra2014mouse, matsui2015regulatory, dalal2016transcriptional, dalal2017transcription}.
+  \jss{should hare2008sepsid be here? It's sequence but not ``system'' drift}
+% are these good here? {taylor2016diverse -- maybe not, matsui2015regulatory -- I think this relevant, stergachis2014conservation}.
+%
+%AND THESE?
+  %% Over the last several years, different computational models have been applied to study reproductive incompatibility and speciation in models of gene regulation \citep{porter2002speciation, tulchinsky, palmer2009dynamics, tulchinsky2014hybrid, khatari2015simple}.
+  %\citet{tulchinsky} simulated the evolution of a transcription factor and its binding site using a thermodynamic model. Their simulations suggest that the language by which a transcription factor recognizes its binding site can change, and potentially lead to hybrid incompatibility when allopatric populations employ divergent readout languages. This study, despite looking at gene regulation, does not analyze overall gene network architecture -- as we do here -- it only looks at the expression level of a single gene. Furthermore, they report reproductive isolation primarily following directional selection for a change in expression levels in each allopatric population; the evidence for reproductive isolation following balancing selection is much weaker. Johnson and Porter 2000 did not observe any hybrid fitness declines under stabilizing selection -- only under directional selection. 
+%Khatari et al, Tulchinsky et al, and Porter et al, all study hybrid incompatibility from a transcription factor/binding site interaction perspective, not from an overall network architecture perspective. Palmer and Feldman only see hybrid incompatibility in constant environments if the parental populations are relatively poorly adapted initially. Otherwise hybrids between two allopatric populations have fairly high fitnesses.  
 
-EDIT IN THESE REFS?
-The literature is filled with detailed observations of molecular systems and their diversity. 
-\plr{Diversity doesn't imply system drift -- only if the diverse systems are homologous.}
-There are examples of significant diversity in the networks underlying processes such as 
-circadian rhythm \citep{sancar2008intelligent}, 
-cell cycle control \citep{cross2011evolution, kearsey2003enigmatic}, 
-pattern formation \plr{cite?}, 
-and metabolism \citep{lavoie2009rearrangements, martchenko2007transcriptional, christensen2011unique, hartl2007induction, alam2013aspergillus}.
-
-AND THESE?
-Over the last several years, several different computational approaches have been applied to study reproductive incompatibility and speciation. \citet{tulchinsky} simulated the evolution of a transcription factor and its binding site using a thermodynamic model. Their simulations suggest that the language by which a transcription factor recognizes its binding site can change, and potentially lead to hybrid incompatibility when allopatric populations employ divergent readout languages. This study, despite looking at gene regulation, does not analyze overall gene network architecture -- as we do here -- it only looks at the expression level of a single gene. Furthermore, they report reproductive isolation primarily following directional selection for a change in expression levels in each allopatric population; the evidence for reproductive isolation following balancing selection is much weaker. Johnson and Porter 2000 did not observe any hybrid fitness declines under stabilizing selection -- only under directional selection. 
-Khatari et al, Tulchinsky et al, and Porter et al, all study hybrid incompatibility from a transcription factor/binding site interaction perspective, not from an overall network architecture perspective. Palmer and Feldman only see hybrid incompatibility in constant environments if the parental populations are relatively poorly adapted initially. Otherwise hybrids between two allopatric populations have fairly high fitnesses.  
-MAKE SURE TO REF DMI LIT SOMEWHERE and Barton's paper.
-
-
-In this paper we outline a theoretical framework to study the evolution of biological systems
-that can be described by systems of differential equations, such as gene regulatory networks.
-We study the scenario
-where the optimal phenotype remains constant over evolutionary time,
-so that despite strong stabilizing selection for phenotype,
-neutral drift in the underlying genotype is possible.
-Results from systems theory provide
+In this paper we outline a theoretical framework to study the evolution of biological systems, such as gene regulatory networks.
+We study the evolution of an optimally adapted population subject to stabilizing selection for phenotype -- that is the population evolves under constant selective and environmental pressures.
+Even if the phenotype remains stable over evolutionary time, the underlying mechanism might not remain so,
+%Even when stabilizing selection preserves phenotype over evolutionary time, the underlying mechanism may change, 
+as many distinct (and mutationally connected) molecular pathways can realize identical phenotypes.
+%where the optimal phenotype remains constant over evolutionary time,
+%so that despite strong stabilizing selection for phenotype,
+%neutral drift in the underlying genotype is possible.
+Applying results from system theory, we present
 an analytical description of the set of 
-all linear gene network architectures that yield identical phenotypes,
-which gives concrete expectations for how any such
-system can, in principal, undergo system drift and rewire. 
-Even with stabilization selection, a population will explore the set of all possible phenotypically equivalent gene networks.
+all linear gene network architectures that yield identical phenotypes, and show that any biological system, in principal, can undergo system drift, as there is never a unique system architecture per phenotype.
+%which gives concrete expectations for how any such
+%system can, in principal, undergo system drift and rewire.
+Even under stabilizing selection, a population can explore the set of all possible phenotypically equivalent gene networks.
+Phenotypically equivalent gene networks are not necessarily compatible with one another, thus system drift can rapidly lead to the accumulation of hybrid incompatibilities analogous to those in the Dobzhansky-Muller model. 
 Consequentially, two populations isolated for a sufficiently long period of time, 
 will likely produce inviable hybrids, despite the absence of adaptation, directional selection, or environmental change.
 % Under these conditions, speciation typically occurs on timescales approximately on the order of $N_{e}$ generations, where $N_{e}$ is the effective population size.
 
+REFERENCE: Barton's paper (PETER).
+
 \section*{Methods}
 
-We study an abstract model of temporal dynamics of the concentrations of a collection of $n$ coregulating molecules
-within an organism, that may also be affected by temporally varying signals from the environment.
-% Organisms' phenotypes are constructed by gene by gene and gene by environment interactions. 
-%Here we simply define the \emph{phenotype} to be those aspects of the dynamics directly under natural selection
-%-- the \emph{what}, \emph{when}, and \emph{how much}, of an organism's molecules that are physiologically or otherwise relevant to survival.
+Here we construct as abstract model to study biological systems, such as gene regulatory networks. The behavior (i.e. temporal dynamics) of such a system is determined both by a collection of $n$ coregulating moleculues -- such as transcription factors, as well as external or environmental inputs.
+%We study an abstract model of temporal dynamics of the concentrations of a collection of $n$ coregulating molecules
+%within an organism, that may also be affected by temporally varying signals from the environment.
+%% Organisms' phenotypes are constructed by gene by gene and gene by environment interactions. 
+%%Here we simply define the \emph{phenotype} to be those aspects of the dynamics directly under natural selection
+%%-- the \emph{what}, \emph{when}, and \emph{how much}, of an organism's molecules that are physiologically or otherwise relevant to survival.
 We write $\kappa(t)$ for the vector of $n$ molecular concentrations at time $t$.
-There are also $m$ ``inputs'' determined exogenously to the system, denoted $u(t)$,
-and $\ell$ ``outputs'', denoted $\phi(t)$.
+The $m$ ``inputs'' determined exogenously to the system are denoted $u(t)$,
+and the $\ell$ ``outputs'' are denoted $\phi(t)$.
 The output is merely a linear function of the internal state:
 $\phi_i(t) = \sum_j C_{ij} \kappa_i(t)$
 for some matrix $C$.
@@ -286,9 +283,9 @@ as well as the input:
 \end{equation}
 Furthermore, we always assume that $\kappa(0) = 0$,
 so that the kryptotype measures deviations from initial concentrations. 
-Here $A$ can be any $n \times n$ matrix, $B$ a $n \times m$, and $C$ any $\ell \times n$ dimensional matrix,
+Here $A$ can be any $n \times n$ matrix, $B$ an $n \times m$, and $C$ any $\ell \times n$ dimensional matrix,
 with usually $\ell$ and $m$ less than $n$.
-We think of the system as the triple $\mathcal{S} = (A,B,C)$,
+We think of the system as the triple $(A,B,C)$,
 which translates (time-varying) $m$-dimensional input $u(t)$ into the $\ell$-dimensional output $\phi(t)$.
 Under quite general assumptions,
 we can write the phenotype as
@@ -301,7 +298,7 @@ which we denote as $h(t) := Ce^{A t}B$.
 Although many different biological systems can be modeled with this approach, for clarity, we focus on gene regulatory networks.
 In this interpretation, $A_{ij}$ determines how the $j^\text{th}$ transcription factor regulates the $i^\text{th}$ transcription factor.
 If $A_{ij} > 0$, then $\kappa_j$ upregulates $\kappa_i$, while if $A_{ij} < 0$, then $\kappa_j$ downregulates $\kappa_i$.
-The $i$th row of $A$ is therefore determined by genetic features such as
+The $i^\text{th}$ row of $A$ is therefore determined by genetic features such as
 the strength of $j$-binding sites in the promoter of gene $i$,
 factors affecting chromatin accessibility near gene $i$,
 or basal transcription machinery activity.
@@ -795,19 +792,19 @@ consistent with the idea that natural selection will allow such intrapopulation 
 \end{example}
 
 \paragraph{Haldane's rule}
+\jss{Maybe something like dosage compensation drift could also lead to Haldane's rule. That is, if the dosage compensation can either be: upregulate the X by $2$ in male flies, versus in another species: downregulate the X in females by $1/2$, and all possible combinations inbetween?}
 This model naturally predicts
 Haldane's rule, the observation that if only one hybrid sex is sterile or inviable 
 it is likely the heterogametic sex (e.g., the male in XY sex determination systems) \citep{haldane1922sex}.
 For example, consider an XY species with a two-gene network where the first gene resides on an autosome and the second gene on the X chromosome.
 A male whose pair of haplotypes are 
 $\left( \left[ \begin{smallmatrix} A_1 & A_2 \\ \cdot & \cdot \end{smallmatrix} \right], \left[ \begin{smallmatrix} A_1 & A_2 \\ X_1 & X_2 \end{smallmatrix} \right] \right)$
-has phenotype determined by $A = \left[ \begin{smallmatrix} A_1 & A_2 \\ X_1/2 & X_2/2 \end{smallmatrix} \right]$,
+  has phenotype determined by $A = \left[ \begin{smallmatrix} A_1 & A_2 \\ X_1 & X_2 \end{smallmatrix} \right]$, thanks to \emph{Drosophila}-like dosage compensation mechanism (the X is twice upregulated in heterogametes relative to homogametes),
 while a female homozygous for the haplotype
-$\left[\begin{smallmatrix} \bar A_1 & \bar A_2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$,
-thanks to X-inactivation, has phenotype determined by
-$A = \left[\begin{smallmatrix} \bar A_1 & \bar A_2 \\ \bar X_1/2 & \bar X_2/2 \end{smallmatrix}\right]$.
+$\left[\begin{smallmatrix} \bar A_1 & \bar A_2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$, has phenotype determined by
+$A = \left[\begin{smallmatrix} \bar A_1 & \bar A_2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$.
 An $F_1$ male offspring of these two will have phenotype determined by
-$\frac{1}{2} \left[\begin{smallmatrix} A_1 + \bar A_1 & A_2 + \bar A_2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$.
+$\left[\begin{smallmatrix} (A_1 + \bar A_1)/2 & (A_2 + \bar A_2)/2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$.
 If both genes resided on the autosomes this system would only be possible in an $F_2$ cross.
 More generally, 
 if the regulatory coefficients for a system are shared between the sex and one or more autosomal chromosomes, 
@@ -817,7 +814,6 @@ This mechanism is apparently distinct from the currently favored ``dominance'', 
 and makes several different predictions than the dominance theory as formulated by \citet{turelli1995dominance}.
 \plr{what are they?}
 \citet{turelli1995dominance} employ a population genetic model which strictly requires alleles causing hybrid incompatibility on the X chromosome not to exhibit additive effects, that is the \emph{dominance coefficient} (typically $h$ in classic population genetics) must not be equal to $\frac{1}{2}$. In their model, if alleles are strictly additive, that is neither dominant nor recessive, then male and female $F_1$ hybrids will drop in fitness at the exact same rates, and therefore defy Haldane's rule. 
-Furthermore, the dominance theory struggles with dosage compensation and X-inactivation \citep{watson2012haldane}; the present model, however, complies with Haldane's rule with X-inactivation explicitly included.
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \section*{System drift and the accumulation of incompatibilities}
@@ -1139,6 +1135,7 @@ but it seems reasonable that these two quantities are of the same magnitude.
 
 %%% OUTLINE
 % - Summarize methods and main result on rate of speciation.
+% - Consistent with F1/F2 divergence and Haldane's rule
 % - What empirical evidence is there that this is actually happening? 
 %   * incompats due to misregulation (Noor, Witkopp...)
 %   * numerous species that are visually indistinguishable (skinks, ferns)
@@ -1147,74 +1144,112 @@ but it seems reasonable that these two quantities are of the same magnitude.
 % - Is linearity an important assumption?
 % - We know that divergent selection and genetic conflict can easily lead to speciation; we've shown neutral drift can maybe surprisingly easily do so also; but it remains unclear the relative contributions of these. Note that although drift may be weaker in any one network there are lots of networks. Could motivate this with Orr's statement.  Perhaps tie in spandrels.
 
-The complexity of biological systems has limited our understanding of their function and evolution. Above we outline an approach, a first step, towards untangling this complexity in reference to function and evolution. This methodology borrows successfully applied tools from engineering and aims to synthesize these with the concepts and tools of molecular and evolutionary biology.
-Theoretical models in evolution and population genetics often lack the molecular details of physiology or of the genotype-phenotype map. 
-Here, we offer a tractable and simple model which includes these missing features. 
-Further, we provide, in clear mathematical language, an analytical description of phenomena hitherto discussed verbally and conceptually 
-(phenogenetic drift \citep{weiss2000phenogenetic}, developmental system drift \citep{true2001developmental}, biological degeneracy \citep{edelman2001degeneracy}). 
-The tractability and relative simplicity of this exposition enables the interested biologist to work out by hand, 
-if desired, 
-the dynamics of a genetic system, as well as perturbations to the system -- an attribute not likely to be found in less tractable models and simulations.
+Above we synthesize concepts and tools from molecular and evolutionary biology with tools from control theory
+to study the evolution of a mechanistic model of the molecular genotype-phenotype map under stabilizing selection.
+This model allows us to analytically describe the processes discussed verbally as
+phenogenetic drift \citep{weiss2000phenogenetic} and developmental system drift \citep{true2001developmental}.
+In this context, the Kalman decomposition \citep{kalman1963mathematical} implies that nearly all systems are nonidentifiable,
+and gives an analytical description of all phenotypically equivalent gene networks.
+System nonidentifiability, rather than being a computational nuisance,
+implies the existence of axes of genetic variation that are not constrained by selection.
+The independent movement of separated populations along these axes
+can lead to reduction in hybrid viability, and hence speciation,
+at a speed that depends on effective population size and amount of genetic variation. 
+In this model, at biologically reasonable parameter values,
+system drift is a significant -- and often rapid -- driver of speciation.
+This may at first be surprising because
+hybrid inviability appears as a consequence of recombining different, yet functionally equivalent, mechanisms. 
 
-% it says something about speciation and DMIs
-We have suggested an interpretation of system nonidentifiability: to see it as an evolutionarily neutral manifold, and not simply a computational nuisance. 
-We have demonstrated a method to analytically determine the set of all phenotypically equivalent gene networks; 
-by a simple change of coordinates in the minimal configuration, or more generally by applying the Kalman decomposition.
-%Further, we emphasize that evolution proceeds through this high dimensional space as stochastic coordinate transformation, constrained by sexual reproduction and selection. 
-This set is explored over evolutionary time when phenotype is conserved, and can lead to a diverse set of consequences, 
-including an increase in hybrid inviability.
-We emphasize that here, hybrid inviability is a consequence of recombining different, yet functionally equivalent, mechanisms.
-\plr{See refs in Barton 2010 paper.}
+Consistent with empirical observation of \emph{hybrid breakdown} \citep[e.g.][]{plotner2017chlorosis}), we see that the fitnesses of $F_2$ hybrids drop at a much faster rate than those of $F_1$s,
+since $F_1$ and $F_2$ phenotypes diverge linearly and at the square root of time relative to parentals, respectively.
+\plr{refer to Turelli here}
+% In this model, this is due to recombination shuffling system architectures, leaving the $F_2$ system homozygous for one parent at one particular locus and homozygous for the other parent at another possibly incompatible locus.
+Another natural consequence of the model is Haldane's rule,
+that if only one $F_1$ hybrid sex is inviable or sterile it is likely to be the heterogametic sex.
+This occurs because if the genes underlying a regulatory network are distributed among both autosomes and the sex chromosome, 
+then heterogametic $F_1$s show variation similar to that seen in $F_2$s.
 
-% nonlinearity
-%What about nonlinearity?
-As Richard Levins opined, models in population biology face a trade-off among precision, realism, and generality \citep{levins1966strategy}. As Levins expects, any tractable and general model, such as the present one under discussion, will have limitations. Most notable is linearity. It is often stated that life is not linear. 
-This is often true, 
-%however, many of the ideas developed here should be generalizable to nonlinear cases (multi-linear systems, say). 
-however, we see this as a necessary first step in the direction of a more life-like (nonlinear, perhaps) evolutionary systems theory. Depending on an actual biological system's particularities, its non-linearity, may buffer or exacerbate effects elucidated in this paper.
+Is there evidence that this is actually occurring?
+System drift and network rewiring has been inferred across the tree of life \citep{dalal2017transcription, johnson2017rewiring},
+and there is often significant regulatory variation segregating within populations \citep{XXX}.
+\js{cite sergey?}
+Transcription in hybrids between closely related species with conserved transcriptional patterns can also be divergent 
+\citep{haerty2006gene, maheshwari2012cis, coolon2014tempo, michalak2004association}.
+Furthermore, in cryptic species complexes (e.g., sun skinks \citep{barley2013challenge}),
+%strongly reproductively incompatible species
+genetically distinct species
+may be nearly morphologically indistinguishable.
+\plr{check the skinks have RI!!} \jss{the paper just says highly ``genetically distinct''; nothing is stated about RI}
+%Of course, selective pressures have likely not been constant over evolutionary time
+%in any of these examples,
+%but the process we describe here will still occur.
+%This model therefore may provide a neutral ``null'' model of gene network evolution, a strategy advocated for by \citet{koonin2016splendor}.
+\plr{revisit}
+Of course the basic assumptions of this model will be violated in practice (constant selective pressures, etc.), however, this model can function as a ``neutral null'' description of gene network evolution (a strategy advocated for in \citet{lynch2007frailty, fay2008evaluating, koonin2016splendor}). If this model succeeds in describing actual system evolution, it can be inferred that the mechanism underlying species formation does not require the inclusion of adaptation or changes in selection to explain the emergence of hybrid incompatibility.
 
-% summary and consequences of main result on speed of speciation
-After demonstrating that it is, in principle, possible for phenotypically indistinguishable populations to speciate, we next probed whether system drift is possible under neutrality and whether the processs is fast enough to be a significant driver of speciation. This analysis was carried out by applying methods from quantitative genetics. In this framework a population is composed of many organisms, some with slightly differing gene regulatory network architectures. Some of this intrapopulation architectural variation is neutral and some is mildly deleterious and contributes to genetic load. Since there are always numerous neighboring system architecures with equivalent phenotypes and populations are not genetically homogenous, the typical system architecture within a population will drift. The speed at which a population will drift per generation, and thus the rate at which hybrid inviability appears, is a function of a population's size and of how much intrapopulation variation is present. Above, with the input of a few population parameters, we predict the rate at which isolated populations' hybrids become inviable. Our model suggests, that for a biologically reasonable range of parameter values, system drift can be a significant, if not rapid, driver of speciation, under neutrality.
+\paragraph{The origin of species not by means of natural selection?}
+%\plr{(or, "Neutral speciation?")}
+% this is neutral, in contrast to other models. although some folks advocate nonadaptive speciation.
+% other mechanisms also probly important
+% but this one may be strong since happens in all networks at once
+%
+%The model we develop here is perhaps a plausible mechanism for strictly \emph{neutral} speciation.
+%This is perhaps surprising, as speciation is often thought to simply be a byproduct of adaptative change \citep{schluter2009evidence, orr2004speciation}
+%%as much of the speciation literature to date
+%%has focused on positive selection and/or genetic conflict,
+%or due to genetic conflict,
+%and since previous authors have argued that neutral processes should be too slow
+%\citep{nei1983models,seehausen2014genomics}.
+%In most cases to date where the precise molecular mechanism underlying hybrid incompatibility is known,
+%the genes responsible are thought to have been subject 
+%to recent positive selection \citep{examples} 
+%and/or genetic conflict \citep{examples}.
+%\plr{get examples from \citet{orr2004speciation}}
+%%However, incompatibility due to more diffuse system breakdown
+%%(e.g., widespread misregulation \citep{coolon2014tempo} \plr{check that} \jss{I don't think this is the right citation})
+%%may be likely much more difficult to uncover.
+%% \citet{orr2004speciation} remarks that hybrid incompatibility data suggests that ``speciation results from positive Darwinian selection within species''. 
+%On the other hand, the Dobzhansky--Muller model of hybrid incompatibility 
+%is agnostic to the origin of the genetic substitutions \citep{coyne1998evolutionary} \plr{cite bateson, etc},
+%and other plausible mechanisms for the origin of Dobzhanzky-Muller incompatibilities by neutral genetic drift
+%have been proposed \citep[e.g.][]{lynch_force}.
+Although, as classically formulated, 
+the Dobzhansky-Muller model of hybrid incompatibility is agnostic to the relative importance of neutral versus selective genetic substitutions \citep{coyne1998evolutionary},
+and plausible mechanisms for the origin of Dobzhansky--Muller incompatibilities by neutral genetic drift have been proposed \citep{lynch_force} 
+and under stabilizing selection \citep{fierst},
+previous authors have argued that neutral processes are likely too slow to be a significant driver of speciation \citep{nei1983models,seehausen2014genomics}.
+Using simulations, \citet{porter2002speciation} demonstrated the accumulation of hybrid incompatibilities under directional, but not stabilizing selection, and \citet{palmer2009dynamics} observed the appearence of incompatibilities in suboptimally adapted populations in a constant environment. 
+This, in light of the few known incompatibilities, has lead some to conclude that hybrid incompatibility is typically a byproduct of positive selection \citep{orr2004speciation, schluter2009evidence} 
+or a conseuqence of genetic conflict \citep{presgraves2010molecular, crespi2013conflictual}.
+In contrast, the model we develop here, suggests that even under strictly neutral conditions, system drift can lead to speciation, perhaps at a rate fast enough to play a role in species formation across the tree of life. 
+%In contrast, the model we develop here, is perhaps a plausible mechanism for strictly \emph{neutral} speciation. 
+%
+%In practice it remains unclear whether system drift or other speciation mechanisms predominate, 
+%as hybrid incompatibilities due to both selection and conflict have been uncovered and hint at general processes \citep{orr2004speciation}. 
+%While it is known that divergent selection and genetic conflict, as well as other mechanisms, can precipitate speciation, we have shown here that, surprisingly, neutral drift may also significantly drive species formation.
+Our results show that hybrids, under neutral processes, break down as a function of genetic distance, and despite the present model's myriad simplifications and assumptions, 
+it may, in part, explain the observed broad patterns of reproductive isolation, such as the observed consistent relationship between molecular divergence and genetic isolation across diverse taxa and ecologies by \citet{roux2016shedding}, and the suggestivley nonadaptive, clocklike speciation patterns observed by \citet{hedges2015tree} (as diversification is not observed to be accelerated following mass extinctions).
+While the incompatibility of any one given network within an organism may be small, we note that organisms are made up of many different networks, and that the cumulative impact of system drift across all of these may be substantial. Further, even in populations experiencing directional selection, networks underlying conserved parts of the phenotype can still experience neutral drift and harbor incompatibilities. 
 
-Additionally we see $F_2$ hybrid fitnesses plummet much faster than that of $F_1$ hybrids. 
-%\plr{refer to Turelli here}
-This is due to recombination shuffling system architectures leaving the hybrid system homozygous for one parent at one particular locus and homozygous for the other parent at another incompatible locus. If part of a gene regulatory network resides on the X chromosome, then $F_1$ males (XY) will effectivley look like $F_2$s at those locations. This observation is consistent with Haldane's rule; that if only one hybrid sex is inviable or sterile it is likely to be the heterogametic sex.
 
-Lastly, we show that hybrid gene networks, under neutral processes, break down as a function of genetic distance, and may, in part, explain broad patterns of reproductive isolation among diverse phyla \citep{roux2016shedding, hedges2015tree}.
+\paragraph{Nonlinearity}
+Of course, real regulatory networks are not linear dynamical systems.
+Most notably, physiological limits put upper bounds on expression levels,
+implying saturating response curves \citep{michalis_mentin}.
+It remains to be seen how well these results carry over into real systems,
+but the fact that most nonlinear systems can be locally approximated by a linear one
+suggests qualitatively similar results.
+Furthermore, nonidentifiability (which implies the existence of neutral directions)
+is often found in practice in moderately complex models of biological systems. \plr{need citation}
 
-While sumarizing speciation research \citet{orr2004speciation} remarked that ``speciation results from positive Darwinian selection within species'' thus maintaining one of the ``central tenets of the modern synthesis''. While it is known that divergent selection and genetic conflict, as well as other mechanisms, can precipitate speciation, we have shown here that, surprisingly, neutral drfit may also significantly drive species formation.
-%, although it is at present still unclear the relative contribution of each process. 
-System drift induced hybrid breakdown occurs rapidly even in the absence of postive Darwinian selection, suggesting that species originate not necessarily by means of natural selection \citep{darwin1859origin}. While the incompatibility of any one given network within an organism may be small, we note that organsisms are made up of many different networks, and that the cumulative impact of system drift across all of these may be substantial. Further, even in populations experiencing directional selection, networks underlying conserved parts of the phenotype can still experience neutral drift and harbor incompatibilities. 
-
-Despite the results of this inquiry, in practice it remains unclear whether system drift or other speciation mechanisms predominate, as hybrid incompatibilities due to both selection and conflict have been uncovered and hint at general processes \citep{orr2004speciation}. It also seems reasonable that system drift could be common as there is evidence (1) that the set of molecular mechanisms underlying a trait is degenerate (illustrated in this paper), (2) that there is significant regulatory variation segregating within populations, (3) that functionally equivalent systems, even in closesly related species, can be mechanistically divergent \citep{dalal2017transcription}, (4) transcription in hybrids between closely related species with conserved transcriptional patterns can be divergent \citep{haerty2006gene, maheshwari2012cis, coolon2014tempo, michalak2004association}, that (5) gene misregulation can cause dysfunction (by definition), and (6) that numerous cryptic species complexes exist (e.g. sun skinks \citep{barley2013challenge}).
-
-
-Additionally, if we ignore the fitness function used in this paper, our model still predicts that $F_1$ and $F_2$ phenotypes diverge linearly and at the square root of time with parentals, respectivey. This has implications for experimentation, as one could plot the change in phenotype (or gene expression) as a function of divergence, to test the predictions of this model. 
-
-%Do we see evidence of this?  Well, maybe: misregulation in hybrids in Witkopp, Noor, Barbash, etc,
-%even with expression levels in parents being the same.
-
-% consequence: prediction for phenotype (not just fitness)
-%Note that this follows directly from the fact that $F_1$ and $F_2$ hybrid phenotypes diverge from $F_0$ phenotypes, linearly and inverse-quadratically, with respect to time (more precisely $T/N_e$). As such, removing assumptions about the form of the fitness function, this model still predicts hybrid $F_2$ phenotypes to diverge much faster than $F_1$s, initially.
-%So even if fitness isn't as above maybe you can see this in phenotypes.
-
-
-% selection moving around optimal set
-%Note that the drift above could actually be caused by the optimal phenotype shifting.
-%\js{I don't think we need to address optimal phenotype shifting}
+\paragraph{Peter: Quant gen discussion}
+Maybe compare to \citet{fierst}?
 
 Do we talk about the $G$ matrix and mutational correlation somewhere?
 
-%This theoretical framework can easily be applied to other interesting questions in evolutionary biology not tackled presently: such as the evolution of linkage, the necessity of network complexity (does evolution tend towards Rube Goldberg or parsimonious network organization?), evolvability, structure/function inference, and intra-population context dependency of mutational effects, as well as many others.
-
 Note that islands or bottlenecks leave large $\sigma_N$ but small $N_e$ so may go fast.
 
-% J and P didn't get speciation in a neutral  model
-Discuss differences to Johnson and Porter.
-
 What is Ne?  In a metapopulation depends on migr rate: classic Turelli paper.
-
-\jss{talk about speciation rate in small population results as compared to Katari and Goldstein (I think). they look at the influence of $N_e$ on speciation rate.}
 
 This has implications for genetic load also!!
 
@@ -2189,3 +2224,7 @@ and finally in $A$ and $C$:
 %  \end{align*}
 
 \end{document}
+
+
+
+
