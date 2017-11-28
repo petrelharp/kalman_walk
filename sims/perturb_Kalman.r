@@ -83,6 +83,30 @@ assemble_oscillator <- function (AL) {
   return(list(A=KalA, B=BK, C=CK))
 }
 
+assemble_oscillator4d <- function (AL) {
+    # AL should be a list with components:
+    # A
+    # A12
+    # Arno
+    # Anrno
+    # A13
+    # B
+    # C
+    # P
+  A00 <- matrix(c(0,0,0,0), nrow=2);
+  B00 <- matrix(c(0,0), ncol=1);
+  C00 <- matrix(c(0,0), nrow=1);
+  AK <- (rbind(cbind(AL$A, A00),
+               cbind(AL$A12, AL$Arno)));
+  # pad B and C with zeros
+  BK <- matrix(c(AL$B, rep(0, 2)), ncol=1)
+  CK <- matrix(c(AL$C, rep(0, 2)), nrow=1)
+  invP <- solve(AL$P[1:4,1:4]);
+  KalC <- CK%*%AL$P[1:4,1:4];
+  KalB <- AL$P[1:4,1:4]%*%BK;
+  KalA <- AL$P[1:4,1:4]%*%AK%*%invP
+  return(list(A=KalA, B=BK, C=CK))
+}
 # Perturb an oscillator of the form above
 perturb_oscillator <- function(AL, eps) {
     mA12 <- matrix(c(rnorm(4, mean=0, sd=eps)),nrow=2,ncol=2)
@@ -101,7 +125,7 @@ perturb_oscillator <- function(AL, eps) {
 }
 
 #####################################
-sys_gen2 <- function (s=sigma, eps=0.05, nreps=100) 
+sys_gen6D <- function (s=sigma, eps=0.05, nreps=100) 
 {
   KalA_list <- random_oscillator(s=s)
   KalA <- assemble_oscillator(KalA_list)
@@ -114,6 +138,7 @@ sys_gen2 <- function (s=sigma, eps=0.05, nreps=100)
     new_KalA_list <- perturb_oscillator(KalA_list, eps=eps)
     new_KalA <- assemble_oscillator(new_KalA_list)
     dist <- norm(KalA$A-new_KalA$A,"F")
+    #dist <- sum(abs(Kal$A - new_KalA$A))/36
     
     avg_div <- 0
     jj <- 0
@@ -142,6 +167,49 @@ sys_gen2 <- function (s=sigma, eps=0.05, nreps=100)
   return(output)
 }
 
+sys_gen4D <- function (s=sigma, eps=0.05, nreps=100) 
+{
+  KalA_list <- random_oscillator(s=s)
+  #KalA <- assemble_oscillator(KalA_list)
+  KalA <- assemble_oscillator4d(KalA_list)
+  
+  output <- matrix(0,nrow=nreps,ncol=2)
+  colnames(output) <- c("sys_dist", "pheno_dist")
+  for (i in 1:nreps)
+  {
+    
+    new_KalA_list <- perturb_oscillator(KalA_list, eps=eps)
+    #new_KalA <- assemble_oscillator(new_KalA_list)
+    new_KalA <- assemble_oscillator4d(new_KalA_list)
+    dist <- norm(KalA$A-new_KalA$A,"F")
+    #dist <- sum(abs(Kal$A - new_KalA$A))/36
+    
+    avg_div <- 0
+    jj <- 0
+    for (j in 1:100) 
+    { 
+      Z1 <- recombine(KalA$A, new_KalA$A)
+      Z2 <- recombine(KalA$A, new_KalA$A)
+      Z3 <- (Z1 + Z2)/2
+      DZ <- tryCatch(D(Z3, BK=KalA$B, CK=KalA$C), error=function(e) NULL)
+      if (is.null(DZ)==1)
+      {
+        j = j-1
+        jj = jj+1
+        if(jj==10)
+        {
+          break
+        }
+      }
+      if (is.null(DZ)==0) 
+      {
+        avg_div <- avg_div + DZ/100
+      }
+    }
+    output[i,] <- c(dist,avg_div)
+  }
+  return(output)
+}
 #########################
 
 pert_sim <- function(rgens){
@@ -167,6 +235,7 @@ min_perturb <- function(tau=0){
     eps2 <- i/200
     new_A <- V(tau-eps2)%*%A%*%solve(V(tau-eps2))
     dist <- norm(initA - new_A, "F")
+    #dist <- sum(abs(initA - new_A))/4
     avg_div <- 0
     for (j in 1:100) 
     { 
@@ -186,14 +255,20 @@ min_perturb <- function(tau=0){
 # COMPARE minimal vs non-minimal system #
 
 min0 <- min_perturb(tau=0)
-nonmin0 <- sys_gen2(s=0.01, eps=0.1, nreps=100)
+nonmin0 <- sys_gen6D(s=0.01, eps=0.1, nreps=100)
+nonmin0_4d <- sys_gen4D(s=0.01, eps=0.1, nreps=100)
 
-pdf("~/kalman_walk/sims/2d_vs_6d_oscillator_tau0.pdf")
+pdf("~/kalman_walk/sims/2d_4d_6d_oscillator_tau0.pdf")
 plot(min0, col="blue")
 lines(lowess(min0), col="blue")
+
 points(nonmin0, col="black")
 lines(lowess(nonmin0), col="black")
-legend(0.1,4,legend=c("2D minimal system", "6D system"), col=c("blue", "black"), pch=1)
+
+points(nonmin0_4d, col="red")
+lines(lowess(nonmin0_4d), col="red")
+
+legend(0.1,4,legend=c("2D minimal system", "4D system", "6D system"), col=c("blue", "red", "black"), pch=1)
 dev.off()
 
 ##############
