@@ -145,10 +145,55 @@ sys_gen2 <- function (s=sigma, eps=0.05, nreps=100)
 #########################
 
 pert_sim <- function(rgens){
-  pheno_divergence <- sys_gen2(s=0.1, eps=0.05, nreps=100)
+  pheno_divergence <- sys_gen2(s=0.01, eps=0.1, nreps=100)
   for(i in 2:rgens)
   {
-    ph0 <- sys_gen2(s=0.01,eps=0.05,nreps=100)
+    ph0 <- sys_gen2(s=0.01,eps=0.1,nreps=100)
     pheno_divergence <- rbind(pheno_divergence, ph0)
   }
+  return(pheno_divergence)
 }
+
+####################################
+V <- function (tau) {
+  matrix(c(1,tau,0,1-tau), nrow=2) 
+}
+
+min_perturb <- function(tau=0){
+  initA <- V(tau)%*%A%*%solve(V(tau))
+  output <- matrix(0,nrow=100,ncol=2)
+  colnames(output) <- c("sys_dist", "pheno_dist")
+  for (i in 1:100){
+    eps2 <- i/200
+    new_A <- V(tau-eps2)%*%A%*%solve(V(tau-eps2))
+    dist <- norm(initA - new_A, "F")
+    avg_div <- 0
+    for (j in 1:100) 
+    { 
+      Z1 <- recombine(initA, new_A)
+      Z2 <- recombine(initA, new_A)
+      Z3 <- (Z1 + Z2)/2
+      
+      DZ <- D(Z3, BK=B, CK=C)
+      avg_div <- avg_div + DZ/100
+    }
+    output[i,] <- c(dist,avg_div)
+  }
+  return(output)
+}
+
+#####################
+# COMPARE minimal vs non-minimal system #
+
+min0 <- min_perturb(tau=0)
+nonmin0 <- sys_gen2(s=0.01, eps=0.1, nreps=100)
+
+pdf("~/kalman_walk/sims/2d_vs_6d_oscillator_tau0.pdf")
+plot(min0, col="blue")
+lines(lowess(min0), col="blue")
+points(nonmin0, col="black")
+lines(lowess(nonmin0), col="black")
+legend(0.1,4,legend=c("2D minimal system", "6D system"), col=c("blue", "black"), pch=1)
+dev.off()
+
+##############
