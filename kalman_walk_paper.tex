@@ -167,22 +167,22 @@ that appears mechanistically distinct from other proposed mechanisms.
 \section*{Introduction}
 
 A complex molecular machinery translates an organism's genome into the characteristics on which natural selection acts,
-her phenotype.
+the phenotype.
 % Bridging the gulf between an organism's genome and phenotype is a poorly understood and complex molecular machinery. 
-Attaining a general understanding of the functioning and evolution of this molecular machinery
-is an overarching goal of many subdisciplines of biology.
+%Attaining a general understanding of the functioning and evolution of this molecular machinery
+It is an overarching goal of many biological subdisciplines to attain a general understanding of the function and evolution of this molecular machinery. 
 For example, 
-there is a growing body of data on evolutionary histories and molecular characterizations of particular gene regulatory networks
+there is a growing body of data on the evolutionary histories and molecular characterizations of particular gene regulatory networks
 \citep{jaeger2011gap, davidson2006gene, israel2016comparative}, 
 as well as thoughtful verbal and conceptual models \citep{true2001developmental, gwagner1, weiss2000phenogenetic, edelman2001degeneracy}. 
 Mathematical models of both particular regulatory networks
 and the evolution of such systems in general
 can provide guidance where intuition fails,
 and thus has the potential to discover general principles in the organization of biological systems 
-and provide concrete numerical predictions \citep{servedio2014not}.
+as well as provide concrete numerical predictions \citep{servedio2014not}.
 
 The dynamics of the molecular machinery and its interactions with the environment
-can be mathematically described in various ways as a dynamical system \citep{jaeger2015comet}.
+can be mathematically described as a dynamical system \citep{jaeger2015comet}.
 Movement in this direction is ongoing, as researchers have begun to study 
 the evolution of both abstract \citep{wagner1994evolution, wagner1996does, siegal2002waddington, bergman2003evolutionary, draghi2015robustness} 
 and empirically inspired computational and mathematical models of gene regulatory networks,
@@ -193,10 +193,10 @@ and empirically inspired computational and mathematical models of gene regulator
 It is well known that in many contexts mathematical models
 can fundamentally be \emph{nonidentifiable} and/or \emph{indistinguishable} -- meaning that 
 there can be uncertainty about an inferred model's parameters or even its claims about
-causal structure, even with access to complete and perfect data \citep{bellman1970structural, grewal1976identifiability, walter1984structural}. 
+causal structure, despite access to complete and perfect data \citep{bellman1970structural, grewal1976identifiability, walter1984structural}. 
 Models with different parameter schemes, or even different mechanics 
-can equally accurately predict the observed behavior of a given physical system, 
-but still not actually reflect the internal dynamics of the system.
+can make equally accurate predictions,
+but still not actually reflect the internal dynamics of the system being modelled.
 In control theory, where electrical circuits and mechanical systems are often the focus, 
 it is understood that there can be an infinite number of ``realizations'', 
 or ways to reverse engineer the dynamics of a ``black box'',
@@ -207,7 +207,7 @@ In computer science, this is framed as the relationship among processes that sim
 Finally,
 the field of \emph{inverse problems} studies those cases where,
 even if a one-to-one mapping between model and behavior is possible in theory,
-even tiny amounts of noise can make inference problems nonidentifiable in practice.
+  even tiny amounts of noise can make inference problems nonidentifiable in practice \jss{cite?}.
 
 Although nonidentifiability may frustrate the occasional engineer or scientist, viewed from another angle,
 these concepts can provide a starting point for thinking about externally equivalent systems
@@ -215,50 +215,47 @@ these concepts can provide a starting point for thinking about externally equiva
 These functional symmetries manifest in convergent and parallel evolution, 
 as well as \emph{developmental system drift}: the observation that
 macroscopically identical phenotypes in even very closely related species can in fact be divergent at the molecular and sequence level 
-\citep{true2001developmental, tanay2005conservation, tsong2006evolution, hare2008sepsid, vierstra2014mouse,  dalal2016transcriptional, dalal2017transcription}.
-% are these good here? {taylor2016diverse, matsui2015regulatory, stergachis2014conservation}.
+\citep{true2001developmental, tanay2005conservation, tsong2006evolution, hare2008sepsid, vierstra2014mouse, matsui2015regulatory, dalal2016transcriptional, dalal2017transcription}.
+  \jss{should hare2008sepsid be here? It's sequence but not ``system'' drift}
+% are these good here? {taylor2016diverse -- maybe not, matsui2015regulatory -- I think this relevant, stergachis2014conservation}.
+%
+%AND THESE?
+  %% Over the last several years, different computational models have been applied to study reproductive incompatibility and speciation in models of gene regulation \citep{porter2002speciation, tulchinsky, palmer2009dynamics, tulchinsky2014hybrid, khatari2015simple}.
+  %\citet{tulchinsky} simulated the evolution of a transcription factor and its binding site using a thermodynamic model. Their simulations suggest that the language by which a transcription factor recognizes its binding site can change, and potentially lead to hybrid incompatibility when allopatric populations employ divergent readout languages. This study, despite looking at gene regulation, does not analyze overall gene network architecture -- as we do here -- it only looks at the expression level of a single gene. Furthermore, they report reproductive isolation primarily following directional selection for a change in expression levels in each allopatric population; the evidence for reproductive isolation following balancing selection is much weaker. Johnson and Porter 2000 did not observe any hybrid fitness declines under stabilizing selection -- only under directional selection. 
+%Khatari et al, Tulchinsky et al, and Porter et al, all study hybrid incompatibility from a transcription factor/binding site interaction perspective, not from an overall network architecture perspective. Palmer and Feldman only see hybrid incompatibility in constant environments if the parental populations are relatively poorly adapted initially. Otherwise hybrids between two allopatric populations have fairly high fitnesses.  
 
-EDIT IN THESE REFS?
-The literature is filled with detailed observations of molecular systems and their diversity. 
-\plr{Diversity doesn't imply system drift -- only if the diverse systems are homologous.}
-There are examples of significant diversity in the networks underlying processes such as 
-circadian rhythm \citep{sancar2008intelligent}, 
-cell cycle control \citep{cross2011evolution, kearsey2003enigmatic}, 
-pattern formation \plr{cite?}, 
-and metabolism \citep{lavoie2009rearrangements, martchenko2007transcriptional, christensen2011unique, hartl2007induction, alam2013aspergillus}.
-
-AND THESE?
-Over the last several years, several different computational approaches have been applied to study reproductive incompatibility and speciation. \citet{tulchinsky} simulated the evolution of a transcription factor and its binding site using a thermodynamic model. Their simulations suggest that the language by which a transcription factor recognizes its binding site can change, and potentially lead to hybrid incompatibility when allopatric populations employ divergent readout languages. This study, despite looking at gene regulation, does not analyze overall gene network architecture -- as we do here -- it only looks at the expression level of a single gene. Furthermore, they report reproductive isolation primarily following directional selection for a change in expression levels in each allopatric population; the evidence for reproductive isolation following balancing selection is much weaker. Johnson and Porter 2000 did not observe any hybrid fitness declines under stabilizing selection -- only under directional selection. 
-Khatari et al, Tulchinsky et al, and Porter et al, all study hybrid incompatibility from a transcription factor/binding site interaction perspective, not from an overall network architecture perspective. Palmer and Feldman only see hybrid incompatibility in constant environments if the parental populations are relatively poorly adapted initially. Otherwise hybrids between two allopatric populations have fairly high fitnesses.  
-MAKE SURE TO REF DMI LIT SOMEWHERE and Barton's paper.
-
-
-In this paper we outline a theoretical framework to study the evolution of biological systems
-that can be described by systems of differential equations, such as gene regulatory networks.
-We study the scenario
-where the optimal phenotype remains constant over evolutionary time,
-so that despite strong stabilizing selection for phenotype,
-neutral drift in the underlying genotype is possible.
-Results from systems theory provide
+In this paper we outline a theoretical framework to study the evolution of biological systems, such as gene regulatory networks.
+We study the evolution of an optimally adapted population subject to stabilizing selection for phenotype -- that is the population evolves under constant selective and environmental pressures.
+Even if the phenotype remains stable over evolutionary time, the underlying mechanism might not remain so,
+%Even when stabilizing selection preserves phenotype over evolutionary time, the underlying mechanism may change, 
+as many distinct (and mutationally connected) molecular pathways can realize identical phenotypes.
+%where the optimal phenotype remains constant over evolutionary time,
+%so that despite strong stabilizing selection for phenotype,
+%neutral drift in the underlying genotype is possible.
+Applying results from system theory, we present
 an analytical description of the set of 
-all linear gene network architectures that yield identical phenotypes,
-which gives concrete expectations for how any such
-system can, in principal, undergo system drift and rewire. 
-Even with stabilization selection, a population will explore the set of all possible phenotypically equivalent gene networks.
+all linear gene network architectures that yield identical phenotypes, and show that any biological system, in principal, can undergo system drift, as there is never a unique system architecture per phenotype.
+%which gives concrete expectations for how any such
+%system can, in principal, undergo system drift and rewire.
+Even under stabilizing selection, a population can explore the set of all possible phenotypically equivalent gene networks.
+Phenotypically equivalent gene networks are not necessarily compatible with one another, thus system drift can rapidly lead to the accumulation of hybrid incompatibilities analogous to those in the Dobzhansky-Muller model. 
 Consequentially, two populations isolated for a sufficiently long period of time, 
 will likely produce inviable hybrids, despite the absence of adaptation, directional selection, or environmental change.
 % Under these conditions, speciation typically occurs on timescales approximately on the order of $N_{e}$ generations, where $N_{e}$ is the effective population size.
 
+REFERENCE: Barton's paper (PETER).
+
 \section*{Methods}
 
-We study an abstract model of temporal dynamics of the concentrations of a collection of $n$ coregulating molecules
-within an organism, that may also be affected by temporally varying signals from the environment.
-% Organisms' phenotypes are constructed by gene by gene and gene by environment interactions. 
-%Here we simply define the \emph{phenotype} to be those aspects of the dynamics directly under natural selection
-%-- the \emph{what}, \emph{when}, and \emph{how much}, of an organism's molecules that are physiologically or otherwise relevant to survival.
+Here we construct as abstract model to study biological systems, such as gene regulatory networks. The behavior (i.e. temporal dynamics) of such a system is determined both by a collection of $n$ coregulating moleculues -- such as transcription factors, as well as external or environmental inputs.
+%We study an abstract model of temporal dynamics of the concentrations of a collection of $n$ coregulating molecules
+%within an organism, that may also be affected by temporally varying signals from the environment.
+%% Organisms' phenotypes are constructed by gene by gene and gene by environment interactions. 
+%%Here we simply define the \emph{phenotype} to be those aspects of the dynamics directly under natural selection
+%%-- the \emph{what}, \emph{when}, and \emph{how much}, of an organism's molecules that are physiologically or otherwise relevant to survival.
 We write $\kappa(t)$ for the vector of $n$ molecular concentrations at time $t$.
-There are also $m$ ``inputs'' determined exogenously to the system, denoted $u(t)$,
-and $\ell$ ``outputs'', denoted $\phi(t)$.
+The $m$ ``inputs'' determined exogenously to the system are denoted $u(t)$,
+and the $\ell$ ``outputs'' are denoted $\phi(t)$.
 The output is merely a linear function of the internal state:
 $\phi_i(t) = \sum_j C_{ij} \kappa_i(t)$
 for some matrix $C$.
@@ -286,9 +283,9 @@ as well as the input:
 \end{equation}
 Furthermore, we always assume that $\kappa(0) = 0$,
 so that the kryptotype measures deviations from initial concentrations. 
-Here $A$ can be any $n \times n$ matrix, $B$ a $n \times m$, and $C$ any $\ell \times n$ dimensional matrix,
+Here $A$ can be any $n \times n$ matrix, $B$ an $n \times m$, and $C$ any $\ell \times n$ dimensional matrix,
 with usually $\ell$ and $m$ less than $n$.
-We think of the system as the triple $\mathcal{S} = (A,B,C)$,
+We think of the system as the triple $(A,B,C)$,
 which translates (time-varying) $m$-dimensional input $u(t)$ into the $\ell$-dimensional output $\phi(t)$.
 Under quite general assumptions,
 we can write the phenotype as
@@ -301,7 +298,7 @@ which we denote as $h(t) := Ce^{A t}B$.
 Although many different biological systems can be modeled with this approach, for clarity, we focus on gene regulatory networks.
 In this interpretation, $A_{ij}$ determines how the $j^\text{th}$ transcription factor regulates the $i^\text{th}$ transcription factor.
 If $A_{ij} > 0$, then $\kappa_j$ upregulates $\kappa_i$, while if $A_{ij} < 0$, then $\kappa_j$ downregulates $\kappa_i$.
-The $i$th row of $A$ is therefore determined by genetic features such as
+The $i^\text{th}$ row of $A$ is therefore determined by genetic features such as
 the strength of $j$-binding sites in the promoter of gene $i$,
 factors affecting chromatin accessibility near gene $i$,
 or basal transcription machinery activity.
@@ -1186,7 +1183,7 @@ strongly reproductively incompatible species may be nearly morphologically indis
 %but the process we describe here will still occur.
 %This model therefore may provide a neutral ``null'' model of gene network evolution, a strategy advocated for by \citet{koonin2016splendor}.
 \plr{revisit}
-Of course the basic assumptions of this model will be violated in practice (constant selective pressures, etc.), however, this model can function as a ``neutral null'' description of gene network evolution (a strategy advocated for in \citet{lynch2007frailty, koonin2016splendor}). If this model succeeds in describing actual system evolution, it can be inferred that the mechanism underlying species formation does not require the inclusion of adaptation or changes in selection to explain the emergence of hybrid incompatibility.
+Of course the basic assumptions of this model will be violated in practice (constant selective pressures, etc.), however, this model can function as a ``neutral null'' description of gene network evolution (a strategy advocated for in \citet{lynch2007frailty, fay2008evaluating, koonin2016splendor}). If this model succeeds in describing actual system evolution, it can be inferred that the mechanism underlying species formation does not require the inclusion of adaptation or changes in selection to explain the emergence of hybrid incompatibility.
 
 \paragraph{The origin of species not by means of natural selection?}
 %\plr{(or, "Neutral speciation?")}
@@ -1222,7 +1219,7 @@ previous authors have argued that neutral processes are likely too slow to be a 
 Using simulations, \citet{porter2002speciation} demonstrated the accumulation of hybrid incompatibilities under directional, but not stabilizing selection, and \citet{palmer2009dynamics} observed the appearence of incompatibilities in suboptimally adapted populations in a constant environment. 
 This, in light of the few known incompatibilities, has lead some to conclude that hybrid incompatibility is typically a byproduct of positive selection \citep{orr2004speciation, schluter2009evidence} 
 or a conseuqence of genetic conflict \citep{examples}.
-In contrast, the model we develop here, suggests that even under strictly neutral conditions,  and in the absence of adaptation, system drift can lead to speciation and perhaps at a rate fast enough to play a major role in species formation across the tree of life. 
+In contrast, the model we develop here, suggests that even under strictly neutral conditions, system drift can lead to speciation, perhaps at a rate fast enough to play a role in species formation across the tree of life. 
 %In contrast, the model we develop here, is perhaps a plausible mechanism for strictly \emph{neutral} speciation. 
 %
 %In practice it remains unclear whether system drift or other speciation mechanisms predominate, 
