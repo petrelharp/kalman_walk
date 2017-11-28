@@ -1147,9 +1147,9 @@ but it seems reasonable that these two quantities are of the same magnitude.
 % - Is linearity an important assumption?
 % - We know that divergent selection and genetic conflict can easily lead to speciation; we've shown neutral drift can maybe surprisingly easily do so also; but it remains unclear the relative contributions of these. Note that although drift may be weaker in any one network there are lots of networks. Could motivate this with Orr's statement.  Perhaps tie in spandrels.
 
-Above we synthesize models from molecular and evolutionary biology with tools from control theory
-to study the evolution of a molecularly mechanistic model of the genotype-phenotype map under stabilizing selection.
-This model allows us to describe analytically the processes described verbally as
+Above we synthesize concepts and tools from molecular and evolutionary biology with tools from control theory
+to study the evolution of a mechanistic model of the molecular genotype-phenotype map under stabilizing selection.
+This model allows us to analytically describe the processes discussed verbally as
 phenogenetic drift \citep{weiss2000phenogenetic} and developmental system drift \citep{true2001developmental}.
 In this context, the Kalman decomposition \citep{kalman1963mathematical} implies that nearly all systems are nonidentifiable,
 and gives an analytical description of all phenotypically equivalent gene networks.
@@ -1173,7 +1173,7 @@ This occurs because if the genes underlying a regulatory network are distributed
 then heterogametic $F_1$s show variation similar to that seen in $F_2$s.
 
 Is there evidence that this is actually occurring?
-System drift has been inferred across the tree of life \citep{johnson2017rewiring},
+System drift and network rewiring has been inferred across the tree of life \citep{dalal2017transcription, johnson2017rewiring},
 and there is often significant regulatory variation segregating within populations \citep{XXX}.
 \js{cite sergey?}
 Transcription in hybrids between closely related species with conserved transcriptional patterns can also be divergent 
@@ -1181,58 +1181,76 @@ Transcription in hybrids between closely related species with conserved transcri
 Furthermore, in cryptic species complexes (e.g., sun skinks \citep{barley2013challenge}),
 strongly reproductively incompatible species may be nearly morphologically indistinguishable.
 \plr{check the skinks have RI!!}
-Of course, selective pressures have likely not been constant over evolutionary time
-in any of these examples,
-but the process we describe here will still occur.
-This model therefore may provide a neutral ``null'' model of gene network evolution, a strategy advocated for by \citet{koonin2016splendor}.
+%Of course, selective pressures have likely not been constant over evolutionary time
+%in any of these examples,
+%but the process we describe here will still occur.
+%This model therefore may provide a neutral ``null'' model of gene network evolution, a strategy advocated for by \citet{koonin2016splendor}.
 \plr{revisit}
+Of course the basic assumptions of this model will be violated in practice (constant selective pressures, etc.), however, this model can function as a ``neutral null'' description of gene network evolution (a strategy advocated for in \citet{lynch2007frailty, koonin2016splendor}). If this model succeeds in describing actual system evolution, it can be inferred that the mechanism underlying species formation does not require the inclusion of adaptation or changes in selection to explain the emergence of hybrid incompatibility.
 
-% nonlinearity
-%What about nonlinearity?
-As Richard Levins opined, models in population biology face a trade-off among precision, realism, and generality \citep{levins1966strategy}. As Levins expects, any tractable and general model, such as the present one under discussion, will have limitations. Most notable is linearity. It is often stated that life is not linear. 
-This is often true, 
-%however, many of the ideas developed here should be generalizable to nonlinear cases (multi-linear systems, say). 
-however, we see this as a necessary first step in the direction of a more life-like (nonlinear, perhaps) evolutionary systems theory. Depending on an actual biological system's particularities, its non-linearity, may buffer or exacerbate effects elucidated in this paper.
-
-Although, as classically formulated, the Dobzhansky-Muller model of hybrid incompatibility is agnostic to the relative importance of neutral versus selective genetic substitutions \citep{coyne1998evolutionary} (as the neutral theory did not yet exist), \citet{orr2004speciation} remarks that hybrid incompatibility data suggests that ``speciation results from positive Darwinian selection within species'' thus maintaining one of the ``central tenets of the modern synthesis''. 
-Reviewing both theoretical \citep{nei1983models} and empirical results on speciation, \citet{seehausen2014genomics} suggest that genetic drift is too slow to drive speciation and instead interpret genomic conflict to be a more significant driver.
-
-\emph{Ecological speciation} as espoused by Schluter (and sometimes referred to as \emph{parallel speciation} \citep{schluter1995parallel}) suggests that reproductive incompatibility is a byproduct of adaptation -- and stands in stark contrast to the model presented here -- as it specifically predicts that two independent and initially identical populations evolving under stabilizing selection will \emph{not} harbor incompatibilities \citep{schluter2009evidence}. This is not to say that our model does not predict that ecological divergence can drive speciaiton -- if adaptation manifests as a significant difference in optimal (and thus evolved) phenotypes ($\phi \neq \bar \phi$) between initially identical populations, hybrids between the two will surely be less fit in both parental environments, however, this type of incompatibility will be function/network specific and not necessarily entail general steriliy or developmental inviability (so long as the particular networks underlying these processes did not adapt to novel ecologies) in the absense of system drift. \jss{should I write out an example including the oscillator? Such as, if natural selection shifts the frequencies between adapting populations, hybrids will exhibit neither optimal frequncy of oscillation, however under the ecological speciation model, we would not expect to find incompatibilities in any other of the organism's gene networks.}
-
+\paragraph{The origin of species not by means of natural selection?}
+%\plr{(or, "Neutral speciation?")}
+% this is neutral, in contrast to other models. although some folks advocate nonadaptive speciation.
+% other mechanisms also probly important
+% but this one may be strong since happens in all networks at once
+%
+%The model we develop here is perhaps a plausible mechanism for strictly \emph{neutral} speciation.
+%This is perhaps surprising, as speciation is often thought to simply be a byproduct of adaptative change \citep{schluter2009evidence, orr2004speciation}
+%%as much of the speciation literature to date
+%%has focused on positive selection and/or genetic conflict,
+%or due to genetic conflict,
+%and since previous authors have argued that neutral processes should be too slow
+%\citep{nei1983models,seehausen2014genomics}.
+%In most cases to date where the precise molecular mechanism underlying hybrid incompatibility is known,
+%the genes responsible are thought to have been subject 
+%to recent positive selection \citep{examples} 
+%and/or genetic conflict \citep{examples}.
+%\plr{get examples from \citet{orr2004speciation}}
+%%However, incompatibility due to more diffuse system breakdown
+%%(e.g., widespread misregulation \citep{coolon2014tempo} \plr{check that} \jss{I don't think this is the right citation})
+%%may be likely much more difficult to uncover.
+%% \citet{orr2004speciation} remarks that hybrid incompatibility data suggests that ``speciation results from positive Darwinian selection within species''. 
+%On the other hand, the Dobzhansky--Muller model of hybrid incompatibility 
+%is agnostic to the origin of the genetic substitutions \citep{coyne1998evolutionary} \plr{cite bateson, etc},
+%and other plausible mechanisms for the origin of Dobzhanzky-Muller incompatibilities by neutral genetic drift
+%have been proposed \citep[e.g.][]{lynch_force}.
+Although, as classically formulated, 
+the Dobzhansky-Muller model of hybrid incompatibility is agnostic to the relative importance of neutral versus selective genetic substitutions \citep{coyne1998evolutionary},
+and plausible mechanisms for the origin of Dobzhansky--Muller incompatibilities by neutral genetic drift have been proposed \citep{lynch_force} 
+and under stabilizing selection \citep{fierst},
+previous authors have argued that neutral processes are likely too slow to be a significant driver of speciation \citep{nei1983models,seehausen2014genomics}.
+Using simulations, \citet{porter2002speciation} demonstrated the accumulation of hybrid incompatibilities under directional, but not stabilizing selection, and \citet{palmer2009dynamics} observed the appearence of incompatibilities in suboptimally adapted populations in a constant environment. 
+This, in light of the few known incompatibilities, has lead some to conclude that hybrid incompatibility is typically a byproduct of positive selection \citep{orr2004speciation, schluter2009evidence} 
+or a conseuqence of genetic conflict \citep{examples}.
+In contrast, the model we develop here, suggests that even under strictly neutral conditions,  and in the absence of adaptation, system drift can lead to speciation and perhaps at a rate fast enough to play a major role in species formation across the tree of life. 
+%In contrast, the model we develop here, is perhaps a plausible mechanism for strictly \emph{neutral} speciation. 
+%
 %In practice it remains unclear whether system drift or other speciation mechanisms predominate, 
 %as hybrid incompatibilities due to both selection and conflict have been uncovered and hint at general processes \citep{orr2004speciation}. 
-While it is known that divergent selection and genetic conflict, as well as other mechanisms, can precipitate speciation, we have shown here that, surprisingly, neutral drfit may also significantly drive species formation.
-
-If system drift induced hybrid incompatibility occurs as rapidly as our model sugests,
-%even in the absence of postive Darwinian selection, 
-this would imply that species originate not necessarily by means of natural selection \citep{darwin1859origin}. While the incompatibility of any one given network within an organism may be small, we note that organsisms are made up of many different networks, and that the cumulative impact of system drift across all of these may be substantial. Further, even in populations experiencing directional selection, networks underlying conserved parts of the phenotype can still experience neutral drift and harbor incompatibilities. 
+%While it is known that divergent selection and genetic conflict, as well as other mechanisms, can precipitate speciation, we have shown here that, surprisingly, neutral drift may also significantly drive species formation.
 Our results show that hybrids, under neutral processes, break down as a function of genetic distance, and despite the present model's myriad simplifications and assumptions, 
 it may, in part, explain the observed broad patterns of reproductive isolation, such as the observed consistent relationship between molecular divergence and genetic isolation across diverse taxa and ecologies by \citet{roux2016shedding}, and the suggestivley nonadaptive, clocklike speciation patterns observed by \citet{hedges2015tree} (as diversification is not observed to be accelerated following mass extinctions).
-
-%Do we see evidence of this?  Well, maybe: misregulation in hybrids in Witkopp, Noor, Barbash, etc,
-%even with expression levels in parents being the same.
-
-% consequence: prediction for phenotype (not just fitness)
-%Note that this follows directly from the fact that $F_1$ and $F_2$ hybrid phenotypes diverge from $F_0$ phenotypes, linearly and inverse-quadratically, with respect to time (more precisely $T/N_e$). As such, removing assumptions about the form of the fitness function, this model still predicts hybrid $F_2$ phenotypes to diverge much faster than $F_1$s, initially.
-%So even if fitness isn't as above maybe you can see this in phenotypes.
+While the incompatibility of any one given network within an organism may be small, we note that organisms are made up of many different networks, and that the cumulative impact of system drift across all of these may be substantial. Further, even in populations experiencing directional selection, networks underlying conserved parts of the phenotype can still experience neutral drift and harbor incompatibilities. 
 
 
-% selection moving around optimal set
-%Note that the drift above could actually be caused by the optimal phenotype shifting.
-%\js{I don't think we need to address optimal phenotype shifting}
+\paragraph{Nonlinearity}
+Of course, real regulatory networks are not linear dynamical systems.
+Most notably, physiological limits put upper bounds on expression levels,
+implying saturating response curves \citep{michalis_mentin}.
+It remains to be seen how well these results carry over into real systems,
+but the fact that most nonlinear systems can be locally approximated by a linear one
+suggests qualitatively similar results.
+Furthermore, nonidentifiability (which implies the existence of neutral directions)
+is often found in practice in moderately complex models of biological systems. \plr{need citation}
+
+\paragraph{Peter: Quant gen discussion}
+Maybe compare to \citet{fierst}?
 
 Do we talk about the $G$ matrix and mutational correlation somewhere?
 
-%This theoretical framework can easily be applied to other interesting questions in evolutionary biology not tackled presently: such as the evolution of linkage, the necessity of network complexity (does evolution tend towards Rube Goldberg or parsimonious network organization?), evolvability, structure/function inference, and intra-population context dependency of mutational effects, as well as many others.
-
 Note that islands or bottlenecks leave large $\sigma_N$ but small $N_e$ so may go fast.
 
-% J and P didn't get speciation in a neutral  model
-Discuss differences to Johnson and Porter.
-
 What is Ne?  In a metapopulation depends on migr rate: classic Turelli paper.
-
-\jss{talk about speciation rate in small population results as compared to Katari and Goldstein (I think). they look at the influence of $N_e$ on speciation rate.}
 
 This has implications for genetic load also!!
 
@@ -2207,5 +2225,7 @@ and finally in $A$ and $C$:
 %  \end{align*}
 
 \end{document}
+
+
 
 
