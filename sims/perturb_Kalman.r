@@ -253,7 +253,6 @@ min_perturb <- function(tau=0){
   }
   return(output)
 }
-<<<<<<< HEAD
 
 #####################
 # COMPARE minimal vs non-minimal system #
@@ -262,7 +261,7 @@ min0 <- min_perturb(tau=0)
 nonmin0 <- sys_gen6D(s=0.01, eps=0.1, nreps=100)
 nonmin0_4d <- sys_gen4D(s=0.01, eps=0.1, nreps=100)
 
-pdf("~/kalman_walk/sims/2d_4d_6d_oscillator_tau0.pdf")
+pdf("~/kalman_walk/sims/coeff_dist_2d_4d_6d_oscillator_tau0.pdf")
 plot(min0, col="blue")
 lines(lowess(min0), col="blue")
 
@@ -276,5 +275,3 @@ legend(0.1,4,legend=c("2D minimal system", "4D system", "6D system"), col=c("blu
 dev.off()
 
 ##############
-=======
->>>>>>> 60e6dce9f2929a8aa50a235e1b778311c6c899fd
