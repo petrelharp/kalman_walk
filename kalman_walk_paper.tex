@@ -359,9 +359,9 @@ and $C \!=\! \left[\begin{smallmatrix} 1 & 0 \end{smallmatrix}\right]$.
             \begin{tikzpicture}
             \begin{scope}[every node/.style={circle,thick,draw}]
                 \node (A) at (0,0) {$\kappa_{1}$};
-                \node[dashed] (B) at (3,0) {$\kappa_{2}$};
-                \node[shape=rectangle] (U) at (1.5,1.5) {input ($u(t)$)};
-                \node[shape=rectangle] (y) at (1.5,-1.5) {output ($\phi(t)$)};
+                \node[dashed] (B) at (4,0) {$\kappa_{2}$};
+                \node[shape=rectangle] (U) at (2,2) {input ($u(t)$)};
+                \node[shape=rectangle] (y) at (2,-2) {output ($\phi(t)$)};
             \end{scope}
 
             \begin{scope}[>={Stealth[black]},
@@ -602,8 +602,8 @@ and their dynamics, are depicted in Figure \ref{fig:all_osc}
 \begin{scope}[every node/.style={circle,thick,draw}]
   \node (A) at (0,0) {$\kappa_{1}$};
     \node[dashed] (B) at (4,0) {$\kappa_{2}$};
-    \node[shape=rectangle] (U) at (2,2) {input};
-    \node[shape=rectangle] (y) at (2,-2) {output};
+    \node[shape=rectangle] (U) at (2,2) {input $(u)$};
+    \node[shape=rectangle] (y) at (2,-2) {output $(\phi)$};
 \end{scope}
 
 \begin{scope}[>={Stealth[black]},
@@ -611,9 +611,9 @@ and their dynamics, are depicted in Figure \ref{fig:all_osc}
               every edge/.style={draw=black, thick}]
     \path [->, sloped] (A) edge[bend left] node {\tiny $2 \tau + (\tau-1)^{-1}$} (B);
     \path [->, sloped] (B) edge[bend left] node {\tiny $-(\tau-1)^{-1}$} (A); 
-    \path[->] (U) edge[dashed] node {\tiny $1$} (A);
-    \path[->] (U) edge[dashed] node {\tiny $1$} (B);
-    \path[->] (A) edge[dashed, bend right] node {\tiny $1$} (y);
+    \path[->] (U) edge node {\tiny $1$} (A);
+    \path[->] (U) edge node {\tiny $1$} (B);
+    \path[->] (A) edge[bend right] node {\tiny $1$} (y);
 \end{scope}
 \begin{scope}[>={Stealth[black]},
               every edge/.style={draw=black, thick}]
@@ -630,7 +630,40 @@ and their dynamics, are depicted in Figure \ref{fig:all_osc}
       } 
     \label{fig:all_osc}
 \end{figure}
+%
+\begin{figure}[H]
+\begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+  \node (A) at (0,0) {$\kappa_{1}$};
+    \node (B) at (0,4) {$\kappa_{2}$};
+    \node (C) at (3.464,2) {$\kappa_{3}$};
+    \node[shape=rectangle, rotate=0] (U) at (-2.5,2) {input $(u)$};
+    \node[shape=rectangle] (y) at (3.464,0) {output $(\phi)$};
+\end{scope}
 
+\begin{scope}[>={Stealth[black]},
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=black, thick}]
+    \path [->, sloped] (A) edge[bend left] node {\tiny ?} (B);
+    \path [->, sloped] (B) edge[bend left] node {\tiny ?} (A); 
+    \path [->, sloped] (A) edge[bend right] node {\tiny ?} (C); 
+    \path [->, sloped] (B) edge[bend left] node {\tiny ?} (C); 
+    \path [->, sloped] (C) edge[bend right] node {\tiny ?} (A); 
+    \path [->, sloped] (C) edge[bend left] node {\tiny ?} (B); 
+    \path[->] (U) edge node {\tiny $1$} (A);
+    \path[->] (U) edge node {\tiny $1$} (B);
+    \path[->] (A) edge node {\tiny $1$} (y);
+\end{scope}
+\begin{scope}[>={Stealth[black]},
+              every edge/.style={draw=black, thick}]
+    \path [->] (A) edge[loop below] node[sloped, anchor=center, below] {\tiny ?} (A);
+    \path [->] (B) edge[loop above] node[sloped, anchor=center, above] {\tiny ?} (B);
+    \path [->] (C) edge[loop right] node[sloped, anchor=center, above] {\tiny ?} (C);
+\end{scope}
+\end{tikzpicture}
+  \caption{A possible non-minimal three-gene oscillator phenotypically equivalent to the systems in Examples \ref{ex:oscillator} and \ref{ex:all_osc}.}
+  \label{fig:3D_osc}
+\end{figure}
 
 \paragraph{Sexual reproduction and recombination}
 Parents with phenotypically equivalent, yet different, gene networks may produce offspring with dramatically different phenotypes. 

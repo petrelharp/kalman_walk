@@ -125,6 +125,7 @@ perturb_oscillator <- function(AL, eps) {
 }
 
 #####################################
+
 sys_gen6D <- function (s=sigma, eps=0.05, nreps=100) 
 {
   KalA_list <- random_oscillator(s=s)
@@ -137,8 +138,9 @@ sys_gen6D <- function (s=sigma, eps=0.05, nreps=100)
     
     new_KalA_list <- perturb_oscillator(KalA_list, eps=eps)
     new_KalA <- assemble_oscillator(new_KalA_list)
-    dist <- norm(KalA$A-new_KalA$A,"F")
-    #dist <- sum(abs(Kal$A - new_KalA$A))/36
+    #dist <- norm(KalA$A-new_KalA$A,"F")
+    ##dist <- sum(abs(Kal$A - new_KalA$A))/36
+    dist <- sqrt(sum((Kal$A - new_KalA$A)^2))/36
     
     avg_div <- 0
     jj <- 0
@@ -158,15 +160,14 @@ sys_gen6D <- function (s=sigma, eps=0.05, nreps=100)
         }
       }
       if (is.null(DZ)==0) 
-        {
-          avg_div <- avg_div + DZ/100
-        }
+      {
+        avg_div <- avg_div + DZ/100
+      }
     }
     output[i,] <- c(dist,avg_div)
   }
   return(output)
 }
-
 sys_gen4D <- function (s=sigma, eps=0.05, nreps=100) 
 {
   KalA_list <- random_oscillator(s=s)
@@ -181,8 +182,9 @@ sys_gen4D <- function (s=sigma, eps=0.05, nreps=100)
     new_KalA_list <- perturb_oscillator(KalA_list, eps=eps)
     #new_KalA <- assemble_oscillator(new_KalA_list)
     new_KalA <- assemble_oscillator4d(new_KalA_list)
-    dist <- norm(KalA$A-new_KalA$A,"F")
-    #dist <- sum(abs(Kal$A - new_KalA$A))/36
+    #dist <- norm(KalA$A-new_KalA$A,"F")
+    ##dist <- sum(abs(Kal$A - new_KalA$A))/16
+    dist <- sqrt(sum((Kal$A - new_KalA$A)^2))/16
     
     avg_div <- 0
     jj <- 0
@@ -234,8 +236,9 @@ min_perturb <- function(tau=0){
   for (i in 1:100){
     eps2 <- i/200
     new_A <- V(tau-eps2)%*%A%*%solve(V(tau-eps2))
-    dist <- norm(initA - new_A, "F")
-    #dist <- sum(abs(initA - new_A))/4
+    #dist <- norm(initA - new_A, "F")
+    ##dist <- sum(abs(initA - new_A))/4
+    dist <- sqrt(sum((initA - new_A)^2))/4
     avg_div <- 0
     for (j in 1:100) 
     { 
@@ -250,6 +253,7 @@ min_perturb <- function(tau=0){
   }
   return(output)
 }
+<<<<<<< HEAD
 
 #####################
 # COMPARE minimal vs non-minimal system #
@@ -272,3 +276,5 @@ legend(0.1,4,legend=c("2D minimal system", "4D system", "6D system"), col=c("blu
 dev.off()
 
 ##############
+=======
+>>>>>>> 60e6dce9f2929a8aa50a235e1b778311c6c899fd
