@@ -126,37 +126,42 @@ $^{\ddagger}$University of Oregon, Eugene, Oregon \\
 % Evolutionary systems theory and speciation 
 
 \begin{abstract}
-It is known that even if a species' phenotype has remained unchanged over evolutionary time,
-the underlying mechanism may have changed,
-since distinct molecular pathways can realize identical phenotypes.
-In this paper, we use quantitative genetics and linear systems theory to study
-how a gene network underlying a conserved phenotype
-evolves as genetic drift of small mutational tweaks to the molecular pathways
+%It is known that even if a species' phenotype has remained unchanged over evolutionary time,
+%the underlying mechanism may have changed,
+%since distinct molecular pathways can realize identical phenotypes.
+Even if a species' phenotype remains unchanged over evolutionary time, the underlying mechanism may have changed, as distinct molecular pathways can realize identical phenotypes.
+Here we use quantitative genetics and linear system theory to study
+how a gene network underlying a conserved phenotype evolves,
+as the genetic drift of small mutational tweaks to these molecular pathways
 cause a population to explore the set of mechanisms with identical phenotypes.
-In this setting we treat organisms as ``black boxes'' for which the environment provides input
-and the phenotype is the output,
-and there exists an exact characterization of the set of all mechanisms that give the same input--output relationship. 
-We show that in this situation, there is never a unique architecture for any phenotype
+In this setting we treat an organism as a ``black box''
+for which the environment provides input and the phenotype is the output,
+%which translates some environmental input
+%to an output that is subject to the pressures of natural selection-- the phenotype.
+and there exists an exact characterization of the set of all mechanisms that give the same input--output relationship.
+%There exists an exact expression for the set of all linear mechanisms with identical phenotypes, 
+%Due to the genetic drift of small mutational tweaks to these molecular pathways, we expect an evolving population to explore this set.
+Within this framework, we show that there is never a unique network architecture for any phenotype
 and that the evolutionary exploration of these distinct and mutationally connected mechanisms
-can lead to the rapid accumulation of hybrid incompatibilities between allopatric populations.
-We estimate that in reasonably numerous species,
-this process could thus the formation of new species
-over a number of generations proportional to the effective population size.
-This model also provides a natural explanation for Haldane's rule
-that appears mechanistically distinct from other proposed mechanisms.
+can lead to the reproductive incompatibility of idependently evolving populations.
+  This evolutionary exploration, which we refer to as system drift, proceeds at a rate proportional to the effective population size ($N_e$) and amount of intrapopulation genetic variation.
+We estimate that %in reasonably numerous species,
+  this process can lead to the formation of new species, perhaps in as few as $0.1 N_e$ generations.
+%over a number of generations proportional to the effective population size.
+This model also naturally yields, what appears to be, a distinct explanation for Haldane's rule, or why heterogametic hybrids tend to be disrupted more often than homogametes during the early stages of speciation.
 \end{abstract}
 
 
-\plr{Additional ideas to consider adding:}
-\begin{itemize}
-    \item speciation literature
+%\plr{Additional ideas to consider adding:}
+%\begin{itemize}
+%    \item speciation literature
     %\item Haldane's rule (easy point in discussion: makes F1s look like F2s)
     %\item add point about F1: quartic and F2: quadratic to results and maybe abstract/discussion
     %\item hybrid vigor (need to do calculation)
-    \item discuss linearity, linearization, and canalization in introduction
+ %   \item discuss linearity, linearization, and canalization in introduction
     %\item obtain estimates of variation in $A$ from thermodynamic occupancy model
-    \item ``On the origin of species not by means of natural selection''
-\end{itemize}
+ %   \item ``On the origin of species not by means of natural selection''
+%\end{itemize}
 
 %\plri{Note: in the \LaTeX source I'm putting in semantic linebreaks, so it's easy to edit and move around phrases and ideas.}
 
@@ -210,13 +215,13 @@ even if a one-to-one mapping between model and behavior is possible in theory,
   even tiny amounts of noise can make inference problems nonidentifiable in practice \jss{cite?}.
 
 Although nonidentifiability may frustrate the occasional engineer or scientist, viewed from another angle,
-these concepts can provide a starting point for thinking about externally equivalent systems
+this concept can provide a starting point for thinking about externally equivalent systems
 -- systems that evolution can explore, so long as the parameters and structures can be realized biologically.
 These functional symmetries manifest in convergent and parallel evolution, 
 as well as \emph{developmental system drift}: the observation that
 macroscopically identical phenotypes in even very closely related species can in fact be divergent at the molecular and sequence level 
 \citep{true2001developmental, tanay2005conservation, tsong2006evolution, hare2008sepsid, vierstra2014mouse, matsui2015regulatory, dalal2016transcriptional, dalal2017transcription}.
-  \jss{should hare2008sepsid be here? It's sequence but not ``system'' drift}
+ % \jss{should hare2008sepsid be here? It's sequence but not ``system'' drift}
 % are these good here? {taylor2016diverse -- maybe not, matsui2015regulatory -- I think this relevant, stergachis2014conservation}.
 %
 %AND THESE?
@@ -238,16 +243,18 @@ all linear gene network architectures that yield identical phenotypes, and show 
 %which gives concrete expectations for how any such
 %system can, in principal, undergo system drift and rewire.
 Even under stabilizing selection, a population can explore the set of all possible phenotypically equivalent gene networks.
-Phenotypically equivalent gene networks are not necessarily compatible with one another, thus system drift can rapidly lead to the accumulation of hybrid incompatibilities analogous to those in the Dobzhansky-Muller model. 
-Consequentially, two populations isolated for a sufficiently long period of time, 
-will likely produce inviable hybrids, despite the absence of adaptation, directional selection, or environmental change.
+Phenotypically equivalent gene networks are not necessarily compatible with one another, as such system drift may result in the reproductive incompatibility between populations isolated for a sufficiently long period of time, even in the absence of any sort of adaptative, selective, or environmental change. Finally, in some cases we estimate that reproductive incompatibility due to system drift can manifest on timescales on the order of $N_e$ generations. 
+
+analogous to those in the Dobzhansky-Muller model. 
+%Consequentially, two populations isolated for a sufficiently long period of time, 
+%will likely produce inviable hybrids, despite the absence of adaptation, directional selection, or environmental change.
 % Under these conditions, speciation typically occurs on timescales approximately on the order of $N_{e}$ generations, where $N_{e}$ is the effective population size.
 
 REFERENCE: Barton's paper (PETER).
 
-\section*{Methods}
+\section*{Evolutionary system theory}
 
-Here we construct as abstract model to study biological systems, such as gene regulatory networks. The behavior (i.e. temporal dynamics) of such a system is determined both by a collection of $n$ coregulating moleculues -- such as transcription factors, as well as external or environmental inputs.
+Here we construct as abstract model to study biological systems, such as gene regulatory networks. The behavior (i.e. temporal dynamics) of such a system is determined by a collection of $n$ coregulating moleculues -- such as transcription factors, as well as external or environmental inputs.
 %We study an abstract model of temporal dynamics of the concentrations of a collection of $n$ coregulating molecules
 %within an organism, that may also be affected by temporally varying signals from the environment.
 %% Organisms' phenotypes are constructed by gene by gene and gene by environment interactions. 
@@ -312,8 +319,8 @@ Here we have assumed that the system is linear,
 and begins from the ``zero'' state ($\kappa(0)=0$).
 Of course, neither of these are necessarily true for real systems,
 but the dynamics of most nonlinear systems can be approximated locally by a linear systems near most points. 
-Furthermore, the ease of analyzing linear systems makes this an attractive place to start.  
-
+Furthermore, the ease of analyzing linear systems makes this an attractive place to start.
+To demonstrate this approach, we apply it to construct a simple gene network in Example \ref{ex:oscillator} below.
 
 \begin{example}[An oscillator]\label{ex:oscillator}
 For illustration, we consider an extremely simplified model of oscillating gene transcription,
@@ -355,13 +362,13 @@ and $C \!=\! \left[\begin{smallmatrix} 1 & 0 \end{smallmatrix}\right]$.
     \begin{figure}[H]
        % \begin{center} 
       \centering
-         \begin{tabular}{cc}
+       %  \begin{tabular}{cc}
             \begin{tikzpicture}
             \begin{scope}[every node/.style={circle,thick,draw}]
                 \node (A) at (0,0) {$\kappa_{1}$};
-                \node[dashed] (B) at (4,0) {$\kappa_{2}$};
-                \node[shape=rectangle] (U) at (2,2) {input ($u(t)$)};
-                \node[shape=rectangle] (y) at (2,-2) {output ($\phi(t)$)};
+                \node (B) at (4,0) {$\kappa_{2}$};
+                \node[shape=rectangle] (U) at (2,2) {input ($u$)};
+                \node[shape=rectangle] (y) at (2,-2) {\begin{tabular}{cc} output ($\phi$) \\  \includegraphics[width=0.15\textwidth, height=0.04\paperheight]{osc_impulse} \end{tabular}};
             \end{scope}
 
             \begin{scope}[>={Stealth[black]},
@@ -369,9 +376,9 @@ and $C \!=\! \left[\begin{smallmatrix} 1 & 0 \end{smallmatrix}\right]$.
                           every edge/.style={draw=black, thick}]
                 \path [->, >=Rectangle] (A) edge[bend left] node {\tiny $-1$} (B);
                 \path [->] (B) edge[bend left] node {\tiny $1$} (A); 
-                \path[->] (U) edge[dashed] node {\tiny $1$} (A);
-                \path[->] (U) edge[dashed] node {\tiny $1$} (B);
-                \path[->] (A) edge[dashed,bend right] node {\tiny $1$} (y);
+                \path[->] (U) edge node {\tiny $1$} (A);
+                \path[->] (U) edge node {\tiny $1$} (B);
+                \path[->] (A) edge[bend right] node {\tiny $1$} (y);
             \end{scope}
             \begin{scope}[>={Stealth[black]},
                           every edge/.style={draw=black, thick}]
@@ -379,11 +386,15 @@ and $C \!=\! \left[\begin{smallmatrix} 1 & 0 \end{smallmatrix}\right]$.
                 %\path [->] (B) edge[loop left] node {\tiny $\lambda_{2}$} (B);
             \end{scope}
 
-            \end{tikzpicture} &
-      \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{osc_impulse}
-   \end{tabular}
+            \end{tikzpicture} %&
+   %   \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{osc_impulse}
+   %\end{tabular}
   %  \end{center}
-      \caption{(Left) Graphical representation of the cell cycle control gene network, and (right) plot of the phenotype $\phi(t)$ against time $t$.} \label{fig:oscillator}
+      \caption{
+        %(Left) 
+        Diagram of the gene network in Example \ref{ex:oscillator}
+      %, and (right) plot of the phenotype $\phi(t)$ against time $t$
+      .} \label{fig:oscillator}
     \end{figure}
   \end{example}
 
@@ -450,7 +461,7 @@ Results in system theory show that any system can be realized in a particular mi
 (the dimension of the kryptotype, $n_\text{min}$),
 and that any two phenotypically equivalent systems of dimension $n_\text{min}$ are related by a change of coordinates.
 
-Some gene networks, however, can grown or shrink, perhaps following gene duplications and deletions, 
+Some gene networks, however, can grow or shrink, perhaps following gene duplications and deletions, 
 and also still preserve their phenotypes.
 More generally, even if the system is not minimal, 
 results from systems theory % -- the Kalman decomposition --
@@ -575,9 +586,9 @@ Finally, note that if $B$ and $C$ are held constant --
 i.e., if the relationships between environment, kryptotype, and phenotype do not change --
 there are \emph{still} usually degrees of freedom. 
 These correspond to distinct genetic networks that perform indistinguishable functions. 
-The following example \ref{ex:all_osc} gives the set of minimal systems equivalent to the oscillator of example \ref{ex:oscillator},
+The following example \ref{ex:all_osc} gives the set of minimal systems equivalent to the oscillator of Example \ref{ex:oscillator},
 that all share common $B$ and $C$ matrices.
-
+The oscillator can also be equivalently realized by a three-gene (or larger) network, and will have even more evolutionary degrees of freedom available, as in e.g., Figure \ref{fig:3D_osc}.
 
 \begin{example}[All Phenotypically Equivalent Oscillators] \label{ex:all_osc}
 The oscillator of example \ref{ex:oscillator} is minimal, and so any equivalent system is a change of coordinates
@@ -601,9 +612,9 @@ and their dynamics, are depicted in Figure \ref{fig:all_osc}
 \begin{tikzpicture}
 \begin{scope}[every node/.style={circle,thick,draw}]
   \node (A) at (0,0) {$\kappa_{1}$};
-    \node[dashed] (B) at (4,0) {$\kappa_{2}$};
-    \node[shape=rectangle] (U) at (2,2) {input $(u)$};
-    \node[shape=rectangle] (y) at (2,-2) {output $(\phi)$};
+    \node (B) at (4,0) {$\kappa_{2}$};
+    \node[shape=rectangle] (U) at (2,2) {input ($u$)};
+    \node[shape=rectangle] (y) at (2,-2) {output ($\phi$)};
 \end{scope}
 
 \begin{scope}[>={Stealth[black]},
@@ -637,28 +648,28 @@ and their dynamics, are depicted in Figure \ref{fig:all_osc}
   \node (A) at (0,0) {$\kappa_{1}$};
     \node (B) at (0,4) {$\kappa_{2}$};
     \node (C) at (3.464,2) {$\kappa_{3}$};
-    \node[shape=rectangle, rotate=0] (U) at (-2.5,2) {input $(u)$};
-    \node[shape=rectangle] (y) at (3.464,0) {output $(\phi)$};
+    \node[shape=rectangle, rotate=0] (U) at (-2.5,2) {input ($u$)};
+    \node[shape=rectangle] (y) at (3.464,0) {output ($\phi$)};
 \end{scope}
 
 \begin{scope}[>={Stealth[black]},
               every node/.style={fill=white,circle},
               every edge/.style={draw=black, thick}]
-    \path [->, sloped] (A) edge[bend left] node {\tiny ?} (B);
-    \path [->, sloped] (B) edge[bend left] node {\tiny ?} (A); 
-    \path [->, sloped] (A) edge[bend right] node {\tiny ?} (C); 
-    \path [->, sloped] (B) edge[bend left] node {\tiny ?} (C); 
-    \path [->, sloped] (C) edge[bend right] node {\tiny ?} (A); 
-    \path [->, sloped] (C) edge[bend left] node {\tiny ?} (B); 
+    \path [->, sloped] (A) edge[bend left] node {\tiny $2.2$} (B);
+   % \path [->, sloped] (B) edge[bend left] node {\tiny ?} (A); 
+    \path [->, sloped] (A) edge[bend right] node {\tiny $2$} (C); 
+    %\path [->, sloped] (B) edge[bend right] node {\tiny ?} (C); 
+    \path [->, >=Rectangle, sloped] (C) edge[bend right] node {\tiny $-1$} (A); 
+    \path [->, >=Rectangle, sloped] (C) edge[bend right] node {\tiny $-2.2$} (B); 
     \path[->] (U) edge node {\tiny $1$} (A);
     \path[->] (U) edge node {\tiny $1$} (B);
     \path[->] (A) edge node {\tiny $1$} (y);
 \end{scope}
 \begin{scope}[>={Stealth[black]},
               every edge/.style={draw=black, thick}]
-    \path [->] (A) edge[loop below] node[sloped, anchor=center, below] {\tiny ?} (A);
-    \path [->] (B) edge[loop above] node[sloped, anchor=center, above] {\tiny ?} (B);
-    \path [->] (C) edge[loop right] node[sloped, anchor=center, above] {\tiny ?} (C);
+    \path [->] (A) edge[loop below] node[sloped, anchor=center, below] {\tiny $1$} (A);
+    \path [->] (B) edge[loop above] node[sloped, anchor=center, above] {\tiny $1$} (B);
+    \path [->, >=Rectangle] (C) edge[loop right] node[sloped, anchor=center, above] {\tiny $-1$} (C);
 \end{scope}
 \end{tikzpicture}
   \caption{A possible non-minimal three-gene oscillator phenotypically equivalent to the systems in Examples \ref{ex:oscillator} and \ref{ex:all_osc}.}
@@ -666,26 +677,26 @@ and their dynamics, are depicted in Figure \ref{fig:all_osc}
 \end{figure}
 
 \paragraph{Sexual reproduction and recombination}
-Parents with phenotypically equivalent, yet different, gene networks may produce offspring with dramatically different phenotypes. 
-If the phenotypes are significantly divergent then the offspring may be inviable or otherwise have very low fitnesses, 
-despite both parents being well adapted. If this is consistent for the entire population, we would consider them to be separate species.
+Parents with phenotypically equivalent yet differently wired gene networks may produce offspring with dramatically different phenotypes. 
+If the phenotypes are significantly divergent then the offspring may be inviable or otherwise dysfunctional, 
+despite both parents being well adapted. If this is consistent for the entire population, we would consider them to be separate species, in accord with the biological species concept \citep{mayr2000biological}.
 
-Diploid organisms have two copies of the genome, each of which encodes a set of system coefficients.
-We assume that a diploid who has inherited systems $(A', B', C')$ and $(A'', B'', C'')$ from her mother and father, respectively,
+Diploid organisms have two genomes, each of which encodes a set of system coefficients.
+We assume that a diploid which has inherited systems $(A', B', C')$ and $(A'', B'', C'')$ from each of its parents,
 has phenotype determined by the system that averages these two,
 $((A'+A'')/2, (B'+B'')/2, (C'+C'')/2)$.
 
-Each of the copies of the genome an organism inherits from her parents are generated from their two copies of the genome by meiosis,
-in which the diploid parent recombines her two genomes.
+Each genome an organism inherits is generated by meiosis,
+in which both of its diploid parents recombine their two genomes.
 We will assume that each coefficient (i.e., entry of $A$, $B$ or $C$)
 is determined by a single nonrecombining locus,
 so that each coefficient in the system produced by meiosis is an independent random choice
-of the two parental coefficients.
-With these definitions, an $F_1$ offspring of two individuals
-carries one system copy from each parent,
-and an $F_2$ is the offspring of two independently formed $F_1$ individuals.
+between the two parental coefficients.
+With these definitions, an $F_1$ offspring
+carries a system copy from each parent,
+and an $F_2$ is an offspring of two independently formed $F_1$s.
 If the parents are from distinct populations,
-these are first- and second-generation hybrids, respectively.
+these are simply first-- and second--generation hybrids, respectively.
 
 This is a simplification:
 since the $i^\text{th}$ row of $A$ summarizes how each gene regulates gene $i$,
@@ -695,7 +706,7 @@ Similarly, we expect in practice heritable variation in each coefficient
 to be determined by more than one locus --
 but this may be a reasonable approximation.
 
-The offspring of two systems with the same phenotype may not have the same phenotype as the parents -- in other words $\allS$, the set of all systems phenotypically equivalent to a given one, is not, in general, closed under averaging or recombination.
+Offspring formed from two phenotypically identical systems do not necessarily exhibit the same phenotype as both of its parents -- in other words $\allS$, the set of all systems phenotypically equivalent to a given one, is not, in general, closed under averaging or recombination.
 Next we discuss how this fact can contribute to hybrid incompatibility and genetic load.
 If sexual recombination among systems drawn from $\allS$ yields systems with divergent phenotypes, populations containing significant diversity in $\allS$ can carry genetic load, and isolated populations may fail to produce hybrids with viable phenotypes.
 
@@ -720,8 +731,8 @@ If sexual recombination among systems drawn from $\allS$ yields systems with div
 \paragraph{Hybrid incompatibility}
 Two parents with the optimal phenotype can produce offspring whose phenotype is suboptimal
 if the parents have different underlying systems.
-This leads to the question: 
-How quickly does the hybrid phenotype break down with increasing distance between the parents?
+%This leads to the question: 
+How quickly do hybrid phenotypes break down as genetic distance between parents increases?
 To quantify this, we will measure how far a system's phenotype is from optimal
 using a weighted difference between impulse response functions.
 Suppose that $\rho(t)$ is a nonnegative, smooth, square-integrable weighting function,
@@ -755,28 +766,27 @@ The precise rate at which the phenotype of a hybrid diverges depends on the geom
 in Figure \ref{fig:conceptual_fig}, this is depicted as the angle of the black line (the optimal set)
 with respect to the coordinates.
 
-
 \begin{example}[Hybrid Incompatibility in the Oscillator] \label{ex:hybrid_osc}
 Offspring of two equivalent systems from Example \ref{ex:all_osc}
 can easily fail to oscillate.
 For instance, the $F_1$ offspring between homozygous parents at $\tau=0$ and $\tau=2$
 has phenotype $\phi_{F_1}(t) = e^t$, rather than $\phi(t) = \sin t + \cos t$.
 However, the coefficients of these two parental systems differ substantially,
-probably more than would be realistically observed between diverging populations.
+probably more than would be observed between diverging populations.
 In figure \ref{fig:hybs} we compare the phenotypes for $F_1$ and $F_2$ hybrids between more similar parents,
 and see increasingly divergent phenotypes as the difference between the parental systems increases.
-(In this example, the coefficients of $A(2+\epsilon)$ differ from those of $A(2)$ by an average factor of $1+\epsilon/2$;
+(In this example, the coefficients of $A(\epsilon)$ differ from those of $A(0)$ by an average factor of $1+\epsilon/2$;
 such small differences could plausibly be caused by changes to promoter sequences.)
 This divergence is quantified in Figure \ref{fig:osc_incompat},
-which shows that mean distance to optimum phenotype of the $F_1$ and $F_2$ hybrid offspring between $A(2)$ and $A(2+\epsilon)$
+which shows that mean distance to optimum phenotype of the $F_1$ and $F_2$ hybrid offspring between $A(0)$ and $A(\epsilon)$
 increases with $\epsilon^2$ and $\epsilon$, respectively.
 
 The coefficients in $A$ -- i.e., the regulatory coefficients --
-differ between parents by only a few percent (around 0.5\% for $\tau=2.01$ and 5\% for $\tau=2.1$).
+  differ between parents by only a few percent (around 0.5\% for $\epsilon = - \sfrac{1}{100}$ and 5\% for $\epsilon= - \sfrac{1}{10}$).
 This is well within the amount of regulatory coefficient variation we expect to find segregating within real populations
 (discussed further below). 
 For these small values of $\epsilon$, hybrid phenotypes remain relatively stable, 
-consistent with the idea that natural selection will allow such intrapopulation variation. 
+  consistent with the idea that natural selection will allow such intrapopulation variation. For larger values of $\left| \epsilon \right|$ (here $\sfrac{1}{2}$), hybrid phenotypes can become dysfunctional, and depending on context, manifest as hybrid inviability. 
 
 %%% figure of tau=0 and tau=2 hybrid:
 %  \begin{figure}[H] 
@@ -794,71 +804,65 @@ consistent with the idea that natural selection will allow such intrapopulation 
 \begin{figure}[H]
   \centering
   \begin{tabular}{ccc}
-    \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{F1_comparison} &
-    \includegraphics[width=0.5\textwidth, height=0.25\paperheight]{F2s_comparison2}
-  \end{tabular}
-  \caption{
-  \textbf{(left)} Phenotypes of $F_1$ hybrids between an $A(2)$ parent and, top-to-bottom, an $A(2.01)$, an $A(2.1)$, and $A(2.5)$ parent.
-    Parental phenotypes ($\sin t + \cos t$) are shown in blue, and hybrid phenotypes in orange.
-    \textbf{(right)} Phenotypes of $F_2$ hybrids between the same set of parents,
-    with parental phenotype again in blue.
-    Different lines correspond to different $F_2$s produced by recombination;
-    note that some completely fail to oscillate.
-    \plri{make axis labels bigger}
-  } \label{fig:hybs}
-\end{figure}
-
-  \begin{figure}[H]
-    \centering
-    \begin{tabular}{ccc}
-      \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{examples/osc_F1_hundreth_tau0} &
+    %\includegraphics[width=0.5\textwidth, height=0.25\paperheight]{F1_comparison} &
+    %\includegraphics[width=0.5\textwidth, height=0.25\paperheight]{F2s_comparison2}
+    \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{examples/osc_F1_hundreth_tau0} &
       \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{examples/osc_F2_hundrethtau0} \\
       \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{examples/osc_F1_tenth_tau0.pdf} &
       \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{examples/osc_F2_tenthtau0.pdf} \\
       \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{examples/osc_F1_half_tau0.pdf} &
       \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{examples/osc_F2_halftau0.pdf}
-    \end{tabular}
-    \end{figure}
+  \end{tabular}
+  \caption{
+    \textbf{(left)} Phenotypes of $F_1$ hybrids between an $A(0)$ parent and, top-to-bottom, an $A(-\sfrac{1}{100})$, an $A(-\sfrac{1}{10})$, and $A(-\sfrac{1}{2})$ parent.
+    Parental phenotypes ($\sin t + \cos t$) are shown in solid black, and hybrid phenotypes in dashed blue.
+    \textbf{(right)} Phenotypes of all 256 possible $F_2$ hybrids between the same set of parents,
+    with parental phenotype again in black.
+    Different colored lines correspond to different $F_2$s;
+    note that some completely fail to oscillate.
+  } \label{fig:hybs}
+\end{figure}
 
   \begin{figure}[H]
   \label{fig:osc_incompat}
     \centering
-    \begin{tabular}{cc}
-    \includegraphics[width=0.4\textwidth]{figures/f1_quartic2} &
-    \includegraphics[width=0.4\textwidth]{figures/f2_quad2}
-    \end{tabular}
-    \caption{
-    \textbf{(left)} Phenotype distance to optimum, $D$, using $\rho(t) = \exp(-t/4\pi)$
-    for $F_1$ hybrids between an $A(2)$ and an $A(2+\epsilon)$ parent.
-    \textbf{(right)} Same, but for $F_2$ offspring (one line per type of $F_2$).
-    \plri{make this $D$ not $D^2$ and say which line is the overall average $F_2$.}
-    } \label{fig:osc_incompat}
+    %\begin{tabular}{cc}
+    %\includegraphics[width=0.4\textwidth]{figures/f1_quartic2} &
+    %\includegraphics[width=0.4\textwidth]{figures/f2_quad2}
+    %\end{tabular}
+    \includegraphics[width=0.5\textwidth]{examples/F2_vs_F1_divergence_tau0}
+   % \caption{
+    %\textbf{(left)} 
+    \caption{Phenotype distance to optimum, $D$, using $\rho(t) = \exp(-t/4\pi)$
+    for $F_1$ (red) and $F_2$ (blue) hybrids between an $A(0)$ and an $A(\epsilon)$ parent. Genetic distance is computed as the average coefficient difference between two systems.}
+    %\textbf{(right)} Same, but for $F_2$ offspring (one line per type of $F_2$).
+    %\plri{make this $D$ not $D^2$ and say which line is the overall average $F_2$.
+    %}
+    \label{fig:osc_incompat}
   \end{figure}
 \end{example}
 
 \paragraph{Haldane's rule}
-\jss{Maybe something like dosage compensation drift could also lead to Haldane's rule. That is, if the dosage compensation can either be: upregulate the X by $2$ in male flies, versus in another species: downregulate the X in females by $1/2$, and all possible combinations inbetween?}
 This model naturally predicts
 Haldane's rule, the observation that if only one hybrid sex is sterile or inviable 
 it is likely the heterogametic sex (e.g., the male in XY sex determination systems) \citep{haldane1922sex}.
 For example, consider an XY species with a two-gene network where the first gene resides on an autosome and the second gene on the X chromosome.
-A male whose pair of haplotypes are 
+A male whose pair of haplotypes is 
 $\left( \left[ \begin{smallmatrix} A_1 & A_2 \\ \cdot & \cdot \end{smallmatrix} \right], \left[ \begin{smallmatrix} A_1 & A_2 \\ X_1 & X_2 \end{smallmatrix} \right] \right)$
   has phenotype determined by $A = \left[ \begin{smallmatrix} A_1 & A_2 \\ X_1 & X_2 \end{smallmatrix} \right]$, thanks to \emph{Drosophila}-like dosage compensation mechanism (the X is twice upregulated in heterogametes relative to homogametes),
 while a female homozygous for the haplotype
 $\left[\begin{smallmatrix} \bar A_1 & \bar A_2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$, has phenotype determined by
 $A = \left[\begin{smallmatrix} \bar A_1 & \bar A_2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$.
-An $F_1$ male offspring of these two will have phenotype determined by
+An $F_1$ male offspring of these two will have its phenotype determined by
 $\left[\begin{smallmatrix} (A_1 + \bar A_1)/2 & (A_2 + \bar A_2)/2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$.
 If both genes resided on the autosomes this system would only be possible in an $F_2$ cross.
 More generally, 
 if the regulatory coefficients for a system are shared between the sex and one or more autosomal chromosomes, 
-$F_1$ males are effectively equivalent to purely autosomal-system $F_2$s.
-
-This mechanism is apparently distinct from the currently favored ``dominance'', ``faster-X'', and ``faster-male'' theories \citep{orr1997haldane, coyne1998evolutionary} to explain Haldane's rule,
-and makes several different predictions than the dominance theory as formulated by \citet{turelli1995dominance}.
-\plr{what are they?}
-\citet{turelli1995dominance} employ a population genetic model which strictly requires alleles causing hybrid incompatibility on the X chromosome not to exhibit additive effects, that is the \emph{dominance coefficient} (typically $h$ in classic population genetics) must not be equal to $\frac{1}{2}$. In their model, if alleles are strictly additive, that is neither dominant nor recessive, then male and female $F_1$ hybrids will drop in fitness at the exact same rates, and therefore defy Haldane's rule. 
+$F_1$ males are effectively equivalent to purely autosomal-system $F_2$s. As such, in this setting, Haldane's rule is mechanistically similar to \emph{hybrid breakdown}, the observation that $F_2$s will often be less fit than $F_1$ hybrid crosses, in the early stages of speciation.
+This mechanism appears to be distinct from the ``dominance'', ``faster-X'', and ``faster-male'' theories \citep{orr1997haldane, coyne1998evolutionary, turelli1995dominance} usually suggested to explain Haldane's rule.
+%and makes several different predictions than the dominance theory as formulated by \citet{turelli1995dominance}.
+%\plr{what are they?}
+%\citet{turelli1995dominance} employ a population genetic model which strictly requires alleles causing hybrid incompatibility on the X chromosome not to exhibit additive effects, that is the \emph{dominance coefficient} (typically $h$ in classic population genetics) must not be equal to $\frac{1}{2}$. In their model, if alleles are strictly additive, that is neither dominant nor recessive, then male and female $F_1$ hybrids will drop in fitness at the exact same rates, and therefore defy Haldane's rule. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \section*{System drift and the accumulation of incompatibilities}
@@ -875,8 +879,8 @@ Although this is motivated by the results on linear systems above,
 the quantitative genetics calculations are more general,
 and only depend on the presence of genetic variation and a continuous set of phenotypically equivalent systems.
 
-We will suppose that each organism's phenotype is determined by her vector of coefficients, denoted by $x=(x_1, x_2, \ldots, x_L)$,
-and that the corresponding fitness is determined by the distance of her phenotype to optimum.
+We will suppose that each organism's phenotype is determined by its vector of coefficients, denoted by $x=(x_1, x_2, \ldots, x_L)$,
+and that the corresponding fitness is determined by the distance of its phenotype to optimum.
 The optimum phenotype is unique, but is realized by many distinct $x$ -- those falling in the ``optimal set'' $\allS$.
 The phenotypic distance to optimum of an organism with coefficients $x$ is denoted $D(x)$.
 In the results above, $x = (A,B,C)$ and $D(x)$ is given by equation \eqref{eqn:distance}.
@@ -886,7 +890,7 @@ Concretely, we define the fitness at $x$ to be $\exp(-D(x)^2)$.
 % this assumption does not entail a loss of generality since $D$ is arbitrary.
 We will assume that in the region of interest, the map $D$ is smooth
 and that we can locally approximate the optimal set $\allS$ as a quadratic surface.
-As above, an individual's coefficients are given by averaging her parentally inherited coefficients and adding random noise due to segregation. 
+As above, an individual's coefficients are given by averaging its parentally inherited coefficients and adding random noise due to segregation. 
 Concretely, we use the \emph{infinitesimal model} for reproduction \citep{barton_infinitesimal} --
 the offspring of parents at $x$ and $x'$ will have coefficients $(x+x')/2 + \varepsilon$,
 where $\varepsilon$ is a Gaussian displacement due to random assortment of parental alleles.
@@ -1310,328 +1314,328 @@ We would like to thank Sergey Nuzhdin, Stevan Arnold, Erik Lundgren, and Hossein
 
 \normalsize
 
-\section*{Examples}
-\begin{example}[Metabolic network] \label{ex:metabolic}
-Consider an organism that can metabolize two different sugars (present at logarithmic concentrations $u_{1}$ and $u_{2}$), 
-with two enzymes (at log concentrations $\phi_{1}$ and $\phi_{2}$).
-Further suppose that the second sugar is prefered,
-%and that the organism has a regulatory network that can deploy situation specific metabolic strategy.
-and that
-depending on $u_{1}$ and $u_{2}$ the organism will synthesize an appropriate $\phi_{1}$ and $\phi_{2}$. 
-Furthermore, assume this system contains at least two transcription factors, whose log concentrations are $\kappa_{1}$, $\kappa_{2}$, $\dots \kappa_{n}$.
-Minimally such a system may have the architecture,
-%\begin{align*}
-%    \mathcal{S}_{\min} = \left\{ \begin{array}{ll} \dot{\kappa}(t) &= \begin{bmatrix} 0 & -1 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} \kappa_{1} \\ \kappa_{2} \end{bmatrix} (t) + \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} u_{1} \\ u_{2} \end{bmatrix} (t) \\[11pt]
-%    \phi(t) &= \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} \kappa_{1} \\ \kappa_{2} \end{bmatrix} (t) \end{array} \right.
-%\end{align*}
-  $\Sys_{\min}(U) = (U \left[ \begin{smallmatrix} 0 & -1 \\ 0 & 0 \end{smallmatrix} \right] U^{-1}, U 
-    %\left[\begin{smallmatrix} 1 & 0 \\ 0 & 1 \end{smallmatrix}\right]
-      ,
-     % \left[\begin{smallmatrix} 1 & 0 \\ 0 & 1 \end{smallmatrix}\right]
-        U^{-1})$. 
-%
-%The impulse response of the system is,
-%$h(t) = \left[\begin{smallmatrix} 1 & - t \\ 0 & 1 \end{smallmatrix}\right]$.
-    We can find alternative equivalent systems by changning coordinates ($U \rightarrow U'$) or, more generally, by applying the Kalman decomposition \ref{apx:kalman}. To illustrate that phenotypic invariance does not require dimensional invariance, we apply the Kalman decomposition to $\Sys_{\min}$ to find 
-    %This may happen if a system is co-opted from another, or may be a consequence of gene duplication and deletion. 
-  $\Sys(\small D_{1-3},V) \! =  \! \left( \! \begin{array}{ll}
-     V \! \left[\begin{smallmatrix} D_{1} & D_{2} \\ 0 & A \end{smallmatrix}\right] \! V^{-1}, V \! \left[\begin{smallmatrix} D_{3} \\ B \end{smallmatrix}\right], \left[\begin{smallmatrix} 0 & C \end{smallmatrix}\right] \! V^{-1} \end{array} \! \right)
-$, both of which are in $\allS$
-%  \begin{align*}
-%    \Sys(X_{1-3},V) = \left( \begin{array}{ll}
-%     V \left[\begin{smallmatrix} X_{1} & X_{2} \\ 0 & A_{\min} \end{smallmatrix}\right] V^{-1}, V \left[\begin{smallmatrix} X_{3} \\ B_{\min} \end{smallmatrix}\right], \left[\begin{smallmatrix} 0 & C_{\min} \end{smallmatrix}\right] V^{-1} \end{array} \right)
-%    \end{align*}
-  ($V$ can be any $4$-dimensional and invertible matrix, $D_{1-3} \in \R^{2 \times 2}$, and $(A,B,C) \in \Sys_{\min}$).
-%So for example, some system can be wired as follows, and still be input-output equivalent to the minimal metabolic system $\mathcal{S}_{\min}$:
-% \begin{align*}
-%   A' &= \begin{bmatrix}
-%     1.6923  &  1.5385 &  -2.6154 &  -2 \\
-%     0.8462  &  0.7692 &  -1.3077 &  -1 \\
-%     1.2692  &  1.1538 &  -1.9615 &  -1.5 \\
-%     0.4231  &  0.3846 &  -0.6538 &  -0.5
-%   \end{bmatrix} \\
-%   B' &= \begin{bmatrix} 4 & 4 \\ 2 & 2 \\ 3 & 3 \\ 1 & 3 \end{bmatrix} \\
-%     C' &= \begin{bmatrix}  0.2692  &  0.1538  &  0.0385 &  -0.5 \\
-%     -0.4231 &  -0.3846 &   0.6538  &  0.5 \end{bmatrix}
-% \end{align*}
-%
-%Despite the present example consisting of a minimal $2 \times 2$ and a non-minimal $4 \times 4$ system, 
-%any $m$-dimensional system can be constructed using this method 
-%-- applying a change of coordinates to the Kalman decomposition 
-%-- to construct a mechanistically different system with identical phenotypic dynamics. 
-%
-%When applying the Kalman decomposition to real biological networks, one may have to restrict the free parameters, as physiology and biochemistry might not allow all mathematically possible coefficients. We note that as there are so many degrees of freedom, it may be difficult to infer system function solely from structure. 
-\end{example}
+%\section*{Examples}
+%\begin{example}[Metabolic network] \label{ex:metabolic}
+%Consider an organism that can metabolize two different sugars (present at logarithmic concentrations $u_{1}$ and $u_{2}$), 
+%with two enzymes (at log concentrations $\phi_{1}$ and $\phi_{2}$).
+%Further suppose that the second sugar is prefered,
+%%and that the organism has a regulatory network that can deploy situation specific metabolic strategy.
+%and that
+%depending on $u_{1}$ and $u_{2}$ the organism will synthesize an appropriate $\phi_{1}$ and $\phi_{2}$. 
+%Furthermore, assume this system contains at least two transcription factors, whose log concentrations are $\kappa_{1}$, $\kappa_{2}$, $\dots \kappa_{n}$.
+%Minimally such a system may have the architecture,
+%%\begin{align*}
+%%    \mathcal{S}_{\min} = \left\{ \begin{array}{ll} \dot{\kappa}(t) &= \begin{bmatrix} 0 & -1 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} \kappa_{1} \\ \kappa_{2} \end{bmatrix} (t) + \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} u_{1} \\ u_{2} \end{bmatrix} (t) \\[11pt]
+%%    \phi(t) &= \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} \kappa_{1} \\ \kappa_{2} \end{bmatrix} (t) \end{array} \right.
+%%\end{align*}
+%  $\Sys_{\min}(U) = (U \left[ \begin{smallmatrix} 0 & -1 \\ 0 & 0 \end{smallmatrix} \right] U^{-1}, U 
+%    %\left[\begin{smallmatrix} 1 & 0 \\ 0 & 1 \end{smallmatrix}\right]
+%      ,
+%     % \left[\begin{smallmatrix} 1 & 0 \\ 0 & 1 \end{smallmatrix}\right]
+%        U^{-1})$. 
+%%
+%%The impulse response of the system is,
+%%$h(t) = \left[\begin{smallmatrix} 1 & - t \\ 0 & 1 \end{smallmatrix}\right]$.
+%    We can find alternative equivalent systems by changning coordinates ($U \rightarrow U'$) or, more generally, by applying the Kalman decomposition \ref{apx:kalman}. To illustrate that phenotypic invariance does not require dimensional invariance, we apply the Kalman decomposition to $\Sys_{\min}$ to find 
+%    %This may happen if a system is co-opted from another, or may be a consequence of gene duplication and deletion. 
+%  $\Sys(\small D_{1-3},V) \! =  \! \left( \! \begin{array}{ll}
+%     V \! \left[\begin{smallmatrix} D_{1} & D_{2} \\ 0 & A \end{smallmatrix}\right] \! V^{-1}, V \! \left[\begin{smallmatrix} D_{3} \\ B \end{smallmatrix}\right], \left[\begin{smallmatrix} 0 & C \end{smallmatrix}\right] \! V^{-1} \end{array} \! \right)
+%$, both of which are in $\allS$
+%%  \begin{align*}
+%%    \Sys(X_{1-3},V) = \left( \begin{array}{ll}
+%%     V \left[\begin{smallmatrix} X_{1} & X_{2} \\ 0 & A_{\min} \end{smallmatrix}\right] V^{-1}, V \left[\begin{smallmatrix} X_{3} \\ B_{\min} \end{smallmatrix}\right], \left[\begin{smallmatrix} 0 & C_{\min} \end{smallmatrix}\right] V^{-1} \end{array} \right)
+%%    \end{align*}
+%  ($V$ can be any $4$-dimensional and invertible matrix, $D_{1-3} \in \R^{2 \times 2}$, and $(A,B,C) \in \Sys_{\min}$).
+%%So for example, some system can be wired as follows, and still be input-output equivalent to the minimal metabolic system $\mathcal{S}_{\min}$:
+%% \begin{align*}
+%%   A' &= \begin{bmatrix}
+%%     1.6923  &  1.5385 &  -2.6154 &  -2 \\
+%%     0.8462  &  0.7692 &  -1.3077 &  -1 \\
+%%     1.2692  &  1.1538 &  -1.9615 &  -1.5 \\
+%%     0.4231  &  0.3846 &  -0.6538 &  -0.5
+%%   \end{bmatrix} \\
+%%   B' &= \begin{bmatrix} 4 & 4 \\ 2 & 2 \\ 3 & 3 \\ 1 & 3 \end{bmatrix} \\
+%%     C' &= \begin{bmatrix}  0.2692  &  0.1538  &  0.0385 &  -0.5 \\
+%%     -0.4231 &  -0.3846 &   0.6538  &  0.5 \end{bmatrix}
+%% \end{align*}
+%%
+%%Despite the present example consisting of a minimal $2 \times 2$ and a non-minimal $4 \times 4$ system, 
+%%any $m$-dimensional system can be constructed using this method 
+%%-- applying a change of coordinates to the Kalman decomposition 
+%%-- to construct a mechanistically different system with identical phenotypic dynamics. 
+%%
+%%When applying the Kalman decomposition to real biological networks, one may have to restrict the free parameters, as physiology and biochemistry might not allow all mathematically possible coefficients. We note that as there are so many degrees of freedom, it may be difficult to infer system function solely from structure. 
+%\end{example}
 
 \appendix
 
-\section{Kalman Decomposition} \label{apx:kalman}
-\begin{definition}[Phenotypic equivalence of systems]
-    Let $(\kappa(t),\phi(t))$ and $(\bar \kappa(t),\bar \phi(t))$ be the solutions to \eqref{eqn:lti_system}
-    with coefficient matrices $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ respectively,
-    and both $\kappa(0)$ and $\bar \kappa(0)$ are zero. 
-    The systems defined by $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ are
-    \textbf{phenotypically equivalent} 
-    if
-    \begin{align*}
-        \phi(t) = \bar \phi(t) \qquad \text{for all} \; t \ge 0.
-    \end{align*}
-    Equivalently, this occurs if and only if
-    \begin{align*}
-        h(t) = \bar h(t)  \qquad \text{for all} \; t \ge 0,
-    \end{align*}
-    where $h$ and $\bar h$ are the impulse responses of the two systems.
-\end{definition}
-
-One way to find other systems equivalent to a given one
-is by change of coordinates (``algebraic equivalence''):
-if $V$ is an invertible matrix, then the systems $(A,B,C)$ and $(VAV^{-1},VB,CV^{-1})$
-have the same dynamics because their transfer functions are equal:
-\begin{align*}
-    CV^{-1}( zI - VAV^{-1})^{-1}VB
-    =
-    CV^{-1}V( zI - A)^{-1}V^{-1}VB
-    =
-    C( zI - A)^{-1}B .
-\end{align*}
-However, the converse is not necessarily true: 
-systems can have identical transfer functions without being changes of coordinates of each other.
-In fact, systems with identical transfer functions can involve interactions between different
-numbers of molecular species.
-
-The set of all systems phenotypically equivalent to a given system $(A,B,C)$ 
-is elegantly described using the Kalman decomposition,
-which also clarifies the system dynamics? tells us a lot about how it works? \plr{or something}
-To motivate this, first note that the input $u(t)$ only directly pushes the system
-in directions lying in the span of the columns of $B$.
-As a result, different combinations of input can 
-move the system in any direction that lies in the \emph{reachable subspace},
-which we denote by $\reachable$,
-and is defined to be the closure of $\spn(B)$ under applying $A$
-(or equivalently, the span of $B, AB, A^2B, \ldots A^{n-1}B$).
-Analogously to this, we define
-the \emph{observable subspace}, $\mathcal{O}$,
-to be the closure of $\spn(C^T)$ under applying $A$.
-(Or: $\unobservable$ is the largest $A$-invariant subspace
-contained in the null space of $C$;
-and $\reachable$ is the largest $A$-invariant subspace contained in the image of $B$.)
-
-If we define
-\begin{enumerate}
-    \item The columns of $P_\rno$ are an orthonormal basis for $\reachable \cap \unobservable$.
-    \item The columns of $P_\ro$ are an orthonormal basis of
-        the complement of $\reachable \cap \unobservable$ in $\reachable$.
-    \item The columns of $P_\nro$ are an orthonormal basis of
-        the complement of $\reachable \cap \unobservable$ in $\unobservable$.
-    \item The columns of $P_\nrno$ are an orthonormal basis of
-        the remainder of $\R^n$.
-\end{enumerate}
-If we then define
-\begin{align*}
-    P &= 
-    \left[ \begin{array}{c|c|c|c}
-        P_\rno & P_\ro & P_\nro & P_\nrno
-    \end{array} \right] ,
-\end{align*}
-then
-\begin{align*}
-    P^T P
-    &=
-    \left[ \begin{array}{c|c|c|c}
-        I & 0 & 0 & 0 \\
-        \hline
-        0 & I & U & 0 \\
-        \hline
-        0 & V & I & 0 \\
-        \hline
-        0 & 0 & 0 & I 
-    \end{array} \right] .
-\end{align*}
-\plr{Check this.  Can we get $U=V=0$?}
-
-The following theorem can be found in SOME REFERENCE.
-
-\begin{theorem}[Kalman decomposition] \label{thm:kalman}
-        For any system $(A,B,C)$ with corresponding Kalman basis matrix $P$,
-        the transformed system $(PAP^{-1},PB,CP^{-1})$  has the following form:
-        \begin{align*}
-            \widehat A = PAP^{-1}
-            &=
-            \left[ \begin{array}{cccc}
-                A_{\rno} & A_{\rno,\ro} & A_{\rno,\nrno} & A_{\rno,\nro} \\
-                0 & A_{\ro} & 0 & A_{\ro,\nro} \\
-                0 & 0 & A_{\nrno} & A_{\nrno,\nro} \\
-                0 & 0 & 0 & A_{\nro}
-            \end{array} \right] ,
-        \end{align*}
-        and
-        \begin{align*}
-            \widehat B = PB
-            &=
-            \left[ \begin{array}{cccc}
-                B_{\rno} \\
-                B_{\ro} \\
-                0 \\
-                0 
-            \end{array} \right] ,
-        \end{align*}
-        and
-        \begin{align*}
-            \widehat C = CP^{-1}
-            &=
-            \left[ \begin{array}{cccc}
-                0 & C_{\ro} & C_{\nrno} & 0 
-            \end{array} \right] .
-        \end{align*}
-        The transfer function of both systems is given by
-        \begin{align*}
-            H(z) = C_{\ro} ( zI - A_{\ro} )^{-1} B_{\ro} .
-        \end{align*}
-\end{theorem}
-
-In the latter case, we say that the system is \emph{minimal} 
--- there is no equivalent system with a smaller number of species.
-Note that this says that any two equivalent minimal systems
-are changes of basis of each other.
-
-Since any system can be put into this form,
-and once in this form, its transfer function is determined only by 
-$C_{\ro}$, $A_{\ro}$, and $B_\ro$,
-therefore, the set of all equivalent systems are parameterized by
-the dimension $n$,
-the choice of basis ($P$),
-the remaining submatrices in $\widehat A$, $\widehat B$, and $\widehat C$
-(which are unconstrained),
-and a invertible transformation of $\spn(P_{\ro})$, which we call $T_\ro$.
-
-\begin{theorem}[Parameterization of equivalent systems]
-    Let $(A,B,C)$ be a minimal system.
-    \begin{itemize}
-        \item[(a)]
-            Every equivalent system is of the form given in Theorem \ref{thm:kalman},
-            i.e., can be specified by choosing a dimension, $n$;
-            submatrices in $\widehat A$, $\widehat B$, and $\widehat C$ 
-            except for $A_\ro=A$, $B_\ro=B$, and $C_\ro=C$;
-            and choosing an invertible matrix $P$.
-
-        \item[(b)]
-            \plr{conjecture:}
-            The parameterization is unique
-            if $P$ is furthermore chosen so that 
-            each $P_x$ other than $P_\ro$ is a projection matrix,
-            and that 
-            \begin{align*}
-                0
-                =
-                P_x^T P_y
-            \end{align*}
-            for all $(x,y)$ except $(\ro,\nrno)$.
-
-    \end{itemize} 
-\end{theorem}
-
-\plr{Another way of saying it: pick the $\reachable$ and $\unobservable$ subspaces,
-that must intersect in something of the minimal dimension;
-then let $P$ be the appropriate basis?}
-
-In some situations we may be interested in only ``network rewiring'',
-where $A$ changes while $B$ and $C$ do not.
-For instance, 
-if all non-regulatory functions of each molecule are strongly constrained,
-then $C$ cannot change.
-Likewise, if responses of each molecule to the external inputs are not changed by evolution,
-then $B$ does not change.
-
-
-\subsection{Neutral directions from the Kalman decomposition}
-
-The Kalman decomposition above says that any system $(A,B,C)$ can be decomposed into
-$(P, \hat A, \hat B, \hat C)$ so that
-$$\begin{aligned}
-    A &= P^{-1} \hat A P  \\
-    B &= P^{-1} \hat B  \\
-    C &= \hat C P ,
-\end{aligned}$$
-and we know precisely how we can change these to preserve the transfer function:
-\begin{enumerate}
-    \item $P \to P + \epsilon Q$ as long as the result is still invertible,
-    \item $\hat A \to A + \epsilon X$ as long as $X$ is zero in the correct places,
-    \item $\hat B \to B + \epsilon Y$ as long as $Y$ is zero in the correct places,
-    \item $\hat C \to C + \epsilon Y$ as long as $Z$ is zero in the correct places.
-\end{enumerate}
-By taking $\epsilon \to 0$, these tell us the local directions we can move a system $(A,B,C)$ in.
-All statements below are up to first order in $\epsilon$,
-omitting terms of order $\epsilon^2$.
-
-First, since $(P + \epsilon Q)^{-1} = P^{-1} + \epsilon P^{-1} Q P^{-1}$,
-modifying $P \to P + \epsilon Q$ changes
-$$\begin{aligned}
-    A 
-        &\to A + \epsilon P^{-1} \hat A Q - \epsilon P^{-1} Q P^{-1} \hat A P \\
-        &= A + \epsilon \left(A P^{-1} Q - P^{-1} Q A\right) , \\
-    B
-        &\to B - \epsilon P^{-1} Q B \\
-    C
-        &\to C + \epsilon C P^{-1} Q .
-\end{aligned}$$
-Since $P$ is invertible and $Q$ can be anything (if $\epsilon$ is small enough),
-this allows changes in the direction of an arbitrary $W$:
-$$\begin{aligned}
-    A 
-        &= A + \epsilon \left(A W - W A\right) , \\
-    B
-        &\to B - \epsilon W B \\
-    C
-        &\to C + \epsilon C W .
-\end{aligned}$$
-
-Then, $\hat A \to A + \epsilon X$  does
-$$\begin{aligned}
-    A \to A + \epsilon P^{-1} X P 
-\end{aligned}$$
-and $\hat B \to B + \epsilon Y$ does
-$$\begin{aligned}
-    B \to B + \epsilon P^{-1} Y
-\end{aligned}$$
-and $\hat C \to C + \epsilon Z$ does
-$$\begin{aligned}
-    C \to C + \epsilon Z P .
-\end{aligned}$$
-These degrees of freedom look like they depend on $P$, 
-which is not unique,
-but for any two choices of $P$ there are corresponding choices of $X$
-that give the same actual change in $A$ (and likewise for $Y$ and $Z$).
-
-
-Therefore, this gives us an upper bound on the number of degrees of freedom,
-in terms of the dimensions of the blocks in the Kalman decomposition ($n_\ro$ etc)
-and the dimensions of $B$ and $C$ ($n_B$ and $n_C$ respectively):
-namely, for $W$, $X$, $Y$, and $Z$ respectively:
-$$\begin{aligned}
-    n^2 
-    + (n_{\rno} + n_\ro n_\nro + n_\nrno(n_\nrno + n_\nro) + n_\nro^2)
-    + n_B n_\rno
-    + n_C n_\nrno .
-\end{aligned}$$
-However, some of these may be redundant.
-For instance, changing $P$ in the direction of 
-a $Q$ that satisfies both $A P^{-1} Q = P^{-1} Q A$ and $C P^{-1} Q = 0$
-is equivalent to changing $B$ by $Y = QB$.
-
-\section{Meiotic recombination in linear systems}\label{apx:recombination}
-
-  Recombination is performed by taking two analogous system components from $\Sys$ and $\Sys'$ and randomly swapping rows or columns.
-  \emph{E.g.} gamete systems $(A'', B'', C'')$, produced by the diploid $\{\Sys, \Sys'\}$, are formed by recombining (randomly swapping rows or columns) between two, possibly distinct, systems $\Sys = (A,B,C)$ and $\Sys' = (A', B', C')$ such that,
-  \begin{align*}
-    \Sys'' = \left( \begin{array}{ll}
-    A'' &= MA + (I-M)A' , \\
-    B'' &= MB + (I-M)B' , \\
-    C'' &= CM + C'(I-M)
-    \end{array} \right)
-  \end{align*}
-  where $M$ is a diagonal matrix where each diagonal element is a Bernoulli random variable ($M_{ii} = 0$ or $1$ with equal probability, and $M_{ij}=0$ if $i \neq j$). If systems are different dimensions the smaller system elements can be augmented with $0$s (\emph{e.g.} $\left[ \begin{smallmatrix} A & 0 \\ 0 & 0 \end{smallmatrix} \right], \left[ \begin{smallmatrix} B \\ 0 \end{smallmatrix} \right], \left[ \begin{smallmatrix} C & 0 \end{smallmatrix}\right]$).
-
-
+%\section{Kalman Decomposition} \label{apx:kalman}
+%\begin{definition}[Phenotypic equivalence of systems]
+%    Let $(\kappa(t),\phi(t))$ and $(\bar \kappa(t),\bar \phi(t))$ be the solutions to \eqref{eqn:lti_system}
+%    with coefficient matrices $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ respectively,
+%    and both $\kappa(0)$ and $\bar \kappa(0)$ are zero. 
+%    The systems defined by $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ are
+%    \textbf{phenotypically equivalent} 
+%    if
+%    \begin{align*}
+%        \phi(t) = \bar \phi(t) \qquad \text{for all} \; t \ge 0.
+%    \end{align*}
+%    Equivalently, this occurs if and only if
+%    \begin{align*}
+%        h(t) = \bar h(t)  \qquad \text{for all} \; t \ge 0,
+%    \end{align*}
+%    where $h$ and $\bar h$ are the impulse responses of the two systems.
+%\end{definition}
+%
+%One way to find other systems equivalent to a given one
+%is by change of coordinates (``algebraic equivalence''):
+%if $V$ is an invertible matrix, then the systems $(A,B,C)$ and $(VAV^{-1},VB,CV^{-1})$
+%have the same dynamics because their transfer functions are equal:
+%\begin{align*}
+%    CV^{-1}( zI - VAV^{-1})^{-1}VB
+%    =
+%    CV^{-1}V( zI - A)^{-1}V^{-1}VB
+%    =
+%    C( zI - A)^{-1}B .
+%\end{align*}
+%However, the converse is not necessarily true: 
+%systems can have identical transfer functions without being changes of coordinates of each other.
+%In fact, systems with identical transfer functions can involve interactions between different
+%numbers of molecular species.
+%
+%The set of all systems phenotypically equivalent to a given system $(A,B,C)$ 
+%is elegantly described using the Kalman decomposition,
+%which also clarifies the system dynamics? tells us a lot about how it works? \plr{or something}
+%To motivate this, first note that the input $u(t)$ only directly pushes the system
+%in directions lying in the span of the columns of $B$.
+%As a result, different combinations of input can 
+%move the system in any direction that lies in the \emph{reachable subspace},
+%which we denote by $\reachable$,
+%and is defined to be the closure of $\spn(B)$ under applying $A$
+%(or equivalently, the span of $B, AB, A^2B, \ldots A^{n-1}B$).
+%Analogously to this, we define
+%the \emph{observable subspace}, $\mathcal{O}$,
+%to be the closure of $\spn(C^T)$ under applying $A$.
+%(Or: $\unobservable$ is the largest $A$-invariant subspace
+%contained in the null space of $C$;
+%and $\reachable$ is the largest $A$-invariant subspace contained in the image of $B$.)
+%
+%If we define
+%\begin{enumerate}
+%    \item The columns of $P_\rno$ are an orthonormal basis for $\reachable \cap \unobservable$.
+%    \item The columns of $P_\ro$ are an orthonormal basis of
+%        the complement of $\reachable \cap \unobservable$ in $\reachable$.
+%    \item The columns of $P_\nro$ are an orthonormal basis of
+%        the complement of $\reachable \cap \unobservable$ in $\unobservable$.
+%    \item The columns of $P_\nrno$ are an orthonormal basis of
+%        the remainder of $\R^n$.
+%\end{enumerate}
+%If we then define
+%\begin{align*}
+%    P &= 
+%    \left[ \begin{array}{c|c|c|c}
+%        P_\rno & P_\ro & P_\nro & P_\nrno
+%    \end{array} \right] ,
+%\end{align*}
+%then
+%\begin{align*}
+%    P^T P
+%    &=
+%    \left[ \begin{array}{c|c|c|c}
+%        I & 0 & 0 & 0 \\
+%        \hline
+%        0 & I & U & 0 \\
+%        \hline
+%        0 & V & I & 0 \\
+%        \hline
+%        0 & 0 & 0 & I 
+%    \end{array} \right] .
+%\end{align*}
+%\plr{Check this.  Can we get $U=V=0$?}
+%
+%The following theorem can be found in SOME REFERENCE.
+%
+%\begin{theorem}[Kalman decomposition] \label{thm:kalman}
+%        For any system $(A,B,C)$ with corresponding Kalman basis matrix $P$,
+%        the transformed system $(PAP^{-1},PB,CP^{-1})$  has the following form:
+%        \begin{align*}
+%            \widehat A = PAP^{-1}
+%            &=
+%            \left[ \begin{array}{cccc}
+%                A_{\rno} & A_{\rno,\ro} & A_{\rno,\nrno} & A_{\rno,\nro} \\
+%                0 & A_{\ro} & 0 & A_{\ro,\nro} \\
+%                0 & 0 & A_{\nrno} & A_{\nrno,\nro} \\
+%                0 & 0 & 0 & A_{\nro}
+%            \end{array} \right] ,
+%        \end{align*}
+%        and
+%        \begin{align*}
+%            \widehat B = PB
+%            &=
+%            \left[ \begin{array}{cccc}
+%                B_{\rno} \\
+%                B_{\ro} \\
+%                0 \\
+%                0 
+%            \end{array} \right] ,
+%        \end{align*}
+%        and
+%        \begin{align*}
+%            \widehat C = CP^{-1}
+%            &=
+%            \left[ \begin{array}{cccc}
+%                0 & C_{\ro} & C_{\nrno} & 0 
+%            \end{array} \right] .
+%        \end{align*}
+%        The transfer function of both systems is given by
+%        \begin{align*}
+%            H(z) = C_{\ro} ( zI - A_{\ro} )^{-1} B_{\ro} .
+%        \end{align*}
+%\end{theorem}
+%
+%In the latter case, we say that the system is \emph{minimal} 
+%-- there is no equivalent system with a smaller number of species.
+%Note that this says that any two equivalent minimal systems
+%are changes of basis of each other.
+%
+%Since any system can be put into this form,
+%and once in this form, its transfer function is determined only by 
+%$C_{\ro}$, $A_{\ro}$, and $B_\ro$,
+%therefore, the set of all equivalent systems are parameterized by
+%the dimension $n$,
+%the choice of basis ($P$),
+%the remaining submatrices in $\widehat A$, $\widehat B$, and $\widehat C$
+%(which are unconstrained),
+%and a invertible transformation of $\spn(P_{\ro})$, which we call $T_\ro$.
+%
+%\begin{theorem}[Parameterization of equivalent systems]
+%    Let $(A,B,C)$ be a minimal system.
+%    \begin{itemize}
+%        \item[(a)]
+%            Every equivalent system is of the form given in Theorem \ref{thm:kalman},
+%            i.e., can be specified by choosing a dimension, $n$;
+%            submatrices in $\widehat A$, $\widehat B$, and $\widehat C$ 
+%            except for $A_\ro=A$, $B_\ro=B$, and $C_\ro=C$;
+%            and choosing an invertible matrix $P$.
+%
+%        \item[(b)]
+%            \plr{conjecture:}
+%            The parameterization is unique
+%            if $P$ is furthermore chosen so that 
+%            each $P_x$ other than $P_\ro$ is a projection matrix,
+%            and that 
+%            \begin{align*}
+%                0
+%                =
+%                P_x^T P_y
+%            \end{align*}
+%            for all $(x,y)$ except $(\ro,\nrno)$.
+%
+%    \end{itemize} 
+%\end{theorem}
+%
+%\plr{Another way of saying it: pick the $\reachable$ and $\unobservable$ subspaces,
+%that must intersect in something of the minimal dimension;
+%then let $P$ be the appropriate basis?}
+%
+%In some situations we may be interested in only ``network rewiring'',
+%where $A$ changes while $B$ and $C$ do not.
+%For instance, 
+%if all non-regulatory functions of each molecule are strongly constrained,
+%then $C$ cannot change.
+%Likewise, if responses of each molecule to the external inputs are not changed by evolution,
+%then $B$ does not change.
+%
+%
+%\subsection{Neutral directions from the Kalman decomposition}
+%
+%The Kalman decomposition above says that any system $(A,B,C)$ can be decomposed into
+%$(P, \hat A, \hat B, \hat C)$ so that
+%$$\begin{aligned}
+%    A &= P^{-1} \hat A P  \\
+%    B &= P^{-1} \hat B  \\
+%    C &= \hat C P ,
+%\end{aligned}$$
+%and we know precisely how we can change these to preserve the transfer function:
+%\begin{enumerate}
+%    \item $P \to P + \epsilon Q$ as long as the result is still invertible,
+%    \item $\hat A \to A + \epsilon X$ as long as $X$ is zero in the correct places,
+%    \item $\hat B \to B + \epsilon Y$ as long as $Y$ is zero in the correct places,
+%    \item $\hat C \to C + \epsilon Y$ as long as $Z$ is zero in the correct places.
+%\end{enumerate}
+%By taking $\epsilon \to 0$, these tell us the local directions we can move a system $(A,B,C)$ in.
+%All statements below are up to first order in $\epsilon$,
+%omitting terms of order $\epsilon^2$.
+%
+%First, since $(P + \epsilon Q)^{-1} = P^{-1} + \epsilon P^{-1} Q P^{-1}$,
+%modifying $P \to P + \epsilon Q$ changes
+%$$\begin{aligned}
+%    A 
+%        &\to A + \epsilon P^{-1} \hat A Q - \epsilon P^{-1} Q P^{-1} \hat A P \\
+%        &= A + \epsilon \left(A P^{-1} Q - P^{-1} Q A\right) , \\
+%    B
+%        &\to B - \epsilon P^{-1} Q B \\
+%    C
+%        &\to C + \epsilon C P^{-1} Q .
+%\end{aligned}$$
+%Since $P$ is invertible and $Q$ can be anything (if $\epsilon$ is small enough),
+%this allows changes in the direction of an arbitrary $W$:
+%$$\begin{aligned}
+%    A 
+%        &= A + \epsilon \left(A W - W A\right) , \\
+%    B
+%        &\to B - \epsilon W B \\
+%    C
+%        &\to C + \epsilon C W .
+%\end{aligned}$$
+%
+%Then, $\hat A \to A + \epsilon X$  does
+%$$\begin{aligned}
+%    A \to A + \epsilon P^{-1} X P 
+%\end{aligned}$$
+%and $\hat B \to B + \epsilon Y$ does
+%$$\begin{aligned}
+%    B \to B + \epsilon P^{-1} Y
+%\end{aligned}$$
+%and $\hat C \to C + \epsilon Z$ does
+%$$\begin{aligned}
+%    C \to C + \epsilon Z P .
+%\end{aligned}$$
+%These degrees of freedom look like they depend on $P$, 
+%which is not unique,
+%but for any two choices of $P$ there are corresponding choices of $X$
+%that give the same actual change in $A$ (and likewise for $Y$ and $Z$).
+%
+%
+%Therefore, this gives us an upper bound on the number of degrees of freedom,
+%in terms of the dimensions of the blocks in the Kalman decomposition ($n_\ro$ etc)
+%and the dimensions of $B$ and $C$ ($n_B$ and $n_C$ respectively):
+%namely, for $W$, $X$, $Y$, and $Z$ respectively:
+%$$\begin{aligned}
+%    n^2 
+%    + (n_{\rno} + n_\ro n_\nro + n_\nrno(n_\nrno + n_\nro) + n_\nro^2)
+%    + n_B n_\rno
+%    + n_C n_\nrno .
+%\end{aligned}$$
+%However, some of these may be redundant.
+%For instance, changing $P$ in the direction of 
+%a $Q$ that satisfies both $A P^{-1} Q = P^{-1} Q A$ and $C P^{-1} Q = 0$
+%is equivalent to changing $B$ by $Y = QB$.
+%
+%\section{Meiotic recombination in linear systems}\label{apx:recombination}
+%
+%  Recombination is performed by taking two analogous system components from $\Sys$ and $\Sys'$ and randomly swapping rows or columns.
+%  \emph{E.g.} gamete systems $(A'', B'', C'')$, produced by the diploid $\{\Sys, \Sys'\}$, are formed by recombining (randomly swapping rows or columns) between two, possibly distinct, systems $\Sys = (A,B,C)$ and $\Sys' = (A', B', C')$ such that,
+%  \begin{align*}
+%    \Sys'' = \left( \begin{array}{ll}
+%    A'' &= MA + (I-M)A' , \\
+%    B'' &= MB + (I-M)B' , \\
+%    C'' &= CM + C'(I-M)
+%    \end{array} \right)
+%  \end{align*}
+%  where $M$ is a diagonal matrix where each diagonal element is a Bernoulli random variable ($M_{ii} = 0$ or $1$ with equal probability, and $M_{ij}=0$ if $i \neq j$). If systems are different dimensions the smaller system elements can be augmented with $0$s (\emph{e.g.} $\left[ \begin{smallmatrix} A & 0 \\ 0 & 0 \end{smallmatrix} \right], \left[ \begin{smallmatrix} B \\ 0 \end{smallmatrix} \right], \left[ \begin{smallmatrix} C & 0 \end{smallmatrix}\right]$).
+%
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Genetic drift with a multivariate trait}
 \label{ss:quant_gen}
