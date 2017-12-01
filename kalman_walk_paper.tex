@@ -179,7 +179,7 @@ It is an overarching goal of many biological subdisciplines to attain a general 
 For example, 
 there is a growing body of data on the evolutionary histories and molecular characterizations of particular gene regulatory networks
 \citep{jaeger2011gap, davidson2006gene, israel2016comparative}, 
-as well as thoughtful verbal and conceptual models \citep{true2001developmental, gwagner1, weiss2000phenogenetic, edelman2001degeneracy}. 
+as well as thoughtful verbal and conceptual models \citep{true2001developmental, gwagner1, weiss2000phenogenetic, edelman2001degeneracy, pavlicev2012model}. 
 Mathematical models of both particular regulatory networks
 and the evolution of such systems in general
 can provide guidance where intuition fails,
@@ -220,7 +220,7 @@ this concept can provide a starting point for thinking about externally equivale
 These functional symmetries manifest in convergent and parallel evolution, 
 as well as \emph{developmental system drift}: the observation that
 macroscopically identical phenotypes in even very closely related species can in fact be divergent at the molecular and sequence level 
-\citep{true2001developmental, tanay2005conservation, tsong2006evolution, hare2008sepsid, vierstra2014mouse, matsui2015regulatory, dalal2016transcriptional, dalal2017transcription}.
+\citep{kimura1981possibility, true2001developmental, tanay2005conservation, tsong2006evolution, hare2008sepsid, vierstra2014mouse, matsui2015regulatory, dalal2016transcriptional, dalal2017transcription}.
  % \jss{should hare2008sepsid be here? It's sequence but not ``system'' drift}
 % are these good here? {taylor2016diverse -- maybe not, matsui2015regulatory -- I think this relevant, stergachis2014conservation}.
 %
@@ -243,9 +243,7 @@ all linear gene network architectures that yield identical phenotypes, and show 
 %which gives concrete expectations for how any such
 %system can, in principal, undergo system drift and rewire.
 Even under stabilizing selection, a population can explore the set of all possible phenotypically equivalent gene networks.
-Phenotypically equivalent gene networks are not necessarily compatible with one another, as such system drift may result in the reproductive incompatibility between populations isolated for a sufficiently long period of time, even in the absence of any sort of adaptative, selective, or environmental change. Finally, in some cases we estimate that reproductive incompatibility due to system drift can manifest on timescales on the order of $N_e$ generations. 
-
-analogous to those in the Dobzhansky-Muller model. 
+Phenotypically equivalent gene networks are not necessarily compatible with one another, as such system drift may result in the reproductive incompatibility between populations isolated for a sufficiently long period of time, even in the absence of any sort of adaptative, selective, or environmental change. Finally, in some cases we estimate that reproductive incompatibility due to system drift can manifest on timescales on the order of $N_e$ generations.
 %Consequentially, two populations isolated for a sufficiently long period of time, 
 %will likely produce inviable hybrids, despite the absence of adaptation, directional selection, or environmental change.
 % Under these conditions, speciation typically occurs on timescales approximately on the order of $N_{e}$ generations, where $N_{e}$ is the effective population size.
@@ -1208,10 +1206,11 @@ In this model, at biologically reasonable parameter values,
 system drift is a significant -- and often rapid -- driver of speciation.
 This may at first be surprising because
 hybrid inviability appears as a consequence of recombining different, yet functionally equivalent, mechanisms. 
+While the genetic incompatibilities contributing to hybrid inviability described in this paper share similarities with those in the commonly discussed Dobzhansky-Muller model, they may in fact share more in common with what has been described as the ``pathway model'' \citep{lindtke2015genetic}.
 
 Consistent with empirical observation of \emph{hybrid breakdown} \citep[e.g.][]{plotner2017chlorosis}), we see that the fitnesses of $F_2$ hybrids drop at a much faster rate than those of $F_1$s,
 since $F_1$ and $F_2$ phenotypes diverge linearly and at the square root of time relative to parentals, respectively.
-\plr{refer to Turelli here}
+%\plr{refer to Turelli here}
 % In this model, this is due to recombination shuffling system architectures, leaving the $F_2$ system homozygous for one parent at one particular locus and homozygous for the other parent at another possibly incompatible locus.
 Another natural consequence of the model is Haldane's rule,
 that if only one $F_1$ hybrid sex is inviable or sterile it is likely to be the heterogametic sex.
@@ -1281,7 +1280,7 @@ it may, in part, explain the observed broad patterns of reproductive isolation, 
 While the incompatibility of any one given network within an organism may be small, we note that organisms are made up of many different networks, and that the cumulative impact of system drift across all of these may be substantial. Further, even in populations experiencing directional selection, networks underlying conserved parts of the phenotype can still experience neutral drift and harbor incompatibilities. 
 
 
-\paragraph{Nonlinearity}
+\paragraph{Nonlinearity and model assumptions}
 Of course, real regulatory networks are not linear dynamical systems.
 Most notably, physiological limits put upper bounds on expression levels,
 implying saturating response curves \citep{michalis_mentin}.
@@ -1291,20 +1290,21 @@ suggests qualitatively similar results.
 Furthermore, nonidentifiability (which implies the existence of neutral directions)
 is often found in practice in moderately complex models of biological systems. \plr{need citation}
 
-\paragraph{Peter: Quant gen discussion}
-Maybe compare to \citet{fierst}?
+Finally, despite our model's precise separation of phenotype and kryptotype, this relationship in nature may be far more complicated as aspects of the kryptotype may be less ``hidden'' than we currently assume. For instance, attributes excluded from the phenotype as modelled here, ignore the potential energy costs associated with execessively large (nonminimal) kryptotypes, as well as the relationship between a specific network architecture and mutational robustness, as well as many other presently neglected phenomena. Despite the model's simplifications and potentially nontrivial oversights, it may still roughly reflect and shed light upon speciation patterns as they occur in nature.
 
-Do we talk about the $G$ matrix and mutational correlation somewhere?
-
-Note that islands or bottlenecks leave large $\sigma_N$ but small $N_e$ so may go fast.
-
-What is Ne?  In a metapopulation depends on migr rate: classic Turelli paper.
-
-This has implications for genetic load also!!
-
-hominids; neanderthal load.
-
-
+%\paragraph{Peter: Quant gen discussion}
+%Maybe compare to \citet{fierst}?
+%
+%Do we talk about the $G$ matrix and mutational correlation somewhere?
+%
+%Note that islands or bottlenecks leave large $\sigma_N$ but small $N_e$ so may go fast.
+%
+%What is Ne?  In a metapopulation depends on migr rate: classic Turelli paper.
+%
+%This has implications for genetic load also!!
+%
+%hominids; neanderthal load.
+%
 \section*{Acknowledgements}
 We would like to thank Sergey Nuzhdin, Stevan Arnold, Erik Lundgren, and Hossein Asgharian for valuable discussion.
 
