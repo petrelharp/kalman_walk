@@ -80,8 +80,8 @@
 \begin{document}
 \linenumbers
 
-\section*{Rapid speciation despite conservation of phenotype}
 {\centering
+{\Large \bf Rapid speciation despite conservation of phenotype} \\
 Joshua S. Schiffman$^{\dagger}$ \qquad Peter L. Ralph$^{\dagger \ddagger}$ \\
 $^{\dagger}$University of Southern California, Los Angeles, California \qquad 
 $^{\ddagger}$University of Oregon, Eugene, Oregon \\
@@ -132,24 +132,35 @@ $^{\ddagger}$University of Oregon, Eugene, Oregon \\
 Even if a species' phenotype remains unchanged over evolutionary time, the underlying mechanism may have changed, as distinct molecular pathways can realize identical phenotypes.
 Here we use quantitative genetics and linear system theory to study
 how a gene network underlying a conserved phenotype evolves,
-as the genetic drift of small mutational tweaks to these molecular pathways
+as the genetic drift of small mutational changes to these molecular pathways
 cause a population to explore the set of mechanisms with identical phenotypes.
-In this setting we treat an organism as a ``black box''
+% Treating an organism as a ``black box''
+To do this, we model an organism's internal state as a linear system of differential equations
 for which the environment provides input and the phenotype is the output,
 %which translates some environmental input
 %to an output that is subject to the pressures of natural selection-- the phenotype.
-and there exists an exact characterization of the set of all mechanisms that give the same input--output relationship.
+in which context there exists 
+an exact characterization of the set of all mechanisms that give the same input--output relationship.
 %There exists an exact expression for the set of all linear mechanisms with identical phenotypes, 
 %Due to the genetic drift of small mutational tweaks to these molecular pathways, we expect an evolving population to explore this set.
-Within this framework, we show that there is never a unique network architecture for any phenotype
-and that the evolutionary exploration of these distinct and mutationally connected mechanisms
+This characterization implies that selectively neutral directions in genotype space should be common
+% there is never a unique network architecture for any phenotype
+and that the evolutionary exploration of these distinct but equivalent mechanisms
 can lead to the reproductive incompatibility of idependently evolving populations.
-  This evolutionary exploration, which we refer to as system drift, proceeds at a rate proportional to the effective population size ($N_e$) and amount of intrapopulation genetic variation.
-We estimate that %in reasonably numerous species,
-  this process can lead to the formation of new species, perhaps in as few as $0.1 N_e$ generations.
+This evolutionary exploration, or \emph{system drift}, 
+proceeds at a rate inversely proportional the amount of intrapopulation genetic variation
+divided by the effective population size ($N_e$).
+At biologically reasonable parameter values
+this process can lead to substantial interpopulation incompatibility,
+and thus speciation, in fewer than $N_e$ generations.
 %over a number of generations proportional to the effective population size.
-This model also naturally yields, what appears to be, a distinct explanation for Haldane's rule, or why heterogametic hybrids tend to be disrupted more often than homogametes during the early stages of speciation.
+This model also naturally predicts Haldane's rule, 
+thus providing another possible explanation
+of why heterogametic hybrids tend to be disrupted more often than homogametes during the early stages of speciation.
 \end{abstract}
+
+\plr{I removed the $0.1 N_e$ because that's only in the "metapopulation" case,
+which is where you've probably already got subpopulations acting like species already.}
 
 
 %\plr{Additional ideas to consider adding:}
@@ -171,11 +182,13 @@ This model also naturally yields, what appears to be, a distinct explanation for
 %\begin{multicols}{2}
 \section*{Introduction}
 
-A complex molecular machinery translates an organism's genome into the characteristics on which natural selection acts,
+It is an overarching goal of many biological subdisciplines 
+to attain a general understanding of the function and evolution of the 
+complex molecular machinery that translates an organism's genome 
+into the characteristics on which natural selection acts,
 the phenotype.
 % Bridging the gulf between an organism's genome and phenotype is a poorly understood and complex molecular machinery. 
 %Attaining a general understanding of the functioning and evolution of this molecular machinery
-It is an overarching goal of many biological subdisciplines to attain a general understanding of the function and evolution of this molecular machinery. 
 For example, 
 there is a growing body of data on the evolutionary histories and molecular characterizations of particular gene regulatory networks
 \citep{jaeger2011gap, davidson2006gene, israel2016comparative}, 
@@ -212,15 +225,32 @@ In computer science, this is framed as the relationship among processes that sim
 Finally,
 the field of \emph{inverse problems} studies those cases where,
 even if a one-to-one mapping between model and behavior is possible in theory,
-  even tiny amounts of noise can make inference problems nonidentifiable in practice \jss{cite?}.
+even tiny amounts of noise can make inference problems nonidentifiable in practice \citep{petrov2005well}.
 
-Although nonidentifiability may frustrate the occasional engineer or scientist, viewed from another angle,
+Nonidentifiability is a major barrier to mechanistic understanding of real systems, 
+but viewed from another angle,
 this concept can provide a starting point for thinking about externally equivalent systems
 -- systems that evolution can explore, so long as the parameters and structures can be realized biologically.
 These functional symmetries manifest in convergent and parallel evolution, 
 as well as \emph{developmental system drift}: the observation that
 macroscopically identical phenotypes in even very closely related species can in fact be divergent at the molecular and sequence level 
 \citep{kimura1981possibility, true2001developmental, tanay2005conservation, tsong2006evolution, hare2008sepsid, lavoie2010evolutionary, vierstra2014mouse, matsui2015regulatory, dalal2016transcriptional, dalal2017transcription}.
+
+In this paper we outline a theoretical framework to study the evolution of biological systems, such as gene regulatory networks.
+We study the evolution of an optimally adapted population subject to stabilizing selection for phenotype.
+Even if the phenotype remains stable over evolutionary time, the underlying mechanism might not remain so,
+as many distinct (and mutationally connected) molecular pathways can realize identical phenotypes.
+Below, we first apply results from system theory which give
+an analytical description of the set of 
+all linear gene network architectures that yield identical phenotypes.
+Since these phenotypically equivalent gene networks are not necessarily compatible with one another, 
+system drift may result in reproductive incompatibility between populations 
+isolated for a sufficiently long period of time, 
+even in the absence of any sort of adaptative, selective, or environmental change. 
+We then use quantitative genetic theory to estimate how quickly 
+reproductive incompatibility due to system drift will manifest
+\plr{we don't need to summarize the results of the paper in the introduction.  the abstract, and maybe the discussion, but not the introduction.}
+
  % \jss{should hare2008sepsid be here? It's sequence but not ``system'' drift}
 % are these good here? {taylor2016diverse -- maybe not, matsui2015regulatory -- I think this relevant, stergachis2014conservation}.
 %
@@ -229,32 +259,30 @@ macroscopically identical phenotypes in even very closely related species can in
   %\citet{tulchinsky} simulated the evolution of a transcription factor and its binding site using a thermodynamic model. Their simulations suggest that the language by which a transcription factor recognizes its binding site can change, and potentially lead to hybrid incompatibility when allopatric populations employ divergent readout languages. This study, despite looking at gene regulation, does not analyze overall gene network architecture -- as we do here -- it only looks at the expression level of a single gene. Furthermore, they report reproductive isolation primarily following directional selection for a change in expression levels in each allopatric population; the evidence for reproductive isolation following balancing selection is much weaker. Johnson and Porter 2000 did not observe any hybrid fitness declines under stabilizing selection -- only under directional selection. 
 %Khatari et al, Tulchinsky et al, and Porter et al, all study hybrid incompatibility from a transcription factor/binding site interaction perspective, not from an overall network architecture perspective. Palmer and Feldman only see hybrid incompatibility in constant environments if the parental populations are relatively poorly adapted initially. Otherwise hybrids between two allopatric populations have fairly high fitnesses.  
 
-In this paper we outline a theoretical framework to study the evolution of biological systems, such as gene regulatory networks.
-We study the evolution of an optimally adapted population subject to stabilizing selection for phenotype -- that is the population evolves under constant selective and environmental pressures.
-Even if the phenotype remains stable over evolutionary time, the underlying mechanism might not remain so,
-%Even when stabilizing selection preserves phenotype over evolutionary time, the underlying mechanism may change, 
-as many distinct (and mutationally connected) molecular pathways can realize identical phenotypes.
-%where the optimal phenotype remains constant over evolutionary time,
-%so that despite strong stabilizing selection for phenotype,
-%neutral drift in the underlying genotype is possible.
-Applying results from system theory, we present
-an analytical description of the set of 
-all linear gene network architectures that yield identical phenotypes, and show that any biological system, in principal, can undergo system drift, as there is never a unique system architecture per phenotype.
-%which gives concrete expectations for how any such
-%system can, in principal, undergo system drift and rewire.
-Even under stabilizing selection, a population can explore the set of all possible phenotypically equivalent gene networks.
-Phenotypically equivalent gene networks are not necessarily compatible with one another, as such system drift may result in the reproductive incompatibility between populations isolated for a sufficiently long period of time, even in the absence of any sort of adaptative, selective, or environmental change. Finally, in some cases we estimate that reproductive incompatibility due to system drift can manifest on timescales on the order of $N_e$ generations.
-%Consequentially, two populations isolated for a sufficiently long period of time, 
-%will likely produce inviable hybrids, despite the absence of adaptation, directional selection, or environmental change.
-% Under these conditions, speciation typically occurs on timescales approximately on the order of $N_{e}$ generations, where $N_{e}$ is the effective population size.
+It is not a new observations that there is often more than one way to do the same thing,
+and that this may lead to speciation.
+For instance, \citet{tulchinsky2014hybrid} looked for hybrid incompatibility
+following regulatory sequence drift,
+and \citet{porter2002speciation} studied speciation in populations expressing a simple regulatory cascade.
+Both found rapid speciation following directional selection,
+but only equivocal support for speciation under models of purely neutral drift.
+Our model differs from previous work in that we use linear systems theory
+to both explore a much richer class of regulatory network models,
+and provide analytical expectations in large populations with complex phenotypes
+that would be inaccessible to population simulations.
+\plr{missing any important references here?}
+
 
 REFERENCE: Barton's paper (PETER).
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Evolutionary system theory}
 
-Here we construct as abstract model to study biological systems, such as gene regulatory networks. The behavior (i.e. temporal dynamics) of such a system is determined by a collection of $n$ coregulating moleculues -- such as transcription factors, as well as external or environmental inputs.
-%We study an abstract model of temporal dynamics of the concentrations of a collection of $n$ coregulating molecules
-%within an organism, that may also be affected by temporally varying signals from the environment.
+We first describe the class of models we study, such as gene regulatory networks. 
+The behavior (i.e., the temporal dynamics) of such a system is determined by a collection of $n$ coregulating moleculues -- such as transcription factors, as well as external or environmental inputs.
+% We model the temporal dynamics of the concentrations of a collection of $n$ coregulating molecules
+% within an organism, that may also be affected by temporally varying signals from the environment.
 %% Organisms' phenotypes are constructed by gene by gene and gene by environment interactions. 
 %%Here we simply define the \emph{phenotype} to be those aspects of the dynamics directly under natural selection
 %%-- the \emph{what}, \emph{when}, and \emph{how much}, of an organism's molecules that are physiologically or otherwise relevant to survival.
