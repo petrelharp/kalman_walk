@@ -273,24 +273,25 @@ that would be inaccessible to population simulations.
 \plr{missing any important references here?}
 
 
-REFERENCE: Barton's paper (PETER).
+REFERENCE: Barton's paper (PETER). \citep{barton2010natural}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Evolutionary system theory}
+\section*{Results}
 
-We first describe the class of models we study, such as gene regulatory networks. 
-The behavior (i.e., the temporal dynamics) of such a system is determined by a collection of $n$ coregulating moleculues -- such as transcription factors, as well as external or environmental inputs.
+We first describe the class of models we study, motivated by gene regulatory networks. 
+The behavior (i.e., the temporal dynamics) of such a system is determined by a collection of $n$ coregulating moleculues 
+-- such as transcription factors -- as well as by external or environmental inputs.
 % We model the temporal dynamics of the concentrations of a collection of $n$ coregulating molecules
 % within an organism, that may also be affected by temporally varying signals from the environment.
 %% Organisms' phenotypes are constructed by gene by gene and gene by environment interactions. 
 %%Here we simply define the \emph{phenotype} to be those aspects of the dynamics directly under natural selection
 %%-- the \emph{what}, \emph{when}, and \emph{how much}, of an organism's molecules that are physiologically or otherwise relevant to survival.
 We write $\kappa(t)$ for the vector of $n$ molecular concentrations at time $t$.
-The $m$ ``inputs'' determined exogenously to the system are denoted $u(t)$,
-and the $\ell$ ``outputs'' are denoted $\phi(t)$.
+The vector of $m$ ``inputs'' determined exogenously to the system is denoted $u(t)$,
+and the vector of $\ell$ ``outputs'' is denoted $\phi(t)$.
 The output is merely a linear function of the internal state:
-$\phi_i(t) = \sum_j C_{ij} \kappa_i(t)$
+$\phi_i(t) = \sum_j C_{ij} \kappa_j(t)$
 for some matrix $C$.
 Since $\phi$ is what natural selection acts on, we refer to it as the \emph{phenotype}
 (meaning the ``visible'' aspects of the organism),
@@ -300,7 +301,7 @@ Although $\phi$ may depend on all entries of $\kappa$,
 it is usually of lower dimension than $\kappa$,
 and we tend to think of it as the subset of molecules relevant for survival.
 The dynamics are determined by
-the matrix of regulatory coefficients, $A$;
+the matrix of regulatory coefficients, $A$,
 a time-varying vector of inputs $u(t)$,
 and a matrix $B$ that encodes the effect of each entry of $u$ on the elements of the kryptotype.
 %Thus an organism's phenotype $\phi(t)$ -- a vector of molecular concentrations at time $t$ -- is determined both by the structure and organization of a biological system (\emph{e.g.} a gene regulatory network), given by the triple $(A,B,C)$,
@@ -336,11 +337,9 @@ the strength of $j$-binding sites in the promoter of gene $i$,
 factors affecting chromatin accessibility near gene $i$,
 or basal transcription machinery activity.
 The form of $B$ determines how the environment influences transcription factor expression levels,
-and $C$ might be the rate of production of a downstream enzyme
-(although other arrangements could be made).
-% \emph{E.g.} for a metabolic system, $C_{ij}$ is the amount the $j$th metabolite $u_j$ affects the production of the $i$th enzyme.
+and $C$ might determine the rate of production of downstream enzymes.
 
-% {Linearity} also ``zero-state equivalence''
+%% {Linearity} also ``zero-state equivalence''
 Here we have assumed that the system is linear,
 and begins from the ``zero'' state ($\kappa(0)=0$).
 Of course, neither of these are necessarily true for real systems,
@@ -352,12 +351,12 @@ To demonstrate this approach, we apply it to construct a simple gene network in 
 For illustration, we consider an extremely simplified model of oscillating gene transcription,
 as for instance is found in cell cycle control or the circadian rhythm.
 % Cellular division is governed by many different processes, however it is thought that its rhythm is partially controlled by oscillating gene transcription \citep{orlando2008global}.
-Suppose there are two genes, 
+There are two genes, 
 whose transcript concentrations are given by $\kappa_1(t)$ and $\kappa_2(t)$, 
-and that gene-2 upregulates gene-1 and that gene-1 downregulates gene-2 with equal strength.
-Furthermore, suppose that only the dynamics of gene-1 are consequential to the oscillator 
+and gene-2 upregulates gene-1, while gene-1 downregulates gene-2 with equal strength.
+Only the dynamics of gene-1 are consequential to the oscillator 
 (perhaps the amount of gene-1 activates another downstream gene network). 
-Lastly suppose that the production of both genes is equally upregulated by an exogenous signal.
+Lastly, both genes are equally upregulated by an exogenous signal.
 The dynamics of the system are described by
     \begin{align*}
       \dot{\kappa_{1}}(t) &= \kappa_{2}(t) + u(t) \\
@@ -379,50 +378,50 @@ and $C \!=\! \left[\begin{smallmatrix} 1 & 0 \end{smallmatrix}\right]$.
  %       \end{bmatrix} \kappa(t) + \begin{bmatrix} 1 \\ 1 \end{bmatrix} u(t) \\ 
  %         \phi(t) &= \begin{bmatrix} 1 & 0 \end{bmatrix} \kappa(t) \end{array} \right.
  %    \end{align*}
+Suppose the input is an impulse at time zero (a delta function), and so its phenotype is equal to its impulse response,
+\begin{align*}
+\phi(t) = h(t) = \sin t + \cos t  .
+\end{align*}
+The system and its dynamics are referred to in Figure \ref{fig:oscillator}. We return to the evolution of such a system below.   
+\end{example}
 
-      Suppose the input is an impulse at time zero (a delta function), and so its phenotype is equal to its impulse response,
-      \begin{align*}
-        \phi(t) = h(t) = \sin t + \cos t  .
-      \end{align*}
-      The system and its dynamics are referred to in Figure \ref{fig:oscillator}. We return to the evolution of such a system below.   
-    \begin{figure}[H]
-       % \begin{center} 
-      \centering
-       %  \begin{tabular}{cc}
-            \begin{tikzpicture}
-            \begin{scope}[every node/.style={circle,thick,draw}]
-                \node (A) at (0,0) {$\kappa_{1}$};
-                \node (B) at (4,0) {$\kappa_{2}$};
-                \node[shape=rectangle] (U) at (2,2) {input ($u$)};
-                \node[shape=rectangle] (y) at (2,-2) {\begin{tabular}{cc} output ($\phi$) \\  \includegraphics[width=0.15\textwidth, height=0.04\paperheight]{osc_impulse} \end{tabular}};
-            \end{scope}
+\begin{figure}[H]
+   % \begin{center} 
+  \centering
+   %  \begin{tabular}{cc}
+        \begin{tikzpicture}
+        \begin{scope}[every node/.style={circle,thick,draw}]
+            \node (A) at (0,0) {$\kappa_{1}$};
+            \node (B) at (4,0) {$\kappa_{2}$};
+            \node[shape=rectangle] (U) at (2,2) {input ($u$)};
+            \node[shape=rectangle] (y) at (2,-2) {\begin{tabular}{cc} output ($\phi$) \\  \includegraphics[width=0.15\textwidth, height=0.04\paperheight]{osc_impulse} \end{tabular}};
+        \end{scope}
 
-            \begin{scope}[>={Stealth[black]},
-                          every node/.style={fill=white,circle},
-                          every edge/.style={draw=black, thick}]
-                \path [->, >=Rectangle] (A) edge[bend left] node {\tiny $-1$} (B);
-                \path [->] (B) edge[bend left] node {\tiny $1$} (A); 
-                \path[->] (U) edge node {\tiny $1$} (A);
-                \path[->] (U) edge node {\tiny $1$} (B);
-                \path[->] (A) edge[bend right] node {\tiny $1$} (y);
-            \end{scope}
-            \begin{scope}[>={Stealth[black]},
-                          every edge/.style={draw=black, thick}]
-                %\path [->] (A) edge[loop left] node {\tiny $\lambda_{1}$} (A);
-                %\path [->] (B) edge[loop left] node {\tiny $\lambda_{2}$} (B);
-            \end{scope}
+        \begin{scope}[>={Stealth[black]},
+                      every node/.style={fill=white,circle},
+                      every edge/.style={draw=black, thick}]
+            \path [->, >=Rectangle] (A) edge[bend left] node {\tiny $-1$} (B);
+            \path [->] (B) edge[bend left] node {\tiny $1$} (A); 
+            \path[->] (U) edge node {\tiny $1$} (A);
+            \path[->] (U) edge node {\tiny $1$} (B);
+            \path[->] (A) edge[bend right] node {\tiny $1$} (y);
+        \end{scope}
+        \begin{scope}[>={Stealth[black]},
+                      every edge/.style={draw=black, thick}]
+            %\path [->] (A) edge[loop left] node {\tiny $\lambda_{1}$} (A);
+            %\path [->] (B) edge[loop left] node {\tiny $\lambda_{2}$} (B);
+        \end{scope}
 
-            \end{tikzpicture} %&
-   %   \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{osc_impulse}
-   %\end{tabular}
-  %  \end{center}
-      \caption{
-        %(Left) 
-        Diagram of the gene network in Example \ref{ex:oscillator}
-      %, and (right) plot of the phenotype $\phi(t)$ against time $t$
-      .} \label{fig:oscillator}
-    \end{figure}
-  \end{example}
+        \end{tikzpicture} %&
+%   \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{osc_impulse}
+%\end{tabular}
+%  \end{center}
+  \caption{
+    %(Left) 
+    Diagram of the gene network in Example \ref{ex:oscillator}
+  %, and (right) plot of the phenotype $\phi(t)$ against time $t$
+  .} \label{fig:oscillator}
+\end{figure}
 
 
 \subsection*{Equivalent gene networks}
@@ -446,7 +445,7 @@ of these two systems, respectively, then
       \phi_u(t) = \bar \phi_u(t) \qquad \text{for all} \; t \ge 0.
 \end{align*}
 % (recall that $\kappa(0) = \bar \kappa(0) = 0$). 
-
+In other words, phenotypically equivalent systems respond identically for \emph{any} input.
 
 One way to find other systems phenotypically equivalent to a given one
 is by change of coordinates:
@@ -476,8 +475,9 @@ moving $A$ in the direction of $ZA - AZ$
 % (e.g., $\bar A = A + \epsilon(ZA-AZ)$)
 while also moving $B$ in the direction of $ZB$ 
 and $C$ in the direction of $-CZ$
-will leave the phenotype unchanged.
-If $A$ is invertible, for instance,
+will leave the phenotype unchanged to second order in the size of the perturbation.
+%% I believe the following is necessary and sufficient:
+If the columns of $B$ and the rows of $C$ are not all eigenvectors of $A$,
 then any such $Z$ will result in a different system.
 
 It turns out that in general, there are more degrees of freedom,
@@ -486,16 +486,14 @@ to achieve the desired dynamics.
 Results in system theory show that any system can be realized in a particular minimal dimension
 (the dimension of the kryptotype, $n_\text{min}$),
 and that any two phenotypically equivalent systems of dimension $n_\text{min}$ are related by a change of coordinates.
+Since gene networks can grow or shrink following gene duplications and deletions, 
+these additional degrees of freedom can apply in principle to any system.
 
-Some gene networks, however, can grow or shrink, perhaps following gene duplications and deletions, 
-and also still preserve their phenotypes.
-More generally, even if the system is not minimal, 
-results from systems theory % -- the Kalman decomposition --
+Even if the system is not minimal, results from systems theory % -- the Kalman decomposition --
 explicitly describe the set of all phenotypically equivalent systems.
 % Could define script S here for 'system' if we want: $\Sys$
 We refer to $\allS(A_0,B_0,C_0)$ as the set of all systems phenotypically equivalent
-to the system defined by $(A_0, B_0, C_0)$.
-Concretely, this is
+to the system defined by $(A_0, B_0, C_0)$:
 \begin{equation} \label{eqn:equivalence}
   \begin{aligned}
     \allS(A_0, B_0, C_0) 
@@ -514,12 +512,12 @@ in certain directions (those lying in the span of the columns of $B$).
 As a result, different combinations of input can 
 move the system in any direction that lies in what is known as the \emph{reachable subspace}.
 Analogously, we can only observe motion of the system in certain directions
-(those lying in the span of the columns of $C$),
+(those lying in the span of the rows of $C$),
 and so can only infer motion in what is known as the \emph{observable subspace}.
 The Kalman decomposition then classifies each direction in kryptotype space
 as either reachable or unreachable, and as either observable or unobservable.
 Only the components that are both reachable and observable determine the system's phenotype --
-that is, components that respond to an input and components that produce an observable output. 
+that is, components that both respond to an input and produce an observable output. 
 % it is possible to add components that respond to an input, 
 % but do not influence the output, or components that, in principle, influence the output, but do not respond to any inputs. 
 
@@ -569,19 +567,18 @@ The impulse response of the system is given by
       h(t) = C_{\ro} e^{A_{\ro} t} B_{\ro},
 \end{align*}
 and therefore, the system is phenotypically equivalent to the \emph{minimal} system $(A_{\ro}, B_{\ro}, C_{\ro})$.
-(Here the subscript $\ro$ refers to the both \emph{reachable and observable} subspace,
-while $\nrno$ refers to the \emph{unreachable and unobservable} subspace,
-and similarly for $\nro$ and $\rno$.)
 
-Any two minimal systems are related by a change of coordinates,
-and so the minimal subsystems obtained by the Kalman decomposition
-are unique up to a change of coordinates.
-In particular, this implies that there is no equivalent system with a smaller number of kryptotypic dimensions
+This decomposition is unique up to a change of basis that preserves the block structure.
+In particular, 
+the minimal subsystem obtained by the Kalman decomposition
+is unique up to a change of coordinates.
+This implies that there is no equivalent system with a smaller number of kryptotypic dimensions
 than the dimension of the minimal system.
-It is also remarkable to note that the gene regulatory network architecture to achieve a given input--output map is never unique --
+It is remarkable that the gene regulatory network architecture to achieve a given input--output map is never unique --
 both the change of basis used to obtain the decomposition
 and, once in this form, all submatrices other than $A_{\ro}$, $B_{\ro}$, and $C_{\ro}$ can be changed without affecting the phenotype,
 and so represent degrees of freedom.
+(However, some of these subspaces may affect how the system deals with noise.)
 
 \emph{Note on implementation:}
 The \emph{reachable subspace},
@@ -594,8 +591,11 @@ and the \emph{unobservable subspace},
 denoted $\unobservable$, is the largest $A$-invariant subspace
 contained in the null space of $C$.
 % and $\reachable$ is the largest $A$-invariant subspace contained in the image of $B$.)
-The four subspaces, $\rno$, $\ro$, $\nrno$, and $nro$
-are defined from these by intersections and orthogonal complements.
+The four subspaces, $\rno$, $\ro$, $\nrno$, and $\nro$
+are defined from these by intersections and orthogonal complements --
+$\ro$ refers to the both \emph{reachable and observable} subspace,
+while $\nrno$ refers to the \emph{unreachable and unobservable} subspace,
+and similarly for $\nro$ and $\rno$.
 
 %Usually, the dimension $n$ and the reference system $\Sys_0$ is implicit and we write only $\calA$.
 %Further, we refer to the set of all linear systems with impulse response $h(t)$, regardless of dimension, to be $\allS$,
@@ -603,32 +603,30 @@ are defined from these by intersections and orthogonal complements.
 %    \allS := \bigcup_{n=\min}^{\infty} \calA_n(\Sys_0)
 %  \end{align}
 
-For the remainder of the paper, we interpret $\allS$ as the phenotypically neutral landscape, 
-wherein a large population will drift under environmental and selective stasis. 
+For the remainder of the paper, we interpret $\allS$ as the neutral set in the fitness landscape, 
+along which a large population will drift under environmental and selective stasis. 
 Even if the phenotype is constrained and remains constant through evolutionary time, 
 the molecular mechanism underpinning it is not constrained and likely will not be conserved.
 
 Finally, note that if $B$ and $C$ are held constant --
 i.e., if the relationships between environment, kryptotype, and phenotype do not change --
 there are \emph{still} usually degrees of freedom. 
-These correspond to distinct genetic networks that perform indistinguishable functions. 
 The following example \ref{ex:all_osc} gives the set of minimal systems equivalent to the oscillator of Example \ref{ex:oscillator},
 that all share common $B$ and $C$ matrices.
-The oscillator can also be equivalently realized by a three-gene (or larger) network, and will have even more evolutionary degrees of freedom available, as in e.g., Figure \ref{fig:3D_osc}.
+The oscillator can also be equivalently realized by a three-gene (or larger) network, and will have even more evolutionary degrees of freedom available, 
+as in Figure \ref{fig:3D_osc}.
 
 \begin{example}[All phenotypically equivalent oscillators] \label{ex:all_osc}
 The oscillator of example \ref{ex:oscillator} is minimal, and so any equivalent system is a change of coordinates
 by an invertible matrix $V$.
 If we further require $B$ and $C$ to be invariant then we need $VB=B$ and $CV=C$.
-Solving these equations,
-we find that a one-parameter family $(A(\tau), B, C)$ describes the set of all two-gene systems
-phenotypically equivalent to the oscillator,
-where
+Therefore
+the following one-parameter family $(A(\tau), B, C)$ describes the set of all two-gene systems
+phenotypically equivalent to the oscillator:
     \begin{align*}
       A(\tau) &= \frac{1}{\tau-1} \begin{bmatrix} \tau & -1 \\ 2 \tau(\tau - 1) + 1 &  -\tau \end{bmatrix} \ \text{for} \ \tau \neq 1 .
     \end{align*}
-The resulting set of systems,
-and their dynamics, are depicted in Figure \ref{fig:all_osc}
+The resulting set of systems are depicted in Figure \ref{fig:all_osc}.
 \end{example}
 
 
@@ -705,10 +703,12 @@ and their dynamics, are depicted in Figure \ref{fig:all_osc}
 \paragraph{Sexual reproduction and recombination}
 Parents with phenotypically equivalent yet differently wired gene networks may produce offspring with dramatically different phenotypes. 
 If the phenotypes are significantly divergent then the offspring may be inviable or otherwise dysfunctional, 
-despite both parents being well adapted. If this is consistent for the entire population, we would consider them to be separate species, in accord with the biological species concept \citep{mayr2000biological}.
+despite both parents being well adapted. 
+If this is consistent for the entire population, we would consider them to be separate species, in accord with the biological species concept \citep{mayr2000biological}.
 
-Diploid organisms have two genomes, each of which encodes a set of system coefficients.
-We assume that a diploid which has inherited systems $(A', B', C')$ and $(A'', B'', C'')$ from each of its parents,
+First, we must specify how sexual reproduction acts on these systems.
+Suppose that each of a diploid organisms' two genomes encodes a set of system coefficients.
+We assume that a diploid which has inherited systems $(A', B', C')$ and $(A'', B'', C'')$ from its two parents
 has phenotype determined by the system that averages these two,
 $((A'+A'')/2, (B'+B'')/2, (C'+C'')/2)$.
 
