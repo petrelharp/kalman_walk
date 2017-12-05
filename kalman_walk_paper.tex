@@ -249,7 +249,6 @@ isolated for a sufficiently long period of time,
 even in the absence of any sort of adaptative, selective, or environmental change. 
 We then use quantitative genetic theory to estimate how quickly 
 reproductive incompatibility due to system drift will manifest
-\plr{we don't need to summarize the results of the paper in the introduction.  the abstract, and maybe the discussion, but not the introduction.}
 
  % \jss{should hare2008sepsid be here? It's sequence but not ``system'' drift}
 % are these good here? {taylor2016diverse -- maybe not, matsui2015regulatory -- I think this relevant, stergachis2014conservation}.
@@ -724,6 +723,9 @@ Exactly how the coefficients
 of a haploid system inherited by an offspring from her diploid parent
 are determined by the parent's two systems
 depends on the genetic basis of any variation in the coefficients.
+Thanks to the randomness of meiotic segregation,
+the result is random to the extent that each parent is heterozygous
+for alleles that affect the coefficients.
 Since the $i^\text{th}$ row of $A$ summarizes how each gene regulates gene $i$,
 and hence is determined by the promoter region of gene $i$,
 the elements of a row of $A$ to tend to be inherited together,
@@ -736,8 +738,6 @@ between the two parental coefficients.
 On the other hand, if a coefficient is determined by additive contributions of independently segregating loci,
 then the law of total variance applied after conditioning on the parental origin of each allele
 implies that the variance is equal to one-quarter of the squared difference between parental coefficients.
-
-\plr{continue editing here}
 
 Offspring formed from two phenotypically identical systems do not necessarily exhibit the same phenotype as both of its parents -- in other words $\allS$, the set of all systems phenotypically equivalent to a given one, is not, in general, closed under averaging or recombination.
 If sexual recombination among systems drawn from $\allS$ yields systems with divergent phenotypes, populations containing significant diversity in $\allS$ can carry genetic load, and isolated populations may fail to produce hybrids with viable phenotypes.
@@ -765,10 +765,10 @@ Two parents with the optimal phenotype can produce offspring whose phenotype is 
 if the parents have different underlying systems.
 %This leads to the question: 
 How quickly do hybrid phenotypes break down as genetic distance between parents increases?
-To quantify this, we will measure how far a system's phenotype is from optimal
+We will quanitfy how far a system's phenotype is from optimal
 using a weighted difference between impulse response functions.
 Suppose that $\rho(t)$ is a nonnegative, smooth, square-integrable weighting function,
-$h_0(t)$ is the \emph{optimal} impulse response function,
+$h_0(t)$ is the \emph{optimal} impulse response function
 and define the ``distance to optimum'' of another impulse response function
 to be
 \begin{align}
@@ -794,9 +794,9 @@ this means that each coefficient of an $F_2$ may be equal to either one of the p
 or intermediate between the two;
 this means that possible $F_2$ systems may be as far from the optimal set, $\allS$,
 as the distance between the parents.
-The precise rate at which the phenotype of a hybrid diverges depends on the geometry --
-in Figure \ref{fig:conceptual_fig}, this is depicted as the angle of the black line (the optimal set)
-with respect to the coordinates.
+The precise rate at which the phenotype of a hybrid diverges depends on the geometry
+of the optimal set $\allS$ relative to segregating genetic variation.
+% in Figure \ref{fig:conceptual_fig}, this is depicted as the angle of the black line (the optimal set) with respect to the coordinates.
 
 \begin{example}[Hybrid Incompatibility in the Oscillator] \label{ex:hybrid_osc}
 Offspring of two equivalent systems from Example \ref{ex:all_osc}
@@ -813,12 +813,13 @@ This divergence is quantified in Figure \ref{fig:osc_incompat},
 which shows that mean distance to optimum phenotype of the $F_1$ and $F_2$ hybrid offspring between $A(0)$ and $A(\epsilon)$
 increases with $\epsilon^2$ and $\epsilon$, respectively.
 
-The coefficients in $A$ -- i.e., the regulatory coefficients --
-  differ between parents by only a few percent (around 0.5\% for $\epsilon = - \sfrac{1}{100}$ and 5\% for $\epsilon= - \sfrac{1}{10}$).
-This is well within the amount of regulatory coefficient variation we expect to find segregating within real populations
-(discussed further below). 
-For these small values of $\epsilon$, hybrid phenotypes remain relatively stable, 
-  consistent with the idea that natural selection will allow such intrapopulation variation. For larger values of $\left| \epsilon \right|$ (here $\sfrac{1}{2}$), hybrid phenotypes can become dysfunctional, and depending on context, manifest as hybrid inviability. 
+%% PLR: it says this above already.
+% The coefficients in $A$ -- i.e., the regulatory coefficients --
+%   differ between parents by only a few percent (around 0.5\% for $\epsilon = - \sfrac{1}{100}$ and 5\% for $\epsilon= - \sfrac{1}{10}$).
+% This is well within the amount of regulatory coefficient variation we expect to find segregating within real populations
+% (discussed further below). 
+% For these small values of $\epsilon$, hybrid phenotypes remain relatively stable, 
+%   consistent with the idea that natural selection will allow such intrapopulation variation. For larger values of $\left| \epsilon \right|$ (here $\sfrac{1}{2}$), hybrid phenotypes can become dysfunctional, and depending on context, manifest as hybrid inviability. 
 
 %%% figure of tau=0 and tau=2 hybrid:
 %  \begin{figure}[H] 
@@ -846,10 +847,14 @@ For these small values of $\epsilon$, hybrid phenotypes remain relatively stable
       \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{examples/osc_F2_halftau0.pdf}
   \end{tabular}
   \caption{
-    \textbf{(left)} Phenotypes of $F_1$ hybrids between an $A(0)$ parent and, top-to-bottom, an $A(-\sfrac{1}{100})$, an $A(-\sfrac{1}{10})$, and $A(-\sfrac{1}{2})$ parent.
+    \textbf{(left)} Phenotypes of $F_1$ hybrids between an $A(0)$ parent and, top-to-bottom, an $A(-\sfrac{1}{100})$, an $A(-\sfrac{1}{10})$, and $A(-\sfrac{1}{2})$ parent;
+    parental coefficients differ by around 0.5\%, 5\%, and 25\% respectively.
+    \plr{These figures are fine; but reparameterize so that the values of $\tau$ are positive.}
     Parental phenotypes ($\sin t + \cos t$) are shown in solid black, and hybrid phenotypes in dashed blue.
-    \textbf{(right)} Phenotypes of all 256 possible $F_2$ hybrids between the same set of parents,
+    \textbf{(right)} Phenotypes of all possible $F_2$ hybrids between the same set of parents,
     with parental phenotype again in black.
+    %% PLR: There are at most 128 possible F2s, not 256; but many are equivalent; 
+    %%   it only matters if the offspring is homo/het/homozygous, so there are 3^4 = 81 possible expression patterns.
     Different colored lines correspond to different $F_2$s;
     note that some completely fail to oscillate.
   } \label{fig:hybs}
@@ -881,7 +886,9 @@ it is likely the heterogametic sex (e.g., the male in XY sex determination syste
 For example, consider an XY species with a two-gene network where the first gene resides on an autosome and the second gene on the X chromosome.
 A male whose pair of haplotypes is 
 $\left( \left[ \begin{smallmatrix} A_1 & A_2 \\ \cdot & \cdot \end{smallmatrix} \right], \left[ \begin{smallmatrix} A_1 & A_2 \\ X_1 & X_2 \end{smallmatrix} \right] \right)$
-  has phenotype determined by $A = \left[ \begin{smallmatrix} A_1 & A_2 \\ X_1 & X_2 \end{smallmatrix} \right]$, thanks to \emph{Drosophila}-like dosage compensation mechanism (the X is twice upregulated in heterogametes relative to homogametes),
+has phenotype determined by $A = \left[ \begin{smallmatrix} A_1 & A_2 \\ X_1 & X_2 \end{smallmatrix} \right]$, 
+if dosage compensation upregulates heterogametes by a factor of 2 relative to homogametes,
+% as in \emph{Drosophila}
 while a female homozygous for the haplotype
 $\left[\begin{smallmatrix} \bar A_1 & \bar A_2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$, has phenotype determined by
 $A = \left[\begin{smallmatrix} \bar A_1 & \bar A_2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$.
@@ -890,8 +897,10 @@ $\left[\begin{smallmatrix} (A_1 + \bar A_1)/2 & (A_2 + \bar A_2)/2 \\ \bar X_1 &
 If both genes resided on the autosomes this system would only be possible in an $F_2$ cross.
 More generally, 
 if the regulatory coefficients for a system are shared between the sex and one or more autosomal chromosomes, 
-$F_1$ males are effectively equivalent to purely autosomal-system $F_2$s. As such, in this setting, Haldane's rule is mechanistically similar to \emph{hybrid breakdown}, the observation that $F_2$s will often be less fit than $F_1$ hybrid crosses, in the early stages of speciation.
-This mechanism appears to be distinct from the ``dominance'', ``faster-X'', and ``faster-male'' theories \citep{orr1997haldane, coyne1998evolutionary, turelli1995dominance} usually suggested to explain Haldane's rule.
+$F_1$ males are effectively equivalent to purely autosomal-system $F_2$s. 
+In this setting, Haldane's rule is mechanistically similar to \emph{hybrid breakdown}, the observation that $F_2$s will often be less fit than $F_1$ hybrid crosses, in the early stages of speciation.
+This mechanism relies on the genetic variation of a system being shared across the sex chromosomes and the autosomes,
+and appears to be distinct from the ``dominance'', ``faster-X'', and ``faster-male'' theories \citep{orr1997haldane, coyne1998evolutionary, turelli1995dominance} usually suggested to explain Haldane's rule.
 %and makes several different predictions than the dominance theory as formulated by \citet{turelli1995dominance}.
 %\plr{what are they?}
 %\citet{turelli1995dominance} employ a population genetic model which strictly requires alleles causing hybrid incompatibility on the X chromosome not to exhibit additive effects, that is the \emph{dominance coefficient} (typically $h$ in classic population genetics) must not be equal to $\frac{1}{2}$. In their model, if alleles are strictly additive, that is neither dominant nor recessive, then male and female $F_1$ hybrids will drop in fitness at the exact same rates, and therefore defy Haldane's rule. 
@@ -899,7 +908,7 @@ This mechanism appears to be distinct from the ``dominance'', ``faster-X'', and 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \section*{System drift and the accumulation of incompatibilities}
 
-Thus far we have shown that many distinct molecular mechanisms can realize identical phenotypes
+Thus far we have seen that many distinct molecular mechanisms can realize identical phenotypes
 and that these mechanisms may fail to produce viable hybrids.
 This begs the question: does evolution shift molecular mechanisms
 fast enough to be a significant driver of speciation?
@@ -911,30 +920,27 @@ Although this is motivated by the results on linear systems above,
 the quantitative genetics calculations are more general,
 and only depend on the presence of genetic variation and a continuous set of phenotypically equivalent systems.
 
-We will suppose that each organism's phenotype is determined by its vector of coefficients, denoted by $x=(x_1, x_2, \ldots, x_L)$,
+We will suppose that each organism's phenotype is determined by its vector of coefficients, denoted by $x=(x_1, x_2, \ldots, x_p)$,
 and that the corresponding fitness is determined by the distance of its phenotype to optimum.
 The optimum phenotype is unique, but is realized by many distinct $x$ -- those falling in the ``optimal set'' $\allS$.
 The phenotypic distance to optimum of an organism with coefficients $x$ is denoted $D(x)$.
 In the results above, $x = (A,B,C)$ and $D(x)$ is given by equation \eqref{eqn:distance}.
-determines a system (this is a system $(A,B,C)$ above) 
-with fitness determined by its phenotypic distance $D(x)$ from an optimum (this is analogous to $\allS$ above). 
-Concretely, we define the fitness at $x$ to be $\exp(-D(x)^2)$.
+The fitness of an organism with coefficients $x$ will be $\exp(-D(x)^2)$.
 % this assumption does not entail a loss of generality since $D$ is arbitrary.
-We will assume that in the region of interest, the map $D$ is smooth
+We assume that in the region of interest, the map $D$ is smooth
 and that we can locally approximate the optimal set $\allS$ as a quadratic surface.
-As above, an individual's coefficients are given by averaging its parentally inherited coefficients and adding random noise due to segregation. 
-Concretely, we use the \emph{infinitesimal model} for reproduction \citep{barton_infinitesimal} --
+As above, an individual's coefficients are given by averaging its parentally inherited coefficients and adding random noise due to segregation and possibly new mutation.
+Concretely, we use the \emph{infinitesimal model} for reproduction \citep{barton2016infinitesimal} --
 the offspring of parents at $x$ and $x'$ will have coefficients $(x+x')/2 + \varepsilon$,
-where $\varepsilon$ is a Gaussian displacement due to random assortment of parental alleles.
+where $\varepsilon$ is a random Gaussian displacement due to random assortment of parental alleles.
 
 \paragraph{System drift}
 % plr how fast does it drift
 We work with a randomly mating population of effective size $N_e$. 
-If the regulatory coefficient population variation
-has standard deviation $\sigma$ in a particular direction,
+If the population variation has standard deviation $\sigma$ in a particular direction,
 since subsequent generations resample from this diversity,
 the population mean coefficient will move a random distance of size $\sigma/\sqrt{N_e}$ per generation,
-simply because this is the the standard deviation of the mean of a random sample \citep{lande_drift}.
+simply because this is the the standard deviation of the mean of a random sample \citep{lande1981models}.
 % (This could be taken as a definition of $N_e$.)
 Selection will tend to restrain this motion,
 but movement along the optimal set $\allS$ is unconstrained,
@@ -942,7 +948,8 @@ and so we expect the population mean to drift along the optimal set like a parti
 % (although perhaps complicated by recombination load \citep{recomb_load})
 The amount of variance in particular directions in coefficient space 
 depends on constraints imposed by selection and 
-correlations between the genetic variation underlying different coefficients (the $G$ matrix \citep{G_matrix}).
+correlations between the genetic variation underlying different coefficients 
+(the $G$ matrix \citep{arnold2008understanding}).
 It therefore seems reasonable to coarsely model the time evolution of population variation in regulatory coefficients as 
 a ``cloud'' of width $\sigma$ about the population mean, 
 which moves as an unbiased Brownian motion through the set of network coefficients that give the optimal phenotype.
@@ -959,6 +966,8 @@ which moves as an unbiased Brownian motion through the set of network coefficien
 %is no more likely to appear than one with strong binding to $i$ but particularly weak binding to $j$ (negative covariance).
 %(Such transient covariances may well increase the variance of the per-generation change in network mean, however \citep{barton_linkage}.)
 
+Next, we calculate with some simplifying assumptions to give the general idea;
+multivariate derivations appear in Appendix \ref{ss:quant_gen}.
 There will in general be different amounts of variation in different directions;
 to keep the discussion intuitive, we only discuss $\sigma_N$, the amount of variation in ``neutral'' directions
 (i.e., directions along $\allS$),
@@ -968,10 +977,10 @@ which the scale on which distance to phenotypic optimum changes as $x$ moves awa
 Concretely, $\gamma$ is
 %the inverse of the derivative of 
 $1/(\frac{d}{du}D(x+uz))$ 
-with respect to $u$ where $x$ is optimal and $z$ is a ``selected'' direction perpendicular to $\allS$.
+where $x$ is optimal and $z$ is a ``selected'' direction perpendicular to $\allS$.
 With these parameters, a typical individual will have a fitness of around $\exp(-(\sigma_S/\gamma)^2)$.
 Of course, there are in general many possible neutral and selected directions;
-we take these values to be representative of the possible directions.
+we take $\gamma$ to be an appropriate average over possible directions.
 
 \paragraph{Hybridization}
 The means of two allopatric populations each of effective size $N_e$ separated for $T$ generations
@@ -980,21 +989,19 @@ will be a distance roughly of order $2\sigma_N \sqrt{T/N_e}$ apart along $\optx$
 A population of $F_1$ hybrids has one haploid genome from each,
 whose coefficients are averaged,
 and so will have mean system coefficients at the midpoint between their means.
-Each $F_2$ hybrid will be homozygous for one parental allele on average at half of the loci in the genome,
-so the distribution of $F_2$s will have mean at the average of the two populations,
+The distribution of $F_2$s will have mean at the average of the two populations,
 but will have higher variance.
 The variance of $F_2$s can be shown to increase linearly with the square of the distance between
 parental population means
 under models of both simple and polygenic traits.
 This is suggested by figure \ref{fig:conceptual_fig} and shown in Appendix \ref{apx:seg_cov}.
-\plr{connect to Barton etc polygenic adaptation lit}
 Concretely, we expect the population of $F_1$s to have variance $\sigma^2_S$ in the selected direction
 (the same as within each parental population),
 but the population of $F_2$s will have variance of order $\sigma^2_S + 4 \omega \sigma^2_N T/N_e$,
 where $\omega$ is a factor that depends on the genetic basis of the coefficients.
-In a model of $p$ traits in which the optimal set $\allS$ has dimension $q$,
-% if each trait is controlled by a single locus, $\omega = XXX$,
-using the polygenic model of appendix \ref{apx:seg_cov}, $\omega = (p-q)/8$.
+If the optimal set $\allS$ has dimension $q$,
+using the polygenic model of appendix \ref{apx:seg_cov}, 
+$\omega$ is proportional to the number of degrees of freedom: $\omega = (p-q)/8$.
 If each trait is controlled by a single locus, as in figure \ref{fig:conceptual_fig},
 the value is similar.
 
@@ -1012,8 +1019,8 @@ What are the fitness consequences?
 A population of $F_2$s will begin to be substantially less fit than the parentals
 once they differ from the optimum by a distance of order $\gamma$,
 i.e., once $\sqrt{4 \omega T/N_e} \approx \gamma / \sigma_N$.
-This implies that hybrid incompatibility among $F_2$s should appear on a time scale of 
-$N_e (\gamma / \sigma_N)^2 / (4 \omega)$ generations.
+This implies that hybrid incompatibility among $F_2$s should appear much slower --
+on a time scale of $N_e (\gamma / \sigma_N)^2 / (4 \omega)$ generations.
 The $F_1$s will not suffer fitness consequences until the hybrid mean is further than $\gamma$ from the optimum;
 as shown in appendix \ref{apx:away_from_opt} (and suggested by figure \ref{fig:conceptual_fig}),
 this deviation of the mean from optimum grows with the square of the distance between the parental populations,
@@ -1051,34 +1058,32 @@ has mean fitness
 % &\approx
 % \frac{1}{\sigma/\gamma}\left(1 - \frac{\mu^2}{\gamma^2}\right) .
 \end{align}
-This assumes a single trait, for simplicity; the multivariate case is done in appendix \ref{apx:gauss_load}.
+This assumes a single trait, for simplicity. %; the multivariate case is done in appendix \ref{apx:gauss_load}.
 A population of $F_2$s will have, as above, variance $\sigma^2 = \sigma^2_S + 4 \omega \sigma^2_N T/N_e$.
-The mean diverges with the square of the distance between the parentals
-with a speed depending on the local geometry of the optimal set
-(calculated in appendix \ref{apx:H_calc}), so we set $\mu = c_\mu \gamma T/N_e$.
+The mean diverges with the square of the distance between the parentals, so we set $\mu = c_\mu \gamma T/N_e$,
+where $c_\mu$ is a constant depending on the local geometry of the optimal set.
 The mean fitness in parental populations is as in equation \ref{eqn:gauss_fit} with $\mu=0$ and $\sigma = \sigma_S$.
 This implies that if we define $\fit_2(T)$ to be the mean relative fitness among $F_2$ hybrids
 between two populations separated by $T$ generations, 
 (i.e., the mean fitness divided by the mean fitness of the parents)
 then
-\plr{figure out how dimensions come in here}
 \begin{align} \label{eqn:fit2}
 \fit_2(T) = 
   \left(1 + \frac{4 \omega (\sigma_N/\gamma)^2}{(1 + (\sigma_S/\gamma)^2)} \frac{T}{N_e} \right)^{-1/2} 
      \exp\left\{-\left(c_\mu \frac{T}{N_e}\right)^2 \left(\frac{1}{1 + (\sigma_S/\gamma)^2 + 4 \omega (\sigma_N/\gamma)^2 T/N_e}\right)\right\} .
 \end{align}
 If each of the $q$ selected directions acts independently,
-the drop in fitness will be $\fit_2(T)^q$
-(the expression for the correlated cases is given in Appendix \ref{apx:gauss_load}).
+the drop in fitness will be $\fit_2(T)^q$;
+the expression for the correlated, multivariate case is given in Appendix \ref{apx:gauss_load}.
 We discuss the implications of this expression in the next section.
 
 
 %%%%%%%%%%
 \paragraph{Speciation rates under neutrality}
-Above, equation \eqref{eqn:fit2} shows how fast hybrids become inviable 
+Equation \eqref{eqn:fit2} describes how fast hybrids become inviable 
 as the time that the parental populations are isolated increases;
 what does this tell us about speciation rates under neutrality?
-From equation \eqref{eqn:fit2} we can observe that
+From equation \eqref{eqn:fit2} we observe that
 time is always scaled in units of $N_e$ generations,
 the population standard deviations are always scaled by $\gamma$,
 and the most important term is the rate of accumulation of segregation variance,
@@ -1094,11 +1099,17 @@ and if $\omega$ is proportional to $p-q$,
 % the rate that hybrid variance increases with separation between parentals, $\omega$,
 % is in some cases proportional to $p-q$, 
 then the rate that $F_2$ fitness drops is, roughly,
-$(1 + 4 (p-q) C T/n_e)^{-q/2} \propto q (p-q)$, where $C$ is a constant.
-This suggests that both degree of constraint and number of available neutral directions
-affect the speed of accumulation of incompatibilities.
+$(1 + 4 (p-q) C T/N_e)^{-q/2} \propto q (p-q)$, where $C$ is a constant.
+Both degree of constraint and number of available neutral directions
+affect the speed of accumulation of incompatibilities --
+more unconstrained directions allows faster system drift,
+but more constrained directions implies greater fitness consequences of hybridization.
 However, note that in real systems, it is likely that $\gamma$ also depends on $p$ and $q$.
-\plr{revisit with sims}
+
+Now we will interpret equation \eqref{eqn:fit2} in three situations plausible for different species,
+depicting how hybrid fitness drops as a function of $T/N_e$ in Figure \ref{fig:speciation_rates}.
+In all cases, the fitness drop for $F_1$ hybrids is much smaller than that of $F_2$s,
+so we work only with the first (square-root) term in equation \eqref{eqn:fit2}.
 
 % simgaN = sigmaS = gamma, large population
 Suppose in a large, genetically diverse population,
@@ -1119,21 +1130,22 @@ Setting $a = (\sigma_N/\gamma)^2$ to be small,
 the fitness of $F_2$s is $\fit_2 \le 1/\sqrt{1 + 4 \omega a T/N_e} \approx 1 - 2 \omega a T/N_e$.
 Hybrid fitness seems to drop more slowly in this case in figure \ref{fig:speciation_rates},
 but since time is scaled by $N_e$, so speciation may occur \emph{faster} than in a large population.
-However, at least in some models \citep{bartonXXX}, in small populations at mutation-drift equilibrium
+However, at least in some models \citep{lynch1986phenotypic}, in small populations at mutation-drift equilibrium
 the amount of genetic variance ($\sigma_N^2$) is proportional to $N_e$,
+\plr{that citation is Lynch \& Hill 1986, "phenotypic evolution by neutral mutation"}
 which would compensate for this difference, 
 perhaps even predicting the rate of decrease of hybrid fitness to be \emph{independent} of population size
 for small populations.
 
 % $\sigma_N \gg \sigma_S \approx \gamma$, if $N_e$ is big and there's a lot of recombination load (``species complex'')
-In the other direction, consider large metapopulations (or isolated ``species complexes'')
+In the other direction, consider large metapopulations (or a ``species complex'')
 among which heritable variation is strongly constrained by selection
 (i.e., there is substantial recombination load),
 so that $\sigma_S \approx \gamma$ but $\sigma_N/\gamma$ is large.
 Then the fitness of $F_2$s is $\fit_2 \le 1/\sqrt{1 + 2 \omega a T/N_e} \approx 1 - \omega a T/N_e$,
 and could be extremely rapid if $a$ is large.
 
-For instance, in a population of one million organisms that has 10 generations per year (a drosophilid species, perhaps)
+For instance, between two populations of one million organisms that has 10 generations per year (a drosophilid species, perhaps)
 under the ``large population'' scenario of Figure \ref{fig:speciation_rates}A,
 system drift would lead to a substantial fitness drop of around 10\% in $F_2$ hybrids in only 10,000 years.
 This drop may be enough to induce evolutionary reinforcement of reproductive isolation.
@@ -1142,8 +1154,8 @@ then a similar drop could occur in around 120 years.
 On the other hand, if the population is one of several of similar size
 that have recently come into secondary contact after population re-expansion,
 the situation may be similar to that of Figure~\ref{fig:speciation_rates}C with $N_e = 10^6$,
-the same drop could occur after 1,100 years.
-However, hyperdiverse populations of this type may not be stable on these time scales.
+and so the same drop could occur after 1,100 years.
+(However, hyperdiverse populations of this last type may not be stable on these time scales.)
 
 
 \begin{figure}[H]
@@ -1151,15 +1163,13 @@ However, hyperdiverse populations of this type may not be stable on these time s
 \begin{center}
 \includegraphics{speciation_rates}
 \caption{
-Mean drop if $F_2$ fitness relative to parental species,
+Mean drop of $F_1$ and $F_2$ fitness relative to parental species,
 with $\omega=1$ and 
 \textbf{(A)} $\sigma_N^2 = \sigma_S^2 = \gamma^2$
 \textbf{(B)} $\sigma_N^2 = \sigma_S^2 = 0.1 \gamma^2$
 \textbf{(C)} $0.1 \sigma_N^2 = \sigma_S^2 = \gamma^2$.
-The total fitness is from equation \eqref{eqn:fit2},
-and is the product of the ``shift of mean'' and ``increase of variance'' terms
-(the exponential and the square root, respectively).
-Note that, as we assume, the contribution of the shift in mean
+The $F_2$ fitness is from equation \eqref{eqn:fit2},
+and the $F_1$ fitness is determined only by the exponential term of that equation.
 is small relative to that of increased variance.
 \label{fig:speciation_rates}}
 \end{center}
@@ -1191,23 +1201,20 @@ and single variants may affect many entries of $\allS$ simultaneously.
 % may be necessary to produce relevant phenotypic effects downstream.
 
 Variation in binding site occupancy may overestimate variation in $A$,
-since it does not capture buffering effects (if for instance only one site of many needs be occupied for transcription to begin),
-and variation in expression levels measures changes in steady-state concentration (our $\kappa_i$) rather than the \emph{rate} of change.
-Nonetheless,
+since it does not capture buffering effects (if for instance only one site of many needs to be occupied for transcription to begin),
+and variation in expression level measures changes in steady-state concentration (our $\kappa_i$) rather than the \emph{rate} of change.
+Nonetheless, these measures likely give us an idea of the scale of variability.
 \citet{kasowski2010variation} found differential occupancy in 7.5\%
 of binding sites of a transcription factor (p65) between human individuals.
 \citet{verlaan2009targeted} showed that cis-regulatory variation
 accounts for around 2--6\% of expression variation in human blood-derived primary cells,
-while \citep{lappalainen2013transcriptome} found that human population variation 
+while \citet{lappalainen2013transcriptome} found that human population variation 
 explained about 3\% of expression variation.
 %%\plr{Get some data from at least one other species in here!}
-Taken together, this suggests that variation in the entries of $\allS$
+Taken together, this suggests that variation in the entries of $A$
 may be on the order of at least a few percent between individuals of a population --
 doubtless varying substantially between species and between genes.
-
-The impact of regulatory variation ($\sigma$) above
-depends only on its magnitude relative to selection ($\gamma$),
-but it seems reasonable that these two quantities are of the same magnitude.
+\plr{JOSH: insert a citation or two to something non-human?}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -1229,21 +1236,21 @@ Above we synthesize concepts and tools from molecular and evolutionary biology w
 to study the evolution of a mechanistic model of the molecular genotype-phenotype map under stabilizing selection.
 This model allows us to analytically describe the processes discussed verbally as
 phenogenetic drift \citep{weiss2000phenogenetic} and developmental system drift \citep{true2001developmental}.
-In this context, the Kalman decomposition \citep{kalman1963mathematical} implies that nearly all systems are nonidentifiable,
-and gives an analytical description of all phenotypically equivalent gene networks.
-System nonidentifiability, rather than being a computational nuisance,
-implies the existence of axes of genetic variation that are not constrained by selection.
+In this context, the Kalman decomposition \citep{kalman1963mathematical}
+gives an analytical description of all phenotypically equivalent gene networks.
+It also implies that nearly all systems are nonidentifiable,
+and hence the general existence of axes of genetic variation that are not constrained by selection.
 The independent movement of separated populations along these axes
 can lead to reduction in hybrid viability, and hence speciation,
 at a speed that depends on effective population size and amount of genetic variation. 
 In this model, at biologically reasonable parameter values,
-system drift is a significant -- and often rapid -- driver of speciation.
+system drift is a significant -- and possibly rapid -- driver of speciation.
 This may at first be surprising because
 hybrid inviability appears as a consequence of recombining different, yet functionally equivalent, mechanisms. 
-While the genetic incompatibilities contributing to hybrid inviability described in this paper share similarities with those in the commonly discussed Dobzhansky-Muller model, they may in fact share more in common with what has been described as the ``pathway model'' \citep{lindtke2015genetic}.
 
-Consistent with empirical observation of \emph{hybrid breakdown} \citep[e.g.][]{plotner2017chlorosis}), we see that the fitnesses of $F_2$ hybrids drop at a much faster rate than those of $F_1$s,
-since $F_1$ and $F_2$ phenotypes diverge linearly and at the square root of time relative to parentals, respectively.
+Consistent with empirical observation of \emph{hybrid breakdown} \citep[e.g.][]{plotner2017chlorosis}, 
+we see that the fitnesses of $F_2$ hybrids drop at a much faster rate than those of $F_1$s.
+% since $F_1$ and $F_2$ phenotypes diverge linearly and at the square root of time relative to parentals, respectively.
 %\plr{refer to Turelli here}
 % In this model, this is due to recombination shuffling system architectures, leaving the $F_2$ system homozygous for one parent at one particular locus and homozygous for the other parent at another possibly incompatible locus.
 Another natural consequence of the model is Haldane's rule,
@@ -1253,79 +1260,71 @@ then heterogametic $F_1$s show variation similar to that seen in $F_2$s.
 
 Is there evidence that this is actually occurring?
 System drift and network rewiring has been inferred across the tree of life \citep{dalal2017transcription, johnson2017rewiring},
-and there is often significant regulatory variation segregating within populations \citep{XXX}.
+and there is often significant regulatory variation segregating within populations.
 Transcription in hybrids between closely related species with conserved transcriptional patterns can also be divergent 
 \citep{haerty2006gene, maheshwari2012cis, coolon2014tempo, michalak2004association, mack2016gene}.
 Furthermore, in cryptic species complexes (e.g., sun skinks \citep{barley2013challenge}),
 %strongly reproductively incompatible species
 genetically distinct species
 may be nearly morphologically indistinguishable.
-\plr{check the skinks have RI!!} \jss{the paper just says highly ``genetically distinct''; nothing is stated about RI}
-%Of course, selective pressures have likely not been constant over evolutionary time
-%in any of these examples,
-%but the process we describe here will still occur.
-%This model therefore may provide a neutral ``null'' model of gene network evolution, a strategy advocated for by \citet{koonin2016splendor}.
-\plr{revisit}
-Of course the basic assumptions of this model will be violated in practice (constant selective pressures, etc.), however, this model can function as a ``neutral null'' description of gene network evolution (a strategy advocated for by \citet{lynch2007frailty, fay2008evaluating, koonin2016splendor}). If this model succeeds in describing actual system evolution, it can be inferred that the mechanism underlying species formation does not require the inclusion of adaptation or changes in selection to explain the emergence of hybrid incompatibility.
 
 \paragraph{The origin of species not by means of natural selection?}
-%\plr{(or, "Neutral speciation?")}
 % this is neutral, in contrast to other models. although some folks advocate nonadaptive speciation.
 % other mechanisms also probly important
 % but this one may be strong since happens in all networks at once
-%
-%The model we develop here is perhaps a plausible mechanism for strictly \emph{neutral} speciation.
-%This is perhaps surprising, as speciation is often thought to simply be a byproduct of adaptative change \citep{schluter2009evidence, orr2004speciation}
-%%as much of the speciation literature to date
-%%has focused on positive selection and/or genetic conflict,
-%or due to genetic conflict,
-%and since previous authors have argued that neutral processes should be too slow
-%\citep{nei1983models,seehausen2014genomics}.
-%In most cases to date where the precise molecular mechanism underlying hybrid incompatibility is known,
-%the genes responsible are thought to have been subject 
-%to recent positive selection \citep{examples} 
-%and/or genetic conflict \citep{examples}.
-%\plr{get examples from \citet{orr2004speciation}}
-%%However, incompatibility due to more diffuse system breakdown
-%%(e.g., widespread misregulation \citep{coolon2014tempo} \plr{check that} \jss{I don't think this is the right citation})
-%%may be likely much more difficult to uncover.
-%% \citet{orr2004speciation} remarks that hybrid incompatibility data suggests that ``speciation results from positive Darwinian selection within species''. 
-%On the other hand, the Dobzhansky--Muller model of hybrid incompatibility 
-%is agnostic to the origin of the genetic substitutions \citep{coyne1998evolutionary} \plr{cite bateson, etc},
-%and other plausible mechanisms for the origin of Dobzhanzky-Muller incompatibilities by neutral genetic drift
-%have been proposed \citep[e.g.][]{lynch_force}.
 Although, as classically formulated, 
 the Dobzhansky-Muller model of hybrid incompatibility is agnostic to the relative importance of neutral versus selective genetic substitutions \citep{coyne1998evolutionary},
 and plausible mechanisms for the origin of Dobzhansky--Muller incompatibilities by neutral genetic drift have been proposed \citep{lynch2000origin} 
 and under stabilizing selection \citep{fierst},
 previous authors have argued that neutral processes are likely too slow to be a significant driver of speciation \citep{nei1983models,seehausen2014genomics}.
-Using simulations, \citet{porter2002speciation} demonstrated the accumulation of hybrid incompatibilities under directional, but not stabilizing selection, and \citet{palmer2009dynamics} observed the appearence of incompatibilities in populations evolving in a constant environment, only if the populations were suboptimally adapted.
+(Also note that the mechanism underlying hybrid inviability here 
+resembles the Dobzhansky-Muller model,
+but is more similar to the ``pathway model'' of \citet{lindtke2015genetic}.)
+Using simulations, \citet{porter2002speciation} demonstrated the accumulation of hybrid incompatibilities under directional, but not stabilizing selection, and \citet{palmer2009dynamics} observed the appearance of incompatibilities in populations evolving in a constant environment, only if the populations were suboptimally adapted.
 This, in light of the few known incompatibilities, has lead some to conclude that hybrid incompatibility is typically a byproduct of positive selection \citep{orr2004speciation, schluter2009evidence} 
-or a conseuqence of genetic conflict \citep{presgraves2010molecular, crespi2013conflictual}.
-In contrast, the model we develop here, suggests that even under strictly neutral conditions, system drift can lead to speciation, perhaps at a rate fast enough to play a role in species formation across the tree of life. 
-%In contrast, the model we develop here, is perhaps a plausible mechanism for strictly \emph{neutral} speciation. 
-%
-%In practice it remains unclear whether system drift or other speciation mechanisms predominate, 
-%as hybrid incompatibilities due to both selection and conflict have been uncovered and hint at general processes \citep{orr2004speciation}. 
-%While it is known that divergent selection and genetic conflict, as well as other mechanisms, can precipitate speciation, we have shown here that, surprisingly, neutral drift may also significantly drive species formation.
-Our results show that hybrids, under neutral processes, break down as a function of genetic distance, and despite the present model's myriad simplifications and assumptions, 
-it may, in part, explain the observed broad patterns of reproductive isolation, such as the observed consistent relationship between molecular divergence and genetic isolation across diverse taxa and ecologies by \citet{roux2016shedding}, and the suggestivley nonadaptive, clocklike speciation patterns observed by \citet{hedges2015tree} (as diversification is not observed to be accelerated following mass extinctions).
-While the incompatibility of any one given network within an organism may be small, we note that organisms are made up of many different networks, and that the cumulative impact of system drift across all of these may be substantial. Further, even in populations experiencing directional selection, networks underlying conserved parts of the phenotype can still experience neutral drift and harbor incompatibilities. 
+or a consequence of genetic conflict \citep{presgraves2010molecular, crespi2013conflictual}.
+In contrast, the model we develop here suggests that even under strictly neutral conditions, 
+system drift can lead to speciation, at a rate fast enough 
+to play a substantial role in species formation across the tree of life. 
+Our results show that hybrids, under neutral processes, break down as a function of genetic distance,
+and so may, in part, explain broad patterns
+such as the relationship between molecular divergence and genetic isolation 
+% across diverse taxa and ecologies 
+seen by \citet{roux2016shedding}, 
+and the clocklike speciation patterns observed by \citet{hedges2015tree}.
+% (as diversification is not observed to be accelerated following mass extinctions).
+
+All of these forces -- adaptive shifts, conflict, and network drift --
+are plausible drivers of speciation, and may even interact.
+For instance, reinforcement due to local adaptation could in some situations provide a selective pressure
+that speeds up system drift.
+It remains to be seen how the relative strengths of these forces compare.
+Furthermore,
+while the fitness consequences of incompatibility in any one given network may be small, 
+the cumulative impact of system drift across the many different networks an organism relies on may be substantial. 
+
+Of course the basic assumptions of this model will be violated in practice (constant selective pressures, etc.), however, this model can function as a ``neutral null'' description of gene network evolution (a strategy advocated for by \citet{lynch2007frailty, fay2008evaluating, koonin2016splendor}). If this model succeeds in describing actual system evolution, it can be inferred that the mechanism underlying species formation does not require the inclusion of adaptation or changes in selection to explain the emergence of hybrid incompatibility.
 
 
 \paragraph{Nonlinearity and model assumptions}
 Of course, real regulatory networks are not linear dynamical systems.
 Most notably, physiological limits put upper bounds on expression levels,
-implying saturating response curves \citep{michalis_mentin}.
+implying saturating response curves.
 It remains to be seen how well these results carry over into real systems,
 but the fact that most nonlinear systems can be locally approximated by a linear one
-suggests qualitatively similar results.
+suggests our qualitative results may hold more generally.
 Furthermore, nonidentifiability (which implies the existence of neutral directions)
-is often found in practice in moderately complex models of biological systems. \plr{need citation}
+is often found in practice in moderately complex models of biological systems. 
+\plr{Josh, add citation to sensitivity analysis}
 
-Finally, despite our model's precise separation of phenotype and kryptotype, this relationship in nature may be far more complicated as aspects of the kryptotype may be less ``hidden'' than we currently assume. For instance, attributes excluded from the phenotype as modelled here, ignore the potential energy costs associated with execessively large (non-minimal) kryptotypes, as well as the relationship between a specific network architecture and mutational robustness, as well as many other presently neglected phenomena. Despite the model's simplifications and potentially nontrivial oversights, it may still roughly reflect and shed light upon speciation patterns as they occur in nature.
+Finally, despite our model's precise separation of phenotype and kryptotype, this relationship in nature may be far more complicated as aspects of the kryptotype may be less ``hidden'' than we currently assume. For instance, attributes excluded from the phenotype as modelled here, ignore the potential energy costs associated with excessively large (non-minimal) kryptotypes, as well as the relationship between a specific network architecture and robustness to mutational, transcriptional, or environmental noise.
+% Despite the model's simplifications and potentially nontrivial oversights, it may still roughly reflect and shed light upon speciation patterns as they occur in nature.
+More precise modeling will require better mechanistic understanding not only of biological systems,
+but also the nature of selective pressures
+and genetic variation in these systems.
 
-%\paragraph{Peter: Quant gen discussion}
+\paragraph{Peter to add quant gen discussion} about non-normality.
+
 %Maybe compare to \citet{fierst}?
 %
 %Do we talk about the $G$ matrix and mutational correlation somewhere?
@@ -1337,593 +1336,26 @@ Finally, despite our model's precise separation of phenotype and kryptotype, thi
 %This has implications for genetic load also!!
 %
 %hominids; neanderthal load.
-%
+
 \section*{Acknowledgements}
 We would like to thank Sergey Nuzhdin, Stevan Arnold, Erik Lundgren, and Hossein Asgharian for valuable discussion.
+
+\plr{Josh: please fix capitalization in the references.  To do this, anything that needs to be capitalized gets put in curly braces, which tells bibtex to render the capitalization 'as-is'.}
 
 \bibliographystyle{plainnat}
 \bibliography{krefs}
 %\end{multicols}
 
 \normalsize
-
-%\section*{Examples}
-%\begin{example}[Metabolic network] \label{ex:metabolic}
-%Consider an organism that can metabolize two different sugars (present at logarithmic concentrations $u_{1}$ and $u_{2}$), 
-%with two enzymes (at log concentrations $\phi_{1}$ and $\phi_{2}$).
-%Further suppose that the second sugar is prefered,
-%%and that the organism has a regulatory network that can deploy situation specific metabolic strategy.
-%and that
-%depending on $u_{1}$ and $u_{2}$ the organism will synthesize an appropriate $\phi_{1}$ and $\phi_{2}$. 
-%Furthermore, assume this system contains at least two transcription factors, whose log concentrations are $\kappa_{1}$, $\kappa_{2}$, $\dots \kappa_{n}$.
-%Minimally such a system may have the architecture,
-%%\begin{align*}
-%%    \mathcal{S}_{\min} = \left\{ \begin{array}{ll} \dot{\kappa}(t) &= \begin{bmatrix} 0 & -1 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} \kappa_{1} \\ \kappa_{2} \end{bmatrix} (t) + \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} u_{1} \\ u_{2} \end{bmatrix} (t) \\[11pt]
-%%    \phi(t) &= \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} \kappa_{1} \\ \kappa_{2} \end{bmatrix} (t) \end{array} \right.
-%%\end{align*}
-%  $\Sys_{\min}(U) = (U \left[ \begin{smallmatrix} 0 & -1 \\ 0 & 0 \end{smallmatrix} \right] U^{-1}, U 
-%    %\left[\begin{smallmatrix} 1 & 0 \\ 0 & 1 \end{smallmatrix}\right]
-%      ,
-%     % \left[\begin{smallmatrix} 1 & 0 \\ 0 & 1 \end{smallmatrix}\right]
-%        U^{-1})$. 
-%%
-%%The impulse response of the system is,
-%%$h(t) = \left[\begin{smallmatrix} 1 & - t \\ 0 & 1 \end{smallmatrix}\right]$.
-%    We can find alternative equivalent systems by changning coordinates ($U \rightarrow U'$) or, more generally, by applying the Kalman decomposition \ref{apx:kalman}. To illustrate that phenotypic invariance does not require dimensional invariance, we apply the Kalman decomposition to $\Sys_{\min}$ to find 
-%    %This may happen if a system is co-opted from another, or may be a consequence of gene duplication and deletion. 
-%  $\Sys(\small D_{1-3},V) \! =  \! \left( \! \begin{array}{ll}
-%     V \! \left[\begin{smallmatrix} D_{1} & D_{2} \\ 0 & A \end{smallmatrix}\right] \! V^{-1}, V \! \left[\begin{smallmatrix} D_{3} \\ B \end{smallmatrix}\right], \left[\begin{smallmatrix} 0 & C \end{smallmatrix}\right] \! V^{-1} \end{array} \! \right)
-%$, both of which are in $\allS$
-%%  \begin{align*}
-%%    \Sys(X_{1-3},V) = \left( \begin{array}{ll}
-%%     V \left[\begin{smallmatrix} X_{1} & X_{2} \\ 0 & A_{\min} \end{smallmatrix}\right] V^{-1}, V \left[\begin{smallmatrix} X_{3} \\ B_{\min} \end{smallmatrix}\right], \left[\begin{smallmatrix} 0 & C_{\min} \end{smallmatrix}\right] V^{-1} \end{array} \right)
-%%    \end{align*}
-%  ($V$ can be any $4$-dimensional and invertible matrix, $D_{1-3} \in \R^{2 \times 2}$, and $(A,B,C) \in \Sys_{\min}$).
-%%So for example, some system can be wired as follows, and still be input-output equivalent to the minimal metabolic system $\mathcal{S}_{\min}$:
-%% \begin{align*}
-%%   A' &= \begin{bmatrix}
-%%     1.6923  &  1.5385 &  -2.6154 &  -2 \\
-%%     0.8462  &  0.7692 &  -1.3077 &  -1 \\
-%%     1.2692  &  1.1538 &  -1.9615 &  -1.5 \\
-%%     0.4231  &  0.3846 &  -0.6538 &  -0.5
-%%   \end{bmatrix} \\
-%%   B' &= \begin{bmatrix} 4 & 4 \\ 2 & 2 \\ 3 & 3 \\ 1 & 3 \end{bmatrix} \\
-%%     C' &= \begin{bmatrix}  0.2692  &  0.1538  &  0.0385 &  -0.5 \\
-%%     -0.4231 &  -0.3846 &   0.6538  &  0.5 \end{bmatrix}
-%% \end{align*}
-%%
-%%Despite the present example consisting of a minimal $2 \times 2$ and a non-minimal $4 \times 4$ system, 
-%%any $m$-dimensional system can be constructed using this method 
-%%-- applying a change of coordinates to the Kalman decomposition 
-%%-- to construct a mechanistically different system with identical phenotypic dynamics. 
-%%
-%%When applying the Kalman decomposition to real biological networks, one may have to restrict the free parameters, as physiology and biochemistry might not allow all mathematically possible coefficients. We note that as there are so many degrees of freedom, it may be difficult to infer system function solely from structure. 
-%\end{example}
-
 \appendix
-
-%\section{Kalman Decomposition} \label{apx:kalman}
-%\begin{definition}[Phenotypic equivalence of systems]
-%    Let $(\kappa(t),\phi(t))$ and $(\bar \kappa(t),\bar \phi(t))$ be the solutions to \eqref{eqn:lti_system}
-%    with coefficient matrices $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ respectively,
-%    and both $\kappa(0)$ and $\bar \kappa(0)$ are zero. 
-%    The systems defined by $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ are
-%    \textbf{phenotypically equivalent} 
-%    if
-%    \begin{align*}
-%        \phi(t) = \bar \phi(t) \qquad \text{for all} \; t \ge 0.
-%    \end{align*}
-%    Equivalently, this occurs if and only if
-%    \begin{align*}
-%        h(t) = \bar h(t)  \qquad \text{for all} \; t \ge 0,
-%    \end{align*}
-%    where $h$ and $\bar h$ are the impulse responses of the two systems.
-%\end{definition}
-%
-%One way to find other systems equivalent to a given one
-%is by change of coordinates (``algebraic equivalence''):
-%if $V$ is an invertible matrix, then the systems $(A,B,C)$ and $(VAV^{-1},VB,CV^{-1})$
-%have the same dynamics because their transfer functions are equal:
-%\begin{align*}
-%    CV^{-1}( zI - VAV^{-1})^{-1}VB
-%    =
-%    CV^{-1}V( zI - A)^{-1}V^{-1}VB
-%    =
-%    C( zI - A)^{-1}B .
-%\end{align*}
-%However, the converse is not necessarily true: 
-%systems can have identical transfer functions without being changes of coordinates of each other.
-%In fact, systems with identical transfer functions can involve interactions between different
-%numbers of molecular species.
-%
-%The set of all systems phenotypically equivalent to a given system $(A,B,C)$ 
-%is elegantly described using the Kalman decomposition,
-%which also clarifies the system dynamics? tells us a lot about how it works? \plr{or something}
-%To motivate this, first note that the input $u(t)$ only directly pushes the system
-%in directions lying in the span of the columns of $B$.
-%As a result, different combinations of input can 
-%move the system in any direction that lies in the \emph{reachable subspace},
-%which we denote by $\reachable$,
-%and is defined to be the closure of $\spn(B)$ under applying $A$
-%(or equivalently, the span of $B, AB, A^2B, \ldots A^{n-1}B$).
-%Analogously to this, we define
-%the \emph{observable subspace}, $\mathcal{O}$,
-%to be the closure of $\spn(C^T)$ under applying $A$.
-%(Or: $\unobservable$ is the largest $A$-invariant subspace
-%contained in the null space of $C$;
-%and $\reachable$ is the largest $A$-invariant subspace contained in the image of $B$.)
-%
-%If we define
-%\begin{enumerate}
-%    \item The columns of $P_\rno$ are an orthonormal basis for $\reachable \cap \unobservable$.
-%    \item The columns of $P_\ro$ are an orthonormal basis of
-%        the complement of $\reachable \cap \unobservable$ in $\reachable$.
-%    \item The columns of $P_\nro$ are an orthonormal basis of
-%        the complement of $\reachable \cap \unobservable$ in $\unobservable$.
-%    \item The columns of $P_\nrno$ are an orthonormal basis of
-%        the remainder of $\R^n$.
-%\end{enumerate}
-%If we then define
-%\begin{align*}
-%    P &= 
-%    \left[ \begin{array}{c|c|c|c}
-%        P_\rno & P_\ro & P_\nro & P_\nrno
-%    \end{array} \right] ,
-%\end{align*}
-%then
-%\begin{align*}
-%    P^T P
-%    &=
-%    \left[ \begin{array}{c|c|c|c}
-%        I & 0 & 0 & 0 \\
-%        \hline
-%        0 & I & U & 0 \\
-%        \hline
-%        0 & V & I & 0 \\
-%        \hline
-%        0 & 0 & 0 & I 
-%    \end{array} \right] .
-%\end{align*}
-%\plr{Check this.  Can we get $U=V=0$?}
-%
-%The following theorem can be found in SOME REFERENCE.
-%
-%\begin{theorem}[Kalman decomposition] \label{thm:kalman}
-%        For any system $(A,B,C)$ with corresponding Kalman basis matrix $P$,
-%        the transformed system $(PAP^{-1},PB,CP^{-1})$  has the following form:
-%        \begin{align*}
-%            \widehat A = PAP^{-1}
-%            &=
-%            \left[ \begin{array}{cccc}
-%                A_{\rno} & A_{\rno,\ro} & A_{\rno,\nrno} & A_{\rno,\nro} \\
-%                0 & A_{\ro} & 0 & A_{\ro,\nro} \\
-%                0 & 0 & A_{\nrno} & A_{\nrno,\nro} \\
-%                0 & 0 & 0 & A_{\nro}
-%            \end{array} \right] ,
-%        \end{align*}
-%        and
-%        \begin{align*}
-%            \widehat B = PB
-%            &=
-%            \left[ \begin{array}{cccc}
-%                B_{\rno} \\
-%                B_{\ro} \\
-%                0 \\
-%                0 
-%            \end{array} \right] ,
-%        \end{align*}
-%        and
-%        \begin{align*}
-%            \widehat C = CP^{-1}
-%            &=
-%            \left[ \begin{array}{cccc}
-%                0 & C_{\ro} & C_{\nrno} & 0 
-%            \end{array} \right] .
-%        \end{align*}
-%        The transfer function of both systems is given by
-%        \begin{align*}
-%            H(z) = C_{\ro} ( zI - A_{\ro} )^{-1} B_{\ro} .
-%        \end{align*}
-%\end{theorem}
-%
-%In the latter case, we say that the system is \emph{minimal} 
-%-- there is no equivalent system with a smaller number of species.
-%Note that this says that any two equivalent minimal systems
-%are changes of basis of each other.
-%
-%Since any system can be put into this form,
-%and once in this form, its transfer function is determined only by 
-%$C_{\ro}$, $A_{\ro}$, and $B_\ro$,
-%therefore, the set of all equivalent systems are parameterized by
-%the dimension $n$,
-%the choice of basis ($P$),
-%the remaining submatrices in $\widehat A$, $\widehat B$, and $\widehat C$
-%(which are unconstrained),
-%and a invertible transformation of $\spn(P_{\ro})$, which we call $T_\ro$.
-%
-%\begin{theorem}[Parameterization of equivalent systems]
-%    Let $(A,B,C)$ be a minimal system.
-%    \begin{itemize}
-%        \item[(a)]
-%            Every equivalent system is of the form given in Theorem \ref{thm:kalman},
-%            i.e., can be specified by choosing a dimension, $n$;
-%            submatrices in $\widehat A$, $\widehat B$, and $\widehat C$ 
-%            except for $A_\ro=A$, $B_\ro=B$, and $C_\ro=C$;
-%            and choosing an invertible matrix $P$.
-%
-%        \item[(b)]
-%            \plr{conjecture:}
-%            The parameterization is unique
-%            if $P$ is furthermore chosen so that 
-%            each $P_x$ other than $P_\ro$ is a projection matrix,
-%            and that 
-%            \begin{align*}
-%                0
-%                =
-%                P_x^T P_y
-%            \end{align*}
-%            for all $(x,y)$ except $(\ro,\nrno)$.
-%
-%    \end{itemize} 
-%\end{theorem}
-%
-%\plr{Another way of saying it: pick the $\reachable$ and $\unobservable$ subspaces,
-%that must intersect in something of the minimal dimension;
-%then let $P$ be the appropriate basis?}
-%
-%In some situations we may be interested in only ``network rewiring'',
-%where $A$ changes while $B$ and $C$ do not.
-%For instance, 
-%if all non-regulatory functions of each molecule are strongly constrained,
-%then $C$ cannot change.
-%Likewise, if responses of each molecule to the external inputs are not changed by evolution,
-%then $B$ does not change.
-%
-%
-%\subsection{Neutral directions from the Kalman decomposition}
-%
-%The Kalman decomposition above says that any system $(A,B,C)$ can be decomposed into
-%$(P, \hat A, \hat B, \hat C)$ so that
-%$$\begin{aligned}
-%    A &= P^{-1} \hat A P  \\
-%    B &= P^{-1} \hat B  \\
-%    C &= \hat C P ,
-%\end{aligned}$$
-%and we know precisely how we can change these to preserve the transfer function:
-%\begin{enumerate}
-%    \item $P \to P + \epsilon Q$ as long as the result is still invertible,
-%    \item $\hat A \to A + \epsilon X$ as long as $X$ is zero in the correct places,
-%    \item $\hat B \to B + \epsilon Y$ as long as $Y$ is zero in the correct places,
-%    \item $\hat C \to C + \epsilon Y$ as long as $Z$ is zero in the correct places.
-%\end{enumerate}
-%By taking $\epsilon \to 0$, these tell us the local directions we can move a system $(A,B,C)$ in.
-%All statements below are up to first order in $\epsilon$,
-%omitting terms of order $\epsilon^2$.
-%
-%First, since $(P + \epsilon Q)^{-1} = P^{-1} + \epsilon P^{-1} Q P^{-1}$,
-%modifying $P \to P + \epsilon Q$ changes
-%$$\begin{aligned}
-%    A 
-%        &\to A + \epsilon P^{-1} \hat A Q - \epsilon P^{-1} Q P^{-1} \hat A P \\
-%        &= A + \epsilon \left(A P^{-1} Q - P^{-1} Q A\right) , \\
-%    B
-%        &\to B - \epsilon P^{-1} Q B \\
-%    C
-%        &\to C + \epsilon C P^{-1} Q .
-%\end{aligned}$$
-%Since $P$ is invertible and $Q$ can be anything (if $\epsilon$ is small enough),
-%this allows changes in the direction of an arbitrary $W$:
-%$$\begin{aligned}
-%    A 
-%        &= A + \epsilon \left(A W - W A\right) , \\
-%    B
-%        &\to B - \epsilon W B \\
-%    C
-%        &\to C + \epsilon C W .
-%\end{aligned}$$
-%
-%Then, $\hat A \to A + \epsilon X$  does
-%$$\begin{aligned}
-%    A \to A + \epsilon P^{-1} X P 
-%\end{aligned}$$
-%and $\hat B \to B + \epsilon Y$ does
-%$$\begin{aligned}
-%    B \to B + \epsilon P^{-1} Y
-%\end{aligned}$$
-%and $\hat C \to C + \epsilon Z$ does
-%$$\begin{aligned}
-%    C \to C + \epsilon Z P .
-%\end{aligned}$$
-%These degrees of freedom look like they depend on $P$, 
-%which is not unique,
-%but for any two choices of $P$ there are corresponding choices of $X$
-%that give the same actual change in $A$ (and likewise for $Y$ and $Z$).
-%
-%
-%Therefore, this gives us an upper bound on the number of degrees of freedom,
-%in terms of the dimensions of the blocks in the Kalman decomposition ($n_\ro$ etc)
-%and the dimensions of $B$ and $C$ ($n_B$ and $n_C$ respectively):
-%namely, for $W$, $X$, $Y$, and $Z$ respectively:
-%$$\begin{aligned}
-%    n^2 
-%    + (n_{\rno} + n_\ro n_\nro + n_\nrno(n_\nrno + n_\nro) + n_\nro^2)
-%    + n_B n_\rno
-%    + n_C n_\nrno .
-%\end{aligned}$$
-%However, some of these may be redundant.
-%For instance, changing $P$ in the direction of 
-%a $Q$ that satisfies both $A P^{-1} Q = P^{-1} Q A$ and $C P^{-1} Q = 0$
-%is equivalent to changing $B$ by $Y = QB$.
-%
-%\section{Meiotic recombination in linear systems}\label{apx:recombination}
-%
-%  Recombination is performed by taking two analogous system components from $\Sys$ and $\Sys'$ and randomly swapping rows or columns.
-%  \emph{E.g.} gamete systems $(A'', B'', C'')$, produced by the diploid $\{\Sys, \Sys'\}$, are formed by recombining (randomly swapping rows or columns) between two, possibly distinct, systems $\Sys = (A,B,C)$ and $\Sys' = (A', B', C')$ such that,
-%  \begin{align*}
-%    \Sys'' = \left( \begin{array}{ll}
-%    A'' &= MA + (I-M)A' , \\
-%    B'' &= MB + (I-M)B' , \\
-%    C'' &= CM + C'(I-M)
-%    \end{array} \right)
-%  \end{align*}
-%  where $M$ is a diagonal matrix where each diagonal element is a Bernoulli random variable ($M_{ii} = 0$ or $1$ with equal probability, and $M_{ij}=0$ if $i \neq j$). If systems are different dimensions the smaller system elements can be augmented with $0$s (\emph{e.g.} $\left[ \begin{smallmatrix} A & 0 \\ 0 & 0 \end{smallmatrix} \right], \left[ \begin{smallmatrix} B \\ 0 \end{smallmatrix} \right], \left[ \begin{smallmatrix} C & 0 \end{smallmatrix}\right]$).
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Genetic drift with a multivariate trait}
-\label{ss:quant_gen}
-
-For completeness, we provide a brief exposition of how a population 
-evolves due to genetic drift
-with a quantitative genetics model,
-as in \citet{lande1981models} or \citet{hansen1996translating}.
-These do not directly model underlying genetic basis,
-but developing a more accurate model is beyond the scope of this paper.
-
-Suppose that the population is distributed in trait space
-as a Gaussian with covariance matrix $\Sigma$ and mean $\mu$,
-whose density we write as $f(\cdot;\Sigma,\mu)$.
-Selection has the effect of multiplying this density by the fitness function and renormalizing,
-so that if expected fitness of $x$ is proportional to $\exp(-\|Lx\|^2/2)$,
-then the distribution post-selection
-has density at $x$ proportional to $f(x;\Sigma,\mu) \exp(-\|Lx\|^2/2)$.
-By the computation below (``Completing the square''),
-the result is a Gaussian distribution
-with covariance matrix $(\Sigma^{-1} + L^T L)^{-1}$ 
-and mean $(\Sigma^{-1}+L^T L)^{-1} \Sigma^{-1} \mu$.
-% Importantly, if $U$ is not invertible, then by $U^{-1}$ 
-% we mean $(U^T U)^{-1} U^T$, Moore-Penrose pseudoinverse of $U$,
-% so that $U U^{-1}$ is equal to the projection matrix
-% onto the span of the columns of $U$.
-
-After selection, we have reproduction:
-suppose this occurs as in the infinitesimal model \citep{infinitesimal},
-so that each offspring of parents with traits $x$ and $y$
-is drawn independently from a Gaussian distribution 
-with mean $(x+y)/2$ and covariance matrix $R$.
-Here, $R$ is the contribution of ``segregation variance''.
-If $\widetilde \Sigma = (\Sigma^{-1} + L^T L)^{-1}$ 
-is the covariance matrix of the parents post-selection,
-then the distribution of offspring will again be Gaussian,
-with mean equal to that of the parents
-and covariance matrix $\widetilde \Sigma/2 + R$.
-
-In summary, a generation under this model modifies the mean ($\mu$)
-and covariance matrix ($\Sigma$) of a population as follows:
-\begin{align*}
-    \mu &\mapsto \mu' = (\Sigma^{-1}+L^T L)^{-1} \Sigma^{-1} \mu \\
-    \Sigma &\mapsto \Sigma' = \frac{1}{2} (\Sigma^{-1} + L^T L)^{-1} + R .
-\end{align*}
-What measures are stable under this transformation?
-The condition $\mu = \mu'$ reduces to $\Sigma L^T L \mu = 0$;
-if we assume $R$ and therefore $\Sigma$ are of full rank,
-then this happens if and only if $\mu$ is in the null space of $L$,
-i.e., if $\mu$ lies in a neutral direction.
-The condition $\Sigma' = \Sigma$ can also be solved,
-at least numerically.
-After rearrangement, it reduces to
-$\Sigma L^T L \Sigma + (I/2 - R L^T L) \Sigma = R$.
-We can find a more explicit description
-if we assume that $x^T L^T L x = \sum_{i=1}^k x_i^2$,
-i.e., that selection only cares about the first $k$ coordinates,
-and then with no interactions between traits.
-If so, the condition $\Sigma' = \Sigma$
-can be written in block form as
-\begin{align*}
-    \begin{bmatrix}
-        \Sigma_{11}^2 + (I/2 - R_{11}) \Sigma_{11}
-        & \Sigma_{11} \Sigma_{12} + (I/2 - R_{11})\Sigma_{12} \\
-        \Sigma_{12}^T \Sigma_{11} + \Sigma_{12}^T/2 - R_{12}^T \Sigma_{11}
-        & \Sigma_{22} - R_{12}^T \Sigma_{12} 
-    \end{bmatrix}
-    &=
-    \begin{bmatrix}
-        R_{11} & R_{12} \\
-        R_{12}^T & R_{22}
-    \end{bmatrix} .
-\end{align*}
-The first equation, $\Sigma_{11}^2 + (I/2 - R_{11}) \Sigma_{11} = R_{11}$,
-can be solved with the quadratic formula: 
-$$\Sigma_{11} = (R_{11} - I/2 + Q)/2$$
-for any $Q$ that commutes with $R_{11}$
-and is a solution to $Q^2 = (R_{11} - I/2)^2 + 4 R_{11}$.
-Since we need $\Sigma$ to be positive definite,
-we take the solution with positive eigenvalues.
-Given $\Sigma_{11}$, the remaining components are
-\begin{align*}
-    \Sigma_{12} 
-    &= 
-    \left( \Sigma_{11} + I/2 - R_{11} \right)^{-1} R_{12} \\
-    \Sigma_{22}
-    &=
-    R_{12}^T \Sigma_{12} + R_{22} .
-\end{align*}
-Importantly, the mean $\mu$ does not affect 
-either how the covariance matrix moves,
-or its stable shape.
-
-Above we have described the \emph{expected} motion of the mean and covariance..
-However, random resampling will introduce noise.
-Suppose that a population of $N$ individuals
-behaves approximately as described above.
-By the above,
-we may expect that the covariance matrix stays close to a constant value $\Sigma$,
-computed from $R$ and $L$ as above,
-so that we need only consider motion of the mean, $\mu$.
-Since we take a sample of size $N$ to construct the next generation,
-the next generation's mean is drawn from a Gaussian distribution with mean $\mu'$
-and covariance matrix $\Sigma/N$.
-Defining $\Gamma = (I - (I + \Sigma L^T L)^{-1})$,
-this can be written as
-\begin{align*}
-    \mu' - \mu = \Gamma \mu + \epsilon/\sqrt{N} ,
-\end{align*}
-where $\epsilon$ is a multivariate Gaussian with mean zero and covariance matrix $\Sigma$.
-Let $\mu(k)$ denote the mean in the $k^\text{th}$ generation,
-and suppose that $\mu$ differs from optimal by something of order $1/N$:
-if $\nu(t) = N \mu(tN)$,
-then the previous equation implies that as $N \to \infty$, 
-in the limit $\nu$ solves the It\^{o} equation
-\begin{align*}
-    d \nu(t) = \Gamma \nu(t) dt + \Sigma^{1/2} dW(t) ,
-\end{align*}
-where now $W(t)$ is a multivariate white noise.
-This has an explicit solution as a multivariate Ornstein-Uhlenbeck process:
-\begin{align*}
-    \nu(t) = e^{-t \Gamma} \nu_0 + \int_0^t e^{-(t-s) \Gamma} \Sigma^{1/2} dW(s).
-\end{align*}
-% Note that after some algebra, $\Gamma = \Sigma L^T L (I - \Sigma L^T L)^{-1}$.
-The asymptotic variance of this process in the direction $z$ is
-\begin{align} \label{eqn:limiting_cov}
-    \lim_{t \to \infty} \var[\nu(t) \cdot z]
-    &=
-    \int_0^\infty z^T e^{-s \Gamma} \Sigma e^{-s \Gamma} z ds ,
-\end{align}
-which is infinite iff $\Gamma z = 0$,
-which occurs iff $Lz=0$.
-In other words, population mean trait values lie away from the optimal set
-by a Gaussian displacement of order $1/N$
-with a covariance matrix given by equation \eqref{eqn:limiting_cov}.
-
-\plri{Now write what this means intuitively.}
-
-\paragraph{Completing the square}
-First note that if $A$ is symmetric,
-\begin{align*}
-    (x-y)^T A (x-y)
-    &=
-    x^T A \left( x - 2y \right) + y^T A y ,
-\end{align*}
-and so if $B$ is also symmetric and $A+B$ is invertible,
-\begin{align*}
-    (x-y)^T A (x-y) + x^T B x
-    &=
-    x^T (A + B) \left( x - 2 (A + B)^{-1} A y \right) + y^T A y \\
-    &=
-    \left( x - (A + B)^{-1} A y \right)^T
-    (A + B)
-    \left( x - (A + B)^{-1} A y \right) \\
-    &\qquad{}
-    + y^T A y - y^T A^T (A+B)^{-1} A y .
-\end{align*}
-Therefore, 
-by substituting $A=\Sigma^{-1}$ and $B=L^T L$,
-\begin{align*}
-    \frac{ f(x;\Sigma,y) \exp(-x^T L^T L x / 2)}{\int f(z;\Sigma,y) \exp(-z^T L^T L z / 2) dz}
-    &=
-    f(x; (\Sigma^{-1} + L^T L)^{-1}, (\Sigma^{-1}+L^T L)^{-1} \Sigma^{-1} y) .
-\end{align*}
-
-%%%%%%%%%%%
-\subsection*{Evolution of segregation covariance}
-\label{apx:seg_cov}
-
-The description above does not completely describe how two diverging populations interact,
-since the amount of \emph{segregation variance}, quantified by $R$,
-will not stay constant.
-To get an idea of how this might change,
-suppose that a multivariate trait is determined by $L$ unlinked, biallelic loci,
-and that the $i^\mathrm{th}$ locus has two alleles with additive effects $\pm x_i$,
-so that begin homozygous for the $+$ allele contributes $+2x_i$ to the trait.
-For simplicity, we will neglect the effects of selection.
-\plri{fixup the below to be actually multivariate}
-If the $+$ allele at locus $i$ is at frequency $p_i$ in a population,
-then the mean and genetic variance of the trait in a diploid population with random mating is
-\plr{the mean should be $\sum_i x_i (2p_i-1)$}
-\begin{align*}
-    m &= 2 \sum_i p_i x_i \\
-    s^2 &= 2 \sum_i p_i (1-p_i) x_i^2 .
-\end{align*}
-
-
-Segregation variance between two parents depends on the loci at which either are heterozygous,
-and each locus contributes independently
-since alleles are additive.
-If the alleles are at Hardy-Weinberg proportions,
-then since segregation is a fair coin flip, a heterozygous locus contributes $x_i^2/4$ to the variance,
-and so the \emph{mean} segregation variance, averaging across parents, is
-% two parents, prob 2p(1-p) for prob the locus is heterozygous, variance 0.5(1-0.5)x^2.
-\begin{align*}
-    R_0(p) = \frac{1}{2} \sum_i p_i (1-p_i) x_i^2 .
-\end{align*}
-
-On the other hand,
-if the second parent came from a distinct population
-with frequencies $q_i$
-(an $F_1$ hybrid),
-this would be
-\begin{align*}
-    R_1(p,q) &= \frac{1}{4} \sum_i p_i^2 (1-p_i)^2 x_i^2 
-                + \frac{1}{4} \sum_i q_i^2 (1-q_i)^2 x_i^2 \\
-                &= (R_0(p) + R_0(q))/2 .
-\end{align*}
-If we assume that the populations are at equilibrium, $R_0(p) \approx R_0(q)$,
-and so $R_1(p,q) \approx R_0(p)$.
-
-Now consider an $F_2$ hybrid, where both parents are $F_1$
-and so each heterozygous at locus $i$ with probability $p_i (1-q_i) + (1-p_i) q_i$.
-Then
-\begin{align*}
-    R_2(p,q) &= \frac{1}{4} \sum_i \left(p_i (1-q_i) + (1-p_i) q_i \right) x_i^2  .
-\end{align*}
-Suppose that the two populations are slightly drifted from each other,
-with frequency difference $p_i-q_i = 2\epsilon_i$.
-Then,
-\begin{align*}
-    p (1-q) + p (1-q)
-    &=
-    (u+\epsilon) (1-u+\epsilon) + (u-\epsilon) (1-u-\epsilon) \\
-    &=
-    2 u (1-u)
-    % + \epsilon (u + (1-u) - u - (1-u))
-    + 2 \epsilon^2 .
-\end{align*}
-If the frequencies have evolved neutrally in unconnected, Wright-Fisher populations 
-of effective size $N$ for $t$ generations from a common ancestor with allele frequency $u$,
-then $\epsilon$ has mean zero and variance roughly $u (1-u) t/N$.
-Still assuming the populations are at stationarity,
-so that $R_0$ is constant between the two,
-and taking the frequencies $p_i$ as a proxy for the ancestral frequencies $u_i$,
-this implies that we expect
-\begin{align*}
-    R_2 
-    &\approx 
-    R_0 + \frac{1}{2} \sum_i p_i (1-p_i) x_i^2 t/N \\
-    &=
-    \left( 1 + \frac{t}{N} \right) R_0 .
-\end{align*}
-On the other hand, the expected squared difference in trait \emph{means} here is
-\begin{align} \label{eqn:var_dx}
-    4 \sum_i p_i (1-p_i) x_i^2 t / N = 8 R_0 t /N .
-\end{align}
-This implies that under this model,
-segregation variance in $F_2$s between two populations
-is roughly increased by a factor of $1/8$ of the difference between their means.
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Away from the optimum}
+\section{Local expansion of the fitness surface}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Away from the optimum}
 \label{apx:away_from_opt}
 
 Let two points on $\allS$ be $x_1$ and $x_2$, let $\bar x = (x_1+x_2)/2$, and let $z=(x_2 - x_1)/2$.
@@ -1945,59 +1377,8 @@ adding together the two equations above and dividing by two gets that
     &= \optph - \frac{3}{2} z^T \grad^2  D(x_1) z + O(\|z\|^3) .
 \end{align*}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Gaussian load}
-\label{apx:gauss_load}
-
-Suppose that a population has a Gaussian distribution in $d$-dimensional trait space
-with mean $\mu$ and covariance matrix $\Sigma$,
-and that fitness of an individual at $x$ is $\exp(-\|Lx\|^2/2)$.
-Then, completing the square as above with $A=\Sigma^{-1}$, $y=\mu$, and $B=L^T L$,
-and defining $Q = (\Sigma^{-1} + L^T L)^{-1}$,
-\begin{align*}
-    &
-    \frac{1}{\sqrt{2 \pi}^n \det(\Sigma)^{1/2}} 
-        \int e^{-\frac{1}{2} x^T \Sigma^{-1} x} e^{-\frac{1}{2} x^T L^T L x} dx \\
-    &\qquad =
-    \frac{1}{\sqrt{2 \pi}^n \det(\Sigma)^{1/2}} 
-        \int e^{-\frac{1}{2}(x-Q \Sigma^{-1} \mu)^T Q^{-1} (x-Q \Sigma^{-1} \mu)} dx 
-        \\ &\qquad \qquad {}
-        \times e^{\mu^T \left( I - \Sigma^{-1} Q \right) \Sigma^{-1} \mu} \\
-    &\qquad =
-    \sqrt{\frac{\det(Q)}{\det(\Sigma)}}
-        \exp\left\{\mu^T \left( I - \Sigma^{-1} Q \right) \Sigma^{-1} \mu\right\} \\
-    &\qquad =
-    \sqrt{\frac{1}{\det(\Sigma)\det(\Sigma^{-1}+L^TL)}}
-        \exp\left\{\mu^T \left( I - (I + L^T L \Sigma)^{-1} \right) \Sigma^{-1} \mu\right\} \\
-\end{align*}
-
-Now suppose that $\Sigma = \sigma^2 I$ and $L = I/\gamma$.
-Then,
-\begin{align*}
-    \sqrt{\frac{1}{\det(\Sigma)\det(\Sigma^{-1}+L^TL)}}
-    &=
-    \sqrt{\frac{1}{\sigma^{2d} (1/\sigma^2 + 1/\gamma^2)^d}} \\
-    &=
-    \frac{1}{(1+ \left(\sigma/\gamma\right)^2)^{d/2}} .
-\end{align*}
-Also, 
-\begin{align*}
-        \left( I - (I + L^T L \Sigma)^{-1} \right) \Sigma^{-1} 
-        &=
-        \frac{1}{\sigma^2}\left( 1 - (1 + (\sigma/\gamma)^2)^{-1} \right) I \\
-        &=
-        \frac{1}{\gamma^2}\frac{1}{(1 + (\sigma/\gamma)^2)} I \\
-\end{align*}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Differentiating the fitness function}
+\subsection{Differentiating the fitness function}
 \label{apx:H_calc}
-
-
-\plr{Add refs to sensitivity analysis.}
 
 Suppose that $\rho(t) \ge 0$ is a weighting function on $[0,\infty)$
 so that fitness is a function of $L^2(\rho)$ distance of the impulse response from optimal.
@@ -2248,65 +1629,359 @@ and finally in $A$ and $C$:
 \end{equation}
 
 
-%\section{Hybrid Vigor: Unit Circle approach}
-%
-%If a fitness optimum is at the origin $(0,0) \in \R^{2}$,
-%%and two populations have drifted away from the optimum by an distance of $r$, then the expected value of their $F_1$ hybrids is,
-%%\begin{align*}
-%%  \mathbb{E}\left[ \left\lVert \frac{1}{2} ((x_1,y_1) + (x_2,y_2))  \right\rVert \right] = \\
-%%  \frac{\sqrt{2}}{8}\left(\sqrt{3\, r^2 - {\sin^{-1}\!\left(r\right)}^2 + r^4 - 2\, r\, \sin^{-1}\!\left(r\right)\, \sqrt{1 - r^2}} + \sqrt{{\sin^{-1}\!\left(r\right)}^2 + 5\, r^2 - r^4 + 2\, r\, \sin^{-1}\!\left(r\right)\, \sqrt{1 - r^2}}\right)
-%%\end{align*} 
-%%If $r < \sim 5.5$ then we will observe hybrid vigor, however if $r$ is sufficiently large, the hybrids will have lower fitness, on average. 
-%and two populations have drifted away from the optimum by a distance of $r=1$,
-%then $F_1$s will have an average fitness of,
-%  \begin{align*}
-%    \mathbb{E} \left[ d(F_1) \right] &= \int_{0}^{2\pi} \frac{1}{4 \pi} \left\lVert (1,0) + (\cos\theta,\sin\theta) \right\rVert d\theta \\
-%    &= \frac{2}{\pi}
-%  \end{align*}
-%  %\begin{align*}
-%  %  \mathbb{E} \left[ d(F_1)] \right] &= \int_{0}^{2\pi} \int_{0}^{2\pi} \frac{1}{8 \pi^{2}}\left\lVert  \left( \left( \cos(\theta_1), \sin(\theta_1) \right) , \left( \cos(\theta_2), \sin(\theta_2) \right) \right) \right\rVert d\theta_1 d\theta_2 \\
-%  %  &= \cos\left(\frac{\pi}{2}\right) = \frac{\sqrt{2}}{2}
-%  %\end{align*}
-%%  \begin{align*}
-%%    \mathbb{E} \left[ d(F_1)] \right] &\approx \sqrt{\int_{0}^{2\pi} \frac{1}{4 \pi}\left\lVert  \left( \cos(\pi), \sin(\pi) \right) , \left( \cos(\theta), \sin(\theta) \right) \right\rVert^2 d\theta} \\
-%%    &= \sqrt{\frac{1}{2}}
-%%  \end{align*}
-%%Haploid $F_2$s will, on average, be a distance of $1$ half of the time, a distance of $0$ a quarter of the time, and a distance of $\sqrt{2}$ a quarter of the time. 
-%
-%  \begin{align*}
-%    \mathbb{E} \left[ d(F_2) \right] &= \int_{0}^{2 \pi} \int_{0}^{2 \pi} \frac{1}{4 \pi^{2}} \sum_{i}^{2} \sum_{j}^{2} \sum_{k}^{2} \sum_{l}^{2} \frac{1}{32} \left\lVert \left( \cos(\theta_i) + \cos(\theta_k), \sin(\theta_j) + \sin(\theta_l) \right) \right\rVert d\theta_1 d\theta_2 \\ &= 0.6705
-%  \end{align*}
-%
-%  \begin{align*}
-%    \mathbb{E}\left[ d(F_{2_{\text{hap}}}) \right] &= \sqrt{\int_{0}^{2 \pi} \int_{0}^{2 \pi} \frac{1}{8 \pi^{2}} \cos(\theta_1)^{2} + \sin(\theta_2)^{2} d\theta_1 d\theta_2} \\
-%    &= \cos \left( \frac{\pi}{2} \right) = \frac{\sqrt{2}}{2}
-%  \end{align*}
-%
-%%  There are $16$ diploid $F_2$s, two have $F_0$ genotypes, two have $F_1$ genotpyes, eight contrain one $F_0$ and one $F_2$ haploid genotype (referred to as $H$; $\fit(H) = \sqrt{\frac{3}{8}}$), two are homozygous for an $F_2$ genotype (referred to as $W$; $\fit(W) = \frac{\sqrt{2}}{2}$), and finally two are heterozygous $F_2$s (referred to as $L$; $\fit(L) = \frac{1}{2}$.)
-%  %The expected average distance of diploid $F_2$s is $0.6705$. 
-%
-%  \section{Hybrid Vigor: Probability}
-%
-%  \begin{align*}
-%    X &\sim \mathcal{N} (x, \sigma^{2}) \\
-%    Y &\sim \mathcal{N} (y, \sigma^{2}) \\
-%    x &\sim \mathcal{N} (0, \eta^{2}) \\
-%    y &\sim \mathcal{N}(0, \eta^{2}) \\
-%    Z &= \frac{X+Y}{2} \rightarrow \mathbb{E} \left[ \lvert z \rvert^{2} \right] \\
-%    Z &= \frac{x+y+U+V}{2} \\
-%    \mathbb{E} \left[ \lvert X \rvert^{2} \right] &= \mathbb{E} \left[ \lvert x + U \rvert^{2} \right] = \mathbb{E} \left[ (x+U)^{T} (x+U) \right] \\
-%    &= \mathbb{E} \left[ x^{T}x + U^{T}x + x^{T}U + U^{T}T \right] \\
-%    &= \mathbb{E} \left[x^{T}x\right] + \mathbb{E} \left[U^{T}U\right] \\
-%    &= d\eta^{2} + d\sigma^{2} \qquad d=\text{dimension} \\
-%    X &\sim \mathcal{N}(0, \sigma^{2} + \eta^{2}) \\
-%    Z &\sim \mathcal{N}\left(0, \frac{1}{4}(2 \eta^{2} + 2\sigma^{2})\right) \\
-%    &\rightarrow \mathbb{E}\left[\lvert Z \rvert^{2} \right] \\
-%    &= \frac{d}{2} \left(\eta^{2} + \sigma^{2} \right) \\
-%    &= \frac{1}{2} \mathbb{E} \left[ \lvert X \rvert^{2} \right]
-%  \end{align*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Genetic drift with a multivariate trait}
+\label{ss:quant_gen}
+
+For completeness, we provide a brief exposition of how a population 
+evolves due to genetic drift
+with a quantitative genetics model,
+as in \citet{lande1981models} or \citet{hansen1996translating}.
+These do not directly model underlying genetic basis,
+but developing a more accurate model is beyond the scope of this paper.
+
+Suppose that the population is distributed in trait space
+as a Gaussian with covariance matrix $\Sigma$ and mean $\mu$,
+whose density we write as $f(\cdot;\Sigma,\mu)$.
+Selection has the effect of multiplying this density by the fitness function and renormalizing,
+so that if expected fitness of $x$ is proportional to $\exp(-\|Lx\|^2/2)$,
+then the distribution post-selection
+has density at $x$ proportional to $f(x;\Sigma,\mu) \exp(-\|Lx\|^2/2)$.
+By the computation below (``Completing the square''),
+the result is a Gaussian distribution
+with covariance matrix $(\Sigma^{-1} + L^T L)^{-1}$ 
+and mean $(\Sigma^{-1}+L^T L)^{-1} \Sigma^{-1} \mu$.
+% Importantly, if $U$ is not invertible, then by $U^{-1}$ 
+% we mean $(U^T U)^{-1} U^T$, Moore-Penrose pseudoinverse of $U$,
+% so that $U U^{-1}$ is equal to the projection matrix
+% onto the span of the columns of $U$.
+
+After selection, we have reproduction:
+suppose this occurs as in the infinitesimal model \citep{barton2016infinitesimal},
+so that each offspring of parents with traits $x$ and $y$
+is drawn independently from a Gaussian distribution 
+with mean $(x+y)/2$ and covariance matrix $R$.
+Here, $R$ is the contribution of ``segregation variance'',
+i.e., random choices of parental alleles.
+If $\widetilde \Sigma = (\Sigma^{-1} + L^T L)^{-1}$ 
+is the covariance matrix of the parents post-selection,
+then the distribution of offspring will again be Gaussian,
+with mean equal to that of the parents
+and covariance matrix $\widetilde \Sigma/2 + R$.
+
+In summary, a generation under this model modifies the mean ($\mu$)
+and covariance matrix ($\Sigma$) of a population as follows:
+\begin{align*}
+    \mu &\mapsto \mu' = (\Sigma^{-1}+L^T L)^{-1} \Sigma^{-1} \mu \\
+    \Sigma &\mapsto \Sigma' = \frac{1}{2} (\Sigma^{-1} + L^T L)^{-1} + R .
+\end{align*}
+What measures are stable under this transformation?
+The condition $\mu = \mu'$ reduces to $\Sigma L^T L \mu = 0$;
+if we assume $R$ and therefore $\Sigma$ are of full rank,
+then this happens if and only if $\mu$ is in the null space of $L$,
+i.e., if $\mu$ lies in a neutral direction.
+The condition $\Sigma' = \Sigma$ can also be solved,
+at least numerically.
+After rearrangement, it reduces to
+$\Sigma L^T L \Sigma + (I/2 - R L^T L) \Sigma = R$.
+%% I DON'T THINK WE USE THE FOLLOWING:
+% We can find a more explicit description
+% if we assume that $x^T L^T L x = \sum_{i=1}^k x_i^2$,
+% i.e., that selection only cares about the first $k$ coordinates,
+% and then with no interactions between traits.
+% If so, the condition $\Sigma' = \Sigma$
+% can be written in block form as
+% \begin{align*}
+%     \begin{bmatrix}
+%         \Sigma_{11}^2 + (I/2 - R_{11}) \Sigma_{11}
+%         & \Sigma_{11} \Sigma_{12} + (I/2 - R_{11})\Sigma_{12} \\
+%         \Sigma_{12}^T \Sigma_{11} + \Sigma_{12}^T/2 - R_{12}^T \Sigma_{11}
+%         & \Sigma_{22} - R_{12}^T \Sigma_{12} 
+%     \end{bmatrix}
+%     &=
+%     \begin{bmatrix}
+%         R_{11} & R_{12} \\
+%         R_{12}^T & R_{22}
+%     \end{bmatrix} .
+% \end{align*}
+% The first equation, $\Sigma_{11}^2 + (I/2 - R_{11}) \Sigma_{11} = R_{11}$,
+% can be solved with the quadratic formula: 
+% $$\Sigma_{11} = (R_{11} - I/2 + Q)/2$$
+% for any $Q$ that commutes with $R_{11}$
+% and is a solution to $Q^2 = (R_{11} - I/2)^2 + 4 R_{11}$.
+% Since we need $\Sigma$ to be positive definite,
+% we take the solution with positive eigenvalues.
+% Given $\Sigma_{11}$, the remaining components are
+% \begin{align*}
+%     \Sigma_{12} 
+%     &= 
+%     \left( \Sigma_{11} + I/2 - R_{11} \right)^{-1} R_{12} \\
+%     \Sigma_{22}
+%     &=
+%     R_{12}^T \Sigma_{12} + R_{22} .
+% \end{align*}
+Importantly, the mean $\mu$ does not affect 
+either how the covariance matrix moves,
+or its stable shape.
+
+Above we have described the \emph{expected} motion of the mean and covariance.
+However, random resampling will introduce noise.
+Suppose that a population of $N$ individuals
+behaves approximately as described above.
+By the above,
+we may expect that the covariance matrix stays close to a constant value $\Sigma$,
+computed from $R$ and $L$ as above,
+so that we need only consider motion of the mean, $\mu$.
+Since we take a sample of size $N$ to construct the next generation,
+the next generation's mean is drawn from a Gaussian distribution with mean $\mu'$
+and covariance matrix $\Sigma/N$.
+Defining $\Gamma = (I - (I + \Sigma L^T L)^{-1})$,
+this can be written as
+\begin{align*}
+    \mu' - \mu = \Gamma \mu + \epsilon/\sqrt{N} ,
+\end{align*}
+where $\epsilon$ is a multivariate Gaussian with mean zero and covariance matrix $\Sigma$.
+Let $\mu(k)$ denote the mean in the $k^\text{th}$ generation,
+and suppose that $\mu$ differs from optimal by something of order $1/\sqrt{N}$:
+if $\nu(t) = \sqrt{N} \mu(t\sqrt{N})$ is the rescaled process,
+then the previous equation implies that as $N \to \infty$, 
+in the limit $\nu$ solves the It\^{o} equation
+\begin{align*}
+    d \nu(t) = \Gamma \nu(t) dt + \Sigma^{1/2} dW(t) ,
+\end{align*}
+where now $W(t)$ is a multivariate white noise.
+This has an explicit solution as a multivariate Ornstein-Uhlenbeck process:
+\begin{align*}
+    \nu(t) = e^{-t \Gamma} \nu(0) + \int_0^t e^{-(t-s) \Gamma} \Sigma^{1/2} dW(s).
+\end{align*}
+% Note that after some algebra, $\Gamma = \Sigma L^T L (I - \Sigma L^T L)^{-1}$.
+The asymptotic variance of this process in the direction $z$ is
+\begin{align} \label{eqn:limiting_cov}
+    \lim_{t \to \infty} \var[\nu(t) \cdot z]
+    &=
+    \int_0^\infty z^T e^{-s \Gamma} \Sigma e^{-s \Gamma} z ds ,
+\end{align}
+which is infinite if and only if $\Gamma z = 0$,
+which occurs if and only if $Lz=0$.
+This implies that at equilibrium, 
+population mean trait values lie away from the optimal set
+by a Gaussian displacement of order $1/\sqrt{N}$
+with a covariance matrix given by equation \eqref{eqn:limiting_cov}.
+
+
+\paragraph{Completing the square}
+First note that if $A$ is symmetric,
+\begin{align*}
+    (x-y)^T A (x-y)
+    &=
+    x^T A \left( x - 2y \right) + y^T A y ,
+\end{align*}
+and so if $B$ is also symmetric and $A+B$ is invertible,
+\begin{align*}
+    (x-y)^T A (x-y) + x^T B x
+    &=
+    x^T (A + B) \left( x - 2 (A + B)^{-1} A y \right) + y^T A y \\
+    &=
+    \left( x - (A + B)^{-1} A y \right)^T
+    (A + B)
+    \left( x - (A + B)^{-1} A y \right) \\
+    &\qquad{}
+    + y^T A y - y^T A^T (A+B)^{-1} A y .
+\end{align*}
+Therefore, 
+by substituting $A=\Sigma^{-1}$ and $B=L^T L$,
+\begin{align*}
+    \frac{ f(x;\Sigma,y) \exp(-x^T L^T L x / 2)}{\int f(z;\Sigma,y) \exp(-z^T L^T L z / 2) dz}
+    &=
+    f(x; (\Sigma^{-1} + L^T L)^{-1}, (\Sigma^{-1}+L^T L)^{-1} \Sigma^{-1} y) .
+\end{align*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Gaussian load}
+\label{apx:gauss_load}
+
+Suppose that a population has a Gaussian distribution in $d$-dimensional trait space
+with mean $\mu$ and covariance matrix $\Sigma$,
+and that fitness of an individual at $x$ is $\exp(-\|Lx\|^2/2)$.
+Then, completing the square as above with $A=\Sigma^{-1}$, $y=\mu$, and $B=L^T L$,
+and defining $Q = (\Sigma^{-1} + L^T L)^{-1}$,
+\begin{align*}
+    &
+    \frac{1}{\sqrt{2 \pi}^n \det(\Sigma)^{1/2}} 
+        \int e^{-\frac{1}{2} x^T \Sigma^{-1} x} e^{-\frac{1}{2} x^T L^T L x} dx \\
+    &\qquad =
+    \frac{1}{\sqrt{2 \pi}^n \det(\Sigma)^{1/2}} 
+        \int e^{-\frac{1}{2}(x-Q \Sigma^{-1} \mu)^T Q^{-1} (x-Q \Sigma^{-1} \mu)} dx 
+        \\ &\qquad \qquad {}
+        \times e^{\mu^T \left( I - \Sigma^{-1} Q \right) \Sigma^{-1} \mu} \\
+    &\qquad =
+    \sqrt{\frac{\det(Q)}{\det(\Sigma)}}
+        \exp\left\{\mu^T \left( I - \Sigma^{-1} Q \right) \Sigma^{-1} \mu\right\} \\
+    &\qquad =
+    \sqrt{\frac{1}{\det(\Sigma)\det(\Sigma^{-1}+L^TL)}}
+        \exp\left\{\mu^T \left( I - (I + L^T L \Sigma)^{-1} \right) \Sigma^{-1} \mu\right\} \\
+\end{align*}
+
+Now suppose that $\Sigma = \sigma^2 I$ and $L = I/\gamma$.
+Then,
+\begin{align*}
+    \sqrt{\frac{1}{\det(\Sigma)\det(\Sigma^{-1}+L^TL)}}
+    &=
+    \sqrt{\frac{1}{\sigma^{2d} (1/\sigma^2 + 1/\gamma^2)^d}} \\
+    &=
+    \frac{1}{(1+ \left(\sigma/\gamma\right)^2)^{d/2}} .
+\end{align*}
+Also, 
+\begin{align*}
+        \left( I - (I + L^T L \Sigma)^{-1} \right) \Sigma^{-1} 
+        &=
+        \frac{1}{\sigma^2}\left( 1 - (1 + (\sigma/\gamma)^2)^{-1} \right) I \\
+        &=
+        \frac{1}{\gamma^2}\frac{1}{(1 + (\sigma/\gamma)^2)} I \\
+\end{align*}
+
+
+%%%%%%%%%%%
+\section*{Evolution of segregation covariance}
+\label{apx:seg_cov}
+
+The description above does not describe how \emph{two} diverging populations interact,
+since the amount of \emph{segregation variance}, quantified by $R$,
+will not stay constant.
+To get an idea of how this might change,
+suppose that a trait is determined by $L$ unlinked, biallelic loci,
+and that the $i^\mathrm{th}$ locus has two alleles with additive effects $\pm x_i$,
+so that being homozygous for the $+$ allele contributes $+2x_i$ to the trait.
+For simplicity, we will neglect the effects of selection.
+If the $+$ allele at locus $i$ is at frequency $p_i$ in a population,
+then the mean and genetic variance of the trait in a diploid population with random mating is
+\begin{align*}
+    m &= 2 \sum_i (2 p_i - 1) x_i \\
+    s^2 &= 4 \sum_i p_i (1-p_i) x_i^2 .
+\end{align*}
+
+
+Segregation variance between two parents depends on the loci at which either are heterozygous,
+and each locus contributes independently
+since alleles are additive.
+If the alleles are at Hardy-Weinberg proportions,
+then since segregation acts like a fair coin flip, a heterozygous locus contributes $x_i^2/4$ to the variance,
+and so the \emph{mean} segregation variance, averaging across parents, is
+% two parents, prob 2p(1-p) for prob the locus is heterozygous, variance 0.5(1-0.5)x^2.
+\begin{align*}
+    R_0(p) = \sum_i p_i (1-p_i) x_i^2 .
+\end{align*}
+
+On the other hand,
+if the second parent came from a distinct population
+with frequencies $q_i$
+(an $F_1$ hybrid),
+this would be
+\begin{align*}
+    R_1(p,q) &= \frac{1}{2} \sum_i p_i^2 (1-p_i)^2 x_i^2 
+                + \frac{1}{2} \sum_i q_i^2 (1-q_i)^2 x_i^2 \\
+                &= (R_0(p) + R_0(q))/2 .
+\end{align*}
+If we assume that the populations are at equilibrium, $R_0(p) \approx R_0(q)$,
+and so $R_1(p,q) \approx R_0(p)$.
+
+Now consider an $F_2$ hybrid, where both parents are $F_1$
+and so each heterozygous at locus $i$ with probability $p_i (1-q_i) + (1-p_i) q_i$.
+Then
+\begin{align*}
+    R_2(p,q) &= \frac{1}{2} \sum_i \left(p_i (1-q_i) + (1-p_i) q_i \right) x_i^2  .
+\end{align*}
+Suppose that the two populations are slightly drifted from each other,
+with frequency difference $p_i-q_i = 2\epsilon_i$.
+Then,
+\begin{align*}
+    p (1-q) + p (1-q)
+    &=
+    (u+\epsilon) (1-u+\epsilon) + (u-\epsilon) (1-u-\epsilon) \\
+    &=
+    2 u (1-u)
+    % + \epsilon (u + (1-u) - u - (1-u))
+    + 2 \epsilon^2 .
+\end{align*}
+If the frequencies have evolved neutrally in unconnected, Wright-Fisher populations 
+of effective size $N$ for $t$ generations from a common ancestor with allele frequency $u$,
+then $\epsilon$ has mean zero and variance roughly $2 u (1-u) t/N$.
+Still assuming the populations are at stationarity,
+so that $R_0$ is constant between the two,
+and taking the frequencies $p_i$ as a proxy for the ancestral frequencies $u_i$,
+this implies that we expect
+\begin{align*}
+    R_2 
+    &\approx 
+    R_0 + 2 \sum_i p_i (1-p_i) x_i^2 t/N \\
+    &=
+    \left( 1 + \frac{2t}{N} \right) R_0 .
+\end{align*}
+On the other hand, the expected squared difference in trait \emph{means} between two such populations is
+\begin{align} \label{eqn:var_dx}
+    8 \sum_i p_i (1-p_i) x_i^2 t / N = 8 R_0 t /N .
+\end{align}
+This implies that under this model,
+segregation variance in $F_2$s between two populations
+is roughly increased by a factor of $1/8$ of the difference between their means.
+
+
 
 \end{document}
 
 
+
+%\section*{Examples}
+%\begin{example}[Metabolic network] \label{ex:metabolic}
+%Consider an organism that can metabolize two different sugars (present at logarithmic concentrations $u_{1}$ and $u_{2}$), 
+%with two enzymes (at log concentrations $\phi_{1}$ and $\phi_{2}$).
+%Further suppose that the second sugar is prefered,
+%%and that the organism has a regulatory network that can deploy situation specific metabolic strategy.
+%and that
+%depending on $u_{1}$ and $u_{2}$ the organism will synthesize an appropriate $\phi_{1}$ and $\phi_{2}$. 
+%Furthermore, assume this system contains at least two transcription factors, whose log concentrations are $\kappa_{1}$, $\kappa_{2}$, $\dots \kappa_{n}$.
+%Minimally such a system may have the architecture,
+%%\begin{align*}
+%%    \mathcal{S}_{\min} = \left\{ \begin{array}{ll} \dot{\kappa}(t) &= \begin{bmatrix} 0 & -1 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} \kappa_{1} \\ \kappa_{2} \end{bmatrix} (t) + \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} u_{1} \\ u_{2} \end{bmatrix} (t) \\[11pt]
+%%    \phi(t) &= \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} \kappa_{1} \\ \kappa_{2} \end{bmatrix} (t) \end{array} \right.
+%%\end{align*}
+%  $\Sys_{\min}(U) = (U \left[ \begin{smallmatrix} 0 & -1 \\ 0 & 0 \end{smallmatrix} \right] U^{-1}, U 
+%    %\left[\begin{smallmatrix} 1 & 0 \\ 0 & 1 \end{smallmatrix}\right]
+%      ,
+%     % \left[\begin{smallmatrix} 1 & 0 \\ 0 & 1 \end{smallmatrix}\right]
+%        U^{-1})$. 
+%%
+%%The impulse response of the system is,
+%%$h(t) = \left[\begin{smallmatrix} 1 & - t \\ 0 & 1 \end{smallmatrix}\right]$.
+%    We can find alternative equivalent systems by changning coordinates ($U \rightarrow U'$) or, more generally, by applying the Kalman decomposition \ref{apx:kalman}. To illustrate that phenotypic invariance does not require dimensional invariance, we apply the Kalman decomposition to $\Sys_{\min}$ to find 
+%    %This may happen if a system is co-opted from another, or may be a consequence of gene duplication and deletion. 
+%  $\Sys(\small D_{1-3},V) \! =  \! \left( \! \begin{array}{ll}
+%     V \! \left[\begin{smallmatrix} D_{1} & D_{2} \\ 0 & A \end{smallmatrix}\right] \! V^{-1}, V \! \left[\begin{smallmatrix} D_{3} \\ B \end{smallmatrix}\right], \left[\begin{smallmatrix} 0 & C \end{smallmatrix}\right] \! V^{-1} \end{array} \! \right)
+%$, both of which are in $\allS$
+%%  \begin{align*}
+%%    \Sys(X_{1-3},V) = \left( \begin{array}{ll}
+%%     V \left[\begin{smallmatrix} X_{1} & X_{2} \\ 0 & A_{\min} \end{smallmatrix}\right] V^{-1}, V \left[\begin{smallmatrix} X_{3} \\ B_{\min} \end{smallmatrix}\right], \left[\begin{smallmatrix} 0 & C_{\min} \end{smallmatrix}\right] V^{-1} \end{array} \right)
+%%    \end{align*}
+%  ($V$ can be any $4$-dimensional and invertible matrix, $D_{1-3} \in \R^{2 \times 2}$, and $(A,B,C) \in \Sys_{\min}$).
+%%So for example, some system can be wired as follows, and still be input-output equivalent to the minimal metabolic system $\mathcal{S}_{\min}$:
+%% \begin{align*}
+%%   A' &= \begin{bmatrix}
+%%     1.6923  &  1.5385 &  -2.6154 &  -2 \\
+%%     0.8462  &  0.7692 &  -1.3077 &  -1 \\
+%%     1.2692  &  1.1538 &  -1.9615 &  -1.5 \\
+%%     0.4231  &  0.3846 &  -0.6538 &  -0.5
+%%   \end{bmatrix} \\
+%%   B' &= \begin{bmatrix} 4 & 4 \\ 2 & 2 \\ 3 & 3 \\ 1 & 3 \end{bmatrix} \\
+%%     C' &= \begin{bmatrix}  0.2692  &  0.1538  &  0.0385 &  -0.5 \\
+%%     -0.4231 &  -0.3846 &   0.6538  &  0.5 \end{bmatrix}
+%% \end{align*}
+%%
+%%Despite the present example consisting of a minimal $2 \times 2$ and a non-minimal $4 \times 4$ system, 
+%%any $m$-dimensional system can be constructed using this method 
+%%-- applying a change of coordinates to the Kalman decomposition 
+%%-- to construct a mechanistically different system with identical phenotypic dynamics. 
+%%
+%%When applying the Kalman decomposition to real biological networks, one may have to restrict the free parameters, as physiology and biochemistry might not allow all mathematically possible coefficients. We note that as there are so many degrees of freedom, it may be difficult to infer system function solely from structure. 
+%\end{example}
 
 

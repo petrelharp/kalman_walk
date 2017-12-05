@@ -1,0 +1,269 @@
+
+\section{Kalman Decomposition} \label{apx:kalman}
+\begin{definition}[Phenotypic equivalence of systems]
+    Let $(\kappa(t),\phi(t))$ and $(\bar \kappa(t),\bar \phi(t))$ be the solutions to \eqref{eqn:lti_system}
+    with coefficient matrices $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ respectively,
+    and both $\kappa(0)$ and $\bar \kappa(0)$ are zero. 
+    The systems defined by $(A,B,C)$ and $(\bar A,\bar B,\bar C)$ are
+    \textbf{phenotypically equivalent} 
+    if
+    \begin{align*}
+        \phi(t) = \bar \phi(t) \qquad \text{for all} \; t \ge 0.
+    \end{align*}
+    Equivalently, this occurs if and only if
+    \begin{align*}
+        h(t) = \bar h(t)  \qquad \text{for all} \; t \ge 0,
+    \end{align*}
+    where $h$ and $\bar h$ are the impulse responses of the two systems.
+\end{definition}
+
+One way to find other systems equivalent to a given one
+is by change of coordinates (``algebraic equivalence''):
+if $V$ is an invertible matrix, then the systems $(A,B,C)$ and $(VAV^{-1},VB,CV^{-1})$
+have the same dynamics because their transfer functions are equal:
+\begin{align*}
+    CV^{-1}( zI - VAV^{-1})^{-1}VB
+    =
+    CV^{-1}V( zI - A)^{-1}V^{-1}VB
+    =
+    C( zI - A)^{-1}B .
+\end{align*}
+However, the converse is not necessarily true: 
+systems can have identical transfer functions without being changes of coordinates of each other.
+In fact, systems with identical transfer functions can involve interactions between different
+numbers of molecular species.
+
+The set of all systems phenotypically equivalent to a given system $(A,B,C)$ 
+is elegantly described using the Kalman decomposition,
+which also clarifies the system dynamics? tells us a lot about how it works? \plr{or something}
+To motivate this, first note that the input $u(t)$ only directly pushes the system
+in directions lying in the span of the columns of $B$.
+As a result, different combinations of input can 
+move the system in any direction that lies in the \emph{reachable subspace},
+which we denote by $\reachable$,
+and is defined to be the closure of $\spn(B)$ under applying $A$
+(or equivalently, the span of $B, AB, A^2B, \ldots A^{n-1}B$).
+Analogously to this, we define
+the \emph{observable subspace}, $\mathcal{O}$,
+to be the closure of $\spn(C^T)$ under applying $A$.
+(Or: $\unobservable$ is the largest $A$-invariant subspace
+contained in the null space of $C$;
+and $\reachable$ is the largest $A$-invariant subspace contained in the image of $B$.)
+
+If we define
+\begin{enumerate}
+    \item The columns of $P_\rno$ are an orthonormal basis for $\reachable \cap \unobservable$.
+    \item The columns of $P_\ro$ are an orthonormal basis of
+        the complement of $\reachable \cap \unobservable$ in $\reachable$.
+    \item The columns of $P_\nro$ are an orthonormal basis of
+        the complement of $\reachable \cap \unobservable$ in $\unobservable$.
+    \item The columns of $P_\nrno$ are an orthonormal basis of
+        the remainder of $\R^n$.
+\end{enumerate}
+If we then define
+\begin{align*}
+    P &= 
+    \left[ \begin{array}{c|c|c|c}
+        P_\rno & P_\ro & P_\nro & P_\nrno
+    \end{array} \right] ,
+\end{align*}
+then
+\begin{align*}
+    P^T P
+    &=
+    \left[ \begin{array}{c|c|c|c}
+        I & 0 & 0 & 0 \\
+        \hline
+        0 & I & U & 0 \\
+        \hline
+        0 & V & I & 0 \\
+        \hline
+        0 & 0 & 0 & I 
+    \end{array} \right] .
+\end{align*}
+\plr{Check this.  Can we get $U=V=0$?}
+
+The following theorem can be found in SOME REFERENCE.
+
+\begin{theorem}[Kalman decomposition] \label{thm:kalman}
+        For any system $(A,B,C)$ with corresponding Kalman basis matrix $P$,
+        the transformed system $(PAP^{-1},PB,CP^{-1})$  has the following form:
+        \begin{align*}
+            \widehat A = PAP^{-1}
+            &=
+            \left[ \begin{array}{cccc}
+                A_{\rno} & A_{\rno,\ro} & A_{\rno,\nrno} & A_{\rno,\nro} \\
+                0 & A_{\ro} & 0 & A_{\ro,\nro} \\
+                0 & 0 & A_{\nrno} & A_{\nrno,\nro} \\
+                0 & 0 & 0 & A_{\nro}
+            \end{array} \right] ,
+        \end{align*}
+        and
+        \begin{align*}
+            \widehat B = PB
+            &=
+            \left[ \begin{array}{cccc}
+                B_{\rno} \\
+                B_{\ro} \\
+                0 \\
+                0 
+            \end{array} \right] ,
+        \end{align*}
+        and
+        \begin{align*}
+            \widehat C = CP^{-1}
+            &=
+            \left[ \begin{array}{cccc}
+                0 & C_{\ro} & C_{\nrno} & 0 
+            \end{array} \right] .
+        \end{align*}
+        The transfer function of both systems is given by
+        \begin{align*}
+            H(z) = C_{\ro} ( zI - A_{\ro} )^{-1} B_{\ro} .
+        \end{align*}
+\end{theorem}
+
+In the latter case, we say that the system is \emph{minimal} 
+-- there is no equivalent system with a smaller number of species.
+Note that this says that any two equivalent minimal systems
+are changes of basis of each other.
+
+Since any system can be put into this form,
+and once in this form, its transfer function is determined only by 
+$C_{\ro}$, $A_{\ro}$, and $B_\ro$,
+therefore, the set of all equivalent systems are parameterized by
+the dimension $n$,
+the choice of basis ($P$),
+the remaining submatrices in $\widehat A$, $\widehat B$, and $\widehat C$
+(which are unconstrained),
+and a invertible transformation of $\spn(P_{\ro})$, which we call $T_\ro$.
+
+\begin{theorem}[Parameterization of equivalent systems]
+    Let $(A,B,C)$ be a minimal system.
+    \begin{itemize}
+        \item[(a)]
+            Every equivalent system is of the form given in Theorem \ref{thm:kalman},
+            i.e., can be specified by choosing a dimension, $n$;
+            submatrices in $\widehat A$, $\widehat B$, and $\widehat C$ 
+            except for $A_\ro=A$, $B_\ro=B$, and $C_\ro=C$;
+            and choosing an invertible matrix $P$.
+
+        \item[(b)]
+            \plr{conjecture:}
+            The parameterization is unique
+            if $P$ is furthermore chosen so that 
+            each $P_x$ other than $P_\ro$ is a projection matrix,
+            and that 
+            \begin{align*}
+                0
+                =
+                P_x^T P_y
+            \end{align*}
+            for all $(x,y)$ except $(\ro,\nrno)$.
+
+    \end{itemize} 
+\end{theorem}
+
+\plr{Another way of saying it: pick the $\reachable$ and $\unobservable$ subspaces,
+that must intersect in something of the minimal dimension;
+then let $P$ be the appropriate basis?}
+
+In some situations we may be interested in only ``network rewiring'',
+where $A$ changes while $B$ and $C$ do not.
+For instance, 
+if all non-regulatory functions of each molecule are strongly constrained,
+then $C$ cannot change.
+Likewise, if responses of each molecule to the external inputs are not changed by evolution,
+then $B$ does not change.
+
+
+\subsection{Neutral directions from the Kalman decomposition}
+
+The Kalman decomposition above says that any system $(A,B,C)$ can be decomposed into
+$(P, \hat A, \hat B, \hat C)$ so that
+$$\begin{aligned}
+    A &= P^{-1} \hat A P  \\
+    B &= P^{-1} \hat B  \\
+    C &= \hat C P ,
+\end{aligned}$$
+and we know precisely how we can change these to preserve the transfer function:
+\begin{enumerate}
+    \item $P \to P + \epsilon Q$ as long as the result is still invertible,
+    \item $\hat A \to A + \epsilon X$ as long as $X$ is zero in the correct places,
+    \item $\hat B \to B + \epsilon Y$ as long as $Y$ is zero in the correct places,
+    \item $\hat C \to C + \epsilon Y$ as long as $Z$ is zero in the correct places.
+\end{enumerate}
+By taking $\epsilon \to 0$, these tell us the local directions we can move a system $(A,B,C)$ in.
+All statements below are up to first order in $\epsilon$,
+omitting terms of order $\epsilon^2$.
+
+First, since $(P + \epsilon Q)^{-1} = P^{-1} + \epsilon P^{-1} Q P^{-1}$,
+modifying $P \to P + \epsilon Q$ changes
+$$\begin{aligned}
+    A 
+        &\to A + \epsilon P^{-1} \hat A Q - \epsilon P^{-1} Q P^{-1} \hat A P \\
+        &= A + \epsilon \left(A P^{-1} Q - P^{-1} Q A\right) , \\
+    B
+        &\to B - \epsilon P^{-1} Q B \\
+    C
+        &\to C + \epsilon C P^{-1} Q .
+\end{aligned}$$
+Since $P$ is invertible and $Q$ can be anything (if $\epsilon$ is small enough),
+this allows changes in the direction of an arbitrary $W$:
+$$\begin{aligned}
+    A 
+        &= A + \epsilon \left(A W - W A\right) , \\
+    B
+        &\to B - \epsilon W B \\
+    C
+        &\to C + \epsilon C W .
+\end{aligned}$$
+
+Then, $\hat A \to A + \epsilon X$  does
+$$\begin{aligned}
+    A \to A + \epsilon P^{-1} X P 
+\end{aligned}$$
+and $\hat B \to B + \epsilon Y$ does
+$$\begin{aligned}
+    B \to B + \epsilon P^{-1} Y
+\end{aligned}$$
+and $\hat C \to C + \epsilon Z$ does
+$$\begin{aligned}
+    C \to C + \epsilon Z P .
+\end{aligned}$$
+These degrees of freedom look like they depend on $P$, 
+which is not unique,
+but for any two choices of $P$ there are corresponding choices of $X$
+that give the same actual change in $A$ (and likewise for $Y$ and $Z$).
+
+
+Therefore, this gives us an upper bound on the number of degrees of freedom,
+in terms of the dimensions of the blocks in the Kalman decomposition ($n_\ro$ etc)
+and the dimensions of $B$ and $C$ ($n_B$ and $n_C$ respectively):
+namely, for $W$, $X$, $Y$, and $Z$ respectively:
+$$\begin{aligned}
+    n^2 
+    + (n_{\rno} + n_\ro n_\nro + n_\nrno(n_\nrno + n_\nro) + n_\nro^2)
+    + n_B n_\rno
+    + n_C n_\nrno .
+\end{aligned}$$
+However, some of these may be redundant.
+For instance, changing $P$ in the direction of 
+a $Q$ that satisfies both $A P^{-1} Q = P^{-1} Q A$ and $C P^{-1} Q = 0$
+is equivalent to changing $B$ by $Y = QB$.
+
+\section{Meiotic recombination in linear systems}\label{apx:recombination}
+
+  Recombination is performed by taking two analogous system components from $\Sys$ and $\Sys'$ and randomly swapping rows or columns.
+  \emph{E.g.} gamete systems $(A'', B'', C'')$, produced by the diploid $\{\Sys, \Sys'\}$, are formed by recombining (randomly swapping rows or columns) between two, possibly distinct, systems $\Sys = (A,B,C)$ and $\Sys' = (A', B', C')$ such that,
+  \begin{align*}
+    \Sys'' = \left( \begin{array}{ll}
+    A'' &= MA + (I-M)A' , \\
+    B'' &= MB + (I-M)B' , \\
+    C'' &= CM + C'(I-M)
+    \end{array} \right)
+  \end{align*}
+  where $M$ is a diagonal matrix where each diagonal element is a Bernoulli random variable ($M_{ii} = 0$ or $1$ with equal probability, and $M_{ij}=0$ if $i \neq j$). If systems are different dimensions the smaller system elements can be augmented with $0$s (\emph{e.g.} $\left[ \begin{smallmatrix} A & 0 \\ 0 & 0 \end{smallmatrix} \right], \left[ \begin{smallmatrix} B \\ 0 \end{smallmatrix} \right], \left[ \begin{smallmatrix} C & 0 \end{smallmatrix}\right]$).
+
+
+
