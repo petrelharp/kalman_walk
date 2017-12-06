@@ -1394,7 +1394,7 @@ so that fitness is a function of $L^2(\rho)$ distance of the impulse response fr
 With $h_0(t) = C_0 e^{tA_0} B_0$ a representative of the optimal set:
 \begin{equation}
     \begin{aligned}
-        D(A, B, C) 
+        D(A, B, C)^2
         &:= 
         \int_0^\infty \rho(t) \left| h_A(t) - h_0(t) \right|^2 dt \\
         &:= 
@@ -1408,7 +1408,7 @@ With $h_0(t) = C_0 e^{tA_0} B_0$ a representative of the optimal set:
         \int_0^\infty \rho(t) \tr\left\{
             \left( C e^{At} B - C_0 e^{A_0 t} B_0 \right)
             \left( C e^{At} B - C_0 e^{A_0 t} B_0 \right)^T
-        \right\} dt  .
+        \right\} dt  ,
         % &= 
         % \int_0^\infty \rho(t)  \tr\left\{
         %         C e^{At} B B^T e^{A^T t} C^T 
@@ -1422,6 +1422,7 @@ With $h_0(t) = C_0 e^{tA_0} B_0$ a representative of the optimal set:
         % \int_0^\infty \rho(t) C \left( e^{At} - e^{A_0 t} \right) B B^T \left( e^{At} - e^{A_0 t} \right)^T C^T dt
     \end{aligned}
 \end{equation}
+where $\tr X$ denotes the trace of a square matrix $X$.
 How does this change as we perturb about $(A_0, B_0, C_0)$?
 First we differentiate with respect to $A$, keeping $B=B_0$ and $C=C_0$ fixed.
 Since
@@ -1435,7 +1436,7 @@ Since
 we have that
 \begin{equation}
   \begin{aligned}
-      \frac{d}{du} D(A+uZ,B_0,C_0)\vert_{u=0}
+      \frac{d}{du} D(A+uZ,B_0,C_0)^2 \vert_{u=0}
       &=
         2 \int_0^\infty \rho(t) \tr\left\{ C_0 \left( \int_0^t e^{As} Z e^{A(t-s)} ds \right) B_0 B_0^T \left( e^{At} - e^{A_0 t} \right)^T C_0^T \right\} dt \\
       &=
@@ -1443,12 +1444,12 @@ we have that
   \end{aligned}
 \end{equation}
 and, by differentiating this and supposing that $A$ is on the optimal set,
-i.e., $h_A(t)=h_0(t)$, (so wolog $A=A_0$):
+i.e., $h_A(t)=h_0(t)$, (so without loss of generality, $A=A_0$):
 \begin{equation}
   \begin{aligned}
       \calH^{A,A}(Y,Z) 
       &:= 
-      \frac{1}{2} \frac{d}{du} \frac{d}{dv} D(A_0+uY+vZ,B_0,C_0)\vert_{u=v=0} \\
+      \frac{1}{2} \frac{d}{du} \frac{d}{dv} D(A_0+uY+vZ,B_0,C_0)^2 \vert_{u=v=0} \\
       &=
         \int_0^\infty \rho(t) \tr\left\{ C_0 
         \left( \int_0^t e^{A_0 s} Y e^{A_0 (t-s)} ds \right) 
@@ -1472,10 +1473,9 @@ the coefficients of the quadratic form is
     \end{aligned}
 \end{equation}
 
-We could use this to compute the gradient of $D$,
-or to get the quadratic approximation to $D$ near the optimal set.
+We could use this to get the quadratic approximation to $D$ near the optimal set.
 To do so, it'd be nice to have a way to compute the inner integral above.
-Suppose that we can diagonalize $A = U \Lambda U^{-1}$.
+Suppose that we diagonalize $A = U \Lambda U^{-1}$.
 Then
 \begin{equation} \label{eqn:exp_deriv}
   \begin{aligned}
@@ -1529,14 +1529,14 @@ and so
 This implies that
 \begin{equation}
     \begin{aligned}
-        D(A_0+\epsilon Z)
+        D(A_0+\epsilon Z)^2
         &\approx \epsilon^2\sum_{ijk\ell} H^{ij,k\ell} Z_{ij} Z_{k\ell} 
     \end{aligned}
 \end{equation}
 and so
 \begin{equation}
     \begin{aligned}
-        D(A_0+\epsilon Z)
+        D(A_0+\epsilon Z)^2
         &\approx \epsilon^2\sum_{ijk\ell} H^{ij,k\ell} Z_{ij} Z_{k\ell} 
     \end{aligned}
 \end{equation}
@@ -1551,7 +1551,7 @@ This suggests that the population mean follows an Ornstein-Uhlenbeck process,
 as described (in different terms) in \citet{hansen1996translating}.
 
 More generally, $B$ and $C$ may also change.
-To extend this we need the remaining second derivatives of $D$.
+To extend this we need the remaining second derivatives of $D^2$.
 First, in $B$:
 \begin{equation}
     \begin{aligned}
@@ -1636,6 +1636,11 @@ and finally in $A$ and $C$:
         \right\} dt  .
   \end{aligned}
 \end{equation}
+
+Together, numerical computation of these expressions,
+along with estimates of genetic covariance within a population,
+allow precise predictions of evolutionary dynamics of a particular system.
+The approximation should be good as long as the second-order Taylor approximation holds.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1851,7 +1856,7 @@ Also,
 
 
 %%%%%%%%%%%
-\section*{Evolution of segregation covariance}
+\section{Evolution of segregation covariance}
 \label{apx:seg_cov}
 
 The description above does not describe how \emph{two} diverging populations interact,
