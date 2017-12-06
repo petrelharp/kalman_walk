@@ -85,18 +85,18 @@ f2_divergence <- function(tau, eps) {
   progeny <- progeny_gen(tau,eps)
   avg_div <- 0
   for (i in 1:256){
-    avg_div <- avg_div + D(progeny[[i]])/256
+    avg_div <- avg_div + sqrt(D(progeny[[i]]))/256
   }
   return(avg_div)
 }
 
-d <- seq(0,-1,-0.01)
+d <- seq(0,-0.5,-0.01)
 df2 <- sapply(d, function(d) f2_divergence(0,d))
 
 ##########
 
 f1_divergence <- function(tau, eps){
-  f1div <- D((S(tau) + S(tau+eps))/2)
+  f1div <- sqrt(D((S(tau) + S(tau+eps))/2))
   return(f1div)
 }
 
@@ -106,7 +106,7 @@ df1 <- sapply(d, function(d) f1_divergence(0,d))
 gen_d <- sapply(d, function(d) norm(S(0)-S(0+d),"F"))
 
 pdf("~/kalman_walk/examples/F2_vs_F1_divergence_tau0.pdf")
-plot(df1~gen_d, ylim=c(0,15), type = "l", lwd=3, col="red", xlab="Genetic distance", ylab="Phenotypic divergence")
+plot(df1~gen_d, ylim=c(0,2), type = "l", lwd=3, col="red", xlab="Genetic distance", ylab="Phenotypic divergence")
 lines(df2~gen_d, lwd=3, col="blue")
-legend(0.2,10, legend=c("F1 hybrids", "F2 hybrids"), col=c("red", "blue"), lty=1, lwd=3)
+legend(0.2,1.5, legend=c("F1 hybrids", "F2 hybrids"), col=c("red", "blue"), lty=1, lwd=3)
 dev.off()
