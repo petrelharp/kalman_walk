@@ -871,10 +871,12 @@ increases with $\epsilon^2$ and $\epsilon$, respectively.
    % \caption{
     %\textbf{(left)} 
     \caption{Phenotype distance to optimum, $D$, using $\rho(t) = \exp(-t/4\pi)$
-    for $F_1$ (black) and $F_2$ (blue) hybrids between an $A(0)$ and an $A(\epsilon)$ parent. Genetic distance is computed as the 
+    for $F_1$ (black) and $F_2$ (blue) hybrids between an $A(0)$ and an $A(\epsilon)$ parent. Genetic distance is computed as 
     %Frobenius norm
-    Euclidean distance
-    between two systems.}
+    %Euclidean distance
+    $\sqrt{\sum_{ij} (A_{ij}(0) - A_{ij}(\epsilon))^2}$
+    %between two systems
+    .}
     %\textbf{(right)} Same, but for $F_2$ offspring (one line per type of $F_2$).
     %\plri{make this $D$ not $D^2$ and say which line is the overall average $F_2$.
     %}
