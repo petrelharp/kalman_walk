@@ -231,6 +231,9 @@ These functional symmetries manifest in convergent and parallel evolution,
 as well as \emph{developmental system drift}: the observation that
 macroscopically identical phenotypes in even very closely related species can in fact be divergent at the molecular and sequence level 
 \citep{kimura1981possibility, true2001developmental, tanay2005conservation, tsong2006evolution, hare2008sepsid, lavoie2010evolutionary, vierstra2014mouse, matsui2015regulatory, dalal2016transcriptional, dalal2017transcription}.
+It has also been shown theoretically that substantial genetic variation for a polygenic trait can be maintained
+by migration between geographical regions having different genetic bases for the same, optimal trait value \citep{phillips1996maintenance}.
+\plr{the citation is "maintenance of polygenic variation via a migration-selection balance..."}
 
 In this paper we outline a theoretical framework to study the evolution of biological systems, such as gene regulatory networks.
 We study the evolution of an optimally adapted population subject to stabilizing selection for phenotype.
@@ -747,11 +750,14 @@ If sexual recombination among systems drawn from $\allS$ yields systems with div
     axes represent system coefficients (i.e., entries of $A$);
     the line of optimal system coefficients is down in black;
     dotted lines give phenotypic distances to the optimum.
-    Two pairs of parental populations are shown in black, along the optimum;
-    a hypothetical population of $F_1$s are shown for each in red,
+    A pair of parental populations are shown in black, along the optimum;
+    a hypothetical population of $F_1$s are shown in red,
     and the distribution of one type of $F_2$ is shown in purple
-    (other types of $F_2$ are not shown).
-    Solid lines depict the distance of the $F_2$ to optimum.
+    (other types of $F_2$ are not shown; 
+    some would be a similar distance to the other side of the optimal set).
+    The distribution of $F_2$s is appropriate for mixed homozygotes
+    if both traits have a simple, one-locus genetic basis,
+    but there is variation within each population at that locus.
 }
 \end{figure}
 
@@ -928,6 +934,7 @@ As above, an individual's coefficients are given by averaging its parentally inh
 Concretely, we use the \emph{infinitesimal model} for reproduction \citep{barton2016infinitesimal} --
 the offspring of parents at $x$ and $x'$ will have coefficients $(x+x')/2 + \varepsilon$,
 where $\varepsilon$ is a random Gaussian displacement due to random assortment of parental alleles.
+
 
 \paragraph{System drift}
 % plr how fast does it drift
@@ -1298,6 +1305,14 @@ the cumulative impact of system drift across the many different networks an orga
 
 Of course the basic assumptions of this model will be violated in practice (constant selective pressures, etc.), however, this model can function as a ``neutral null'' description of gene network evolution (a strategy advocated for by \citet{lynch2007frailty, fay2008evaluating, koonin2016splendor}). If this model succeeds in describing actual system evolution, it can be inferred that the mechanism underlying species formation does not require the inclusion of adaptation or changes in selection to explain the emergence of hybrid incompatibility.
 
+\paragraph{Population isolates and genetic load}
+Above we have mostly discussed the case of two separated populations of equal size.
+In contrast, consider a small subset of a large population that is suddenly isolated.
+It will have a large amount of genetic variance, thanks to its history,
+but a small population size -- and so can drift quite quickly until it exhausts its genetic variation.
+By this point, it could have accumulated substantial incompatibility with the parental population.
+Similarly, in a species with substantial isolation by distance, geographically local systems drift
+might lead to genetic load due only to recombination, much as in \citep{phillips1996maintenance}.
 
 \paragraph{Nonlinearity and model assumptions}
 Of course, real regulatory networks are not linear dynamical systems.
@@ -1309,23 +1324,23 @@ suggests our qualitative results may hold more generally.
 Furthermore, nonidentifiability (which implies the existence of neutral directions)
 is often found in practice in moderately complex models of biological systems \citep{gutenkunst2007universally, piazza2008diverse}.
 
+This simple quantitative genetics model we use above
+has been shown to produce good predictions in many situations,
+even when the substantial number of simplifying assumptions are violated \citep{burger1994distribution,turelli1994genetic}.
+\plr{the citations are to "on the distribution of the mean and variance" by Burger and Lande; and the "what, me normal" paper of turelli and barton}
+The calculations above should be fairly robust even to substantial deviations from normality.
+A larger effect on these predictions seems likely due to 
+correlations due to molecular constraint, genetic linkage, population structure, historical contingency and so forth.
+Although such considerations would not change the qualitative predictions of this model,
+their combined effects could substantially change the predicted rate of accumulation of incompatibilities.
+
 Finally, despite our model's precise separation of phenotype and kryptotype, this relationship in nature may be far more complicated as aspects of the kryptotype may be less ``hidden'' than we currently assume. For instance, attributes excluded from the phenotype as modelled here, ignore the potential energy costs associated with excessively large (non-minimal) kryptotypes, as well as the relationship between a specific network architecture and robustness to mutational, transcriptional, or environmental noise.
 % Despite the model's simplifications and potentially nontrivial oversights, it may still roughly reflect and shed light upon speciation patterns as they occur in nature.
 More precise modeling will require better mechanistic understanding not only of biological systems,
 but also the nature of selective pressures
 and genetic variation in these systems.
 
-\paragraph{Peter to add quant gen discussion} about non-normality.
-
 %Maybe compare to \citet{fierst}?
-%
-%Do we talk about the $G$ matrix and mutational correlation somewhere?
-%
-%Note that islands or bottlenecks leave large $\sigma_N$ but small $N_e$ so may go fast.
-%
-%What is Ne?  In a metapopulation depends on migr rate: classic Turelli paper.
-%
-%This has implications for genetic load also!!
 %
 %hominids; neanderthal load.
 

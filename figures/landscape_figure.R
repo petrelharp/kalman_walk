@@ -1,8 +1,8 @@
 # make a conceptual figure of a fitness landscape
 
-dx <- 0.25
-xx <- yy <- seq(1/sqrt(2)-dx,1/sqrt(2)+dx,length.out=100)
-z <- (sqrt(outer(xx^2, yy^2, "+")) - 1.0)^2
+dx <- 0.4
+xx <- yy <- seq(1/sqrt(2) - dx,1/sqrt(2) + 0.7 * dx,length.out=100)
+z <- abs(sqrt(outer(xx^2, yy^2, "+")) - 1.0)
 
 plot_pop <- function (x, sigma, nreps=100, pch=20, cex=1, ...) {
     y <- matrix(rnorm(length(x)*nreps, mean=rep(x,each=nreps), sd=sigma), nrow=nreps)
@@ -36,18 +36,37 @@ do.plot <- function (p1, p2, sigma, add=FALSE) {
                    legend=c("parental", "F1", "F2"))
 }
 
-p1 <- c(0.75, sqrt(1-0.75^2))
-p2 <- c(0.50, sqrt(1-0.50^2))
+p1 <- c(0.90, sqrt(1-0.90^2))
+p2 <- c(0.5, sqrt(1-0.50^2))
 
-
-p3 <- c(0.78, sqrt(1-0.78^2))
-p4 <- c(0.85, sqrt(1-0.85^2))
 
 pdf(file="conceptual_fig.pdf", width=3, height=3, pointsize=10)
 par(mar=c(1,1,1,1))
 
-do.plot(p1, p2, sigma=.012)
+do.plot(p1, p2, sigma=.02)
 
-do.plot(p3, p4, sigma=.012, add=TRUE)
+dev.off()
+
+
+dx <- 0.25
+xx <- yy <- seq(1/sqrt(2)-dx,1/sqrt(2)+dx,length.out=100)
+z <- abs(sqrt(outer(xx^2, yy^2, "+")) - 1.0)
+
+
+p3 <- c(0.75, sqrt(1-0.75^2))
+p4 <- c(0.50, sqrt(1-0.50^2))
+
+
+p5 <- c(0.78, sqrt(1-0.78^2))
+p6 <- c(0.85, sqrt(1-0.85^2))
+
+
+
+pdf(file="conceptual_fig_two_pairs.pdf", width=3, height=3, pointsize=10)
+par(mar=c(1,1,1,1))
+
+do.plot(p3, p4, sigma=.012)
+
+do.plot(p5, p6, sigma=.012, add=TRUE)
 
 dev.off()
