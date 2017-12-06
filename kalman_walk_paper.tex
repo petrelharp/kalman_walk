@@ -78,16 +78,17 @@
 \newtheorem{example}{Example}
 
 \begin{document}
-\linenumbers
+%\linenumbers
 
 {\centering
-{\Large \bf Rapid speciation despite conservation of phenotype} \\
-Joshua S. Schiffman$^{\dagger}$ \qquad Peter L. Ralph$^{\dagger \ddagger}$ \\
-$^{\dagger}$University of Southern California, Los Angeles, California \qquad 
-$^{\ddagger}$University of Oregon, Eugene, Oregon \\
-\texttt{jsschiff@usc.edu} \qquad 
-\texttt{plr@uoregon.edu}
-\\
+{\LARGE \bf Rapid speciation despite conservation of phenotype} \\ \vspace{0.5cm}
+Joshua S. Schiffman$^{\dagger}$ \qquad Peter L. Ralph$^{\dagger \ddagger}$ \\ \vspace{0.5cm}
+$^{\dagger}${\footnotesize {Molecular and Computational Biology, University of Southern California, Los Angeles, California 90089, U.S.A. \\
+$^{\ddagger}$Departments of Mathematics and Biology \& The Institute for Ecology and Evolution, University of Oregon, Eugene, Oregon 97403, U.S.A.}} \\ \vspace{0.5cm}
+{\small \texttt{jsschiff@usc.edu} \qquad 
+\texttt{plr@uoregon.edu}} \\ \vspace{0.5cm}
+\small \today \\
+\vspace{0.25cm}
 }
 
 % Other title ideas:
@@ -146,7 +147,7 @@ an exact characterization of the set of all mechanisms that give the same input-
 This characterization implies that selectively neutral directions in genotype space should be common
 % there is never a unique network architecture for any phenotype
 and that the evolutionary exploration of these distinct but equivalent mechanisms
-can lead to the reproductive incompatibility of idependently evolving populations.
+can lead to the reproductive incompatibility of independently evolving populations.
 This evolutionary exploration, or \emph{system drift}, 
 proceeds at a rate proportional to the amount of intrapopulation genetic variation
 divided by the effective population size ($N_e$).
@@ -244,7 +245,7 @@ all linear gene network architectures that yield identical phenotypes.
 Since these phenotypically equivalent gene networks are not necessarily compatible with one another, 
 system drift may result in reproductive incompatibility between populations 
 isolated for a sufficiently long period of time, 
-even in the absence of any sort of adaptative, selective, or environmental change. 
+even in the absence of any sort of adaptive, selective, or environmental change. 
 We then use quantitative genetic theory to estimate how quickly 
 reproductive incompatibility due to system drift will manifest
 
@@ -268,15 +269,13 @@ Our model differs from previous work in that we use linear systems theory
 to both explore a much richer class of regulatory network models,
 and provide analytical expectations in large populations with complex phenotypes
 that would be inaccessible to population simulations.
-
-REFERENCE: Barton's paper (PETER). \citep{barton2010natural}
-
+%REFERENCE: Barton's paper (PETER). \citep{barton2010natural}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Results}
 
 We first describe the class of models we study, motivated by gene regulatory networks. 
-The behavior (i.e., the temporal dynamics) of such a system is determined by a collection of $n$ coregulating moleculues 
+The behavior (i.e., the temporal dynamics) of such a system is determined by a collection of $n$ coregulating molecules 
 -- such as transcription factors -- as well as by external or environmental inputs.
 % We model the temporal dynamics of the concentrations of a collection of $n$ coregulating molecules
 % within an organism, that may also be affected by temporally varying signals from the environment.
@@ -384,13 +383,14 @@ The system and its dynamics are referred to in Figure \ref{fig:oscillator}. We r
 \begin{figure}[H]
    % \begin{center} 
   \centering
-   %  \begin{tabular}{cc}
+     \begin{tabular}{cc}
         \begin{tikzpicture}
         \begin{scope}[every node/.style={circle,thick,draw}]
             \node (A) at (0,0) {$\kappa_{1}$};
             \node (B) at (4,0) {$\kappa_{2}$};
             \node[shape=rectangle] (U) at (2,2) {input ($u$)};
-            \node[shape=rectangle] (y) at (2,-2) {\begin{tabular}{cc} output ($\phi$) \\  \includegraphics[width=0.15\textwidth, height=0.04\paperheight]{osc_impulse} \end{tabular}};
+            \node[shape=rectangle] (y) at (2,-2) {output ($\phi$)};
+            %\\  \includegraphics[width=0.15\textwidth, height=0.04\paperheight]{osc_impulse} \end{tabular}};
         \end{scope}
 
         \begin{scope}[>={Stealth[black]},
@@ -408,14 +408,14 @@ The system and its dynamics are referred to in Figure \ref{fig:oscillator}. We r
             %\path [->] (B) edge[loop left] node {\tiny $\lambda_{2}$} (B);
         \end{scope}
 
-        \end{tikzpicture} %&
-%   \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{osc_impulse}
-%\end{tabular}
+        \end{tikzpicture} \\
+   \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{osc_impulse}
+\end{tabular}
 %  \end{center}
   \caption{
-    %(Left) 
+    (Top) 
     Diagram of the gene network in Example \ref{ex:oscillator}
-  %, and (right) plot of the phenotype $\phi(t)$ against time $t$
+  , and (bottom) plot of the phenotype $\phi(t)$ against time $t$
   .} \label{fig:oscillator}
 \end{figure}
 
@@ -620,7 +620,7 @@ Therefore
 the following one-parameter family $(A(\tau), B, C)$ describes the set of all two-gene systems
 phenotypically equivalent to the oscillator:
     \begin{align*}
-      A(\tau) &= \frac{1}{\tau-1} \begin{bmatrix} \tau & -1 \\ 2 \tau(\tau - 1) + 1 &  -\tau \end{bmatrix} \ \text{for} \ \tau \neq 1 .
+      A(\tau) &= \frac{-1}{\tau+1} \begin{bmatrix} -\tau & -1 \\ 2 \tau(\tau + 1) + 1 &  \tau \end{bmatrix} \ \text{for} \ \tau \neq -1 .
     \end{align*}
 The resulting set of systems are depicted in Figure \ref{fig:all_osc}.
 \end{example}
@@ -640,23 +640,23 @@ The resulting set of systems are depicted in Figure \ref{fig:all_osc}.
 \begin{scope}[>={Stealth[black]},
               every node/.style={fill=white,circle},
               every edge/.style={draw=black, thick}]
-    \path [->, sloped] (A) edge[bend left] node {\tiny $2 \tau + (\tau-1)^{-1}$} (B);
-    \path [->, sloped] (B) edge[bend left] node {\tiny $-(\tau-1)^{-1}$} (A); 
+    \path [->, sloped] (A) edge[bend left] node {\tiny $-2 \tau - \frac{1}{\tau+1}$} (B);
+    \path [->, sloped] (B) edge[bend left] node {\tiny $\frac{1}{\tau+1}$} (A); 
     \path[->] (U) edge node {\tiny $1$} (A);
     \path[->] (U) edge node {\tiny $1$} (B);
     \path[->] (A) edge[bend right] node {\tiny $1$} (y);
 \end{scope}
 \begin{scope}[>={Stealth[black]},
               every edge/.style={draw=black, thick}]
-    \path [->] (A) edge[loop left] node[sloped, anchor=center, above] {\tiny $1 + (\tau-1)^{-1}$} (A);
-    \path [->] (B) edge[loop right] node[sloped, anchor=center, above] {\tiny $-1 - (\tau-1)^{-1}$} (B);
+    \path [->] (A) edge[loop left] node[left] {\tiny $\frac{\tau}{\tau+1}$} (A);
+    \path [->] (B) edge[loop right] node[right] {\tiny $\frac{-\tau}{\tau+1}$} (B);
 \end{scope}
 \end{tikzpicture} &	\includegraphics[width=0.5\textwidth, height=0.125\paperheight]{figures/osc_kryp_compare}
     \end{tabular}
 % \caption{}
       \caption{
       (Left) $A(\tau)$, the set of all phenotype-equivalent cell cycle control networks.
-      (Right) Gene-1 dynamics (blue) for both systems $A(0)$ and $A(2)$ are identical, however, $A(0)$ gene-2 dynamics (orange) differ from $A(2)$ (green).
+      (Right) Gene-1 dynamics (blue) for both systems $A(0)$ and $A(-2)$ are identical, however, $A(0)$ gene-2 dynamics (orange) differ from $A(-2)$ (green).
       % Both gene-1 dynamics are given by $\kappa_{1}(t) = \sin t + \cos t$, and gene-2 by $\kappa_{2}(t) = \cos t - \sin t$ ($A(0)$) and $\kappa'_{2}(t) = \cos t + 3 \sin t$ ($A(2)$).
       } 
     \label{fig:all_osc}
@@ -687,9 +687,9 @@ The resulting set of systems are depicted in Figure \ref{fig:all_osc}.
 \end{scope}
 \begin{scope}[>={Stealth[black]},
               every edge/.style={draw=black, thick}]
-    \path [->] (A) edge[loop below] node[sloped, anchor=center, below] {\tiny $1$} (A);
-    \path [->] (B) edge[loop above] node[sloped, anchor=center, above] {\tiny $1$} (B);
-    \path [->, >=Rectangle] (C) edge[loop right] node[sloped, anchor=center, above] {\tiny $-1$} (C);
+    \path [->] (A) edge[loop below] node[sloped, below] {\tiny $1$} (A);
+    \path [->] (B) edge[loop above] node[sloped, above] {\tiny $1$} (B);
+    \path [->, >=Rectangle] (C) edge[loop right] node[sloped, above] {\tiny $-1$} (C);
 \end{scope}
 \end{tikzpicture}
   \caption{A possible non-minimal three-gene oscillator, phenotypically equivalent to $A(\tau)$, the systems in Examples \ref{ex:oscillator} and \ref{ex:all_osc}.}
@@ -765,7 +765,7 @@ Two parents with the optimal phenotype can produce offspring whose phenotype is 
 if the parents have different underlying systems.
 %This leads to the question: 
 How quickly do hybrid phenotypes break down as genetic distance between parents increases?
-We will quanitfy how far a system's phenotype is from optimal
+We will quantify how far a system's phenotype is from optimal
 using a weighted difference between impulse response functions.
 Suppose that $\rho(t)$ is a nonnegative, smooth, square-integrable weighting function,
 $h_0(t)$ is the \emph{optimal} impulse response function
@@ -801,7 +801,7 @@ of the optimal set $\allS$ relative to segregating genetic variation.
 \begin{example}[Hybrid Incompatibility in the Oscillator] \label{ex:hybrid_osc}
 Offspring of two equivalent systems from Example \ref{ex:all_osc}
 can easily fail to oscillate.
-For instance, the $F_1$ offspring between homozygous parents at $\tau=0$ and $\tau=2$
+For instance, the $F_1$ offspring between homozygous parents at $\tau=0$ and $\tau=-2$
 has phenotype $\phi_{F_1}(t) = e^t$, rather than $\phi(t) = \sin t + \cos t$.
 However, the coefficients of these two parental systems differ substantially,
 probably more than would be observed between diverging populations.
@@ -847,9 +847,9 @@ increases with $\epsilon^2$ and $\epsilon$, respectively.
       \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{examples/osc_F2_halftau0.pdf}
   \end{tabular}
   \caption{
-    \textbf{(left)} Phenotypes of $F_1$ hybrids between an $A(0)$ parent and, top-to-bottom, an $A(-\sfrac{1}{100})$, an $A(-\sfrac{1}{10})$, and $A(-\sfrac{1}{2})$ parent;
+    \textbf{(left)} Phenotypes of $F_1$ hybrids between an $A(0)$ parent and, top-to-bottom, an $A(\sfrac{1}{100})$, an $A(\sfrac{1}{10})$, and $A(\sfrac{1}{2})$ parent;
     parental coefficients differ by around 0.5\%, 5\%, and 25\% respectively.
-    \plr{These figures are fine; but reparameterize so that the values of $\tau$ are positive.}
+    %\plr{These figures are fine; but reparameterize so that the values of $\tau$ are positive.}
     Parental phenotypes ($\sin t + \cos t$) are shown in solid black, and hybrid phenotypes in dashed blue.
     \textbf{(right)} Phenotypes of all possible $F_2$ hybrids between the same set of parents,
     with parental phenotype again in black.
@@ -941,7 +941,7 @@ We work with a randomly mating population of effective size $N_e$.
 If the population variation has standard deviation $\sigma$ in a particular direction,
 since subsequent generations resample from this diversity,
 the population mean coefficient will move a random distance of size $\sigma/\sqrt{N_e}$ per generation,
-simply because this is the the standard deviation of the mean of a random sample \citep{lande1981models}.
+simply because this is the standard deviation of the mean of a random sample \citep{lande1981models}.
 % (This could be taken as a definition of $N_e$.)
 Selection will tend to restrain this motion,
 but movement along the optimal set $\allS$ is unconstrained,
@@ -1210,7 +1210,7 @@ of binding sites of a transcription factor (p65) between human individuals.
 accounts for around 2--6\% of expression variation in human blood-derived primary cells,
 while \citet{lappalainen2013transcriptome} found that human population variation 
 explained about 3\% of expression variation.
-Studying natural flycatcher populations, \citet{wang2017bayesian} found that 7.2--8.5\% of transcripts showed allele-specific expression -- indicitive of standing genetic \emph{cis}-regulatory variation. Similarly, in wild baboons, \citet{tung2015genetic} observed allele-specific expression in 23.4\% of genes studied. 
+Studying natural flycatcher populations, \citet{wang2017bayesian} found that 7.2--8.5\% of transcripts showed allele-specific expression -- indicative of standing genetic \emph{cis}-regulatory variation. Similarly, in wild baboons, \citet{tung2015genetic} observed allele-specific expression in 23.4\% of genes studied. 
 Taken together, this suggests that variation in the entries of $A$
 may be on the order of at least a few percent between individuals of a population --
 doubtless varying substantially between species and between genes.
