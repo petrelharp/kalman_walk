@@ -148,7 +148,7 @@ This characterization implies that selectively neutral directions in genotype sp
 and that the evolutionary exploration of these distinct but equivalent mechanisms
 can lead to the reproductive incompatibility of idependently evolving populations.
 This evolutionary exploration, or \emph{system drift}, 
-proceeds at a rate inversely proportional the amount of intrapopulation genetic variation
+proceeds at a rate proportional to the amount of intrapopulation genetic variation
 divided by the effective population size ($N_e$).
 At biologically reasonable parameter values
 this process can lead to substantial interpopulation incompatibility,
@@ -158,10 +158,6 @@ This model also naturally predicts Haldane's rule,
 thus providing another possible explanation
 of why heterogametic hybrids tend to be disrupted more often than homogametes during the early stages of speciation.
 \end{abstract}
-
-\plr{I removed the $0.1 N_e$ because that's only in the "metapopulation" case,
-which is where you've probably already got subpopulations acting like species already.}
-
 
 %\plr{Additional ideas to consider adding:}
 %\begin{itemize}
@@ -260,17 +256,16 @@ reproductive incompatibility due to system drift will manifest
 
 It is not a new observations that there is often more than one way to do the same thing,
 and that this may lead to speciation.
-For instance, \citet{tulchinsky2014hybrid} looked for hybrid incompatibility
+For instance, \citet{tulchinsky2014hybrid} (and similarly \citet{khatari2015simple}) looked for hybrid incompatibility
 following regulatory sequence drift,
 and \citet{porter2002speciation} studied speciation in populations expressing a simple regulatory cascade.
 Both found rapid speciation following directional selection,
 but only equivocal support for speciation under models of purely neutral drift.
+Additionally, \citet{fierst} observed speciation due to an increase of segregation variance under balancing selection, in models of weak to moderate, but not strong epistasis.
 Our model differs from previous work in that we use linear systems theory
 to both explore a much richer class of regulatory network models,
 and provide analytical expectations in large populations with complex phenotypes
 that would be inaccessible to population simulations.
-\plr{missing any important references here?}
-
 
 REFERENCE: Barton's paper (PETER). \citep{barton2010natural}
 
@@ -1259,10 +1254,10 @@ This occurs because if the genes underlying a regulatory network are distributed
 then heterogametic $F_1$s show variation similar to that seen in $F_2$s.
 
 Is there evidence that this is actually occurring?
-System drift and network rewiring has been inferred across the tree of life \citep{dalal2017transcription, johnson2017rewiring},
+System drift and network rewiring has been inferred across the tree of life \citep{wotton2015quantitative, crombach2016gap, dalal2017transcription, johnson2017rewiring},
 and there is often significant regulatory variation segregating within populations.
 Transcription in hybrids between closely related species with conserved transcriptional patterns can also be divergent 
-\citep{haerty2006gene, maheshwari2012cis, coolon2014tempo, michalak2004association, mack2016gene}.
+\citep{haerty2006gene, maheshwari2012cis, coolon2014tempo, michalak2004association, mack2016gene}, and hybrid incompatibilities have been attributed to cryptic molecular divergence underlying conserved body plans \citep{gavin2013embryonic}. 
 Furthermore, in cryptic species complexes (e.g., sun skinks \citep{barley2013challenge}),
 %strongly reproductively incompatible species
 genetically distinct species
@@ -1314,8 +1309,7 @@ It remains to be seen how well these results carry over into real systems,
 but the fact that most nonlinear systems can be locally approximated by a linear one
 suggests our qualitative results may hold more generally.
 Furthermore, nonidentifiability (which implies the existence of neutral directions)
-is often found in practice in moderately complex models of biological systems. 
-\plr{Josh, add citation to sensitivity analysis}
+is often found in practice in moderately complex models of biological systems \citep{gutenkunst2007universally, piazza2008diverse}.
 
 Finally, despite our model's precise separation of phenotype and kryptotype, this relationship in nature may be far more complicated as aspects of the kryptotype may be less ``hidden'' than we currently assume. For instance, attributes excluded from the phenotype as modelled here, ignore the potential energy costs associated with excessively large (non-minimal) kryptotypes, as well as the relationship between a specific network architecture and robustness to mutational, transcriptional, or environmental noise.
 % Despite the model's simplifications and potentially nontrivial oversights, it may still roughly reflect and shed light upon speciation patterns as they occur in nature.
