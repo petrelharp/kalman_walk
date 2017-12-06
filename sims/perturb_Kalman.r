@@ -138,9 +138,9 @@ sys_gen6D <- function (s=sigma, eps=0.05, nreps=100)
     
     new_KalA_list <- perturb_oscillator(KalA_list, eps=eps)
     new_KalA <- assemble_oscillator(new_KalA_list)
-    #dist <- norm(KalA$A-new_KalA$A,"F")
+    dist <- norm(KalA$A-new_KalA$A,"F")
     ##dist <- sum(abs(Kal$A - new_KalA$A))/36
-    dist <- sqrt(sum((Kal$A - new_KalA$A)^2))/36
+    #dist <- sqrt(sum((Kal$A - new_KalA$A)^2))/36
     
     avg_div <- 0
     jj <- 0
@@ -149,7 +149,7 @@ sys_gen6D <- function (s=sigma, eps=0.05, nreps=100)
       Z1 <- recombine(KalA$A, new_KalA$A)
       Z2 <- recombine(KalA$A, new_KalA$A)
       Z3 <- (Z1 + Z2)/2
-      DZ <- tryCatch(D(Z3, BK=KalA$B, CK=KalA$C), error=function(e) NULL)
+      DZ <- tryCatch(sqrt(D(Z3, BK=KalA$B, CK=KalA$C)), error=function(e) NULL)
       if (is.null(DZ)==1)
       {
         j = j-1
@@ -182,9 +182,9 @@ sys_gen4D <- function (s=sigma, eps=0.05, nreps=100)
     new_KalA_list <- perturb_oscillator(KalA_list, eps=eps)
     #new_KalA <- assemble_oscillator(new_KalA_list)
     new_KalA <- assemble_oscillator4d(new_KalA_list)
-    #dist <- norm(KalA$A-new_KalA$A,"F")
+    dist <- norm(KalA$A-new_KalA$A,"F")
     ##dist <- sum(abs(Kal$A - new_KalA$A))/16
-    dist <- sqrt(sum((Kal$A - new_KalA$A)^2))/16
+    #dist <- sqrt(sum((Kal$A - new_KalA$A)^2))/16
     
     avg_div <- 0
     jj <- 0
@@ -193,7 +193,7 @@ sys_gen4D <- function (s=sigma, eps=0.05, nreps=100)
       Z1 <- recombine(KalA$A, new_KalA$A)
       Z2 <- recombine(KalA$A, new_KalA$A)
       Z3 <- (Z1 + Z2)/2
-      DZ <- tryCatch(D(Z3, BK=KalA$B, CK=KalA$C), error=function(e) NULL)
+      DZ <- tryCatch(sqrt(D(Z3, BK=KalA$B, CK=KalA$C)), error=function(e) NULL)
       if (is.null(DZ)==1)
       {
         j = j-1
@@ -236,9 +236,9 @@ min_perturb <- function(tau=0){
   for (i in 1:100){
     eps2 <- i/200
     new_A <- V(tau-eps2)%*%A%*%solve(V(tau-eps2))
-    #dist <- norm(initA - new_A, "F")
+    dist <- norm(initA - new_A, "F")
     ##dist <- sum(abs(initA - new_A))/4
-    dist <- sqrt(sum((initA - new_A)^2))/4
+    #dist <- sqrt(sum((initA - new_A)^2))/4
     avg_div <- 0
     for (j in 1:100) 
     { 
@@ -246,7 +246,7 @@ min_perturb <- function(tau=0){
       Z2 <- recombine(initA, new_A)
       Z3 <- (Z1 + Z2)/2
       
-      DZ <- D(Z3, BK=B, CK=C)
+      DZ <- sqrt(D(Z3, BK=B, CK=C))
       avg_div <- avg_div + DZ/100
     }
     output[i,] <- c(dist,avg_div)
