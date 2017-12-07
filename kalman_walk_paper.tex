@@ -627,7 +627,7 @@ The resulting set of systems are depicted in Figure \ref{fig:all_osc}.
 \end{example}
 
 
-    \begin{figure}[H]
+\begin{figure}[H]
     \centering
 \begin{tabular}{cc}
 \begin{tikzpicture}
@@ -662,8 +662,10 @@ The resulting set of systems are depicted in Figure \ref{fig:all_osc}.
       } 
     \label{fig:all_osc}
 \end{figure}
-%
+
+
 \begin{figure}[H]
+    \begin{center}
 \begin{tikzpicture}
 \begin{scope}[every node/.style={circle,thick,draw}]
   \node (A) at (0,0) {$\kappa_{1}$};
@@ -695,6 +697,7 @@ The resulting set of systems are depicted in Figure \ref{fig:all_osc}.
 \end{tikzpicture}
   \caption{A possible non-minimal three-gene oscillator, phenotypically equivalent to $A(\tau)$, the systems in Examples \ref{ex:oscillator} and \ref{ex:all_osc}.}
   \label{fig:3D_osc}
+\end{center}
 \end{figure}
 
 \paragraph{Sexual reproduction and recombination}
@@ -755,7 +758,7 @@ If sexual recombination among systems drawn from $\allS$ yields systems with div
     and the distribution of one type of $F_2$ is shown in purple
     (other types of $F_2$ are not shown; 
     some would be a similar distance to the other side of the optimal set).
-    The distribution of $F_2$s is appropriate for mixed homozygotes
+    The distribution of $F_2$ hybrids is appropriate for mixed homozygotes
     if both traits have a simple, one-locus genetic basis,
     but there is variation within each population at that locus.
 }
@@ -856,13 +859,12 @@ increases with $\epsilon^2$ and $\epsilon$, respectively.
     with parental phenotype again in black.
     %% PLR: There are at most 128 possible F2s, not 256; but many are equivalent; 
     %%   it only matters if the offspring is homo/het/homozygous, so there are 3^4 = 81 possible expression patterns.
-    Different colored lines correspond to different $F_2$s;
+    Different colored lines correspond to different $F_2$ hybrids;
     note that some completely fail to oscillate.
   } \label{fig:hybs}
 \end{figure}
 
   \begin{figure}[H]
-  \label{fig:osc_incompat}
     \centering
     %\begin{tabular}{cc}
     %\includegraphics[width=0.4\textwidth]{figures/f1_quartic2} &
@@ -903,8 +905,8 @@ $\left[\begin{smallmatrix} (A_1 + \bar A_1)/2 & (A_2 + \bar A_2)/2 \\ \bar X_1 &
 If both genes resided on the autosomes this system would only be possible in an $F_2$ cross.
 More generally, 
 if the regulatory coefficients for a system are shared between the sex and one or more autosomal chromosomes, 
-$F_1$ males are effectively equivalent to purely autosomal-system $F_2$s. 
-In this setting, Haldane's rule is mechanistically similar to \emph{hybrid breakdown}, the observation that $F_2$s will often be less fit than $F_1$ hybrid crosses, in the early stages of speciation.
+$F_1$ males are effectively equivalent to purely autosomal-system $F_2$ hybrids. 
+In this setting, Haldane's rule is mechanistically similar to \emph{hybrid breakdown}, the observation that $F_2$ hybrids will often be less fit than $F_1$ hybrid crosses, in the early stages of speciation.
 This mechanism relies on the genetic variation of a system being shared across the sex chromosomes and the autosomes,
 and appears to be distinct from the ``dominance'', ``faster-X'', and ``faster-male'' theories \citep{orr1997haldane, coyne1998evolutionary, turelli1995dominance} usually suggested to explain Haldane's rule.
 %and makes several different predictions than the dominance theory as formulated by \citet{turelli1995dominance}.
@@ -996,15 +998,15 @@ will be a distance roughly of order $2\sigma_N \sqrt{T/N_e}$ apart along $\optx$
 A population of $F_1$ hybrids has one haploid genome from each,
 whose coefficients are averaged,
 and so will have mean system coefficients at the midpoint between their means.
-The distribution of $F_2$s will have mean at the average of the two populations,
+The distribution of $F_2$ hybrids will have mean at the average of the two populations,
 but will have higher variance.
-The variance of $F_2$s can be shown to increase linearly with the square of the distance between
+The variance of $F_2$ hybrids can be shown to increase linearly with the square of the distance between
 parental population means
 under models of both simple and polygenic traits.
 This is suggested by figure \ref{fig:conceptual_fig} and shown in Appendix \ref{apx:seg_cov}.
 Concretely, we expect the population of $F_1$s to have variance $\sigma^2_S$ in the selected direction
 (the same as within each parental population),
-but the population of $F_2$s will have variance of order $\sigma^2_S + 4 \omega \sigma^2_N T/N_e$,
+but the population of $F_2$ hybrids will have variance of order $\sigma^2_S + 4 \omega \sigma^2_N T/N_e$,
 where $\omega$ is a factor that depends on the genetic basis of the coefficients.
 If the optimal set $\allS$ has dimension $q$,
 using the polygenic model of appendix \ref{apx:seg_cov}, 
@@ -1023,10 +1025,10 @@ the value is similar.
 % and how much they are expected to change over time \citep{arnold_changing_G}.
 
 What are the fitness consequences?
-A population of $F_2$s will begin to be substantially less fit than the parentals
+A population of $F_2$ hybrids will begin to be substantially less fit than the parentals
 once they differ from the optimum by a distance of order $\gamma$,
 i.e., once $\sqrt{4 \omega T/N_e} \approx \gamma / \sigma_N$.
-This implies that hybrid incompatibility among $F_2$s should appear much slower --
+This implies that hybrid incompatibility among $F_2$ hybrids should appear much slower --
 on a time scale of $N_e (\gamma / \sigma_N)^2 / (4 \omega)$ generations.
 The $F_1$s will not suffer fitness consequences until the hybrid mean is further than $\gamma$ from the optimum;
 as shown in appendix \ref{apx:away_from_opt} (and suggested by figure \ref{fig:conceptual_fig}),
@@ -1066,7 +1068,7 @@ has mean fitness
 % \frac{1}{\sigma/\gamma}\left(1 - \frac{\mu^2}{\gamma^2}\right) .
 \end{align}
 This assumes a single trait, for simplicity. %; the multivariate case is done in appendix \ref{apx:gauss_load}.
-A population of $F_2$s will have, as above, variance $\sigma^2 = \sigma^2_S + 4 \omega \sigma^2_N T/N_e$.
+A population of $F_2$ hybrids will have, as above, variance $\sigma^2 = \sigma^2_S + 4 \omega \sigma^2_N T/N_e$.
 The mean diverges with the square of the distance between the parentals, so we set $\mu = c_\mu \gamma T/N_e$,
 where $c_\mu$ is a constant depending on the local geometry of the optimal set.
 The mean fitness in parental populations is as in equation \ref{eqn:gauss_fit} with $\mu=0$ and $\sigma = \sigma_S$.
@@ -1115,7 +1117,7 @@ However, note that in real systems, it is likely that $\gamma$ also depends on $
 
 Now we will interpret equation \eqref{eqn:fit2} in three situations plausible for different species,
 depicting how hybrid fitness drops as a function of $T/N_e$ in Figure \ref{fig:speciation_rates}.
-In all cases, the fitness drop for $F_1$ hybrids is much smaller than that of $F_2$s,
+In all cases, the fitness drop for $F_1$ hybrids is much smaller than that of $F_2$ hybrids,
 so we work only with the first (square-root) term in equation \eqref{eqn:fit2}.
 
 % simgaN = sigmaS = gamma, large population
@@ -1134,7 +1136,7 @@ Consider instead a much smaller, isolated population
 whose genetic variation is primarily constrained by genetic drift,
 so that $\sigma_N \approx \sigma_S \ll \gamma$.
 Setting $a = (\sigma_N/\gamma)^2$ to be small,
-the fitness of $F_2$s is $\fit_2 \le 1/\sqrt{1 + 4 \omega a T/N_e} \approx 1 - 2 \omega a T/N_e$.
+the fitness of $F_2$ hybrids is $\fit_2 \le 1/\sqrt{1 + 4 \omega a T/N_e} \approx 1 - 2 \omega a T/N_e$.
 Hybrid fitness seems to drop more slowly in this case in figure \ref{fig:speciation_rates},
 but since time is scaled by $N_e$, so speciation may occur \emph{faster} than in a large population.
 However, at least in some models \citep{lynch1986phenotypic}, in small populations at mutation-drift equilibrium
@@ -1148,7 +1150,7 @@ In the other direction, consider large metapopulations (or a ``species complex''
 among which heritable variation is strongly constrained by selection
 (i.e., there is substantial recombination load),
 so that $\sigma_S \approx \gamma$ but $\sigma_N/\gamma$ is large.
-Then the fitness of $F_2$s is $\fit_2 \le 1/\sqrt{1 + 2 \omega a T/N_e} \approx 1 - \omega a T/N_e$,
+Then the fitness of $F_2$ hybrids is $\fit_2 \le 1/\sqrt{1 + 2 \omega a T/N_e} \approx 1 - \omega a T/N_e$,
 and could be extremely rapid if $a$ is large.
 
 For instance, between two populations of one million organisms that has 10 generations per year (a drosophilid species, perhaps)
@@ -1165,7 +1167,6 @@ and so the same drop could occur after 1,100 years.
 
 
 \begin{figure}[H]
-\label{fig:speciation_rates}
 \begin{center}
 \includegraphics{speciation_rates}
 \caption{
@@ -1216,7 +1217,9 @@ of binding sites of a transcription factor (p65) between human individuals.
 accounts for around 2--6\% of expression variation in human blood-derived primary cells,
 while \citet{lappalainen2013transcriptome} found that human population variation 
 explained about 3\% of expression variation.
-Studying natural flycatcher populations, \citet{wang2017bayesian} found that 7.2--8.5\% of transcripts showed allele-specific expression -- indicative of standing genetic \emph{cis}-regulatory variation. Similarly, in wild baboons, \citet{tung2015genetic} observed allele-specific expression in 23.4\% of genes studied. 
+Allele-specific expression is indicative of standing genetic \emph{cis}-regulatory variation;
+\citet{wang2017bayesian} found allele-specific expression in 7.2--8.5\% of transcripts of a flycatcher species,
+while \citet{tung2015genetic} observed allele-specific expression in 23.4\% of genes studied in a baboon species. 
 Taken together, this suggests that variation in the entries of $A$
 may be on the order of at least a few percent between individuals of a population --
 doubtless varying substantially between species and between genes.
@@ -1260,7 +1263,7 @@ we see that the fitnesses of $F_2$ hybrids drop at a much faster rate than those
 Another natural consequence of the model is Haldane's rule,
 that if only one $F_1$ hybrid sex is inviable or sterile it is likely to be the heterogametic sex.
 This occurs because if the genes underlying a regulatory network are distributed among both autosomes and the sex chromosome, 
-then heterogametic $F_1$s show variation similar to that seen in $F_2$s.
+then heterogametic $F_1$s show variation similar to that seen in $F_2$ hybrids.
 
 Is there evidence that this is actually occurring?
 System drift and network rewiring has been inferred across the tree of life \citep{wotton2015quantitative, crombach2016gap, dalal2017transcription, johnson2017rewiring, ali2017quantitative},
@@ -1937,7 +1940,7 @@ On the other hand, the expected squared difference in trait \emph{means} between
     8 \sum_i p_i (1-p_i) x_i^2 t / N = 8 R_0 t /N .
 \end{align}
 This implies that under this model,
-segregation variance in $F_2$s between two populations
+segregation variance in $F_2$ hybrids between two populations
 is roughly increased by a factor of $1/8$ of the difference between their means.
 
 
