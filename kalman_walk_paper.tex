@@ -1493,19 +1493,27 @@ Now, notice that
   \begin{aligned}
       \int_0^t e^{s \lambda_i} e^{(t-s) \lambda_j} ds
       &=
-      \begin{cases}
       \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } 
           \qquad & \text{if} \quad i \neq j \\
+      &=
           t e^{t \lambda_i} 
           \qquad & \text{if} \quad i = j 
-      \end{cases}
   \end{aligned}
 \end{equation}
 Therefore, 
 defining
 \begin{equation}
-    X_{ij}(t,Z) = \left( U^{-1} Z U \right)_{ij}
+    \begin{aligned}
+    X_{ij}(t,Z) 
+       &= 
+        \left( U^{-1} Z U \right)_{ij}
       \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } 
+          \qquad & \text{if} \quad i \neq j \\
+      &=
+          \left( U^{-1} Z U \right)_{ii}
+          t e^{t \lambda_i} 
+          \qquad & \text{if} \quad i = j 
+    \end{aligned}
 \end{equation}
 moving the $U$ and $U^{-1}$ outside the integral and integrating we get that
 \begin{equation}
@@ -1519,9 +1527,15 @@ moving the $U$ and $U^{-1}$ outside the integral and integrating we get that
 Following on from above, we see that if $Z=\Delta_{k \ell}$, then
 \begin{equation}
   \begin{aligned}
-      X_{ij}^{k\ell}(t) = 
+      X_{ij}^{k\ell}(t) 
+      &= 
+      (U^{-1})_{\cdot k} U_{\ell \cdot}
       \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } 
-      (U^{-1})_{\cdot k} U_{\ell \cdot},
+          \qquad & \text{if} \quad i \neq j \\
+      &=
+      (U^{-1})_{\cdot k} U_{\ell \cdot}
+      t e^{t \lambda_i} 
+          \qquad & \text{if} \quad i = j 
   \end{aligned}
 \end{equation}
 where $U_{k \cdot}$ is the $k$th row of $U$,
