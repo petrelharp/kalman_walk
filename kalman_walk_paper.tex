@@ -1031,7 +1031,8 @@ i.e., once $\sqrt{4 \omega T/N_e} \approx \gamma / \sigma_N$.
 This implies that hybrid incompatibility among $F_2$ hybrids should appear much slower --
 on a time scale of $N_e (\gamma / \sigma_N)^2 / (4 \omega)$ generations.
 The $F_1$s will not suffer fitness consequences until the hybrid mean is further than $\gamma$ from the optimum;
-as shown in appendix \ref{apx:away_from_opt} (and suggested by figure \ref{fig:conceptual_fig}),
+% as shown in appendix \ref{apx:away_from_opt} 
+as suggested by figure \ref{fig:conceptual_fig}, Taylor expanding $D^2$ along the optimal set implies that
 this deviation of the mean from optimum grows with the square of the distance between the parental populations,
 and so we expect fitness costs in $F_1$s to appear on a time scale of $N_e^2$ generations.
 
@@ -1365,32 +1366,6 @@ We would like to thank Sergey Nuzhdin, Stevan Arnold, Erik Lundgren, and Hossein
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Local expansion of the fitness surface}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Away from the optimum}
-\label{apx:away_from_opt}
-
-Let two points on $\allS$ be $x_1$ and $x_2$, let $\bar x = (x_1+x_2)/2$, and let $z=(x_2 - x_1)/2$.
-Then with $\grad D^2$ and $\grad^2 D^2$ the first and second derivatives of $D^2$, respectively,
-Taylor expanding about $x_1$ and $x_2$ finds that
-\begin{align*}
-    D(\bar x)^2 
-    &= D(x_1)^2 + \grad D(x_1)^2 \cdot z + \frac{1}{2} z^T \grad^2  D(x_1)^2 z + O(\|z\|^3) \\
-    &=  D(x_2)^2 - \grad D(x_2)^2 \cdot z + \frac{1}{2} z^T \grad^2  D(x_2)^2 z + O(\|z\|^3) .
-\end{align*}
-Now, since $ D(x_1)^2 =  D(x_2)^2 = \grad D(x_1)^2 = \grad D(x_2)^2 = 0$ and
-\begin{align*}
-    \grad D(x_2)^2 = \grad D(x_1)^2 + 2 z^T \grad^2  D(x_1)^2 + O(\|z\|^2), \quad \text{and} \\
-    \grad^2 D(x_2)^2 = \grad^2 D(x_1)^2 + O(\|z\|), 
-\end{align*}
-adding together the two equations above and dividing by two gets that
-\begin{align*}
-     D(\bar x)^2
-    &= - \frac{3}{2} z^T \grad^2  D(x_1)^2 z + O(\|z\|^3) .
-\end{align*}
-
-\subsection{Differentiating the fitness function}
 \label{apx:H_calc}
 
 Suppose that $\rho(t) \ge 0$ is a weighting function on $[0,\infty)$
