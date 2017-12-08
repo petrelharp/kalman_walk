@@ -4,6 +4,8 @@ all: kalman_walk_paper.pdf
 
 PDFLATEX=pdflatex -interaction nonstopmode
 
+kalman_walk_paper.pdf : krefs.bib
+
 clean : 
 	-rm *.aux *.log *.bbl *.blg *.out *.brf
 
