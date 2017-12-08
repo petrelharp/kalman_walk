@@ -23,9 +23,7 @@ gamete_gen <- function(tau, eps) {
         {
           count <- count + 1
           M <- matrix(c(i,k,j,l), ncol=2, nrow=2)
-          name <- paste("G", count, sep = ""); 
-          assign(name, S(tau)*M + S(tau + eps)*(1 - M))
-          gametes[[name]] <- get(name)
+          gametes[[count]] <- S(tau)*M + S(tau + eps)*(1 - M)
         }
       }
     }
@@ -54,11 +52,16 @@ invU = matrix(c(sqrt(1/2), sqrt(1/2),0-1i/sqrt(2), 0+1i/sqrt(2)), nrow=2)
 theory_comp <- function(eps) {
   progeny <- progeny_gen(0, eps)
   mean_dist <- 0
-  for (k in k:256) 
+  for (k in 1:256) 
   {
-    X <- invU%*%progeny[[k]]%*%U * matrix( c( sin(t), t*exp(t*(0+1i)), sin(t), t*exp(t*(0-1i)) ), nrow=2)
-    ingd <- C%*%U%*%X%*%invU%*%B%*%t(B)%*%t(invU)%*%t(X)%*%t(U)%*%t(C)
-    mean_dist <- mean_dist + 0.5*(eps^2)*integrate(ingd, upper = 10, lower = 0)
+    X0 <- invU%*%progeny[[k]]%*%U
+    f <- function (t) {
+        sapply(t, function (tt) {
+              X <- UZU * matrix( c( sin(tt), tt*exp(tt*(0+1i)), sin(tt), tt*exp(tt*(0-1i)) ), nrow=2)
+              return( (C%*%U%*%X%*%invU%*%B)^2 )
+           })
+    }
+    mean_dist <- mean_dist + 0.5*(eps^2)*integrate(f, upper = Inf, lower = 0)
   }
   return(mean_dist)
 }
