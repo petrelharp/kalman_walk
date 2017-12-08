@@ -1,0 +1,335 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, color, xcolor, amsthm}
+\usepackage{graphicx, wrapfig, float, caption, dsfont, bbm, xfrac}
+\usepackage{fullpage}
+\usepackage{natbib}
+
+\newcommand{\jss}[1]{{\color{olive}\it #1}}
+% \newcommand{\ddt}{\frac{d}{dt}}
+\newcommand{\ddt}{\dot}
+\newcommand{\ro}{{ro}}
+\newcommand{\nro}{{\bar{r}o}}
+\newcommand{\rno}{{r\bar{o}}}
+\newcommand{\nrno}{{\bar{r}\bar{o}}}
+\newcommand{\reachable}{\mathcal{R}}
+\newcommand{\unobservable}{\bar{\mathcal{O}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\var}{\mathop{\mbox{Var}}}
+\newcommand{\cov}{\mathop{\mbox{Cov}}}
+\newcommand{\tr}{\mathop{\mbox{tr}}} % trace
+\newcommand{\pda}{\frac{\partial}{\partial A_{ij}}}
+\newcommand{\ind}{\mathds{1}}
+\newcommand{\grad}{\nabla}
+
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\diag}{\text{diag}}
+\newcommand{\1}{\mathbbm{1}}
+
+% fitness as a fn of distance
+\newcommand{\fit}{\mathcal{F}}
+% fitness as a fn of A
+\newcommand{\fitx}{\mathcal{F}}
+% set of optimal coefficients
+\newcommand{\optx}{\mathcal{X}}
+% optimal phenotype
+\newcommand{\optph}{\Phi_0}
+% distance in phenotype space
+\newcommand{\dph}{d}
+% incompatibility
+\newcommand{\Incompat}{\mathcal{I}}
+
+\DeclareMathOperator{\spn}{span}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Local expansion of the fitness surface}
+\label{apx:H_calc}
+
+Suppose that $\rho(t) \ge 0$ is a weighting function on $[0,\infty)$
+so that fitness is a function of $L^2(\rho)$ distance of the impulse response from optimal.
+With $h_0(t) = C_0 e^{tA_0} B_0$ a representative of the optimal set:
+\begin{equation}
+    \begin{aligned}
+        D(A, B, C)^2
+        &:= 
+        \int_0^\infty \rho(t) \left| h_A(t) - h_0(t) \right|^2 dt \\
+        &:= 
+        \int_0^\infty \rho(t) \left| C e^{At} B - C_0 e^{A_0 t} B_0 \right|^2 dt \\
+        &= 
+        \int_0^\infty \rho(t) \tr\left\{
+            \left( C e^{At} B - C_0 e^{A_0 t} B_0 \right)^T
+            \left( C e^{At} B - C_0 e^{A_0 t} B_0 \right)
+        \right\} dt \\
+        &= 
+        \int_0^\infty \rho(t) \tr\left\{
+            \left( C e^{At} B - C_0 e^{A_0 t} B_0 \right)
+            \left( C e^{At} B - C_0 e^{A_0 t} B_0 \right)^T
+        \right\} dt  ,
+        % &= 
+        % \int_0^\infty \rho(t)  \tr\left\{
+        %         C e^{At} B B^T e^{A^T t} C^T 
+        %         - C_0 e^{A_0t} B_0 B^T e^{A^T t} C^T 
+        %         \right. \\ &\qquad \qquad \left. {}
+        %         - C e^{At} B B_0^T e^{A_0^T t} C_0^T 
+        %         + C_0 e^{A_0t} B_0 B_0^T e^{A_0^T t} C_0^T 
+        % \right\} dt \\
+        % \int_0^\infty \rho(t) \left| C \left( e^{At} - e^{A_0 t} \right) B \right|^2 dt \\
+        % &= 
+        % \int_0^\infty \rho(t) C \left( e^{At} - e^{A_0 t} \right) B B^T \left( e^{At} - e^{A_0 t} \right)^T C^T dt
+    \end{aligned}
+\end{equation}
+where $\tr X$ denotes the trace of a square matrix $X$.
+How does this change as we perturb about $(A_0, B_0, C_0)$?
+First we differentiate with respect to $A$, keeping $B=B_0$ and $C=C_0$ fixed.
+Since
+\begin{equation}
+  \begin{aligned}
+      \frac{d}{du} e^{(A+uZ)t} \vert_{u=0}
+      &=
+      \int_0^t e^{As} Z e^{A(t-s)} ds, 
+  \end{aligned}
+\end{equation}
+we have that
+\begin{equation}
+  \begin{aligned}
+      \frac{d}{du} D(A+uZ,B_0,C_0)^2 \vert_{u=0}
+      &=
+        2 \int_0^\infty \rho(t) \tr\left\{ C_0 \left( \int_0^t e^{As} Z e^{A(t-s)} ds \right) B_0 B_0^T \left( e^{At} - e^{A_0 t} \right)^T C_0^T \right\} dt \\
+      &=
+        2 \int_0^\infty \rho(t) \tr\left\{ C_0 \left( \int_0^t e^{As} Z e^{A(t-s)} ds \right) B_0 \left( h_A(t) - h_0(t) \right)^T \right\} dt 
+  \end{aligned}
+\end{equation}
+and, by differentiating this and supposing that $A$ is on the optimal set,
+i.e., $h_A(t)=h_0(t)$, (so without loss of generality, $A=A_0$):
+\begin{equation}
+  \begin{aligned}
+      \calH^{A,A}(Y,Z) 
+      &:= 
+      \frac{1}{2} \frac{d}{du} \frac{d}{dv} D(A_0+uY+vZ,B_0,C_0)^2 \vert_{u=v=0} \\
+      &=
+        \int_0^\infty \rho(t) \tr\left\{ C_0 
+        \left( \int_0^t e^{A_0 s} Y e^{A_0 (t-s)} ds \right) 
+        B_0 B_0^T 
+        \left( \int_0^t e^{A_0 s} Z e^{A_0 (t-s)} ds \right)^T
+        C_0^T \right\} dt  .
+  \end{aligned}
+\end{equation}
+
+The function $\calH$ will define a quadratic form.
+To illustrate the use of this, suppose that $B$ and $C$ are fixed.
+% Here $\calH$ is the quadratic form underlying the Hamiltonian.
+By defining $\Delta_{ij}$ to be the matrix with a 1 in the $(i,j)$th slot
+and 0 elsewhere,
+the coefficients of the quadratic form is
+\begin{equation}
+    \begin{aligned}
+        H_{ij, k\ell}(A)
+        &:=
+        \calH(\Delta_{ij}, \Delta_{k\ell}) .
+    \end{aligned}
+\end{equation}
+
+We could use this to get the quadratic approximation to $D$ near the optimal set.
+To do so, it'd be nice to have a way to compute the inner integral above.
+Suppose that we diagonalize $A = U \Lambda U^{-1}$.
+Then
+\begin{equation} \label{eqn:exp_deriv}
+  \begin{aligned}
+      \int_0^t e^{As} Z e^{A(t-s)} ds 
+      &=
+      \int_0^t U e^{\Lambda s} U^{-1} Z U e^{\Lambda (t-s)} U^{-1} ds 
+  \end{aligned}
+\end{equation}
+Now, notice that
+\begin{equation}
+  \begin{aligned}
+      \int_0^t e^{s \lambda_i} e^{(t-s) \lambda_j} ds
+      &=
+      \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } 
+          \qquad & \text{if} \quad i \neq j \\
+      &=
+          t e^{t \lambda_i} 
+          \qquad & \text{if} \quad i = j 
+  \end{aligned}
+\end{equation}
+Therefore, 
+defining
+\begin{equation}
+    \begin{aligned}
+    X_{ij}(t,Z) 
+       &= 
+        \left( U^{-1} Z U \right)_{ij}
+      \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } 
+          \qquad & \text{if} \quad i \neq j \\
+      &=
+          \left( U^{-1} Z U \right)_{ii}
+          t e^{t \lambda_i} 
+          \qquad & \text{if} \quad i = j 
+    \end{aligned}
+\end{equation}
+moving the $U$ and $U^{-1}$ outside the integral and integrating we get that
+\begin{equation}
+  \begin{aligned}
+      \int_0^t e^{As} Z e^{A(t-s)} ds 
+      &=
+      U X(t,Z) U^{-1} .
+  \end{aligned}
+\end{equation}
+This implies that
+\begin{equation}
+    \begin{aligned}
+        D(A_0+\epsilon Z)^2
+        &\approx \frac{1}{2} \epsilon^2 
+        \int_0^\infty
+            \rho(t) \tr\left\{ C U X(t,Z) U^{-1} B B^T (U^{-1})^T X(t,Z)^T U^T C^T \right\}
+        dt .
+    \end{aligned}
+\end{equation}
+
+To compute the $n^2 \times n^2$ matrix $H$,
+we see that if $Z=\Delta_{k \ell}$, then
+\begin{equation}
+  \begin{aligned}
+      X_{ij}^{k\ell}(t) 
+      &= 
+      (U^{-1})_{\cdot k} U_{\ell \cdot}
+      \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } 
+          \qquad & \text{if} \quad i \neq j \\
+      &=
+      (U^{-1})_{\cdot k} U_{\ell \cdot}
+      t e^{t \lambda_i} 
+          \qquad & \text{if} \quad i = j 
+  \end{aligned}
+\end{equation}
+where $U_{k \cdot}$ is the $k$th row of $U$,
+and so
+\begin{equation}
+    \begin{aligned}
+        H_{ij, k\ell}(A)
+        &=
+        \int_0^\infty
+            \rho(t) \tr\left\{ C U X^{ij}(t) U^{-1} B B^T (U^{-1})^T X^{k\ell}(t)^T U^T C^T \right\}
+        dt .
+    \end{aligned}
+\end{equation}
+This implies that
+\begin{equation}
+    \begin{aligned}
+        D(A_0+\epsilon Z)^2
+        &\approx \frac{1}{2} \epsilon^2 \sum_{ijk\ell} H_{ij,k\ell}(A_0) Z_{ij} Z_{k\ell}  .
+    \end{aligned}
+\end{equation}
+
+By section \ref{ss:quant_gen},
+if we set $\Sigma=\sigma^2 I$ and $U=H$,
+then a population at $A_0+Z$ experiences a restoring force of strength
+$(I + \sigma^2 H^{-1})^{-1} Z$ (treating $Z$ as a vector and $H$ as an operator on these).
+If $\sigma^2$ is small compared to $H^{-1}$
+then this is approximately $-\sigma^2 H^{-1} Z$.
+This suggests that the population mean follows an Ornstein-Uhlenbeck process,
+as described (in different terms) in \citet{hansen1996translating}.
+
+More generally, $B$ and $C$ may also change.
+To extend this we need the remaining second derivatives of $D^2$.
+First, in $B$:
+\begin{equation}
+    \begin{aligned}
+        \mathcal{H}^{B,B}(Y,Z)
+        &:= 
+        \frac{1}{2} \frac{d}{du} \frac{d}{dv} D(A_0,B_0+uY+vZ,C_0)\vert_{u=v=0} \\
+        &=
+        \frac{1}{2} \int_0^\infty \rho(t) \tr\left\{ 
+        C_0 e^{t A_0}
+        \frac{d}{du} \frac{d}{dv} 
+        (uY+vZ)
+        (uY+vZ)^T
+        \vert_{u=v=0} 
+        e^{t A_0^T} C_0^T 
+        \right\} dt  \\
+        &=
+        \frac{1}{2} \int_0^\infty \rho(t) \tr\left\{ 
+        C_0 e^{t A_0}
+        \left( Y Z^T + Z Y^T \right)
+        e^{t A_0^T} C_0^T 
+        \right\} dt  .
+  \end{aligned}
+\end{equation}
+Next, in $C$:
+\begin{equation}
+    \begin{aligned}
+        \mathcal{H}^{B,B}(Y,Z)
+        &:= 
+        \frac{1}{2} \frac{d}{du} \frac{d}{dv} D(A_0,B_0,C_0+uY+vZ)\vert_{u=v=0} \\
+        &=
+        \frac{1}{2} \int_0^\infty \rho(t) \tr\left\{ 
+        B_0 e^{t A_0^T}
+        \frac{d}{du} \frac{d}{dv} 
+        (uY+vZ)^T
+        (uY+vZ)
+        \vert_{u=v=0} 
+        e^{t A_0} B_0
+        \right\} dt  \\
+        &=
+        \frac{1}{2} \int_0^\infty \rho(t) \tr\left\{ 
+        B_0 e^{t A_0^T}
+        \left( Y Z^T + Z Y^T \right)
+        e^{t A_0} B_0
+        \right\} dt  .
+  \end{aligned}
+\end{equation}
+Now, the mixed derivatives in $B$ and $C$:
+\begin{equation}
+    \begin{aligned}
+        \mathcal{H}^{B,C}(Y,Z)
+        &:= 
+        \frac{1}{2} \frac{d}{du} \frac{d}{dv} D(A_0,B_0+uY,C_0+vZ)\vert_{u=v=0} \\
+        &=
+        \int_0^\infty \rho(t) \tr\left\{ 
+        Y e^{t A_0^T} C_0^T Z e^{t A_0} B_0
+        \right\} dt  .
+  \end{aligned}
+\end{equation}
+In $A$ and $B$
+\begin{equation}
+    \begin{aligned}
+        \mathcal{H}^{A,B}(Y,Z)
+        &:= 
+        \frac{1}{2} \frac{d}{du} \frac{d}{dv} D(A_0+uY,B_0+vZ,C_0)\vert_{u=v=0} \\
+        &=
+        \int_0^\infty \rho(t) \tr\left\{ 
+        C_0 \left(\int_0^t e^{s A_0} Y e^{(t-s) A_0} ds \right) B_0
+        Z^T e^{t A_0} C_0
+        \right\} dt  ,
+  \end{aligned}
+\end{equation}
+and finally in $A$ and $C$:
+\begin{equation}
+    \begin{aligned}
+        \mathcal{H}^{A,C}(Y,Z)
+        &:= 
+        \frac{1}{2} \frac{d}{du} \frac{d}{dv} D(A_0+uY,B_0,C_0+vZ)\vert_{u=v=0} \\
+        &=
+        \int_0^\infty \rho(t) \tr\left\{ 
+        C_0 \left(\int_0^t e^{s A_0} Y e^{(t-s) A_0} ds \right) B_0
+        B_0 e^{t A_0} Z
+        \right\} dt  .
+  \end{aligned}
+\end{equation}
+
+Together, numerical computation of these expressions,
+along with estimates of genetic covariance within a population,
+allow precise predictions of evolutionary dynamics of a particular system.
+The approximation should be good as long as the second-order Taylor approximation holds.
+
+\bibliographystyle{plainnat}
+\bibliography{krefs}
+
+\end{document}
