@@ -1,3 +1,15 @@
+A <- matrix(c(0,-1,1,0), nrow=2);
+B <- matrix(c(1,1), ncol=1);
+C <- matrix(c(1,0), nrow=1);
+
+V <- function (tau) {
+  matrix(c(1,tau,0,1-tau), nrow=2) 
+}
+
+S <- function(tau) {
+  V(tau)%*%A%*%solve(V(tau))
+}
+
 gamete_gen <- function(tau, eps) {
   gametes <- list()
   count <- 0
