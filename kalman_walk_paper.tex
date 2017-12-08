@@ -1372,22 +1372,22 @@ We would like to thank Sergey Nuzhdin, Stevan Arnold, Erik Lundgren, and Hossein
 \label{apx:away_from_opt}
 
 Let two points on $\allS$ be $x_1$ and $x_2$, let $\bar x = (x_1+x_2)/2$, and let $z=(x_2 - x_1)/2$.
-Then with $\grad D$ and $\grad^2 D$ the first and second derivatives of $D$, respectively,
+Then with $\grad D^2$ and $\grad^2 D^2$ the first and second derivatives of $D^2$, respectively,
 Taylor expanding about $x_1$ and $x_2$ finds that
 \begin{align*}
-    D(\bar x) 
-    &= D(x_1) + \grad D(x_1) \cdot z + \frac{1}{2} z^T \grad^2  D(x_1) z + O(\|z\|^3) \\
-    &=  D(x_2) - \grad D(x_2) \cdot z + \frac{1}{2} z^T \grad^2  D(x_2) z + O(\|z\|^3) .
+    D(\bar x)^2 
+    &= D(x_1)^2 + \grad D(x_1)^2 \cdot z + \frac{1}{2} z^T \grad^2  D(x_1)^2 z + O(\|z\|^3) \\
+    &=  D(x_2)^2 - \grad D(x_2)^2 \cdot z + \frac{1}{2} z^T \grad^2  D(x_2)^2 z + O(\|z\|^3) .
 \end{align*}
-Now, since $ D(x_1) =  D(x_2) = \grad D(x_1) = \grad D(x_2) = 0$ and
+Now, since $ D(x_1)^2 =  D(x_2)^2 = \grad D(x_1)^2 = \grad D(x_2)^2 = 0$ and
 \begin{align*}
-    \grad D(x_2) = \grad D(x_1) + 2 z^T \grad^2  D(x_1) + O(\|z\|^2), \quad \text{and} \\
-    \grad^2 D(x_2) = \grad^2 D(x_1) + O(\|z\|), 
+    \grad D(x_2)^2 = \grad D(x_1)^2 + 2 z^T \grad^2  D(x_1)^2 + O(\|z\|^2), \quad \text{and} \\
+    \grad^2 D(x_2)^2 = \grad^2 D(x_1)^2 + O(\|z\|), 
 \end{align*}
 adding together the two equations above and dividing by two gets that
 \begin{align*}
-     D(\bar x) 
-    &= \optph - \frac{3}{2} z^T \grad^2  D(x_1) z + O(\|z\|^3) .
+     D(\bar x)^2
+    &= - \frac{3}{2} z^T \grad^2  D(x_1)^2 z + O(\|z\|^3) .
 \end{align*}
 
 \subsection{Differentiating the fitness function}
@@ -1493,7 +1493,12 @@ Now, notice that
   \begin{aligned}
       \int_0^t e^{s \lambda_i} e^{(t-s) \lambda_j} ds
       &=
-      \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } .
+      \begin{cases}
+      \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } 
+          \qquad & \text{if} \quad i \neq j \\
+          t e^{t \lambda_i} 
+          \qquad & \text{if} \quad i = j 
+      \end{cases}
   \end{aligned}
 \end{equation}
 Therefore, 
