@@ -127,10 +127,8 @@ $^{\ddagger}$Departments of Mathematics and Biology \& The Institute for Ecology
 % Evolutionary systems theory and speciation 
 
 \begin{abstract}
-%It is known that even if a species' phenotype has remained unchanged over evolutionary time,
-%the underlying mechanism may have changed,
-%since distinct molecular pathways can realize identical phenotypes.
-Even if a species' phenotype remains unchanged over evolutionary time, the underlying mechanism may have changed, as distinct molecular pathways can realize identical phenotypes.
+The evolutionary conservation of phenotype under selective and environmental stasis does not necessitate conservation of the underlying mechanism, as distinct molecular pathways can realize identical phenotypes.
+%Even if a species' phenotype remains unchanged over evolutionary time, the underlying mechanism may have changed, as distinct molecular pathways can realize identical phenotypes.
 Here we use quantitative genetics and linear system theory to study
 how a gene network underlying a conserved phenotype evolves,
 as the genetic drift of small mutational changes to these molecular pathways
@@ -217,7 +215,7 @@ it is understood that there can be an infinite number of ``realizations'',
 or ways to reverse engineer the dynamics of a ``black box'',
 even if all possible input and output experiments on the ``black box'' are performed 
 \citep{kalman1963mathematical, anderson1966equivalence, zadeh1976linear}. 
-The fundamental nonidentifiability of chemical reaction networks is sometimes referred to as ``the fundamental dogma of chemical kinetics'' \citep{craciun2008identifiability}. 
+The fundamental nonidentifiability of chemical reaction networks is sometimes referred to as the ``dogma of chemical kinetics'' \citep{craciun2008identifiability}. 
 In computer science, this is framed as the relationship among processes that simulate one another \citep{van2004equivalence}.
 Finally,
 the field of \emph{inverse problems} studies those cases where,
@@ -257,7 +255,7 @@ reproductive incompatibility due to system drift will manifest
 %Khatari et al, Tulchinsky et al, and Porter et al, all study hybrid incompatibility from a transcription factor/binding site interaction perspective, not from an overall network architecture perspective. Palmer and Feldman only see hybrid incompatibility in constant environments if the parental populations are relatively poorly adapted initially. Otherwise hybrids between two allopatric populations have fairly high fitnesses.  
 
 It is not a new observations that there is often more than one way to do the same thing,
-and that this may lead to speciation.
+and that this may lead to speciation or that speciation can be the result of neutral and quasi-neutral processes \citep{wright1932roles, nei1983models, barton1989divergence, barton2001role, gavrilets2004fitness}.
 For instance, \citet{tulchinsky2014hybrid}
 %(and similarly \citet{khatri2015simple})
 looked for hybrid incompatibility
@@ -613,7 +611,7 @@ that all share common $B$ and $C$ matrices.
 The oscillator can also be equivalently realized by a three-gene (or larger) network, and will have even more evolutionary degrees of freedom available, 
 as in Figure \ref{fig:3D_osc}.
 
-\begin{example}[All phenotypically equivalent oscillators] \label{ex:all_osc}
+\begin{example}[All phenotypically equivalent gene network wirings] \label{ex:all_osc}
 The oscillator of example \ref{ex:oscillator} is minimal, and so any equivalent system is a change of coordinates
 by an invertible matrix $V$.
 If we further require $B$ and $C$ to be invariant then we need $VB=B$ and $CV=C$.
@@ -802,7 +800,7 @@ The precise rate at which the phenotype of a hybrid diverges depends on the geom
 of the optimal set $\allS$ relative to segregating genetic variation.
 % in Figure \ref{fig:conceptual_fig}, this is depicted as the angle of the black line (the optimal set) with respect to the coordinates.
 
-\begin{example}[Hybrid Incompatibility in the Oscillator] \label{ex:hybrid_osc}
+\begin{example}[Hybrid incompatibility: misregulation due to system drift] \label{ex:hybrid_osc}
 Offspring of two equivalent systems from Example \ref{ex:all_osc}
 can easily fail to oscillate.
 For instance, the $F_1$ offspring between homozygous parents at $\tau=0$ and $\tau=-2$
@@ -908,7 +906,7 @@ if the regulatory coefficients for a system are shared between the sex and one o
 $F_1$ males are effectively equivalent to purely autosomal-system $F_2$ hybrids. 
 In this setting, Haldane's rule is mechanistically similar to \emph{hybrid breakdown}, the observation that $F_2$ hybrids will often be less fit than $F_1$ hybrid crosses, in the early stages of speciation.
 This mechanism relies on the genetic variation of a system being shared across the sex chromosomes and the autosomes,
-and appears to be distinct from the ``dominance'', ``faster-X'', and ``faster-male'' theories \citep{orr1997haldane, coyne1998evolutionary, turelli1995dominance} usually suggested to explain Haldane's rule.
+and appears to be consistent with the ``dominance'' theory \citep{orr1997haldane, coyne1998evolutionary, turelli1995dominance} which is often invoked to explain Haldane's rule.
 %and makes several different predictions than the dominance theory as formulated by \citet{turelli1995dominance}.
 %\plr{what are they?}
 %\citet{turelli1995dominance} employ a population genetic model which strictly requires alleles causing hybrid incompatibility on the X chromosome not to exhibit additive effects, that is the \emph{dominance coefficient} (typically $h$ in classic population genetics) must not be equal to $\frac{1}{2}$. In their model, if alleles are strictly additive, that is neither dominant nor recessive, then male and female $F_1$ hybrids will drop in fitness at the exact same rates, and therefore defy Haldane's rule. 
