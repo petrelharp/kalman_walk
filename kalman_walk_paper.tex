@@ -127,8 +127,8 @@ $^{\ddagger}$Departments of Mathematics and Biology \& The Institute for Ecology
 % Evolutionary systems theory and speciation 
 
 \begin{abstract}
-The evolutionary conservation of phenotype under selective and environmental stasis does not necessitate conservation of the underlying mechanism, as distinct molecular pathways can realize identical phenotypes.
-%Even if a species' phenotype remains unchanged over evolutionary time, the underlying mechanism may have changed, as distinct molecular pathways can realize identical phenotypes.
+%The evolutionary conservation of phenotype under selective and environmental stasis does not necessitate conservation of the underlying mechanism, as distinct molecular pathways can realize identical phenotypes.
+Even if a species' phenotype does not change over evolutionary time, the underlying mechanism may change, as distinct molecular pathways can realize identical phenotypes.
 Here we use quantitative genetics and linear system theory to study
 how a gene network underlying a conserved phenotype evolves,
 as the genetic drift of small mutational changes to these molecular pathways
@@ -193,16 +193,16 @@ and the evolution of such systems in general
 can provide guidance where intuition fails,
 and thus has the potential to discover general principles in the organization of biological systems 
 as well as provide concrete numerical predictions \citep{servedio2014not}.
-
-The dynamics of the molecular machinery and its interactions with the environment
-can be mathematically described as a dynamical system \citep{jaeger2015comet}.
-Movement in this direction is ongoing, as researchers have begun to study 
-the evolution of both abstract \citep{wagner1994evolution, wagner1996does, siegal2002waddington, bergman2003evolutionary, draghi2015robustness} 
-and empirically inspired computational and mathematical models of gene regulatory networks,
-\citep[e.g.][]{mjolsness1991connectionist, jaeger2004dynamic, maria1, vitaly1, vitaly2, crombach2016gap, wotton2015quantitative, chertkova2017insilico}.
+%The dynamics of the molecular machinery and its interactions with the environment
+%can be mathematically described as a dynamical system \citep{jaeger2015comet}.
+%Movement in this direction is ongoing, as 
+There is a substantial amount of work studying the evolution of gene regulatory networks, in both abstract \citep{wagner1994evolution, wagner1996does, siegal2002waddington, bergman2003evolutionary, draghi2015robustness} 
+and empirically inspired computational
+\citep{mjolsness1991connectionist, jaeger2004dynamic, vitaly1, crombach2016gap, wotton2015quantitative, chertkova2017insilico} frameworks.
 % If we allow the reasonable assumption that the genotype-phenotype map 
 % can be represented as a system of differential equations \citep{jaeger2015comet}, 
-% we can immediately discuss its evolution and function in a much more mechanistic, yet general, manner. 
+% we can immediately discuss its evolution and function in a much more mechanistic, yet general, manner.
+
 It is well known that in many contexts mathematical models
 can fundamentally be \emph{nonidentifiable} and/or \emph{indistinguishable} -- meaning that 
 there can be uncertainty about an inferred model's parameters or even its claims about
@@ -215,7 +215,7 @@ it is understood that there can be an infinite number of ``realizations'',
 or ways to reverse engineer the dynamics of a ``black box'',
 even if all possible input and output experiments on the ``black box'' are performed 
 \citep{kalman1963mathematical, anderson1966equivalence, zadeh1976linear}. 
-The fundamental nonidentifiability of chemical reaction networks is sometimes referred to as the ``dogma of chemical kinetics'' \citep{craciun2008identifiability}. 
+The inherent nonidentifiability of chemical reaction networks is sometimes referred to as ``the fundamental dogma of chemical kinetics'' \citep{craciun2008identifiability}. 
 In computer science, this is framed as the relationship among processes that simulate one another \citep{van2004equivalence}.
 Finally,
 the field of \emph{inverse problems} studies those cases where,
@@ -230,7 +230,6 @@ These functional symmetries manifest in convergent and parallel evolution,
 as well as \emph{developmental system drift}: the observation that
 macroscopically identical phenotypes in even very closely related species can in fact be divergent at the molecular and sequence level 
 \citep{kimura1981possibility, true2001developmental, tanay2005conservation, tsong2006evolution, hare2008sepsid, lavoie2010evolutionary, vierstra2014mouse, matsui2015regulatory, dalal2016transcriptional, dalal2017transcription}.
-Furthermore, theory shows that distinct genotypes encoding identical phenotypes can even persist stably within a species \citep{phillips1996maintenance}.
 
 In this paper we outline a theoretical framework to study the evolution of biological systems, such as gene regulatory networks.
 We study the evolution of an optimally adapted population subject to stabilizing selection for phenotype.
@@ -254,8 +253,10 @@ reproductive incompatibility due to system drift will manifest
   %\citet{tulchinsky} simulated the evolution of a transcription factor and its binding site using a thermodynamic model. Their simulations suggest that the language by which a transcription factor recognizes its binding site can change, and potentially lead to hybrid incompatibility when allopatric populations employ divergent readout languages. This study, despite looking at gene regulation, does not analyze overall gene network architecture -- as we do here -- it only looks at the expression level of a single gene. Furthermore, they report reproductive isolation primarily following directional selection for a change in expression levels in each allopatric population; the evidence for reproductive isolation following balancing selection is much weaker. Johnson and Porter 2000 did not observe any hybrid fitness declines under stabilizing selection -- only under directional selection. 
 %Khatari et al, Tulchinsky et al, and Porter et al, all study hybrid incompatibility from a transcription factor/binding site interaction perspective, not from an overall network architecture perspective. Palmer and Feldman only see hybrid incompatibility in constant environments if the parental populations are relatively poorly adapted initially. Otherwise hybrids between two allopatric populations have fairly high fitnesses.  
 
-It is not a new observations that there is often more than one way to do the same thing,
+It is not a new observation that there is often more than one way to do the same thing,
 and that this may lead to speciation or that speciation can be the result of neutral and quasi-neutral processes \citep{wright1932roles, nei1983models, barton1989divergence, barton2001role, gavrilets2004fitness}.
+Incompatibilities between distinct genotypes encoding identical phenotypes can
+even persist stably within a species \citep{phillips1996maintenance}.
 For instance, \citet{tulchinsky2014hybrid}
 %(and similarly \citet{khatri2015simple})
 looked for hybrid incompatibility
@@ -269,13 +270,13 @@ to both explore a much richer class of regulatory network models,
 and provide analytical expectations in large populations with complex phenotypes
 that would be inaccessible to population simulations.
 %REFERENCE: Barton's paper (PETER). \citep{barton2010natural}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Results}
 
-We first describe the class of models we study, motivated by gene regulatory networks. 
-The behavior (i.e., the temporal dynamics) of such a system is determined by a collection of $n$ coregulating molecules 
--- such as transcription factors -- as well as by external or environmental inputs.
+Using gene regulatory network dynamics as the basis for our models, we begin with a collection of $n$ coregulating molecules
+%We first describe the class of models we study, motivated by gene regulatory networks. 
+%The behavior (i.e., the temporal dynamics) of such a system is determined by a collection of $n$ coregulating molecules 
+-- such as transcription factors -- as well as external or environmental inputs.
 % We model the temporal dynamics of the concentrations of a collection of $n$ coregulating molecules
 % within an organism, that may also be affected by temporally varying signals from the environment.
 %% Organisms' phenotypes are constructed by gene by gene and gene by environment interactions. 
@@ -301,7 +302,7 @@ and a matrix $B$ that encodes the effect of each entry of $u$ on the elements of
 %Thus an organism's phenotype $\phi(t)$ -- a vector of molecular concentrations at time $t$ -- is determined both by the structure and organization of a biological system (\emph{e.g.} a gene regulatory network), given by the triple $(A,B,C)$,
 %and by its environment $u(t)$.
 The rate at which the $i^\text{th}$ concentration changes
-is a weighted sum of the concentrations of the other concentrations
+is a weighted sum of the concentrations
 as well as the input:
 \begin{equation}\label{eqn:system}
    \begin{aligned}
@@ -311,7 +312,7 @@ as well as the input:
 \end{equation}
 Furthermore, we always assume that $\kappa(0) = 0$,
 so that the kryptotype measures deviations from initial concentrations. 
-Here $A$ can be any $n \times n$ matrix, $B$ an $n \times m$, and $C$ any $\ell \times n$ dimensional matrix,
+Here $A$ can be any $n \times n$ matrix, $B$ any $n \times m$, and $C$ any $\ell \times n$ dimensional matrix,
 with usually $\ell$ and $m$ less than $n$.
 We think of the system as the triple $(A,B,C)$,
 which translates (time-varying) $m$-dimensional input $u(t)$ into the $\ell$-dimensional output $\phi(t)$.
@@ -324,7 +325,7 @@ which is a convolution of the input $u(t)$ with the system's \emph{impulse respo
 which we denote as $h(t) := Ce^{A t}B$.
 
 Although many different biological systems can be modeled with this approach, for clarity, we focus on gene regulatory networks.
-In this interpretation, $A_{ij}$ determines how the $j^\text{th}$ transcription factor regulates the $i^\text{th}$ transcription factor.
+In terms of gene regulatory networks, $A_{ij}$ determines how the $j^\text{th}$ transcription factor regulates the $i^\text{th}$ transcription factor.
 If $A_{ij} > 0$, then $\kappa_j$ upregulates $\kappa_i$, while if $A_{ij} < 0$, then $\kappa_j$ downregulates $\kappa_i$.
 The $i^\text{th}$ row of $A$ is therefore determined by genetic features such as
 the strength of $j$-binding sites in the promoter of gene $i$,
@@ -611,7 +612,7 @@ that all share common $B$ and $C$ matrices.
 The oscillator can also be equivalently realized by a three-gene (or larger) network, and will have even more evolutionary degrees of freedom available, 
 as in Figure \ref{fig:3D_osc}.
 
-\begin{example}[All phenotypically equivalent gene network wirings] \label{ex:all_osc}
+\begin{example}[All equivalent rewirings of the oscillator] \label{ex:all_osc}
 The oscillator of example \ref{ex:oscillator} is minimal, and so any equivalent system is a change of coordinates
 by an invertible matrix $V$.
 If we further require $B$ and $C$ to be invariant then we need $VB=B$ and $CV=C$.
@@ -1350,7 +1351,7 @@ and genetic variation in these systems.
 %hominids; neanderthal load.
 
 \section*{Acknowledgements}
-We would like to thank Sergey Nuzhdin, Stevan Arnold, Erik Lundgren, and Hossein Asgharian for valuable discussion.
+We would like to thank Sergey Nuzhdin, Stevan Arnold, Michael Turelli, Patrick Phillips, Erik Lundgren, and Hossein Asgharian for valuable discussion. We would also like to thank Nick Barton, Sarah Signor and Todd Parsonsfor helpful comments on the manuscript.
 %
 %\plr{Josh: please fix capitalization in the references.  To do this, anything that needs to be capitalized gets put in curly braces, which tells bibtex to render the capitalization 'as-is'.}
 
