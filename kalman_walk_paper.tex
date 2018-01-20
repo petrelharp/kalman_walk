@@ -158,20 +158,6 @@ thus providing another possible explanation
 of why heterogametic hybrids tend to be disrupted more often than homogametes during the early stages of speciation.
 \end{abstract}
 
-%\plr{Additional ideas to consider adding:}
-%\begin{itemize}
-%    \item speciation literature
-    %\item Haldane's rule (easy point in discussion: makes F1s look like F2s)
-    %\item add point about F1: quartic and F2: quadratic to results and maybe abstract/discussion
-    %\item hybrid vigor (need to do calculation)
- %   \item discuss linearity, linearization, and canalization in introduction
-    %\item obtain estimates of variation in $A$ from thermodynamic occupancy model
- %   \item ``On the origin of species not by means of natural selection''
-%\end{itemize}
-
-%\plri{Note: in the \LaTeX source I'm putting in semantic linebreaks, so it's easy to edit and move around phrases and ideas.}
-
-%\plri{Need to come up with a consistent term for ``the $A_{ij}$''s. -- ``regulatory coefficients''? ``genotype''?}
 
 %%%%%%%%%%%%%%%%%%%%%%
 %\begin{multicols}{2}
@@ -253,10 +239,34 @@ reproductive incompatibility due to system drift will manifest
   %\citet{tulchinsky} simulated the evolution of a transcription factor and its binding site using a thermodynamic model. Their simulations suggest that the language by which a transcription factor recognizes its binding site can change, and potentially lead to hybrid incompatibility when allopatric populations employ divergent readout languages. This study, despite looking at gene regulation, does not analyze overall gene network architecture -- as we do here -- it only looks at the expression level of a single gene. Furthermore, they report reproductive isolation primarily following directional selection for a change in expression levels in each allopatric population; the evidence for reproductive isolation following balancing selection is much weaker. Johnson and Porter 2000 did not observe any hybrid fitness declines under stabilizing selection -- only under directional selection. 
 %Khatari et al, Tulchinsky et al, and Porter et al, all study hybrid incompatibility from a transcription factor/binding site interaction perspective, not from an overall network architecture perspective. Palmer and Feldman only see hybrid incompatibility in constant environments if the parental populations are relatively poorly adapted initially. Otherwise hybrids between two allopatric populations have fairly high fitnesses.  
 
-It is not a new observation that there is often more than one way to do the same thing, or that speciation can be the result of neutral and quasi-neutral processes \citep{wright1932roles, nei1983models, barton1989divergence, barton2001role, gavrilets2004fitness}.
-%Incompatibilities between distinct genotypes encoding identical phenotypes can
-%even persist stably within a species \citep{phillips1996maintenance}.
-For instance, \citet{tulchinsky2014hybrid}
+% wright1932roles mentions possibility of equivalent combinations
+% wright1934evolution looks at allele freq dynamics under stabilizing selection on a polygenic quantitative trait and discusses possibility for speciation this way
+% barton1989divergence not available but likely following on from barton1986maintenance analyzing multiple optima in a similar model
+% nei1983models simulates from simple stepwise mut model on one or two loci (without interactions) where incompat betw diff alleles increases with number of steps betw them
+% sved1981twosex mathematically analyzes and (in another paper) simulates speciation in a model of male + female quantitative traits indep'ly evolving with attraction between matching traits
+% barton2010natural has a good historical review of natural selection and speciation; then analyzes a two-niche levene model
+% gavrilets2004fitness talks a lot about quasineutral paths in holey fitness landscapes
+% phillips1996maintenance shows that subpop structure can stably maintain equivalent but incompat genotypes
+% tulchinsky2014hybrid simulates a single promoter region with a bioenergentic model with directional and stabilizing selection, found incompat in both cases
+% porter2002speciation simulated speciation under a simple model of a regulatory cascade
+%%% Fisher's geom model: (incompat due to segregation variance)
+% barton2001role looks at hybrids betw pops adapting to shifting optima in Fisher's geometric model 
+% fraisse2016genetics looks at stabilizing selection using Fisher's geometric model, showing it predicts lots of observations
+% chevin2010niche looks at incompats after adaptation in Fisher's geom model and how it depends on dimension
+% simon2017coadapted follows up on the Fisher's geom model predictions, also comparing to some real data
+
+It is not a new observation that there is often more than one way to do the same thing, 
+or that speciation can be the result of (nearly) neutral processes.
+This has been analyzed for traits under stabilizing selection determined additively by alleles at many loci 
+\citep{wright1934evolution,barton1986maintenance,barton2001role}
+and for pairs of traits that must match but whose value is unconstrained \citep{sved1981twosex}.
+\citet{phillips1996maintenance} showed that population structure
+can allow long-term stable coexistence of incompatible genotypes encoding identical phenotypes.
+Recent work has shown that Fisher's geometric model of stabilizing selection
+predicts many general empirical patterns \citep{fraisse2016genetics,simon2017coadapted}.
+We use similar tools in the second half of this paper,
+differing in that we have a submanifold of optima rather than a single point.
+Using simulations, \citet{tulchinsky2014hybrid}
 %(and similarly \citet{khatri2015simple})
 looked for hybrid incompatibility
 following regulatory sequence drift,
@@ -268,7 +278,10 @@ Our model differs from previous work in that we use linear systems theory
 to both explore a much richer class of regulatory network models,
 and provide analytical expectations in large populations with complex phenotypes
 that would be inaccessible to population simulations.
-%REFERENCE: Barton's paper (PETER). \citep{barton2010natural}
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Results}
 
@@ -907,6 +920,7 @@ $F_1$ males are effectively equivalent to purely autosomal-system $F_2$ hybrids.
 In this setting, Haldane's rule is mechanistically similar to \emph{hybrid breakdown}, the observation that $F_2$ hybrids will often be less fit than $F_1$ hybrid crosses, in the early stages of speciation.
 This mechanism relies on the genetic variation of a system being shared across the sex chromosomes and the autosomes,
 and appears to be consistent with the ``dominance'' theory \citep{orr1997haldane, coyne1998evolutionary, turelli1995dominance} which is often invoked to explain Haldane's rule.
+\plr{Explain that the effects on fitness are dominant.}
 %and makes several different predictions than the dominance theory as formulated by \citet{turelli1995dominance}.
 %\plr{what are they?}
 %\citet{turelli1995dominance} employ a population genetic model which strictly requires alleles causing hybrid incompatibility on the X chromosome not to exhibit additive effects, that is the \emph{dominance coefficient} (typically $h$ in classic population genetics) must not be equal to $\frac{1}{2}$. In their model, if alleles are strictly additive, that is neither dominant nor recessive, then male and female $F_1$ hybrids will drop in fitness at the exact same rates, and therefore defy Haldane's rule. 
@@ -1263,6 +1277,7 @@ Another natural consequence of the model is Haldane's rule,
 that if only one $F_1$ hybrid sex is inviable or sterile it is likely to be the heterogametic sex.
 This occurs because if the genes underlying a regulatory network are distributed among both autosomes and the sex chromosome, 
 then heterogametic $F_1$s show variation similar to that seen in $F_2$ hybrids.
+\plr{cite fisher's model stuff}
 
 Is there evidence that this is actually occurring?
 System drift and network rewiring has been inferred across the tree of life \citep{wotton2015quantitative, crombach2016gap, dalal2017transcription, johnson2017rewiring, ali2017quantitative},
@@ -1276,11 +1291,12 @@ may be nearly morphologically indistinguishable.
 
 \paragraph{On the origin of species not by means of natural selection?}
 % this is neutral, in contrast to other models. although some folks advocate nonadaptive speciation.
-% other mechanisms also probly important
+% other mechanisms also probably important
 % but this one may be strong since happens in all networks at once
 Although, as classically formulated, 
 the Dobzhansky-Muller model of hybrid incompatibility is agnostic to the relative importance of neutral versus selective genetic substitutions \citep{coyne1998evolutionary},
 and plausible mechanisms for the origin of Dobzhansky--Muller incompatibilities by neutral genetic drift have been proposed \citep{lynch2000origin} 
+\plr{what}
 and under stabilizing selection \citep{fierst},
 previous authors have argued that neutral processes are likely too slow to be a significant driver of speciation \citep{nei1983models,seehausen2014genomics}.
 (Also note that the mechanism underlying hybrid inviability here 
