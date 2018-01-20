@@ -240,7 +240,7 @@ reproductive incompatibility due to system drift will manifest
 %Khatari et al, Tulchinsky et al, and Porter et al, all study hybrid incompatibility from a transcription factor/binding site interaction perspective, not from an overall network architecture perspective. Palmer and Feldman only see hybrid incompatibility in constant environments if the parental populations are relatively poorly adapted initially. Otherwise hybrids between two allopatric populations have fairly high fitnesses.  
 
 % wright1932roles mentions possibility of equivalent combinations
-% wright1934evolution looks at allele freq dynamics under stabilizing selection on a polygenic quantitative trait and discusses possibility for speciation this way
+% wright1935evolution looks at allele freq dynamics under stabilizing selection on a polygenic quantitative trait and discusses possibility for speciation this way
 % barton1989divergence not available but likely following on from barton1986maintenance analyzing multiple optima in a similar model
 % nei1983models simulates from simple stepwise mut model on one or two loci (without interactions) where incompat betw diff alleles increases with number of steps betw them
 % sved1981twosex mathematically analyzes and (in another paper) simulates speciation in a model of male + female quantitative traits indep'ly evolving with attraction between matching traits
@@ -258,12 +258,12 @@ reproductive incompatibility due to system drift will manifest
 It is not a new observation that there is often more than one way to do the same thing, 
 or that speciation can be the result of (nearly) neutral processes.
 This has been analyzed for traits under stabilizing selection determined additively by alleles at many loci 
-\citep{wright1934evolution,barton1986maintenance,barton2001role}
+\citep{wright1935evolution,barton1986maintenance,barton2001role}
 and for pairs of traits that must match but whose value is unconstrained \citep{sved1981twosex}.
 \citet{phillips1996maintenance} showed that population structure
 can allow long-term stable coexistence of incompatible genotypes encoding identical phenotypes.
 Recent work has shown that Fisher's geometric model of stabilizing selection
-predicts many general empirical patterns \citep{fraisse2016genetics,simon2017coadapted}.
+predicts many general patterns from the speciation literature \citep{fraisse2016genetics}.
 We use similar tools in the second half of this paper,
 differing in that we have a submanifold of optima rather than a single point.
 Using simulations, \citet{tulchinsky2014hybrid}
@@ -901,7 +901,7 @@ increases with $\epsilon^2$ and $\epsilon$, respectively.
 \paragraph{Haldane's rule}
 This model naturally predicts
 Haldane's rule, the observation that if only one hybrid sex is sterile or inviable 
-it is likely the heterogametic sex (e.g., the male in XY sex determination systems) \citep{haldane1922sex}.
+it is likely the heterogametic sex (e.g., the male in XY sex determination systems) \citep{haldane1922sex, orr1997haldane}.
 For example, consider an XY species with a two-gene network where the first gene resides on an autosome and the second gene on the X chromosome.
 A male whose pair of haplotypes is 
 $\left( \left[ \begin{smallmatrix} A_1 & A_2 \\ \cdot & \cdot \end{smallmatrix} \right], \left[ \begin{smallmatrix} A_1 & A_2 \\ X_1 & X_2 \end{smallmatrix} \right] \right)$
@@ -917,13 +917,18 @@ If both genes resided on the autosomes this system would only be possible in an 
 More generally, 
 if the regulatory coefficients for a system are shared between the sex and one or more autosomal chromosomes, 
 $F_1$ males are effectively equivalent to purely autosomal-system $F_2$ hybrids. 
-In this setting, Haldane's rule is mechanistically similar to \emph{hybrid breakdown}, the observation that $F_2$ hybrids will often be less fit than $F_1$ hybrid crosses, in the early stages of speciation.
-This mechanism relies on the genetic variation of a system being shared across the sex chromosomes and the autosomes,
-and appears to be consistent with the ``dominance'' theory \citep{orr1997haldane, coyne1998evolutionary, turelli1995dominance} which is often invoked to explain Haldane's rule.
-\plr{Explain that the effects on fitness are dominant.}
+Although many alleles will be dominant if the phenotype--fitness relationship is convex,
+the underlying mechanism does not depend on the \emph{dominance theory} \citet{turelli1995dominance} to explain Haldane's rule:
+instead, it derives from the nature of segregation load.
+% In this setting, Haldane's rule is mechanistically similar to \emph{hybrid breakdown}, 
+% the observation that $F_2$ hybrids will often be less fit than $F_1$ hybrid crosses, in the early stages of speciation.
+% This mechanism relies on the genetic variation of a system being shared across the sex chromosomes and the autosomes,
+% and appears to be consistent with the ``dominance'' theory \citep{orr1997haldane, coyne1998evolutionary, turelli1995dominance} which is often invoked to explain Haldane's rule.
+% \plr{Explain that the effects on fitness are dominant.}
 %and makes several different predictions than the dominance theory as formulated by \citet{turelli1995dominance}.
 %\plr{what are they?}
 %\citet{turelli1995dominance} employ a population genetic model which strictly requires alleles causing hybrid incompatibility on the X chromosome not to exhibit additive effects, that is the \emph{dominance coefficient} (typically $h$ in classic population genetics) must not be equal to $\frac{1}{2}$. In their model, if alleles are strictly additive, that is neither dominant nor recessive, then male and female $F_1$ hybrids will drop in fitness at the exact same rates, and therefore defy Haldane's rule. 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \section*{System drift and the accumulation of incompatibilities}
@@ -1252,15 +1257,15 @@ doubtless varying substantially between species and between genes.
 % - Is linearity an important assumption?
 % - We know that divergent selection and genetic conflict can easily lead to speciation; we've shown neutral drift can maybe surprisingly easily do so also; but it remains unclear the relative contributions of these. Note that although drift may be weaker in any one network there are lots of networks. Could motivate this with Orr's statement.  Perhaps tie in spandrels.
 
-Above we synthesize concepts and tools from molecular and evolutionary biology with tools from control theory
-to study the evolution of a mechanistic model of the molecular genotype-phenotype map under stabilizing selection.
-This model allows us to analytically describe the processes discussed verbally as
+In this paper, we have used tools from quantitative genetics and control theory
+to study the evolution of a mechanistic model of the molecular genotype-phenotype map under stabilizing selection,
+providing an explicit model of
 phenogenetic drift \citep{weiss2000phenogenetic} and developmental system drift \citep{true2001developmental}.
 In this context, the Kalman decomposition \citep{kalman1963mathematical}
 gives an analytical description of all phenotypically equivalent gene networks.
 It also implies that nearly all systems are nonidentifiable,
 and hence the general existence of axes of genetic variation that are not constrained by selection.
-The independent movement of separated populations along these axes
+The independent movement of separated populations along these axes by genetic drift
 can lead to reduction in hybrid viability, and hence speciation,
 at a speed that depends on effective population size and amount of genetic variation. 
 In this model, at biologically reasonable parameter values,
@@ -1276,8 +1281,8 @@ we see that the fitnesses of $F_2$ hybrids drop at a much faster rate than those
 Another natural consequence of the model is Haldane's rule,
 that if only one $F_1$ hybrid sex is inviable or sterile it is likely to be the heterogametic sex.
 This occurs because if the genes underlying a regulatory network are distributed among both autosomes and the sex chromosome, 
-then heterogametic $F_1$s show variation similar to that seen in $F_2$ hybrids.
-\plr{cite fisher's model stuff}
+then heterogametic $F_1$s show variation similar to that seen in $F_2$ hybrids,
+as a result of segregation load \citep[similarly to][]{fraisse2016genetics}.
 
 Is there evidence that this is actually occurring?
 System drift and network rewiring has been inferred across the tree of life \citep{wotton2015quantitative, crombach2016gap, dalal2017transcription, johnson2017rewiring, ali2017quantitative},
@@ -1289,52 +1294,75 @@ Furthermore, in cryptic species complexes (e.g., sun skinks \citep{barley2013cha
 genetically distinct species
 may be nearly morphologically indistinguishable.
 
-\paragraph{On the origin of species not by means of natural selection?}
+\paragraph{The origin of species not by means of natural selection?}
 % this is neutral, in contrast to other models. although some folks advocate nonadaptive speciation.
 % other mechanisms also probably important
 % but this one may be strong since happens in all networks at once
-Although, as classically formulated, 
+As classically formulated, 
 the Dobzhansky-Muller model of hybrid incompatibility is agnostic to the relative importance of neutral versus selective genetic substitutions \citep{coyne1998evolutionary},
-and plausible mechanisms for the origin of Dobzhansky--Muller incompatibilities by neutral genetic drift have been proposed \citep{lynch2000origin} 
-\plr{what}
-and under stabilizing selection \citep{fierst},
-previous authors have argued that neutral processes are likely too slow to be a significant driver of speciation \citep{nei1983models,seehausen2014genomics}.
-(Also note that the mechanism underlying hybrid inviability here 
-resembles the Dobzhansky-Muller model,
-but is more similar to the ``pathway model'' of \citet{lindtke2015genetic}.)
-Using simulations, \citet{porter2002speciation} demonstrated the accumulation of hybrid incompatibilities under directional, but not stabilizing selection, and \citet{palmer2009dynamics} observed the appearance of incompatibilities in populations evolving in a constant environment, only if the populations were suboptimally adapted.
-This, in light of the few known incompatibilities, has lead some to conclude that hybrid incompatibility is typically a byproduct of positive selection \citep{orr2004speciation, schluter2009evidence} 
-or a consequence of genetic conflict \citep{presgraves2010molecular, crespi2013conflictual}.
-In contrast, the model we develop here suggests that even under strictly neutral conditions, 
-system drift can lead to speciation, at a rate fast enough 
-to play a substantial role in species formation across the tree of life. 
-Our results show that hybrids, under neutral processes, break down as a function of genetic distance,
-and so may, in part, explain broad patterns
+and plausible mechanisms have been proposed
+whereby Dobzhansky--Muller incompatibilities could originate
+under neutral genetic drift \citep{lynch2000origin}
+or stabilizing selection \citep{fierst}.
+The same holds for the ``pathway model'' of \citet{lindtke2015genetic},
+which is closer to the situation here.
+However, previous authors have argued that neutral processes are likely too slow to be a significant driver of speciation \citep{nei1983models,seehausen2014genomics}.
+% Using simulations, \citet{porter2002speciation} demonstrated the accumulation of hybrid incompatibilities under directional, but not stabilizing selection, and \citet{palmer2009dynamics} observed the appearance of incompatibilities in populations evolving in a constant environment, only if the populations were suboptimally adapted.
+% In light of the few known incompatibilities, 
+This has led some to conclude that hybrid incompatibility is typically a byproduct of positive selection \citep{orr2004speciation, schluter2009evidence} 
+or a consequence of genetic conflict \citep{presgraves2010molecular, crespi2013conflictual},
+two processes that typically act much more rapidly than genetic drift.
+% In contrast, the model we develop here suggests that even under strictly neutral conditions, 
+% system drift can lead to speciation, at a rate fast enough 
+% to play a substantial role in species formation across the tree of life. 
+However, our calculations suggest that even under strictly neutral processes,
+hybrid fitness breaks down as a function of genetic distance
+rapidly enough to play a substantial role in species formation across the tree of life. 
+This is consistent with broad patterns
 such as the relationship between molecular divergence and genetic isolation 
 % across diverse taxa and ecologies 
 seen by \citet{roux2016shedding}, 
-and the clocklike speciation patterns observed by \citet{hedges2015tree}.
+and the clocklike speciation rates observed by \citet{hedges2015tree}.
 % (as diversification is not observed to be accelerated following mass extinctions).
 
 All of these forces -- adaptive shifts, conflict, and network drift --
 are plausible drivers of speciation, and may even interact.
-For instance, reinforcement due to local adaptation could in some situations provide a selective pressure
+Many of our observations carry over to models of directional selection --
+for instance, rapid drift along the set of equivalent systems
+could be driven by adaptation in a different, pleiotropically coupled system.
+Or, reinforcement due to local adaptation might provide a selective pressure
 that speeds up system drift.
-It remains to be seen how the relative strengths of these forces compare.
 Furthermore,
 while the fitness consequences of incompatibility in any one given network may be small, 
 the cumulative impact of system drift across the many different networks an organism relies on may be substantial. 
+It remains to be seen how the relative strengths of these forces compare.
 
-Of course the basic assumptions of this model will be violated in practice (constant selective pressures, etc.), however, this model can function as a ``neutral null'' description of gene network evolution (a strategy advocated for by \citet{lynch2007frailty, fay2008evaluating, koonin2016splendor}). If this model succeeds in describing actual system evolution, it can be inferred that the mechanism underlying species formation does not require the inclusion of adaptation or changes in selection to explain the emergence of hybrid incompatibility.
+% Of course the basic assumptions of this model will be violated in practice (constant selective pressures, etc.), however, this model can function as a ``neutral null'' description of gene network evolution (a strategy advocated for by \citet{lynch2007frailty, fay2008evaluating, koonin2016splendor}). If this model succeeds in describing actual system evolution, it can be inferred that the mechanism underlying species formation does not require the inclusion of adaptation or changes in selection to explain the emergence of hybrid incompatibility.
 
-\paragraph{Population isolates and genetic load}
-Above we have mostly discussed the case of two separated populations of equal size.
-In contrast, consider a small subset of a large population that is suddenly isolated.
-It will have a large amount of genetic variance, thanks to its history,
-but a small population size -- and so can drift quite quickly until it exhausts its genetic variation.
-By this point, it could have accumulated substantial incompatibility with the parental population.
-Similarly, in a species with substantial isolation by distance, geographically local systems drift
-might lead to genetic load due only to recombination, much as in \citep{phillips1996maintenance}.
+% \paragraph{Population isolates and genetic load}
+% Above we have mostly discussed the case of two separated populations of equal size.
+% In contrast, consider a small subset of a large population that is suddenly isolated.
+% It will have a large amount of genetic variance, thanks to its history,
+% but a small population size -- and so can drift quite quickly until it exhausts its genetic variation.
+% By this point, it could have accumulated substantial incompatibility with the parental population.
+% Similarly, in a species with substantial isolation by distance, geographically local systems drift
+% might lead to genetic load due only to recombination, much as in \citep{phillips1996maintenance}.
+
+\paragraph{Fisher's geometric model}
+There has been substantial work on models of quadratic stabilizing selection
+around a single optimum -- i.e., Fisher's geometric model \citep[e.g.][]{simon2017coadapted}.
+Our model would have this form if viewed only in phenotype space, 
+where there is a single optimum --
+but differs by explicitly considering evolutionary dynamics of underlying genotype-derived regulatory matrices.
+These make the quantitative genetic model we are led to
+a generalization of Fisher's geometric model,
+with distinct behavior,
+due to the existence of neutral directions in genotype space,
+and curvature of the optimal set,
+However, there are many shared aspects:
+for instance, \citet{barton1989divergence} also found incompatibilities accumulating
+with genetic drift.
+
 
 \paragraph{Nonlinearity and model assumptions}
 Of course, real regulatory networks are not linear dynamical systems.
@@ -1406,7 +1434,7 @@ and mean $(\Sigma^{-1}+L^T L)^{-1} \Sigma^{-1} \mu$.
 % onto the span of the columns of $U$.
 
 After selection, we have reproduction:
-suppose this occurs as in the infinitesimal model \citep{barton2016infinitesimal},
+suppose this occurs as in the infinitesimal model \citep{barton2017infinitesimal},
 so that each offspring of parents with traits $x$ and $y$
 is drawn independently from a Gaussian distribution 
 with mean $(x+y)/2$ and covariance matrix $R$.
@@ -1599,14 +1627,14 @@ since the amount of \emph{segregation variance}, quantified by $R$,
 will not stay constant.
 To get an idea of how this might change,
 suppose that a trait is determined by $L$ unlinked, biallelic loci,
-and that the $i^\mathrm{th}$ locus has two alleles with additive effects $\pm x_i$,
-so that being homozygous for the $+$ allele contributes $+2x_i$ to the trait.
+and that the $i^\mathrm{th}$ locus has two alleles with additive effects $\pm \alpha_i$,
+so that being homozygous for the $+$ allele contributes $+2 \alpha_i$ to the trait.
 For simplicity, we will neglect the effects of selection.
 If the $+$ allele at locus $i$ is at frequency $p_i$ in a population,
 then the mean and genetic variance of the trait in a diploid population with random mating is
 \begin{align*}
-    m &= 2 \sum_i (2 p_i - 1) x_i \\
-    s^2 &= 4 \sum_i p_i (1-p_i) x_i^2 .
+    m &= 2 \sum_i (2 p_i - 1) \alpha_i \\
+    s^2 &= 4 \sum_i p_i (1-p_i) \alpha_i^2 .
 \end{align*}
 
 
@@ -1614,11 +1642,11 @@ Segregation variance between two parents depends on the loci at which either are
 and each locus contributes independently
 since alleles are additive.
 If the alleles are at Hardy-Weinberg proportions,
-then since segregation acts like a fair coin flip, a heterozygous locus contributes $x_i^2/4$ to the variance,
+then since segregation acts like a fair coin flip, a heterozygous locus contributes $\alpha_i^2/4$ to the variance,
 and so the \emph{mean} segregation variance, averaging across parents, is
-% two parents, prob 2p(1-p) for prob the locus is heterozygous, variance 0.5(1-0.5)x^2.
+% two parents, prob 2p(1-p) for prob the locus is heterozygous, variance 0.5(1-0.5)\alpha^2.
 \begin{align*}
-    R_0(p) = \sum_i p_i (1-p_i) x_i^2 .
+    R_0(p) = \sum_i p_i (1-p_i) \alpha_i^2 .
 \end{align*}
 
 On the other hand,
@@ -1627,8 +1655,8 @@ with frequencies $q_i$
 (an $F_1$ hybrid),
 this would be
 \begin{align*}
-    R_1(p,q) &= \frac{1}{2} \sum_i p_i^2 (1-p_i)^2 x_i^2 
-                + \frac{1}{2} \sum_i q_i^2 (1-q_i)^2 x_i^2 \\
+    R_1(p,q) &= \frac{1}{2} \sum_i p_i^2 (1-p_i)^2 \alpha_i^2 
+                + \frac{1}{2} \sum_i q_i^2 (1-q_i)^2 \alpha_i^2 \\
                 &= (R_0(p) + R_0(q))/2 .
 \end{align*}
 If we assume that the populations are at equilibrium, $R_0(p) \approx R_0(q)$,
@@ -1638,7 +1666,7 @@ Now consider an $F_2$ hybrid, where both parents are $F_1$
 and so each heterozygous at locus $i$ with probability $p_i (1-q_i) + (1-p_i) q_i$.
 Then
 \begin{align*}
-    R_2(p,q) &= \frac{1}{2} \sum_i \left(p_i (1-q_i) + (1-p_i) q_i \right) x_i^2  .
+    R_2(p,q) &= \frac{1}{2} \sum_i \left(p_i (1-q_i) + (1-p_i) q_i \right) \alpha_i^2  .
 \end{align*}
 Suppose that the two populations are slightly drifted from each other,
 with frequency difference $p_i-q_i = 2\epsilon_i$.
@@ -1662,13 +1690,13 @@ this implies that we expect
 \begin{align*}
     R_2 
     &\approx 
-    R_0 + 2 \sum_i p_i (1-p_i) x_i^2 t/N \\
+    R_0 + 2 \sum_i p_i (1-p_i) \alpha_i^2 t/N \\
     &=
     \left( 1 + \frac{2t}{N} \right) R_0 .
 \end{align*}
 On the other hand, the expected squared difference in trait \emph{means} between two such populations is
 \begin{align} \label{eqn:var_dx}
-    8 \sum_i p_i (1-p_i) x_i^2 t / N = 8 R_0 t /N .
+    8 \sum_i p_i (1-p_i) \alpha_i^2 t / N = 8 R_0 t /N .
 \end{align}
 This implies that under this model,
 segregation variance in $F_2$ hybrids between two populations
