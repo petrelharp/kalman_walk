@@ -131,7 +131,7 @@ $^{\ddagger}$Departments of Mathematics and Biology \& The Institute for Ecology
 Even if a species' phenotype does not change over evolutionary time, the underlying mechanism may change, as distinct molecular pathways can realize identical phenotypes.
 Here we use quantitative genetics and linear system theory to study
 how a gene network underlying a conserved phenotype evolves,
-as the genetic drift of small mutational changes to these molecular pathways
+as the genetic drift of small changes to these molecular pathways
 cause a population to explore the set of mechanisms with identical phenotypes.
 % Treating an organism as a ``black box''
 To do this, we model an organism's internal state as a linear system of differential equations
@@ -204,9 +204,11 @@ even if all possible input and output experiments on the ``black box'' are perfo
 The inherent nonidentifiability of chemical reaction networks is sometimes referred to as ``the fundamental dogma of chemical kinetics'' \citep{craciun2008identifiability}. 
 In computer science, this is framed as the relationship among processes that simulate one another \citep{van2004equivalence}.
 Finally,
-the field of \emph{inverse problems} studies those cases where,
-even if a one-to-one mapping between model and behavior is possible in theory,
-even tiny amounts of noise can make inference problems nonidentifiable in practice \citep{petrov2005well}.
+the field of \emph{inverse problems} studies those cases in which,
+despite the existence of a theoretical one-to-one mapping between a model and behavior,
+tiny amounts of noise make inference problems nonidentifiable in practice \citep{petrov2005well}.
+%even if a one-to-one mapping between model and behavior is possible in theory,
+%even tiny amounts of noise can make inference problems nonidentifiable in practice \citep{petrov2005well}.
 
 Nonidentifiability is a major barrier to mechanistic understanding of real systems, 
 but viewed from another angle,
@@ -218,18 +220,18 @@ macroscopically identical phenotypes in even very closely related species can in
 \citep{kimura1981possibility, true2001developmental, tanay2005conservation, tsong2006evolution, hare2008sepsid, lavoie2010evolutionary, vierstra2014mouse, matsui2015regulatory, dalal2016transcriptional, dalal2017transcription}.
 
 In this paper we outline a theoretical framework to study the evolution of biological systems, such as gene regulatory networks.
-We study the evolution of an optimally adapted population subject to stabilizing selection for phenotype.
+We study the evolution of an optimally adapted population under stable conditions, that is where phenotype is under stabilizing selection.
 Even if the phenotype remains stable over evolutionary time, the underlying mechanism might not remain so,
 as many distinct (and mutationally connected) molecular pathways can realize identical phenotypes.
 Below, we first apply results from system theory which give
 an analytical description of the set of 
 all linear gene network architectures that yield identical phenotypes.
 Since these phenotypically equivalent gene networks are not necessarily compatible with one another, 
-system drift may result in reproductive incompatibility between populations 
-isolated for a sufficiently long period of time, 
+system drift may result in reproductive incompatibility between sufficiently isolated populations,
+%isolated for a sufficiently long period of time, 
 even in the absence of any sort of adaptive, selective, or environmental change. 
 We then use quantitative genetic theory to estimate how quickly 
-reproductive incompatibility due to system drift will manifest
+reproductive incompatibility due to system drift manifests.
 
  % \jss{should hare2008sepsid be here? It's sequence but not ``system'' drift}
 % are these good here? {taylor2016diverse -- maybe not, matsui2015regulatory -- I think this relevant, stergachis2014conservation}.
@@ -257,21 +259,18 @@ reproductive incompatibility due to system drift will manifest
 
 It is not a new observation that there is often more than one way to do the same thing, 
 or that speciation can be the result of (nearly) neutral processes.
-This has been analyzed for traits under stabilizing selection determined additively by alleles at many loci 
-\citep{wright1935evolution,barton1986maintenance,barton2001role}
+The potential for speciation has been analyzed in models of 
+traits under stabilizing selection determined additively by alleles at many loci 
+\citep{wright1935evolution,barton1986maintenance,barton2001role},
+in related fitness landscape models \citep{fraisse2016genetics},
 and for pairs of traits that must match but whose value is unconstrained \citep{sved1981twosex}.
-\citet{phillips1996maintenance} showed that population structure
-can allow long-term stable coexistence of incompatible genotypes encoding identical phenotypes.
-Recent work has shown that Fisher's geometric model of stabilizing selection
-predicts many general patterns from the speciation literature \citep{fraisse2016genetics}.
-We use similar tools in the second half of this paper,
-differing in that we have a submanifold of optima rather than a single point.
-Using simulations, \citet{tulchinsky2014hybrid}
-%(and similarly \citet{khatri2015simple})
-looked for hybrid incompatibility
-following regulatory sequence drift,
-and \citet{porter2002speciation} studied speciation in populations expressing a simple regulatory cascade.
-Both found rapid speciation following directional selection,
+% Recent work has shown that Fisher's geometric model of stabilizing selection
+% predicts many general patterns from the speciation literature \citep{fraisse2016genetics}.
+It has also been shown that population structure
+can allow long-term stable coexistence of incompatible genotypes encoding identical phenotypes \citep{phillips1996maintenance}.
+However, previous simulations of system drift in regulatory sequences \citep{tulchinsky2014hybrid}
+and a regulatory cascade \citet{porter2002speciation}
+found that speciation could be rapid under directional selection
 but only equivocal support for speciation under models of purely neutral drift.
 %Additionally, \citet{fierst} observed speciation due to an increase of segregation variance under balancing selection, in models of weak to moderate, but not strong epistasis.
 Our model differs from previous work in that we use linear systems theory
@@ -336,7 +335,7 @@ we can write the phenotype as
 which is a convolution of the input $u(t)$ with the system's \emph{impulse response},
 which we denote as $h(t) := Ce^{A t}B$.
 
-Although many different biological systems can be modeled with this approach, for clarity, we focus on gene regulatory networks.
+% Although many different biological systems can be modeled with this approach, for clarity, we focus on gene regulatory networks.
 In terms of gene regulatory networks, $A_{ij}$ determines how the $j^\text{th}$ transcription factor regulates the $i^\text{th}$ transcription factor.
 If $A_{ij} > 0$, then $\kappa_j$ upregulates $\kappa_i$, while if $A_{ij} < 0$, then $\kappa_j$ downregulates $\kappa_i$.
 The $i^\text{th}$ row of $A$ is therefore determined by genetic features such as
@@ -345,13 +344,12 @@ factors affecting chromatin accessibility near gene $i$,
 or basal transcription machinery activity.
 The form of $B$ determines how the environment influences transcription factor expression levels,
 and $C$ might determine the rate of production of downstream enzymes.
-
 %% {Linearity} also ``zero-state equivalence''
-Here we have assumed that the system is linear,
-and begins from the ``zero'' state ($\kappa(0)=0$).
-Of course, neither of these are necessarily true for real systems,
-but the dynamics of most nonlinear systems can be approximated locally by a linear systems near most points. 
-Furthermore, the ease of analyzing linear systems makes this an attractive place to start.
+% Here we have assumed that the system is linear,
+% and begins from the ``zero'' state ($\kappa(0)=0$).
+% Of course, neither of these are necessarily true for real systems,
+% but the dynamics of most nonlinear systems can be approximated locally by a linear systems near most points. 
+% Furthermore, the ease of analyzing linear systems makes this an attractive place to start.
 To demonstrate this approach, we apply it to construct a simple gene network in Example \ref{ex:oscillator} below.
 
 \begin{example}[An oscillator]\label{ex:oscillator}
@@ -495,7 +493,7 @@ Results in system theory show that any system can be realized in a particular mi
 (the dimension of the kryptotype, $n_\text{min}$),
 and that any two phenotypically equivalent systems of dimension $n_\text{min}$ are related by a change of coordinates.
 Since gene networks can grow or shrink following gene duplications and deletions, 
-these additional degrees of freedom can apply in principle to any system.
+these additional degrees of freedom can apply, in principle, to any system.
 
 Even if the system is not minimal, results from systems theory % -- the Kalman decomposition --
 explicitly describe the set of all phenotypically equivalent systems.
@@ -731,7 +729,7 @@ If the parents are from distinct populations,
 these are simply first-- and second--generation hybrids, respectively.
 
 Exactly how the coefficients 
-(i.e., entries of $A$, $B$ or $C$)
+(i.e., entries of $A$, $B$ and $C$)
 of a haploid system inherited by an offspring from her diploid parent
 are determined by the parent's two systems
 depends on the genetic basis of any variation in the coefficients.
@@ -740,19 +738,21 @@ the result is random to the extent that each parent is heterozygous
 for alleles that affect the coefficients.
 Since the $i^\text{th}$ row of $A$ summarizes how each gene regulates gene $i$,
 and hence is determined by the promoter region of gene $i$,
-the elements of a row of $A$ to tend to be inherited together,
+the elements of a row of $A$ tend to be inherited together,
 which will create covariance between entries of the same row.
 It is, however, a quite general observation that the variation seen among recombinant systems
 is proportional to the difference between the two parental systems.
-This is certainly true if each coefficient is determined by a single nonrecombining locus,
-so that each coefficient in the system produced by meiosis is an independent random choice
-between the two parental coefficients.
-On the other hand, if a coefficient is determined by additive contributions of independently segregating loci,
-then the law of total variance applied after conditioning on the parental origin of each allele
-implies that the variance is equal to one-quarter of the squared difference between parental coefficients.
+% This is certainly true if each coefficient is determined by a single nonrecombining locus,
+% so that each coefficient in the system produced by meiosis is an independent random choice
+% between the two parental coefficients.
+% On the other hand, if a coefficient is determined by additive contributions of independently segregating loci,
+% then the law of total variance applied after conditioning on the parental origin of each allele
+% implies that the variance is equal to one-quarter of the squared difference between parental coefficients.
 
-Offspring formed from two phenotypically identical systems do not necessarily exhibit the same phenotype as both of its parents -- in other words $\allS$, the set of all systems phenotypically equivalent to a given one, is not, in general, closed under averaging or recombination.
-If sexual recombination among systems drawn from $\allS$ yields systems with divergent phenotypes, populations containing significant diversity in $\allS$ can carry genetic load, and isolated populations may fail to produce hybrids with viable phenotypes.
+Offspring formed from two phenotypically identical systems do not necessarily exhibit the same phenotype as both of its parents 
+-- in other words $\allS$, the set of all systems phenotypically equivalent to a given one, is not, in general, closed under averaging or recombination.
+If sexual recombination among systems drawn from $\allS$ yields systems with divergent phenotypes, 
+populations containing significant diversity in $\allS$ can carry genetic load, and isolated populations may fail to produce hybrids with viable phenotypes.
 
 
 \begin{figure}[H]
@@ -884,16 +884,10 @@ increases with $\epsilon^2$ and $\epsilon$, respectively.
     \includegraphics[width=0.5\textwidth]{examples/F2_vs_F1_divergence_tau0}
    % \caption{
     %\textbf{(left)} 
-    \caption{Mean hybrid phenotypic distance from optimum computed with equation \ref{eqn:distance}, using $\rho(t) = \exp(-t/4\pi)$
+    \caption{Mean hybrid phenotypic distance from optimum computed with equation \eqref{eqn:distance}, using $\rho(t) = \exp(-t/4\pi)$
     for $F_1$ (black) and $F_2$ (blue) hybrids between $A(0)$ and $A(\epsilon)$ parent oscillators. Genetic distance is computed as 
-    %Frobenius norm
-    %Euclidean distance
-    $\sqrt{\sum_{ij} (A_{ij}(0) - A_{ij}(\epsilon))^2}$
-    %between two systems
-    .}
-    %\textbf{(right)} Same, but for $F_2$ offspring (one line per type of $F_2$).
-    %\plri{make this $D$ not $D^2$ and say which line is the overall average $F_2$.
-    %}
+    $\left(\sum_{ij} (A_{ij}(0) - A_{ij}(\epsilon))^2\right)^{1/2}$.
+    }
     \label{fig:osc_incompat}
   \end{figure}
 \end{example}
@@ -906,17 +900,16 @@ For example, consider an XY species with a two-gene network where the first gene
 A male whose pair of haplotypes is 
 $\left( \left[ \begin{smallmatrix} A_1 & A_2 \\ \cdot & \cdot \end{smallmatrix} \right], \left[ \begin{smallmatrix} A_1 & A_2 \\ X_1 & X_2 \end{smallmatrix} \right] \right)$
 has phenotype determined by $A = \left[ \begin{smallmatrix} A_1 & A_2 \\ X_1 & X_2 \end{smallmatrix} \right]$, 
-if dosage compensation upregulates heterogametes by a factor of 2 relative to homogametes,
-% as in \emph{Drosophila}
+  if dosage compensation upregulates heterogametes by a factor of two relative to homogametes (as with \emph{Drosophila}),
 while a female homozygous for the haplotype
 $\left[\begin{smallmatrix} \bar A_1 & \bar A_2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$, has phenotype determined by
 $A = \left[\begin{smallmatrix} \bar A_1 & \bar A_2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$.
 An $F_1$ male offspring of these two will have its phenotype determined by
 $\left[\begin{smallmatrix} (A_1 + \bar A_1)/2 & (A_2 + \bar A_2)/2 \\ \bar X_1 & \bar X_2 \end{smallmatrix}\right]$.
-If both genes resided on the autosomes this system would only be possible in an $F_2$ cross.
+If both genes resided on the autosomes, this system would only be possible in an $F_2$ cross.
 More generally, 
 if the regulatory coefficients for a system are shared between the sex and one or more autosomal chromosomes, 
-$F_1$ males are effectively equivalent to purely autosomal-system $F_2$ hybrids. 
+$F_1$ males are effectively equivalent to purely autosomal-system $F_2$ hybrids, and recall that $F_2$s are significantly less fit on average than $F_1$s (see Figure \ref{fig:osc_incompat}).
 Although many alleles will be dominant if the phenotype--fitness relationship is convex,
 the underlying mechanism does not depend on the \emph{dominance theory} \citet{turelli1995dominance} to explain Haldane's rule:
 instead, it derives from the nature of segregation load.
@@ -935,7 +928,7 @@ instead, it derives from the nature of segregation load.
 
 Thus far we have seen that many distinct molecular mechanisms can realize identical phenotypes
 and that these mechanisms may fail to produce viable hybrids.
-This leads to the question: does evolution shift molecular mechanisms
+Does evolution shift molecular mechanisms
 fast enough to be a significant driver of speciation?
 To approach this question,
 we explore a general quantitative genetic model in which a population drifts stochastically
@@ -999,7 +992,7 @@ to keep the discussion intuitive, we only discuss $\sigma_N$, the amount of vari
 (i.e., directions along $\allS$),
 and $\sigma_S$, the amount of variation in ``selected'' directions (perpendicular to $\allS$).
 The other relevant scale we denote by $\gamma$,
-which the scale on which distance to phenotypic optimum changes as $x$ moves away from the optimal set, $\allS$.
+which is the scale on which distance to phenotypic optimum changes as $x$ moves away from the optimal set, $\allS$.
 Concretely, $\gamma$ is
 %the inverse of the derivative of 
 $1/(\frac{d}{du}D(x+uz))$ 
@@ -1194,8 +1187,8 @@ with $\omega=1$ and
 \textbf{(B)} $\sigma_N^2 = \sigma_S^2 = 0.1 \gamma^2$
 \textbf{(C)} $0.1 \sigma_N^2 = \sigma_S^2 = \gamma^2$.
 The $F_2$ fitness is from equation \eqref{eqn:fit2},
-and the $F_1$ fitness is determined only by the exponential term of that equation.
-is small relative to that of increased variance.
+and the $F_1$ fitness is determined only by the exponential term of that equation,
+which is small relative to that of increased variance.
 \label{fig:speciation_rates}}
 \end{center}
 \end{figure}
@@ -1229,15 +1222,20 @@ Variation in binding site occupancy may overestimate variation in $A$,
 since it does not capture buffering effects (if for instance only one site of many needs to be occupied for transcription to begin),
 and variation in expression level measures changes in steady-state concentration (our $\kappa_i$) rather than the \emph{rate} of change.
 Nonetheless, these measures likely give us an idea of the scale of variability.
-\citet{kasowski2010variation} found differential occupancy in 7.5\%
-of binding sites of a transcription factor (p65) between human individuals.
-\citet{verlaan2009targeted} showed that cis-regulatory variation
-accounts for around 2--6\% of expression variation in human blood-derived primary cells,
-while \citet{lappalainen2013transcriptome} found that human population variation 
-explained about 3\% of expression variation.
+%\citet{kasowski2010variation} found 
+It has been shown that between human individuals, there is differential occupancy in 7.5\%
+of binding sites of a transcription factor (p65) \cite{kasowski2010variation}.
+%\citet{verlaan2009targeted} showed that 
+It has also been inferred that cis-regulatory variation
+accounts for around 2--6\% of expression variation in human blood-derived primary cells \cite{verlaan2009targeted}, and
+%while \citet{lappalainen2013transcriptome} found 
+that human population variation 
+explained about 3\% of expression variation \cite{lappalainen2013transcriptome}.
 Allele-specific expression is indicative of standing genetic \emph{cis}-regulatory variation;
-\citet{wang2017bayesian} found allele-specific expression in 7.2--8.5\% of transcripts of a flycatcher species,
-while \citet{tung2015genetic} observed allele-specific expression in 23.4\% of genes studied in a baboon species. 
+%\citet{wang2017bayesian} found 
+allele-specific expression in 7.2--8.5\% of transcripts of a flycatcher species has been observed \cite{wang2017bayesian}, as well as
+%while \citet{tung2015genetic} observed 
+allele-specific expression in 23.4\% of genes studied in a baboon species \cite{tung2015genetic}. 
 Taken together, this suggests that variation in the entries of $A$
 may be on the order of at least a few percent between individuals of a population --
 doubtless varying substantially between species and between genes.
@@ -1257,23 +1255,24 @@ doubtless varying substantially between species and between genes.
 % - Is linearity an important assumption?
 % - We know that divergent selection and genetic conflict can easily lead to speciation; we've shown neutral drift can maybe surprisingly easily do so also; but it remains unclear the relative contributions of these. Note that although drift may be weaker in any one network there are lots of networks. Could motivate this with Orr's statement.  Perhaps tie in spandrels.
 
-In this paper, we have used tools from quantitative genetics and control theory
-to study the evolution of a mechanistic model of the molecular genotype-phenotype map under stabilizing selection,
-providing an explicit model of
+In this paper, we use tools from quantitative genetics and control theory
+to study the evolution of a mechanistic model of the genotype-phenotype map, 
+in which the phenotype is subject to stabilizing selection.
+In so doing, we provide an explicit model of
 phenogenetic drift \citep{weiss2000phenogenetic} and developmental system drift \citep{true2001developmental}.
 In this context, the Kalman decomposition \citep{kalman1963mathematical}
 gives an analytical description of all phenotypically equivalent gene networks.
 It also implies that nearly all systems are nonidentifiable,
-and hence the general existence of axes of genetic variation that are not constrained by selection.
+and that, in general, there exist axes of genetic variation unconstrained by natural selection.
 The independent movement of separated populations along these axes by genetic drift
-can lead to reduction in hybrid viability, and hence speciation,
-at a speed that depends on effective population size and amount of genetic variation. 
+can lead to a significant reduction in hybrid viability, and thus precipitate speciation,
+at a speed dependent on the effective population size and the amount of genetic variation. 
 In this model, at biologically reasonable parameter values,
 system drift is a significant -- and possibly rapid -- driver of speciation.
-This may at first be surprising because
-hybrid inviability appears as a consequence of recombining different, yet functionally equivalent, mechanisms. 
+This may be surprising because
+hybrid inviability appears as a consequence of recombining different, yet functionally equivalent, mechanisms, and since species are often defined by their unique adaptations or morphologies. 
 
-Consistent with empirical observation of hybrid breakdown \citep[e.g.][]{plotner2017chlorosis}, 
+Consistent with empirical observation of hybrid breakdown (e.g., \citet{plotner2017chlorosis}), 
 we see that the fitnesses of $F_2$ hybrids drop at a much faster rate than those of $F_1$s.
 % since $F_1$ and $F_2$ phenotypes diverge linearly and at the square root of time relative to parentals, respectively.
 %\plr{refer to Turelli here}
@@ -1281,8 +1280,7 @@ we see that the fitnesses of $F_2$ hybrids drop at a much faster rate than those
 Another natural consequence of the model is Haldane's rule,
 that if only one $F_1$ hybrid sex is inviable or sterile it is likely to be the heterogametic sex.
 This occurs because if the genes underlying a regulatory network are distributed among both autosomes and the sex chromosome, 
-then heterogametic $F_1$s show variation similar to that seen in $F_2$ hybrids,
-as a result of segregation load \citep[similarly to][]{fraisse2016genetics}.
+then heterogametic $F_1$s show variation (and fitnesses) similar to that seen in $F_2$ hybrids.
 
 Is there evidence that this is actually occurring?
 System drift and network rewiring has been inferred across the tree of life \citep{wotton2015quantitative, crombach2016gap, dalal2017transcription, johnson2017rewiring, ali2017quantitative},
@@ -1304,7 +1302,7 @@ and plausible mechanisms have been proposed
 whereby Dobzhansky--Muller incompatibilities could originate
 under neutral genetic drift \citep{lynch2000origin}
 or stabilizing selection \citep{fierst}.
-The same holds for the ``pathway model'' of \citet{lindtke2015genetic},
+The same holds for the ``pathway model'' \citep{lindtke2015genetic},
 which is closer to the situation here.
 However, previous authors have argued that neutral processes are likely too slow to be a significant driver of speciation \citep{nei1983models,seehausen2014genomics}.
 % Using simulations, \citet{porter2002speciation} demonstrated the accumulation of hybrid incompatibilities under directional, but not stabilizing selection, and \citet{palmer2009dynamics} observed the appearance of incompatibilities in populations evolving in a constant environment, only if the populations were suboptimally adapted.
@@ -1357,11 +1355,13 @@ but differs by explicitly considering evolutionary dynamics of underlying genoty
 These make the quantitative genetic model we are led to
 a generalization of Fisher's geometric model,
 with distinct behavior,
-due to the existence of neutral directions in genotype space,
-and curvature of the optimal set,
+due to the existence of neutral directions in genotype space.
 However, there are many shared aspects:
 for instance, \citet{barton1989divergence} also found incompatibilities accumulating
 with genetic drift.
+Fisher's geometric model also predicts Haldane's rule
+and many other empirically observed patterns \citep{fraisse2016genetics},
+but for different underlying reasons.
 
 
 \paragraph{Nonlinearity and model assumptions}
@@ -1394,9 +1394,13 @@ and genetic variation in these systems.
 %hominids; neanderthal load.
 
 \section*{Acknowledgements}
-We would like to thank Sergey Nuzhdin, Stevan Arnold, Michael Turelli, Patrick Phillips, Erik Lundgren, and Hossein Asgharian for valuable discussion. We would also like to thank Nick Barton, Sarah Signor and Todd Parsons for helpful comments on the manuscript.
-%
-%\plr{Josh: please fix capitalization in the references.  To do this, anything that needs to be capitalized gets put in curly braces, which tells bibtex to render the capitalization 'as-is'.}
+
+    We would like to thank Sergey Nuzhdin, Stevan Arnold, Michael Turelli, Patrick Phillips, Erik Lundgren and Hossein Asgharian for valuable discussion. 
+    We would also like to thank Nick Barton, Sarah Signor and Todd Parsons for very helpful comments on the manuscript.
+    Work on this project was supported by funds from
+    the Sloan Foundation and the NSF (under DBI-1262645) to PR.
+
+
 
 \bibliographystyle{plainnat}
 \bibliography{krefs}
@@ -1705,60 +1709,5 @@ is roughly increased by a factor of $1/8$ of the difference between their means.
 
 
 \end{document}
-
-
-
-%\section*{Examples}
-%\begin{example}[Metabolic network] \label{ex:metabolic}
-%Consider an organism that can metabolize two different sugars (present at logarithmic concentrations $u_{1}$ and $u_{2}$), 
-%with two enzymes (at log concentrations $\phi_{1}$ and $\phi_{2}$).
-%Further suppose that the second sugar is prefered,
-%%and that the organism has a regulatory network that can deploy situation specific metabolic strategy.
-%and that
-%depending on $u_{1}$ and $u_{2}$ the organism will synthesize an appropriate $\phi_{1}$ and $\phi_{2}$. 
-%Furthermore, assume this system contains at least two transcription factors, whose log concentrations are $\kappa_{1}$, $\kappa_{2}$, $\dots \kappa_{n}$.
-%Minimally such a system may have the architecture,
-%%\begin{align*}
-%%    \mathcal{S}_{\min} = \left\{ \begin{array}{ll} \dot{\kappa}(t) &= \begin{bmatrix} 0 & -1 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} \kappa_{1} \\ \kappa_{2} \end{bmatrix} (t) + \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} u_{1} \\ u_{2} \end{bmatrix} (t) \\[11pt]
-%%    \phi(t) &= \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} \kappa_{1} \\ \kappa_{2} \end{bmatrix} (t) \end{array} \right.
-%%\end{align*}
-%  $\Sys_{\min}(U) = (U \left[ \begin{smallmatrix} 0 & -1 \\ 0 & 0 \end{smallmatrix} \right] U^{-1}, U 
-%    %\left[\begin{smallmatrix} 1 & 0 \\ 0 & 1 \end{smallmatrix}\right]
-%      ,
-%     % \left[\begin{smallmatrix} 1 & 0 \\ 0 & 1 \end{smallmatrix}\right]
-%        U^{-1})$. 
-%%
-%%The impulse response of the system is,
-%%$h(t) = \left[\begin{smallmatrix} 1 & - t \\ 0 & 1 \end{smallmatrix}\right]$.
-%    We can find alternative equivalent systems by changning coordinates ($U \rightarrow U'$) or, more generally, by applying the Kalman decomposition \ref{apx:kalman}. To illustrate that phenotypic invariance does not require dimensional invariance, we apply the Kalman decomposition to $\Sys_{\min}$ to find 
-%    %This may happen if a system is co-opted from another, or may be a consequence of gene duplication and deletion. 
-%  $\Sys(\small D_{1-3},V) \! =  \! \left( \! \begin{array}{ll}
-%     V \! \left[\begin{smallmatrix} D_{1} & D_{2} \\ 0 & A \end{smallmatrix}\right] \! V^{-1}, V \! \left[\begin{smallmatrix} D_{3} \\ B \end{smallmatrix}\right], \left[\begin{smallmatrix} 0 & C \end{smallmatrix}\right] \! V^{-1} \end{array} \! \right)
-%$, both of which are in $\allS$
-%%  \begin{align*}
-%%    \Sys(X_{1-3},V) = \left( \begin{array}{ll}
-%%     V \left[\begin{smallmatrix} X_{1} & X_{2} \\ 0 & A_{\min} \end{smallmatrix}\right] V^{-1}, V \left[\begin{smallmatrix} X_{3} \\ B_{\min} \end{smallmatrix}\right], \left[\begin{smallmatrix} 0 & C_{\min} \end{smallmatrix}\right] V^{-1} \end{array} \right)
-%%    \end{align*}
-%  ($V$ can be any $4$-dimensional and invertible matrix, $D_{1-3} \in \R^{2 \times 2}$, and $(A,B,C) \in \Sys_{\min}$).
-%%So for example, some system can be wired as follows, and still be input-output equivalent to the minimal metabolic system $\mathcal{S}_{\min}$:
-%% \begin{align*}
-%%   A' &= \begin{bmatrix}
-%%     1.6923  &  1.5385 &  -2.6154 &  -2 \\
-%%     0.8462  &  0.7692 &  -1.3077 &  -1 \\
-%%     1.2692  &  1.1538 &  -1.9615 &  -1.5 \\
-%%     0.4231  &  0.3846 &  -0.6538 &  -0.5
-%%   \end{bmatrix} \\
-%%   B' &= \begin{bmatrix} 4 & 4 \\ 2 & 2 \\ 3 & 3 \\ 1 & 3 \end{bmatrix} \\
-%%     C' &= \begin{bmatrix}  0.2692  &  0.1538  &  0.0385 &  -0.5 \\
-%%     -0.4231 &  -0.3846 &   0.6538  &  0.5 \end{bmatrix}
-%% \end{align*}
-%%
-%%Despite the present example consisting of a minimal $2 \times 2$ and a non-minimal $4 \times 4$ system, 
-%%any $m$-dimensional system can be constructed using this method 
-%%-- applying a change of coordinates to the Kalman decomposition 
-%%-- to construct a mechanistically different system with identical phenotypic dynamics. 
-%%
-%%When applying the Kalman decomposition to real biological networks, one may have to restrict the free parameters, as physiology and biochemistry might not allow all mathematically possible coefficients. We note that as there are so many degrees of freedom, it may be difficult to infer system function solely from structure. 
-%\end{example}
 
 
