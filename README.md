@@ -1,7 +1,6 @@
 In this repository:
 
-- `handnotes.tex` -- The main paper
-    * `plr_notes.md` -- feedback on this (delete when finished)
+- `kalman_walk_paper.tex` -- The main paper
 
 - `examples/` -- exploration of various examples in more depth than in the paper 
     (and used to produce figures for the paper)
