@@ -178,9 +178,10 @@ as well as provide concrete numerical predictions \citep{servedio2014not}.
 %The dynamics of the molecular machinery and its interactions with the environment
 %can be mathematically described as a dynamical system \citep{jaeger2015comet}.
 %Movement in this direction is ongoing, as 
-There is a substantial amount of work studying the evolution of gene regulatory networks, in both abstract \citep{wagner1994evolution, wagner1996does, siegal2002waddington, bergman2003evolutionary, draghi2015robustness} 
-and empirically inspired computational
-\citep{mjolsness1991connectionist, jaeger2004dynamic, vitaly1, crombach2016gap, wotton2015quantitative, chertkova2017insilico} frameworks.
+There is a substantial amount of work studying the evolution of gene regulatory networks, in frameworks 
+both abstract \citep{wagner1994evolution, wagner1996does, siegal2002waddington, bergman2003evolutionary, draghi2015robustness} 
+and empirically inspired
+\citep{mjolsness1991connectionist, jaeger2004dynamic, vitaly1, crombach2016gap, wotton2015quantitative, chertkova2017insilico}.
 % If we allow the reasonable assumption that the genotype-phenotype map 
 % can be represented as a system of differential equations \citep{jaeger2015comet}, 
 % we can immediately discuss its evolution and function in a much more mechanistic, yet general, manner.
@@ -195,10 +196,10 @@ but still not actually reflect the internal dynamics of the system being modelle
 In control theory, where electrical circuits and mechanical systems are often the focus, 
 it is understood that there can be an infinite number of ``realizations'', 
 or ways to reverse engineer the dynamics of a ``black box'',
-even if all possible input and output experiments on the ``black box'' are performed 
+even if all possible input and output experiments are performed 
 \citep{kalman1963mathematical, anderson1966equivalence, zadeh1976linear}. 
 The inherent nonidentifiability of chemical reaction networks is sometimes referred to as ``the fundamental dogma of chemical kinetics'' \citep{craciun2008identifiability}. 
-In computer science, this is framed as the relationship among processes that simulate one another \citep{van2004equivalence}.
+In computer science, this is framed as the relationship among processes that \emph{simulate} one another \citep{van2004equivalence}.
 Finally,
 the field of \emph{inverse problems} studies those cases in which,
 despite the existence of a theoretical one-to-one mapping between a model and behavior,
@@ -215,18 +216,20 @@ as well as \emph{developmental system drift}: the observation that
 macroscopically identical phenotypes in even very closely related species can in fact be divergent at the molecular and sequence level 
 \citep{kimura1981possibility, true2001developmental, tanay2005conservation, tsong2006evolution, hare2008sepsid, lavoie2010evolutionary, vierstra2014mouse, matsui2015regulatory, dalal2016transcriptional, dalal2017transcription}.
 
-In this paper we outline a theoretical framework to study the evolution of biological systems, such as gene regulatory networks.
-We study the evolution of an optimally adapted population under stable conditions, that is where phenotype is under stabilizing selection.
-Even if the phenotype remains stable over evolutionary time, the underlying mechanism might not remain so,
-as many distinct (and mutationally connected) molecular pathways can realize identical phenotypes.
-Below, we first apply results from system theory which give
+The main purpose of this paper is to explore this general idea
+in the concrete framework of linear systems theory,
+thought of as modeling gene regulatory networks.
+First, we apply results from system theory which give
 an analytical description of the set of 
 all linear gene network architectures that yield identical phenotypes.
+This suggests that, quite generally, there are many directions in which a gene network can drift
+without changing the phenotype.
 Since these phenotypically equivalent gene networks are not necessarily compatible with one another, 
-system drift may result in reproductive incompatibility between sufficiently isolated populations,
-%isolated for a sufficiently long period of time, 
-even in the absence of any sort of adaptive, selective, or environmental change. 
-We then use quantitative genetic theory to estimate how quickly 
+system drift may result in reproductive incompatibility between isolated populations,
+even in the absence of any sort of adaptive, or environmental change. 
+Does this neutral system drift matter, i.e., lead to measurable consequences?
+To address this,
+we use quantitative genetic theory to estimate how quickly 
 reproductive incompatibility due to system drift manifests.
 
  % \jss{should hare2008sepsid be here? It's sequence but not ``system'' drift}
