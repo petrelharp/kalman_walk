@@ -279,25 +279,31 @@ and for pairs of traits that must match but whose value is unconstrained \citep{
 % predicts many general patterns from the speciation literature \citep{fraisse2016genetics}.
 It has also been shown that population structure
 can allow long-term stable coexistence of incompatible genotypes encoding identical phenotypes \citep{phillips1996maintenance}.
-Despite the findings of these quantitative genetics models, previous simulations of system drift in regulatory sequences \citep{tulchinsky2014hybrid}
+However, previous simulations of system drift in regulatory sequences \citep{tulchinsky2014hybrid}
 and a regulatory cascade \citep{porter2002speciation}
-found that speciation could be rapid under directional selection
+found rapid speciation under directional selection
 but only equivocal support for speciation under models of purely neutral drift.
 %Additionally, \citet{fierst} observed speciation due to an increase of segregation variance under balancing selection, in models of weak to moderate, but not strong epistasis.
-It is known that hybrid incompatibility can result from the increased segregation variance of a quantitative trait \citep{slatkin1994segregation, chevin2014niche}. Here, by focusing on the explicit biological function or physiology of a phenotype, we show that the evolution of even extremely simple phenotypes can appropriately be approximated by quantitative genetics. 
-This is because, like the genetic code, the genotype-phenotype ``code'' is fundamentally degenerate -- as we make explicit -- and thus ammendable to quantitative genetic analysis. 
-
-Our model differs from previous work in that we use linear systems theory
-to both explore a much richer class of regulatory network models,
-and provide analytical expectations in large populations with complex phenotypes
+The rate at which hybrid incompatibility accumulates due to genetic drift creating
+segregation variance between isolated populations is fairly well understood
+\citep{slatkin1994segregation,rosas2010cryptic,chevin2014niche},
+but model assumptions can strongly affect predictions,
+including whether variation is due to rare or common alleles \citep{slatkin1994segregation},
+and the shape of the fitness landscape \citep{fraisse2016genetics}.
+Our main aim is to provide a concrete framework 
+that can provide natural predictions of these model parameters
+across a general class of models.
+Furthermore, tools from system theory allow analytical predictions to be made
+for large populations with complex phenotypes
 that would be inaccessible to population simulations.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Results}
 
-Using gene regulatory network dynamics as the basis for our models, we begin with a collection of $n$ coregulating molecules
-%We first describe the class of models we study, motivated by gene regulatory networks. 
-%The behavior (i.e., the temporal dynamics) of such a system is determined by a collection of $n$ coregulating molecules 
+We use a model of gene regulatory networks
+that describes the temporal dynamics of
+a collection of $n$ coregulating molecules
 -- such as transcription factors -- as well as external or environmental inputs.
 % We model the temporal dynamics of the concentrations of a collection of $n$ coregulating molecules
 % within an organism, that may also be affected by temporally varying signals from the environment.
