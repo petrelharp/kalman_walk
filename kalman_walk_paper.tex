@@ -128,22 +128,18 @@ $^{\ddagger}$Departments of Mathematics and Biology \& The Institute for Ecology
 
 \begin{abstract}
 %The evolutionary conservation of phenotype under selective and environmental stasis does not necessitate conservation of the underlying mechanism, as distinct molecular pathways can realize identical phenotypes.
-Even if a species' phenotype does not change over evolutionary time, the underlying mechanism may change, as distinct molecular pathways can realize identical phenotypes.
-Here we use quantitative genetics and linear system theory to study
-how a gene network underlying a conserved phenotype evolves,
+Even if a species' phenotype does not change over evolutionary time, 
+the underlying mechanism may change, 
+as distinct molecular pathways can realize identical phenotypes.
+Here we use linear system theory to explore the consequences of this idea,
+describing how a gene network underlying a conserved phenotype evolves,
 as the genetic drift of small changes to these molecular pathways
 cause a population to explore the set of mechanisms with identical phenotypes.
-% Treating an organism as a ``black box''
 To do this, we model an organism's internal state as a linear system of differential equations
 for which the environment provides input and the phenotype is the output,
-%which translates some environmental input
-%to an output that is subject to the pressures of natural selection-- the phenotype.
 in which context there exists 
 an exact characterization of the set of all mechanisms that give the same input--output relationship.
-%There exists an exact expression for the set of all linear mechanisms with identical phenotypes, 
-%Due to the genetic drift of small mutational tweaks to these molecular pathways, we expect an evolving population to explore this set.
 This characterization implies that selectively neutral directions in genotype space should be common
-% there is never a unique network architecture for any phenotype
 and that the evolutionary exploration of these distinct but equivalent mechanisms
 can lead to the reproductive incompatibility of independently evolving populations.
 This evolutionary exploration, or \emph{system drift}, 
@@ -152,10 +148,10 @@ divided by the effective population size ($N_e$).
 At biologically reasonable parameter values
 this process can lead to substantial interpopulation incompatibility,
 and thus speciation, in fewer than $N_e$ generations.
-%over a number of generations proportional to the effective population size.
 This model also naturally predicts Haldane's rule, 
 thus providing another possible explanation
-of why heterogametic hybrids tend to be disrupted more often than homogametes during the early stages of speciation.
+of why heterogametic hybrids tend to be disrupted more often than homogametes 
+during the early stages of speciation.
 \end{abstract}
 
 
@@ -252,10 +248,22 @@ reproductive incompatibility due to system drift manifests.
 % tulchinsky2014hybrid simulates a single promoter region with a bioenergentic model with directional and stabilizing selection, found incompat in both cases
 % porter2002speciation simulated speciation under a simple model of a regulatory cascade
 %%% Fisher's geom model: (incompat due to segregation variance)
-% barton2001role looks at hybrids betw pops adapting to shifting optima in Fisher's geometric model 
-% fraisse2016genetics looks at stabilizing selection using Fisher's geometric model, showing it predicts lots of observations
-% chevin2010niche looks at incompats after adaptation in Fisher's geom model and how it depends on dimension
+% poon2000compensating also uses SSSWM with Fisher's model and derives some analytical results for load in small populations; early citation for this process
+% slatkin1994segregation shows that segregation variance increases linearly with divergence if variation is controlled by intermediate freq alleles;
+%   but if it is determined by rare alleles (at mut-sel balance), then it plateaus (at twice the within-pop value?)
+% barton2001role looks at hybrids betw pops adapting to shifting optima in Fisher's geometric model : under fluctuating optima
+%       hybrids will suffer because of cryptic segregating variation
+% fraisse2016genetics uses SSWM; looks at stabilizing selection using Fisher's geometric model, showing it predicts lots of observations;
+%        but mostly only if fitness is exp(-|x|^k) for k > 2
+% chevin2014niche uses SSWM; looks at incompats after adaptation in Fisher's geom model and how it depends on dimension;
+%        uses generalized Fisher's model with neutral directions; terms hybrid unfitness due to segregation variance "transgressive incompats";
+%        finds rate of RI accumulation decreases with Ne (like Ne^(-m/2), with m the trait dimension?)
 % simon2017coadapted follows up on the Fisher's geom model predictions, also comparing to some real data
+% martin2014fishers shows that you can get Fisher's model quite generally if (a) the kryptotype dimension is large compared to the phenotype dimension,
+%   and (b) mutational effects fall under the CLT
+% rosas2010cryptic looks at segregation variance resulting in deviations from optimum phenotype including off of curvey ridges
+%%%% General notes
+% citation for segregation variance around a stationary optimum -> load is Poon & Otto 2000; rosas2010cryptic
 
 It is not a new observation that there is often more than one way to do the same thing, 
 or that speciation can be the result of (nearly) neutral processes.
