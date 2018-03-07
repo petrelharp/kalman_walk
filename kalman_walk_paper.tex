@@ -1001,6 +1001,10 @@ Our analysis relies on local approximations;
 on longer time scales the appropriate model may share properties with
 the ``holey'' landscapes of \citet{gavrilets2004fitness}.
 
+As our goal here is to sketch out the rough implications of our main results,
+keeping the assumptions clearly visible,
+we provide often heuristic arguments,
+rather than presenting calculations in full multivariate generality.
 
 
 \paragraph{System drift}
@@ -1059,11 +1063,13 @@ A population of $F_1$ hybrids has one haploid genome from each,
 whose coefficients are averaged,
 and so will have mean system coefficients at the midpoint between their means.
 The distribution of $F_2$ hybrids will have mean at the average of the two populations,
-but will have higher variance.
-The variance of $F_2$ hybrids can be shown to increase linearly with the square of the distance between
+but will have higher variance \citep{barton2001role,rosas2010cryptic,chevin2014niche}.
+This ``segregation variance'' of $F_2$ hybrids 
+can be shown to increase linearly with the square of the distance between
 parental population means
 under models of both simple and polygenic traits.
-This is suggested by figure \ref{fig:conceptual_fig} and shown in Appendix \ref{apx:seg_cov}.
+This is suggested by figure \ref{fig:conceptual_fig} and shown by \citet{slatkin1994segregation}
+(also see Appendix \ref{apx:seg_cov} for a different derivation).
 Concretely, we expect the population of $F_1$s to have variance $\sigma^2_S$ in the selected direction
 (the same as within each parental population),
 but the population of $F_2$ hybrids will have variance of order $\sigma^2_S + 4 \omega \sigma^2_N T/N_e$,
@@ -1203,7 +1209,7 @@ but since time is scaled by $N_e$, so speciation may occur \emph{faster} than in
 However, at least in some models \citep{lynch1986phenotypic}, in small populations at mutation-drift equilibrium
 the amount of genetic variance ($\sigma_N^2$) is proportional to $N_e$,
 which would compensate for this difference, 
-perhaps even predicting the rate of decrease of hybrid fitness to be \emph{independent} of population size
+perhaps even predicting the rate of decrease of hybrid fitness to be independent of population size
 for small populations.
 
 % $\sigma_N \gg \sigma_S \approx \gamma$, if $N_e$ is big and there's a lot of recombination load (``species complex'')
@@ -1305,7 +1311,7 @@ doubtless varying substantially between species and between genes.
 % - Is linearity an important assumption?
 % - We know that divergent selection and genetic conflict can easily lead to speciation; we've shown neutral drift can maybe surprisingly easily do so also; but it remains unclear the relative contributions of these. Note that although drift may be weaker in any one network there are lots of networks. Could motivate this with Orr's statement.  Perhaps tie in spandrels.
 
-In this paper, we use tools from quantitative genetics and control theory
+In this paper, we use tools from linear system theory and quantitative genetics
 to study the evolution of a mechanistic model of the genotype-phenotype map, 
 in which the phenotype is subject to stabilizing selection.
 In so doing, we provide an explicit model of
@@ -1342,6 +1348,20 @@ Furthermore, in cryptic species complexes (e.g., sun skinks \citep{barley2013cha
 genetically distinct species
 may be nearly morphologically indistinguishable.
 
+Substantial analytical work has made similar observations
+using Fisher's geometric model, 
+including Haldane's rule and the $F_2$ ``speciation clock'' 
+\citep{barton2001role,fraisse2016genetics,simon2017coadapted}.
+These calculations are similar in spirit, 
+but differ from our own in that they primarily assume a monomorphic population.
+Indeed, our model may provide an additional mechanistic context 
+in which Fisher's geometric model is appropriate,
+although the typical degree of pleiotropy
+and stability of the $G$-matrix are unknown in practice.
+Our observations argue for the importance of including neutral directions in these models,
+which is not usually done (but see \citet{chevin2014niche}).
+
+
 \paragraph{The origin of species not by means of natural selection?}
 % this is neutral, in contrast to other models. although some folks advocate nonadaptive speciation.
 % other mechanisms also probably important
@@ -1373,6 +1393,7 @@ seen by \citet{roux2016shedding},
 and the clocklike speciation rates observed by \citet{hedges2015tree}.
 % (as diversification is not observed to be accelerated following mass extinctions).
 
+Neutral processes are certainly not the only drivers of speciation.
 All of these forces -- adaptive shifts, conflict, and network drift --
 are plausible drivers of speciation, and may even interact.
 Many of our observations carry over to models of directional selection --
