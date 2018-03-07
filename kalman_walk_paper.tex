@@ -969,6 +969,39 @@ Concretely, we use the \emph{infinitesimal model} for reproduction \citep{barton
 the offspring of parents at $x$ and $x'$ will have coefficients $(x+x')/2 + \varepsilon$,
 where $\varepsilon$ is a random Gaussian displacement due to random assortment of parental alleles.
 
+%% REVIEW OF RELATED RESULTS
+This fitness landscape is locally Gaussian with a rank-deficient covariance matrix.
+Since we allow for substantial genetic variation within populations,
+this model falls in the same class as \citet{lande1981models} and \citet{lande1983measurement},
+which did not consider reproductive incompatibility.
+A great deal of analytical work on the question of speciation
+has been done under the assumption of a monomorphic population
+whose trait is shifted by sequential fixation of alleles,
+i.e., Fisher's ``geometric model'' \citep{fisher1930genetical,poon2000compensating}.
+\citet{martin2014fishers} derived this model from a few general assumptions,
+and used random matrix theory to calculate the distribution of fitness effects.
+In particular, 
+\citet{chevin2014niche} studied a general version with neutral directions,
+and found that the rate of accumulation of reproductive isolation 
+decreases with $N_e$ with a form that depends on trait dimension.
+\citet{fraisse2016genetics} showed that most recognized empirical patterns in the speciation literature
+could be explained by this model 
+(although best if fitness took the form $\exp(-d^k)$
+for some $k > 2$, where $d$ is distance to the optimum),
+and \citet{simon2017coadapted} further compared predictions from the model to empirical data.
+In the context of a stationary optimum, 
+the primary contribution to hybrid unfitness is segregation variance,
+i.e., greater phenotypic variance in $F_2$ hybrids than in parentals
+due to drift having changed the genetic basis of the trait separately in the parental populations
+(\citet{chevin2014niche} refers to these as ``transgressive incompatibilities'').
+This turns out to be the main source of incompatibilities in the model we study as well,
+even though in principle curvature of the optimal set also contributes
+(as also seen in \citet{rosas2010cryptic}).
+Our analysis relies on local approximations;
+on longer time scales the appropriate model may share properties with
+the ``holey'' landscapes of \citet{gavrilets2004fitness}.
+
+
 
 \paragraph{System drift}
 % plr how fast does it drift
