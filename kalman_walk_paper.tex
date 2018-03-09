@@ -242,7 +242,7 @@ reproductive incompatibility due to system drift manifests.
 
 % wright1932roles mentions possibility of equivalent combinations
 % wright1935evolution looks at allele freq dynamics under stabilizing selection on a polygenic quantitative trait and discusses possibility for speciation this way
-% barton1989divergence not available but likely following on from barton1986maintenance analyzing multiple optima in a similar model
+% barton1989divergence following on from barton1986maintenance analyzing multiple optima in a similar model, looking at RI due to shifts between equilibria
 % nei1983models simulates from simple stepwise mut model on one or two loci (without interactions) where incompat betw diff alleles increases with number of steps betw them
 % sved1981twosex mathematically analyzes and (in another paper) simulates speciation in a model of male + female quantitative traits indep'ly evolving with attraction between matching traits
 % barton2010natural has a good historical review of natural selection and speciation; then analyzes a two-niche levene model
@@ -272,7 +272,7 @@ It is not a new observation that there is often more than one way to do the same
 or that speciation can be the result of (nearly) neutral processes.
 The potential for speciation has been analyzed in models of 
 traits under stabilizing selection determined additively by alleles at many loci 
-\citep{wright1935evolution,barton1986maintenance,barton2001role},
+\citep{wright1935evolution,barton1986maintenance,barton1989divergence,barton2001role},
 in related fitness landscape models \citep{fraisse2016genetics},
 and for pairs of traits that must match but whose value is unconstrained \citep{sved1981twosex}.
 % Recent work has shown that Fisher's geometric model of stabilizing selection
@@ -929,7 +929,7 @@ if the regulatory coefficients for a system are shared between the sex and one o
 $F_1$ males are effectively equivalent to purely autosomal-system $F_2$ hybrids, and recall that $F_2$s are significantly less fit on average than $F_1$s (see Figure \ref{fig:osc_incompat}).
 Although many alleles will be dominant if the phenotype--fitness relationship is convex,
 the underlying mechanism does not depend on the \emph{dominance theory} \citet{turelli1995dominance} to explain Haldane's rule:
-instead, it derives from the nature of segregation load.
+instead, it derives from the nature of segregation variance.
 % In this setting, Haldane's rule is mechanistically similar to \emph{hybrid breakdown}, 
 % the observation that $F_2$ hybrids will often be less fit than $F_1$ hybrid crosses, in the early stages of speciation.
 % This mechanism relies on the genetic variation of a system being shared across the sex chromosomes and the autosomes,
@@ -974,13 +974,13 @@ This fitness landscape is locally Gaussian with a rank-deficient covariance matr
 Since we allow for substantial genetic variation within populations,
 this model falls in the same class as \citet{lande1981models} and \citet{lande1983measurement},
 which did not consider reproductive incompatibility.
-A great deal of analytical work on the question of speciation
-has been done under the assumption of a monomorphic population
+Substantial work on speciation has been done under the assumption of a monomorphic population
 whose trait is shifted by sequential fixation of alleles,
 i.e., Fisher's ``geometric model'' \citep{fisher1930genetical,poon2000compensating}.
+This work has included both stationary optima (like we study)
+and moving optima (i.e., adaptation) \citep[e.g.,][]{barton2001role,chevin2014niche}.
 \citet{martin2014fishers} derived this model from a few general assumptions,
 and used random matrix theory to calculate the distribution of fitness effects.
-In particular, 
 \citet{chevin2014niche} studied a general version with neutral directions,
 and found that the rate of accumulation of reproductive isolation 
 decreases with $N_e$ with a form that depends on trait dimension.
@@ -1003,7 +1003,7 @@ the ``holey'' landscapes of \citet{gavrilets2004fitness}.
 
 As our goal here is to sketch out the rough implications of our main results,
 keeping the assumptions clearly visible,
-we provide often heuristic arguments,
+we provide relatively rough arguments,
 rather than presenting calculations in full multivariate generality.
 
 
@@ -1063,7 +1063,7 @@ A population of $F_1$ hybrids has one haploid genome from each,
 whose coefficients are averaged,
 and so will have mean system coefficients at the midpoint between their means.
 The distribution of $F_2$ hybrids will have mean at the average of the two populations,
-but will have higher variance \citep{barton2001role,rosas2010cryptic,chevin2014niche}.
+but will have higher variance \citep{wright1968evolution,barton2001role,rosas2010cryptic}.
 This ``segregation variance'' of $F_2$ hybrids 
 can be shown to increase linearly with the square of the distance between
 parental population means
@@ -1072,9 +1072,8 @@ This is suggested by figure \ref{fig:conceptual_fig} and shown by \citet{slatkin
 (also see Appendix \ref{apx:seg_cov} for a different derivation).
 Concretely, we expect the population of $F_1$s to have variance $\sigma^2_S$ in the selected direction
 (the same as within each parental population),
-but the population of $F_2$ hybrids will have variance of order $\sigma^2_S + 4 \omega \sigma^2_N T/N_e$,
-where $\omega$ is a factor that depends on the genetic basis of the coefficients
-\citep[the ``segregation variance''][]{slatkin1994segregation}.
+but the population of $F_2$ hybrids will have variance $\sigma^2_S + 4 \omega \sigma^2_N T/N_e$,
+where $\omega$ is a factor that depends on the genetic basis of the coefficients.
 If the optimal set $\allS$ has dimension $q$,
 using the polygenic model of appendix \ref{apx:seg_cov}, 
 $\omega$ is proportional to the number of degrees of freedom: $\omega = (p-q)/8$.
@@ -1364,12 +1363,12 @@ may be nearly morphologically indistinguishable.
 
 \paragraph{Fisher's geometric model}
 Substantial analytical work on speciation has been done using Fisher's geometric model, 
-which can also predict Haldane's rule and the $F_2$ ``speciation clock'' 
+which can also predict Haldane's rule and the regular increase of incompatibility with genetic distance
 \citep{barton2001role,fraisse2016genetics,simon2017coadapted}.
 The model is similar to the quantitative genetics model we use 
 to predict the rate of speciation, 
 although work on Fisher's geometric model generally only models substitutions
-between populations, i.e., neglecting within-species polymorphism.
+between populations, neglecting within-species polymorphism.
 Indeed, our model may provide an additional mechanistic context 
 in which Fisher's geometric model is appropriate,
 although the typical degree of pleiotropy

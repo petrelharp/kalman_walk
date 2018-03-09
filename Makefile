@@ -15,6 +15,6 @@ clean :
 %.pdf : %.tex %.bbl
 	while ( $(PDFLATEX) $<;  grep -q "Rerun to get" $*.log ) do true ; done
 
-%.bbl : %.tex
+%.bbl : %.tex krefs.bib
 	-$(PDFLATEX) $<
 	bibtex $*.aux
