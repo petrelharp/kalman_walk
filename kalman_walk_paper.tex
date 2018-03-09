@@ -1073,7 +1073,8 @@ This is suggested by figure \ref{fig:conceptual_fig} and shown by \citet{slatkin
 Concretely, we expect the population of $F_1$s to have variance $\sigma^2_S$ in the selected direction
 (the same as within each parental population),
 but the population of $F_2$ hybrids will have variance of order $\sigma^2_S + 4 \omega \sigma^2_N T/N_e$,
-where $\omega$ is a factor that depends on the genetic basis of the coefficients.
+where $\omega$ is a factor that depends on the genetic basis of the coefficients
+\citep[the ``segregation variance''][]{slatkin1994segregation}.
 If the optimal set $\allS$ has dimension $q$,
 using the polygenic model of appendix \ref{apx:seg_cov}, 
 $\omega$ is proportional to the number of degrees of freedom: $\omega = (p-q)/8$.
@@ -1348,18 +1349,49 @@ Furthermore, in cryptic species complexes (e.g., sun skinks \citep{barley2013cha
 genetically distinct species
 may be nearly morphologically indistinguishable.
 
-Substantial analytical work has made similar observations
-using Fisher's geometric model, 
-including Haldane's rule and the $F_2$ ``speciation clock'' 
+%% Fisher's geometric model
+% Differences:
+% - they look at shifting environments too
+% - they just model substitutions, so only hybrids have genetic variance
+% chevin2014niche:
+% - m is accessible, constrained dimensionlity (allows for a ridge)
+% - predicts rate of RI accumulation (due to substitutions) is \propto N^{-(1+m/2)}
+%   since this is mean log fitnees; says hybrids will have fitness
+%     exp( - m C T N^{-(1+m/2)} ) ~ 1 - m C T N^(-(1+m/2))
+% - says RI accum is *faster* at higher m but this is not obv frm eqns
+% - we say it should be ( exp(-C (T/N)^2) / sqrt(T/N) )^m :
+%     ~ 1 - m C (T/N)
+
+\paragraph{Fisher's geometric model}
+Substantial analytical work on speciation has been done using Fisher's geometric model, 
+which can also predict Haldane's rule and the $F_2$ ``speciation clock'' 
 \citep{barton2001role,fraisse2016genetics,simon2017coadapted}.
-These calculations are similar in spirit, 
-but differ from our own in that they primarily assume a monomorphic population.
+The model is similar to the quantitative genetics model we use 
+to predict the rate of speciation, 
+although work on Fisher's geometric model generally only models substitutions
+between populations, i.e., neglecting within-species polymorphism.
 Indeed, our model may provide an additional mechanistic context 
 in which Fisher's geometric model is appropriate,
 although the typical degree of pleiotropy
 and stability of the $G$-matrix are unknown in practice.
 Our observations argue for the importance of including neutral directions in these models,
 which is not usually done (but see \citet{chevin2014niche}).
+
+Although our main focus is on the implications of system theory,
+rather than on the quantitative genetics modeling,
+it is interesting to compare analytic results.
+\citet{chevin2014niche} finds that mean fitness decrease of hybrids
+after $T$ generations grows proportionally to $m N_e^{-1-m/2} T$, for large $N_e$;
+while our corresponding rate is $m T / N_e$.
+This difference in time scaling is substantial, especially for large populations,
+and seems to appear because \citet{chevin2014niche} uses the results of \citet{sella2005application}
+to describe how the steady-state fitness and substitution process
+depends on trait dimensionality
+(the fitness peak is harder to find in higher dimensions).
+We do not incorporate this effect
+because genetic variation may be provided by other sources,
+but if we did, it would enter through our $\sigma_S$.
+
 
 
 \paragraph{The origin of species not by means of natural selection?}
@@ -1416,23 +1448,6 @@ It remains to be seen how the relative strengths of these forces compare.
 % By this point, it could have accumulated substantial incompatibility with the parental population.
 % Similarly, in a species with substantial isolation by distance, geographically local systems drift
 % might lead to genetic load due only to recombination, much as in \citep{phillips1996maintenance}.
-
-\paragraph{Fisher's geometric model}
-There has been substantial work on models of quadratic stabilizing selection
-around a single optimum -- i.e., Fisher's geometric model \citep[e.g.][]{simon2017coadapted}.
-Our model would have this form if viewed only in phenotype space, 
-where there is a single optimum --
-but differs by explicitly considering evolutionary dynamics of underlying genotype-derived regulatory matrices.
-These make the quantitative genetic model we are led to
-a generalization of Fisher's geometric model,
-with distinct behavior,
-due to the existence of neutral directions in genotype space.
-However, there are many shared aspects:
-for instance, \citet{barton1989divergence} also found incompatibilities accumulating
-with genetic drift.
-Fisher's geometric model also predicts Haldane's rule
-and many other empirically observed patterns \citep{fraisse2016genetics},
-but for different underlying reasons.
 
 
 \paragraph{Nonlinearity and model assumptions}
@@ -1673,6 +1688,11 @@ and defining $Q = (\Sigma^{-1} + L^T L)^{-1}$,
     \sqrt{\frac{1}{\det(\Sigma)\det(\Sigma^{-1}+L^TL)}}
         \exp\left\{\mu^T \left( I - (I + L^T L \Sigma)^{-1} \right) \Sigma^{-1} \mu\right\} \\
 \end{align*}
+This is the product of two terms:
+the first gives the drop in fitness due to segregation variance,
+and the second the drop due to a shift in mean away from the optimum.
+A similar decomposition appears in \citet{barton2001role} and \citet{chevin2014niche},
+but for mean log fitness.
 
 Now suppose that $\Sigma = \sigma^2 I$ and $L = I/\gamma$.
 Then,
@@ -1700,7 +1720,11 @@ Also,
 The description above does not describe how \emph{two} diverging populations interact,
 since the amount of \emph{segregation variance}, quantified by $R$,
 will not stay constant.
-To get an idea of how this might change,
+This has been quantified in various models before
+\citep[e.g.,][]{slatkin1994segregation,barton2001role,chevin2014niche};
+we provide the following calculations for completeness.
+
+To get an idea of how segregation variance might evolve,
 suppose that a trait is determined by $L$ unlinked, biallelic loci,
 and that the $i^\mathrm{th}$ locus has two alleles with additive effects $\pm \alpha_i$,
 so that being homozygous for the $+$ allele contributes $+2 \alpha_i$ to the trait.
