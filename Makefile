@@ -1,10 +1,12 @@
-all: kalman_walk_paper.pdf
+all: kalman_walk_paper.pdf ridge_evolution_paper.pdf 
 
-.PHONY : clean
+.PHONY : clean all
 
 PDFLATEX=pdflatex -interaction nonstopmode
 
 kalman_walk_paper.pdf : krefs.bib
+
+ridge_evolution_paper.pdf : krefs.bib
 
 clean : 
 	-rm *.aux *.log *.bbl *.blg *.out *.brf
