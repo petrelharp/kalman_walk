@@ -8,7 +8,6 @@
 \usepackage{caption, subcaption}
 \usepackage{natbib} % gives us \citet: Author (year) and \citep: (Author; year)
 \usepackage{authblk}
-\usepackage{lineno}
 \usepackage{multicol}
 \usepackage[bottom]{footmisc}
 
@@ -27,6 +26,35 @@
     \newcommand{\plr}[1]{{\color{blue}\it #1}}
     \newcommand{\js}[1]{{\color{green}\it #1}}
     \newcommand{\plri}[1]{\plr{#1}}
+\fi
+
+\newif\ifsubmission
+\submissiontrue
+% \submissionfalse
+\ifsubmission
+    % % stuff for submission
+    \usepackage{lineno}
+    % allow line numbers around math environments
+    % from https://tex.stackexchange.com/questions/43648/why-doesnt-lineno-number-a-paragraph-when-it-is-followed-by-an-align-equation
+        \newcommand*\patchAmsMathEnvironmentForLineno[1]{%
+          \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+          \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
+          \renewenvironment{#1}%
+             {\linenomath\csname old#1\endcsname}%
+             {\csname oldend#1\endcsname\endlinenomath}}% 
+        \newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
+          \patchAmsMathEnvironmentForLineno{#1}%
+          \patchAmsMathEnvironmentForLineno{#1*}}%
+        \AtBeginDocument{%
+        \patchBothAmsMathEnvironmentsForLineno{equation}%
+        \patchBothAmsMathEnvironmentsForLineno{align}%
+        \patchBothAmsMathEnvironmentsForLineno{flalign}%
+        \patchBothAmsMathEnvironmentsForLineno{alignat}%
+        \patchBothAmsMathEnvironmentsForLineno{gather}%
+        \patchBothAmsMathEnvironmentsForLineno{multline}%
+        }
+\else
+    % for the nice version
 \fi
 
 \newcommand{\jss}[1]{{\color{olive}\it #1}}
@@ -72,10 +100,16 @@
 
 \DeclareMathOperator{\spn}{span}
 
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
-\newtheorem{definition}{Definition}
 \newtheorem{example}{Example}
+
+% Responses to reviews
+\input{review-response-commands}
+% set this to show line numbers and include responses to reviews or not
+\newif\ifreviewresponses
+\reviewresponsestrue  % include them
+% \reviewresponsesfalse  % don't include them
+\newcommand{\responsefile}{review-responses}  % name of the review responses file
+
 
 \begin{document}
 %\linenumbers
@@ -1800,6 +1834,11 @@ This implies that under this model,
 segregation variance in $F_2$ hybrids between two populations
 is roughly increased by a factor of $1/8$ of the difference between their means.
 
+
+% reviews here if toggled above
+% \ifsubmission\processdelayedfloats\fi
+
+\includereviews
 
 
 \end{document}
