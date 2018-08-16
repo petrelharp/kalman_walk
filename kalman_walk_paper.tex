@@ -375,9 +375,9 @@ with usually $\ell$ and $m$ less than $n$.
 We think of the system as the triple $(A,B,C)$,
 which translates (time-varying) $m$-dimensional input $u(t)$ into the $\ell$-dimensional output $\phi(t)$.
 Under quite general assumptions,
-we can write the phenotype as
+we can write the phenotype as \revpoint{AE}{4}
   \begin{align}
-    \phi(t) = C e^{A t} \kappa(0) + \int_{0}^{t} C e^{A (t-s)} B u(s) ds ,
+    \phi(t) = \int_{0}^{t} C e^{A (t-s)} B u(s) ds ,
   \end{align}
 which is a convolution of the input $u(t)$ with the system's \emph{impulse response},
 which we denote as $h(t) := Ce^{A t}B$.
@@ -430,7 +430,8 @@ and $C \!=\! \left[\begin{smallmatrix} 1 & 0 \end{smallmatrix}\right]$.
  %       \end{bmatrix} \kappa(t) + \begin{bmatrix} 1 \\ 1 \end{bmatrix} u(t) \\ 
  %         \phi(t) &= \begin{bmatrix} 1 & 0 \end{bmatrix} \kappa(t) \end{array} \right.
  %    \end{align*}
-Suppose the input is an impulse at time zero (a delta function), and so its phenotype is equal to its impulse response,
+If the input is an impulse at time zero (a delta function), 
+then the phenotype is equal to the impulse response: \revpoint{AE}{5}
 \begin{align*}
 \phi(t) = h(t) = \sin t + \cos t  .
 \end{align*}
@@ -636,8 +637,8 @@ and so represent degrees of freedom.
 \emph{Note on implementation:}
 The \emph{reachable subspace},
 which we denote by $\reachable$,
-is defined to be the closure of $\spn(B)$ under applying $A$,
-% (or equivalently, the span of $B, AB, A^2B, \ldots A^{n-1}B$).
+is defined to be the closure of $\spn(B)$ under applying $A$
+(or equivalently, the span of $B, AB, A^2B, \ldots A^{n-1}B$), \revpoint{AE}{6}
 % Analogously to this, we define
 and the \emph{unobservable subspace}, 
 %$\mathcal{O}$, is the closure of $\spn(C^T)$ under applying $A$.
@@ -825,11 +826,10 @@ populations containing significant diversity in $\allS$ can carry genetic load, 
 \subsection*{Hybrid incompatibility}
 Two parents with the optimal phenotype can produce offspring whose phenotype is suboptimal
 if the parents have different underlying systems.
-%This leads to the question: 
 How quickly do hybrid phenotypes break down as genetic distance between parents increases?
 We will quantify how far a system's phenotype is from optimal
 using a weighted difference between impulse response functions.
-Suppose that $\rho(t)$ is a nonnegative, smooth, square-integrable weighting function,
+Suppose that $\rho(t)$ is a nonnegative weighting function, \revpoint{2}{3}
 $h_0(t)$ is the \emph{optimal} impulse response function
 and define the ``distance to optimum'' of another impulse response function
 to be
@@ -837,6 +837,9 @@ to be
 \label{eqn:distance}
 	D(h) = \left( \int_0^\infty \rho(t) \|h(t) - h_0(t)\|^2 dt \right)^{1/2} .
 \end{align}
+In practice, we take $\rho(t) = \exp(-t/4\pi)$,
+so that fitness is determined by the dynamics of the system over a few multiples of $2 \pi$,
+but not longer. \revpoint{AE}{8}
 Consider reproduction between a parent with system $(A, B, C)$ 
 and another displaced by distance $\epsilon$ in the direction $(X,Y,Z)$,
 i.e., having  system $(A + \epsilon X, B + \epsilon Y, C + \epsilon Z)$.

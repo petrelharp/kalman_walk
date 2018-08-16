@@ -70,7 +70,7 @@ suggestion of publishing the two parts separately.
 
 
 \begin{point}{Format:}
-    please add line numbers to your manuscript; it is straightforward
+    Please add line numbers to your manuscript; it is straightforward
 with the lineno package in LaTeX.  Please also do not increase text width too
 much, as this decreases legibility (LaTeX's default settings already optimize
 the number of characters per line).  Finally, be careful about not confusing
@@ -101,6 +101,7 @@ that the lines are thick enough to be visible.
 \end{point}
 
 \reply{
+    Ah, good point. We've removed it. \revref
 }
 
 \begin{point}{Example 1:}
@@ -108,6 +109,7 @@ that the lines are thick enough to be visible.
 \end{point}
 
 \reply{
+    Fixed. \revref
 }
 
 \begin{point}{p5, Note on implementation}
@@ -116,6 +118,9 @@ that the lines are thick enough to be visible.
 \end{point}
 
 \reply{
+    We've added a clarifying note \revref
+    but we're hoping that readers not familiar with linear algebra will realize
+    that they can skip this ``note on implementation'' without loss of continuity.
 }
 
 \begin{point}{Figures 1-3:}
@@ -134,15 +139,19 @@ effects?
 \end{point}
 
 \reply{
+    Good suggestion; added. \revref
 }
 
 \begin{point}{p11, 2nd paragraph}
     Try to better relate these different studies to yours
 (e.g., what you add, what they do and you do not). In addition to R1's
-suggestions, I add a few more below.
+suggestions, consider \citet{weinreich2013fishers} and \citet{blanquart2016epistasis}.
+% Weinreich, D. M. and Knies, J. L. (2013), FISHER'S GEOMETRIC MODEL OF ADAPTATION MEETS THE FUNCTIONAL SYNTHESIS: DATA ON PAIRWISE EPISTASIS FOR FITNESS YIELDS INSIGHTS INTO THE SHAPE AND SIZE OF PHENOTYPE SPACE. Evolution, 67: 2957-2972. doi:10.1111/evo.12156
+% François Blanquart and Thomas Bataillon Epistasis and the Structure of Fitness Landscapes: Are Experimental Fitness Landscapes Compatible with Fisher’s Geometric Model?  GENETICS Early online April 6, 2016
 \end{point}
 
 \reply{
+    This part has been removed.
 }
 
 \begin{point}{p12 Hybridization:}
@@ -150,6 +159,7 @@ suggestions, I add a few more below.
 \end{point}
 
 \reply{
+    This part has been removed.
 }
 
 \begin{point}{p15}
@@ -160,19 +170,10 @@ models?
 \end{point}
 
 \reply{
+    This part has been removed.
 }
 
 
-\begin{point}{Additional references:}
-Weinreich, D. M. and Knies, J. L. (2013), FISHER'S GEOMETRIC MODEL OF ADAPTATION MEETS THE FUNCTIONAL SYNTHESIS: DATA ON PAIRWISE EPISTASIS FOR FITNESS YIELDS INSIGHTS INTO THE SHAPE AND SIZE OF PHENOTYPE SPACE. Evolution, 67: 2957-2972. doi:10.1111/evo.12156
-
-François Blanquart and Thomas Bataillon
-Epistasis and the Structure of Fitness Landscapes: Are Experimental Fitness Landscapes Compatible with Fisher’s Geometric Model?
-GENETICS Early online April 6, 2016
-\end{point}
-
-\reply{
-}
 
 %%%%%%%%%%%%%%
 \reviewersection{1}
@@ -353,7 +354,7 @@ these additional degrees of freedom can apply in principle to any system.'' - ar
 \begin{quote}
     \textbf{(II)} The popgen part. This part models the ``system drift'', which is nothing else
 but neutral drift of a population along a high-fitness ridge in an epistatic
-landscape (conceptual figure 4), right? If two populations in alloparty drift
+landscape (conceptual figure 4), right? If two populations in allopatry drift
 in different directions, this can lead to hybrid incompatibilities, which are
 uncovered upon secondary contact. Fitness is modeled by the weighted distance
 from the optimal impulse response function (eq 5). This is a natural
@@ -361,6 +362,8 @@ assumption.
 \end{quote}
 
 \reply{
+    \plr{I'm leaving these points because they might apply to whatever handwaving 
+    we replace the quant gen stuff with.}
 }
 
 \begin{point}{}
@@ -524,6 +527,11 @@ should simply be greater.
 \end{point}
 
 \reply{
+    Good point -- clearly some assumptions jointly on the long-time behavior of $h(t)$ and $\rho$ 
+    are required for $D$ to be finite, but just saying that $\rho$ is square integrable doesn't suffice;
+    we've removed the caveat. 
+    \revref
+    (It is always well-defined, anyhow, since the integrand is nonnegative.)
 }
 
 \begin{point}{p8:}
@@ -555,6 +563,7 @@ $\sigma$'' is not very accurate, since the covariance matrix is not the identity
 \end{point}
 
 \reply{
+    This part has been removed.
 }
 
 \begin{point}{p 11.}
@@ -563,6 +572,7 @@ we look at the genetic divergence at small time scales. This should be at least 
 \end{point}
 
 \reply{
+    This part has been removed.
 }
 
 \begin{point}{end of p11.}
@@ -570,6 +580,7 @@ we look at the genetic divergence at small time scales. This should be at least 
 \end{point}
 
 \reply{
+    This part has been removed.
 }
 
 \begin{point}{p12. Third paragraph}
@@ -579,6 +590,7 @@ we look at the genetic divergence at small time scales. This should be at least 
 \end{point}
 
 \reply{
+    This part has been removed.
 }
 
 \begin{point}{p12. before eq. 7.}
@@ -586,6 +598,7 @@ we look at the genetic divergence at small time scales. This should be at least 
 \end{point}
 
 \reply{
+    This part has been removed.
 }
 
 \begin{point}{Fig 7.}
@@ -601,11 +614,12 @@ particular, the heuristics derived in the main text would not be satisfied.
 \end{point}
 
 \reply{
+    This part has been removed.
 }
 
 \begin{point}{}
     Finally, it would be worth mentioning several old and recent works relating genetic drift
-to speciation : Yamagushi and Iwasa, several articles by Gavrilets et al. (I think several
+to speciation: Yamagushi and Iwasa, several articles by Gavrilets et al. (I think several
 citations are missing here), and Mirò Pina and Schertzer.
 \end{point}
 
