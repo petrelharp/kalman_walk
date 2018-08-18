@@ -308,7 +308,7 @@ and for pairs of traits that must match but whose value is unconstrained \citep{
 % Recent work has shown that Fisher's geometric model of stabilizing selection
 % predicts many general patterns from the speciation literature \citep{fraisse2016genetics}.
 It has also been shown that population structure
-can allow long-term stable coexistence of incompatible genotypes encoding identical phenotypes \citep{phillips1996maintenance}.
+can allow long-term stable coexistence of incompatible genotypes encoding identical phenotypes \citep{phillips1996maintenance}. \revpoint{1}{9}
 However, previous simulations of system drift in regulatory sequences \citep{tulchinsky2014hybrid}
 and a regulatory cascade \citep{porter2002speciation}
 found rapid speciation under directional selection
@@ -373,7 +373,8 @@ so that the kryptotype measures deviations from initial concentrations.
 Here $A$ can be any $n \times n$ matrix, $B$ any $n \times m$, and $C$ any $\ell \times n$ dimensional matrix,
 with usually $\ell$ and $m$ less than $n$.
 We think of the system as the triple $(A,B,C)$,
-which translates (time-varying) $m$-dimensional input $u(t)$ into the $\ell$-dimensional output $\phi(t)$.
+which translates (time-varying) $m$-dimensional input $u(t)$
+into the $\ell$-dimensional output $\phi(t)$.
 Under quite general assumptions,
 we can write the phenotype as \revpoint{AE}{4}
   \begin{align}
@@ -1130,6 +1131,19 @@ It remains to be seen how the relative strengths of these forces compare.
 % Similarly, in a species with substantial isolation by distance, geographically local systems drift
 % might lead to genetic load due only to recombination, much as in \citep{phillips1996maintenance}.
 
+\paragraph{The dimensionality of trait space} \revpoint{1}{8}
+We have focused in examples on single traits (where the phenotype is one-dimensional),
+but phenotypes under selection are often high-dimensional,
+and different traits often share a genetic basis.
+If the phenotype and kryptotype are of the same dimension,
+then we do not in general have degrees of freedom, i.e., neutral directions.
+The true ``dimensionality of trait space'' has been debated at some length in the literature
+\citep{trait_space}.
+Whatever it is, however, it seems unlikely 
+that it would approach the dimensionality of kryptotype space,
+which is something related to the number of genes.
+Even under universal pleiotropy \citep{universal_pleiotropy,omnigenic},
+XXX
 
 \paragraph{Nonlinearity and model assumptions}
 Of course, real regulatory networks are not linear dynamical systems.
