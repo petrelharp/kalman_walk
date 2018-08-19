@@ -514,6 +514,11 @@ are phenotypically equivalent because their impulse response functions are equal
       = \bar{C} e^{\bar{A} t} \bar{B} = \bar h(t).
     \end{aligned}
   \end{equation}
+These ``changes of coordinates'' are not simply different ways of looking at the same system --
+if each dimension of the kryptotype 
+corresponds to the concentration of a particular transcription factor,
+changing $A$ corresponds to changing the strengths of regulatory interactions.
+We will even see below that interactions may change sign. \revpoint{1}{13}
 However, not all phenotypically equivalent systems are of this form:
 systems can have identical impulse responses without being coordinate changes of each other.
 In fact, systems with identical impulse responses can involve interactions between different
@@ -578,7 +583,8 @@ that is, components that both respond to an input and produce an observable outp
 
 Concretely, the \textbf{Kalman decomposition} of a system $(A,B,C)$  
 gives a change of basis $P$ such that
-the transformed system $(PAP^{-1},PB,CP^{-1})$  has the following form:
+the transformed system $(PAP^{-1},PB,CP^{-1})$
+can be written in block matrix form:
 \begin{align*}
        PAP^{-1}
        &=
@@ -609,14 +615,10 @@ and
        C_{\nro}^T
    \end{array} \right] .
 \end{align*}
-% and
-% \begin{align*}
-%    CP^{-1}
-%    &=
-%    \left[ \begin{array}{cccc}
-%        0 & C_{\ro} & C_{\nrno} & 0 
-%    \end{array} \right] .
-%\end{align*}
+The $n$-dimensional system has been divided into subspaces
+of dimensions $n_\rno + n_\ro + n_\nrno + n_\nro = n$,
+and so, for instance, $A_{\rno}$ is the $n_\rno \times n_\rno$ square matrix 
+in the top left corner of $P A P^{-1}$. \revpoint{1}{15}
 The impulse response of the system is given by
 \begin{align*}
       h(t) = C_{\ro} e^{A_{\ro} t} B_{\ro},
@@ -765,7 +767,8 @@ despite both parents being well adapted.
 If this is consistent for the entire population, we would consider them to be separate species, in accord with the biological species concept \citep{mayr2000biological}.
 
 First, we must specify how sexual reproduction acts on these systems.
-Suppose that each of a diploid organisms' two genomes encodes a set of system coefficients.
+Suppose that each of a diploid organisms' two genomes encodes a set of system coefficients
+with the same kryptotype dimension. \revpoint{2}{1}
 We assume that a diploid which has inherited systems $(A', B', C')$ and $(A'', B'', C'')$ from its two parents
 has phenotype determined by the system that averages these two,
 $((A'+A'')/2, (B'+B'')/2, (C'+C'')/2)$.
@@ -847,7 +850,8 @@ i.e., having  system $(A + \epsilon X, B + \epsilon Y, C + \epsilon Z)$.
 We assume both are ``perfectly adapted'' systems, 
 i.e., having impulse response function $h_0(t)$,
 and their offspring has impulse response function $h_\epsilon(t)$.
-A Taylor expansion of $D(h_\epsilon)$ in $\epsilon$ % is explicitly worked out in Appendix \ref{apx:H_calc}, and
+A Taylor expansion of $D(h_\epsilon)$ in $\epsilon$ 
+is explicitly worked out in Appendix \ref{apx:H_calc}, and \revpoint{2}{4}
 shows that the phenotype of an $F_1$ hybrid between these two is at distance proportional to $\epsilon^2$ from optimal,
 while $F_2$ hybrids are at distance proportional to $\epsilon$.
 This is because an $F_1$ hybrid has one copy of each parental system,
@@ -879,26 +883,6 @@ This divergence is quantified in Figure \ref{fig:osc_incompat},
 which shows that mean distance to optimum phenotype of the $F_1$ and $F_2$ hybrid offspring between $A(0)$ and $A(\epsilon)$
 increases with $\epsilon^2$ and $\epsilon$, respectively.
 
-%% PLR: it says this above already.
-% The coefficients in $A$ -- i.e., the regulatory coefficients --
-%   differ between parents by only a few percent (around 0.5\% for $\epsilon = - \sfrac{1}{100}$ and 5\% for $\epsilon= - \sfrac{1}{10}$).
-% This is well within the amount of regulatory coefficient variation we expect to find segregating within real populations
-% (discussed further below). 
-% For these small values of $\epsilon$, hybrid phenotypes remain relatively stable, 
-%   consistent with the idea that natural selection will allow such intrapopulation variation. For larger values of $\left| \epsilon \right|$ (here $\sfrac{1}{2}$), hybrid phenotypes can become dysfunctional, and depending on context, manifest as hybrid inviability. 
-
-%%% figure of tau=0 and tau=2 hybrid:
-%  \begin{figure}[H] 
-%    \centering
-%    \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{expF1}
-%    \caption{\textbf{Hybrid phenotypic breakdown} $F_1$ hybrid (orange) and parental (blue) phenotypic cell-cycle control (oscillator) dynamics %for an $\Sys(0)$ by $\Sys(2)$ cross from Example \ref{ex:all_osc}. The $F_1$ hybrid
-%$\left(A_{F_1}\!\!=\!\!\tfrac{A\!(\!0\!) \! + \! A\!(\!2\!)}{2}\right)$
-%gene expression fails to oscillate and instead grows exponentialy
-%($\phi_{F_0}\! = \! \sin t \! + \! \cos t$, however $\phi_{F_1} \! = \! e^t$).
-%    }
-%    \label{fig:expF1}
-%  \end{figure}
-
 
 \begin{figure}[H]
   \centering
@@ -913,11 +897,11 @@ increases with $\epsilon^2$ and $\epsilon$, respectively.
       \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{examples/osc_F2_halftau0.pdf}
   \end{tabular}
   \caption{
-    \textbf{(left)} Phenotypes of $F_1$ hybrids between an $A(0)$ parent and, top-to-bottom, an $A(\sfrac{1}{100})$, an $A(\sfrac{1}{10})$, and $A(\sfrac{1}{2})$ parent;
+    \textbf{(left)} Phenotypes of $F_1$ hybrids between a homozygous $A(0)$ parent and, 
+    top-to-bottom, homozygous $A(\sfrac{1}{100})$, $A(\sfrac{1}{10})$, and $A(\sfrac{1}{2})$ parents;
     parental coefficients differ by around 0.5\%, 5\%, and 25\% respectively.
-    %\plr{These figures are fine; but reparameterize so that the values of $\tau$ are positive.}
     Parental phenotypes ($\sin t + \cos t$) are shown in solid black, and hybrid phenotypes in dashed blue.
-    \textbf{(right)} Phenotypes of all possible $F_2$ hybrids between the same set of parents,
+    \textbf{(right)} Phenotypes of all $3^4 = 81$ possible $F_2$ hybrids between the same set of parents,
     with parental phenotype again in black.
     %% PLR: There are at most 128 possible F2s, not 256; but many are equivalent; 
     %%   it only matters if the offspring is homo/het/homozygous, so there are 3^4 = 81 possible expression patterns.
@@ -928,13 +912,7 @@ increases with $\epsilon^2$ and $\epsilon$, respectively.
 
   \begin{figure}[H]
     \centering
-    %\begin{tabular}{cc}
-    %\includegraphics[width=0.4\textwidth]{figures/f1_quartic2} &
-    %\includegraphics[width=0.4\textwidth]{figures/f2_quad2}
-    %\end{tabular}
     \includegraphics[width=0.5\textwidth]{examples/F2_vs_F1_divergence_tau0}
-   % \caption{
-    %\textbf{(left)} 
     \caption{Mean hybrid phenotypic distance from optimum computed with equation \eqref{eqn:distance}, using $\rho(t) = \exp(-t/4\pi)$
     for $F_1$ (black) and $F_2$ (blue) hybrids between $A(0)$ and $A(\epsilon)$ parent oscillators. Genetic distance is computed as 
     $\left(\sum_{ij} (A_{ij}(0) - A_{ij}(\epsilon))^2\right)^{1/2}$.
@@ -973,10 +951,43 @@ instead, it derives from the nature of segregation variance.
 %\plr{what are they?}
 %\citet{turelli1995dominance} employ a population genetic model which strictly requires alleles causing hybrid incompatibility on the X chromosome not to exhibit additive effects, that is the \emph{dominance coefficient} (typically $h$ in classic population genetics) must not be equal to $\frac{1}{2}$. In their model, if alleles are strictly additive, that is neither dominant nor recessive, then male and female $F_1$ hybrids will drop in fitness at the exact same rates, and therefore defy Haldane's rule. 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{The speed of speciation}
 
-XXX Talk about how drift goes like variance over $N_e$.
+We have shown that system drift can lead to speciation in principle,
+but is it rapid enough to be an important factor in practice?
+In other words, after what period of time would we expect the fitness of hybrids
+between two allopatric populations to be substantially lower than the parentals?
+The population mean of an unconstrained quantitative trait
+with genetic variance $V_G$ in a population with effective size $N_e$
+will move in $t$ generations a random amount whose variance is $t V_G / N_e$ \citep{quant_gen}.
+The mean difference between two such populations has twice the variance.
+Although this mean difference is along neutral directions,
+we would in many cases expect the range of variation among $F_2$s
+in \emph{all} directions to be of the same order
+as the differences between the populations, 
+as depicted in Figure \ref{fig:conceptual_fig}.
+This suggests that, naively, two such populations that have been separated for $t$ generations
+will produce $F_2$ offspring that differ from optimal by an amount proportional to $\sqrt{t V_G / N_e}$.
+Since we assume they are at a local figness optimum, without much loss of generality we can assume
+that fitness is locally quadratic, and so $F_2$ fitness decays linearly in time:
+proportionally to $t V_G / N_e$ -- fastest in small, diverse populations.
 
+It is useful to think in more detail about the assumptions in the rough argument above.
+The key aspect is how population differences in neutral directions
+(along the fitness ridge)
+translate to segregation variance in $F_2$s in selectively constrained directions.
+To move the the system (the $A$ matrix) a given distance
+generally involves moving many individual interaction coefficients (the entries $A_{ij}$).
+The movements must be coordinated, for the population to stay near the fitness ridge.
+However, mixing elements between systems that have made independent sets of coordinated changes
+to remain on the fitness ridge
+is unlikely to produce a a set of coordinated changes;
+and the resulting system could move away from the ridge in almost any direction.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Genetic variation in empirical regulatory systems}
 
 What is known about the key quantity above, the amount of heritable variation in real regulatory networks?
@@ -1181,6 +1192,285 @@ and genetic variation in these systems.
 \normalsize
 \appendix
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Local expansion of the fitness surface}
+\label{apx:H_calc}
+
+Suppose that $\rho(t) \ge 0$ is a weighting function on $[0,\infty)$
+so that fitness is a function of $L^2(\rho)$ distance of the impulse response from optimal.
+With $h_0(t) = C_0 e^{tA_0} B_0$ a representative of the optimal set:
+\begin{equation}
+    \begin{aligned}
+        D(A, B, C)^2
+        &:= 
+        \int_0^\infty \rho(t) \left| h_A(t) - h_0(t) \right|^2 dt \\
+        &:= 
+        \int_0^\infty \rho(t) \left| C e^{At} B - C_0 e^{A_0 t} B_0 \right|^2 dt \\
+        &= 
+        \int_0^\infty \rho(t) \tr\left\{
+            \left( C e^{At} B - C_0 e^{A_0 t} B_0 \right)^T
+            \left( C e^{At} B - C_0 e^{A_0 t} B_0 \right)
+        \right\} dt \\
+        &= 
+        \int_0^\infty \rho(t) \tr\left\{
+            \left( C e^{At} B - C_0 e^{A_0 t} B_0 \right)
+            \left( C e^{At} B - C_0 e^{A_0 t} B_0 \right)^T
+        \right\} dt  ,
+        % &= 
+        % \int_0^\infty \rho(t)  \tr\left\{
+        %         C e^{At} B B^T e^{A^T t} C^T 
+        %         - C_0 e^{A_0t} B_0 B^T e^{A^T t} C^T 
+        %         \right. \\ &\qquad \qquad \left. {}
+        %         - C e^{At} B B_0^T e^{A_0^T t} C_0^T 
+        %         + C_0 e^{A_0t} B_0 B_0^T e^{A_0^T t} C_0^T 
+        % \right\} dt \\
+        % \int_0^\infty \rho(t) \left| C \left( e^{At} - e^{A_0 t} \right) B \right|^2 dt \\
+        % &= 
+        % \int_0^\infty \rho(t) C \left( e^{At} - e^{A_0 t} \right) B B^T \left( e^{At} - e^{A_0 t} \right)^T C^T dt
+    \end{aligned}
+\end{equation}
+where $\tr X$ denotes the trace of a square matrix $X$.
+How does this change as we perturb about $(A_0, B_0, C_0)$?
+First we differentiate with respect to $A$, keeping $B=B_0$ and $C=C_0$ fixed.
+Since
+\begin{equation}
+  \begin{aligned}
+      \frac{d}{du} e^{(A+uZ)t} \vert_{u=0}
+      &=
+      \int_0^t e^{As} Z e^{A(t-s)} ds, 
+  \end{aligned}
+\end{equation}
+we have that
+\begin{equation}
+  \begin{aligned}
+      \frac{d}{du} D(A+uZ,B_0,C_0)^2 \vert_{u=0}
+      &=
+        2 \int_0^\infty \rho(t) \tr\left\{ C_0 \left( \int_0^t e^{As} Z e^{A(t-s)} ds \right) B_0 B_0^T \left( e^{At} - e^{A_0 t} \right)^T C_0^T \right\} dt \\
+      &=
+        2 \int_0^\infty \rho(t) \tr\left\{ C_0 \left( \int_0^t e^{As} Z e^{A(t-s)} ds \right) B_0 \left( h_A(t) - h_0(t) \right)^T \right\} dt 
+  \end{aligned}
+\end{equation}
+and, by differentiating this and supposing that $A$ is on the optimal set,
+i.e., $h_A(t)=h_0(t)$, (so without loss of generality, $A=A_0$):
+\begin{equation}
+  \begin{aligned}
+      \calH^{A,A}(Y,Z) 
+      &:= 
+      \frac{1}{2} \frac{d}{du} \frac{d}{dv} D(A_0+uY+vZ,B_0,C_0)^2 \vert_{u=v=0} \\
+      &=
+        \int_0^\infty \rho(t) \tr\left\{ C_0 
+        \left( \int_0^t e^{A_0 s} Y e^{A_0 (t-s)} ds \right) 
+        B_0 B_0^T 
+        \left( \int_0^t e^{A_0 s} Z e^{A_0 (t-s)} ds \right)^T
+        C_0^T \right\} dt  .
+  \end{aligned}
+\end{equation}
+
+The function $\calH$ will define a quadratic form.
+To illustrate the use of this, suppose that $B$ and $C$ are fixed.
+% Here $\calH$ is the quadratic form underlying the Hamiltonian.
+By defining $\Delta_{ij}$ to be the matrix with a 1 in the $(i,j)$th slot
+and 0 elsewhere,
+the coefficients of the quadratic form is
+\begin{equation}
+    \begin{aligned}
+        H_{ij, k\ell}(A)
+        &:=
+        \calH(\Delta_{ij}, \Delta_{k\ell}) .
+    \end{aligned}
+\end{equation}
+
+We could use this to get the quadratic approximation to $D$ near the optimal set.
+To do so, it'd be nice to have a way to compute the inner integral above.
+Suppose that we diagonalize $A = U \Lambda U^{-1}$.
+Then
+\begin{equation} \label{eqn:exp_deriv}
+  \begin{aligned}
+      \int_0^t e^{As} Z e^{A(t-s)} ds 
+      &=
+      \int_0^t U e^{\Lambda s} U^{-1} Z U e^{\Lambda (t-s)} U^{-1} ds 
+  \end{aligned}
+\end{equation}
+Now, notice that
+\begin{equation}
+  \begin{aligned}
+      \int_0^t e^{s \lambda_i} e^{(t-s) \lambda_j} ds
+      &=
+      \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } 
+          \qquad & \text{if} \quad i \neq j \\
+      &=
+          t e^{t \lambda_i} 
+          \qquad & \text{if} \quad i = j 
+  \end{aligned}
+\end{equation}
+Therefore, 
+defining
+\begin{equation}
+    \begin{aligned}
+    X_{ij}(t,Z) 
+       &= 
+        \left( U^{-1} Z U \right)_{ij}
+      \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } 
+          \qquad & \text{if} \quad i \neq j \\
+      &=
+          \left( U^{-1} Z U \right)_{ii}
+          t e^{t \lambda_i} 
+          \qquad & \text{if} \quad i = j 
+    \end{aligned}
+\end{equation}
+moving the $U$ and $U^{-1}$ outside the integral and integrating we get that
+\begin{equation}
+  \begin{aligned}
+      \int_0^t e^{As} Z e^{A(t-s)} ds 
+      &=
+      U X(t,Z) U^{-1} .
+  \end{aligned}
+\end{equation}
+This implies that
+\begin{equation}
+    \begin{aligned}
+        D(A_0+\epsilon Z)^2
+        &\approx \frac{1}{2} \epsilon^2 
+        \int_0^\infty
+            \rho(t) \tr\left\{ C U X(t,Z) U^{-1} B B^T (U^{-1})^T X(t,Z)^T U^T C^T \right\}
+        dt .
+    \end{aligned}
+\end{equation}
+
+To compute the $n^2 \times n^2$ matrix $H$,
+we see that if $Z=\Delta_{k \ell}$, then
+\begin{equation}
+  \begin{aligned}
+      X_{ij}^{k\ell}(t) 
+      &= 
+      (U^{-1})_{\cdot k} U_{\ell \cdot}
+      \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } 
+          \qquad & \text{if} \quad i \neq j \\
+      &=
+      (U^{-1})_{\cdot k} U_{\ell \cdot}
+      t e^{t \lambda_i} 
+          \qquad & \text{if} \quad i = j 
+  \end{aligned}
+\end{equation}
+where $U_{k \cdot}$ is the $k$th row of $U$,
+and so
+\begin{equation}
+    \begin{aligned}
+        H_{ij, k\ell}(A)
+        &=
+        \int_0^\infty
+            \rho(t) \tr\left\{ C U X^{ij}(t) U^{-1} B B^T (U^{-1})^T X^{k\ell}(t)^T U^T C^T \right\}
+        dt .
+    \end{aligned}
+\end{equation}
+This implies that
+\begin{equation}
+    \begin{aligned}
+        D(A_0+\epsilon Z)^2
+        &\approx \frac{1}{2} \epsilon^2 \sum_{ijk\ell} H_{ij,k\ell}(A_0) Z_{ij} Z_{k\ell}  .
+    \end{aligned}
+\end{equation}
+
+By section \ref{ss:quant_gen},
+if we set $\Sigma=\sigma^2 I$ and $U=H$,
+then a population at $A_0+Z$ experiences a restoring force of strength
+$(I + \sigma^2 H^{-1})^{-1} Z$ (treating $Z$ as a vector and $H$ as an operator on these).
+If $\sigma^2$ is small compared to $H^{-1}$
+then this is approximately $-\sigma^2 H^{-1} Z$.
+This suggests that the population mean follows an Ornstein-Uhlenbeck process,
+as described (in different terms) in \citet{hansen1996translating}.
+
+More generally, $B$ and $C$ may also change.
+To extend this we need the remaining second derivatives of $D^2$.
+First, in $B$:
+\begin{equation}
+    \begin{aligned}
+        \mathcal{H}^{B,B}(Y,Z)
+        &:= 
+        \frac{1}{2} \frac{d}{du} \frac{d}{dv} D(A_0,B_0+uY+vZ,C_0)\vert_{u=v=0} \\
+        &=
+        \frac{1}{2} \int_0^\infty \rho(t) \tr\left\{ 
+        C_0 e^{t A_0}
+        \frac{d}{du} \frac{d}{dv} 
+        (uY+vZ)
+        (uY+vZ)^T
+        \vert_{u=v=0} 
+        e^{t A_0^T} C_0^T 
+        \right\} dt  \\
+        &=
+        \frac{1}{2} \int_0^\infty \rho(t) \tr\left\{ 
+        C_0 e^{t A_0}
+        \left( Y Z^T + Z Y^T \right)
+        e^{t A_0^T} C_0^T 
+        \right\} dt  .
+  \end{aligned}
+\end{equation}
+Next, in $C$:
+\begin{equation}
+    \begin{aligned}
+        \mathcal{H}^{B,B}(Y,Z)
+        &:= 
+        \frac{1}{2} \frac{d}{du} \frac{d}{dv} D(A_0,B_0,C_0+uY+vZ)\vert_{u=v=0} \\
+        &=
+        \frac{1}{2} \int_0^\infty \rho(t) \tr\left\{ 
+        B_0 e^{t A_0^T}
+        \frac{d}{du} \frac{d}{dv} 
+        (uY+vZ)^T
+        (uY+vZ)
+        \vert_{u=v=0} 
+        e^{t A_0} B_0
+        \right\} dt  \\
+        &=
+        \frac{1}{2} \int_0^\infty \rho(t) \tr\left\{ 
+        B_0 e^{t A_0^T}
+        \left( Y Z^T + Z Y^T \right)
+        e^{t A_0} B_0
+        \right\} dt  .
+  \end{aligned}
+\end{equation}
+Now, the mixed derivatives in $B$ and $C$:
+\begin{equation}
+    \begin{aligned}
+        \mathcal{H}^{B,C}(Y,Z)
+        &:= 
+        \frac{1}{2} \frac{d}{du} \frac{d}{dv} D(A_0,B_0+uY,C_0+vZ)\vert_{u=v=0} \\
+        &=
+        \int_0^\infty \rho(t) \tr\left\{ 
+        Y e^{t A_0^T} C_0^T Z e^{t A_0} B_0
+        \right\} dt  .
+  \end{aligned}
+\end{equation}
+In $A$ and $B$
+\begin{equation}
+    \begin{aligned}
+        \mathcal{H}^{A,B}(Y,Z)
+        &:= 
+        \frac{1}{2} \frac{d}{du} \frac{d}{dv} D(A_0+uY,B_0+vZ,C_0)\vert_{u=v=0} \\
+        &=
+        \int_0^\infty \rho(t) \tr\left\{ 
+        C_0 \left(\int_0^t e^{s A_0} Y e^{(t-s) A_0} ds \right) B_0
+        Z^T e^{t A_0} C_0
+        \right\} dt  ,
+  \end{aligned}
+\end{equation}
+and finally in $A$ and $C$:
+\begin{equation}
+    \begin{aligned}
+        \mathcal{H}^{A,C}(Y,Z)
+        &:= 
+        \frac{1}{2} \frac{d}{du} \frac{d}{dv} D(A_0+uY,B_0,C_0+vZ)\vert_{u=v=0} \\
+        &=
+        \int_0^\infty \rho(t) \tr\left\{ 
+        C_0 \left(\int_0^t e^{s A_0} Y e^{(t-s) A_0} ds \right) B_0
+        B_0 e^{t A_0} Z
+        \right\} dt  .
+  \end{aligned}
+\end{equation}
+
+Together, numerical computation of these expressions,
+along with estimates of genetic covariance within a population,
+allow precise predictions of evolutionary dynamics of a particular system.
+The approximation should be good as long as the second-order Taylor approximation holds.
 
 % reviews here if toggled above
 % \ifsubmission\processdelayedfloats\fi
