@@ -10,9 +10,9 @@ plot_pop <- function (x, sigma, nreps=100, pch=20, cex=1, ...) {
     return(invisible(y))
 }
 
-do.plot <- function (p1, p2, sigma, add=FALSE) {
+do.plot <- function (p1, p2, sigma, add=FALSE, legend=!add) {
     F1 <- (p1+p2)/2
-    F2 <- rbind( c(p1[1],p2[2]), c(p2[1],p1[2]) )
+    F2 <- rbind( c(p1[1],p2[2]), c(p2[1],p1[2]), p1, p2 )
     proj <- function (xy) { th <- atan2(x=xy[1],y=xy[2]); c(cos(th), sin(th)) }
     if (!add) contour(xx, yy, z, lty=3, 
                       xaxt='n', yaxt='n', xlab='', ylab='')
@@ -20,18 +20,42 @@ do.plot <- function (p1, p2, sigma, add=FALSE) {
     segments(x0=c(p1[1],p2[1]), x1=c(F1[1],F1[1]), 
              y0=c(p1[2],p2[2]), y1=c(F1[2],F1[2]), 
              lty=2, col='red')
-    segments(x0=c(p1[1],p2[1]), x1=c(F2[2,1],F2[2,1]), 
-             y0=c(p1[2],p2[2]), y1=c(F2[2,2],F2[2,2]), 
-             lty=2, col='purple')
+    for (k in 1:nrow(F2)) {
+        segments(x0=c(p1[1],p2[1]), x1=c(F2[k,1],F2[k,1]), 
+                 y0=c(p1[2],p2[2]), y1=c(F2[k,2],F2[k,2]), 
+                 lty=2, col='purple')
+        segments(x0=F2[k,1], y0=F2[k,2], x1=proj(F2[k,])[1], y1=proj(F2[k,])[2], col='purple')
+        plot_pop(F2[k,], 1.1 * sigma, col=adjustcolor('purple', 0.2), nreps=300)
+    }
     segments(x0=F1[1], y0=F1[2], x1=proj(F1)[1], y1=proj(F1)[2], col='red')
-    segments(x0=F2[2,1], y0=F2[2,2], x1=proj(F2[2,])[1], y1=proj(F2[2,])[2], col='purple')
+    plot_pop(p1, sigma, col=adjustcolor('black', 0.4))
+    plot_pop(p2, sigma, col=adjustcolor('black', 0.4))
+    plot_pop(F1, sigma, col=adjustcolor('red', 0.2))
+    points(rbind(p1,p2,F1,F2), cex=2, pch=20,
+           col=c("black","black","red","purple","purple") )
+    if (legend) legend("topright", pch=20, pt.cex=2, bg='white',
+                   col=c("black","red","purple"),
+                   legend=c("parental", "F1", "F2"))
+}
+
+quant.plot <- function (p1, p2, sigma, add=FALSE, legend=!add) {
+    dp <- sqrt(sum((p1-p2)^2))
+    F1 <- F2 <- (p1+p2)/2
+    proj <- function (xy) { th <- atan2(x=xy[1],y=xy[2]); c(cos(th), sin(th)) }
+    if (!add) contour(xx, yy, z, lty=3, 
+                      xaxt='n', yaxt='n', xlab='', ylab='')
+    lines(xx, sqrt(1-xx^2), lty=1, lwd=2)
+    segments(x0=c(p1[1],p2[1]), x1=c(F1[1],F1[1]), 
+             y0=c(p1[2],p2[2]), y1=c(F1[2],F1[2]), 
+             lty=2, col='red')
+    segments(x0=F1[1], y0=F1[2], x1=proj(F1)[1], y1=proj(F1)[2], col='red')
+    plot_pop(F2, sigma + dp/6, col=adjustcolor('purple', 0.2), nreps=500)
     plot_pop(p1, sigma, col=adjustcolor('black', 0.2))
     plot_pop(p2, sigma, col=adjustcolor('black', 0.2))
     plot_pop(F1, sigma, col=adjustcolor('red', 0.2))
-    plot_pop(F2[2,], sigma, col=adjustcolor('purple', 0.2))
-    points(rbind(p1,p2,F1,F2[2,]), cex=2, pch=20,
-           col=c("black","black","red","purple") )
-    if (!add) legend("topright", pch=20, pt.cex=2, bg='white',
+    points(rbind(p1,p2,F1,F2), cex=2, pch=20,
+           col=c("black","black","red","purple","purple") )
+    if (legend) legend("topright", pch=20, pt.cex=2, bg='white',
                    col=c("black","red","purple"),
                    legend=c("parental", "F1", "F2"))
 }
@@ -40,10 +64,12 @@ p1 <- c(0.90, sqrt(1-0.90^2))
 p2 <- c(0.5, sqrt(1-0.50^2))
 
 
-pdf(file="conceptual_fig.pdf", width=3, height=3, pointsize=10)
+pdf(file="conceptual_fig.pdf", width=6, height=3, pointsize=10)
+layout(t(1:2))
 par(mar=c(1,1,1,1))
 
-do.plot(p1, p2, sigma=.02)
+do.plot(p1, p2, sigma=.02, legend=FALSE)
+quant.plot(p1, p2, sigma=.02)
 
 dev.off()
 
