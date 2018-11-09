@@ -89,8 +89,6 @@
 \newcommand{\fit}{\mathcal{F}}
 % fitness as a fn of A
 \newcommand{\fitx}{\mathcal{F}}
-% set of optimal coefficients
-\newcommand{\optx}{\mathcal{X}}
 % optimal phenotype
 \newcommand{\optph}{\Phi_0}
 % distance in phenotype space
@@ -126,12 +124,34 @@ $^{\ddagger}$Departments of Mathematics and Biology \& The Institute for Ecology
 }
 
 \begin{abstract}
-Drift along a ridge.
+    It has been often argued that a common feature of biological evolution
+    is that there are many distinct combinations of low-level traits
+    that combine to produce the same high-level trait
+    -- i.e., there is more than one way to do the same thing.
+    If so, then the fitness landscape induced on the low-level traits has a ridge
+    along which populations will, in principle,
+    drift due to random demographic fluctuations.
+    Here, we use one such model of a fitness ridge and the infinitesimal model
+    to ask how fast populations are expected to drift,
+    and find that this process is expected to reproducive incompatibilities
+    between isolated populations over a number of generations proportional
+    to the effective population size.
 \end{abstract}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Introduction}
+
+Ridges in a fitness landscape
+could be due to a variety of causes.
+For instance, lower-level traits could be strictly redundant,
+or could produce a higher-level trait additively.
+There could be a trade-off between two traits under selection,
+such as XXX
+We were motivated to write this paper
+by results from system theory
+that explicitly describe a large parameter space
+of linear systems with identical input--output relationships \citep{shiffman2018system}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Results}
@@ -154,12 +174,13 @@ and only depend on the presence of genetic variation and a continuous set of phe
 We will suppose that each organism's phenotype is determined by its vector of coefficients, denoted by $x=(x_1, x_2, \ldots, x_p)$,
 and that the corresponding fitness is determined by the distance of its phenotype to optimum.
 The optimum phenotype is unique, but is realized by many distinct $x$ -- those falling in the ``optimal set'' $\allS$.
-The phenotypic distance to optimum of an organism with coefficients $x$ is denoted $D(x)$.
-In the results above, $x = (A,B,C)$ and $D(x)$ is given by equation \eqref{eqn:distance}.
-The fitness of an organism with coefficients $x$ will be $\exp(-D(x)^2)$.
+The phenotypic distance to optimum of an organism with coefficients $x$ is denoted $D(x)$,
+% In the results above, $x = (A,B,C)$ and $D(x)$ is given by equation \eqref{eqn:distance}.
+and the fitness of an organism with coefficients $x$ will be $\exp(-D(x)^2)$.
 % this assumption does not entail a loss of generality since $D$ is arbitrary.
 We assume that in the region of interest, the map $D$ is smooth
-and that we can locally approximate the optimal set $\allS$ as a quadratic surface.
+and that we can locally approximate $D(x)^2$ near the optimal set $\allS$ 
+as a quadratic surface.
 As above, an individual's coefficients are given by averaging its parentally inherited coefficients and adding random noise due to segregation and possibly new mutation.
 Concretely, we use the \emph{infinitesimal model} for reproduction \citep{barton2017infinitesimal} --
 the offspring of parents at $x$ and $x'$ will have coefficients $(x+x')/2 + \varepsilon$,
@@ -195,7 +216,7 @@ even though in principle curvature of the optimal set also contributes
 (as also seen in \citet{rosas2010cryptic}).
 Our analysis relies on local approximations;
 on longer time scales the appropriate model may share properties with
-the ``holey'' landscapes of \citet{gavrilets2004fitness}.
+the ``holey'' fitness landscapes of \citet{gavrilets2004fitness}.
 
 As our goal here is to sketch out the rough implications of our main results,
 keeping the assumptions clearly visible,
@@ -210,10 +231,17 @@ If the population variation has standard deviation $\sigma$ in a particular dire
 since subsequent generations resample from this diversity,
 the population mean coefficient will move a random distance of size $\sigma/\sqrt{N_e}$ per generation,
 simply because this is the standard deviation of the mean of a random sample \citep{lande1981models}.
-% (This could be taken as a definition of $N_e$.)
-Selection will tend to restrain this motion,
-but movement along the optimal set $\allS$ is unconstrained,
-and so we expect the population mean to drift along the optimal set like a particle diffusing.
+Selection will restrain motion away from $\allS$,
+but movement along the optimal set $\allS$ is relatively unconstrained,
+and so as a first approximation, 
+the population mean will drift along the optimal set like a particle diffusing.
+The speed of this random walk
+will be modified by two factors.
+First, epistasis may require coordinated substitutions at several sites,
+which may be nearly impossible if the individual substitutions are selected against strongly enough
+in isolation.
+This  XXX
+
 % (although perhaps complicated by recombination load \citep{recomb_load})
 The amount of variance in particular directions in coefficient space 
 depends on constraints imposed by selection and 
@@ -251,9 +279,30 @@ With these parameters, a typical individual will have a fitness of around $\exp(
 Of course, there are in general many possible neutral and selected directions;
 we take $\gamma$ to be an appropriate average over possible directions.
 
+\begin{figure}[H]
+\centering
+\includegraphics{figures/conceptual_fig}
+\caption{
+    \label{fig:conceptual_fig}
+    A conceptual figure of the fitness consequences of hybridization:
+    axes represent system coefficients (i.e., entries of $A$);
+    the line of optimal system coefficients is down in black;
+    dotted lines give phenotypic distances to the optimum.
+    A pair of parental populations are shown in black, along the optimum;
+    a hypothetical population of $F_1$s are shown in red,
+    and the distribution of one type of $F_2$ is shown in purple
+    (other types of $F_2$ are not shown; 
+    some would be a similar distance to the other side of the optimal set).
+    The distribution of $F_2$ hybrids is appropriate for mixed homozygotes
+    if both traits have a simple, one-locus genetic basis,
+    but there is variation within each population at that locus.
+}
+\end{figure}
+
+
 \paragraph{Hybridization}
 The means of two allopatric populations each of effective size $N_e$ separated for $T$ generations
-will be a distance roughly of order $2\sigma_N \sqrt{T/N_e}$ apart along $\optx$.
+will be a distance roughly of order $2\sigma_N \sqrt{T/N_e}$ apart along $\allS$. \revpoint{AE}{2}
 (Consult figure \ref{fig:conceptual_fig} for a conceptual diagram.)
 A population of $F_1$ hybrids has one haploid genome from each,
 whose coefficients are averaged,
@@ -483,8 +532,9 @@ Indeed, our model may provide an additional mechanistic context
 in which Fisher's geometric model is appropriate,
 although the typical degree of pleiotropy
 and stability of the $G$-matrix are unknown in practice.
-Our observations argue for the importance of including neutral directions in these models,
-which is not usually done (but see \citet{chevin2014niche}).
+Our observations argue that for questions related to divergence between populations 
+it may be important to model a non-point optimum,
+as is in \citet{chevin2014niche}. \revpoint{AE}{3}
 
 Although our main focus is on the implications of system theory,
 rather than on the quantitative genetics modeling,
@@ -831,5 +881,3 @@ is roughly increased by a factor of $1/8$ of the difference between their means.
 
 
 \end{document}
-
-

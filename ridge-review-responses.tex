@@ -1,0 +1,288 @@
+%%%%%%
+%%
+%%  Don't reorder the reviewer points; that'll mess up the automatic referencing!
+%%
+%%%%%
+
+\begin{minipage}[b]{2.5in}
+  Cover Letter \\
+  {\it Evolution}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{2.5in}
+    Joshua Schiffman \\
+    \emph{and} Peter Ralph \\
+  \today
+\end{minipage}
+ 
+\vskip 2em
+ 
+\noindent
+{\bf To the Editor(s) -- }
+ 
+\vskip 1em
+
+Explain this was split from the other paper.
+
+\noindent \hspace{4em}
+\begin{minipage}{3in}
+\noindent
+{\bf Sincerely,}
+
+\vskip 2em
+
+{\bf 
+Joshua Schiffman and
+Peter Ralph
+}\\
+\end{minipage}
+
+\vskip 4em
+
+\pagebreak
+
+%%%%%%%%%%%%%%
+\reviewersection{AE}
+
+\begin{quote}
+Your manuscript is quite long already, and the reviewers' suggestions of
+modifications and clarification, which need to be implemented, will make the
+manuscript even longer. I however share the reviewers' opinion that the
+manuscript's two parts are only loosely related. My suggestion is therefore to
+publish them separately. Although connecting the systems biology and the
+quantitative genetics parts is indeed an exciting endeavor, this is not really
+achieved in the current version of the manuscript, and it would be more
+profitable to first better describe each part separately. Regarding the
+connexion between the two parts, please also pay particular attention to R2's
+first specific comment about dimensionality.
+\end{quote}
+
+\begin{point}{p11, 2nd paragraph}
+    Try to better relate these different studies to yours
+    (e.g., what you add, what they do and you do not). In addition to R1's
+    suggestions, consider \citet{weinreich2013fishers} and \citet{blanquart2016epistasis}.
+% Weinreich, D. M. and Knies, J. L. (2013), FISHER'S GEOMETRIC MODEL OF ADAPTATION MEETS THE FUNCTIONAL SYNTHESIS: DATA ON PAIRWISE EPISTASIS FOR FITNESS YIELDS INSIGHTS INTO THE SHAPE AND SIZE OF PHENOTYPE SPACE. Evolution, 67: 2957-2972. doi:10.1111/evo.12156
+% François Blanquart and Thomas Bataillon Epistasis and the Structure of Fitness Landscapes: Are Experimental Fitness Landscapes Compatible with Fisher’s Geometric Model?  GENETICS Early online April 6, 2016
+\end{point}
+
+\reply{
+}
+
+
+\begin{point}{Hybridization:}
+    What is $\mathcal{X}$?
+\end{point}
+
+\reply{
+    A holdover from previous notation; it is $\allS$ (fixed). \revref
+}
+
+\begin{point}{p15}
+    ``The importance of including neutral directions in these models, which
+    is not usually done'' -- Do not lines of isofitness correspond to neutral
+    directions, and aren't these neutral directions already included in those models?
+\end{point}
+
+\reply{
+    Good point! We meant neutral directions \emph{within the optimal set},
+    and have reworded this.
+}
+
+
+%%%%%%%%%%%%%%
+\reviewersection{1}
+
+\begin{quote}
+    \textbf{(II)} The popgen part. This part models the ``system drift'', which is nothing else
+but neutral drift of a population along a high-fitness ridge in an epistatic
+landscape (conceptual figure 4), right? If two populations in allopatry drift
+in different directions, this can lead to hybrid incompatibilities, which are
+uncovered upon secondary contact. Fitness is modeled by the weighted distance
+from the optimal impulse response function (eq 5). This is a natural
+assumption.
+\end{quote}
+
+Yes, exactly. This is a natural model,
+so we were surprised to not find an analytic treatment of it
+in the literature.
+
+\begin{point}{}
+    For system drift, you assume that ``Selection will tend to restrain this
+motion, but movement along the optimal set $\allS$ is unconstrained, and so we expect
+the population mean to drift along the optimal set like a particle diffusing.''
+I see two major problems with this view. Both lead to slower divergence and
+therefore run against your conclusions.
+    \textit{(further points to follow)}
+\end{point}
+
+\reply{
+}
+
+\begin{point}{(drift along a ridge)}
+    In the presence of epistasis, evolution on a neutral network (a high-fitness
+    ridge) is \emph{not} due to drift alone, but also affected by (weak second order)
+    selection in favor of mutational robustness / genetic canalization. In contrast
+    to what you write, diffusion on the set of network coefficients corresponding
+    to the optimal phenotype is not unbiased -- even if the optimal phenotypes do
+    indeed all have the same fitness. Instead, selection drives the population to
+    ``thicker'' parts of the network where the mean fitness of the population
+    (including a cloud of mutants) is higher that on a narrow ridge. This is the
+    basis of the evolution of robustness/canalization. It is possible to account
+    for this effect, see Hermisson et al 2003. Amer. Nat. 161, 708-734;
+    Alvarez-Castro et al, TPB 75 (2009) 109-122, or also Rice, 1998, Evolution 52,
+    647-656; van Nimwegen, etal 1999, PNAS 96:9716–9720. Note that epistasis is
+    necessary for the neutral evolution of incompatibilities, which is what you are
+    aiming for.
+\end{point}
+
+\reply{
+}
+
+\begin{point}{(drift along a ridge)}
+    A second problem results from the fact that evolution on a high-fitness ridge
+    often requires coordinated changes at many loci. Take the oscillator system
+    that you use as an example: simultaneous changes at two genes are required to
+    maintain the phenotype. This leads to a phenomenon called ``adaptive inertia''
+    (see Baatz and Wagner, TPB 51, 49-66 and Alvarez-Castro etal . TPB 75, 109-122),
+    which effectively slows down the movement along the ridge considerably. This
+    problem applies, in particular, in a ``house-of-cards'' mutation regime when
+    where rarely two mutations occur together on the same haplotype. In small
+    populations, it typically requires that populations drift through shallow
+    fitness valleys. While this is possible, it slows down the process.  
+\end{point}
+
+\reply{
+}
+
+\begin{point}{(drift along a ridge)}
+    The relevance of both effects could be studied by simulations in a simple
+example (eg the oscillator that is used as an illustration in the ms anyway).
+\end{point}
+
+\reply{
+}
+
+\begin{point}{}
+    If speciation due to accumulation of incompatibilities does not occur in
+allopatry, but under (even weak) gene flow, some degree of positive selection
+is always needed (Bank et al, Genetics 191, 845–863 for a proof). This also
+means that even weak gene flow will counteract the process described in the ms.
+\end{point}
+
+\reply{
+}
+
+\begin{point}{}
+    Population isolates and genetic load: Isn't this exactly ``founder effect
+speciation''?
+\end{point}
+
+\reply{
+}
+
+
+%%%%%%%%%%%%%%
+\reviewersection{2}
+
+\begin{quote}
+In the second part of the paper, motivated by the previous results, the authors explore a general
+quantitative genetics model in which populations can drift stochastically near a set of equivalent
+and optimal systems. Since the optimal set (or evolutionary ridge) is not closed under averaging or
+recombination, two isolated populations can drift apart and accumulate enough genetic differences
+so that they do not produce any viable offspring. Using some heuristics, several expressions are
+derived to quantify the accumulation of genetic incompatibilities.
+
+Overall, I think the paper is well written. The framework developed in the first part of the paper
+is very interesting and that the analogy with system theory is quite enlightening. I am somehow
+less convinced by the second part. First, I find the arguments a bit sketchy (see below) and not so
+easy to follow. Secondly, it is not entirely clear to me what is the main contribution of this part
+compared to previous works. It seems to me that the main result is somehow contains in the fact
+that the variance (or ``segregation variance'') of an $F_2$ population is given by
+$$\sigma^2_S + 4 \omega \sigma^2_N T / N_e$$
+which was already derived Slatkin and Lande according to the authors (except for the explicit
+expression of $\omega$, but again I am a little bit confused by the arguments derived in the appendix).
+
+In summary, I think this paper could be a nice contribution to Evolution. However, I am also
+convinced that the second part of the paper would require more work, or more explicit reference
+to previous works (equation, section etc.) if the authors do not want to re-derive already existing
+formula.
+\end{quote}
+
+
+\begin{point}{p8:}
+    ``A Taylor expansion of $D(h_\epsilon)$ .. ''. It is not clear to me at all. Could you provide some
+extra explanation (e.g., in the appendix)?
+\end{point}
+
+\reply{
+}
+
+\begin{point}{p11. Paragraph system drift.}
+    ``move a random distance $\sigma$''. What is $\sigma$? I think it should
+be $\sigma_N$ (the std deviation in the direction of the evolutionary ridge) to be consistent with
+the assumption that the population drifts along the optimal set. I believe that this is what
+is assumed thereafter. Also, the sentence ``It therefore seems .... as cloud of points of width
+$\sigma$'' is not very accurate, since the covariance matrix is not the identity.
+\end{point}
+
+\reply{
+}
+
+\begin{point}{p 11.}
+    Approximating the optimal set $\mathcal{N}$ by a quadratic surface should only be accurate if
+we look at the genetic divergence at small time scales. This should be at least mentioned.
+\end{point}
+
+\reply{
+}
+
+\begin{point}{end of p11.}
+    $1/( \frac{d}{du} D(x + uz))$ should be evaluated at $u = 0$.
+\end{point}
+
+\reply{
+}
+
+\begin{point}{p12. Third paragraph}
+    $\sqrt{4 \omega T/N_e} \sim \gamma/\sigma_N$.
+    I guess the underlying assumption here is that
+    $\sigma_S \ll \sqrt{4 \omega \sigma^2_N T/N_e}$?
+\end{point}
+
+\reply{
+}
+
+\begin{point}{p12. before eq. 7.}
+    $\mu = c_\mu \gamma T /N_e$. Why is $\mu$ proportional to $\gamma$?
+\end{point}
+
+\reply{
+}
+
+\begin{point}{Fig 7.}
+    I have one important issue with this figure (and the assumptions of the underly-
+ing quantitative genetic model). If one wants to be consistent with the assumption that
+parental populations drift along the evolutionary ridge, I think one would need to assume
+that selection is strong enough to constraint the mean of the population on the surface. This
+would presumably require that $\sigma S /\gamma \ll 1$. First, I think this assumption (or something
+alternative to that) should be made explicit in the text. Secondly, it seems to me that this
+assumption is not satisfied for panel A and C: under the range of parameters proposed by
+the authors, the parental populations could easily drift away from the optimal set, and in
+particular, the heuristics derived in the main text would not be satisfied.
+\end{point}
+
+\reply{
+}
+
+\begin{point}{}
+    Finally, it would be worth mentioning several old and recent works relating genetic drift
+to speciation : Yamagushi and Iwasa, several articles by Gavrilets et al. (I think several
+citations are missing here), and Mirò Pina and Schertzer.
+\end{point}
+
+\reply{
+}
+
+
+
+

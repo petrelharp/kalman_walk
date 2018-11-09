@@ -462,6 +462,25 @@ speciation''?
 \reply{
 }
 
+\begin{point}{}
+    Your analysis of the fitness loss in F1 and F2 hybrids rests on a local
+Taylor expansion of the fitness landscape. This is adequate given that the
+underlying linear network is also only locally valid (see above). However, you
+then apply this to a discussion of hybrid incompatibility (Haldane's rule etc).
+We are thus interested in \emph{very large} fitness costs for hybrids. This does not
+seems to be compatible: to get hybrid incompatibility or sterility, you need to
+have epsilon sufficiently large (below equation 5). But then $\epsilon^2$ is no
+longer smaller than $\epsilon$. In other words: it seems to me that for the
+discussion of hybrid incompatibilities you apply your model of the first part
+beyond the local range where it is valid.
+\end{point}
+
+\reply{
+    That's a good point; we resort to a Taylor expansion 
+    because we couldn't think of any other clear way to get quantitative estimates.
+    However, our simulations XXX.
+}
+
 
 %%%%%%%%%%%%%%
 \reviewersection{2}

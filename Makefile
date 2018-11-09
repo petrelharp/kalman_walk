@@ -4,9 +4,9 @@ all: kalman_walk_paper.pdf ridge_evolution_paper.pdf
 
 PDFLATEX=pdflatex -interaction nonstopmode
 
-kalman_walk_paper.pdf : krefs.bib
+kalman_walk_paper.pdf : krefs.bib review-responses.tex
 
-ridge_evolution_paper.pdf : krefs.bib
+ridge_evolution_paper.pdf : krefs.bib ridge-review-responses.tex
 
 clean : 
 	-rm *.aux *.log *.bbl *.blg *.out *.brf
