@@ -1,4 +1,4 @@
-\usepackage{lineno}
+\usepackage{lineno, hyperref}
 % \usepackage[hypertexnames=false]{hyperref}   % not working correctly
 % \usepackage{latexml}
 
@@ -36,9 +36,9 @@
 
 % use this command in the text where a change addressing a reviewer point has occurred
 % e.g. \revpoint{1}{3} for reviewer 1, point 3
-\newcommand{\revpoint}[2]{\linelabel{rr:rev#1:#2}}
+\newcommand{\revpoint}[2]{\hypertarget{llineno:rev#1:#2}{\linelabel{rr:rev#1:#2}}}
 % and this one to refer to such a location, e.g. \revreffull{1}{3}
-\newcommand{\revreffull}[2]{{(p.\ \pageref{rr:rev#1:#2}, l.\ \lineref{rr:rev#1:#2})}}
+\newcommand{\revreffull}[2]{{(p.\ \hyperlink{llineno:rev#1:#2}{\pageref{rr:rev#1:#2}, l.\ \lineref{rr:rev#1:#2}})}}
 % but this version fills in reviewer and point automatically if called in the appropriate part of the reviews
 \newcommand{\revref}{\revreffull{\thereviewer}{\thepoint}}
 % NOTE: should call \revref{} with empty brackets after to get a space afterwards if desired: http://tex.stackexchange.com/questions/31091/space-after-latex-commands
