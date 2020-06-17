@@ -192,17 +192,40 @@ during the early stages of speciation.
 %%%%%%%%%%%%%%%%%%%%%%
 %\begin{multicols}{2}
 \section*{Introduction}
+  \jss{I'm not sure we still need this first paragraph -- I don't feel like it says that much?}
+It is an overarching goal of many biological subdisciplines 
+to attain a general understanding of the function and evolution of the 
+complex molecular machinery that translates an organism's genome 
+into the characteristics on which natural selection acts,
+the phenotype.
+For example, 
+there is a growing body of data on the evolutionary histories and molecular characterizations of particular gene regulatory networks
+\citep{jaeger2011gap, davidson2006gene, israel2016comparative}, 
+as well as thoughtful verbal and conceptual models \citep{true2001developmental, weiss2000phenogenetic, edelman2001degeneracy, pavlicev2012model}. 
+Mathematical models of both particular regulatory networks
+and the evolution of such systems in general
+can provide guidance where intuition fails,
+and thus has the potential to discover general principles in the organization of biological systems 
+as well as provide concrete numerical predictions \citep{servedio2014not}.
+There is a substantial amount of work studying the evolution of gene regulatory networks, in frameworks 
+both abstract \citep{wagner1994evolution, wagner1996does, siegal2002waddington, bergman2003evolutionary, draghi2015robustness} 
+and empirically inspired
+\citep{mjolsness1991connectionist, jaeger2004dynamic, vitaly1, crombach2016gap, wotton2015quantitative, chertkova2017insilico}.
 
- Biological systems, at nearly all levels of organization, display considerable \emph{degeneracy} -- 
-that is systems can be structurally different yet remain functionally equivalent \citep{edelman2001degeneracy}.
+ % In biological systems, the relationship between structure and function is often not invertible -- that is information about function is not usually sufficient to determine structure.
+ % Non-invertiblility thus entails a diversity of functionally equivalent structures.
+  Biological systems, at nearly all levels of organization, display considerable degeneracy, or (perhaps more descriptively) a capacity for isofunctional \emph{structural plasticity} -- 
+  that is systems can be structurally different yet remain functionally equivalent \citep{edelman2001degeneracy}. 
+  This is a consequence of the often non-invertibility (i.e. degeneracy) of the mapping between a system's structure and function.
 Examples can be found across nearly all levels of biological organization from the level of the genetic code itself \citep{crick, woesse}
-all the way up to the convergent evolution of adaptive traits. Between these levels, degeneracy can be found in the \emph{neutral networks}
+all the way up to the convergent evolution of adaptive traits. Between these levels, structural plasticity can be found in the \emph{neutral networks}
   of nucleic acid sequences that map to an RNA secondary structure \citep{gruner, andmore}\revpoint{1}{5} and amino acid sequences that fold similarly \citep{babajide},
 as well as in the thermodynamic stability of proteins \citep{hart2014thermodynamic}. Further examples include the vast space of functionally equivalent
 potential regulatory sequences \citep{hare2008sepsid}, 
 in the logic of transcriptional \citep{tsong2006evolution, matsui2015regulatory, dalal2016transcriptional, dalal2017transcription} 
 and neural circuits \citep{trojanowski}, and in developmental systems \citep{true2001developmental}. 
 \revpoint{1}{1} \revpoint{1}{3}
+  \jss{Other ideas instead of "degeneracy" or "isofunctional structural plasticity": non-invertibility, isofunctional plasticity, structural plasticity, phenotypic equivalency, phenotypic invariance, functional invariance, isofunctionality, functional equivalency, genotypic plasticity, conjugacy, functional symmetry, isologous, isomorphic.}
 
 Likewise, it is well known that in many contexts mathematical models
 can fundamentally be \emph{nonidentifiable} and/or \emph{indistinguishable} -- meaning that 
@@ -218,23 +241,24 @@ even if all possible input and output experiments are performed
 \citep{kalman1963mathematical, anderson1966equivalence, zadeh1976linear}. 
 The inherent nonidentifiability of chemical reaction networks is sometimes
 referred to as ``the fundamental dogma of chemical kinetics'' \citep{craciun2008identifiability}.
+In computer science, this is framed as the relationship among processes that \emph{simulate} one another \citep{van2004equivalence}.
 Finally,
 the field of \emph{inverse problems} studies those cases in which,
 despite the existence of a theoretical one-to-one mapping between a model and behavior,
   tiny amounts of noise make inference problems nonidentifiable in practice \citep{petrov2005well}. \revpoint{1}{2}
 
-In this paper we use linear systems theory to model gene regulatory networks, linking biological degeneracy 
+In this paper we use linear systems theory to model gene regulatory networks, linking structural plasticity 
 with mathematical nonidentifiability. Although our focus is on linear systems, nonidentifability is by no 
 means unique to such frameworks, and is a general property of many nonlinear models \citep{nonlinear}.
 
-System degeneracy has been argued to be necessary for natural selection \citep{edleman2001degeneracy}, 
+Structural plasticity has been argued to be necessary for natural selection \citep{edleman2001degeneracy}, 
 as it may function as a mechanism for biological robustness and evolvability \citep{robustness}, or manifest as 
 \emph{canalization} \citep{canalization}. Degeneracy of the genetic code, and of genetic networks, 
 for instance, can make sequences more fault-tolerant to mutations and open up pathways to adaptation (cite). 
-Biological degeneracy can also enable the evolution of neutral and nearly neutral molecular changes \citep{kimura},
+Non-invertibility can also enable the evolution of neutral and nearly neutral molecular changes \citep{kimura},
 and perhaps even contribute to the formation of new species \citep{gavrilets}. 
 
-We are interested in the nature and evolutionary implications of degeneracy and nonidentifiability in the context of gene regulatory networks.
+We are interested in the nature and evolutionary implications of structural plasticity and nonidentifiability in the context of gene regulatory networks.
 Specifically, we would like to understand the degree of which gene regulatory network architectures are functionally equivalent and how this relates to network size and efficiency.
 If systems architectures are not functionally unique, can this open up neutral evolutionary paths, and do
   these paths manifest as \emph{developmental system drift} \citep{true2001developmental} and contribute to speciation?
@@ -244,25 +268,6 @@ all linear gene network architectures that yield identical phenotypes.
 Finally, we briefly outline and apply a quantitative genetics framework to estimate the speed at which system drift can lead to speciation via reproductive incompatibility,
 which we develop in more detail in a companion paper \citep{schiffman2020genetic}.
 
-
-%It is an overarching goal of many biological subdisciplines 
-%to attain a general understanding of the function and evolution of the 
-%complex molecular machinery that translates an organism's genome 
-%into the characteristics on which natural selection acts,
-%the phenotype.
-%For example, 
-%there is a growing body of data on the evolutionary histories and molecular characterizations of particular gene regulatory networks
-%\citep{jaeger2011gap, davidson2006gene, israel2016comparative}, 
-%as well as thoughtful verbal and conceptual models \citep{true2001developmental, weiss2000phenogenetic, edelman2001degeneracy, pavlicev2012model}. 
-%Mathematical models of both particular regulatory networks
-%and the evolution of such systems in general
-%can provide guidance where intuition fails,
-%and thus has the potential to discover general principles in the organization of biological systems 
-%as well as provide concrete numerical predictions \citep{servedio2014not}.
-%There is a substantial amount of work studying the evolution of gene regulatory networks, in frameworks 
-%both abstract \citep{wagner1994evolution, wagner1996does, siegal2002waddington, bergman2003evolutionary, draghi2015robustness} 
-%and empirically inspired
-%\citep{mjolsness1991connectionist, jaeger2004dynamic, vitaly1, crombach2016gap, wotton2015quantitative, chertkova2017insilico}.
 %
 %It is well known that in many contexts mathematical models
 %can fundamentally be \emph{nonidentifiable} and/or \emph{indistinguishable} -- meaning that 
@@ -346,33 +351,33 @@ which we develop in more detail in a companion paper \citep{schiffman2020genetic
 %
 %It is not a new observation that there is often more than one way to do the same thing, 
 %or that speciation can be the result of (nearly) neutral processes.
-%The potential for speciation has been analyzed in models of 
-%traits under stabilizing selection determined additively by alleles at many loci 
-%\citep{wright1935evolution,barton1986maintenance,barton1989divergence,barton2001role},
-%in related fitness landscape models \citep{fraisse2016genetics},
-%and for pairs of traits that must match but whose value is unconstrained \citep{sved1981twosex}.
-%% Recent work has shown that Fisher's geometric model of stabilizing selection
-%% predicts many general patterns from the speciation literature \citep{fraisse2016genetics}.
-%It has also been shown that population structure
-%can allow long-term stable coexistence of incompatible genotypes encoding identical phenotypes \citep{phillips1996maintenance}. \revpoint{1}{9}
-%However, previous simulations of system drift in regulatory sequences \citep{tulchinsky2014hybrid}
-%and a regulatory cascade \citep{porter2002speciation}
-%found rapid speciation under directional selection
-%but only equivocal support for speciation under models of purely neutral drift.
-%%Additionally, \citet{fierst} observed speciation due to an increase of segregation variance under balancing selection, in models of weak to moderate, but not strong epistasis.
-%The rate at which hybrid incompatibility accumulates due to genetic drift creating
-%segregation variance between isolated populations is fairly well understood
-%\citep{slatkin1994segregation,rosas2010cryptic,chevin2014niche},
-%but model assumptions can strongly affect predictions,
-%including whether variation is due to rare or common alleles \citep{slatkin1994segregation},
-%and the shape of the fitness landscape \citep{fraisse2016genetics}.
-%Our main aim is to provide a concrete framework 
-%that can provide natural predictions of these model parameters
-%across a general class of models.
-%Furthermore, tools from system theory allow analytical predictions to be made
-%for large populations with complex phenotypes
-%that would be inaccessible to population simulations.
-%
+The potential for speciation has been analyzed in models of 
+traits under stabilizing selection determined additively by alleles at many loci 
+\citep{wright1935evolution,barton1986maintenance,barton1989divergence,barton2001role},
+in related fitness landscape models \citep{fraisse2016genetics},
+and for pairs of traits that must match but whose value is unconstrained \citep{sved1981twosex}.
+% Recent work has shown that Fisher's geometric model of stabilizing selection
+% predicts many general patterns from the speciation literature \citep{fraisse2016genetics}.
+It has also been shown that population structure
+can allow long-term stable coexistence of incompatible genotypes encoding identical phenotypes \citep{phillips1996maintenance}. \revpoint{1}{9}
+However, previous simulations of system drift in regulatory sequences \citep{tulchinsky2014hybrid}
+and a regulatory cascade \citep{porter2002speciation}
+found rapid speciation under directional selection
+but only equivocal support for speciation under models of purely neutral drift.
+%Additionally, \citet{fierst} observed speciation due to an increase of segregation variance under balancing selection, in models of weak to moderate, but not strong epistasis.
+The rate at which hybrid incompatibility accumulates due to genetic drift creating
+segregation variance between isolated populations is fairly well understood
+\citep{slatkin1994segregation,rosas2010cryptic,chevin2014niche},
+but model assumptions can strongly affect predictions,
+including whether variation is due to rare or common alleles \citep{slatkin1994segregation},
+and the shape of the fitness landscape \citep{fraisse2016genetics}.
+Our main aim is to provide a concrete framework 
+that can provide natural predictions of these model parameters
+across a general class of models.
+Furthermore, tools from system theory allow analytical predictions to be made
+for large populations with complex phenotypes
+that would be inaccessible to population simulations.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Results}
