@@ -443,7 +443,7 @@ The system and its dynamics are referred to in Figure \ref{fig:oscillator}. We r
         \begin{scope}[>={Stealth[black]},
                       every node/.style={fill=white,circle},
                       every edge/.style={draw=black, thick}]
-            \path [->, >=Rectangle] (A) edge[bend left] node {\tiny $-1$} (B);
+            \path [->] (A) edge[bend left] node {\tiny $-1$} (B);
             \path [->] (B) edge[bend left] node {\tiny $1$} (A); 
             \path[->] (U) edge node {\tiny $1$} (A);
             \path[->] (U) edge node {\tiny $1$} (B);
