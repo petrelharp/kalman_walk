@@ -19,7 +19,7 @@ A_fn <- function (tau) {
              1/(tau+1), -tau/(tau+1)), nrow=2) 
 }
 
-tt <- seq(0,6*pi, length.out=500)
+tt <- seq(0,6*2*pi, length.out=500)
 
 h <- function (t,tau=0,A=A_fn(tau)) { sapply(t, function (tt) C %*% expm(tt*A) %*% B) }
 
