@@ -181,7 +181,7 @@ is expected to proceed at a rate proportional to the amount of intrapopulation g
 divided by the effective population size ($N_e$).
 At biologically reasonable parameter values
 this could lead to substantial interpopulation incompatibility,
-and thus speciation, in fewer than $N_e$ generations.
+and thus speciation, on a time scale of $N_e$ generations.
 This model also naturally predicts Haldane's rule, 
 thus providing another possible explanation
 of why heterogametic hybrids tend to be disrupted more often than homogametes 
@@ -268,7 +268,7 @@ without passing through a fitness valley \citep{wagner2008robustness}.
 
 In this paper we use results on mathematical nonidentifiability from
 linear systems theory to study how gene regulatory networks can be modified
-while retaining the same function, and what implications does this have for speciation.
+while retaining the same function, and the possible implications for speciation.
 % Specifically, we would like to understand the degree of which gene regulatory network architectures are functionally equivalent and how this relates to network size and efficiency.
 If system architectures are not functionally unique,
 can this open up neutral evolutionary paths,
@@ -283,8 +283,10 @@ a population diffuses along the neutral ridges of a high-dimensional space of po
 in a similar vein as \emph{holey landscape} models \citep{gavrilets1997evolution, yamaguchi2013first, pina2019does}\revpoint{2}{12}.
 % Our model is developed in more detail in a companion paper \citep{schiffman2020genetic}.
 
-%It is not a new observation that there is often more than one way to do the same thing, 
-%or that speciation can be the result of (nearly) neutral processes.
+Besides those already cited, many other authors have observed
+% It is not a new observation
+that there is often more than one way to do the same thing, 
+and that speciation can be the result of (nearly) neutral processes.
 The potential for speciation has been analyzed in models of 
 traits under stabilizing selection determined additively by alleles at many loci 
 \citep{wright1935evolution,barton1986maintenance,barton1989divergence,barton2001role},
@@ -360,10 +362,11 @@ with usually $\ell$ and $m$ less than $n$.
 We think of the system as the triple $(A,B,C)$,
 which translates (time-varying) $m$-dimensional input $u(t)$
 into the $\ell$-dimensional output $\phi(t)$.
-Under quite general assumptions (\emph{e.g.} the system is linear, time-invariant and in the zero-state), \revpoint{AE}{3}
+Under quite general assumptions on the input
+(e.g., $|u(t)|$ is integrable) \revpoint{AE}{3}
 we can write the phenotype as \revpoint{AE}{4}
   \begin{align}
-    \phi(t) = \int_{0}^{t} C e^{A (t-s)} B u(s) ds ,
+    \phi(t) = \int_{0}^{t} C e^{(t-s) A} B u(s) ds ,
   \end{align}
 which is a convolution of the input $u(t)$ with the system's \emph{impulse response},
 which we denote as $h(t) := Ce^{A t}B$.
@@ -801,15 +804,18 @@ populations containing significant diversity in $\allS$ can carry genetic load, 
     A conceptual figure of the fitness consequences of hybridization:
     axes represent system coefficients (i.e., entries of $A$);
     the line of optimal system coefficients is down in black;
-    dotted lines give phenotypic distances to the optimum.
+    solid lines give phenotypic distances to the optimum.
     A pair of parental populations are shown in black, along the optimum;
     a hypothetical population of $F_1$s are shown in red,
-    and the distribution of one type of $F_2$ is shown in purple
-    (other types of $F_2$ are not shown; 
-    some would be a similar distance to the other side of the optimal set).
-    The distribution of $F_2$ hybrids is appropriate for mixed homozygotes
-    if both traits have a simple, one-locus genetic basis,
-    but there is variation within each population at that locus.
+    and the distribution of $F_2$s is shown in purple.
+    The two figures differ in the genetic basis, and hence,
+    the distribution of $F_2$ phenotypes:
+    \textbf{(left)}
+    $F_2$s compose all four mixed homozygotes if variation at both
+    traits has a simple, one-locus genetic basis in both popualtions; and
+    \textbf{(right)}
+    $F_2$ show a much wider distribution of phenotypes
+    if the genetic basis of variation in each population is polygenic.
 }
 \end{figure}
 
@@ -946,8 +952,8 @@ but is it rapid enough to be an important factor in practice?
 In other words, after what period of time would we expect the fitness of hybrids
 between two allopatric populations to be substantially lower than the parentals?
 The population mean of an unconstrained quantitative trait
-with genetic variance $V_G$ in a population with effective size $N_e$
-will move in $t$ generations a random amount whose variance is $t V_G / N_e$ \citep{quant_gen}.
+with additive genetic variance $V_G$ in a population with effective size $N_e$
+will move in $t$ generations a random amount whose variance is $t V_G / N_e$ \citep{lande1976natural}.
 The mean difference between two such populations has twice the variance.
 Although this mean difference is along neutral directions,
 we would in many cases expect the range of variation among $F_2$s
@@ -956,20 +962,22 @@ as the differences between the populations,
 as depicted in Figure \ref{fig:conceptual_fig}.
 This suggests that, naively, two such populations that have been separated for $t$ generations
 will produce $F_2$ offspring that differ from optimal by an amount proportional to $\sqrt{t V_G / N_e}$.
-Since we assume they are at a local figness optimum, without much loss of generality we can assume
+Since we assume they are at a local fitness optimum, without much loss of generality we can assume
 that fitness is locally quadratic, and so $F_2$ fitness decays linearly in time:
-proportionally to $t V_G / N_e$ -- fastest in small, diverse populations.
+proportionally to $t V_G / N_e$ -- fastest in small, diverse populations,
+This predicts that we need only wait some multiple of $N_e$ generations
+until substantial incompatibility has been accumulated.
 
 It is useful to think in more detail about the assumptions in the rough argument above.
 The key aspect is how population differences in neutral directions
 (along the fitness ridge)
 translate to segregation variance in $F_2$s in selectively constrained directions.
-To move the the system (the $A$ matrix) a given distance
+To move the system (the $A$ matrix) a given distance
 generally involves moving many individual interaction coefficients (the entries $A_{ij}$).
 The movements must be coordinated, for the population to stay near the fitness ridge.
 However, mixing elements between systems that have made independent sets of coordinated changes
 to remain on the fitness ridge
-is unlikely to produce a a set of coordinated changes;
+is unlikely to produce a set of coordinated changes;
 and the resulting system could move away from the ridge in almost any direction.
 
 
@@ -1110,7 +1118,7 @@ seen by \citet{roux2016shedding},
 and the clocklike speciation rates observed by \citet{hedges2015tree}.
 % (as diversification is not observed to be accelerated following mass extinctions).
 
-Neutral processes are certainly not the only drivers of speciation.
+These explanations are not mutually exclusive.
 All of these forces -- adaptive shifts, conflict, and network drift --
 are plausible drivers of speciation, and may even interact.
 Many of our observations carry over to models of directional selection --
@@ -1135,43 +1143,50 @@ It remains to be seen how the relative strengths of these forces compare.
 % might lead to genetic load due only to recombination, much as in \citep{phillips1996maintenance}.
 
 \paragraph{The dimensionality of trait space} \revpoint{1}{8}
-\jss{I didn't think that our results depend on the kryptotype being in a higher dimensional space than the phenotype.
-Any coordinate change on (A,B,C) will rewire the system. So as long as none of the system matrices are constrained, 
-any minimal system should have an infinite number of realizations. Unless my system theory is rusty?}
-
 We have focused on examples of single traits (where the phenotype is one-dimensional),
 but phenotypes under selection are often high-dimensional,
-and different traits often share a genetic basis.
+and variation in different traits often share a genetic basis.
+However, we still expect many degrees of freedom
+as long as there are components of the system not directly and individually constrained by selection
+(i.e., a kryptotype). % since if C = I then there's no nontrivial transformations that preserve C
 Even in networks where the phenotype and kryptotype are of the same dimension,
 system theory shows us that there will always be available degrees of freedom
 as specific system realizations are only unique up to a change of coordinates.
 Some phenotypes, however, require kryptotypic dimensions to be larger than that of the phenotype.
-For instance, there exists minimal realizations (\emph{e.g.} the oscillator in Example 1) where the dimension of the kryptotpye is larger
+For instance, many systems have minimal realizations (\emph{e.g.}, the oscillator in Example \ref{ex:all_osc}) where the dimension of the kryptotype is larger
 than that of the phenotype, implying that for these phenotypic dynamics to be realized, the kryptotype dimension \emph{has} to be larger than the dimension of the phenotype.
-Of course we see many more degrees of freedom in nonminimal networks, but it is not yet clear if evolution commonly arrives at such structures.
-There are some hints that this may be occuring: compared to the molecular circuitry of the cyanobacteria circadian rhythm,
-the human clock appears to be highly and unneccessarily complex \citep{sancar2008intelligent}. 
-The true ``dimensionality of trait space'' has been debated at some length in the literature
-\citep{trait_space}.
-Whatever it is, however, it seems likely to be highly degenerate,
-%Whatever it is, however, it seems unlikely 
-%that it would approach the dimensionality of kryptotype space,
-%which is something related to the number of genes.
-even under universal pleiotropy \citep{universal_pleiotropy, boyle2017expanded},
-XXX
-
+Even if components of the system's internal state are directly subject to selection
+and the mode of action of the environment on the internal state is constrained
+(so, the input and output matrices $B$ and $C$ are fixed)
+then one could still perturb $A$ as described above by $ZA - AZ$
+if $ZB$ and $CZ$ are both zero, implying a number of degrees of freedom that still grows with $n^2$
+for fixed $\ell$ and $m$.
+Generically, the number of degrees of freedom is $n(n - \ell - m)$,
+so that in a system of $n$ components, if even one component is not directly constrained,
+this leads to $n$ degrees of freedom.
+Whatever the true ``dimensionality'' of phenotype space of a typical organism,
+there are undoubtedly aspects of its underlying molecular machinery that are not directly constrained,
+suggesting large numbers of degrees of freedom.
+Note that pleiotropy does not directly affect this argument at all --
+indeed, many phenotypically equivalent changes will lead to denser $A$ matrices and hence more pleiotropy.
+However, more pleiotropic genes may be more strongly constrained,
+making it more difficult for systems to make the required compensatory changes for system drift.
+% Whatever it is, however, it seems unlikely 
+% that it would approach the dimensionality of kryptotype space,
+% which is something related to the number of genes.
+% even under universal pleiotropy \citep{universal_pleiotropy, boyle2017expanded},
 
 \paragraph{Nonlinearity and model assumptions}
 Of course, real regulatory networks are not linear dynamical systems.
 Most notably, physiological limits put upper bounds on expression levels,
 implying saturating response curves.
-It remains to be seen how well these results carry over into real systems,
+It remains to be seen how well our results carry over into real systems,
 but the fact that most nonlinear systems can be locally approximated by a linear one
 suggests our qualitative results may hold more generally.
 Furthermore, nonidentifiability (which implies the existence of neutral directions)
 is often found in practice in moderately complex models of biological systems \citep{gutenkunst2007universally, piazza2008diverse}.
 
-Finally, despite our model's precise separation of phenotype and kryptotype, this relationship in nature may be far more complicated as aspects of the kryptotype may be less ``hidden'' than we currently assume, and the neutral network changes we describe here may only be nearly neutral. For instance, attributes excluded from the phenotype as modeled here, ignore the potential energy costs associated with excessively large (non-minimal) kryptotypes, as well as the relationship between a specific network architecture and robustness to mutational, transcriptional, or environmental noise.
+Finally, despite our model's precise separation of phenotype and kryptotype, this relationship in nature may be far more complicated as aspects of the kryptotype may be less ``hidden'' than we currently assume, and the neutral network changes we describe here may only be nearly neutral. For instance, attributes excluded from the phenotype as modeled here ignore the potential energy costs associated with excessively large (non-minimal) kryptotypes, as well as the relationship between a specific network architecture and robustness to mutational, transcriptional, or environmental noise.
 % Despite the model's simplifications and potentially nontrivial oversights, it may still roughly reflect and shed light upon speciation patterns as they occur in nature.
 More precise modeling will require better mechanistic understanding not only of biological systems,
 but also the nature of selective pressures
