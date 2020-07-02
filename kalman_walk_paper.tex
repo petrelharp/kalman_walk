@@ -208,10 +208,9 @@ can provide guidance where intuition fails,
 and thus has the potential to discover general principles in the organization of biological systems 
 as well as provide concrete numerical predictions \citep{servedio2014not}.
 There is a substantial amount of work studying the evolution of gene regulatory networks, in frameworks 
-both abstract \citep{wagner1994evolution, wagner1996does, siegal2002waddington, bergman2003evolutionary, draghi2015robustness} \revpoint{1}{6}
+both abstract \citep{wagner1994evolution, wagner1996does, siegal2002waddington, bergman2003evolutionary, draghi2015robustness}
 and empirically inspired
 \citep{mjolsness1991connectionist, jaeger2004dynamic, vitaly1, crombach2016gap, wotton2015quantitative, chertkova2017insilico}.
-\jss{Something, something Wagner model here?} 
 
 At all levels of biological organization,
 the problems that biological systems have evolved to solve
@@ -287,6 +286,8 @@ Besides those already cited, many other authors have observed
 % It is not a new observation
 that there is often more than one way to do the same thing, 
 and that speciation can be the result of (nearly) neutral processes.
+Indeed, \citet{bateson1909heredity} first proposed that what today we call a
+Bateson-Dobzhansky-Muller incompatibility would likely arise through neutral changes. \revpoint{1}{10}
 The potential for speciation has been analyzed in models of 
 traits under stabilizing selection determined additively by alleles at many loci 
 \citep{wright1935evolution,barton1986maintenance,barton1989divergence,barton2001role},
@@ -371,7 +372,6 @@ we can write the phenotype as \revpoint{AE}{4}
 which is a convolution of the input $u(t)$ with the system's \emph{impulse response},
 which we denote as $h(t) := Ce^{A t}B$.
 
-% Although many different biological systems can be modeled with this approach, for clarity, we focus on gene regulatory networks.
 In terms of gene regulatory networks, $A_{ij}$ determines how the $j^\text{th}$ transcription factor regulates the $i^\text{th}$ transcription factor.
 If $A_{ij} > 0$, then $\kappa_j$ upregulates $\kappa_i$, while if $A_{ij} < 0$, then $\kappa_j$ downregulates $\kappa_i$.
 The $i^\text{th}$ row of $A$ is therefore determined by genetic features such as
@@ -386,7 +386,16 @@ and $C$ might determine the rate of production of downstream enzymes.
 % Of course, neither of these are necessarily true for real systems,
 % but the dynamics of most nonlinear systems can be approximated locally by a linear systems near most points. 
 % Furthermore, the ease of analyzing linear systems makes this an attractive place to start.
-To demonstrate this approach, we apply it to construct a simple gene network in Example \ref{ex:oscillator} below.
+
+
+\citet{wagner1994evolution} and others have used a similar discrete-time model \revpoint{1}{6}
+(that might be written $\phi_{t+1} = f(A \phi_t)$, where $f$ is a sigmoid).
+Our choice of continuous time does not affect the points we make here,
+but our restriction to \emph{linear} systems is a stronger assumption
+(see the Discussion).
+
+To demonstrate the model,
+we construct a simple gene network in Example \ref{ex:oscillator} below.
 
 \begin{example}[An oscillator]\label{ex:oscillator}
 For illustration, we consider an extremely simplified model of oscillating gene transcription,
@@ -1181,7 +1190,7 @@ Most notably, physiological limits put upper bounds on expression levels,
 implying saturating response curves.
 It remains to be seen how well our results carry over into real systems,
 but the fact that most nonlinear systems can be locally approximated by a linear one
-suggests our qualitative results may hold more generally.
+suggests our qualitative results may hold more generally. \revpoint{1}{7}
 Furthermore, nonidentifiability (which implies the existence of neutral directions)
 is often found in practice in moderately complex models of biological systems \citep{gutenkunst2007universally, piazza2008diverse}.
 
@@ -1223,7 +1232,7 @@ With $h_0(t) = C_0 e^{tA_0} B_0$ a representative of the optimal set:
         D(A, B, C)^2
         &:= 
         \int_0^\infty \rho(t) \left| h_A(t) - h_0(t) \right|^2 dt \\
-        &:= 
+        &= 
         \int_0^\infty \rho(t) \left| C e^{At} B - C_0 e^{A_0 t} B_0 \right|^2 dt \\
         &= 
         \int_0^\infty \rho(t) \tr\left\{
@@ -1390,14 +1399,14 @@ This implies that
     \end{aligned}
 \end{equation}
 
-By section \ref{ss:quant_gen},
-if we set $\Sigma=\sigma^2 I$ and $U=H$,
-then a population at $A_0+Z$ experiences a restoring force of strength
-$(I + \sigma^2 H^{-1})^{-1} Z$ (treating $Z$ as a vector and $H$ as an operator on these).
-If $\sigma^2$ is small compared to $H^{-1}$
-then this is approximately $-\sigma^2 H^{-1} Z$.
-This suggests that the population mean follows an Ornstein-Uhlenbeck process,
-as described (in different terms) in \citet{hansen1996translating}.
+% By section \ref{ss:quant_gen},
+% if we set $\Sigma=\sigma^2 I$ and $U=H$,
+% then a population at $A_0+Z$ experiences a restoring force of strength
+% $(I + \sigma^2 H^{-1})^{-1} Z$ (treating $Z$ as a vector and $H$ as an operator on these).
+% If $\sigma^2$ is small compared to $H^{-1}$
+% then this is approximately $-\sigma^2 H^{-1} Z$.
+% This suggests that the population mean follows an Ornstein-Uhlenbeck process,
+% as described (in different terms) in \citet{hansen1996translating}.
 
 More generally, $B$ and $C$ may also change.
 To extend this we need the remaining second derivatives of $D^2$.

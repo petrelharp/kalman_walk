@@ -68,6 +68,14 @@ and should therefore deserve your attention first, should you follow my
 suggestion of publishing the two parts separately.
 \end{quote}
 
+Thanks for the careful attention to the paper.
+We have indeed decided to go with this suggestion,
+and have split the paper in two;
+this paper is the ``systems biology'' part of it.
+We've left in reviewer comments regarding the ``Fisher's geometric model'' portion below,
+commenting that the relevant bit ``has been removed''.
+
+
 
 \begin{point}{Format:}
     Please add line numbers to your manuscript; it is straightforward
@@ -78,6 +86,7 @@ citep and citet (a lot of missing parentheses around citations in the second par
 \end{point}
 
 \reply{
+    Apologies!
   We've added line numbers and corrected improperly formatted citations. 
 }
 
@@ -95,8 +104,12 @@ that the lines are thick enough to be visible.
 \end{point}
 
 \reply{
-  Thank you for the suggestion. We now mention some \revref.
-  \jss{I think the general assumptions are time invariance and linearity? Any others we should mention?}
+  Good idea.
+  The formula is quite general,
+  and a more precise statement of the assumptions would veer too far afield
+  (perhaps needing definitions of function spaces),
+  but we've added a hopefully clarifying comment.
+  \revref.
 }
 
 \begin{point}{eq (2):} 
@@ -121,7 +134,7 @@ that the lines are thick enough to be visible.
 \end{point}
 
 \reply{
-    We've added a clarifying note \revref
+    We've added a clarifying note \revref{}
     but we're hoping that readers not familiar with linear algebra will realize
     that they can skip this ``note on implementation'' without loss of continuity.
 }
@@ -219,7 +232,8 @@ forward from there.
 \end{point}
 
 \reply{
-  We've reworked the introduction and included a paragraph on the phenonmenon of biological degeneracy, which unites many of these concepts. \revref
+  Thanks for the additional suggestions!
+  We've reworked the introduction, adding these (and many other) additional references. \revref
 }
 
 \begin{point}{}
@@ -241,7 +255,7 @@ more would be helpful (starting with True and Haag coined the term
 \end{point}
 
 \reply{
-  We've reworked the introduction and included more detail about these references. \revref
+    We've tried to explain things better in the revised Introduction. \revref
 }
 
 \begin{point}{4.}
@@ -253,6 +267,8 @@ connected to this fact, I'd like to see some more in-depth discussion.
 \end{point}
 
 \reply{
+    Yes, that's right! We've followed the suggestions (see below),
+    and have added additional discussion to the Discussion.
 }
 
 \begin{point}{(mechanistic models)}
@@ -267,12 +283,11 @@ connected to this fact, I'd like to see some more in-depth discussion.
 \begin{point}{(mechanistic models)}
     For development, Andreas Wagner once suggested a discrete version of a linear
   model (iterated matrix multiplication). Variants of this have later been used
-by others (eg Draghi and GP Wagner, I think). How is your model related to
-these approaches?
+by others (eg Draghi and GP Wagner, I think). How is your model related to these approaches?
 \end{point}
 
 \reply{
-    TODO but citation at
+    This is a natural quesiton. We've addressed it after introducting the model.
     \revref
 }
 
@@ -285,6 +300,7 @@ important for the second part of the ms, see below.
 \end{point}
 
 \reply{
+    We do agree, and have clarified this in the Discussion. \revref
 }
 
 \begin{point}{(mechanistic models)}
@@ -301,6 +317,12 @@ Currently, ``pleiotropy'' is not even mentioned in the ms.
 \end{point}
 
 \reply{
+    Counterintuitively, it is not necessary to have the kryptotype have a higher dimension
+    than the phenotype to have degrees of freedom.
+    The precise details depend on what you want to treat as fixed or evolvable --
+    for instance, should the output matrix $C$ be subject to drift? --
+    but we don't think it's controversial to suppose that there's a bunch of genes
+    whose expression levels aren't the direct target of selection.
     We have added discussion of this in the Discussion. \revref
 }
 
@@ -318,6 +340,22 @@ Currently, ``pleiotropy'' is not even mentioned in the ms.
 \end{point}
 
 \reply{
+    That'd be one way to do it --
+    and, it turns out, Bateson thought BDMIs would probably be neutral;
+    we've added this. \revref{}
+    (The quote from \citet{bateson1909heredity} is
+    \textit{``Now if the sterility
+of the cross-bred be really the consequence of the meeting of two
+complementary factors, we see that the phenomenon could only be
+produced among the divergent offspring of one species by the acquisition of at least two new factors; for if the acquisition of a single
+factor caused sterility the line would then end. Moreover each factor
+must be separately acquired by distinct individuals, for if both were
+present together, the possessors would by hypothesis be sterile. And
+in order to imitate the case of species each of these factors must be
+acquired by distinct breeds. The factors need not, and probably would
+not, produce any other perceptible effects; they might, like the colour-
+factors present in white flowers, make no difference in the form or
+other characters.``})
 }
 
 \begin{point}{Results:}
@@ -325,6 +363,8 @@ Currently, ``pleiotropy'' is not even mentioned in the ms.
 \end{point}
 
 \reply{
+    We wouldn't be surprised if it had, but we're not aware of it --
+    other papers all seem to take the discrete-time approach as in \citet{wagner1994evolution}.
 }
 
 \begin{point}{Results:}
@@ -351,6 +391,14 @@ these additional degrees of freedom can apply in principle to any system.'' - ar
 \end{point}
 
 \reply{
+    We're not aware of any biological examples of ``equivalent'' networks
+    in more than one species at all,
+    but we think it's not clear whether we understand the dynamics of \emph{any} gene regulatory network
+    well enough to determine equivalence,
+    so this is an absence of evidence, not evidence of absence.
+    (There are plenty of examples of homologous networks with missing genes,
+    but there's so many uncertainties we don't think bringing this up will clarify things.)
+    \plr{JOSH: how's this?}
 }
 
 \begin{point}{Kalman decomposition:}
@@ -366,6 +414,7 @@ these additional degrees of freedom can apply in principle to any system.'' - ar
 \end{point}
 
 \reply{
+    \plr{FIXME}
 }
 
 \begin{quote}
@@ -379,24 +428,7 @@ assumption.
 \end{quote}
 
 \reply{
-    \plr{I'm leaving these points because they might apply to whatever handwaving 
-    we replace the quant gen stuff with.}
-}
-
-\begin{point}{}
-    Your analysis of the fitness loss in F1 and F2 hybrids rests on a local
-Taylor expansion of the fitness landscape. This is adequate given that the
-underlying linear network is also only locally valid (see above). However, you
-then apply this to a discussion of hybrid incompatibility (Haldane's rule etc).
-We are thus interested in *very large* fitness costs for hybrids. This does not
-seems to be compatible: to get hybrid incompatibility or sterility, you need to
-have epsilon sufficiently large (below equation 5). But then $\epsilon^2$ is no
-longer smaller than epsilon. In other words: it seems to me that for the
-discussion of hybrid incompatibilities you apply your model of the first part
-beyond the local range where it is valid.
-\end{point}
-
-\reply{
+    We've removed the ``popgen'' part, but some of the comments below still apply.
 }
 
 \begin{point}{}
@@ -409,6 +441,7 @@ therefore run against your conclusions.
 \end{point}
 
 \reply{
+    We have removed this part.
 }
 
 \begin{point}{(drift along a ridge)}
@@ -429,6 +462,7 @@ aiming for.
 \end{point}
 
 \reply{
+    \plr{should put somethign about this in the discussion?}
 }
 
 \begin{point}{(drift along a ridge)}
@@ -445,6 +479,7 @@ fitness valleys. While this is possible, it slows down the process.
 \end{point}
 
 \reply{
+    \plr{... together with this?}
 }
 
 \begin{point}{(drift along a ridge)}
@@ -453,6 +488,7 @@ example (eg the oscillator that is used as an illustration in the ms anyway).
 \end{point}
 
 \reply{
+    We aim to do that in the subsequent paper.
 }
 
 \begin{point}{}
@@ -463,6 +499,7 @@ means that even weak gene flow will counteract the process described in the ms.
 \end{point}
 
 \reply{
+    \plr{... and also this?}
 }
 
 \begin{point}{}
@@ -471,6 +508,7 @@ speciation''?
 \end{point}
 
 \reply{
+    We have removed this part.
 }
 
 \begin{point}{}
@@ -487,9 +525,12 @@ beyond the local range where it is valid.
 \end{point}
 
 \reply{
-    That's a good point; we resort to a Taylor expansion 
-    because we couldn't think of any other clear way to get quantitative estimates.
-    However, our simulations XXX.
+    This is a good point, but tricky since it's not clear what ``small'' is here.
+    A fitness difference of 0.2 is quite strong selection, for instance,
+    although it is a fairly small number in some ways.
+    Furthermore, the same picture holds in the opposing cases of a single locus
+    or many loci, illustrated in Figure~\ref{fig:conceptual_fig}.
+    In any case, we now rely only on the conceptual idea rather than the numerics of this estimate.
 }
 
 
@@ -533,6 +574,7 @@ to previous works (equation, section etc.) if the authors do not want to re-deri
 formula.
 \end{quote}
 
+\plr{TODO: respond/edit}
 
 \begin{point}{end of p6:} 
     ``we assume ... $((A + A' )/2, (B + B' )/2, (C + C' )/2)$'' . It is claimed in p4 (right
@@ -557,9 +599,7 @@ should simply be greater.
 \end{point}
 
 \reply{
-    XXX Suggestion: change this figure to have two figures of the same type, side-by-side,
-    one with a simple genetic basis (like this one, but with two purple clouds)
-    and another with a more quantitative trait.
+    We have improved Figure~\ref{fig:conceptual_fig} to hopefully better demonstrate the point.
 }
 
 \begin{point}{p7: end of the page.}
@@ -582,7 +622,6 @@ extra explanation (e.g., in the appendix)?
 \reply{
     We have put back in the somewhat lengthy Appendix on this subject 
     that we'd removed before submission. \revref
-    XXX TODO EDIT THAT APPENDIX XXX
 }
 
 \begin{point}{p9. Fig 5.} 
