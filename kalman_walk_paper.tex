@@ -465,7 +465,7 @@ The system and its dynamics are referred to in Figure \ref{fig:oscillator}. We r
         \end{scope}
 
      \end{tikzpicture} &
-   \includegraphics[width=0.5\textwidth, height=0.125\paperheight]{osc_impulse}
+     \raisebox{0.25\height}{\includegraphics[scale=0.25]{examples/fig1b}}
 \end{tabular}
 %  \end{center}
   \caption{
@@ -709,12 +709,12 @@ The resulting set of systems are depicted in Figure \ref{fig:all_osc}.
     \path [->] (A) edge[loop left] node[left] {\tiny $\frac{\tau}{\tau+1}$} (A);
     \path [->] (B) edge[loop right] node[right] {\tiny $\frac{-\tau}{\tau+1}$} (B);
 \end{scope}
-\end{tikzpicture} &	\includegraphics[width=0.5\textwidth, height=0.125\paperheight]{figures/osc_kryp_compare}
+\end{tikzpicture} &	\raisebox{0.25\height}{\includegraphics[scale=0.25]{examples/fig2b}}
     \end{tabular}
 % \caption{}
       \caption{
       (Left) $A(\tau)$, the set of all phenotype-equivalent cell cycle control networks.
-      (Right) Gene-1 dynamics (blue) for both systems $A(0)$ and $A(-2)$ are identical, however, $A(0)$ gene-2 dynamics (orange) differ from $A(-2)$ (green).
+      (Right) Gene-1 dynamics (blue) for both systems $A(0)$ and $A(-2)$ are identical, however, $A(0)$ gene-2 dynamics (red) differ from $A(-2)$ (green).
       % Both gene-1 dynamics are given by $\kappa_{1}(t) = \sin t + \cos t$, and gene-2 by $\kappa_{2}(t) = \cos t - \sin t$ ($A(0)$) and $\kappa'_{2}(t) = \cos t + 3 \sin t$ ($A(2)$).
       } 
     \label{fig:all_osc}
@@ -1074,7 +1074,7 @@ system drift is a significant -- and possibly rapid -- driver of speciation.
 This may be surprising because
 hybrid inviability appears as a consequence of recombining different, yet functionally equivalent, mechanisms, and since species are often defined by their unique adaptations or morphologies. 
 
-Consistent with empirical observation of hybrid breakdown (e.g., \citet{plotner2017chlorosis}) and transgressive segregation \citep{transgressive}, 
+Consistent with empirical observation of hybrid breakdown (e.g., \citet{plotner2017chlorosis}), 
 we see that the fitnesses of $F_2$ hybrids drop at a much faster rate than those of $F_1$s.
 % since $F_1$ and $F_2$ phenotypes diverge linearly and at the square root of time relative to parentals, respectively.
 %\plr{refer to Turelli here}
@@ -1083,6 +1083,8 @@ Another natural consequence of the model is Haldane's rule,
 that if only one $F_1$ hybrid sex is inviable or sterile it is likely to be the heterogametic sex.
 This occurs because if the genes underlying a regulatory network are distributed among both autosomes and the sex chromosome, 
 then heterogametic $F_1$s show variation (and fitnesses) similar to that seen in $F_2$ hybrids.
+This observation appears to be similar to the extreme hybrid phenotypes produced by transgressive segregation \citep{rieseberg1999transgressive}, 
+which can manifest in $F_1$s when only one (dominant) parental allele is expressed at heterozygous loci; this was observed in hybrid gene expression patterns, and increased as a function of parental genetic distance \citep{stelkens2009genetic}.
 
 Is there evidence that this is actually occurring?
 System drift and network rewiring has been inferred across the tree of life \citep{wotton2015quantitative, crombach2016gap, dalal2017transcription, johnson2017rewiring, ali2017quantitative},
