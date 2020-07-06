@@ -6,7 +6,7 @@ output: html_document
 ---
 
 
-```{r, cache=TRUE}
+```{r}
 library(expm)
 # System drift Figure 5 plot
 
@@ -89,4 +89,23 @@ matplot(tt, hhf1_3, type='l', xlab="time", ylab="phenotype h(t)", lwd=2, ylim=c(
 matplot(tt, hhf2_3, type='l', xlab="time", ylab="phenotype h(t)", lty=1, lwd=2, ylim=c(-6,6), cex.lab=1.5)
 matlines(tt, hhf0, type='l', xlab="time", ylab="phenotype h(t)", lty=1, ylim=c(-6,6), cex.lab=1.5, col="black", lwd=4)
 
+```
+
+
+```{r, fig.width=2.5, fig.height=1.5, fig.align="center"}
+
+C2 <- matrix(c(0,1), nrow=1)
+h.2 <- function (t,tau=0,A=A_fn(tau)) { sapply(t, function (tt) C2 %*% expm(tt*A) %*% B) }
+
+hhf00 <- sapply( list(A_fn(0)), function (A) { sapply(tt, h, A=A) } )
+hh02 <- sapply( list(A_fn(0)), function (A) { sapply(tt, h.2, A=A) } )
+hhn22 <- sapply( list(A_fn(-2)), function (A) { sapply(tt, h.2, A=A) } )
+
+par(mar=c(4.5, 4, 1, 1)+.1)
+plot(tt, hhf00, type="l", lwd=2, ylab= expression("phenotype" ~ phi(t)), xlab="time t", col="steelblue4", ylim=c(-3,3), cex.lab=1)
+
+par(mar=c(4.5, 4, 1, 1)+.1)
+plot(tt, hhf00, type="l", lwd=2, ylab= expression("kryptotype" ~ kappa(t)), xlab="time t", col="steelblue4", ylim=c(-3,3), cex.lab=1)
+lines(tt, hhn22, lwd=2, col="seagreen")
+lines(tt, hh02, lwd=2, col="red4")
 ```
