@@ -109,3 +109,75 @@ plot(tt, hhf00, type="l", lwd=2, ylab= expression("kryptotype" ~ kappa(t)), xlab
 lines(tt, hhn22, lwd=2, col="seagreen")
 lines(tt, hh02, lwd=2, col="red4")
 ```
+
+```{r fig6, fig.align="center", fig.width=5, fig.height=3, cache=TRUE}
+library(parallel)
+
+optimal_h <- function (t) { sin(t)+cos(t) }
+
+
+Df <- function (A,t) {
+    exp(-t/(4*pi)) * ( h(t,A=A) - optimal_h(t) )^2
+}
+
+D <- function (A, upper=10, ...) {
+    f <- function (t) { Df(A,t) }
+    integrate(f, lower=0, upper=upper, ...)$value
+}
+
+get_F2s_nonunique <- function(tau1, tau2) {
+    vc <- function(tau1, tau2, x, y) {
+    out <- c(A_fn(tau1)[x,y], A_fn(tau2)[x,y])
+    return(out)
+}
+mlist <- list()
+count <- 1
+for (i in 1:2) {
+    for (j in 1:2) {
+        for (k in 1:2)
+            for (l in 1:2) {
+                mlist[[count]] <- matrix(c(vc(tau1, tau2, 1, 1)[i], vc(tau1, tau2, 2, 1)[j], vc(tau1, tau2, 1, 2)[k], vc(tau1, tau2, 2, 2)[l]),2,2)
+                count <- count + 1
+            }
+    }
+}
+
+f2list <- list()
+count2 <- 1
+for(i in 1:length(mlist)) {
+    for (j in 1:length(mlist)) {
+        f2list[[count2]] <- (mlist[[i]] + mlist[[j]])/2
+        count2 <- count2 + 1
+    }
+}
+return(f2list)
+}
+
+sys_gen_dist <- function(d) {
+    sgd <- sqrt( sum( (A_fn(0) - A_fn(0+d))^2 ) )
+    return(sgd)
+}
+
+dvec <- seq(0, 0.5, length.out=20)
+
+D_F1 <- sapply(dvec, function (dtau) {
+D(A=F1(tau1=0, tau2=0+dtau), upper = 10 )
+} )
+
+D_F2 <- do.call(cbind, mclapply(dvec, function (dtau) {
+F2s <- get_F2s_nonunique(0, 0+dtau)
+sapply(F2s, D, upper=10 )
+}, mc.cores=detectCores() ) )
+
+plot( sapply(dvec, sys_gen_dist), sqrt(D_F1), type='l', ylab="phenotype distance (D)", xlab="genetic distance", ylim=c(0, 2), lwd=3)
+lines(sapply(dvec, sys_gen_dist), colMeans(sqrt(D_F2)), lty=1, type="l", ylim=c(0,2), col="steelblue4", lwd=3)
+legend(0, 2, legend = c( expression(F[1]~"hybrids"), expression(F[2]~"hybrids")), lty=1, lwd=3, col=c("black", "steelblue4"))
+
+
+```
+
+
+
+
+
+
