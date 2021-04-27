@@ -589,8 +589,8 @@ beyond the local range where it is valid.
 \begin{quote}
 The present paper is divided into two parts. In the first part, the authors propose a framework
 in which distinct genetic architectures can produce the same phenotype. (In the fitness landscape
-terminology, this would correspond to the existence of an evolutionary ridge in a fitness landscape.
-)The starting point is a nice analogy with linear systems theory. The authors highlight the fact
+terminology, this would correspond to the existence of an evolutionary ridge in a fitness landscape.)
+The starting point is a nice analogy with linear systems theory. The authors highlight the fact
 that in general, two distinct linear (differential) systems can respond identically for any input; i.e.,
 different systems (genotypes) can always produce the same output (phenotype) given the same input
 (environment). Further, the set of equivalent systems can be nicely characterized through Kalman
@@ -623,12 +623,14 @@ to previous works (equation, section etc.) if the authors do not want to re-deri
 formula.
 \end{quote}
 
-\plr{TODO: respond/edit}
+Thanks for the encouraging words.
+As discssed above, we've separated out the second (less convincing) part,
+and the manuscript now only covers the first part.
 
 \begin{point}{end of p6:} 
-    ``we assume ... $((A + A' )/2, (B + B' )/2, (C + C' )/2)$'' . It is claimed in p4 (right
-before the last paragraph) that two kryptotypes need not have the same dimension. In this
-case, the previous sum does not make sense, right?
+    ``we assume ... $((A + A' )/2, (B + B' )/2, (C + C' )/2)$'' . It is claimed \revreffull{2}{1}
+    that two kryptotypes need not have the same dimension. In this
+    case, the previous sum does not make sense, right?
 \end{point}
 
 \reply{
@@ -640,15 +642,16 @@ case, the previous sum does not make sense, right?
 sentence. More importantly, I find the purple cloud of dots ($F_2$ population) quite confusing.
 It seems to me that the purple populations should be a cloud of points concentrated around
 a point sitting on the red dotted line, i.e., a Gaussian distribution with the mean at the
-average of the two parental populations. According to the authors, the distribution is bi-
-modal with a peak below the optimal set (as displayed on the figure) and another distinct
+average of the two parental populations. According to the authors, the distribution is
+bimodal with a peak below the optimal set (as displayed on the figure) and another distinct
 peak sitting on the other side of the optimal. In fact, if I understand the computations of
 the second part correctly, the red and purple means should coincide, but the red variance
 should simply be greater.
 \end{point}
 
 \reply{
-    We have improved Figure~\ref{fig:conceptual_fig} to hopefully better demonstrate the point.
+    We have improved Figure~\ref{fig:conceptual_fig} and made the accompanying discussion
+    more concrete to hopefully better demonstrate the point.
 }
 
 \begin{point}{p7: end of the page.}
@@ -754,8 +757,8 @@ particular, the heuristics derived in the main text would not be satisfied.
 
 \begin{point}{}
     Finally, it would be worth mentioning several old and recent works relating genetic drift
-to speciation: Yamagushi and Iwasa, several articles by Gavrilets et al. (I think several
-citations are missing here), and Mirò Pina and Schertzer.
+    to speciation: \citet{yamaguchi2013first}, several articles by Gavrilets et al. (I think several
+    citations are missing here), and \citet{pina2019does}.
 \end{point}
 
 \reply{
