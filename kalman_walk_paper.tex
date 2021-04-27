@@ -205,7 +205,7 @@ as well as thoughtful verbal and conceptual models \citep{true2001developmental,
 Mathematical models of both particular regulatory networks
 and the evolution of such systems in general
 can provide guidance where intuition fails,
-and thus has the potential to discover general principles in the organization of biological systems 
+and thus have the potential to discover general principles in the organization of biological systems 
 as well as provide concrete numerical predictions \citep{servedio2014not}.
 There is a substantial amount of work studying the evolution of gene regulatory networks, in frameworks 
 both abstract \citep{wagner1994evolution, wagner1996does, siegal2002waddington, bergman2003evolutionary, draghi2015robustness}
@@ -226,8 +226,8 @@ amino acid sequences that fold similarly \citep{babajide1997neutral},
 or proteins with equivalent thermodynamic stability \citep{hart2014thermodynamic}.
 Further examples are found in the vast space of functionally equivalent
 potential regulatory sequences \citep{hare2008sepsid}, 
-in the logic of transcriptional \citep{tsong2006evolution, matsui2015regulatory, dalal2016transcriptional, dalal2017transcription} 
-and neural circuits \citep{trojanowski2014neural}, and in developmental systems \citep{true2001developmental}. 
+in the logic of transcriptional \citep{tsong2006evolution, matsui2015regulatory, dalal2016transcriptional, dalal2017transcription,jimenez2017spectrum} 
+and neural circuits \citep{trojanowski2014neural}, and in developmental systems \citep{vondassow2000segment,true2001developmental}. 
 \revpoint{1}{1} \revpoint{1}{3}
 % \jss{Other ideas instead of ``degeneracy'' or ``isofunctional structural plasticity'': non-invertibility, isofunctional plasticity, structural plasticity, phenotypic equivalency, phenotypic invariance, functional invariance, isofunctionality, functional equivalency, genotypic plasticity, conjugacy, functional symmetry, isologous, isomorphic.}
 % \plr{'structural plasticity' means something specific in neuroscience}
@@ -236,8 +236,8 @@ This capacity for isofunctional yet distinct mechanisms, sometimes called \emph{
 is a consequence of a many-to-one mapping between a system's structure and function,
 a concept that has been explored in many fields beyond biology.
 For instance, in many contexts mathematical models
-are fundamentally \emph{nonidentifiable} and/or \emph{indistinguishable} -- meaning that 
-there can be uncertainty about an inferred model's parameters or even its claims about
+are fundamentally \emph{nonidentifiable} and/or \emph{indistinguishable} -- \revpoint{1}{2}
+meaning that there can be uncertainty about an inferred model's parameters or even its claims about
 causal structure, despite access to complete and perfect data \citep[e.g.,][]{bellman1970structural, grewal1976identifiability, walter1984structural}. 
 Models with different parameter schemes, or even different mechanics 
 can make equally accurate predictions,
@@ -253,11 +253,12 @@ In computer science, this has been framed as the relationship among processes th
 Finally,
 the field of \emph{inverse problems} studies those cases in which,
 despite the existence of a theoretical one-to-one mapping between a model and behavior,
-  tiny amounts of noise make inference problems nonidentifiable in practice \citep{petrov2005well}. \revpoint{1}{2}
+tiny amounts of noise make inference problems nonidentifiable in practice \citep{petrov2005well}.
 
 It has been argued that the ability to modify structure without affecting function
 is necessary for natural selection \citep{edelman2001degeneracy}, 
-as it may function as a mechanism for biological robustness and evolvability, or manifest as 
+as it may function as a mechanism for biological robustness and evolvability
+\citep[reviewed in][]{devisser2003perspective}, or manifest as 
 \emph{canalization} \citep{whitacre2010degeneracy}.
 It may even contribute to the formation of new species \citep{gavrilets2014models}. 
 Redundancy of the genetic code, for instance,
@@ -271,7 +272,8 @@ while retaining the same function, and the possible implications for speciation.
 % Specifically, we would like to understand the degree of which gene regulatory network architectures are functionally equivalent and how this relates to network size and efficiency.
 If system architectures are not functionally unique,
 can this open up neutral evolutionary paths,
-and do these paths manifest as \emph{developmental system drift} \citep{true2001developmental}?
+and do species explore these paths
+through the process termed \emph{developmental system drift} \citep[by][]{true2001developmental}?
 Is this fast enough to contribute meaningfully to speciation?
 To do this, we describe results on linear dynamical systems which give
 an analytical description of the set of 
@@ -282,10 +284,10 @@ a population diffuses along the neutral ridges of a high-dimensional space of po
 in a similar vein as \emph{holey landscape} models \citep{gavrilets1997evolution, yamaguchi2013first, pina2019does}\revpoint{2}{12}.
 % Our model is developed in more detail in a companion paper \citep{schiffman2020genetic}.
 
-Besides those already cited, many other authors have observed
 % It is not a new observation
+The field of population genetics has also explored the consequences of the fact
 that there is often more than one way to do the same thing, 
-and that speciation can be the result of (nearly) neutral processes.
+and observed that speciation might be the result of changes that are themselves neutral.
 Indeed, \citet{bateson1909heredity} first proposed that what today we call a
 Bateson-Dobzhansky-Muller incompatibility would likely arise through neutral changes. \revpoint{1}{10}
 The potential for speciation has been analyzed in models of 
@@ -635,14 +637,15 @@ and so represent degrees of freedom.
 (However, some of these subspaces may affect how the system deals with noise.)
 
 \emph{Note on implementation:}
-The \emph{reachable subspace},
-which we denote by $\reachable$,
+The \emph{reachable subspace}
+% which we denote by $\reachable$,
 is defined to be the closure of $\spn(B)$ under applying $A$
 (or equivalently, the span of $B, AB, A^2B, \ldots A^{n-1}B$), \revpoint{AE}{6}
 % Analogously to this, we define
-and the \emph{unobservable subspace}, 
+and the \emph{unobservable subspace}
 %$\mathcal{O}$, is the closure of $\spn(C^T)$ under applying $A$.
-denoted $\unobservable$, is the largest $A$-invariant subspace
+% denoted $\unobservable$,
+is the largest $A$-invariant subspace
 contained in the null space of $C$.
 % and $\reachable$ is the largest $A$-invariant subspace contained in the image of $B$.)
 The four subspaces, $\rno$, $\ro$, $\nrno$, and $\nro$
@@ -659,6 +662,9 @@ and similarly for $\nro$ and $\rno$.
 
 For the remainder of the paper, we interpret $\allS$ as the neutral set in the fitness landscape, 
 along which a large population will drift under environmental and selective stasis. 
+This drift need not be purely neutral --
+for instance, second-order selection on robustness
+will push the species towards ``flatter'' areas of genotype space \citep{rice1998evolution,hermisson2003epistasis}.
 Even if the phenotype is constrained and remains constant through evolutionary time, 
 the molecular mechanism underpinning it is not constrained and likely will not be conserved.
 
@@ -780,7 +786,7 @@ these are simply first-- and second--generation hybrids, respectively.
 
 Exactly how the coefficients 
 (i.e., entries of $A$, $B$ and $C$)
-of a haploid system inherited by an offspring from her diploid parent
+of a haploid system inherited by an offspring from a diploid parent
 are determined by the parent's two systems
 depends on the genetic basis of any variation in the coefficients.
 Thanks to the randomness of meiotic segregation,
@@ -821,7 +827,7 @@ populations containing significant diversity in $\allS$ can carry genetic load, 
     the distribution of $F_2$ phenotypes:
     \textbf{(left)}
     $F_2$s compose all four mixed homozygotes if variation at both
-    traits has a simple, one-locus genetic basis in both popualtions; and
+    traits has a simple, one-locus genetic basis in both populations; and
     \textbf{(right)}
     $F_2$ show a much wider distribution of phenotypes
     if the genetic basis of variation in each population is polygenic.
@@ -886,6 +892,7 @@ such small differences could plausibly be caused by changes to promoter sequence
 This divergence is quantified in Figure \ref{fig:osc_incompat},
 which shows that mean distance to optimum phenotype of the $F_1$ and $F_2$ hybrid offspring between $A(0)$ and $A(\epsilon)$
 increases with $\epsilon^2$ and $\epsilon$, respectively.
+\end{example}
 
 
 \begin{figure}[H]
@@ -902,19 +909,20 @@ increases with $\epsilon^2$ and $\epsilon$, respectively.
   \includegraphics{examples/f1f2_small}
   \caption{
     \textbf{(left)} Phenotypes of $F_1$ hybrids between a homozygous $A(0)$ parent and, 
-    top-to-bottom, homozygous $A(\sfrac{1}{100})$, $A(\sfrac{1}{10})$, and $A(\sfrac{1}{2})$ parents;
+    top-to-bottom, homozygous $A(\sfrac{1}{100})$, $A(\sfrac{1}{10})$, and $A(\sfrac{1}{2})$ parents,
+    where $A(\epsilon)$ is defined in figure \ref{fig:all_osc};
     parental coefficients differ by around 0.5\%, 5\%, and 25\% respectively.
     Parental phenotypes ($\sin t + \cos t$) are shown in solid black, and hybrid phenotypes in dashed blue.
     \textbf{(right)} Phenotypes of all $3^4 = 81$ possible $F_2$ hybrids between the same set of parents,
     with parental phenotype again in black.
     %% PLR: There are at most 128 possible F2s, not 256; but many are equivalent; 
     %%   it only matters if the offspring is homo/het/homozygous, so there are 3^4 = 81 possible expression patterns.
-    Different colored lines correspond to different $F_2$ hybrids;
-    note that some completely fail to oscillate.
+    Different colored lines correspond to different $F_2$ hybrids,
+    many of which show complete breakdown.
   } \label{fig:hybs}
 \end{figure}
 
-  \begin{figure}[H]
+\begin{figure}[H]
     \centering
     %\includegraphics[width=0.5\textwidth]{examples/F2_vs_F1_divergence_tau0}
     \includegraphics{examples/fig6_small_maxt10}
@@ -923,8 +931,7 @@ increases with $\epsilon^2$ and $\epsilon$, respectively.
     $\left(\sum_{ij} (A_{ij}(0) - A_{ij}(\epsilon))^2\right)^{1/2}$.
     }
     \label{fig:osc_incompat}
-  \end{figure}
-\end{example}
+\end{figure}
 
 \paragraph{Haldane's rule}
 This model naturally predicts
@@ -964,6 +971,9 @@ We have shown that system drift can lead to speciation in principle,
 but is it rapid enough to be an important factor in practice?
 In other words, after what period of time would we expect the fitness of hybrids
 between two allopatric populations to be substantially lower than the parentals?
+Selection -- on pleiotropic traits or on robustness --
+may actively push even a strongly constrained system along neutral directions,
+but even the calculations under purely neutral drift are informative.
 The population mean of an unconstrained quantitative trait
 with additive genetic variance $V_G$ in a population with effective size $N_e$
 will move in $t$ generations a random amount whose variance is $t V_G / N_e$ \citep{lande1976natural}.
@@ -1082,7 +1092,6 @@ hybrid inviability appears as a consequence of recombining different, yet functi
 Consistent with empirical observation of hybrid breakdown (e.g., \citet{plotner2017chlorosis}), 
 we see that the fitnesses of $F_2$ hybrids drop at a much faster rate than those of $F_1$s.
 % since $F_1$ and $F_2$ phenotypes diverge linearly and at the square root of time relative to parentals, respectively.
-%\plr{refer to Turelli here}
 % In this model, this is due to recombination shuffling system architectures, leaving the $F_2$ system homozygous for one parent at one particular locus and homozygous for the other parent at another possibly incompatible locus.
 Another natural consequence of the model is Haldane's rule,
 that if only one $F_1$ hybrid sex is inviable or sterile it is likely to be the heterogametic sex.
@@ -1191,18 +1200,30 @@ making it more difficult for systems to make the required compensatory changes f
 % which is something related to the number of genes.
 % even under universal pleiotropy \citep{universal_pleiotropy, boyle2017expanded},
 
-Phenotypically equivalent system evolution may not solely be driven by drift.
-Network coefficient evolution may be biased due to epistasis and driven by second-order selective effects;
-such processes can lead an evolving population's exploration of network space to regions more densely populated by
-and more closely connected to high fitness system architectures \citep{neutral_network_physics}. Our results, however, do not rely on the ``thickness''
-of the phenotypically equivalent set, but on the set's \emph{openess} under sexual recombination.
+Phenotypically equivalent system evolution is probably not only driven by neutral genetic drift.
+\revpoint{1}{18} \revpoint{1}{19} \revpoint{1}{21}
+For one thing, movement along the set of equivalent networks
+is not expected to be completely neutral,
+since second-order selection pushes populations towards
+``flatter'' regions of the fitness landscape
+in which a population centered on the optimal set has lower genetic load
+\citep[as described in different contexts by][]{rice1998evolution,neutral_network_physics}.
+If this bias towards more robust networks is strong enough,
+it may even prevent drift, but it is unclear how strong this effect would be in practice.
+Our results, on the other hand, do not rely on the flatness of the fitness surface
+around the phenotypically equivalent set, but rather on the curvature of the equivalent set itself.
 So long as the phenotypically equivalent set is not closed under sexual recombination,
 opportunities for incompatibility remain.
-It is plausible, however, that the speed at which system drift can generate incompatibilities might diminish
-in circumstances where selection for robustness is strong enough to constrain a population to a small section of system space.
-Likewise, as the speed of system drift relies on segregating genetic variation, any constraints on such variation,
-possibly due to epistasis, genetic architecture \citep{hermisson2003epistasis}, adaptive inertia \citep{alvarez2009effects} or weak gene flow could plausibly slow it down.
-\revpoint{1}{18} \revpoint{1}{19} \revpoint{1}{21}
+However the speed at which system drift can generate incompatibilities might diminish
+if selection for robustness is strong enough to constrain a population
+to a small section of system space,
+although the strength of such effects in practice are not known.
+Likewise, as the speed of system drift relies on segregating genetic variation,
+any constraints on such variation,
+possibly due to epistasis, genetic architecture \citep{hermisson2003epistasis}, adaptive inertia \citep{baatz1997adaptive,alvarez2009effects} or weak gene flow could plausibly slow it down.
+More work on specific systems,
+likely coupled with simulations,
+will be necessary to identify the biologically relevant parameter regimes.
 
 \paragraph{Nonlinearity and model assumptions}
 Of course, real regulatory networks are not linear dynamical systems.
@@ -1212,7 +1233,7 @@ It remains to be seen how well our results carry over into real systems,
 but the fact that most nonlinear systems can be locally approximated by a linear one
 suggests our qualitative results may hold more generally. \revpoint{1}{7}
 Furthermore, nonidentifiability (which implies the existence of neutral directions)
-is often found in practice in moderately complex models of biological systems \citep{gutenkunst2007universally, piazza2008diverse}.
+is often found in practice in moderately complex models of biological systems \citep[e.g.,][]{gutenkunst2007universally,piazza2008diverse,jimenez2017spectrum}.
 
 Finally, despite our model's precise separation of phenotype and kryptotype, this relationship in nature may be far more complicated as aspects of the kryptotype may be less ``hidden'' than we currently assume, and the neutral network changes we describe here may only be nearly neutral. For instance, attributes excluded from the phenotype as modeled here ignore the potential energy costs associated with excessively large (non-minimal) kryptotypes, as well as the relationship between a specific network architecture and robustness to mutational, transcriptional, or environmental noise.
 % Despite the model's simplifications and potentially nontrivial oversights, it may still roughly reflect and shed light upon speciation patterns as they occur in nature.
@@ -1227,7 +1248,7 @@ and genetic variation in these systems.
 \section*{Acknowledgements}
 
     We would like to thank Sergey Nuzhdin, Stevan Arnold, Michael Turelli, Patrick Phillips, Erik Lundgren and Hossein Asgharian for valuable discussion. 
-    We would also like to thank Nick Barton, Sarah Signor, Todd Parsons, Joachim Hermisson for very helpful comments on the manuscript.
+    We would also like to thank Nick Barton, Sarah Signor, Todd Parsons, and Joachim Hermisson for very helpful comments on the manuscript.
     Work on this project was supported by funds from
     the Sloan Foundation and the NSF (under DBI-1262645) to PR.
 
@@ -1319,7 +1340,7 @@ To illustrate the use of this, suppose that $B$ and $C$ are fixed.
 % Here $\calH$ is the quadratic form underlying the Hamiltonian.
 By defining $\Delta_{ij}$ to be the matrix with a 1 in the $(i,j)$th slot
 and 0 elsewhere,
-the coefficients of the quadratic form is
+the coefficients of the quadratic form are
 \begin{equation}
     \begin{aligned}
         H_{ij, k\ell}(A)
@@ -1343,12 +1364,12 @@ Now, notice that
 \begin{equation}
   \begin{aligned}
       \int_0^t e^{s \lambda_i} e^{(t-s) \lambda_j} ds
-      &=
+      &= \begin{cases}
       \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } 
           \qquad & \text{if} \quad i \neq j \\
-      &=
           t e^{t \lambda_i} 
-          \qquad & \text{if} \quad i = j 
+          \qquad & \text{if} \quad i = j .
+      \end{cases}
   \end{aligned}
 \end{equation}
 Therefore, 
@@ -1356,14 +1377,14 @@ defining
 \begin{equation}
     \begin{aligned}
     X_{ij}(t,Z) 
-       &= 
+        &= \begin{cases}
         \left( U^{-1} Z U \right)_{ij}
       \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } 
           \qquad & \text{if} \quad i \neq j \\
-      &=
-          \left( U^{-1} Z U \right)_{ii}
+      \left( U^{-1} Z U \right)_{ii}
           t e^{t \lambda_i} 
-          \qquad & \text{if} \quad i = j 
+          \qquad & \text{if} \quad i = j ,
+        \end{cases}
     \end{aligned}
 \end{equation}
 moving the $U$ and $U^{-1}$ outside the integral and integrating we get that
@@ -1389,15 +1410,15 @@ To compute the $n^2 \times n^2$ matrix $H$,
 we see that if $Z=\Delta_{k \ell}$, then
 \begin{equation}
   \begin{aligned}
-      X_{ij}^{k\ell}(t) 
-      &= 
+    X_{ij}^{k\ell}(t) 
+    &= \begin{cases}
       (U^{-1})_{\cdot k} U_{\ell \cdot}
       \frac{ e^{t \lambda_i} - e^{t \lambda_j} }{ \lambda_i - \lambda_j } 
           \qquad & \text{if} \quad i \neq j \\
-      &=
       (U^{-1})_{\cdot k} U_{\ell \cdot}
       t e^{t \lambda_i} 
-          \qquad & \text{if} \quad i = j 
+          \qquad & \text{if} \quad i = j ,
+    \end{cases}
   \end{aligned}
 \end{equation}
 where $U_{k \cdot}$ is the $k$th row of $U$,

@@ -84,7 +84,12 @@ myself. First, sorry for the long time it took to review your manuscript; it
 was reviewed on the timescale of mathematicians (for Reviewer2), but both
 reviewers provided thorough evaluations of your work (which in my opinion is
 better than a quick but superficial review).
+\end{quote}
 
+Thanks for the apology,
+but given the delay in our resubmission, we can hardly complain, at this point.
+
+\begin{quote}
 Your manuscript is quite long already, and the reviewers' suggestions of
 modifications and clarification, which need to be implemented, will make the
 manuscript even longer. I however share the reviewers' opinion that the
@@ -103,12 +108,11 @@ suggestion of publishing the two parts separately.
 \end{quote}
 
 Thanks for the careful attention to the paper.
-We have indeed decided to go with this suggestion,
+We have decided to go with this suggestion,
 and have split the paper in two;
 this paper is the ``systems biology'' part of it.
 We've left in reviewer comments regarding the ``Fisher's geometric model'' portion below,
 commenting that the relevant bit ``has been removed''.
-
 
 
 \begin{point}{Format:}
@@ -183,7 +187,7 @@ effects?
 \end{point}
 
 \reply{
-  We think that adding a third type of arrowhead may only add to the confusion, so now we are using only the standard arrowhead \revref.
+  We think that adding a third type of arrowhead may only add to the confusion, so now we are using only the standard arrowhead.
 }
 
 \begin{point}{p7, Hybrid incompatibility:}
@@ -237,16 +241,16 @@ because we lack such combined approaches and it is not easy to come up with an
 adequate framework. Below, I will discuss both parts in turn.
 \end{quote}
 
-\begin{quote}
-General remark: line numbers are very helpful for reviewing.  
-\end{quote}
+This manuscript is mostly the ``systems biology'' part,
+but we think that the potential applications to ``popgen'' are still reasonably visible.
+(And, we plan to resubmit the ``popgen'' part separately.)
 
-\begin{quote}
-    \textbf{(I)} The first (systems biology) part makes use of the concept of
-``nonidentifiability'' of chemical reaction networks and develops these concepts
-in the context of a genotype to phenotype map. In particular, this map is
-analyzed for the case where it can be modeled as a linear system.
-\end{quote}
+% \begin{quote}
+%     \textbf{(I)} The first (systems biology) part makes use of the concept of
+% ``nonidentifiability'' of chemical reaction networks and develops these concepts
+% in the context of a genotype to phenotype map. In particular, this map is
+% analyzed for the case where it can be modeled as a linear system.
+% \end{quote}
 
 \begin{point}{}
     First note that the concept of ``nonidentifiability'' is closely related to
@@ -267,7 +271,9 @@ forward from there.
 
 \reply{
   Thanks for the additional suggestions!
-  We've reworked the introduction, adding these (and many other) additional references. \revref
+  We've reworked the introduction, adding these (and many other) additional references
+  into the (large and growing) literature. \revref
+  We hope it's more representative now.
 }
 
 \begin{point}{}
@@ -290,6 +296,8 @@ more would be helpful (starting with True and Haag coined the term
 
 \reply{
     We've tried to explain things better in the revised Introduction. \revref
+    However, we find assigning specific contributions to be difficult
+    because similar ideas appear in many disparate parts of the literature.
 }
 
 \begin{point}{4.}
@@ -366,7 +374,7 @@ Currently, ``pleiotropy'' is not even mentioned in the ms.
 \end{point}
 
 \reply{
-    Yes, that's right. \revref
+    Yes, that's right; we've clarified this. \revref
 }
 
 \begin{point}{Introduction:}
@@ -432,12 +440,11 @@ these additional degrees of freedom can apply in principle to any system.'' - ar
     so this is an absence of evidence, not evidence of absence.
     (There are plenty of examples of homologous networks with missing genes,
     but there's so many uncertainties we don't think bringing this up will clarify things.)
-    \plr{JOSH: how's this?}
-    \jss{Sounds great! We could also add:}
-    Over larger evolutionary distances there is some evidence that structurally distinct
-    isofunctional networks of different size do indeed exist. \emph{E.g.}, the networks underlying circadian
-    rhythm in cyanobacteria and mammals, as discussed by \citet{sancar2008intelligent}.
-    It seems possible, in principle, that, on a smaller scale, such differences could exist between more closely related populations. 
+    % PLR: I don't think we need this, as the reviewers are aware of these examples.
+    % Over larger evolutionary distances there is some evidence that structurally distinct
+    % isofunctional networks of different size do indeed exist. \emph{E.g.}, the networks underlying circadian
+    % rhythm in cyanobacteria and mammals, as discussed by \citet{sancar2008intelligent}.
+    % It seems possible, in principle, that, on a smaller scale, such differences could exist between more closely related populations. 
 
 }
 
@@ -486,26 +493,24 @@ therefore run against your conclusions.
 
 \begin{point}{(drift along a ridge)}
     In the presence of epistasis, evolution on a neutral network (a high-fitness
-  ridge) is *not* due to drift alone, but also affected by (weak second order)
-selection in favor of mutational robustness / genetic canalization. In contrast
-to what you write, diffusion on the set of network coefficients corresponding
-to the optimal phenotype is not unbiased - even if the optimal phenotypes do
-indeed all have the same fitness. Instead, selection drives the population to
-``thicker'' parts of the network where the mean fitness of the population
-(including a cloud of mutants) is higher that on a narrow ridge. This is the
-basis of the evolution of robustness/canalization. It is possible to account
-for this effect, see Hermisson et al 2003. Amer. Nat. 161, 708-734;
-Alvarez-Castro et al, TPB 75 (2009) 109-122, or also Rice, 1998, Evolution 52,
-647-656; van Nimwegen, etal 1999, PNAS 96:9716–9720. Note that epistasis is
-necessary for the neutral evolution of incompatibilities, which is what you are
-aiming for.
+    ridge) is *not* due to drift alone, but also affected by (weak second order)
+    selection in favor of mutational robustness / genetic canalization. In contrast
+    to what you write, diffusion on the set of network coefficients corresponding
+    to the optimal phenotype is not unbiased - even if the optimal phenotypes do
+    indeed all have the same fitness. Instead, selection drives the population to
+    ``thicker'' parts of the network where the mean fitness of the population
+    (including a cloud of mutants) is higher that on a narrow ridge. This is the
+    basis of the evolution of robustness/canalization. It is possible to account
+    for this effect, see \citet{hermisson2003epistasis,alvarez2009effects}, 
+    or also \citet{rice1998evolution,neutral_network_physics}.
+    Note that epistasis is necessary for the neutral evolution of incompatibilities,
+    which is what you are aiming for.
 \end{point}
 
 \reply{
-    \plr{should put somethign about this in the discussion?}
-    \jss{I think we should definitely address it in the discussion -- and in the main text of the ridge paper.
-    Do you think we can say something about the ridge for the minimal oscillator being constant across parameter space?}
-    We have added a paragraph to the discussion to address these points. \revref
+    Thanks for pointing out this important omission.
+    We have added mention of this (and these citations),
+    including a paragraph to the discussion. \revref
 }
 
 \begin{point}{(drift along a ridge)}
@@ -513,7 +518,7 @@ aiming for.
   often requires coordinated changes at many loci. Take the oscillator system
 that you use as an example: simultaneous changes at two genes are required to
 maintain the phenotype. This leads to a phenomenon called ``adaptive inertia''
-(see Baatz and Wagner, TPB 51, 49-66 and Alvarez-Castro etal . TPB 75, 109-122),
+(see \citet{baatz1997adaptive} and \citet{alvarez2009effects}),
 which effectively slows down the movement along the ridge considerably. This
 problem applies, in particular, in a ``house-of-cards'' mutation regime when
 where rarely two mutations occur together on the same haplotype. In small
@@ -522,8 +527,8 @@ fitness valleys. While this is possible, it slows down the process.
 \end{point}
 
 \reply{
-    \plr{... together with this?}
-    We have added a paragraph to the discussion to address these points. \revref
+    Again, this is an important point covered in additional discussion.
+    \revref
 }
 
 \begin{point}{(drift along a ridge)}
@@ -532,19 +537,18 @@ example (eg the oscillator that is used as an illustration in the ms anyway).
 \end{point}
 
 \reply{
-    We aim to do that in the subsequent paper.
+    We agree, and hope to do this in our follow-up for this part of the paper.
 }
 
 \begin{point}{}
     If speciation due to accumulation of incompatibilities does not occur in
 allopatry, but under (even weak) gene flow, some degree of positive selection
-is always needed (Bank et al, Genetics 191, 845–863 for a proof). This also
+is always needed (\citet{bank2012limits} for a proof). This also
 means that even weak gene flow will counteract the process described in the ms.
 \end{point}
 
 \reply{
-    \plr{... and also this?}
-    We have added a paragraph to the discussion to address this point. \revref
+    Also a good point - we've added mention of this as well. \revref
 }
 
 \begin{point}{}
