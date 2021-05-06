@@ -1265,9 +1265,71 @@ and genetic variation in these systems.
 \section{Local expansion of the fitness surface}
 \label{apx:H_calc}
 
-Suppose that $\rho(t) \ge 0$ is a weighting function on $[0,\infty)$
-so that fitness is a function of $L^2(\rho)$ distance of the impulse response from optimal.
-With $h_0(t) = C_0 e^{tA_0} B_0$ a representative of the optimal set:
+The fitness of a system 
+depends on the difference between the system's impulse response and the optimal impulse response,
+measured  as a weighted sum of
+the distance between the impulse response from optimal.
+With $\rho(t) \ge 0$ a weighting function on $[0,\infty)$,
+and $h_0(t) = C_0 e^{tA_0} B_0$ a representative of the optimal set,
+the distance is equation \eqref{eqn:distance}:
+\begin{align}
+	D(h) = \left( \int_0^\infty \rho(t) \|h(t) - h_0(t)\|^2 dt \right)^{1/2} .
+\end{align}
+To see how this is affected by small changes to the system,
+first note that if $\|\cdot\|_\rho$ is the $L^2(\rho)$ norm,
+\begin{align}
+	\|g\|_\rho^2 := \int_0^\infty \rho(t) \|g(t)\|^2 dt
+\end{align}
+then the distance to optimum of a perturbed system, $h(t) = h_0(t) + \epsilon g(t)$, is
+\begin{align}
+	D(h_0 + \epsilon g) = \epsilon \|g\|_\rho .
+\end{align}
+
+Now consider the perturbed systems $(A(\epsilon), B(\epsilon), C(\epsilon)) = (A(0), B(0), C(0)) + \epsilon (U, V, W)$,
+and let $\h_\epsilon(t) = C(\epsilon) e^{A(\epsilon) t} B(\epsilon)$.
+If two populations with systems $(A(0), B(0), C(0))$ and $(A(\epsilon), B(\epsilon), C(\epsilon))$ interbreed,
+then the mean resulting system is $(A({\epsilon/2}), B({\epsilon/2}), C({\epsilon/2}))$,
+but with greater variance in the $F_2$ than the $F_1$ offspring (see Figure \ref{fig:conceptual_fig}).
+Indeed, if the difference between (say) $A(0)_{ij}$ and $A(\epsilon)_{ij}$
+is due to $n$ fixed differences with additive effect size $\epsilon/(2n)$ each,
+then the standard deviation of $A_{ij}$ among the $F_1$ offspring is equal to that
+within each parent population, while among the $F_2$ offspring it is $\epsilon / \sqrt{8 n}$.
+This implies that the impulse response, $h(t)$, of an $F_2$ will also differ from optimum
+by something of order $\epsilon$.
+However, since the displacement between the populations lies along a ridge,
+the $F_1$ offspring are closer:
+the Taylor expansions for $h$ about both 0 and $\epsilon$ are
+\begin{align}
+    h_{\epsilon/2}(t)
+    &= h_0(t)
+        + \frac{\epsilon}{2} \partial_\epsilon h_0(t)
+        + \frac{\epsilon^2}{8} \partial_\epsilon^2 h_0(t)
+        + O(\epsilon^3) \\
+    \text{and} \quad
+    &= h_\epsilon(t)
+        - \frac{\epsilon}{2} \partial_\epsilon h_\epsilon(t)
+        + \frac{\epsilon^2}{8} \partial_\epsilon^2 h_\epsilon(t)
+        + O(\epsilon^3)
+\end{align}
+Since $h_\epsilon(t) = h_0(t)$ by assumption,
+and $\partial_\epsilon h_\epsilon(t) = \partial_\epsilon h_0(t) + \epsilon \partial_\epsilon^2 h_0(t) + O(\epsilon^2)$,
+combining these expressions we get that
+\begin{align}
+    h_{\epsilon/2}(t)
+    &= h_0(t)
+        - \frac{\epsilon^2}{8} \partial_\epsilon^2 h_0(t)
+        + O(\epsilon^3) .
+\end{align}
+In other words, if the parental populations are both optimal but differ by $\epsilon$,
+then the $F_1$ offspring differ from optimal by something of order $\epsilon^2$,
+but the $F_2$ by something of order $\epsilon$.
+
+Of course, when moving away from the ridge, the fitness landscape is flatter in some directions than others,
+and how much so depends on the details.
+For completeness, we describe here how to compute the sensitivity of distance to optimum
+with respect to each of $A$, $B$, and $C$.
+Changing notation slightly, let's rewrite the squared distance to optimum
+of a system $(A, B, C)$:
 \begin{equation}
     \begin{aligned}
         D(A, B, C)^2
