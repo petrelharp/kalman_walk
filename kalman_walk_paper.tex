@@ -1292,10 +1292,13 @@ then the mean resulting system is $(A({\epsilon/2}), B({\epsilon/2}), C({\epsilo
 but with greater variance in the $F_2$ than the $F_1$ offspring (see Figure \ref{fig:conceptual_fig}).
 Indeed, if the difference between (say) $A(0)_{ij}$ and $A(\epsilon)_{ij}$
 is due to $n$ fixed differences with absolute additive effect size $\epsilon/\sqrt{n}$ each,
-then the standard deviation of $A_{ij}$ among the $F_1$ offspring is equal to that
-within each parent population, while a simple binomial calculation
-shows that among the $F_2$ offspring it is $\epsilon/2$
-(plus a contribution for within-population genetic variance).
+then the standard deviation of $A_{ij}$ among the $F_1$ offspring is still equal to that
+within each parent population, as each locus is heterozygous.
+However, if loci are unlinked then an $F_2$ offspring is homozygous with probability 1/2,
+and takes either homozygote with equal probability,
+so the variance of the contribution of each locus is $\epsilon/4\sqrt{n}$,
+and so the standard deviation across $F_2$ offspring is $\epsilon/4$
+plus a contribution for within-population genetic variance.
 (This many differences of this size would be expected if the difference was due to drift, for instance.)
 This implies that the impulse response, $h(t)$, of an $F_2$ will also differ from optimum
 by something of order $\epsilon$.
