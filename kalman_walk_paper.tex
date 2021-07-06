@@ -222,14 +222,14 @@ all the way up to the convergent evolution of adaptive traits.
 In many cases, these functionally equivalent structures
 can be explored through small, local changes to the structure that leave the function unchanged.
 For instance, there are ``neutral networks''
-of nucleic acid sequences that produce the same RNA secondary structure \citep{gruner1996analysis}\revpoint{1}{5},
+of nucleic acid sequences that produce the same RNA secondary structure \citep{gruner1996analysis}%\revpoint{1}{5},
 amino acid sequences that fold similarly \citep{babajide1997neutral},
 or proteins with equivalent thermodynamic stability \citep{hart2014thermodynamic}.
 Further examples are found in the vast space of functionally equivalent
 potential regulatory sequences \citep{hare2008sepsid}, 
 in the logic of transcriptional \citep{tsong2006evolution, matsui2015regulatory, dalal2016transcriptional, dalal2017transcription,jimenez2017spectrum} 
 and neural circuits \citep{trojanowski2014neural}, and in developmental systems \citep{vondassow2000segment,true2001developmental}. 
-\revpoint{1}{1} \revpoint{1}{3}
+%\revpoint{1}{1} %\revpoint{1}{3}
 % \jss{Other ideas instead of ``degeneracy'' or ``isofunctional structural plasticity'': non-invertibility, isofunctional plasticity, structural plasticity, phenotypic equivalency, phenotypic invariance, functional invariance, isofunctionality, functional equivalency, genotypic plasticity, conjugacy, functional symmetry, isologous, isomorphic.}
 % \plr{'structural plasticity' means something specific in neuroscience}
 
@@ -237,7 +237,7 @@ This capacity for isofunctional yet distinct mechanisms, sometimes called \emph{
 is a consequence of a many-to-one mapping between a system's structure and function,
 a concept that has been explored in many fields beyond biology.
 For instance, in many contexts mathematical models
-are fundamentally \emph{nonidentifiable} and/or \emph{indistinguishable} -- \revpoint{1}{2}
+are fundamentally \emph{nonidentifiable} and/or \emph{indistinguishable} -- %\revpoint{1}{2}
 meaning that there can be uncertainty about an inferred model's parameters or even its claims about
 causal structure, despite access to complete and perfect data \citep[e.g.,][]{bellman1970structural, grewal1976identifiability, walter1984structural}. 
 Models with different parameter schemes, or even different mechanics 
@@ -267,7 +267,7 @@ can make sequences more fault-tolerant to mutations \citep{sonneborn1965degenera
 and robustness to modification of genetic networks can allow adaptation 
 without passing through a fitness valley \citep{wagner2008robustness}.
 
-In this paper we use results on mathematical nonidentifiability from
+In this paper we use results on mathematical nonidentifiability from\hypertarget{rev2:1}
 linear systems theory to study how gene regulatory networks can be modified
 while retaining the same function, and the possible implications for speciation.
 % Specifically, we would like to understand the degree of which gene regulatory network architectures are functionally equivalent and how this relates to network size and efficiency.
@@ -282,15 +282,15 @@ all linear gene network architectures that yield identical phenotypes,
 and use quantitative genetics theory to estimate the speed at which system drift can lead to reproductive incompatibility and hence speciation.
 In this model,
 a population diffuses along the neutral ridges of a high-dimensional space of possible system parameters,
-in a similar vein as \emph{holey landscape} models \citep{gavrilets1997evolution, yamaguchi2013first, pina2019does}.  \revpoint{2}{12}
+in a similar vein as \emph{holey landscape} models \citep{gavrilets1997evolution, yamaguchi2013first, pina2019does}.  %\revpoint{2}{12}
 % Our model is developed in more detail in a companion paper \citep{schiffman2020genetic}.
 
 % It is not a new observation
 The field of population genetics has also explored the consequences of the fact
-that there is often more than one way to do the same thing, 
+that there is often more than one way to do the same thing,\hypertarget{rev2:2}e
 and observed that speciation might be the result of changes that are themselves neutral.
 Indeed, \citet{bateson1909heredity} first proposed that what today we call a
-Bateson-Dobzhansky-Muller incompatibility would likely arise through neutral changes. \revpoint{1}{10}
+Bateson-Dobzhansky-Muller incompatibility would likely arise through neutral changes. %\revpoint{1}{10}
 The potential for speciation has been analyzed in models of 
 traits under stabilizing selection determined additively by alleles at many loci 
 \citep{wright1935evolution,barton1986maintenance,barton1989divergence,barton2001role},
@@ -299,7 +299,7 @@ and for pairs of traits that must match but whose value is unconstrained \citep{
 % Recent work has shown that Fisher's geometric model of stabilizing selection
 % predicts many general patterns from the speciation literature \citep{fraisse2016genetics}.
 It has also been shown that population structure
-can allow long-term stable coexistence of incompatible genotypes encoding identical phenotypes \citep{phillips1996maintenance}. \revpoint{1}{9}
+can allow long-term stable coexistence of incompatible genotypes encoding identical phenotypes \citep{phillips1996maintenance}. %\revpoint{1}{9}
 However, previous simulations of system drift in regulatory sequences \citep{tulchinsky2014hybrid}
 and a regulatory cascade \citep{porter2002speciation}
 found rapid speciation under directional selection
@@ -367,8 +367,8 @@ We think of the system as the triple $(A,B,C)$,
 which translates (time-varying) $m$-dimensional input $u(t)$
 into the $\ell$-dimensional output $\phi(t)$.
 Under quite general assumptions on the input
-(e.g., $|u(t)|$ is integrable) \revpoint{AE}{3}
-we can write the phenotype as \revpoint{AE}{4}
+(e.g., $|u(t)|$ is integrable) %\revpoint{AE}{3}
+we can write the phenotype as %\revpoint{AE}{4}
   \begin{align}
     \phi(t) = \int_{0}^{t} C e^{(t-s) A} B u(s) ds ,
   \end{align}
@@ -391,7 +391,7 @@ and $C$ might determine the rate of production of downstream enzymes.
 % Furthermore, the ease of analyzing linear systems makes this an attractive place to start.
 
 
-\citet{wagner1994evolution} and others have used a similar discrete-time model \revpoint{1}{6}
+\citet{wagner1994evolution} and others have used a similar discrete-time model %\revpoint{1}{6}
 (that might be written $\phi_{t+1} = f(A \phi_t)$, where $f$ is a sigmoid).
 Our choice of continuous time does not affect the points we make here,
 but our restriction to \emph{linear} systems is a stronger assumption
@@ -400,8 +400,8 @@ but our restriction to \emph{linear} systems is a stronger assumption
 To demonstrate the model,
 we construct a simple gene network in Example \ref{ex:oscillator} below.
 
-\begin{example}[An oscillator]\label{ex:oscillator}
-For illustration, we consider an extremely simplified model of oscillating gene transcription,
+\begin{example}[An oscillator]\label{ex:oscillator}\hypertarget{rev1:1}
+  For illustration, we consider an extremely simplified model of oscillating gene transcription,
 as for instance is found in cell cycle control or the circadian rhythm.
 % Cellular division is governed by many different processes, however it is thought that its rhythm is partially controlled by oscillating gene transcription \citep{orlando2008global}.
 There are two genes, 
@@ -432,7 +432,7 @@ and $C \!=\! \left[\begin{smallmatrix} 1 & 0 \end{smallmatrix}\right]$.
  %         \phi(t) &= \begin{bmatrix} 1 & 0 \end{bmatrix} \kappa(t) \end{array} \right.
  %    \end{align*}
 If the input is an impulse at time zero (a delta function), 
-then the phenotype is equal to the impulse response: \revpoint{AE}{5}
+then the phenotype is equal to the impulse response: %\revpoint{AE}{5}
 \begin{align*}
 \phi(t) = h(t) = \sin t + \cos t  .
 \end{align*}
@@ -518,7 +518,7 @@ These ``changes of coordinates'' are not simply different ways of looking at the
 if each dimension of the kryptotype 
 corresponds to the concentration of a particular transcription factor,
 changing $A$ corresponds to changing the strengths of regulatory interactions.
-We will even see below that interactions may change sign. \revpoint{1}{13}
+We will even see below that interactions may change sign. %\revpoint{1}{13}
 However, not all phenotypically equivalent systems are of this form:
 systems can have identical impulse responses without being coordinate changes of each other.
 In fact, systems with identical impulse responses can involve interactions between different
@@ -574,7 +574,7 @@ move the system in any direction that lies in what is known as the \emph{reachab
 Analogously, we can only observe motion of the system in certain directions
 (those lying in the span of the rows of $C$),
 and so can only infer motion in what is known as the \emph{observable subspace}.
-The Kalman decomposition then classifies each direction in kryptotype space
+The Kalman decomposition then classifies each direction in kryptotype space\hypertarget{rev2:3}
 as either reachable or unreachable, and as either observable or unobservable.
 Only the components that are both reachable and observable determine the system's phenotype --
 that is, components that both respond to an input and produce an observable output. 
@@ -618,7 +618,7 @@ and
 The $n$-dimensional system has been divided into subspaces
 of dimensions $n_\rno + n_\ro + n_\nrno + n_\nro = n$,
 and so, for instance, $A_{\rno}$ is the $n_\rno \times n_\rno$ square matrix 
-in the top left corner of $P A P^{-1}$. \revpoint{1}{15}
+in the top left corner of $P A P^{-1}$. %\revpoint{1}{15}
 The impulse response of the system is given by
 \begin{align*}
       h(t) = C_{\ro} e^{A_{\ro} t} B_{\ro},
@@ -632,7 +632,7 @@ is unique up to a change of coordinates.
 This implies that there is no equivalent system with a smaller number of kryptotypic dimensions
 than the dimension of the minimal system.
 It is remarkable that the gene regulatory network architecture to achieve a given input--output map is never unique --
-both the change of basis used to obtain the decomposition
+both the change of basis used to obtain the decomposition\hypertarget{rev2:4}
 and, once in this form, all submatrices other than $A_{\ro}$, $B_{\ro}$, and $C_{\ro}$ can be changed without affecting the phenotype,
 and so represent degrees of freedom.
 (However, some of these subspaces may affect how the system deals with noise.)
@@ -641,7 +641,7 @@ and so represent degrees of freedom.
 The \emph{reachable subspace}
 % which we denote by $\reachable$,
 is defined to be the closure of $\spn(B)$ under applying $A$
-(or equivalently, the span of $B, AB, A^2B, \ldots A^{n-1}B$), \revpoint{AE}{6}
+(or equivalently, the span of $B, AB, A^2B, \ldots A^{n-1}B$), %\revpoint{AE}{6}
 % Analogously to this, we define
 and the \emph{unobservable subspace}
 %$\mathcal{O}$, is the closure of $\spn(C^T)$ under applying $A$.
@@ -687,7 +687,7 @@ phenotypically equivalent to the oscillator:
     \begin{align*}
       A(\tau) &= \frac{-1}{\tau+1} \begin{bmatrix} -\tau & -1 \\ 2 \tau(\tau + 1) + 1 &  \tau \end{bmatrix} \ \text{for} \ \tau \neq -1 .
     \end{align*}
-  The resulting set of systems are depicted in Figure \ref{fig:all_osc}. \revpoint{1}{16}
+  The resulting set of systems are depicted in Figure \ref{fig:all_osc}. %\revpoint{1}{16}
 \end{example}
 
 
@@ -727,7 +727,7 @@ phenotypically equivalent to the oscillator:
     \label{fig:all_osc}
 \end{figure}
 
-\revpoint{AE}{7}
+%\revpoint{AE}{7}
 
 \begin{figure}[H]
     \begin{center}
@@ -773,7 +773,7 @@ If this is consistent for the entire population, we would consider them to be se
 
 First, we must specify how sexual reproduction acts on these systems.
 Suppose that each of a diploid organisms' two genomes encodes a set of system coefficients
-with the same kryptotype dimension. \revpoint{2}{1}
+with the same kryptotype dimension. %\revpoint{2}{1}
 We assume that a diploid which has inherited systems $(A', B', C')$ and $(A'', B'', C'')$ from its two parents
 has phenotype determined by the system that averages these two,
 $((A'+A'')/2, (B'+B'')/2, (C'+C'')/2)$.
@@ -844,7 +844,7 @@ is illustrated in Example \ref{ex:hybrid_osc}.
 How quickly do hybrid phenotypes break down as genetic distance between parents increases?
 We will quantify how far a system's phenotype is from optimal
 using a weighted difference between impulse response functions.
-Suppose that $\rho(t)$ is a nonnegative weighting function, \revpoint{2}{3}
+Suppose that $\rho(t)$ is a nonnegative weighting function, %\revpoint{2}{3}
 $h_0(t)$ is the \emph{optimal} impulse response function
 and define the ``distance to optimum'' of another impulse response function
 to be
@@ -854,7 +854,7 @@ to be
 \end{align}
 In practice, we take $\rho(t) = \exp(-t/4\pi)$,
 so that fitness is determined by the dynamics of the system over a few multiples of $2 \pi$,
-but not longer. \revpoint{AE}{8}
+but not longer. %\revpoint{AE}{8}
 Consider reproduction between a parent with system $(A, B, C)$ 
 and another displaced by distance $\epsilon$ in the direction $(X,Y,Z)$,
 i.e., having  system $(A + \epsilon X, B + \epsilon Y, C + \epsilon Z)$.
@@ -862,7 +862,7 @@ We assume both are ``perfectly adapted'' systems,
 i.e., having impulse response function $h_0(t)$,
 and their offspring has impulse response function $h_\epsilon(t)$.
 A Taylor expansion of $D(h_\epsilon)$ in $\epsilon$ 
-is explicitly worked out in Appendix \ref{apx:H_calc}, and \revpoint{2}{4}
+is explicitly worked out in Appendix \ref{apx:H_calc}, and %\revpoint{2}{4}
 shows that the phenotype of an $F_1$ hybrid between these two is at distance proportional to $\epsilon^2$ from optimal,
 while $F_2$ hybrids are at distance proportional to $\epsilon$.
 This is because an $F_1$ hybrid has one copy of each parental system,
@@ -934,7 +934,7 @@ increases with $\epsilon^2$ and $\epsilon$, respectively.
     \label{fig:osc_incompat}
 \end{figure}
 
-\paragraph{Haldane's rule}
+\paragraph{Haldane's rule}\hypertarget{rev1:5}
 This model naturally predicts
 Haldane's rule, the observation that if only one hybrid sex is sterile or inviable 
 it is likely the heterogametic sex (e.g., the male in XY sex determination systems) \citep{haldane1922sex, orr1997haldane}.
@@ -1090,7 +1090,7 @@ system drift is a significant -- and possibly rapid -- driver of speciation.
 This may be surprising because
 hybrid inviability appears as a consequence of recombining different, yet functionally equivalent, mechanisms, and since species are often defined by their unique adaptations or morphologies. 
 
-Consistent with empirical observation of hybrid breakdown (e.g., \citet{plotner2017chlorosis}), 
+Consistent with empirical observation of hybrid breakdown (e.g., \citet{plotner2017chlorosis}),\hypertarget{rev1:6} 
 we see that the fitnesses of $F_2$ hybrids drop at a much faster rate than those of $F_1$s.
 % since $F_1$ and $F_2$ phenotypes diverge linearly and at the square root of time relative to parentals, respectively.
 % In this model, this is due to recombination shuffling system architectures, leaving the $F_2$ system homozygous for one parent at one particular locus and homozygous for the other parent at another possibly incompatible locus.
@@ -1127,7 +1127,7 @@ which is closer to the situation here.
 However, previous authors have argued that neutral processes are likely too slow to be a significant driver of speciation \citep{nei1983models,seehausen2014genomics}.
 % Using simulations, \citet{porter2002speciation} demonstrated the accumulation of hybrid incompatibilities under directional, but not stabilizing selection, and \citet{palmer2009dynamics} observed the appearance of incompatibilities in populations evolving in a constant environment, only if the populations were suboptimally adapted.
 % In light of the few known incompatibilities, 
-This has led some to conclude that hybrid incompatibility is typically a byproduct of positive selection \citep{orr2004speciation, schluter2009evidence} 
+This has led some to conclude that hybrid incompatibility is typically a byproduct of positive selection \citep{orr2004speciation, schluter2009evidence}\hypertarget{rev1:2} 
 or a consequence of genetic conflict \citep{presgraves2010molecular, crespi2013conflictual},
 two processes that typically act much more rapidly than genetic drift.
 % In contrast, the model we develop here suggests that even under strictly neutral conditions, 
@@ -1153,7 +1153,7 @@ Or, reinforcement due to local adaptation might provide a selective pressure
 that speeds up system drift.
 Furthermore,
 while the fitness consequences of incompatibility in any one given network may be small, 
-the cumulative impact of system drift across the many different networks an organism relies on may be substantial. 
+the cumulative impact of system drift across the many different networks an organism relies on may be substantial.\hypertarget{rev1:3} 
 It remains to be seen how the relative strengths of these forces compare.
 
 % Of course the basic assumptions of this model will be violated in practice (constant selective pressures, etc.), however, this model can function as a ``neutral null'' description of gene network evolution (a strategy advocated for by \citet{lynch2007frailty, fay2008evaluating, koonin2016splendor}). If this model succeeds in describing actual system evolution, it can be inferred that the mechanism underlying species formation does not require the inclusion of adaptation or changes in selection to explain the emergence of hybrid incompatibility.
@@ -1167,7 +1167,7 @@ It remains to be seen how the relative strengths of these forces compare.
 % Similarly, in a species with substantial isolation by distance, geographically local systems drift
 % might lead to genetic load due only to recombination, much as in \citep{phillips1996maintenance}.
 
-\paragraph{The dimensionality of trait space} \revpoint{1}{8}
+\paragraph{The dimensionality of trait space} %\revpoint{1}{8}
 We have focused on examples of single traits (where the phenotype is one-dimensional),
 but phenotypes under selection are often high-dimensional,
 and variation in different traits often share a genetic basis.
@@ -1201,8 +1201,8 @@ making it more difficult for systems to make the required compensatory changes f
 % which is something related to the number of genes.
 % even under universal pleiotropy \citep{universal_pleiotropy, boyle2017expanded},
 
-Phenotypically equivalent system evolution is probably not only driven by neutral genetic drift.
-\revpoint{1}{18} \revpoint{1}{19} \revpoint{1}{21}
+Phenotypically equivalent system evolution is probably not only driven by neutral genetic drift.\hypertarget{rev1:4}
+%\revpoint{1}{18} %\revpoint{1}{19} %\revpoint{1}{21}
 For one thing, movement along the set of equivalent networks
 is not expected to be completely neutral,
 since second-order selection pushes populations towards
@@ -1232,7 +1232,7 @@ Most notably, physiological limits put upper bounds on expression levels,
 implying saturating response curves.
 It remains to be seen how well our results carry over into real systems,
 but the fact that most nonlinear systems can be locally approximated by a linear one
-suggests our qualitative results may hold more generally. \revpoint{1}{7}
+suggests our qualitative results may hold more generally. %\revpoint{1}{7}
 Furthermore, nonidentifiability (which implies the existence of neutral directions)
 is often found in practice in moderately complex models of biological systems \citep[e.g.,][]{gutenkunst2007universally,piazza2008diverse,jimenez2017spectrum}.
 
