@@ -287,7 +287,9 @@ in a similar vein as \emph{holey landscape} models \citep{gavrilets1997evolution
 
 % It is not a new observation
 The field of population genetics has also explored the consequences of the fact
-that there is often more than one way to do the same thing,\hypertarget{rev2:2}e
+that phenotype does not prescribe a unique genotype\revpoint{2}{3}
+%there is often more than one way to do the same thing,
+\hypertarget{rev2:2}
 and observed that speciation might be the result of changes that are themselves neutral.
 Indeed, \citet{bateson1909heredity} first proposed that what today we call a
 Bateson-Dobzhansky-Muller incompatibility would likely arise through neutral changes. %\revpoint{1}{10}
@@ -1090,7 +1092,7 @@ system drift is a significant -- and possibly rapid -- driver of speciation.
 This may be surprising because
 hybrid inviability appears as a consequence of recombining different, yet functionally equivalent, mechanisms, and since species are often defined by their unique adaptations or morphologies. 
 
-Consistent with empirical observation of hybrid breakdown (e.g., \citet{plotner2017chlorosis}),\hypertarget{rev1:6} 
+Consistent with empirical observation of hybrid breakdown %(e.g., \citet{plotner2017chlorosis}),\hypertarget{rev1:6} 
 we see that the fitnesses of $F_2$ hybrids drop at a much faster rate than those of $F_1$s.
 % since $F_1$ and $F_2$ phenotypes diverge linearly and at the square root of time relative to parentals, respectively.
 % In this model, this is due to recombination shuffling system architectures, leaving the $F_2$ system homozygous for one parent at one particular locus and homozygous for the other parent at another possibly incompatible locus.
@@ -1130,6 +1132,9 @@ However, previous authors have argued that neutral processes are likely too slow
 This has led some to conclude that hybrid incompatibility is typically a byproduct of positive selection \citep{orr2004speciation, schluter2009evidence}\hypertarget{rev1:2} 
 or a consequence of genetic conflict \citep{presgraves2010molecular, crespi2013conflictual},
 two processes that typically act much more rapidly than genetic drift.
+Experiments in which population bottlenecks were induced to study the effect of drift on speciation found no reproductive isolation in the majority tested pairs. 
+In contrast, experiment has provided stronger support for incompatibilities evolving as a byproduct of divergent selection\citep{fry2009laboratory, white2020past}, 
+and incompatibilities identified between \emph{Drosophila simulans} and \emph{D. melanogaster} exhibit evidence of adaptative evolution \citep{tang2009evolution}.\revpoint{1}{1} 
 % In contrast, the model we develop here suggests that even under strictly neutral conditions, 
 % system drift can lead to speciation, at a rate fast enough 
 % to play a substantial role in species formation across the tree of life. 
@@ -1142,6 +1147,7 @@ such as the relationship between molecular divergence and genetic isolation
 seen by \citet{roux2016shedding}, 
 and the clocklike speciation rates observed by \citet{hedges2015tree}.
 % (as diversification is not observed to be accelerated following mass extinctions).
+More recently, \citet{sanchez2021widespread} observed widespread transcriptional misregulation in \emph{Drosophila} hybrids, implicating the action of system drift.
 
 These explanations are not mutually exclusive.
 All of these forces -- adaptive shifts, conflict, and network drift --
@@ -1201,7 +1207,7 @@ making it more difficult for systems to make the required compensatory changes f
 % which is something related to the number of genes.
 % even under universal pleiotropy \citep{universal_pleiotropy, boyle2017expanded},
 
-Phenotypically equivalent system evolution is probably not only driven by neutral genetic drift.\hypertarget{rev1:4}
+Phenotypically equivalent system evolution is probably not only driven by neutral genetic drift. \hypertarget{rev1:4}
 %\revpoint{1}{18} %\revpoint{1}{19} %\revpoint{1}{21}
 For one thing, movement along the set of equivalent networks
 is not expected to be completely neutral,
@@ -1222,6 +1228,11 @@ although the strength of such effects in practice are not known.
 Likewise, as the speed of system drift relies on segregating genetic variation,
 any constraints on such variation,
 possibly due to epistasis, genetic architecture \citep{hermisson2003epistasis}, adaptive inertia \citep{baatz1997adaptive,alvarez2009effects} or weak gene flow could plausibly slow it down.
+Fluctuating selection \citep{bell2010fluctuating} could further accelerate speciation via system drift. 
+Under our model, populations evolving towards different optimal phenotypes will always produce less fit hybrids,
+as the hybrid phenotypes will be displaced from both parental optimums, suggesting that selection fluctuation -- if not synchronized between populations -- will diminish hybrid fitnesses.
+In the case where fluctuations are synchronized, due to the size of the neutral system space, 
+populations may arive at different system organizations when returning to previous phenotypes at a rate faster than by drift alone.\revpoint{1}{3}
 More work on specific systems,
 likely coupled with simulations,
 will be necessary to identify the biologically relevant parameter regimes.
