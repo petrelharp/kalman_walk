@@ -57,20 +57,21 @@ As it is described, the model only holds for allopatric populations; I would exp
 \end{point}
 
 \reply{
+  \jss{This is probably a question you can answer better, but I put some thoughts down to start.} This is correct. As the model is currently described, we show that since different mutationally connected systems are not usually reproductively compatible, populations in different parts of system space will produce unfit hybrids. We rely on results from quantitative genetics to estimate the rate at which systems drift through the neutral space and thus to estimate the effects of gene flow. Without further modeling we do not yet know how a quantitative genetics model incorporating system theory would differ, if it all, from these classic results. We are planning to submit a paper where we further develop the removed quantitative genetics model and may be able to address this interesting question there.
 }
 
 \begin{point}{Orr's Snowball}
 The authors state that rapid emergence of incompatibility is possible in their model. How would the accumulation of incompatibility here compare with Orr’s ``snownball'' model, and how is this expected to depend on the complexity of the underlying networks?
 \end{point}
 
-\reply{
+\reply{\jss{I think Orr's estimate of the number of incompatible sites should hold? Maybe we should clarify that what we calculate is the rate at which phenotypes breakdown/fitness decays, and not the number of incompatible genes? I'm not exactly sure how to approach this question. This seems related to one of our previous discussions about whether or not this model produces ``DMIs'' or something rather different.}
 }
 
 \begin{point}{Genetic architecture}
 The genetic architecture (e.g., interactions between cis-regulatory and coding regions) is important to determine the barrier to gene flow that an incompatibiltiy builds. If there is a lot of short-distance interactions (physically in the genome; i.e. low recombination), they might not play a role for speciation per se because the incompatibility will often not be exposed to selection even in hybrids. In the light of our current knowledge of the genetic archtiecture of regulatory networks, how would this affect the conclusions from the model?
 \end{point}
 
-\reply{
+\reply{This is an interesting question. In our model system coefficients are treated as independent heritable units, and thus would represent genes spread out sufficiently far apart along the genome. Since the major source of F2 hybrid breakdown in this model is from recombining regulatory coefficients, if the genetic architecture of these coefficients was such that the genes were close enough to not recombine, we would not see the stark pattern of hybrid breakdown that we observe in F2 oscillators. We suspect that genetic architectures that allow for recombination, albeit at a lower rate, than for architectures in which genes are very far apart, will diminish the speed of speciation. This also leads to interesting questions about the evolution of genetic architecture; perhaps arhitectures in which co-regulating genes are neighbors are more robust. \jss{Need to think of where to add discussion like this to the paper.}
 }
 
 \reviewersection{1}
@@ -97,7 +98,7 @@ The previous version of this manuscript contained a standard quantitative trait 
 Martin 2014 argued that the results of these models and ``systems-biology'' type models are likely to approximate one another under some conditions, and that could be mentioned.
 \end{point}
 
-\reply{ \jss{I think this might be a question you will be better at answering?}
+\reply{ \jss{I think this might be a question you will be better at answering? FYI, we already cite Rosas 2010 and Fraisse 2016 on page 2.}
 }
 
 \begin{point}{RI due to kryptotypes not involving drift}
@@ -116,11 +117,14 @@ Martin 2014 argued that the results of these models and ``systems-biology'' type
   The abstract refers to ``another possible explanation'' of Haldane's Rule, and the explanation given is said to be quite different from the ``dominance theory'', because ``it derives from the nature of segregation variance''.  I wonder whether this is not misleading. My view is that the sort of model explored here (like additive quantitative trait model used by Barton 2001) naturally generates the sort of dominance relations required for the ``dominance theory'' to hold. Unless the authors strongly disagree, I would modify the abstract and \hyperlink{rev1:5}{lines 278-291}, or at least provide a fuller clarification for why the expanation is different from that discussed by Barton 2001.
 \end{point}
 
-\reply{
+\reply{\jss{To do. I think our options are to either add an appendix where we show that this model does or does not generate ``dominance relations'', add a sentence explaining why it does or does not, or just say it is consistent with Muller's ``balance argument'' (Barton 2001) and punt on whether or not it is or is not consistent with the dominance theory. What do you think?
+
+There also might be a nice solution when discussing the Martin 2014 paper about how systems biology and quantitative genetics models approximate one another (as R1 mentions above). Some concepts might be lost in translation.
+}
 }
 
 \begin{point}{}
-  5. (very minor) \hyperlink{rev1:6}{Line 358}: As you say, F2 hybrid breakdown has been known about for a very long time. As such, the single citation used feels a bit arbitrary.
+  (very minor) \hyperlink{rev1:6}{Line 358}: As you say, F2 hybrid breakdown has been known about for a very long time. As such, the single citation used feels a bit arbitrary.
 \end{point}
 
 \reply{Removed the citation. 
@@ -153,7 +157,7 @@ The F2 individuals only perform worse than F1 on average, and looking at figure 
   \hyperlink{rev2:1}{(p. 2, l. 73)} \jss{Note: R2 is using line numbers from the diff}: This paragraph summarises the main body of work performed in this paper. Thus, consider moving it to the end of the Introduction (i.e. switching places with the last paragraph).
 \end{point}
 
-\reply{
+\reply{\jss{What do you think?}
 }
 
 \begin{point}{}
@@ -183,13 +187,13 @@ The F2 individuals only perform worse than F1 on average, and looking at figure 
 (p. 7) In the section ``Sexual reproduction and recombination'', we think that the recombination process is not clearly explained, making it more challenging to read the text from this point. We suggest that the authors clarify how exactly recombination is implemented in the model. Perhaps an example would help the reader to have a better picture of the process. This example could be inline, like the one introduced in the section on Haldane's rule.
 \end{point}
 
-\reply{
+\reply{\jss{I can add this soon}
 }
 
 \begin{point}{}
 (p. 8, Figure 4 and p. 10, Figure 5): We suggest dividing the figure into sub-figures (e.g. A and B). Furthermore, we suggest adding ``F1'' and ``F2'' labels to the left and right plots in Figure 5, respectively, as well as the values of epsilon. This way, the reader would be immediately informed of what is changing.
 \end{point}
 
-\reply{
+\reply{\jss{To do.}
 }
 
