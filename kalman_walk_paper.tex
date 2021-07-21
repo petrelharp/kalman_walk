@@ -287,8 +287,8 @@ in a similar vein as \emph{holey landscape} models \citep{gavrilets1997evolution
 
 % It is not a new observation
 The field of population genetics has also explored the consequences of the fact
-that phenotype does not prescribe a unique genotype\revpoint{2}{3}
-%there is often more than one way to do the same thing,
+%that phenotype does not prescribe a unique genotype\revpoint{2}{3}
+that there is often more than one way to do the same thing,
 \hypertarget{rev2:2}
 and observed that speciation might be the result of changes that are themselves neutral.
 Indeed, \citet{bateson1909heredity} first proposed that what today we call a
@@ -545,7 +545,7 @@ then any such $Z$ will result in a different system.
 It turns out that in general, there are more degrees of freedom,
 except if the system is \emph{minimal} -- meaning, informally, that it uses the smallest possible number of components
 to achieve the desired dynamics.
-Results in system theory show that any system can be realized in a particular minimal dimension
+Results in system theory show that any time-invariant\revpoint{2}{5} system can be realized in a particular minimal dimension
 (the dimension of the kryptotype, $n_\text{min}$),
 and that any two phenotypically equivalent systems of dimension $n_\text{min}$ are related by a change of coordinates.
 Since gene networks can grow or shrink following gene duplications and deletions, 
@@ -954,6 +954,7 @@ If both genes resided on the autosomes, this system would only be possible in an
 More generally, 
 if the regulatory coefficients for a system are shared between the sex and one or more autosomal chromosomes, 
 $F_1$ males are effectively equivalent to purely autosomal-system $F_2$ hybrids, and recall that $F_2$s are significantly less fit on average than $F_1$s (see Figure \ref{fig:osc_incompat}).
+
 Although many alleles will be dominant if the phenotype--fitness relationship is convex,
 the underlying mechanism does not depend on the \emph{dominance theory} \citep{turelli1995dominance} to explain Haldane's rule:
 instead, it derives from the nature of segregation variance.
@@ -966,6 +967,9 @@ instead, it derives from the nature of segregation variance.
 %\plr{what are they?}
 %\citet{turelli1995dominance} employ a population genetic model which strictly requires alleles causing hybrid incompatibility on the X chromosome not to exhibit additive effects, that is the \emph{dominance coefficient} (typically $h$ in classic population genetics) must not be equal to $\frac{1}{2}$. In their model, if alleles are strictly additive, that is neither dominant nor recessive, then male and female $F_1$ hybrids will drop in fitness at the exact same rates, and therefore defy Haldane's rule. 
 
+A key difference from the dominance theory is that this model treats system coefficients as quantitative traits. The classification of alleles as either ``dominant'' or ``recessive'' fits most naturally for Mendellian traits. Along these lines, if we think of individual loci of large effect then the effect of mutations on fitness (if convex) will usually be recessive, congruent with the dominance theory's predictions. However, the dominance or recessiveness of even large effect mutations will depend on both the magnitude of their effect and precisely how they adjust system coefficients. For such mutations that keep systems on the neutral manifold (imagine mutations to the oscillator that only move $\tau$), the dominance coefficient (usually notated as $h$) will be mathematically undefined. Mutations that driectly perturb coefficiens of $A$ can be either dominant or recessive, depending on their size.
+
+\citet{barton2001role} explored Haldane's rule in the context of a quantitative trait and concluded that it was a consequence of the dominance theory. However, Barton also demonstrated $F_2$ hybrid breakdown in a model with strictly \emph{additive} inheritence. The model suggested here explains Haldane's rule as a special case of hybrid breakdown. As hybrid breakdown can occur for a quantitative trait under additivity, so can heterogametic inviability. This suggests that the model presented here is distinct from the dominance theory. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{The speed of speciation}
@@ -1132,9 +1136,9 @@ However, previous authors have argued that neutral processes are likely too slow
 This has led some to conclude that hybrid incompatibility is typically a byproduct of positive selection \citep{orr2004speciation, schluter2009evidence}\hypertarget{rev1:2} 
 or a consequence of genetic conflict \citep{presgraves2010molecular, crespi2013conflictual},
 two processes that typically act much more rapidly than genetic drift.
-Experiments in which population bottlenecks were induced to study the effect of drift on speciation found no reproductive isolation in the majority tested pairs. 
-In contrast, experiment has provided stronger support for incompatibilities evolving as a byproduct of divergent selection\citep{fry2009laboratory, white2020past}, 
-and incompatibilities identified between \emph{Drosophila simulans} and \emph{D. melanogaster} exhibit evidence of adaptative evolution \citep{tang2009evolution}.\revpoint{1}{1} 
+Experimental approaches designed to study the effect of drift on speciation which induced population bottlenecks found no reproductive isolation in the majority tested pairs\citep{fry2009laboratory, white2020past}. These bottlenecks might not maintain enough genetic variation for systems to drift at an appreciable rate, however.\revpoint{1}{1} \jss{Did you also want to add something about bottlenecking large versus small popoulations?}
+%and incompatibilities identified between \emph{Drosophila simulans} and \emph{D. melanogaster} exhibit evidence of adaptative evolution \citep{tang2009evolution}.\revpoint{1}{1}
+%
 % In contrast, the model we develop here suggests that even under strictly neutral conditions, 
 % system drift can lead to speciation, at a rate fast enough 
 % to play a substantial role in species formation across the tree of life. 
@@ -1149,8 +1153,14 @@ and the clocklike speciation rates observed by \citet{hedges2015tree}.
 % (as diversification is not observed to be accelerated following mass extinctions).
 More recently, \citet{sanchez2021widespread} observed widespread transcriptional misregulation in \emph{Drosophila} hybrids, implicating the action of system drift.
 
+Fluctuating selection \citep{bell2010fluctuating, barton2001role} could further accelerate speciation via system drift. 
+Under our model, populations evolving towards different optimal phenotypes will always produce less fit hybrids,
+as the hybrid phenotypes will be displaced from both parental optimums -- that is maladapted to both parental environments. This suggests that fluctuating selection -- if not synchronized between populations -- should diminish hybrid fitnesses.
+In the case where fluctuations are synchronized, due to the size of the neutral system space, 
+populations may arive at different system organizations when returning to previous phenotypes at a rate faster than by drift alone.\revpoint{1}{3}
+
 These explanations are not mutually exclusive.
-All of these forces -- adaptive shifts, conflict, and network drift --
+All of these forces -- adaptive shifts, conflict and network drift --
 are plausible drivers of speciation, and may even interact.
 Many of our observations carry over to models of directional selection --
 for instance, rapid drift along the set of equivalent systems
@@ -1227,12 +1237,7 @@ to a small section of system space,
 although the strength of such effects in practice are not known.
 Likewise, as the speed of system drift relies on segregating genetic variation,
 any constraints on such variation,
-possibly due to epistasis, genetic architecture \citep{hermisson2003epistasis}, adaptive inertia \citep{baatz1997adaptive,alvarez2009effects} or weak gene flow could plausibly slow it down.
-Fluctuating selection \citep{bell2010fluctuating} could further accelerate speciation via system drift. 
-Under our model, populations evolving towards different optimal phenotypes will always produce less fit hybrids,
-as the hybrid phenotypes will be displaced from both parental optimums, suggesting that selection fluctuation -- if not synchronized between populations -- will diminish hybrid fitnesses.
-In the case where fluctuations are synchronized, due to the size of the neutral system space, 
-populations may arive at different system organizations when returning to previous phenotypes at a rate faster than by drift alone.\revpoint{1}{3}
+possibly due to epistasis, genetic architecture \citep{hermisson2003epistasis}, adaptive inertia \citep{baatz1997adaptive,alvarez2009effects} or weak gene flow could plausibly slow it down.\revpoint{AE}{1}\revpoint{AE}{3}
 More work on specific systems,
 likely coupled with simulations,
 will be necessary to identify the biologically relevant parameter regimes.

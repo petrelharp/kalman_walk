@@ -57,7 +57,9 @@ As it is described, the model only holds for allopatric populations; I would exp
 \end{point}
 
 \reply{
-  \jss{This is probably a question you can answer better, but I put some thoughts down to start.} This is correct. As the model is currently described, we show that since different mutationally connected systems are not usually reproductively compatible, populations in different parts of system space will produce unfit hybrids. We rely on results from quantitative genetics to estimate the rate at which systems drift through the neutral space and thus to estimate the effects of gene flow. Without further modeling we do not yet know how a quantitative genetics model incorporating system theory would differ, if it all, from these classic results. We are planning to submit a paper where we further develop the removed quantitative genetics model and may be able to address this interesting question there.
+This is correct. As the model is currently described, we show that since different mutationally connected systems are not usually reproductively compatible, populations in different parts of system space will produce unfit hybrids. We rely on results from quantitative genetics to estimate the rate at which systems drift through the neutral space and thus to estimate the effects of gene flow. Without further modeling we do not yet know how a quantitative genetics model incorporating system theory would differ, if it all, from these classic results. We are planning to submit a paper where we further develop the removed quantitative genetics model and may be able to address this interesting question there.
+
+We also briefly mention that gene flow will likely complicate matters in the discussion \revref.
 }
 
 \begin{point}{Orr's Snowball}
@@ -71,7 +73,9 @@ The authors state that rapid emergence of incompatibility is possible in their m
 The genetic architecture (e.g., interactions between cis-regulatory and coding regions) is important to determine the barrier to gene flow that an incompatibiltiy builds. If there is a lot of short-distance interactions (physically in the genome; i.e. low recombination), they might not play a role for speciation per se because the incompatibility will often not be exposed to selection even in hybrids. In the light of our current knowledge of the genetic archtiecture of regulatory networks, how would this affect the conclusions from the model?
 \end{point}
 
-\reply{This is an interesting question. In our model system coefficients are treated as independent heritable units, and thus would represent genes spread out sufficiently far apart along the genome. Since the major source of F2 hybrid breakdown in this model is from recombining regulatory coefficients, if the genetic architecture of these coefficients was such that the genes were close enough to not recombine, we would not see the stark pattern of hybrid breakdown that we observe in F2 oscillators. We suspect that genetic architectures that allow for recombination, albeit at a lower rate, than for architectures in which genes are very far apart, will diminish the speed of speciation. This also leads to interesting questions about the evolution of genetic architecture; perhaps arhitectures in which co-regulating genes are neighbors are more robust. \jss{Need to think of where to add discussion like this to the paper.}
+\reply{This is an interesting question. In our model system coefficients are treated as independent heritable units, and thus would represent genes spread out sufficiently far apart along the genome. Since the major source of F2 hybrid breakdown in this model is from recombining regulatory coefficients, if the genetic architecture of these coefficients was such that the genes were close enough to not recombine, we would not see the stark pattern of hybrid breakdown that we observe in F2 oscillators. We suspect that genetic architectures that allow for recombination, albeit at a lower rate, than for architectures in which genes are very far apart, will diminish the speed of speciation. This also leads to interesting questions about the evolution of genetic architecture; perhaps arhitectures in which co-regulating genes are neighbors are more robust.
+
+We briefly mention complications to the model in the discussion \revref.
 }
 
 \reviewersection{1}
@@ -98,7 +102,7 @@ The previous version of this manuscript contained a standard quantitative trait 
 Martin 2014 argued that the results of these models and ``systems-biology'' type models are likely to approximate one another under some conditions, and that could be mentioned.
 \end{point}
 
-\reply{ \jss{I think this might be a question you will be better at answering? FYI, we already cite Rosas 2010 and Fraisse 2016 on page 2.}
+\reply{In the last paragraph of the introduction we discuss exactly this and the corresponding literature, including Rosas et al 2010 and Fraisse et al 2016. \jss{I don't really think Mani and Clarke says what R1 says it does. It states that mutational order matters. Also I don't thik the introduction is a good place for Martin 2014 -- maybe system and quant gen models have some sort of correspondence, but we don't show it.}
 }
 
 \begin{point}{RI due to kryptotypes not involving drift}
@@ -117,10 +121,12 @@ Martin 2014 argued that the results of these models and ``systems-biology'' type
   The abstract refers to ``another possible explanation'' of Haldane's Rule, and the explanation given is said to be quite different from the ``dominance theory'', because ``it derives from the nature of segregation variance''.  I wonder whether this is not misleading. My view is that the sort of model explored here (like additive quantitative trait model used by Barton 2001) naturally generates the sort of dominance relations required for the ``dominance theory'' to hold. Unless the authors strongly disagree, I would modify the abstract and \hyperlink{rev1:5}{lines 278-291}, or at least provide a fuller clarification for why the expanation is different from that discussed by Barton 2001.
 \end{point}
 
-\reply{\jss{To do. I think our options are to either add an appendix where we show that this model does or does not generate ``dominance relations'', add a sentence explaining why it does or does not, or just say it is consistent with Muller's ``balance argument'' (Barton 2001) and punt on whether or not it is or is not consistent with the dominance theory. What do you think?
+\reply{
+  The connection between the ``dominance theory'' and the situation presented here does not seem that straight forward to us. Haldane's rule should occur here even if the alleles are all strictly additive. Depending on the specific genetic architecture of a system, the dominance coefficient may not even be defined. For instance, if we consider a mutation that changes the $\tau$ parameter in the oscillator, $h$ as typically formulated in undefined. If we consider mutation to the particular coefficients themselves, $h$ varies sigmoidally from recessive to dominant, depending on the magnitude of the change (and the fitness function). Without an explicit model of mutation it is not clear whether these changes are dominant or not.
 
-There also might be a nice solution when discussing the Martin 2014 paper about how systems biology and quantitative genetics models approximate one another (as R1 mentions above). Some concepts might be lost in translation.
-}
+In this model we are also thinking about the effect of many small/quantitative mutations -- the effect of which on fitness, the cumulative effect of which could either be ``dominant'' or ``recessive''.
+
+Figure 5 in Barton 2001 shows that F2 hybrid breakdown under \emph{additive} inheritence. Our model links F2 hybrid breakdown with heterogametic inviability -- in our model F1 heterogametes have lower fitness than homogametes because their system looks like an autosomal F2 system. 
 }
 
 \begin{point}{}
@@ -157,21 +163,24 @@ The F2 individuals only perform worse than F1 on average, and looking at figure 
   \hyperlink{rev2:1}{(p. 2, l. 73)} \jss{Note: R2 is using line numbers from the diff}: This paragraph summarises the main body of work performed in this paper. Thus, consider moving it to the end of the Introduction (i.e. switching places with the last paragraph).
 \end{point}
 
-\reply{\jss{What do you think?}
+\reply{Thank you for this suggestion. We've decided to keep the paragraph order the same though. 
 }
 
 \begin{point}{}
   \hyperlink{rev2:2}{(p. 2, l. 92)}: ``...more than one way to do the same thing...'' sounds a bit too colloquial. Consider changing it to ``...more than one way to accomplish the same outcome...'' or some other alternative phrasing.
 \end{point}
 
-\reply{ Fixed \revref. \jss{Although I like the original phrasing better...}
+\reply{Thank you for the suggestion, but we would prefer to keep the sentence as written. 
+We understand your concern, but in order to make this paper easy to read,
+we have avoided using acronyms and tried to use simple language wherever possible,
+so long as the meaning remains clear.
 }
 
 \begin{point}{}
   \hyperlink{rev2:3}{(p. 5, l. 192)}: ``The Kalman decomposition then classifies each direction in kryptotype space as either reachable or unreachable''. Is there a biological motivation for considering unreachable directions in kryptotype space as degrees of freedom of the neutral space?
 \end{point}
 
-\reply{\jss{No?}
+\reply{This is a good question. The unreachable subspace would correspond to system structures that do not have an effect on the phenotype. However, biologically, it could be understood as a form of cryptic genetic variation -- coefficients in the unreachable subspace could have an effect when a system is perturbed (e.g. mutationally or in a hybrid). \jss{Not sure if/where to add to the paper?}
 }
 
 \begin{point}{}
@@ -179,15 +188,14 @@ The F2 individuals only perform worse than F1 on average, and looking at figure 
 \end{point}
 
 \reply{
-  As far as we understand, and as applied here, the Kalman decomposition is for linear time-invariant systems. Generalizations of the Kalman decomposition for time-varying systems have been discussed in...
-  \jss{Could cite some papers? Looks like Silverman and Meadows, EQUIVALENT REALIZATIONS OF LINEAR SYSTEMS discuss generalizations to the time-variable case.}
+  Yes, the Kalman decomposition is for linear time-invariant systems. We now note this \revref{}. 
 }
 
 \begin{point}{Recombination}
 (p. 7) In the section ``Sexual reproduction and recombination'', we think that the recombination process is not clearly explained, making it more challenging to read the text from this point. We suggest that the authors clarify how exactly recombination is implemented in the model. Perhaps an example would help the reader to have a better picture of the process. This example could be inline, like the one introduced in the section on Haldane's rule.
 \end{point}
 
-\reply{\jss{I can add this soon}
+\reply{We do not think we can add an example of how recombination generally works -- the mechanism will depend on the details of the particular system under study. In the oscillator example, recombination independently draws system coefficients from each parent at random. 
 }
 
 \begin{point}{}
