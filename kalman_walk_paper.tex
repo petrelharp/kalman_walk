@@ -183,7 +183,8 @@ At biologically reasonable parameter values
 this could lead to substantial interpopulation incompatibility,
 and thus speciation, on a time scale of $N_e$ generations.
 This model also naturally predicts Haldane's rule, 
-thus providing another possible explanation
+%thus providing another possible explanation
+thus providing a concrete explanation
 of why heterogametic hybrids tend to be disrupted more often than homogametes 
 during the early stages of speciation.
 \end{abstract}
@@ -955,9 +956,10 @@ More generally,
 if the regulatory coefficients for a system are shared between the sex and one or more autosomal chromosomes, 
 $F_1$ males are effectively equivalent to purely autosomal-system $F_2$ hybrids, and recall that $F_2$s are significantly less fit on average than $F_1$s (see Figure \ref{fig:osc_incompat}).
 
-Although many alleles will be dominant if the phenotype--fitness relationship is convex,
-the underlying mechanism does not depend on the \emph{dominance theory} \citep{turelli1995dominance} to explain Haldane's rule:
-instead, it derives from the nature of segregation variance.
+%Although many alleles will be dominant if the phenotype--fitness relationship is convex,
+%the underlying mechanism does not depend on the \emph{dominance theory} \citep{turelli1995dominance} to explain Haldane's rule:
+%instead, it derives from the nature of segregation variance.
+%
 % In this setting, Haldane's rule is mechanistically similar to \emph{hybrid breakdown}, 
 % the observation that $F_2$ hybrids will often be less fit than $F_1$ hybrid crosses, in the early stages of speciation.
 % This mechanism relies on the genetic variation of a system being shared across the sex chromosomes and the autosomes,
@@ -967,9 +969,12 @@ instead, it derives from the nature of segregation variance.
 %\plr{what are they?}
 %\citet{turelli1995dominance} employ a population genetic model which strictly requires alleles causing hybrid incompatibility on the X chromosome not to exhibit additive effects, that is the \emph{dominance coefficient} (typically $h$ in classic population genetics) must not be equal to $\frac{1}{2}$. In their model, if alleles are strictly additive, that is neither dominant nor recessive, then male and female $F_1$ hybrids will drop in fitness at the exact same rates, and therefore defy Haldane's rule. 
 
-A key difference from the dominance theory is that this model treats system coefficients as quantitative traits. The classification of alleles as either ``dominant'' or ``recessive'' fits most naturally for Mendellian traits. Along these lines, if we think of individual loci of large effect then the effect of mutations on fitness (if convex) will usually be recessive, congruent with the dominance theory's predictions. However, the dominance or recessiveness of even large effect mutations will depend on both the magnitude of their effect and precisely how they adjust system coefficients. For such mutations that keep systems on the neutral manifold (imagine mutations to the oscillator that only move $\tau$), the dominance coefficient (usually notated as $h$) will be mathematically undefined. Mutations that driectly perturb coefficiens of $A$ can be either dominant or recessive, depending on their size.
+This model differs from the \emph{dominance theory} \citep{turelli1995dominance} in that it treats system coefficients as quantitative traits.
+%The classification of alleles as either ``dominant'' or ``recessive'' fits most naturally for Mendellian traits. 
+If we think of individual loci of large effect then the effect of mutations on fitness (if convex) will usually be recessive, congruent with the dominance theory. However, the dominance or recessiveness of even large effect mutations will depend on both the magnitude of their effect and precisely how they adjust system coefficients. 
+%For such mutations that keep systems on the neutral manifold (imagine mutations to the oscillator that only move $\tau$), the dominance coefficient (usually notated as $h$) will be mathematically undefined. Mutations that driectly perturb coefficiens of $A$ can be either dominant or recessive, depending on their size.
 
-\citet{barton2001role} explored Haldane's rule in the context of a quantitative trait and concluded that it was a consequence of the dominance theory. However, Barton also demonstrated $F_2$ hybrid breakdown in a model with strictly \emph{additive} inheritence. The model suggested here explains Haldane's rule as a special case of hybrid breakdown. As hybrid breakdown can occur for a quantitative trait under additivity, so can heterogametic inviability. This suggests that the model presented here is distinct from the dominance theory. 
+\citet{barton2001role} explored Haldane's rule in the context of a quantitative trait and concluded that it was a consequence of the dominance theory. However, Barton also demonstrated $F_2$ hybrid breakdown in a model with strictly \emph{additive} inheritence -- a consequence of segregation variance. The model suggested here explains Haldane's rule as a special case of hybrid breakdown. As hybrid breakdown can occur for a quantitative trait under additivity, so can heterogametic inviability. This suggests that the model presented here is distinct from the dominance theory; like hybrid breakdown, Haldane's rule derives from the nature of segregation variance.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{The speed of speciation}
@@ -1108,7 +1113,7 @@ This observation appears to be similar to the extreme hybrid phenotypes produced
 which can manifest in $F_1$s when only one (dominant) parental allele is expressed at heterozygous loci; this was observed in hybrid gene expression patterns, and increased as a function of parental genetic distance \citep{stelkens2009genetic}.
 
 Is there evidence that this is actually occurring?
-System drift and network rewiring has been inferred across the tree of life \citep{wotton2015quantitative, crombach2016gap, dalal2017transcription, johnson2017rewiring, ali2017quantitative},
+System drift and network rewiring has been inferred across the tree of life \citep{wotton2015quantitative, crombach2016gap, dalal2017transcription, johnson2017rewiring, ali2019novel},
 and there is often significant regulatory variation segregating within populations.
 Transcription in hybrids between closely related species with conserved transcriptional patterns can also be divergent 
 \citep{haerty2006gene, maheshwari2012cis, coolon2014tempo, michalak2004association, mack2016gene}, and hybrid incompatibilities have been attributed to cryptic molecular divergence underlying conserved body plans \citep{gavin2013embryonic}. 
