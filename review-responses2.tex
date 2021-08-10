@@ -73,9 +73,9 @@ The authors state that rapid emergence of incompatibility is possible in their m
     if this relation is quadratic then our model will also show a quadratic increase in incompatibility.
     However, this seems somewhat arbitrary.
     It is more interesting to consider if our model displays the same underlying behavior that leads to the snowball,
-    in which each pair of lineage-specific substitutions contributes to incompatibility.
+    in which each pair of lineage-specific substitutions possibly contributes to incompatibility.
     This may be an empirical question (that could be examined in simulation),
-    but at this level of analysis it seems the answer is ``no'':
+    but at the level of analysis in our paper it seems the answer is ``no'':
     Consider two lineages moving away from each other along the neutral manifold.
     Each substitution moves them further apart, but the rate of increase of the distance between them
     is linear, and each subsequent substitution does not increase their rate of separation.
@@ -117,8 +117,12 @@ Martin 2014 argued that the results of these models and ``systems-biology'' type
 \end{point}
 
 \reply{
-    In the last paragraph of the introduction we discuss exactly this and the corresponding literature, including Rosas et al 2010 and Fraisse et al 2016. \revref
-\jss{I don't really think Mani and Clarke says what R1 says it does. It states that mutational order matters. Also I don't thik the introduction is a good place for Martin 2014 -- maybe system and quant gen models have some sort of correspondence, but we don't show it.}
+    We agree that this is an important thing to discuss.
+    We think that this is fairly well covered in the Introduction (paragraph at \revref),
+    and cite \citet{rosas2010cryptic} and \citet{fraisse2016genetics} in that section --
+    we have tried to make the connection to previous literature complete without being overwhelming.
+    We have also added a reference to \citet{mani1990mutational} at \llname{citemani},
+    and added further reference to Fisher's geometric model in the Discussion \llname{quantnote}.
 }
 
 \begin{point}{RI due to kryptotypes not involving drift}
@@ -128,7 +132,6 @@ Martin 2014 argued that the results of these models and ``systems-biology'' type
 \end{point}
 
 \reply{This is also a very interesting point worth discussing. We have added discussion on fluctuating selection \revref.
-\jss{Not sure where to put Mani and Clarke yet}.
 }
 
 \begin{point}{Interpretation of the Haldane’s Rule result}
@@ -138,11 +141,11 @@ Martin 2014 argued that the results of these models and ``systems-biology'' type
 \end{point}
 
 \reply{
-  The connection between the ``dominance theory'' and the situation presented here does not seem that straight forward to us. Haldane's rule should occur here even if the alleles are all strictly additive. Depending on the specific genetic architecture of a system, the dominance coefficient may not even be defined. For instance, if we consider a mutation that changes the $\tau$ parameter in the oscillator, $h$ as typically formulated in undefined. If we consider mutation to the particular coefficients themselves, $h$ varies sigmoidally from recessive to dominant, depending on the magnitude of the change (and the fitness function). Without an explicit model of mutation it is not clear whether these changes are dominant or not.
-
-In this model we are also thinking about the effect of many small/quantitative mutations -- the effect of which on fitness, the cumulative effect of which could either be ``dominant'' or ``recessive''.
-
-Figure 5 in Barton 2001 shows that F2 hybrid breakdown under \emph{additive} inheritence. Our model links F2 hybrid breakdown with heterogametic inviability -- in our model F1 heterogametes have lower fitness than homogametes because their system looks like an autosomal F2 system. 
+    Good point; on closer consideration we have decided to remove the reference to the dominance theory \revref,
+    and have modified the introduction to say ``a concrete explanation'' rather than ``another explanation''.
+    More generally, we have added a paragraph to the discussion about
+    the connection between our (quantitative and essentially continuous) model and
+    predictions based on the effects of single mutations on fitness. \llname{quantnote}
 }
 
 \begin{point}{}
@@ -196,7 +199,8 @@ so long as the meaning remains clear.
   \hyperlink{rev2:3}{(p. 5, l. 192)}: ``The Kalman decomposition then classifies each direction in kryptotype space as either reachable or unreachable''. Is there a biological motivation for considering unreachable directions in kryptotype space as degrees of freedom of the neutral space?
 \end{point}
 
-\reply{This is a good question. The unreachable subspace would correspond to system structures that do not have an effect on the phenotype. However, biologically, it could be understood as a form of cryptic genetic variation -- coefficients in the unreachable subspace could have an effect when a system is perturbed (e.g. mutationally or in a hybrid). \jss{Not sure if/where to add to the paper?}
+\reply{
+    Good point; we've added some additional discussion of what the subspaces represent. \revref
 }
 
 \begin{point}{}
@@ -211,7 +215,8 @@ so long as the meaning remains clear.
 (p. 7) In the section ``Sexual reproduction and recombination'', we think that the recombination process is not clearly explained, making it more challenging to read the text from this point. We suggest that the authors clarify how exactly recombination is implemented in the model. Perhaps an example would help the reader to have a better picture of the process. This example could be inline, like the one introduced in the section on Haldane's rule.
 \end{point}
 
-\reply{We do not think we can add an example of how recombination generally works -- the mechanism will depend on the details of the particular system under study. In the oscillator example, recombination independently draws system coefficients from each parent at random. 
+\reply{
+    Good point; this was unclear. We have clarified that we don't pick a particular model for recombination in this seciton. \revref
 }
 
 \begin{point}{}
