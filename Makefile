@@ -4,7 +4,7 @@ all: kalman_walk_paper.pdf ridge_evolution_paper.pdf
 
 PDFLATEX=pdflatex -interaction nonstopmode
 
-kalman_walk_paper.pdf : krefs.bib review-responses.tex
+kalman_walk_paper.pdf : krefs.bib review-responses2.tex
 
 ridge_evolution_paper.pdf : krefs.bib ridge-review-responses.tex
 
