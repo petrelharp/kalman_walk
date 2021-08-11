@@ -267,7 +267,7 @@ can make sequences more fault-tolerant to mutations \citep{sonneborn1965degenera
 and robustness to modification of genetic networks can allow adaptation 
 without passing through a fitness valley \citep{wagner2008robustness}.
 
-In this paper we use results on mathematical nonidentifiability from\hypertarget{rev2:1}
+In this paper we use results on mathematical nonidentifiability from \hypertarget{rev2:1}
 linear systems theory to study how gene regulatory networks can be modified
 while retaining the same function, and the possible implications for speciation.
 % Specifically, we would like to understand the degree of which gene regulatory network architectures are functionally equivalent and how this relates to network size and efficiency.
@@ -280,10 +280,10 @@ To do this, we describe results on linear dynamical systems which give
 an analytical description of the set of 
 all linear gene network architectures that yield identical phenotypes,
 and use quantitative genetics theory to estimate the speed at which system drift can lead to reproductive incompatibility and hence speciation.
+%
 In this model,
 a population diffuses along the neutral ridges of a high-dimensional space of possible system parameters,
 in a similar vein as \emph{holey landscape} models \citep{gavrilets1997evolution, yamaguchi2013first, pina2019does}. 
-% Our model is developed in more detail in a companion paper \citep{schiffman2020genetic}.
 
 % It is not a new observation
 The field of population genetics has also explored the consequences of the fact
@@ -313,8 +313,9 @@ segregation variance between isolated populations is fairly well understood
 but model assumptions can strongly affect predictions,
 including whether variation is due to rare or common alleles \citep{slatkin1994segregation},
 and the shape of the fitness landscape \citep{fraisse2016genetics}.
+%
 Our main aim is to provide a concrete framework 
-that can provide natural predictions of these model parameters
+that can make natural predictions of these model parameters
 across a general class of models.
 Furthermore, tools from system theory allow analytical predictions to be made
 for large populations with complex phenotypes
@@ -690,13 +691,13 @@ the molecular mechanism underpinning it is not constrained and likely will not b
 Finally, note that if $B$ and $C$ are held constant --
 i.e., if the relationships between environment, kryptotype, and phenotype do not change --
 there are \emph{still} usually degrees of freedom. 
-The following example \ref{ex:all_osc} gives the set of minimal systems equivalent to the oscillator of Example \ref{ex:oscillator},
+Example \ref{ex:all_osc} gives the set of minimal systems equivalent to the oscillator of Example \ref{ex:oscillator},
 that all share common $B$ and $C$ matrices.
 The oscillator can also be equivalently realized by a three-gene (or larger) network, and will have even more evolutionary degrees of freedom available, 
 as in Figure \ref{fig:3D_osc}.
 
 \begin{example}[All equivalent rewirings of the oscillator] \label{ex:all_osc}
-The oscillator of example \ref{ex:oscillator} is minimal, and so any equivalent system is a change of coordinates
+The oscillator of Example \ref{ex:oscillator} is minimal, and so any equivalent system is a change of coordinates
 by an invertible matrix $V$.
 If we further require $B$ and $C$ to be invariant then we need $VB=B$ and $CV=C$.
 Therefore
@@ -906,7 +907,7 @@ For instance, the $F_1$ offspring between homozygous parents at $\tau=0$ and $\t
 has phenotype $\phi_{F_1}(t) = e^t$, rather than $\phi(t) = \sin t + \cos t$.
 However, the coefficients of these two parental systems differ substantially,
 probably more than would be observed between diverging populations.
-In figure \ref{fig:hybs} we compare the phenotypes for $F_1$ and $F_2$ hybrids between more similar parents,
+In Figure \ref{fig:hybs} we compare the phenotypes for $F_1$ and $F_2$ hybrids between more similar parents,
 and see increasingly divergent phenotypes as the difference between the parental systems increases.
 (In this example, the coefficients of $A(\epsilon)$ differ from those of $A(0)$ by an average factor of $1+\epsilon/2$;
 such small differences could plausibly be caused by changes to promoter sequences.)
@@ -931,7 +932,7 @@ increases with $\epsilon^2$ and $\epsilon$, respectively.
   \caption{
     \textbf{(left)} Phenotypes of $F_1$ hybrids between a homozygous $A(0)$ parent and, 
     top-to-bottom, homozygous $A(\sfrac{1}{100})$, $A(\sfrac{1}{10})$, and $A(\sfrac{1}{2})$ parents,
-    where $A(\epsilon)$ is defined in figure \ref{fig:all_osc};
+    where $A(\epsilon)$ is defined in Figure \ref{fig:all_osc};
     parental coefficients differ by around 0.5\%, 5\%, and 25\% respectively.
     Parental phenotypes ($\sin t + \cos t$) are shown in solid black, and hybrid phenotypes in dashed blue.
     \textbf{(right)} Phenotypes of all $3^4 = 81$ possible $F_2$ hybrids between the same set of parents,
@@ -973,6 +974,10 @@ More generally,
 if the regulatory coefficients for a system are shared between the sex and one or more autosomal chromosomes, 
 $F_1$ males are effectively equivalent to purely autosomal-system $F_2$ hybrids, and recall that $F_2$s are significantly less fit on average than $F_1$s (see Figure \ref{fig:osc_incompat}).
 \revpoint{1}{4}
+
+Distribution of system coefficients across the autosomes and sex chromosomes does not alone guarantee Haldane's rule.
+Under this model, Haldane's rule will only occur when there is sufficient genetic distance seperating parentals
+and when the geometry of the optimal set produces $F_2$ hybrid breakdown. \revpoint{2}{1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{The speed of speciation}
@@ -1093,7 +1098,7 @@ Functionally equivalent architectures are often related by continuous parameter 
 and that there exist axes of genetic variation unconstrained by natural selection.
 The independent movement of separated populations along these axes by genetic drift
 can lead to a significant reduction in hybrid viability, and thus precipitate speciation,
-at a speed dependent on the effective population size and the amount of genetic variation. 
+at a speed dependent on the effective population size and the amount of genetic variation.
 In this model, at biologically reasonable parameter values,
 system drift is a significant -- and possibly rapid -- driver of speciation.
 This may be surprising because
@@ -1140,7 +1145,7 @@ This has led some to conclude that hybrid incompatibility is typically a byprodu
 or a consequence of genetic conflict \citep{presgraves2010molecular, crespi2013conflictual},
 two processes that typically act much more rapidly than genetic drift.
 Experimental approaches designed to study the effect of drift on speciation which induced population bottlenecks found no reproductive isolation in the majority tested pairs\citep{fry2009laboratory, white2020past}. These bottlenecks might not maintain enough genetic variation for systems to drift at an appreciable rate, however. \revpoint{1}{1}
-\jss{Did you also want to add something about bottlenecking large versus small popoulations?}
+%\jss{Did you also want to add something about bottlenecking large versus small popoulations?}
 %and incompatibilities identified between \emph{Drosophila simulans} and \emph{D. melanogaster} exhibit evidence of adaptative evolution \citep{tang2009evolution}.
 %
 % In contrast, the model we develop here suggests that even under strictly neutral conditions, 
@@ -1254,16 +1259,15 @@ Our results describe a continuum of possible systems,
 described by their continuous coefficient matrices.
 The arguments we make (e.g., Figure~\ref{fig:conceptual_fig}) are often geometric in nature,
 and so it would be interesting to ask whether Fisher's geometric model
-\citep[as in, e.g.,][]{martin2014,fraisse2016genetics,simon2017coadapted}
+\citep[as in, e.g.,][]{martin2014fishers,fraisse2016genetics,simon2017coadapted}
 might provide more quantitative, generalizable predictions.
 It is also natural to ask about the distribution of effect sizes of individual mutations
 in a population evolving under this model,
-and what the idstribituion of selection coefficients would be
+and what the distribituion of selection coefficients would be
 (at equilibrium, perhaps).
 These are questions that might be best answered by simulation,
 and could provide much additional information -- for instance,
-are alleles typically dominant in their effects on system coefficients?
-or, fitness?
+are alleles typically dominant in their effects on system coefficients or fitness?
 
 
 
