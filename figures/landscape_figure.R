@@ -69,7 +69,9 @@ layout(t(1:2))
 par(mar=c(1,1,1,1))
 
 do.plot(p1, p2, sigma=.02, legend=FALSE)
+title(main="(A)", adj=0)
 quant.plot(p1, p2, sigma=.02)
+title(main="(B)", adj=0)
 
 dev.off()
 
