@@ -3,6 +3,7 @@ library(grid)
 library(gridExtra)
 library(ggplot2)
 library(ggpubr)
+library(reshape2)
 
 A0 <- matrix(c(0,-1,1,0), nrow=2)
 B <- matrix(c(1,1), ncol=1)
