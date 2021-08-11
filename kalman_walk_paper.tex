@@ -267,7 +267,7 @@ can make sequences more fault-tolerant to mutations \citep{sonneborn1965degenera
 and robustness to modification of genetic networks can allow adaptation 
 without passing through a fitness valley \citep{wagner2008robustness}.
 
-In this paper we use results on mathematical nonidentifiability from \hypertarget{rev2:1}
+In this paper we use results on mathematical nonidentifiability from \linelabel{r21}
 linear systems theory to study how gene regulatory networks can be modified
 while retaining the same function, and the possible implications for speciation.
 % Specifically, we would like to understand the degree of which gene regulatory network architectures are functionally equivalent and how this relates to network size and efficiency.
@@ -289,7 +289,7 @@ in a similar vein as \emph{holey landscape} models \citep{gavrilets1997evolution
 The field of population genetics has also explored the consequences of the fact
 %that phenotype does not prescribe a unique genotype
 that there is often more than one way to do the same thing, \revpoint{1}{2}
-\hypertarget{rev2:2}
+\linelabel{r22}
 and observed that speciation might be the result of changes that are themselves neutral.
 Indeed, \citet{bateson1909heredity} first proposed that what today we call a
 Bateson-Dobzhansky-Muller incompatibility would likely arise through neutral changes. 
@@ -403,7 +403,7 @@ but our restriction to \emph{linear} systems is a stronger assumption
 To demonstrate the model,
 we construct a simple gene network in Example \ref{ex:oscillator} below.
 
-\begin{example}[An oscillator]\label{ex:oscillator}\hypertarget{rev1:1}
+\begin{example}[An oscillator]\label{ex:oscillator} \linelabel{r11b}
   For illustration, we consider an extremely simplified model of oscillating gene transcription,
 as for instance is found in cell cycle control or the circadian rhythm.
 % Cellular division is governed by many different processes, however it is thought that its rhythm is partially controlled by oscillating gene transcription \citep{orlando2008global}.
@@ -578,7 +578,7 @@ move the system in any direction that lies in what is known as the \emph{reachab
 Analogously, we can only observe motion of the system in certain directions
 (those lying in the span of the rows of $C$),
 and so can only infer motion in what is known as the \emph{observable subspace}.
-The Kalman decomposition then classifies each direction in kryptotype space\hypertarget{rev2:3}
+The Kalman decomposition then classifies each direction in kryptotype space\linelabel{r23}
 as either reachable or unreachable, and as either observable or unobservable.
 Only the components that are both reachable and observable determine the system's phenotype --
 that is, components that both respond to an input and produce an observable output. 
@@ -636,7 +636,7 @@ is unique up to a change of coordinates.
 This implies that there is no equivalent system with a smaller number of kryptotypic dimensions
 than the dimension of the minimal system.
 It is remarkable that the gene regulatory network architecture to achieve a given input--output map is never unique --
-both the change of basis used to obtain the decomposition\hypertarget{rev2:4}
+both the change of basis used to obtain the decomposition\linelabel{r24}
 and, once in this form, all submatrices other than $A_{\ro}$, $B_{\ro}$, and $C_{\ro}$ can be changed without affecting the phenotype,
 and so represent degrees of freedom.
 
@@ -745,7 +745,7 @@ phenotypically equivalent to the oscillator:
       % Both gene-1 dynamics are given by $\kappa_{1}(t) = \sin t + \cos t$, and gene-2 by $\kappa_{2}(t) = \cos t - \sin t$ ($A(0)$) and $\kappa'_{2}(t) = \cos t + 3 \sin t$ ($A(2)$).
       } 
     \label{fig:all_osc}
-\end{figure}
+\end{figure} \linelabel{r11e}
 
 
 \begin{figure}[H]
@@ -784,7 +784,7 @@ phenotypically equivalent to the oscillator:
 \end{center}
 \end{figure}
 
-\paragraph{Sexual reproduction and recombination}
+\paragraph{Sexual reproduction and recombination}\linelabel{r26}
 Parents with phenotypically equivalent yet differently wired gene networks may produce offspring with dramatically different phenotypes. 
 If the phenotypes are significantly divergent then the offspring may be inviable or otherwise dysfunctional, 
 despite both parents being well adapted. 
@@ -956,7 +956,7 @@ increases with $\epsilon^2$ and $\epsilon$, respectively.
     \label{fig:osc_incompat}
 \end{figure}
 
-\paragraph{Haldane's rule}\hypertarget{rev1:5}
+\paragraph{Haldane's rule}\linelabel{r15b}
 This model naturally predicts
 Haldane's rule, the observation that if only one hybrid sex is sterile or inviable 
 it is likely the heterogametic sex (e.g., the male in XY sex determination systems) \citep{haldane1922sex, orr1997haldane}.
@@ -973,7 +973,7 @@ $\left[\begin{smallmatrix} (A_1 + \bar A_1)/2 & (A_2 + \bar A_2)/2 \\ \bar X_1 &
 If both genes resided on the autosomes, this system would only be possible in an $F_2$ cross.
 More generally, the contribution of sex chromosomes to the system coefficients of $F_1$ males
 are effectively equivalent to those of purely autosomal $F_2$ hybrids,
-which are less fit on average than $F_1$s (see Figure \ref{fig:osc_incompat}).
+which are less fit on average than $F_1$s (see Figure \ref{fig:osc_incompat}). \linelabel{r15e}
 \revpoint{1}{4}
 Note, however, that presence of genetic variation on sex chromosomes
 does not alone guarantee Haldane's rule:
@@ -1105,7 +1105,7 @@ system drift is a significant -- and possibly rapid -- driver of speciation.
 This may be surprising because
 hybrid inviability appears as a consequence of recombining different, yet functionally equivalent, mechanisms, and since species are often defined by their unique adaptations or morphologies. 
 
-Consistent with empirical observation of hybrid breakdown %(e.g., \citet{plotner2017chlorosis}),\hypertarget{rev1:6} 
+Consistent with empirical observation of hybrid breakdown \linelabel{r16} %(e.g., \citet{plotner2017chlorosis}),\hypertarget{rev1:6} 
 we see that the fitnesses of $F_2$ hybrids drop at a much faster rate than those of $F_1$s.
 % since $F_1$ and $F_2$ phenotypes diverge linearly and at the square root of time relative to parentals, respectively.
 % In this model, this is due to recombination shuffling system architectures, leaving the $F_2$ system homozygous for one parent at one particular locus and homozygous for the other parent at another possibly incompatible locus.
@@ -1234,7 +1234,7 @@ making it more difficult for systems to make the required compensatory changes f
 % which is something related to the number of genes.
 % even under universal pleiotropy \citep{universal_pleiotropy, boyle2017expanded},
 
-Phenotypically equivalent system evolution is probably not only driven by neutral genetic drift. \hypertarget{rev1:4}
+Phenotypically equivalent system evolution is probably not only driven by neutral genetic drift. \linelabel{r14}
 For one thing, movement along the set of equivalent networks
 is not expected to be completely neutral,
 since second-order selection pushes populations towards
