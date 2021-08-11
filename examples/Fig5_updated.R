@@ -4,6 +4,9 @@ library(gridExtra)
 library(ggplot2)
 library(ggpubr)
 library(reshape2)
+library(cowplot)
+
+pdf(file="blue_hybrids.pdf", width=6, height=4, pointsize=10)
 
 A0 <- matrix(c(0,-1,1,0), nrow=2)
 B <- matrix(c(1,1), ncol=1)
@@ -142,3 +145,5 @@ k22 <- grid.arrange(k2, top=tr.grob)
 
 k0 <- plot_grid(k11, k22, nrow = 1)
 k00 <- grid.arrange(k0, bottom=x.grob, left=y.grob)
+
+dev.off()
