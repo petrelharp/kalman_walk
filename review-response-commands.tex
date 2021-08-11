@@ -44,9 +44,10 @@
 % NOTE: should call \revref{} with empty brackets after to get a space afterwards if desired: http://tex.stackexchange.com/questions/31091/space-after-latex-commands
 
 % or, this one to refer to a named linelabel
-% e.g. if in the text there is a \linelabel{approx_eqn_point}
+% e.g. if in the text there is a \llabel{approx_eqn_point}
 % refer to it with \llname{approx_eqn_point}
-\newcommand{\llname}[1]{{(p.\ \pageref{#1}, l.\ \lineref{#1})}}
+\newcommand{\llabel}[1]{\hypertarget{ll:#1}{\linelabel{#1}}}
+\newcommand{\llname}[1]{{(p.\ \hyperlink{ll:#1}{\pageref{#1}, l.\ \lineref{#1}})}}
 
 % put \includereviews() where the reviews are to appear (at the end?)
 \newcommand{\includereviews}{

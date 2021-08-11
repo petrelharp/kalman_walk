@@ -50,20 +50,38 @@ This is a very interesting theory paper that connects the modeling and evolution
 The authors have addressed most of the previous comments from the first round of reviews, and the two new reviewers only raise minor concerns and suggestions, especially regarding the paragraph on Haldane’s rule and regarding a better placement of the paper in the context of speciation research. I agree with these concerns; regarding the latter point I have three additional questions/comments, one of which was also raised in the previous round of reviews:
 \end{quote}
 
-Thank you for the kind words. 
+Thank you for the kind words and the helpful input.
+We have revised various sections of the paper,
+including the section on Haldane's rule,
+and have added a paragraph to the discussion about the distinction between
+the analysis we conduct here -- essentially that of a continuous-trait quantitative model --
+and predictions of various models that have to do with discrete loci.
 
 \begin{point}{Gene flow}
 As it is described, the model only holds for allopatric populations; I would expect even a small amount of gene flow to make neutral evolution of hybrid incompatibility impossible (Gavrilets 1997, Bank et al. 2012). This is not discussed in the current version of the paper; even more interestingly, would the authors expect conditions in which emergence of incompatibility could be possible in this model also in the presence of gene flow?
 \end{point}
 
 \reply{
-This is correct. As the model is currently described, we show that since different mutationally connected systems are not usually reproductively compatible, populations in different parts of system space will produce unfit hybrids. We rely on results from quantitative genetics to estimate the rate at which systems drift through the neutral space and thus to estimate the effects of gene flow. Without further modeling we do not yet know how a quantitative genetics model incorporating system theory would differ, if it all, from these classic results. We are planning to submit a paper where we further develop the removed quantitative genetics model and may be able to address this interesting question there.
+This is a very interesting question that we haven't attempted to analyze.
+% As the model is currently described, we show that since different mutationally connected systems are not usually reproductively compatible, populations in different parts of system space will produce unfit hybrids.
+Currently, the paper
+relies on general results from quantitative genetics
+to estimate the rate at which systems drift through the neutral space
+that don't depend on the details of the genetic architecture.
+However, the effects of gene flow depend on more things;
+in particular the effect sizes of mutations,
+something we've stayed away from.
+What effect sizes we might expect to be segregating is a good question
+(and we've added some discussion of this; \llname{quantnote}),
+but we feel that would be a topic for a separate paper
+(perhaps the former other half of this paper).
 
-We also briefly mention that gene flow will likely complicate matters in the discussion \revref.
+We have also added a brief mention
+that gene flow will likely complicate matters in the discussion \revref.
 }
 
 \begin{point}{Orr's Snowball}
-The authors state that rapid emergence of incompatibility is possible in their model. How would the accumulation of incompatibility here compare with Orr’s ``snownball'' model, and how is this expected to depend on the complexity of the underlying networks?
+The authors state that rapid emergence of incompatibility is possible in their model. How would the accumulation of incompatibility here compare with Orr’s ``snowball'' model, and how is this expected to depend on the complexity of the underlying networks?
 \end{point}
 
 \reply{
@@ -74,7 +92,7 @@ The authors state that rapid emergence of incompatibility is possible in their m
     However, this seems somewhat arbitrary.
     It is more interesting to consider if our model displays the same underlying behavior that leads to the snowball,
     in which each pair of lineage-specific substitutions possibly contributes to incompatibility.
-    This may be an empirical question (that could be examined in simulation),
+    This may be an empirical question (that could be examined in simulation, as noted in \llname{quantnote}),
     but at the level of analysis in our paper it seems the answer is ``no'':
     Consider two lineages moving away from each other along the neutral manifold.
     Each substitution moves them further apart, but the rate of increase of the distance between them
@@ -84,12 +102,12 @@ The authors state that rapid emergence of incompatibility is possible in their m
 }
 
 \begin{point}{Genetic architecture}
-The genetic architecture (e.g., interactions between cis-regulatory and coding regions) is important to determine the barrier to gene flow that an incompatibiltiy builds. If there is a lot of short-distance interactions (physically in the genome; i.e. low recombination), they might not play a role for speciation per se because the incompatibility will often not be exposed to selection even in hybrids. In the light of our current knowledge of the genetic archtiecture of regulatory networks, how would this affect the conclusions from the model?
+The genetic architecture (e.g., interactions between cis-regulatory and coding regions) is important to determine the barrier to gene flow that an incompatibility builds. If there is a lot of short-distance interactions (physically in the genome; i.e. low recombination), they might not play a role for speciation per se because the incompatibility will often not be exposed to selection even in hybrids. In the light of our current knowledge of the genetic architecture of regulatory networks, how would this affect the conclusions from the model?
 \end{point}
 
-\reply{This is an interesting question. In our model system coefficients are treated as independent heritable units, and thus would represent genes spread out sufficiently far apart along the genome. Since the major source of $F_2$ hybrid breakdown in this model is from recombining regulatory coefficients, if the genetic architecture of these coefficients was such that the genes were close enough to not recombine, we would not see the stark pattern of hybrid breakdown that we observe in $F_2$ oscillators. We suspect that genetic architectures that allow for recombination, albeit at a lower rate, than for architectures in which genes are very far apart, will diminish the speed of speciation. This also leads to interesting questions about the evolution of genetic architecture; perhaps arhitectures in which co-regulating genes are neighbors are more robust.
+\reply{This is an interesting question. In our model system coefficients are treated as independent heritable units, and thus would represent genes spread out sufficiently far apart along the genome. Since the major source of $F_2$ hybrid breakdown in this model is from recombining regulatory coefficients, if the genetic architecture of these coefficients was such that the genes were close enough to not recombine, we would not see the stark pattern of hybrid breakdown that we observe in $F_2$ oscillators. We suspect that genetic architectures that allow for recombination, albeit at a lower rate, than for architectures in which genes are very far apart, will diminish the speed of speciation. This also leads to interesting questions about the evolution of genetic architecture; perhaps architectures in which co-regulating genes are neighbors are more robust.
 
-We briefly mention complications to the model in the discussion \revref.
+We briefly mention such complications to the model in the discussion \revref.
 }
 
 \reviewersection{1}
@@ -105,7 +123,9 @@ Thank you. We were also excited that the paper had many readers on the bioRxiv.
     \revref~discusses previous discussion about the role of drift in speciation, but they focus on theory. I think that some strong arguments for the primacy of selection in speciation have been empirical (bottlenecking Drosophila populations and testing for RI, MK-tests on ``speciation genes'' etc.). Some of the earlier work was summarized in the last chapter of Coyne and Orr 2004. \llname{rp11}~seems to ignore a lot of this work, and so I would rephrase.
 \end{point}
 
-\reply{This is an important point. We have added references to the experimental speciation literature \revref. 
+\reply{
+    This is an important point.
+    We have added references to the experimental speciation literature, around \revref. 
 }
 
 \begin{point}{Additive quantitative trait models}
@@ -122,7 +142,9 @@ Martin 2014 argued that the results of these models and ``systems-biology'' type
     and cite \citet{rosas2010cryptic} and \citet{fraisse2016genetics} in that section --
     we have tried to make the connection to previous literature complete without being overwhelming.
     We have also added a reference to \citet{mani1990mutational} at \llname{citemani},
-    and added further reference to Fisher's geometric model in the Discussion \llname{quantnote}.
+    where we think it's better put in context,
+    and added further discussion of the possible connections to Fisher's geometric model in the Discussion \llname{quantnote},
+    including a citation of \citet{martin2014fishers} (which is very relevant; thanks!).
 }
 
 \begin{point}{RI due to kryptotypes not involving drift}
@@ -131,13 +153,15 @@ Martin 2014 argued that the results of these models and ``systems-biology'' type
   The section beginning on \llname{r14}~seems quite important to me, but it seems to downplay an important point. Populations might diverge genetically, or in their kryptotypes, but not in their phenotypes, if they experience fluctuating selection. This goes back the Wright-Fisher debates, and has been discussed in the context of speciation by, e.g., Mani and Clarke 1990, Barton 2001 and later authors. I think that the empirical evidence for fluctuating selection is also quite strong (e.g Bell 2010), and so it seems more important to discuss that, e.g., selection for robustness.
 \end{point}
 
-\reply{This is also a very interesting point worth discussing. We have added discussion on fluctuating selection \revref.
+\reply{
+    We agree that the earlier draft of the paper downplayed this point
+    more than it should have;
+    we have added discussion on the role of selection:
+    see the paragraph at \revref.
 }
 
 \begin{point}{Interpretation of the Haldane’s Rule result}
-%4. Interpretation of the Haldane’s Rule result
-%
-  The abstract refers to ``another possible explanation'' of Haldane's Rule, and the explanation given is said to be quite different from the ``dominance theory'', because ``it derives from the nature of segregation variance''.  I wonder whether this is not misleading. My view is that the sort of model explored here (like additive quantitative trait model used by Barton 2001) naturally generates the sort of dominance relations required for the ``dominance theory'' to hold. Unless the authors strongly disagree, I would modify the abstract and \llname{r15b} to \llname{r15e}, or at least provide a fuller clarification for why the expanation is different from that discussed by Barton 2001.
+  The abstract refers to ``another possible explanation'' of Haldane's Rule, and the explanation given is said to be quite different from the ``dominance theory'', because ``it derives from the nature of segregation variance''.  I wonder whether this is not misleading. My view is that the sort of model explored here (like additive quantitative trait model used by Barton 2001) naturally generates the sort of dominance relations required for the ``dominance theory'' to hold. Unless the authors strongly disagree, I would modify the abstract and \llname{r15b} to \llname{r15e}, or at least provide a fuller clarification for why the explanation is different from that discussed by Barton 2001.
 \end{point}
 
 \reply{
@@ -157,7 +181,7 @@ Martin 2014 argued that the results of these models and ``systems-biology'' type
 
 \reviewersection{2}
 \begin{quote}
-The manuscript explores how regulatory changes yielding the same phenotype may lead to hybrid incompatibilities and speciation. The authors model gene regulatory networks as sets of linear equations, where environmental inputs are integrated, giving rise to specific phenotypic outputs. Using Kalman decomposition, the authors identify the subset of such systems that produce the same phenotype and thus, characterise how a given system may be modified without affecting its phenotypic response. Resorting to a simple oscillatory network as an example, the authors show that phenotypically identical parents can generate offspring with considerably different phenotypes, resulting in hybrid incompatibilities if the set of equivalent phenotypes is not closed under the average. The phenotypic distance between parents and offspring is proportional to the square of the genetic distance between parents for F1 hybrids and directly proportional to the genetic distance between parents for F2 hybrids.
+The manuscript explores how regulatory changes yielding the same phenotype may lead to hybrid incompatibilities and speciation. The authors model gene regulatory networks as sets of linear equations, where environmental inputs are integrated, giving rise to specific phenotypic outputs. Using Kalman decomposition, the authors identify the subset of such systems that produce the same phenotype and thus, characterize how a given system may be modified without affecting its phenotypic response. Resorting to a simple oscillatory network as an example, the authors show that phenotypically identical parents can generate offspring with considerably different phenotypes, resulting in hybrid incompatibilities if the set of equivalent phenotypes is not closed under the average. The phenotypic distance between parents and offspring is proportional to the square of the genetic distance between parents for F1 hybrids and directly proportional to the genetic distance between parents for F2 hybrids.
 
 This is an interesting paper that nicely bridges core concepts of systems biology and evolution. The examples provided are very ``visual'', making quite clear the idea of ``equivalent systems'' and will greatly assist readers not familiar with Kalman decomposition. The figures are both informative and elegant, and the discussion aptly covers model validity and makes an effort to relate this work to standard speciation models. In addition, the authors have adequately addressed the comments of previous reviewers. Overall, this manuscript constitutes an appropriate addition to Evolution.
 
@@ -174,7 +198,14 @@ The F2 individuals only perform worse than F1 on average, and looking at figure 
 
 \reply{
   Yes, that is correct. On average, $F_2$s will have lower fitness than $F_1$s. As the reviewer points out, some $F_2$s could have higher fitnesses than $F_1$s.
-  This will be true when the optimal set is curved. In general, hybrid fitnesses will depend on the specific geometry of the optimal set, and in Appendix A we show that $F_2$s will generally be farther than $F_1$s from this set. As such, depending on the particular geometry, as well as the parental distances, Haldane's rule might not always occur. The key point we would like to communicate is that when $F_2$ hybrid breakdown \emph{can} occur (i.e. due to geometry and distance), and system coefficients are distributed across the autosomes and sex chromosomes, Haldane's rule will manifest. We have added a clarifying paragraph \revref. 
+In general, hybrid fitnesses will depend on the specific geometry of the optimal set.
+As such, depending on the particular geometry, as well as the parental distances,
+Haldane's rule might not always occur.
+The key point we would like to communicate is that when $F_2$ hybrid breakdown \emph{can} occur
+(i.e. due to geometry and distance),
+and system coefficients are distributed across the autosomes and sex chromosomes,
+Haldane's rule will manifest.
+We have added some clarifying text \revref. 
 
 }
 
@@ -184,9 +215,10 @@ The F2 individuals only perform worse than F1 on average, and looking at figure 
 
 \reply{Thank you for this suggestion, but we would prefer to keep the current paragraph order. 
 We agree that the second-to-last paragraph does provide a nice summary of the work, however,
-we think the current order which first discusses system theory, followed by quantiative genetics, is more consistent with the ordering of the rest of text.
-%We've rearranged the last part of the introduction to improve clarity.
-\jss{Changed it, then changed it back again. I think, as I write above, that the original order fits better with the order of the text where the quant part comes second. If you think you'd prefer the alternative ordering I'd suggest leaving the part starting with ``Our main aim...'' as the last paragraph and then swapping the rest of the quant paragraph with the system one -- leaving in the holey landscape reference.}
+after trying out the alternate ordering,
+we decided that the current order
+(which first discusses system theory, followed by quantitative genetics)
+is more consistent with the ordering of the rest of text.
 }
 
 \begin{point}{}
@@ -204,7 +236,7 @@ so long as the meaning remains clear.
 \end{point}
 
 \reply{
-    Good point; we've added some additional discussion of what the subspaces represent. \revref
+    A natural question; we've added some additional discussion of what the subspaces represent. \revref
 }
 
 \begin{point}{}
@@ -220,7 +252,7 @@ so long as the meaning remains clear.
 \end{point}
 
 \reply{
-    Good point; this was unclear. We have clarified that we don't pick a particular model for recombination in this seciton. \revref
+    Good point; this was unclear. We have clarified that we don't pick a particular model for recombination in this section. \revref
 }
 
 \begin{point}{}
