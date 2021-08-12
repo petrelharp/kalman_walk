@@ -5,8 +5,8 @@ library(ggplot2)
 library(ggpubr)
 library(reshape2)
 library(cowplot)
+library(grDevices)
 
-pdf(file="blue_hybrids.pdf", width=6, height=4, pointsize=10)
 
 A0 <- matrix(c(0,-1,1,0), nrow=2)
 B <- matrix(c(1,1), ncol=1)
@@ -82,60 +82,60 @@ hx <- data.frame("value"=hhf0[,1], "time"=tt, "variable"="parent")
 k <- data.frame(hhf1_1)
 k$time <- tt
 pl11 <- (melt(k, id.vars = "time")) %>% ggplot(aes(x=time, y=value, group=variable, col=variable)) + 
-    geom_line() + theme_classic(12) + theme(legend.position = "none") + 
+    geom_line(size=0.25) + theme_classic(12) + theme(legend.position = "none") + 
     scale_color_manual(values = cf(3)) + ylim(c(-6,6)) + xlab("") + ylab("") +
-    geom_line(data=hx, aes(x=time, y=value), color="black", size=1) + 
-    annotate(geom = "text", label=expression(paste(epsilon, " = 0.01")), x=0, y=6, hjust=0, vjust=1, size=6)
+    geom_line(data=hx, aes(x=time, y=value), color="black", size=0.5) + 
+    annotate(geom = "text", label=expression(paste(epsilon, " = 0.01")), x=0, y=6, hjust=0, vjust=1, size=3)
 
 k <- data.frame(hhf1_2)
 k$time <- tt
 pl12 <- (melt(k, id.vars = "time")) %>% ggplot(aes(x=time, y=value, group=variable, col=variable)) + 
-    geom_line() + theme_classic(12) + theme(legend.position = "none") + 
+    geom_line(size=0.25) + theme_classic(12) + theme(legend.position = "none") + 
     scale_color_manual(values = cf(3)) + ylim(c(-6,6)) + xlab("") + ylab("") + 
-    geom_line(data=hx, aes(x=time, y=value), color="black", size=1) + 
-    annotate(geom = "text", label=expression(paste(epsilon, " = 0.1")), x=0, y=6, hjust=0, vjust=1, size=6)
+    geom_line(data=hx, aes(x=time, y=value), color="black", size=0.5) + 
+    annotate(geom = "text", label=expression(paste(epsilon, " = 0.1")), x=0, y=6, hjust=0, vjust=1, size=3)
 
 k <- data.frame(hhf1_3)
 k$time <- tt
 pl13 <- (melt(k, id.vars = "time")) %>% ggplot(aes(x=time, y=value, group=variable, col=variable)) + 
-    geom_line() + theme_classic(12) + theme(legend.position = "none") + 
+    geom_line(size=0.25) + theme_classic(12) + theme(legend.position = "none") + 
     scale_color_manual(values = cf(3)) + ylim(c(-6,6)) + xlab("") + ylab("") +
-    geom_line(data=hx, aes(x=time, y=value), color="black", size=1) + 
-    annotate(geom = "text", label=expression(paste(epsilon, " = 0.5")), x=0, y=6, hjust=0, vjust=1, size=6)
+    geom_line(data=hx, aes(x=time, y=value), color="black", size=0.5) + 
+    annotate(geom = "text", label=expression(paste(epsilon, " = 0.5")), x=0, y=6, hjust=0, vjust=1, size=3)
 
 #F2s 
 k <- data.frame(hhf2_1)
 k$time <- tt
 pl21 <- (melt(k, id.vars = "time")) %>% ggplot(aes(x=time, y=value, group=variable, col=variable)) + 
-    geom_line() + theme_classic(12) + theme(legend.position = "none") + 
+    geom_line(size=0.25) + theme_classic(12) + theme(legend.position = "none") + 
     scale_color_manual(values = cf(81)) + ylim(c(-6,6)) + xlab("") + ylab("") +
-    geom_line(data=hx, aes(x=time, y=value), color="black", size=1) + 
-    annotate(geom = "text", label=expression(paste(epsilon, " = 0.01")), x=0, y=6, hjust=0, vjust=1, size=6)
+    geom_line(data=hx, aes(x=time, y=value), color="black", size=0.5) + 
+    annotate(geom = "text", label=expression(paste(epsilon, " = 0.01")), x=0, y=6, hjust=0, vjust=1, size=3)
 
 k <- data.frame(hhf2_2)
 k$time <- tt
 pl22 <- (melt(k, id.vars = "time")) %>% ggplot(aes(x=time, y=value, group=variable, col=variable)) + 
-    geom_line() + theme_classic(12) + theme(legend.position = "none") + 
+    geom_line(size=0.25) + theme_classic(12) + theme(legend.position = "none") + 
     scale_color_manual(values = cf(81)) + ylim(c(-6,6)) + xlab("") + ylab("") +
-    geom_line(data=hx, aes(x=time, y=value), color="black", size=1) + 
-    annotate(geom = "text", label=expression(paste(epsilon, " = 0.1")), x=0, y=6, hjust=0, vjust=1, size=6)
+    geom_line(data=hx, aes(x=time, y=value), color="black", size=0.5) + 
+    annotate(geom = "text", label=expression(paste(epsilon, " = 0.1")), x=0, y=6, hjust=0, vjust=1, size=3)
 
 k <- data.frame(hhf2_3)
 k$time <- tt
 pl23 <- (melt(k, id.vars = "time")) %>% ggplot(aes(x=time, y=value, group=variable, col=variable)) + 
-    geom_line() + theme_classic(12) + theme(legend.position = "none") + 
+    geom_line(size=0.25) + theme_classic(12) + theme(legend.position = "none") + 
     scale_color_manual(values = cf(81)) + ylim(c(-6,6)) + xlab("") + ylab("") +
-    geom_line(data=hx, aes(x=time, y=value), color="black", size=1) + 
-    annotate(geom = "text", label=expression(paste(epsilon, " = 0.5")), x=0, y=6, hjust=0, vjust=1, size=6)
+    geom_line(data=hx, aes(x=time, y=value), color="black", size=0.5) + 
+    annotate(geom = "text", label=expression(paste(epsilon, " = 0.5")), x=0, y=6, hjust=0, vjust=1, size=3)
 
 tr.grob <- textGrob(bquote(F[2]), 
-                    gp=gpar(fontface="bold", col="black", fontsize=24))
+                    gp=gpar(fontface="bold", col="black", fontsize=16))
 tl.grob <- textGrob(bquote(F[1]), 
-                    gp=gpar(fontface="bold", col="black", fontsize=24))
+                    gp=gpar(fontface="bold", col="black", fontsize=16))
 x.grob <- textGrob("time", 
-                   gp=gpar(col="black", fontsize=18))
+                   gp=gpar(col="black", fontsize=12))
 y.grob <- textGrob("phenotype", 
-                   gp=gpar(col="black", fontsize=18), rot = 90)
+                   gp=gpar(col="black", fontsize=12), rot = 90)
 
 k1 <- plot_grid(pl11, pl12, pl13, ncol=1)
 k2 <- plot_grid(pl21, pl22, pl23, ncol=1)
@@ -144,6 +144,7 @@ k11 <- grid.arrange(k1, top=tl.grob)
 k22 <- grid.arrange(k2, top=tr.grob)
 
 k0 <- plot_grid(k11, k22, nrow = 1)
-k00 <- grid.arrange(k0, bottom=x.grob, left=y.grob)
 
-dev.off()
+k00 <- grid.arrange(k0, bottom=x.grob, left=y.grob)
+out <- ggdraw(k00)
+ggsave(out, width=14, height=10, dpi=1000, filename="blue_hybrids2.pdf", scale=0.5)
