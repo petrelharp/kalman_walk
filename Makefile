@@ -7,13 +7,13 @@ PDFLATEX=pdflatex -interaction nonstopmode
 submission :  kalman_walk_paper_only.pdf cover_letter.pdf review_responses.pdf diff-to-submitted.pdf
 
 kalman_walk_paper_only.pdf : kalman_walk_paper.pdf
-	pdfjam --outfile $@ $< 1-25
+	pdfjam --outfile $@ $< 1-24
 
 cover_letter.pdf : kalman_walk_paper.pdf
-	pdfjam --outfile $@ $< 26
+	pdfjam --outfile $@ $< 25
 
 review_responses.pdf : kalman_walk_paper.pdf
-	pdfjam --outfile $@ $< 27-
+	pdfjam --outfile $@ $< 26-
 
 kalman_walk_paper.pdf : krefs.bib review-responses2.tex
 
