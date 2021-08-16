@@ -20,7 +20,7 @@ kalman_walk_paper.pdf : krefs.bib review-responses2.tex
 ridge_evolution_paper.pdf : krefs.bib ridge-review-responses.tex
 
 diff-to-submitted.tex : kalman_walk_paper.tex
-	latexdiff-git --force -r 9c53627c2f07b94da4f18e8bd6f14dce6e57a47d $<
+	latexdiff-vc --force -r 9c53627c2f07b94da4f18e8bd6f14dce6e57a47d $<
 	mv kalman_walk_paper-diff9c53627c2f07b94da4f18e8bd6f14dce6e57a47d.tex $@
 
 clean : 
