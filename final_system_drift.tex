@@ -103,12 +103,12 @@
 \newtheorem{example}{Example}
 
 % Responses to reviews
-\input{review-response-commands}
+%\input{review-response-commands}
 % set this to show line numbers and include responses to reviews or not
-\newif\ifreviewresponses
-\reviewresponsestrue  % include them
+%\newif\ifreviewresponses
+%\reviewresponsestrue  % include them
 % \reviewresponsesfalse  % don't include them
-\newcommand{\responsefile}{review-responses2}  % name of the review responses file
+%\newcommand{\responsefile}{review-responses2}  % name of the review responses file
 
 
 \begin{document}
@@ -228,7 +228,7 @@ can make sequences more fault-tolerant to mutations \citep{sonneborn1965degenera
 and robustness to modification of genetic networks can allow adaptation 
 without passing through a fitness valley \citep{wagner2008robustness}.
 
-In this paper we use results on mathematical nonidentifiability from \llabel{r21}
+In this paper we use results on mathematical nonidentifiability from %\llabel{r21}
 linear systems theory to study how gene regulatory networks can be modified
 while retaining the same function, and the possible implications for speciation.
 If system architectures are not functionally unique,
@@ -246,8 +246,8 @@ a population diffuses along the neutral ridges of a high-dimensional space of po
 in a similar vein as \emph{holey landscape} models \citep{gavrilets1997evolution, yamaguchi2013first}.
 
 The field of population genetics has also explored the consequences of the fact
-that there is often more than one way to do the same thing, \revpoint{1}{2}
-\llabel{r22}
+that there is often more than one way to do the same thing, %\revpoint{1}{2}
+%\llabel{r22}
 and observed that speciation might be the result of changes that are themselves neutral.
 Indeed, \citet{bateson1909heredity} first proposed that what today we call a
 Bateson-Dobzhansky-Muller incompatibility would likely arise through neutral changes. 
@@ -344,7 +344,7 @@ but our restriction to \emph{linear} systems is a stronger assumption
 To demonstrate the model,
 we construct a simple gene network in Example \ref{ex:oscillator} below.
 
-\begin{example}[An oscillator]\label{ex:oscillator} \llabel{r11b}
+\begin{example}[An oscillator]\label{ex:oscillator} %\llabel{r11b}
   For illustration, we consider an extremely simplified model of oscillating gene transcription,
 as for instance is found in cell cycle control or the circadian rhythm.
 There are two genes, 
@@ -467,7 +467,7 @@ then any such $Z$ will result in a different system.
 It turns out that in general, there are more degrees of freedom,
 except if the system is \emph{minimal} -- meaning, informally, that it uses the smallest possible number of components
 to achieve the desired dynamics.
-Results in system theory show that any time-invariant \revpoint{2}{5}
+Results in system theory show that any time-invariant %\revpoint{2}{5}
 system can be realized in a particular minimal dimension
 (the dimension of the kryptotype, $n_\text{min}$),
 and that any two phenotypically equivalent systems of dimension $n_\text{min}$ are related by a change of coordinates.
@@ -498,7 +498,7 @@ move the system in any direction that lies in what is known as the \emph{reachab
 Analogously, we can only observe motion of the system in certain directions
 (those lying in the span of the rows of $C$),
 and so can only infer motion in what is known as the \emph{observable subspace}.
-The Kalman decomposition then classifies each direction in kryptotype space\llabel{r23}
+The Kalman decomposition then classifies each direction in kryptotype space %\llabel{r23}
 as either reachable or unreachable, and as either observable or unobservable.
 Only the components that are both reachable and observable determine the system's phenotype --
 that is, components that both respond to an input and produce an observable output. 
@@ -554,13 +554,13 @@ is unique up to a change of coordinates.
 This implies that there is no equivalent system with a smaller number of kryptotypic dimensions
 than the dimension of the minimal system.
 It is remarkable that the gene regulatory network architecture to achieve a given input--output map is never unique --
-both the change of basis used to obtain the decomposition\llabel{r24}
+both the change of basis used to obtain the decomposition %\llabel{r24}
 and, once in this form, all submatrices other than $A_{\ro}$, $B_{\ro}$, and $C_{\ro}$ can be changed without affecting the phenotype,
 and so represent degrees of freedom.
 
 Although the other submatrices do not affect the phenotype
 through the impulse response function $h(t)$,
-they may affect individual fitness in other ways \revpoint{2}{4}
+they may affect individual fitness in other ways %\revpoint{2}{4}
 (which we don't consider here).
 For instance,
 the ``unreachable'' subspaces cannot be affected by any of the possible variations
@@ -651,7 +651,7 @@ phenotypically equivalent to the oscillator:
       (Right) Gene-1 dynamics (blue) for both systems $A(0)$ and $A(-2)$ are identical, however, $A(0)$ gene-2 dynamics (red) differ from $A(-2)$ (green).
       } 
     \label{fig:all_osc}
-\end{figure} \llabel{r11e}
+\end{figure} %\llabel{r11e}
 
 
 \begin{figure}[H]
@@ -688,7 +688,7 @@ phenotypically equivalent to the oscillator:
 \end{center}
 \end{figure}
 
-\paragraph{Sexual reproduction and recombination}\llabel{r26}
+\paragraph{Sexual reproduction and recombination} %\llabel{r26}
 Parents with phenotypically equivalent yet differently wired gene networks may produce offspring with dramatically different phenotypes. 
 If the phenotypes are significantly divergent then the offspring may be inviable or otherwise dysfunctional, 
 despite both parents being well adapted. 
@@ -702,7 +702,7 @@ has phenotype determined by the system that averages these two,
 $((A'+A'')/2, (B'+B'')/2, (C'+C'')/2)$.
 In general, how parental systems are recombined and inherited
 depends on the genetic architecture of the segregating variation.
-\revpoint{2}{6}
+%\revpoint{2}{6}
 For the purposes of examples in this paper
 (Example \ref{ex:hybrid_osc} and Figure \ref{fig:hybs}),
 we take the simplest assumption that each system coefficient is encoded by a nonrecombining locus,
@@ -846,7 +846,7 @@ increases with $\epsilon^2$ and $\epsilon$, respectively.
     \label{fig:osc_incompat}
 \end{figure}
 
-\paragraph{Haldane's rule}\llabel{r15b}
+\paragraph{Haldane's rule} %\llabel{r15b}
 This model naturally predicts
 Haldane's rule, the observation that if only one hybrid sex is sterile or inviable 
 it is likely the heterogametic sex (e.g., the male in XY sex determination systems) \citep{haldane1922sex, orr1997haldane}.
@@ -863,8 +863,8 @@ $\left[\begin{smallmatrix} (A_1 + \bar A_1)/2 & (A_2 + \bar A_2)/2 \\ \bar X_1 &
 If both genes resided on the autosomes, this system would only be possible in an $F_2$ cross.
 More generally, the contribution of sex chromosomes to the system coefficients of $F_1$ males
 are effectively equivalent to those of purely autosomal $F_2$ hybrids,
-which are less fit on average than $F_1$s (see Figure \ref{fig:osc_incompat}). \llabel{r15e}
-\revpoint{1}{4} \revpoint{2}{1}
+which are less fit on average than $F_1$s (see Figure \ref{fig:osc_incompat}). %\llabel{r15e}
+%\revpoint{1}{4} \revpoint{2}{1}
 Note, however, that presence of genetic variation on sex chromosomes
 does not alone guarantee Haldane's rule:
 under this model, Haldane's rule will only occur when there is sufficient genetic distance separating parentals
@@ -969,7 +969,7 @@ system drift is a significant -- and possibly rapid -- driver of speciation.
 This may be surprising because
 hybrid inviability appears as a consequence of recombining different, yet functionally equivalent, mechanisms, and since species are often defined by their unique adaptations or morphologies. 
 
-Consistent with empirical observation of hybrid breakdown \llabel{r16}
+Consistent with empirical observation of hybrid breakdown %\llabel{r16}
 we see that the fitnesses of $F_2$ hybrids drop at a much faster rate than those of $F_1$s.
 Another natural consequence of the model is Haldane's rule,
 that if only one $F_1$ hybrid sex is inviable or sterile it is likely to be the heterogametic sex.
@@ -1003,7 +1003,7 @@ or a consequence of genetic conflict \citep{presgraves2010molecular, crespi2013c
 two processes that typically act much more rapidly than genetic drift.
 Supporting this view, experimental approaches designed to study the effect of drift on speciation
 through induced population bottlenecks
-found no reproductive isolation in the majority of tested pairs \citep{fry2009laboratory, white2020past}. \revpoint{1}{1}
+found no reproductive isolation in the majority of tested pairs \citep{fry2009laboratory, white2020past}. %\revpoint{1}{1}
 However, our calculations suggest that even under strictly neutral processes,
 hybrid fitness breaks down as a function of genetic distance
 rapidly enough to play a substantial role in species formation across the tree of life. 
@@ -1020,7 +1020,7 @@ Selection could dramatically accelerate speciation by the same process --
 e.g., by genetic draft \citep{gillespie2000genetic} or pleiotropic selection.
 For instance, \citet{mani1990mutational} showed that populations
 developed incompatibilities as they independently evolved towards the same quantitative trait optimum,
-as different alleles fix in different populations. \llabel{citemani}
+as different alleles fix in different populations. %\llabel{citemani}
 Fluctuating selection has similarly been shown to accelerate speciation
 in some models \citep{bell2010fluctuating,barton2001role}.
 Under our model, populations evolving towards different optimal phenotypes will always produce less fit hybrids,
@@ -1028,7 +1028,7 @@ as the hybrid phenotypes will be displaced from both parental optima,
 and so maladapted to both parental environments.
 This suggests that fluctuating selection -- if not synchronized between populations -- should diminish hybrid fitnesses.
 In the case where fluctuations are synchronized, due to the size of the neutral system space, 
-populations may arrive at different system organizations when returning to previous phenotypes at a rate faster than by drift alone. \revpoint{1}{3}
+populations may arrive at different system organizations when returning to previous phenotypes at a rate faster than by drift alone. %\revpoint{1}{3}
 
 These explanations are not mutually exclusive.
 All of these forces -- adaptive shifts, conflict and network drift --
@@ -1040,7 +1040,7 @@ Or, reinforcement due to local adaptation might provide a selective pressure
 that speeds up system drift.
 Furthermore,
 while the fitness consequences of incompatibility in any one given network may be small, 
-the cumulative impact of system drift across the many different networks an organism relies on may be substantial. \llabel{rp11}
+the cumulative impact of system drift across the many different networks an organism relies on may be substantial. %\llabel{rp11}
 It remains to be seen how the relative strengths of these forces compare.
 
 \paragraph{The dimensionality of trait space} 
@@ -1073,7 +1073,7 @@ indeed, many phenotypically equivalent changes will lead to denser $A$ matrices 
 However, more pleiotropic genes may be more strongly constrained,
 making it more difficult for systems to make the required compensatory changes for system drift.
 
-Phenotypically equivalent system evolution is probably not only driven by neutral genetic drift. \llabel{r14}
+Phenotypically equivalent system evolution is probably not only driven by neutral genetic drift. %\llabel{r14}
 For one thing, movement along the set of equivalent networks
 is not expected to be completely neutral,
 since second-order selection pushes populations towards
@@ -1093,12 +1093,12 @@ although the strength of such effects in practice are not known.
 Likewise, as the speed of system drift relies on segregating genetic variation,
 any constraints on such variation,
 possibly due to epistasis, genetic architecture \citep{hermisson2003epistasis}, adaptive inertia \citep{baatz1997adaptive,alvarez2009effects}
-or weak gene flow could plausibly slow it down. \revpoint{AE}{1}\revpoint{AE}{3}
+or weak gene flow could plausibly slow it down. %\revpoint{AE}{1}\revpoint{AE}{3}
 More work on specific systems,
 likely coupled with simulations,
 will be necessary to identify the biologically relevant parameter regimes.
 
-\paragraph{Geometric models} \llabel{quantnote}
+\paragraph{Geometric models} %\llabel{quantnote}
 The model we work with describes a continuum of possible systems,
 parameterized by continuous coefficient matrices.
 The arguments we make (e.g., Figure~\ref{fig:conceptual_fig}) are often geometric in nature,
